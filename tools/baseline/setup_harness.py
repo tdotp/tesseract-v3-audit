@@ -18,6 +18,8 @@ plugin, fixture, dest = map(pathlib.Path, sys.argv[1:4])
 if dest.exists():
     sys.exit(f"{dest} ya existe; elige una carpeta nueva (este script no sobrescribe)")
 shutil.copytree(plugin, dest)
+for p in [dest, *dest.rglob('*')]:
+    p.chmod(p.stat().st_mode | 0o200)   # el baseline de referencia es de solo lectura; la copia del arnés debe ser editable
 here = pathlib.Path(__file__).parent
 
 shim = """/* SHIM de medición: simula el puente CEP. Solo vive en la copia. */
@@ -44,6 +46,6 @@ b = "      var path = String(fsPath || '');\n      if(!path) return '';"
 assert b in m
 m = m.replace(b, b + "\n      if(/^(blob:|https?:)/i.test(path)) return path;  /* HARNESS */", 1)
 (dest / "main.js").write_text(m)
-for f in ("measure_ui.js", "harness_art.js"):
+for f in ("measure_ui.js", "harness_art.js", "leak_cycles.js"):
     shutil.copy(here / f, dest / f)
 print("Arnés listo en", dest)
