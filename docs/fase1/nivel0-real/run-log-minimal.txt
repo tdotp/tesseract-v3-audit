@@ -1,0 +1,19 @@
+# Cola de la consola de `run-nivel0.mjs minimal` (2.ª ejecución, la que cuenta).
+# TRANSCRITA de la salida de la sesión: el run-log.json de esa ejecución fue sobrescrito por la de `rest` (defecto del orquestador, corregido: ahora run-log-<orden>.json).
+# Faltan las líneas anteriores al cierre de N0-A (preflight, apertura/preparación/survey/extract de N0-A: ambos identicos:true, restaurado:[]); los JSON de resultados SÍ se conservan íntegros.
+62:128: execution error: Adobe Illustrator detectó un error: Tiempo límite agotado para un evento Apple. (-1712)
+  {"paso":"cerrar sin guardar","respuestaPerdida":true,"n":0,"docs":[],"activo":null,"interaccion":"UserInteractionLevel.DISPLAYALERTS"}
+  {"paso":"abrir","doc":"N0-B","nombre":"N0-B_caja_simple_arte.svg","activo":"N0-B_caja_simple_arte.svg","n":1,"interaccion":"UserInteractionLevel.DISPLAYALERTS","artboards":1,"capas":1}
+  {"paso":"preparar documento desechable (grupos → capas)","doc":"N0-B","resultado":"preparado: capas (arriba→abajo) = Cuts, Creases, Front, Back | Back:1; Front:1; Creases:1; Cuts:2; capa original vacía eliminada"}
+  {"paso":"script","script":"survey","etiqueta":"survey","doc":"N0-B_caja_simple_arte.svg","ms":200,"archivo":"N0-B_caja_simple_arte.svg__survey.json","identicos":true,"restaurado":[],"seleccionRestaurada":false,"error":null}
+  {"paso":"script","script":"extract","etiqueta":"extract","doc":"N0-B_caja_simple_arte.svg","ms":203,"archivo":"N0-B_caja_simple_arte.svg__extract.json","identicos":true,"restaurado":[],"seleccionRestaurada":false,"error":null}
+  {"paso":"script","script":"art","etiqueta":"art","doc":"N0-B_caja_simple_arte.svg","ms":6908,"archivo":"N0-B_caja_simple_arte.svg__art.json","identicos":true,"restaurado":[],"seleccionRestaurada":false,"error":null}
+62:128: execution error: Adobe Illustrator detectó un error: Tiempo límite agotado para un evento Apple. (-1712)
+  {"paso":"cerrar sin guardar","respuestaPerdida":true,"n":0,"docs":[],"activo":null,"interaccion":"UserInteractionLevel.DISPLAYALERTS"}
+  {"paso":"abrir","doc":"N0-C","nombre":"N0-C_grupos_anidados.svg","activo":"N0-C_grupos_anidados.svg","n":1,"interaccion":"UserInteractionLevel.DISPLAYALERTS","artboards":1,"capas":1}
+  {"paso":"preparar documento desechable (grupos → capas)","doc":"N0-C","resultado":"preparado: capas (arriba→abajo) = Cuts, Creases | Creases:1; Cuts:2; capa original vacía eliminada"}
+  {"paso":"script","script":"survey","etiqueta":"survey","doc":"N0-C_grupos_anidados.svg","ms":183,"archivo":"N0-C_grupos_anidados.svg__survey.json","identicos":true,"restaurado":[],"seleccionRestaurada":false,"error":null}
+  {"paso":"script","script":"extract","etiqueta":"extract","doc":"N0-C_grupos_anidados.svg","ms":176,"archivo":"N0-C_grupos_anidados.svg__extract.json","identicos":true,"restaurado":[],"seleccionRestaurada":false,"error":"Script error: undefined is not an object line:90"}
+  {"paso":"cerrar sin guardar","respuestaPerdida":false,"n":0,"docs":[],"activo":null,"interaccion":"UserInteractionLevel.DISPLAYALERTS","cerrado":"N0-C_grupos_anidados.svg"}
+  {"paso":"estado final = inicial","ok":true,"docs":[]}
+NIVEL 0 (minimal) COMPLETADO SIN ANOMALÍAS. JSON en /Users/gerardocalambasposada/Documents/Antigravity/Tesseract/Tesseract v3/tests/results/nivel0-real

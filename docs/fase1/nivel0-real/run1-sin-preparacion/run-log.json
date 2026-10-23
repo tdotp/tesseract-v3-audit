@@ -1,0 +1,140 @@
+[
+ {
+  "t": "2026-10-23T21:31:11.665Z",
+  "paso": "staging",
+  "carpeta": "/tmp/Tesseract_Nivel0_run",
+  "sha256": {
+   "tesseract_doc_survey.jsx": "5ae717ad030d4518bd85773b0ef687809506af83f04733e88db80b6d0fcff0ee",
+   "tesseract_extract_check.jsx": "4c12f105cbef97e421c519d3a821909c5550221f850cee0eeb8ec8a1e458395a",
+   "tesseract_art_check.jsx": "a8c23a39b1497df611fccdf80211c7eb62d96c65fbd064ebd145c92dadd6c103",
+   "N0-A_caja_real_export.svg": "02714e637c50d253820d9ad15ea7db117ba8f2e662bd638bdd59275e3b8f6b43",
+   "N0-B_caja_simple_arte.svg": "05f89f7b2aaada535fc84bb31fe4a386ce68ce44bc4054221d75adf354d3ade7",
+   "N0-C_grupos_anidados.svg": "93dddbfbb3f23761b5762b11925eb5e5e61ad01f65e34a0ffc0bd5722d5c13ed",
+   "N0-D_capa_Studies.svg": "e1425332185242a40f4670bb60e67f9b136a6b98dde710a98cc475b815df4b82",
+   "N0-F_trazado_compuesto.svg": "d6401dd4ff91106d113ee0557d330ae26cff6d39e44b07c713f9ec2b8dd7c102",
+   "N0-G_curvas.svg": "0325e537a7725a2f64538dcaf817ffd8a5f19cadde876d198ee412b29f32cdde"
+  }
+ },
+ {
+  "t": "2026-10-23T21:31:11.853Z",
+  "paso": "estado inicial de Illustrator",
+  "n": 0,
+  "docs": [],
+  "activo": null,
+  "interaccion": "UserInteractionLevel.DISPLAYALERTS"
+ },
+ {
+  "t": "2026-10-23T21:31:12.043Z",
+  "paso": "versión",
+  "illustrator_extendscript_so": "30.8.2 | 4.5.6 | Macintosh OS 26.6.2/64"
+ },
+ {
+  "t": "2026-10-23T21:31:13.660Z",
+  "paso": "abrir",
+  "doc": "N0-A",
+  "nombre": "N0-A_caja_real_export.svg",
+  "activo": "N0-A_caja_real_export.svg",
+  "n": 1,
+  "interaccion": "UserInteractionLevel.DISPLAYALERTS",
+  "artboards": 1,
+  "capas": 1
+ },
+ {
+  "t": "2026-10-23T21:31:14.149Z",
+  "paso": "script",
+  "script": "survey",
+  "etiqueta": "survey",
+  "doc": "N0-A_caja_real_export.svg",
+  "ms": 168,
+  "archivo": "N0-A_caja_real_export.svg__survey.json",
+  "identicos": true,
+  "restaurado": [],
+  "seleccionRestaurada": false,
+  "error": null
+ },
+ {
+  "t": "2026-10-23T21:31:14.530Z",
+  "paso": "script",
+  "script": "extract",
+  "etiqueta": "extract",
+  "doc": "N0-A_caja_real_export.svg",
+  "ms": 191,
+  "archivo": "N0-A_caja_real_export.svg__extract.json",
+  "identicos": true,
+  "restaurado": [],
+  "seleccionRestaurada": false,
+  "error": "CUT layer not found. Expected: cuts/cut/corte/troquel/die"
+ },
+ {
+  "t": "2026-10-23T21:33:15.769Z",
+  "paso": "cerrar sin guardar",
+  "n": 0,
+  "docs": [],
+  "activo": null,
+  "interaccion": "UserInteractionLevel.DISPLAYALERTS",
+  "cerrado": "N0-A_caja_real_export.svg"
+ },
+ {
+  "t": "2026-10-23T21:33:16.193Z",
+  "paso": "abrir",
+  "doc": "N0-B",
+  "nombre": "N0-B_caja_simple_arte.svg",
+  "activo": "N0-B_caja_simple_arte.svg",
+  "n": 1,
+  "interaccion": "UserInteractionLevel.DISPLAYALERTS",
+  "artboards": 1,
+  "capas": 1
+ },
+ {
+  "t": "2026-10-23T21:33:16.564Z",
+  "paso": "script",
+  "script": "survey",
+  "etiqueta": "survey",
+  "doc": "N0-B_caja_simple_arte.svg",
+  "ms": 194,
+  "archivo": "N0-B_caja_simple_arte.svg__survey.json",
+  "identicos": true,
+  "restaurado": [],
+  "seleccionRestaurada": false,
+  "error": null
+ },
+ {
+  "t": "2026-10-23T21:33:16.931Z",
+  "paso": "script",
+  "script": "extract",
+  "etiqueta": "extract",
+  "doc": "N0-B_caja_simple_arte.svg",
+  "ms": 184,
+  "archivo": "N0-B_caja_simple_arte.svg__extract.json",
+  "identicos": true,
+  "restaurado": [],
+  "seleccionRestaurada": false,
+  "error": "CUT layer not found. Expected: cuts/cut/corte/troquel/die"
+ },
+ {
+  "t": "2026-10-23T21:33:17.321Z",
+  "paso": "script",
+  "script": "art",
+  "etiqueta": "art",
+  "doc": "N0-B_caja_simple_arte.svg",
+  "ms": 203,
+  "archivo": "N0-B_caja_simple_arte.svg__art.json",
+  "identicos": true,
+  "restaurado": [],
+  "seleccionRestaurada": false,
+  "error": null
+ },
+ {
+  "t": "2026-10-23T21:50:41.376Z",
+  "paso": "ABORTADO",
+  "anomalia": "osascript/Illustrator: spawnSync osascript ETIMEDOUT"
+ },
+ {
+  "t": "2026-10-23T21:50:41.551Z",
+  "paso": "estado tras abortar",
+  "n": 0,
+  "docs": [],
+  "activo": null,
+  "interaccion": "UserInteractionLevel.DISPLAYALERTS"
+ }
+]

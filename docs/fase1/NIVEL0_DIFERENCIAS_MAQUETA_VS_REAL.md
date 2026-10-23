@@ -1,28 +1,37 @@
 # Registro de diferencias: maqueta de Illustrator ↔ ExtendScript real
 
-Estado: **plantilla preparada; resultados pendientes** (el Nivel 0 aún no se ha ejecutado en Illustrator real). Se completa con `tests/results/nivel0/INFORME_NIVEL0.md` (generado por `tests/tools/nivel0-analizar.mjs`). Etiquetas: ⏳ pendiente · ✅ igual a la maqueta · 🔶 distinto (diferencia a registrar).
+Estado: **Nivel 0 EJECUTADO en Adobe Illustrator 30.8.2 real** (ExtendScript 4.5.6, macOS 26.6.2) el 2026-10-23, sobre los 6 documentos desechables de `tools/illustrator/docs-prueba/`. Evidencia: `docs/fase1/nivel0-real/` (JSON de cada ejecución, `run-log-*`, `INFORME_NIVEL0.md` del analizador) fijada por `tests/node/nivel0-evidencia.test.mjs`. Informe de conjunto: `docs/fase1/NIVEL0_INFORME.md`.
+Etiquetas: ✅ igual a la maqueta · 🔶 distinto (diferencia registrada) · [MEDIDO] en Illustrator real · [INFERENCIA] deducido, no medido.
 
-Cada fila es una **suposición de la maqueta** (`tests/lib/mock-illustrator.mjs`) que los tests de A2/A3 dan por buena y que el Nivel 0 puede refutar. Si alguna resulta 🔶, hay que corregir la maqueta y revisar las pruebas que dependen de ella.
+Cada fila es una **suposición de la maqueta** (`tests/lib/mock-illustrator.mjs`) que los tests de A2/A3 dan por buena.
 
-| # | Suposición de la maqueta | Cómo se comprueba | Real | Estado |
-|---|---|---|---|---|
-| M1 | `GroupItem` **no tiene** la propiedad `layers` (`typeof g.layers === 'undefined'`) | Sonda `groupItem.typeofLayers` (survey) | — | ⏳ |
-| M2 | Leer `g.layers.length` en un `GroupItem` **lanza** error (base de KI-10) | Sonda `layersLengthLanza` + texto en `mensajeError` | — | ⏳ |
-| M3 | Un grupo anidado dentro de Creases hace fallar el extractor con "Script error" (KI-10) | N0-C · L0-3 | — | ⏳ |
-| M4 | La capa de corte se elige por subcadena y la primera de arriba abajo gana ("Studies" antes que "Cuts") | N0-D · L0-2b | — | ⏳ |
-| M5 | `doc.layers[0]` es la capa **superior** y las `<g id>` de primer nivel de un SVG se importan como capas con ese nombre; la última `<g>` queda arriba | N0-A…G · L0-2 | — | ⏳ |
-| M6 | 1 px del SVG = 1 pt (el artboard mide viewBox × 0.352778 mm) | L0-5 | — | ⏳ |
-| M7 | `pathPoints[i].anchor/leftDirection/rightDirection` son arrays de 2 números | Sonda `pathPoint` | — | ⏳ |
-| M8 | Los hijos de un `CompoundPathItem` son `PathItem` con `parent.typename === 'CompoundPathItem'` y el extractor los toma como trazados independientes | N0-F · L0-4 + sonda `compound` | — | ⏳ |
-| M9 | Las manijas Bézier se extraen y coinciden con las del SVG (invariantes de longitud de manijas) | N0-G · L0-4 | — | ⏳ |
-| M10 | Coordenadas: el origen y el sentido del eje Y de ExtendScript pueden diferir del SVG; el extractor es **invariante** (el análisis no depende de ellos) | L0-4/L0-6 usan invariantes a traslación y reflejo; sonda `artboard0.rect` y `pathPoint.anchorMuestra` para inferirlos | — | ⏳ |
-| M11 | El motor vigente da lo mismo sobre la extracción real que sobre el troquel esperado (13 paneles en N0-A) | N0-A · L0-6 | — | ⏳ |
-| M12 | Capas **ocultas/bloqueadas** se leen igual (no se consideran visibilidad ni bloqueo) | Paso opcional de la guía | — | ⏳ |
-| M13 | `exportFile` PNG24 con `artBoardClipping` y `horizontalScale/verticalScale` produce PNG de ≈ (artboard en pt × escala/100) píxeles; escala = 4096 px / lado largo, acotada a 100–800 % | N0-B · L0-7 (`png.ancho/alto`) | — | ⏳ |
-| M14 | El script de arte en modo capas deja la visibilidad como estaba (el plugin lo hace en `finally`) y **no restaura** el artboard activo si falla (KI-21) | `_integridad` del art + (la rama de fallo solo se prueba en maqueta) | — | ⏳ |
-| M15 | `File.saveDialog`/`File.write` con `encoding = "UTF-8"` y `Folder.desktop` funcionan como en la maqueta; escribir en el Escritorio puede pedir permiso a macOS | Ejecución de cualquier script | — | ⏳ |
-| M16 | El mensaje del `TypeError` real y su `e.line` difieren del de V8 (los scripts del plugin devuelven `"Script error: " + e.message`) | N0-C: texto de `_resultado.error` | — | ⏳ |
-| M17 | `doc.selection`, `doc.saved`, `doc.pageItems.length` se comportan como arrays/booleanos/enteros y no cambian al ejecutar los scripts | `_integridad` de todos los JSON | — | ⏳ |
+| # | Suposición de la maqueta | Resultado en Illustrator real | Estado |
+|---|---|---|---|
+| M1 | `GroupItem` **no tiene** `layers` | `typeof groupItem.layers === "undefined"` [MEDIDO] | ✅ |
+| M2 | Leer `g.layers.length` en un `GroupItem` **lanza** | Lanza `TypeError` «undefined is not an object», `error.number` 21 [MEDIDO] | ✅ |
+| M3 | Grupo anidado en Creases ⇒ el extractor falla (KI-10) | N0-C: `"Script error: undefined is not an object line:90"` [MEDIDO] — **KI-10 CONFIRMADO en real** | ✅ |
+| M4 | La capa de corte se elige por subcadena; «Studies» (⊃ «die») gana a «Cuts» | N0-D: capa de corte elegida = «Studies» [MEDIDO] — **KI-10 (subcadena) CONFIRMADO en real** | ✅ |
+| M5 | Las `<g id>` de primer nivel de un SVG se importan como **capas** con ese nombre | **No.** Illustrator importa el SVG a **una sola capa «Layer 1»** con las `<g id>` como *grupos*. Con `tesseract_prep_doc.jsx` (solo documentos desechables `N0-*`: mueve el contenido de cada grupo a una capa nueva del mismo nombre) el orden arriba→abajo coincide con la maqueta (N0-A: Cuts, Creases; N0-D: Studies, Cuts, Creases; N0-B: Cuts, Creases, Front, Back) [MEDIDO] | 🔶 (del *método de prueba*, no del plugin: un documento creado en Illustrator ya tiene capas) |
+| M6 | 1 px del SVG = 1 pt (artboard = viewBox × 0.352778 mm) | Cierto: artboard 396.850 × 283.464 pt = 140.000 × 100.000 mm; N0-A 500 × 500 mm; unidad de regla del documento: `RulerUnits.Pixels` [MEDIDO] | ✅ |
+| M7 | `anchor/leftDirection/rightDirection` son arrays de 2 números | `[object Array]`, longitud 2 [MEDIDO] | ✅ |
+| M8 | Los hijos de un `CompoundPathItem` son `PathItem` (padre `CompoundPathItem`) y el extractor los toma sueltos | N0-F: 2 subtrazados, `hijo0` = `PathItem` con padre `CompoundPathItem`; invariantes del troquel idénticos a los esperados (contorno + 1 hueco) [MEDIDO] | ✅ |
+| M9 | Las manijas Bézier se extraen y coinciden | N0-G: longitudes de manijas y puntos con manijas idénticos a los esperados [MEDIDO] | ✅ |
+| M10 | Origen y eje Y distintos del SVG; el análisis es invariante | **Confirmado que difieren**: rect del artboard `[0, 283.46, 396.85, 0]` (izq, arriba, der, abajo) ⇒ origen en la esquina **inferior izquierda** del artboard, **Y hacia arriba**, unidades pt. Los invariantes (traslación/reflejo) siguen siendo válidos [MEDIDO] | ✅ (supuesto de invarianza confirmado) |
+| M11 | El motor vigente da lo mismo sobre la extracción real que sobre el troquel esperado (**13 paneles** en N0-A) | **No: 11 paneles, 10 adyacencias, 0 avisos.** Causa: el fixture de A2 `caja-botanica-illustrator-export.dieline.json` estaba a **escala ×0.75** (px CSS = 0.2646 mm en lugar de 1 px = 1 pt = 0.3528 mm). La extracción de Illustrator real mide 175.0 × 223.5 mm, 12 creases de 39/39.5/40/120 mm — **idéntica a la salida real del plugin** (`caja-botanica-real`, 11 de 13). Normalizada a ×0.75 da **13p / 15425.945 mm² / 12 adj / 0 avisos** (= esperado) [MEDIDO] | 🔶 **corrige evidencia de A2** (ver KI-22 y KI-04) |
+| M12 | Capas ocultas/bloqueadas se leen igual | N0-B con `Creases` oculta y `Cuts` bloqueada: `_resultado` **byte a byte igual** al de la extracción normal; estado idéntico antes/después [MEDIDO] | ✅ |
+| M13 | PNG24 ≈ (artboard en pt × escala/100) px; escala = 4096/lado largo acotada a 100–800 % | Escala 800 % correcta; el tamaño real es **3176 × 2264**, no 3175 × 2268: Illustrator exporta el artboard **redondeado a pt enteros** (397 × 283 pt) × 8. Igual en modo capas y modo artboards [MEDIDO]. La relación de aspecto del PNG difiere 0.16 % de la del artboard (140 × 100 mm) [INFERENCIA del efecto sobre el arte] | 🔶 (ver KI-23) |
+| M14 | El arte en modo capas deja la visibilidad como estaba; no restaura el artboard activo si falla (KI-21) | Rama feliz: estado idéntico antes/después en modo capas y en modo artboards (artboards «Front»/«Back» creados en el documento desechable), nada que restaurar [MEDIDO]. La rama de fallo (KI-21) **no se provocó** en real a propósito (solo está probada en maqueta) | ✅ (rama feliz) · ⏳ (rama de fallo) |
+| M15 | `File`/`Folder.desktop`/UTF-8 como la maqueta; escribir en el Escritorio puede pedir permiso | `Folder.desktop`, `Folder.temp` y escritura UTF-8 funcionan. Para no disparar el permiso de macOS la salida se redirigió a `/tmp` (`$.global.TESS_OUT_DIR`); **no se probó** el permiso del Escritorio [MEDIDO / NO PROBADO] | ✅ |
+| M16 | El texto del `TypeError` real difiere del de V8 | Real (JavaScriptCore/ExtendScript): «undefined is not an object», `line:90`; V8 diría «Cannot read properties of undefined (reading 'length')». Los tests de maqueta solo exigen el prefijo `Script error` [MEDIDO] | 🔶 (cosmética; sin impacto en pruebas) |
+| M17 | `doc.selection`, `doc.saved`, `doc.pageItems.length` se comportan como se asume y no cambian | `saved:false`, selección 0, `items` 5 antes y después en **las 16 ejecuciones**; el guardián nunca tuvo que restaurar nada [MEDIDO] | ✅ |
 
-## Diferencias encontradas
-_(ninguna registrada todavía — pendiente de ejecución)_
+## Diferencias encontradas (resumen)
+1. **M11 — unidades del fixture de A2** (🔶, la más importante). La maqueta y el analizador estaban bien; el *fixture derivado del SVG* de A2 estaba reducido a ×0.75. Consecuencias: (a) los golden/pruebas que usan `caja-botanica-illustrator-export.dieline.json` siguen siendo válidos como **caso a esa escala**, pero **no representan el tamaño real del troquel**; (b) el motor vigente es sensible a la escala absoluta (KI-22): la misma geometría da 13 paneles a ×0.75 y 11 a ×1.0, sin avisos; (c) KI-04 queda **reproducido de extremo a extremo con datos extraídos por Illustrator real**. No se han modificado fixtures ni goldens (decisión pendiente para el siguiente punto de control).
+2. **M5 — importación de SVG a una sola capa** (🔶, método de prueba). Obliga a `tesseract_prep_doc.jsx` en los documentos desechables. No afecta al plugin.
+3. **M13 — PNG con el artboard redondeado a pt enteros** (🔶, KI-23).
+4. **M16 — texto del error** (🔶, cosmética).
+
+## Conductas de la automatización de Illustrator (no son diferencias de la maqueta, pero hay que conocerlas)
+- **Cerrar un documento por AppleScript pierde la respuesta del evento** (`-1712`, a veces tras minutos) aunque Illustrator sí lo cierra. `run-nivel0.mjs` usa un tiempo límite corto, mata `osascript` y **verifica por inventario** que el documento se cerró (7 de 8 cierres tuvieron la respuesta perdida; en todos el estado final fue el esperado). La primera ejecución (sin preparar) se abortó por este motivo tras 17 min; su evidencia se conserva en `docs/fase1/nivel0-real/run1-sin-preparacion/`.
+- Los scripts de arte tardan ≈ 7–9 s por documento (2 exportaciones de 3176 × 2264).
+- `app.userInteractionLevel` se cambió temporalmente a `DONTDISPLAYALERTS` solo al abrir/cerrar los documentos desechables y se restauró (`DISPLAYALERTS`) en cada paso.

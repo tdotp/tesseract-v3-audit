@@ -34,3 +34,14 @@ Pruebas (maqueta): estado idéntico en los tres scripts; la exportación falla a
 
 ## 4. Conclusión
 Los tres scripts son **de solo lectura sobre el documento** salvo el de arte, cuyas modificaciones son **transitorias, acotadas (artboard activo, visibilidad) y restauradas con evidencia**; el estado se verifica antes/después en cada ejecución. Seguros para documentos de prueba desechables; **no se recomienda** ejecutarlos sobre trabajos reales hasta ver los resultados del Nivel 0.
+
+## 5. Adenda (ejecución real, 2026-10-23): script de preparación y orquestador
+Dos herramientas nuevas, **ambas restringidas a documentos desechables `N0-*`**, revisadas y cubiertas por `tests/node/nivel0-automatizacion.test.mjs`:
+| | `tesseract_prep_doc.jsx` | `run-nivel0.mjs` |
+|---|---|---|
+| Motivo | Illustrator importa el SVG como **una sola capa con grupos** (M5); convierte cada `<g id>` raíz en una capa del mismo nombre | Abre, prepara, ejecuta los 3 scripts y cierra los documentos con `osascript`; compara el inventario de documentos antes/después |
+| Escribe en el documento | **Sí (solo desechable):** crea capas, mueve el contenido, `remove()` del grupo vacío y de la capa original vacía (2 `.remove()` en todo el código) | No directamente; abre/cierra documentos |
+| Guardas | Se niega si el nombre activo no empieza por `N0-`; exige exactamente 1 capa inicial | Exige nombre `N0-*` antes de cada script y de cada cierre; no admite un `N0-*` ya abierto; aborta (`Anomaly`) ante integridad no idéntica, restauración necesaria o inventario final distinto del inicial |
+| Guardar/instalar | Nunca guarda ni cierra | Cierra siempre con `SaveOptions.DONOTSAVECHANGES`; no referencia CEP ni `install.sh`; única eliminación: su carpeta de staging en `/tmp` |
+| Efectos laterales | — | Cambia `app.userInteractionLevel` a `DONTDISPLAYALERTS` solo al abrir/cerrar y lo restaura; si el evento de cierre no responde (`-1712`) mata `osascript` y **verifica por inventario** |
+Hallazgos de la ejecución real que afectan a esta revisión: R1 (KI-21) no se pudo contrastar en real (rama de fallo no provocada); R4: los PNG de `art` siguen quedando en la carpeta temporal (se borraron a mano los 4 `N0-B_*`); R8 (`eval`) sin incidencias; R5 (historial de deshacer) no observable al cerrar sin guardar. Resultado: **16/16 ejecuciones con estado idéntico antes/después y 0 restauraciones**.

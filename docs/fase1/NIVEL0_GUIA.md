@@ -1,6 +1,6 @@
 # Nivel 0 — guía paso a paso para validar en Illustrator real (sin instalar nada)
 
-Estado: **preparada, NO ejecutada.** Duración estimada: 15–25 minutos. **No se instala nada**, no se tocan tus documentos ni la extensión `tesseract`.
+Estado: **EJECUTADA por el asistente con control de la aplicación (2026-10-23, autorización del usuario) — ver `NIVEL0_INFORME.md`.** Esta guía sigue siendo válida para repetirla a mano; **nota:** al abrir un SVG, Illustrator crea UNA capa con grupos; antes de ejecutar los scripts hay que convertir los grupos en capas (lo hace `tesseract_prep_doc.jsx`; ver `NIVEL0_DIFERENCIAS_MAQUETA_VS_REAL.md`, M5). Duración estimada: 15–25 minutos. **No se instala nada**, no se tocan tus documentos ni la extensión `tesseract`.
 Qué haces tú: abrir los documentos de prueba y ejecutar los scripts. Qué hago yo: analizar los JSON, compararlos con los contratos y registrar las diferencias (informe automático).
 
 ## 0. Reglas de seguridad

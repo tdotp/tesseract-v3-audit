@@ -1,0 +1,790 @@
+{
+ "carpeta": "/Users/gerardocalambasposada/Documents/Antigravity/Tesseract/Tesseract v3/docs/fase1/nivel0-real",
+ "docs": {
+  "N0-A": {
+   "archivo": "N0-A_caja_real_export.svg",
+   "desc": "Exportación real de Illustrator de la Caja Botánica (capas Cuts y Creases; Creases contiene un grupo de un nivel). Es el SVG original, sin tocar.",
+   "resultados": [
+    {
+     "id": "INT-survey",
+     "estado": "OK",
+     "detalle": "estado del documento idéntico antes/después"
+    },
+    {
+     "id": "INT-extract",
+     "estado": "OK",
+     "detalle": "estado del documento idéntico antes/después"
+    },
+    {
+     "id": "L0-2",
+     "estado": "OK",
+     "detalle": "capas (arriba→abajo): Cuts, Creases"
+    },
+    {
+     "id": "L0-1",
+     "estado": "OK",
+     "detalle": "profundidad de grupos {\"Cuts\":0,\"Creases\":1}"
+    },
+    {
+     "id": "L0-5",
+     "estado": "OK",
+     "detalle": "artboard 500.00×500.00 mm (1 px = 1 pt confirmado)"
+    },
+    {
+     "id": "L0-3",
+     "estado": "OK",
+     "detalle": "extracción sin error (capa de corte «Cuts», de pliegue «Creases»)"
+    },
+    {
+     "id": "L0-2b",
+     "estado": "OK",
+     "detalle": "capa de corte elegida «Cuts»"
+    },
+    {
+     "id": "L0-4k",
+     "estado": "DIF",
+     "detalle": "factor de escala uniforme real/esperado = 1.33333; con la escala normalizada todos los invariantes coinciden"
+    },
+    {
+     "id": "L0-4",
+     "estado": "OK",
+     "detalle": "invariantes iguales tras normalizar la escala — IGUALES salvo un factor uniforme ×1.3333 (el SVG está en px a 96 dpi y se reabrió 1 px = 1 pt)"
+    },
+    {
+     "id": "L0-6n",
+     "estado": "OK",
+     "detalle": "motor vigente con la extracción real normalizada a la escala esperada: 13p/15425.9453mm²/12adj/0avisos vs esperado 13p/15425.9426mm²/12adj/0avisos"
+    },
+    {
+     "id": "L0-6",
+     "estado": "DIF",
+     "detalle": "real 11p/26769.1212mm²/10adj/0avisos vs esperado 13p/15425.9426mm²/12adj/0avisos"
+    }
+   ]
+  },
+  "N0-B": {
+   "archivo": "N0-B_caja_simple_arte.svg",
+   "desc": "Caja 100×60 mm con un hueco de 10×10 mm y 1 crease; capas Cuts, Creases, Front y Back (arte por capas).",
+   "resultados": [
+    {
+     "id": "INT-survey",
+     "estado": "OK",
+     "detalle": "estado del documento idéntico antes/después"
+    },
+    {
+     "id": "INT-extract",
+     "estado": "OK",
+     "detalle": "estado del documento idéntico antes/después"
+    },
+    {
+     "id": "INT-art",
+     "estado": "OK",
+     "detalle": "estado del documento idéntico antes/después"
+    },
+    {
+     "id": "L0-2",
+     "estado": "OK",
+     "detalle": "capas (arriba→abajo): Cuts, Creases, Front, Back"
+    },
+    {
+     "id": "L0-1",
+     "estado": "OK",
+     "detalle": "profundidad de grupos {\"Cuts\":0,\"Creases\":0,\"Front\":0,\"Back\":0}"
+    },
+    {
+     "id": "L0-5",
+     "estado": "OK",
+     "detalle": "artboard 140.00×100.00 mm (1 px = 1 pt confirmado)"
+    },
+    {
+     "id": "L0-3",
+     "estado": "OK",
+     "detalle": "extracción sin error (capa de corte «Cuts», de pliegue «Creases»)"
+    },
+    {
+     "id": "L0-2b",
+     "estado": "OK",
+     "detalle": "capa de corte elegida «Cuts»"
+    },
+    {
+     "id": "L0-4",
+     "estado": "OK",
+     "detalle": "invariantes del troquel iguales a los esperados (puntos, áreas, bbox, huecos, creases, manijas)"
+    },
+    {
+     "id": "L0-6",
+     "estado": "OK",
+     "detalle": "motor vigente sobre la extracción real: 2 paneles, área 5999.9999, 1 adyacencias, 0 avisos (= esperado)"
+    },
+    {
+     "id": "L0-7",
+     "estado": "OK",
+     "detalle": "modo layers, front y back exportados, PNG 3176×2264 (escala 800.0 %), estado restaurado"
+    }
+   ]
+  },
+  "N0-C": {
+   "archivo": "N0-C_grupos_anidados.svg",
+   "desc": "Igual que B pero la capa Creases tiene un grupo dentro de otro grupo. KI-10 predice que el extractor FALLA (\"Script error\").",
+   "resultados": [
+    {
+     "id": "INT-survey",
+     "estado": "OK",
+     "detalle": "estado del documento idéntico antes/después"
+    },
+    {
+     "id": "INT-extract",
+     "estado": "OK",
+     "detalle": "estado del documento idéntico antes/después"
+    },
+    {
+     "id": "L0-2",
+     "estado": "OK",
+     "detalle": "capas (arriba→abajo): Cuts, Creases"
+    },
+    {
+     "id": "L0-1",
+     "estado": "OK",
+     "detalle": "profundidad de grupos {\"Cuts\":0,\"Creases\":2}"
+    },
+    {
+     "id": "L0-5",
+     "estado": "OK",
+     "detalle": "artboard 140.00×100.00 mm (1 px = 1 pt confirmado)"
+    },
+    {
+     "id": "L0-3",
+     "estado": "OK",
+     "detalle": "KI-10 REPRODUCIDO en Illustrator real: «Script error: undefined is not an object line:90»"
+    }
+   ]
+  },
+  "N0-D": {
+   "archivo": "N0-D_capa_Studies.svg",
+   "desc": "Igual que B pero con una capa \"Studies\" (contiene \"die\") ARRIBA de Cuts. KI-10 predice que el extractor toma \"Studies\" como capa de corte.",
+   "resultados": [
+    {
+     "id": "INT-survey",
+     "estado": "OK",
+     "detalle": "estado del documento idéntico antes/después"
+    },
+    {
+     "id": "INT-extract",
+     "estado": "OK",
+     "detalle": "estado del documento idéntico antes/después"
+    },
+    {
+     "id": "L0-2",
+     "estado": "OK",
+     "detalle": "capas (arriba→abajo): Studies, Cuts, Creases"
+    },
+    {
+     "id": "L0-1",
+     "estado": "OK",
+     "detalle": "profundidad de grupos {\"Studies\":0,\"Cuts\":0,\"Creases\":0}"
+    },
+    {
+     "id": "L0-5",
+     "estado": "OK",
+     "detalle": "artboard 140.00×100.00 mm (1 px = 1 pt confirmado)"
+    },
+    {
+     "id": "L0-3",
+     "estado": "OK",
+     "detalle": "extracción sin error (capa de corte «Studies», de pliegue «Creases»)"
+    },
+    {
+     "id": "L0-2b",
+     "estado": "OK",
+     "detalle": "capa de corte elegida «Studies» (KI-10 por subcadena REPRODUCIDO en real)"
+    }
+   ]
+  },
+  "N0-F": {
+   "archivo": "N0-F_trazado_compuesto.svg",
+   "desc": "Contorno y hueco como UN trazado compuesto (evenodd) en Cuts. Comprueba CompoundPathItem en Illustrator real.",
+   "resultados": [
+    {
+     "id": "INT-survey",
+     "estado": "OK",
+     "detalle": "estado del documento idéntico antes/después"
+    },
+    {
+     "id": "INT-extract",
+     "estado": "OK",
+     "detalle": "estado del documento idéntico antes/después"
+    },
+    {
+     "id": "L0-2",
+     "estado": "OK",
+     "detalle": "capas (arriba→abajo): Cuts, Creases"
+    },
+    {
+     "id": "L0-1",
+     "estado": "OK",
+     "detalle": "profundidad de grupos {\"Cuts\":0,\"Creases\":0}"
+    },
+    {
+     "id": "L0-5",
+     "estado": "OK",
+     "detalle": "artboard 140.00×100.00 mm (1 px = 1 pt confirmado)"
+    },
+    {
+     "id": "L0-3",
+     "estado": "OK",
+     "detalle": "extracción sin error (capa de corte «Cuts», de pliegue «Creases»)"
+    },
+    {
+     "id": "L0-2b",
+     "estado": "OK",
+     "detalle": "capa de corte elegida «Cuts»"
+    },
+    {
+     "id": "L0-4",
+     "estado": "OK",
+     "detalle": "invariantes del troquel iguales a los esperados (puntos, áreas, bbox, huecos, creases, manijas)"
+    },
+    {
+     "id": "L0-6",
+     "estado": "OK",
+     "detalle": "motor vigente sobre la extracción real: 2 paneles, área 5999.9999, 1 adyacencias, 0 avisos (= esperado)"
+    }
+   ]
+  },
+  "N0-G": {
+   "archivo": "N0-G_curvas.svg",
+   "desc": "Rectángulo 120×60 mm con esquinas redondeadas (Bézier) y 1 crease. Comprueba manijas leftDirection/rightDirection en Illustrator real.",
+   "resultados": [
+    {
+     "id": "INT-survey",
+     "estado": "OK",
+     "detalle": "estado del documento idéntico antes/después"
+    },
+    {
+     "id": "INT-extract",
+     "estado": "OK",
+     "detalle": "estado del documento idéntico antes/después"
+    },
+    {
+     "id": "L0-2",
+     "estado": "OK",
+     "detalle": "capas (arriba→abajo): Cuts, Creases"
+    },
+    {
+     "id": "L0-1",
+     "estado": "OK",
+     "detalle": "profundidad de grupos {\"Cuts\":0,\"Creases\":0}"
+    },
+    {
+     "id": "L0-5",
+     "estado": "OK",
+     "detalle": "artboard 160.00×100.00 mm (1 px = 1 pt confirmado)"
+    },
+    {
+     "id": "L0-3",
+     "estado": "OK",
+     "detalle": "extracción sin error (capa de corte «Cuts», de pliegue «Creases»)"
+    },
+    {
+     "id": "L0-2b",
+     "estado": "OK",
+     "detalle": "capa de corte elegida «Cuts»"
+    },
+    {
+     "id": "L0-4",
+     "estado": "OK",
+     "detalle": "invariantes del troquel iguales a los esperados (puntos, áreas, bbox, huecos, creases, manijas)"
+    },
+    {
+     "id": "L0-6",
+     "estado": "OK",
+     "detalle": "motor vigente sobre la extracción real: 2 paneles, área 7000.0004, 1 adyacencias, 0 avisos (= esperado)"
+    }
+   ]
+  }
+ },
+ "env": {
+  "illustrator": "30.8.2",
+  "os": "Macintosh OS 26.6.2/64",
+  "extendscript": "4.5.6",
+  "locale": "en_US",
+  "nombre": "Adobe Illustrator",
+  "temp": "/var/folders/s3/b0dsvsbx0mnd0d_g3__gk85r0000gn/T",
+  "escritorio": "/Users/gerardocalambasposada/Desktop"
+ },
+ "diferencias": [
+  {
+   "doc": "N0-A",
+   "id": "L0-4k",
+   "estado": "DIF",
+   "detalle": "factor de escala uniforme real/esperado = 1.33333; con la escala normalizada todos los invariantes coinciden"
+  },
+  {
+   "doc": "N0-A",
+   "id": "L0-6",
+   "estado": "DIF",
+   "detalle": "real 11p/26769.1212mm²/10adj/0avisos vs esperado 13p/15425.9426mm²/12adj/0avisos"
+  }
+ ],
+ "resumen": {
+  "OK": 51,
+  "DIF": 2,
+  "FALLA": 0,
+  "NO_VERIFICABLE": 0,
+  "NO_EJECUTADO": 0,
+  "sondasDIF": 0
+ },
+ "sondas": {
+  "N0-A": {
+   "layer0": {
+    "typename": "Layer",
+    "tieneLayers": "object",
+    "orden": "doc.layers[0] es la capa SUPERIOR en el panel Capas"
+   },
+   "groupItem": {
+    "typename": "GroupItem",
+    "typeofLayers": "undefined",
+    "tienePathItems": "object",
+    "tieneGroupItems": "object",
+    "tieneCompound": "object",
+    "layersLengthLanza": true,
+    "mensajeError": "undefined is not an object",
+    "nombreError": "TypeError",
+    "numeroError": 21
+   },
+   "pathItem": {
+    "typename": "PathItem",
+    "closed": true,
+    "guides": false,
+    "clipping": false,
+    "puntos": 56,
+    "parentTypename": "Layer",
+    "geometricBounds": [
+     460.940155029297,
+     1021.48001098633,
+     957.000122070312,
+     387.93994140625
+    ]
+   },
+   "pathPoint": {
+    "anchorTipo": "[object Array]",
+    "anchorLen": 2,
+    "left": 2,
+    "right": 2,
+    "anchorMuestra": [
+     842.200012207031,
+     420.529968261719
+    ],
+    "leftMuestra": [
+     842.200012207031,
+     420.529968261719
+    ],
+    "tipo": "PointType.CORNER"
+   },
+   "compound": null,
+   "artboard0": {
+    "rect": [
+     0,
+     1417.31994628906,
+     1417.31994628906,
+     0
+    ],
+    "indiceActivo": 0,
+    "nombre": "Artboard 1",
+    "nota": "Compara con anclas de los trazados para inferir origen y sentido del eje Y"
+   },
+   "rulerUnits": "RulerUnits.Pixels",
+   "colorSpace": "DocumentColorSpace.RGB",
+   "seleccion": 0,
+   "totales": {
+    "pageItems": 14,
+    "pathItems": 13,
+    "groupItems": 1,
+    "compoundPathItems": 0,
+    "layers": 2
+   }
+  },
+  "N0-B": {
+   "layer0": {
+    "typename": "Layer",
+    "tieneLayers": "object",
+    "orden": "doc.layers[0] es la capa SUPERIOR en el panel Capas"
+   },
+   "groupItem": null,
+   "pathItem": {
+    "typename": "PathItem",
+    "closed": true,
+    "guides": false,
+    "clipping": false,
+    "puntos": 4,
+    "parentTypename": "Layer",
+    "geometricBounds": [
+     85.0393142700195,
+     212.598289489746,
+     113.385757446289,
+     184.251846313477
+    ]
+   },
+   "pathPoint": {
+    "anchorTipo": "[object Array]",
+    "anchorLen": 2,
+    "left": 2,
+    "right": 2,
+    "anchorMuestra": [
+     85.0393142700195,
+     212.598289489746
+    ],
+    "leftMuestra": [
+     85.0393142700195,
+     212.598289489746
+    ],
+    "tipo": "PointType.CORNER"
+   },
+   "compound": null,
+   "artboard0": {
+    "rect": [
+     0,
+     283.464385986328,
+     396.850158691406,
+     0
+    ],
+    "indiceActivo": 0,
+    "nombre": "Artboard 1",
+    "nota": "Compara con anclas de los trazados para inferir origen y sentido del eje Y"
+   },
+   "rulerUnits": "RulerUnits.Pixels",
+   "colorSpace": "DocumentColorSpace.RGB",
+   "seleccion": 0,
+   "totales": {
+    "pageItems": 5,
+    "pathItems": 5,
+    "groupItems": 0,
+    "compoundPathItems": 0,
+    "layers": 4
+   }
+  },
+  "N0-C": {
+   "layer0": {
+    "typename": "Layer",
+    "tieneLayers": "object",
+    "orden": "doc.layers[0] es la capa SUPERIOR en el panel Capas"
+   },
+   "groupItem": {
+    "typename": "GroupItem",
+    "typeofLayers": "undefined",
+    "tienePathItems": "object",
+    "tieneGroupItems": "object",
+    "tieneCompound": "object",
+    "layersLengthLanza": true,
+    "mensajeError": "undefined is not an object",
+    "nombreError": "TypeError",
+    "numeroError": 21
+   },
+   "pathItem": {
+    "typename": "PathItem",
+    "closed": true,
+    "guides": false,
+    "clipping": false,
+    "puntos": 4,
+    "parentTypename": "Layer",
+    "geometricBounds": [
+     85.0393142700195,
+     212.598289489746,
+     113.385757446289,
+     184.251846313477
+    ]
+   },
+   "pathPoint": {
+    "anchorTipo": "[object Array]",
+    "anchorLen": 2,
+    "left": 2,
+    "right": 2,
+    "anchorMuestra": [
+     85.0393142700195,
+     212.598289489746
+    ],
+    "leftMuestra": [
+     85.0393142700195,
+     212.598289489746
+    ],
+    "tipo": "PointType.CORNER"
+   },
+   "compound": null,
+   "artboard0": {
+    "rect": [
+     0,
+     283.464385986328,
+     396.850158691406,
+     0
+    ],
+    "indiceActivo": 0,
+    "nombre": "Artboard 1",
+    "nota": "Compara con anclas de los trazados para inferir origen y sentido del eje Y"
+   },
+   "rulerUnits": "RulerUnits.Pixels",
+   "colorSpace": "DocumentColorSpace.RGB",
+   "seleccion": 0,
+   "totales": {
+    "pageItems": 5,
+    "pathItems": 3,
+    "groupItems": 2,
+    "compoundPathItems": 0,
+    "layers": 2
+   }
+  },
+  "N0-D": {
+   "layer0": {
+    "typename": "Layer",
+    "tieneLayers": "object",
+    "orden": "doc.layers[0] es la capa SUPERIOR en el panel Capas"
+   },
+   "groupItem": null,
+   "pathItem": {
+    "typename": "PathItem",
+    "closed": true,
+    "guides": false,
+    "clipping": false,
+    "puntos": 3,
+    "parentTypename": "Layer",
+    "geometricBounds": [
+     28.3464393615723,
+     255.117946624756,
+     85.0393142700195,
+     198.425071716309
+    ]
+   },
+   "pathPoint": {
+    "anchorTipo": "[object Array]",
+    "anchorLen": 2,
+    "left": 2,
+    "right": 2,
+    "anchorMuestra": [
+     28.3464393615723,
+     255.117946624756
+    ],
+    "leftMuestra": [
+     28.3464393615723,
+     255.117946624756
+    ],
+    "tipo": "PointType.CORNER"
+   },
+   "compound": null,
+   "artboard0": {
+    "rect": [
+     0,
+     283.464385986328,
+     396.850158691406,
+     0
+    ],
+    "indiceActivo": 0,
+    "nombre": "Artboard 1",
+    "nota": "Compara con anclas de los trazados para inferir origen y sentido del eje Y"
+   },
+   "rulerUnits": "RulerUnits.Pixels",
+   "colorSpace": "DocumentColorSpace.RGB",
+   "seleccion": 0,
+   "totales": {
+    "pageItems": 4,
+    "pathItems": 4,
+    "groupItems": 0,
+    "compoundPathItems": 0,
+    "layers": 3
+   }
+  },
+  "N0-F": {
+   "layer0": {
+    "typename": "Layer",
+    "tieneLayers": "object",
+    "orden": "doc.layers[0] es la capa SUPERIOR en el panel Capas"
+   },
+   "groupItem": null,
+   "pathItem": {
+    "typename": "PathItem",
+    "closed": false,
+    "guides": false,
+    "clipping": false,
+    "puntos": 2,
+    "parentTypename": "Layer",
+    "geometricBounds": [
+     198.425079345703,
+     226.771507263184,
+     198.425079345703,
+     56.69287109375
+    ]
+   },
+   "pathPoint": {
+    "anchorTipo": "[object Array]",
+    "anchorLen": 2,
+    "left": 2,
+    "right": 2,
+    "anchorMuestra": [
+     198.425079345703,
+     226.771507263184
+    ],
+    "leftMuestra": [
+     198.425079345703,
+     226.771507263184
+    ],
+    "tipo": "PointType.CORNER"
+   },
+   "compound": {
+    "typename": "CompoundPathItem",
+    "subtrazados": 2,
+    "hijo0": {
+     "typename": "PathItem",
+     "parentTypename": "CompoundPathItem",
+     "guides": false,
+     "clipping": false
+    }
+   },
+   "artboard0": {
+    "rect": [
+     0,
+     283.464385986328,
+     396.850158691406,
+     0
+    ],
+    "indiceActivo": 0,
+    "nombre": "Artboard 1",
+    "nota": "Compara con anclas de los trazados para inferir origen y sentido del eje Y"
+   },
+   "rulerUnits": "RulerUnits.Pixels",
+   "colorSpace": "DocumentColorSpace.RGB",
+   "seleccion": 0,
+   "totales": {
+    "pageItems": 4,
+    "pathItems": 3,
+    "groupItems": 0,
+    "compoundPathItems": 1,
+    "layers": 2
+   }
+  },
+  "N0-G": {
+   "layer0": {
+    "typename": "Layer",
+    "tieneLayers": "object",
+    "orden": "doc.layers[0] es la capa SUPERIOR en el panel Capas"
+   },
+   "groupItem": null,
+   "pathItem": {
+    "typename": "PathItem",
+    "closed": true,
+    "guides": false,
+    "clipping": false,
+    "puntos": 8,
+    "parentTypename": "Layer",
+    "geometricBounds": [
+     56.6928787231445,
+     226.771507263184,
+     396.850158691406,
+     56.69287109375
+    ]
+   },
+   "pathPoint": {
+    "anchorTipo": "[object Array]",
+    "anchorLen": 2,
+    "left": 2,
+    "right": 2,
+    "anchorMuestra": [
+     85.0393142700195,
+     226.771507263184
+    ],
+    "leftMuestra": [
+     85.0393142700195,
+     226.771507263184
+    ],
+    "tipo": "PointType.CORNER"
+   },
+   "compound": null,
+   "artboard0": {
+    "rect": [
+     0,
+     283.464385986328,
+     453.543029785156,
+     0
+    ],
+    "indiceActivo": 0,
+    "nombre": "Artboard 1",
+    "nota": "Compara con anclas de los trazados para inferir origen y sentido del eje Y"
+   },
+   "rulerUnits": "RulerUnits.Pixels",
+   "colorSpace": "DocumentColorSpace.RGB",
+   "seleccion": 0,
+   "totales": {
+    "pageItems": 2,
+    "pathItems": 2,
+    "groupItems": 0,
+    "compoundPathItems": 0,
+    "layers": 2
+   }
+  }
+ },
+ "sondasContraMaqueta": [
+  {
+   "sonda": "GroupItem: typeof .layers",
+   "maqueta": "undefined",
+   "real": "undefined",
+   "estado": "OK"
+  },
+  {
+   "sonda": "GroupItem: leer .layers.length lanza",
+   "maqueta": true,
+   "real": true,
+   "estado": "OK"
+  },
+  {
+   "sonda": "Layer: typeof .layers",
+   "maqueta": "object",
+   "real": "object",
+   "estado": "OK"
+  },
+  {
+   "sonda": "PathPoint.anchor es Array de 2",
+   "maqueta": [
+    "[object Array]",
+    2
+   ],
+   "real": [
+    "[object Array]",
+    2
+   ],
+   "estado": "OK"
+  },
+  {
+   "sonda": "leftDirection/rightDirection de longitud 2",
+   "maqueta": [
+    2,
+    2
+   ],
+   "real": [
+    2,
+    2
+   ],
+   "estado": "OK"
+  },
+  {
+   "sonda": "CompoundPathItem: hijos son PathItem con padre CompoundPathItem",
+   "maqueta": [
+    "PathItem",
+    "CompoundPathItem"
+   ],
+   "real": [
+    "PathItem",
+    "CompoundPathItem"
+   ],
+   "estado": "OK"
+  },
+  {
+   "sonda": "PathItem.typename",
+   "maqueta": "PathItem",
+   "real": "PathItem",
+   "estado": "OK"
+  },
+  {
+   "sonda": "Layer.typename",
+   "maqueta": "Layer",
+   "real": "Layer",
+   "estado": "OK"
+  }
+ ]
+}

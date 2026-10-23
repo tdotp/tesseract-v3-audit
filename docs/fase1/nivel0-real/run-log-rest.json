@@ -1,0 +1,300 @@
+[
+ {
+  "t": "2026-10-23T23:17:47.320Z",
+  "paso": "staging",
+  "carpeta": "/tmp/Tesseract_Nivel0_run",
+  "sha256": {
+   "tesseract_doc_survey.jsx": "5ae717ad030d4518bd85773b0ef687809506af83f04733e88db80b6d0fcff0ee",
+   "tesseract_extract_check.jsx": "4c12f105cbef97e421c519d3a821909c5550221f850cee0eeb8ec8a1e458395a",
+   "tesseract_art_check.jsx": "a8c23a39b1497df611fccdf80211c7eb62d96c65fbd064ebd145c92dadd6c103",
+   "tesseract_prep_doc.jsx": "70bf85770bc194a88032a252ed10fd57768944bf544d6efd8e744dda91be05ec",
+   "N0-A_caja_real_export.svg": "02714e637c50d253820d9ad15ea7db117ba8f2e662bd638bdd59275e3b8f6b43",
+   "N0-B_caja_simple_arte.svg": "05f89f7b2aaada535fc84bb31fe4a386ce68ce44bc4054221d75adf354d3ade7",
+   "N0-C_grupos_anidados.svg": "93dddbfbb3f23761b5762b11925eb5e5e61ad01f65e34a0ffc0bd5722d5c13ed",
+   "N0-D_capa_Studies.svg": "e1425332185242a40f4670bb60e67f9b136a6b98dde710a98cc475b815df4b82",
+   "N0-F_trazado_compuesto.svg": "d6401dd4ff91106d113ee0557d330ae26cff6d39e44b07c713f9ec2b8dd7c102",
+   "N0-G_curvas.svg": "0325e537a7725a2f64538dcaf817ffd8a5f19cadde876d198ee412b29f32cdde"
+  }
+ },
+ {
+  "t": "2026-10-23T23:17:47.543Z",
+  "paso": "estado inicial de Illustrator",
+  "n": 0,
+  "docs": [],
+  "activo": null,
+  "interaccion": "UserInteractionLevel.DISPLAYALERTS"
+ },
+ {
+  "t": "2026-10-23T23:17:47.722Z",
+  "paso": "versión",
+  "illustrator_extendscript_so": "30.8.2 | 4.5.6 | Macintosh OS 26.6.2/64"
+ },
+ {
+  "t": "2026-10-23T23:17:49.872Z",
+  "paso": "abrir",
+  "doc": "N0-D",
+  "nombre": "N0-D_capa_Studies.svg",
+  "activo": "N0-D_capa_Studies.svg",
+  "n": 1,
+  "interaccion": "UserInteractionLevel.DISPLAYALERTS",
+  "artboards": 1,
+  "capas": 1
+ },
+ {
+  "t": "2026-10-23T23:17:50.163Z",
+  "paso": "preparar documento desechable (grupos → capas)",
+  "doc": "N0-D",
+  "resultado": "preparado: capas (arriba→abajo) = Studies, Cuts, Creases | Creases:1; Cuts:2; Studies:1; capa original vacía eliminada"
+ },
+ {
+  "t": "2026-10-23T23:17:50.532Z",
+  "paso": "script",
+  "script": "survey",
+  "etiqueta": "survey",
+  "doc": "N0-D_capa_Studies.svg",
+  "ms": 191,
+  "archivo": "N0-D_capa_Studies.svg__survey.json",
+  "identicos": true,
+  "restaurado": [],
+  "seleccionRestaurada": false,
+  "error": null
+ },
+ {
+  "t": "2026-10-23T23:17:50.900Z",
+  "paso": "script",
+  "script": "extract",
+  "etiqueta": "extract",
+  "doc": "N0-D_capa_Studies.svg",
+  "ms": 199,
+  "archivo": "N0-D_capa_Studies.svg__extract.json",
+  "identicos": true,
+  "restaurado": [],
+  "seleccionRestaurada": false,
+  "error": null
+ },
+ {
+  "t": "2026-10-23T23:19:52.033Z",
+  "paso": "cerrar sin guardar",
+  "respuestaPerdida": true,
+  "n": 0,
+  "docs": [],
+  "activo": null,
+  "interaccion": "UserInteractionLevel.DISPLAYALERTS"
+ },
+ {
+  "t": "2026-10-23T23:19:52.894Z",
+  "paso": "abrir",
+  "doc": "N0-F",
+  "nombre": "N0-F_trazado_compuesto.svg",
+  "activo": "N0-F_trazado_compuesto.svg",
+  "n": 1,
+  "interaccion": "UserInteractionLevel.DISPLAYALERTS",
+  "artboards": 1,
+  "capas": 1
+ },
+ {
+  "t": "2026-10-23T23:19:53.176Z",
+  "paso": "preparar documento desechable (grupos → capas)",
+  "doc": "N0-F",
+  "resultado": "preparado: capas (arriba→abajo) = Cuts, Creases | Creases:1; Cuts:1; capa original vacía eliminada"
+ },
+ {
+  "t": "2026-10-23T23:19:53.696Z",
+  "paso": "script",
+  "script": "survey",
+  "etiqueta": "survey",
+  "doc": "N0-F_trazado_compuesto.svg",
+  "ms": 275,
+  "archivo": "N0-F_trazado_compuesto.svg__survey.json",
+  "identicos": true,
+  "restaurado": [],
+  "seleccionRestaurada": false,
+  "error": null
+ },
+ {
+  "t": "2026-10-23T23:19:54.218Z",
+  "paso": "script",
+  "script": "extract",
+  "etiqueta": "extract",
+  "doc": "N0-F_trazado_compuesto.svg",
+  "ms": 284,
+  "archivo": "N0-F_trazado_compuesto.svg__extract.json",
+  "identicos": true,
+  "restaurado": [],
+  "seleccionRestaurada": false,
+  "error": null
+ },
+ {
+  "t": "2026-10-23T23:21:54.868Z",
+  "paso": "cerrar sin guardar",
+  "respuestaPerdida": true,
+  "n": 0,
+  "docs": [],
+  "activo": null,
+  "interaccion": "UserInteractionLevel.DISPLAYALERTS"
+ },
+ {
+  "t": "2026-10-23T23:21:55.667Z",
+  "paso": "abrir",
+  "doc": "N0-G",
+  "nombre": "N0-G_curvas.svg",
+  "activo": "N0-G_curvas.svg",
+  "n": 1,
+  "interaccion": "UserInteractionLevel.DISPLAYALERTS",
+  "artboards": 1,
+  "capas": 1
+ },
+ {
+  "t": "2026-10-23T23:21:55.904Z",
+  "paso": "preparar documento desechable (grupos → capas)",
+  "doc": "N0-G",
+  "resultado": "preparado: capas (arriba→abajo) = Cuts, Creases | Creases:1; Cuts:1; capa original vacía eliminada"
+ },
+ {
+  "t": "2026-10-23T23:21:56.386Z",
+  "paso": "script",
+  "script": "survey",
+  "etiqueta": "survey",
+  "doc": "N0-G_curvas.svg",
+  "ms": 266,
+  "archivo": "N0-G_curvas.svg__survey.json",
+  "identicos": true,
+  "restaurado": [],
+  "seleccionRestaurada": false,
+  "error": null
+ },
+ {
+  "t": "2026-10-23T23:21:56.905Z",
+  "paso": "script",
+  "script": "extract",
+  "etiqueta": "extract",
+  "doc": "N0-G_curvas.svg",
+  "ms": 266,
+  "archivo": "N0-G_curvas.svg__extract.json",
+  "identicos": true,
+  "restaurado": [],
+  "seleccionRestaurada": false,
+  "error": null
+ },
+ {
+  "t": "2026-10-23T23:23:57.537Z",
+  "paso": "cerrar sin guardar",
+  "respuestaPerdida": true,
+  "n": 0,
+  "docs": [],
+  "activo": null,
+  "interaccion": "UserInteractionLevel.DISPLAYALERTS"
+ },
+ {
+  "t": "2026-10-23T23:23:58.273Z",
+  "paso": "abrir",
+  "doc": "N0-B",
+  "nombre": "N0-B_caja_simple_arte.svg",
+  "activo": "N0-B_caja_simple_arte.svg",
+  "n": 1,
+  "interaccion": "UserInteractionLevel.DISPLAYALERTS",
+  "artboards": 1,
+  "capas": 1
+ },
+ {
+  "t": "2026-10-23T23:23:58.515Z",
+  "paso": "preparar documento desechable (grupos → capas)",
+  "doc": "N0-B",
+  "resultado": "preparado: capas (arriba→abajo) = Cuts, Creases, Front, Back | Back:1; Front:1; Creases:1; Cuts:2; capa original vacía eliminada"
+ },
+ {
+  "t": "2026-10-23T23:23:58.748Z",
+  "paso": "preparar artboards Front/Back (documento desechable)",
+  "artboards": 2,
+  "nombres": [
+   "Front",
+   "Back"
+  ]
+ },
+ {
+  "t": "2026-10-23T23:23:59.252Z",
+  "paso": "script",
+  "script": "survey",
+  "etiqueta": "survey-artboards",
+  "doc": "N0-B_caja_simple_arte.svg",
+  "ms": 269,
+  "archivo": "N0-B_caja_simple_arte.svg__survey.json",
+  "identicos": true,
+  "restaurado": [],
+  "seleccionRestaurada": false,
+  "error": null
+ },
+ {
+  "t": "2026-10-23T23:24:08.286Z",
+  "paso": "script",
+  "script": "art",
+  "etiqueta": "art-artboards",
+  "doc": "N0-B_caja_simple_arte.svg",
+  "ms": 8794,
+  "archivo": "N0-B_caja_simple_arte.svg__art.json",
+  "identicos": true,
+  "restaurado": [],
+  "seleccionRestaurada": false,
+  "error": null
+ },
+ {
+  "t": "2026-10-23T23:26:11.746Z",
+  "paso": "cerrar sin guardar",
+  "respuestaPerdida": true,
+  "n": 0,
+  "docs": [],
+  "activo": null,
+  "interaccion": "UserInteractionLevel.DISPLAYALERTS"
+ },
+ {
+  "t": "2026-10-23T23:26:12.511Z",
+  "paso": "abrir",
+  "doc": "N0-B",
+  "nombre": "N0-B_caja_simple_arte.svg",
+  "activo": "N0-B_caja_simple_arte.svg",
+  "n": 1,
+  "interaccion": "UserInteractionLevel.DISPLAYALERTS",
+  "artboards": 1,
+  "capas": 1
+ },
+ {
+  "t": "2026-10-23T23:26:12.753Z",
+  "paso": "preparar documento desechable (grupos → capas)",
+  "doc": "N0-B",
+  "resultado": "preparado: capas (arriba→abajo) = Cuts, Creases, Front, Back | Back:1; Front:1; Creases:1; Cuts:2; capa original vacía eliminada"
+ },
+ {
+  "t": "2026-10-23T23:26:12.969Z",
+  "paso": "preparar capa oculta/bloqueada (documento desechable)",
+  "creasesVisible": false,
+  "cutsLocked": true
+ },
+ {
+  "t": "2026-10-23T23:26:13.482Z",
+  "paso": "script",
+  "script": "extract",
+  "etiqueta": "extract-oculta-bloqueada",
+  "doc": "N0-B_caja_simple_arte.svg",
+  "ms": 286,
+  "archivo": "N0-B_caja_simple_arte.svg__extract.json",
+  "identicos": true,
+  "restaurado": [],
+  "seleccionRestaurada": false,
+  "error": null
+ },
+ {
+  "t": "2026-10-23T23:28:14.247Z",
+  "paso": "cerrar sin guardar",
+  "respuestaPerdida": true,
+  "n": 0,
+  "docs": [],
+  "activo": null,
+  "interaccion": "UserInteractionLevel.DISPLAYALERTS"
+ },
+ {
+  "t": "2026-10-23T23:28:14.540Z",
+  "paso": "estado final = inicial",
+  "ok": true,
+  "docs": []
+ }
+]
