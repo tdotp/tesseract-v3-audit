@@ -1,0 +1,8 @@
+parse OK: outer pts 56 creases 12 holes 0
+core directo: FALLA -> buildFoldTopology: 1 panel(s) are disconnected from the fold graph: 10. The engine will not hide or discard th
+fusión de extremos: puntos movidos 17 | desplazamiento máx 0.250 mm
+core con fusión: FALLA -> buildFoldTopology: geometry conservation failed; expected 15521.328267 mm², generated 15521.352164 mm². No material was deleted.
+plugin (buildPanels) sobre el export real de Illustrator: paneles 13 | área total 15425.9 mm²
+Faces traced: 14
+Panels after shell filter: 14
+Connectivity filter: keeping 13 of 14 panels from largest crease-connected component

@@ -1,0 +1,6 @@
+centroide | clusters 14 movidos 17 máx 0.250 → FALLA: buildFoldTopology: geometry conservation failed; expected 15521.328267 mm², generated 15521.352164 mm². No material was deleted.
+centroide→proyectado al contorno si está a ≤0.5 mm | clusters 14 movidos 24 máx 0.250 → FALLA: buildFoldTopology: geometry conservation failed; expected 15521.328267 mm², generated 15521.352164 mm². No material was deleted.
+caras 21 positivas 20 suma positivas 15521.352164 | negativas -15521.352 | esperado 15521.328267
+áreas ordenadas 0.000 0.000 0.000 0.000 0.008 0.008 0.008 220.147 220.202 372.532 372.595 372.598 374.389 895.244 907.503 990.310 2693.501 2693.915 2703.847 2704.544
+cara(s) no positiva(s): vértices [ 196 ]
+caras con centroide ESTRICTAMENTE dentro: 14 suma 15521.328267 | fuera: 6 áreas 0.0078,0.0003,0.0077,0.0003,0.0078,0.0000 suma 0.023896 | esperado 15521.328267

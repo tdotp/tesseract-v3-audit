@@ -1,0 +1,76 @@
+{
+ "_nota": "Medido el 2026-10-23 en el navegador integrado de Claude Desktop (Chromium 152, Apple M1 Max, ANGLE/Metal, 928x1272 px, DPR 1) con una COPIA instrumentada del plugin (three r132). NO es el Chromium 99 de CEP ni el hardware de destino: los valores absolutos de tiempo/FPS no son representativos; los conteos de recursos y las proporciones sí.",
+ "fixture": "caja-botanica-real.json (69 puntos de contorno, 12 creases, 11 paneles resultantes en el plugin)",
+ "escenario_A_sin_arte": {
+  "extraccion_ms_simulada": 6.2,
+  "continuar_a_3d_sincrono_ms": 45,
+  "fps_reposo": {
+   "fps": 75.6,
+   "peor_frame_ms": 15.3
+  },
+  "fps_orbita": {
+   "fps": 75.4,
+   "peor_frame_ms": 15.3
+  },
+  "plegado_por_tick_ms": {
+   "ticks": 100,
+   "mediana": 1.0,
+   "p95": 1.4,
+   "max": 3.4
+  },
+  "crecimiento_por_100_ticks_de_slider": {
+   "texturas": 1100,
+   "buffers": 5008,
+   "vaos": 2002,
+   "heap_MB": 0.8
+  },
+  "glb_export_ms": 9,
+  "heap_inicio_MB": 8.0,
+  "heap_fin_MB": 8.9
+ },
+ "escenario_B_con_arte_2xPNG_3280x4096": {
+  "carga_arte_ms": 198,
+  "png_MB": [
+   8.59,
+   8.7
+  ],
+  "fps_reposo": {
+   "fps": 75.7,
+   "peor_frame_ms": 15.3
+  },
+  "fps_orbita": {
+   "fps": 75.4,
+   "peor_frame_ms": 15.3
+  },
+  "plegado_por_tick_ms": {
+   "ticks": 60,
+   "mediana": 1.0,
+   "p95": 1.9,
+   "max": 2.5
+  },
+  "crecimiento_por_100_ticks_de_slider": {
+   "texturas": 1100,
+   "buffers": 5013,
+   "vaos": 2007
+  },
+  "glb_export_ms": 589,
+  "heap_antes_arte_MB": 7.3,
+  "heap_tras_arte_MB": 9.8,
+  "heap_tras_glb_sin_gc_MB": 53.9
+ },
+ "costo_de_render_por_frame_con_gpu_sincronizada_ms": {
+  "sin_arte": 0.1,
+  "con_arte": 0.4,
+  "fuente": "medición con __dbg en la copia, 120 renders, mediana"
+ },
+ "three_info": {
+  "geometrias_tras_construir": 45,
+  "texturas_tras_construir": 11,
+  "draw_calls": 55,
+  "triangulos": 350,
+  "con_arte": {
+   "draw_calls": 99,
+   "triangulos": 514
+  }
+ }
+}

@@ -1,0 +1,180 @@
+[
+ {
+  "name": "caja-botanica-real (fixture del plugin)",
+  "segsApprox": 81,
+  "plugin_ms": 30.16,
+  "plugin_panels": 11,
+  "plugin_area_err_mm2": -1347.573,
+  "core_ms": 1.88,
+  "core_panels": 13,
+  "core_area_err_mm2": 0,
+  "core_vs_flat": 0
+ },
+ {
+  "name": "hueco descentrado (200 mm2)",
+  "segsApprox": 5,
+  "plugin_ms": 0.25,
+  "plugin_panels": 2,
+  "plugin_area_err_mm2": 200,
+  "core_ms": 0.03,
+  "core_panels": 2,
+  "core_area_err_mm2": 0,
+  "core_vs_flat": 0
+ },
+ {
+  "name": "hueco centrado en el panel (800 mm2)",
+  "segsApprox": 5,
+  "plugin_ms": 0.23,
+  "plugin_panels": 2,
+  "plugin_area_err_mm2": 4000,
+  "core_ms": 0.02,
+  "core_panels": 2,
+  "core_area_err_mm2": 0,
+  "core_vs_flat": 0
+ },
+ {
+  "name": "esquinas redondeadas Bézier",
+  "segsApprox": 9,
+  "plugin_ms": 0.26,
+  "plugin_panels": 2,
+  "plugin_area_err_mm2": 0,
+  "core_ms": 0.28,
+  "core_panels": 2,
+  "core_area_err_mm2": 0,
+  "core_vs_flat": 0
+ },
+ {
+  "name": "rejilla 2x2",
+  "segsApprox": 8,
+  "plugin_ms": 0.25,
+  "plugin_panels": 4,
+  "plugin_area_err_mm2": 0,
+  "core_ms": 0.04,
+  "core_panels": 4,
+  "core_area_err_mm2": 0,
+  "core_vs_flat": 0
+ },
+ {
+  "name": "rejilla 3x3",
+  "segsApprox": 16,
+  "plugin_ms": 2.19,
+  "plugin_panels": 9,
+  "plugin_area_err_mm2": 0,
+  "core_ms": 0.08,
+  "core_panels": 9,
+  "core_area_err_mm2": 0,
+  "core_vs_flat": 0
+ },
+ {
+  "name": "rejilla 4x4",
+  "segsApprox": 28,
+  "plugin_ms": 9.22,
+  "plugin_panels": 16,
+  "plugin_area_err_mm2": 0,
+  "core_ms": 0.16,
+  "core_panels": 16,
+  "core_area_err_mm2": 0,
+  "core_vs_flat": 0
+ },
+ {
+  "name": "rejilla 6x6",
+  "segsApprox": 64,
+  "plugin_ms": 73.22,
+  "plugin_panels": 36,
+  "plugin_area_err_mm2": 0,
+  "core_ms": 0.5,
+  "core_panels": 36,
+  "core_area_err_mm2": 0,
+  "core_vs_flat": 0
+ },
+ {
+  "name": "rejilla 8x8",
+  "segsApprox": 116,
+  "plugin_ms": 318.71,
+  "plugin_panels": 64,
+  "plugin_area_err_mm2": 0,
+  "core_ms": 0.89,
+  "core_panels": 64,
+  "core_area_err_mm2": 0,
+  "core_vs_flat": 0
+ },
+ {
+  "name": "rejilla 10x10",
+  "segsApprox": 184,
+  "plugin_ms": 986.81,
+  "plugin_panels": 100,
+  "plugin_area_err_mm2": 0,
+  "core_ms": 1.47,
+  "core_panels": 100,
+  "core_area_err_mm2": 0,
+  "core_vs_flat": 0
+ },
+ {
+  "name": "rejilla 4x4, 10 pts/arista extra",
+  "segsApprox": 68,
+  "plugin_ms": 33.93,
+  "plugin_panels": 16,
+  "plugin_area_err_mm2": 0,
+  "core_ms": 0.31,
+  "core_panels": 16,
+  "core_area_err_mm2": 0,
+  "core_vs_flat": 0
+ },
+ {
+  "name": "rejilla 4x4, 25 pts/arista extra",
+  "segsApprox": 128,
+  "plugin_ms": 100.38,
+  "plugin_panels": 16,
+  "plugin_area_err_mm2": 0,
+  "core_ms": 0.82,
+  "core_panels": 16,
+  "core_area_err_mm2": 0,
+  "core_vs_flat": 0
+ },
+ {
+  "name": "rejilla 4x4, 50 pts/arista extra",
+  "segsApprox": 228,
+  "plugin_ms": 453.98,
+  "plugin_panels": 16,
+  "plugin_area_err_mm2": 0,
+  "core_ms": 2.59,
+  "core_panels": 16,
+  "core_area_err_mm2": 0,
+  "core_vs_flat": 0
+ },
+ {
+  "name": "rejilla 16x16",
+  "segsApprox": 484,
+  "plugin_ms": 10544.15,
+  "plugin_panels": 256,
+  "plugin_area_err_mm2": 0,
+  "core_ms": 8.16,
+  "core_panels": 256,
+  "core_area_err_mm2": 0,
+  "core_vs_flat": 0
+ },
+ {
+  "name": "rejilla 24x24",
+  "segsApprox": 1108,
+  "core_ms": 35.65,
+  "core_panels": 576,
+  "core_area_err_mm2": 0,
+  "core_vs_flat": 0
+ },
+ {
+  "name": "rejilla 32x32",
+  "segsApprox": 1988,
+  "core_ms": 98.19,
+  "core_panels": 1024,
+  "core_area_err_mm2": 0,
+  "core_vs_flat": 0
+ },
+ {
+  "name": "rejilla 48x48",
+  "segsApprox": 4516,
+  "core_ms": 462.48,
+  "core_panels": 2304,
+  "core_area_err_mm2": 0,
+  "core_vs_flat": 0
+ }
+]

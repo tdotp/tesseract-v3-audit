@@ -1,0 +1,20 @@
+
+== export real de Illustrator (SVG) (ε=0.5 mm)
+ antes   : {"label":"antes","core":"FALLA: buildFoldTopology: 1 panel(s) are disconnected from the fold graph: 10. The engine will not hide or discard them.","legacy":"13 paneles, área 15425.9"}
+ ajustes : {"exceso recortado":1,"cluster→contorno":16} | máx 0.2505 mm
+ contorno intacto: true
+ idempotente (2ª pasada sin ajustes): true 
+ después : {"label":"después","core":"FALLA: buildFoldTopology: geometry conservation failed; expected 15521.328267 mm², generated 15521.352164 mm². No material was deleted.","legacy":"13 paneles, área 15433.2"}
+
+== fixture JSON del plugin (ε=0.5 mm)
+ antes   : {"label":"antes","core":"OK 13 paneles, 12 adyacencias, ΔA 3.6e-12","legacy":"11 paneles, área 26102.4"}
+ ajustes : {"cluster→contorno":5} | máx 0.3316 mm
+ contorno intacto: true
+ idempotente (2ª pasada sin ajustes): true 
+ después : {"label":"después","core":"FALLA: buildFoldTopology: geometry conservation failed; expected 27593.190020 mm², generated 27593.204229 mm². No material was deleted.","legacy":"11 paneles, área 26102.4"}
+
+DIAG caras pequeñas (<5 mm²): [
+  { a: 0.01369, n: 3, estrictoDentro: false, c: '217.66,-191.03' },
+  { a: 0.00052, n: 3, estrictoDentro: false, c: '257.28,-191.14' }
+]
+suma caras + = 27593.204229  contorno= 27593.190020 caras+: 15

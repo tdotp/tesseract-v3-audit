@@ -1,0 +1,6 @@
+crease 7 segmentos 1 (217.61,-191.14)->(257.61,-191.14) len 40.00
+  paneles que tocan algún extremo: [{"pi":0,"ia":28,"ib":21},{"pi":4,"ia":4,"ib":2},{"pi":5,"ia":1,"ib":-1},{"pi":7,"ia":1,"ib":-1},{"pi":9,"ia":0,"ib":-1},{"pi":10,"ia":-1,"ib":0}]
+crease 10 segmentos 1 (257.61,-311.14)->(217.61,-311.14) len 40.00
+  paneles que tocan algún extremo: [{"pi":0,"ia":-1,"ib":38},{"pi":3,"ia":2,"ib":-1},{"pi":4,"ia":1,"ib":5},{"pi":5,"ia":-1,"ib":0},{"pi":10,"ia":1,"ib":-1}]
+crease 7 : vértices de panel a ~0.5 mm del extremo [{"pi":0,"x":257.11,"y":-191.14},{"pi":4,"x":257.11,"y":-191.14},{"pi":9,"x":257.11,"y":-191.14}]
+crease 10 : vértices de panel a ~0.5 mm del extremo [{"pi":0,"x":218.11,"y":-311.14},{"pi":3,"x":218.11,"y":-311.14},{"pi":4,"x":218.11,"y":-311.14}]
