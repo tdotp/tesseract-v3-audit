@@ -20,7 +20,9 @@ const HEADER = (name, readonly) => `#target illustrator
 `;
 // ── Bloque común (ES3: sin let/const/flechas/JSON/indexOf/forEach) ──
 const COMMON = `
-var OUT_DIR = Folder.desktop.fsName + "/Tesseract_Nivel0";
+var OUT_DIR = Folder.desktop.fsName + "/Tesseract_Nivel0"; // por defecto; un orquestador puede fijar $.global.TESS_OUT_DIR (p. ej. /tmp) para evitar permisos de carpetas protegidas
+try{ if($.global.TESS_OUT_DIR) OUT_DIR = String($.global.TESS_OUT_DIR); }catch(eo){}
+var __QUIET = false; try{ __QUIET = !!$.global.TESS_NO_ALERT; }catch(eq){} // sin cuadros modales cuando lo ejecuta un orquestador
 var PT = 0.352778;
 function ser(v){ if(v===null||typeof v==="undefined") return "null"; if(typeof v==="boolean") return v?"true":"false"; if(typeof v==="number") return isFinite(v)?String(v):"null";
   if(typeof v==="string") return '"' + v.replace(/\\\\/g,"\\\\\\\\").replace(/"/g,'\\\\"').replace(/\\n/g,"\\\\n").replace(/\\r/g,"\\\\r").replace(/\\t/g,"\\\\t") + '"';
@@ -52,7 +54,7 @@ function __tess_write(scriptName, obj){
   var folder=new Folder(OUT_DIR); if(!folder.exists) folder.create();
   var doc=app.documents.length ? app.activeDocument.name : "sin_documento"; var safe=String(doc).replace(/[^A-Za-z0-9_\\-\\.]+/g,"_");
   var f=new File(folder.fsName+"/"+safe+"__"+scriptName+".json"); f.encoding="UTF-8"; f.open("w"); f.write(ser(obj)); f.close();
-  alert("Tesseract Nivel 0 · "+scriptName+"\\n\\nGuardado en:\\n"+f.fsName+"\\n\\nEstado del documento idéntico antes/después: "+(obj._integridad && obj._integridad.identicos ? "SÍ" : "NO — avisa a Claude"));
+  if(!__QUIET) alert("Tesseract Nivel 0 · "+scriptName+"\\n\\nGuardado en:\\n"+f.fsName+"\\n\\nEstado del documento idéntico antes/después: "+(obj._integridad && obj._integridad.identicos ? "SÍ" : "NO — avisa a Claude"));
   return f.fsName; }
 `;
 const jsonify = (code) => code.trim().replace(/;?\s*$/, ';');

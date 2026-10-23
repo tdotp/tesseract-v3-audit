@@ -58,5 +58,5 @@ test('los .jsx solo usan sintaxis ES3 y APIs de ExtendScript (sin let/const/flec
   }
 });
 test('los .jsx no escriben fuera de ~/Desktop/Tesseract_Nivel0 (única ruta de escritura) y no guardan ni cierran el documento', () => {
-  for (const n of NAMES) { const code = raw(n); assert.match(code, /Folder\.desktop\.fsName \+ "\/Tesseract_Nivel0"/); for (const bad of [/\.save\(/, /\.saveAs\(/, /\b(?:doc|d|activeDocument)\.close\(/, /\.remove\(/, /app\.open\(/, /app\.documents\.add/, /\.delete\(/, /\.rotate\(|\.translate\(|\.resize\(/]) assert.doesNotMatch(code.replace(/\/\*[\s\S]*?\*\//g, ''), bad, `${n}: ${bad}`); }
+  for (const n of NAMES) { const code = raw(n); assert.match(code, /Folder\.desktop\.fsName \+ "\/Tesseract_Nivel0"/); assert.match(code, /\$\.global\.TESS_OUT_DIR/); assert.match(code, /if\(!__QUIET\) alert\(/); for (const bad of [/\.save\(/, /\.saveAs\(/, /\b(?:doc|d|activeDocument)\.close\(/, /\.remove\(/, /app\.open\(/, /app\.documents\.add/, /\.delete\(/, /\.rotate\(|\.translate\(|\.resize\(/]) assert.doesNotMatch(code.replace(/\/\*[\s\S]*?\*\//g, ''), bad, `${n}: ${bad}`); }
 });
