@@ -2,7 +2,7 @@
 
 Proyecto de trabajo de la versión 3 del plugin de Adobe Illustrator Tesseract (panel CEP + three.js).
 
-**Estado (2026-10-23):** Fase 0 completada y aprobada. Fase 1 en curso: **A0 (aislamiento) y A1 (corrección de la fuga GPU) entregados — punto de control 1 pendiente de revisión** (`docs/fase1/A0_A1_INFORME.md`). No se ha iniciado la refactorización estructural. Documento rector: `docs/PLAN_MAESTRO_V3.md`.
+**Estado (2026-10-23):** Fase 0 completada y aprobada. Fase 1: **A0 (aislamiento), A1 (fuga GPU) y A2 (banco de caracterización) entregados**; PC1 aprobado, **PC2 pendiente de revisión** (`docs/fase1/A2_INFORME_CARACTERIZACION.md`). A3 y la refactorización estructural **no iniciados**. Para retomar el trabajo (otro agente/chat): `HANDOFF.md`. Documento rector: `docs/PLAN_MAESTRO_V3.md`.
 
 | Carpeta | Contenido |
 |---|---|
@@ -10,6 +10,8 @@ Proyecto de trabajo de la versión 3 del plugin de Adobe Illustrator Tesseract (
 | `reference/`, `panel/` | Baseline congelado (solo lectura, con huellas) y copia de trabajo aislada |
 | `docs/fase0/` | Informe de auditoría y entregables de la Fase 0 (empieza por `00_INFORME_AUDITORIA.md`) |
 | `docs/fase0/08_DECISIONES_D1_D8.md`, `09_ESTIMACION_FASE1_REVISADA.md` | Decisiones pendientes con alternativas y el desglose de esfuerzo revisado |
+| `tests/` | Batería de caracterización (`tests/run-all.sh`), golden masters, fixtures reales y sintéticos |
+| `tools/illustrator/` | Scripts `.jsx` para validar en Illustrator real sin instalar nada |
 | `tools/baseline/` | Scripts reproducibles de medición y sus resultados (`results/`); `glb_units_test/` = kit de calibración de unidades GLB |
 
 ## Referencias (fuera de esta carpeta, solo lectura)

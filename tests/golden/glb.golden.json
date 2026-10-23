@@ -1,0 +1,613 @@
+{
+ "_fuente": "reference/legacy-baseline vía Chrome headless (estructura; los hashes dependen de la versión de Chrome)",
+ "caja": {
+  "plano_sin_arte": {
+   "generator": "Tesseract Phase 7B",
+   "extensionsUsed": [],
+   "nodes": 11,
+   "meshes": 11,
+   "primitives": 11,
+   "materials": 2,
+   "accessors": 44,
+   "bufferViews": 44,
+   "images": 0,
+   "textures": 0,
+   "samplers": 0,
+   "imageMime": [],
+   "materialSummary": [
+    {
+     "color": [
+      0.851,
+      0.8353,
+      0.8,
+      1
+     ],
+     "metallic": 0,
+     "roughness": 1,
+     "texture": false,
+     "alphaMode": "OPAQUE",
+     "doubleSided": true
+    },
+    {
+     "color": [
+      0.9255,
+      0.9059,
+      0.8667,
+      1
+     ],
+     "metallic": 0,
+     "roughness": 1,
+     "texture": false,
+     "alphaMode": "OPAQUE",
+     "doubleSided": true
+    }
+   ],
+   "bbox": {
+    "min": [
+     -101.173,
+     0,
+     -108.213
+    ],
+    "max": [
+     73.825,
+     0.25,
+     115.284
+    ],
+    "size": [
+     174.998,
+     0.25,
+     223.498
+    ]
+   },
+   "normals": {
+    "checked": 624,
+    "zeroLength": 0,
+    "nonUnit": 0,
+    "meshesWithZeroLength": []
+   }
+  },
+  "plegado60_sin_arte": {
+   "generator": "Tesseract Phase 7B",
+   "extensionsUsed": [],
+   "nodes": 31,
+   "meshes": 31,
+   "primitives": 31,
+   "materials": 3,
+   "accessors": 124,
+   "bufferViews": 124,
+   "images": 0,
+   "textures": 0,
+   "samplers": 0,
+   "imageMime": [],
+   "materialSummary": [
+    {
+     "color": [
+      0.851,
+      0.8353,
+      0.8,
+      1
+     ],
+     "metallic": 0,
+     "roughness": 1,
+     "texture": false,
+     "alphaMode": "OPAQUE",
+     "doubleSided": true
+    },
+    {
+     "color": [
+      0.898,
+      0.8745,
+      0.8275,
+      1
+     ],
+     "metallic": 0,
+     "roughness": 1,
+     "texture": false,
+     "alphaMode": "OPAQUE",
+     "doubleSided": true
+    },
+    {
+     "color": [
+      0.9255,
+      0.9059,
+      0.8667,
+      1
+     ],
+     "metallic": 0,
+     "roughness": 1,
+     "texture": false,
+     "alphaMode": "OPAQUE",
+     "doubleSided": true
+    }
+   ],
+   "bbox": {
+    "min": [
+     -73.889,
+     -132.881,
+     -12.179
+    ],
+    "max": [
+     54.044,
+     2.172,
+     109.752
+    ],
+    "size": [
+     127.932,
+     135.054,
+     121.932
+    ]
+   },
+   "normals": {
+    "checked": 744,
+    "zeroLength": 0,
+    "nonUnit": 0,
+    "meshesWithZeroLength": []
+   }
+  },
+  "plano_con_arte": {
+   "generator": "Tesseract Phase 7B",
+   "extensionsUsed": [],
+   "nodes": 33,
+   "meshes": 33,
+   "primitives": 33,
+   "materials": 4,
+   "accessors": 132,
+   "bufferViews": 134,
+   "images": 2,
+   "textures": 2,
+   "samplers": 1,
+   "imageMime": [
+    "image/png"
+   ],
+   "materialSummary": [
+    {
+     "color": [
+      0.851,
+      0.8353,
+      0.8,
+      1
+     ],
+     "metallic": 0,
+     "roughness": 1,
+     "texture": false,
+     "alphaMode": "OPAQUE",
+     "doubleSided": true
+    },
+    {
+     "color": [
+      0.9255,
+      0.9059,
+      0.8667,
+      1
+     ],
+     "metallic": 0,
+     "roughness": 1,
+     "texture": false,
+     "alphaMode": "OPAQUE",
+     "doubleSided": true
+    },
+    {
+     "color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "metallic": 0,
+     "roughness": 1,
+     "texture": true,
+     "alphaMode": "BLEND",
+     "doubleSided": true
+    }
+   ],
+   "bbox": {
+    "min": [
+     -101.173,
+     -0.08,
+     -108.213
+    ],
+    "max": [
+     73.825,
+     0.33,
+     115.284
+    ],
+    "size": [
+     174.998,
+     0.41,
+     223.498
+    ]
+   },
+   "normals": {
+    "checked": 750,
+    "zeroLength": 0,
+    "nonUnit": 0,
+    "meshesWithZeroLength": []
+   }
+  },
+  "plegado60_con_arte": {
+   "generator": "Tesseract Phase 7B",
+   "extensionsUsed": [],
+   "nodes": 53,
+   "meshes": 53,
+   "primitives": 53,
+   "materials": 4,
+   "accessors": 212,
+   "bufferViews": 214,
+   "images": 2,
+   "textures": 2,
+   "samplers": 1,
+   "imageMime": [
+    "image/png"
+   ],
+   "materialSummary": [
+    {
+     "color": [
+      0.851,
+      0.8353,
+      0.8,
+      1
+     ],
+     "metallic": 0,
+     "roughness": 1,
+     "texture": false,
+     "alphaMode": "OPAQUE",
+     "doubleSided": true
+    },
+    {
+     "color": [
+      0.9255,
+      0.9059,
+      0.8667,
+      1
+     ],
+     "metallic": 0,
+     "roughness": 1,
+     "texture": false,
+     "alphaMode": "OPAQUE",
+     "doubleSided": true
+    },
+    {
+     "color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "metallic": 0,
+     "roughness": 1,
+     "texture": true,
+     "alphaMode": "BLEND",
+     "doubleSided": true
+    }
+   ],
+   "bbox": {
+    "min": [
+     -73.958,
+     -132.931,
+     -12.249
+    ],
+    "max": [
+     54.11,
+     2.242,
+     109.822
+    ],
+    "size": [
+     128.068,
+     135.174,
+     122.07
+    ]
+   },
+   "normals": {
+    "checked": 870,
+    "zeroLength": 0,
+    "nonUnit": 0,
+    "meshesWithZeroLength": []
+   }
+  }
+ },
+ "ill": {
+  "plano_sin_arte": {
+   "generator": "Tesseract Phase 7B",
+   "extensionsUsed": [],
+   "nodes": 13,
+   "meshes": 13,
+   "primitives": 13,
+   "materials": 2,
+   "accessors": 52,
+   "bufferViews": 52,
+   "images": 0,
+   "textures": 0,
+   "samplers": 0,
+   "imageMime": [],
+   "materialSummary": [
+    {
+     "color": [
+      0.851,
+      0.8353,
+      0.8,
+      1
+     ],
+     "metallic": 0,
+     "roughness": 1,
+     "texture": false,
+     "alphaMode": "OPAQUE",
+     "doubleSided": true
+    },
+    {
+     "color": [
+      0.9255,
+      0.9059,
+      0.8667,
+      1
+     ],
+     "metallic": 0,
+     "roughness": 1,
+     "texture": false,
+     "alphaMode": "OPAQUE",
+     "doubleSided": true
+    }
+   ],
+   "bbox": {
+    "min": [
+     -71.146,
+     0,
+     -87.146
+    ],
+    "max": [
+     60.103,
+     0.25,
+     80.478
+    ],
+    "size": [
+     131.249,
+     0.25,
+     167.624
+    ]
+   },
+   "normals": {
+    "checked": 672,
+    "zeroLength": 0,
+    "nonUnit": 0,
+    "meshesWithZeroLength": []
+   }
+  },
+  "plegado60_sin_arte": {
+   "generator": "Tesseract Phase 7B",
+   "extensionsUsed": [],
+   "nodes": 37,
+   "meshes": 37,
+   "primitives": 37,
+   "materials": 3,
+   "accessors": 148,
+   "bufferViews": 148,
+   "images": 0,
+   "textures": 0,
+   "samplers": 0,
+   "imageMime": [],
+   "materialSummary": [
+    {
+     "color": [
+      0.851,
+      0.8353,
+      0.8,
+      1
+     ],
+     "metallic": 0,
+     "roughness": 1,
+     "texture": false,
+     "alphaMode": "OPAQUE",
+     "doubleSided": true
+    },
+    {
+     "color": [
+      0.898,
+      0.8745,
+      0.8275,
+      1
+     ],
+     "metallic": 0,
+     "roughness": 1,
+     "texture": false,
+     "alphaMode": "OPAQUE",
+     "doubleSided": true
+    },
+    {
+     "color": [
+      0.9255,
+      0.9059,
+      0.8667,
+      1
+     ],
+     "metallic": 0,
+     "roughness": 1,
+     "texture": false,
+     "alphaMode": "OPAQUE",
+     "doubleSided": true
+    }
+   ],
+   "bbox": {
+    "min": [
+     -50.519,
+     -29.561,
+     -87.146
+    ],
+    "max": [
+     45.105,
+     9.87,
+     50.666
+    ],
+    "size": [
+     95.624,
+     39.431,
+     137.812
+    ]
+   },
+   "normals": {
+    "checked": 816,
+    "zeroLength": 0,
+    "nonUnit": 0,
+    "meshesWithZeroLength": []
+   }
+  },
+  "plano_con_arte": {
+   "generator": "Tesseract Phase 7B",
+   "extensionsUsed": [],
+   "nodes": 39,
+   "meshes": 39,
+   "primitives": 39,
+   "materials": 4,
+   "accessors": 156,
+   "bufferViews": 158,
+   "images": 2,
+   "textures": 2,
+   "samplers": 1,
+   "imageMime": [
+    "image/png"
+   ],
+   "materialSummary": [
+    {
+     "color": [
+      0.851,
+      0.8353,
+      0.8,
+      1
+     ],
+     "metallic": 0,
+     "roughness": 1,
+     "texture": false,
+     "alphaMode": "OPAQUE",
+     "doubleSided": true
+    },
+    {
+     "color": [
+      0.9255,
+      0.9059,
+      0.8667,
+      1
+     ],
+     "metallic": 0,
+     "roughness": 1,
+     "texture": false,
+     "alphaMode": "OPAQUE",
+     "doubleSided": true
+    },
+    {
+     "color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "metallic": 0,
+     "roughness": 1,
+     "texture": true,
+     "alphaMode": "BLEND",
+     "doubleSided": true
+    }
+   ],
+   "bbox": {
+    "min": [
+     -71.146,
+     -0.08,
+     -87.146
+    ],
+    "max": [
+     60.103,
+     0.33,
+     80.478
+    ],
+    "size": [
+     131.249,
+     0.41,
+     167.624
+    ]
+   },
+   "normals": {
+    "checked": 810,
+    "zeroLength": 0,
+    "nonUnit": 0,
+    "meshesWithZeroLength": []
+   }
+  },
+  "plegado60_con_arte": {
+   "generator": "Tesseract Phase 7B",
+   "extensionsUsed": [],
+   "nodes": 63,
+   "meshes": 63,
+   "primitives": 63,
+   "materials": 4,
+   "accessors": 252,
+   "bufferViews": 254,
+   "images": 2,
+   "textures": 2,
+   "samplers": 1,
+   "imageMime": [
+    "image/png"
+   ],
+   "materialSummary": [
+    {
+     "color": [
+      0.851,
+      0.8353,
+      0.8,
+      1
+     ],
+     "metallic": 0,
+     "roughness": 1,
+     "texture": false,
+     "alphaMode": "OPAQUE",
+     "doubleSided": true
+    },
+    {
+     "color": [
+      0.9255,
+      0.9059,
+      0.8667,
+      1
+     ],
+     "metallic": 0,
+     "roughness": 1,
+     "texture": false,
+     "alphaMode": "OPAQUE",
+     "doubleSided": true
+    },
+    {
+     "color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "metallic": 0,
+     "roughness": 1,
+     "texture": true,
+     "alphaMode": "BLEND",
+     "doubleSided": true
+    }
+   ],
+   "bbox": {
+    "min": [
+     -50.588,
+     -29.581,
+     -87.146
+    ],
+    "max": [
+     45.172,
+     9.91,
+     50.666
+    ],
+    "size": [
+     95.76,
+     39.491,
+     137.812
+    ]
+   },
+   "normals": {
+    "checked": 954,
+    "zeroLength": 0,
+    "nonUnit": 0,
+    "meshesWithZeroLength": []
+   }
+  }
+ }
+}

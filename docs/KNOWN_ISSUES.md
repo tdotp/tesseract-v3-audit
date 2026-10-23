@@ -1,14 +1,14 @@
 # Registro de defectos conocidos (referencia funcional)
 
-Actualizado: 2026-10-23. El motor y el exportador vigentes son la **referencia funcional** (Plan maestro §5): estos defectos se **preservan a propósito** hasta la fase indicada; una diferencia de comportamiento solo es aceptable si corresponde a uno de estos registros.
+Actualizado: 2026-10-23 (A2: causas raíz medidas, KI-17…KI-20 y cobertura de pruebas). El motor y el exportador vigentes son la **referencia funcional** (Plan maestro §5): estos defectos se **preservan a propósito** hasta la fase indicada; una diferencia de comportamiento solo es aceptable si corresponde a uno de estos registros.
 Evidencia: `docs/fase0/00_INFORME_AUDITORIA.md`, `tools/baseline/results/`. Etiquetas: [MEDIDO] [CONFIRMADO] [INFERENCIA] [NO VERIFICADO].
 
 | ID | Defecto | Severidad | Evidencia | Fase de corrección | Estado |
 |---|---|---|---|---|---|
 | **KI-01** | **Fuga de recursos GPU** por cada tick de plegado y por cada reconstrucción (etiquetas, líneas/cajas de selección, aristas y overlays de arte no liberados) | Alta | [MEDIDO] antes: +5155 buffers, +2095 VAO, +102 texturas por ciclo | **1 (A1)** | **Corregido en la copia aislada** (commit del parche); Δ = 0 en 25/8/6 ciclos [MEDIDO en navegador]. **Pendiente:** confirmar en el panel real de Illustrator (puerta para Fase 3) |
-| **KI-02** | **El GLB exportado no pasa el validador oficial de Khronos: 12 errores** `ACCESSOR_VECTOR3_NON_UNIT` (normales de longitud 0 en `mesh_9` y `mesh_30`; 4 triángulos degenerados). Además 19 avisos informativos (`TEXCOORD_0` sin usar) y 2 `IMAGE_NPOT_DIMENSIONS` | **Alta para Dimension** | [MEDIDO] `gltf-validator` sobre `Tesseract_Test_Claude_export_plugin.glb`; el GLB de Fantastic Fold: 0 errores | **5**; **debe quedar corregido antes de habilitar la integración con Dimension (Fase 6)** | **Abierto — defecto pendiente.** Efecto concreto en Dimension: [NO VERIFICADO] |
+| **KI-02** | **El GLB exportado no pasa el validador oficial de Khronos: 12 errores** `ACCESSOR_VECTOR3_NON_UNIT` (normales de longitud 0 en `mesh_9` y `mesh_30`; 4 triángulos degenerados). Además 19 avisos informativos (`TEXCOORD_0` sin usar) y 2 `IMAGE_NPOT_DIMENSIONS` | **Alta para Dimension** | [MEDIDO] `gltf-validator` sobre `Tesseract_Test_Claude_export_plugin.glb`; el GLB de Fantastic Fold: 0 errores | **5**; **debe quedar corregido antes de habilitar la integración con Dimension (Fase 6)** | **Abierto — defecto pendiente.** Efecto concreto en Dimension: [NO VERIFICADO]. **A2:** no se reproduce con los fixtures del arnés (16 GLB: 0 normales nulas); solo en el GLB de evidencia → falta el documento/pose de origen para reproducirlo en la batería |
 | KI-03 | GLB en **milímetros** (la especificación glTF fija metros); sin nodo de escala; sin extensiones; `roughness 1`; arte con `alphaMode BLEND`; un nodo por malla (93) | Media–Alta | [CONFIRMADO] archivos de evidencia; spec Khronos | 5 (tras calibración en Dimension) | Abierto; **no se modifica la escala hasta completar la calibración** (condición 6) |
-| KI-04 | El filtro de conectividad descarta paneles reales: 11 de 13 con `caja-botanica-real.json` (−1347.6 mm², 4.9 %) por un acantilado de tolerancia (`< 0.5 mm`) | Alta | [MEDIDO] | 2A/2B | Abierto (preservado) |
+| KI-04 | El filtro de conectividad descarta paneles reales: 11 de 13 con `caja-botanica-real.json` (−1347.6 mm², 4.9 %). **Causas raíz medidas en A2:** (a) la adyacencia estricta compara cada crease cruda con la arista COMPLETA del panel; si la topología parte la arista en una T, el panel vecino queda sin adyacencia y se descarta — reproducción mínima: una T de creases **exacta** pierde un panel (`t-exacta`: 2 paneles, 1600 de 3200 mm²); (b) en el troquel real hay **8 pares de extremos de crease a 0.497–0.501 mm** entre sí, a ambos lados del corte `< 0.5 mm` | Alta | [MEDIDO] | 2A/2B | Abierto (preservado) |
 | KI-05 | Un panel cuyo centroide cae dentro de un hueco (ventana centrada) se descarta completo | Media–Alta | [MEDIDO] caso sintético | 2B | Abierto (preservado) |
 | KI-06 | Los huecos no se restan del panel extruido (`Shape` sin `holes`) | Media | [MEDIDO] +200 mm² en caso sintético | 2B | Abierto (preservado) |
 | KI-07 | Las curvas Bézier se ignoran en 3D (solo anclas); 0.52 % del área en el troquel real | Media | [MEDIDO] | 2B | Abierto (preservado) |
@@ -21,3 +21,27 @@ Evidencia: `docs/fase0/00_INFORME_AUDITORIA.md`, `tools/baseline/results/`. Etiq
 | KI-14 | Estado de espesor muestra `0.3mm` para 0.25 (`toFixed(1)`) | Cosmética | [MEDIDO] | 7 | Abierto (preservado) |
 | KI-15 | "Paneles negros con rayas" de una captura previa: no reproducido; hipótesis de z-fighting del arte (offset 0.08 mm) | ? | [MEDIDO] no reproduce en M1 Max | 3 | Abierto; requiere el origen de la captura |
 | KI-16 | `OrbitControls.js` se carga y no se usa; `main.js.bak` en la extensión instalada | Baja | [CONFIRMADO] | 1 (A3) / n.a. | `main.js.bak` ya excluido de `panel/`; `OrbitControls.js` se retira en A3 |
+| **KI-17** | Una crease que no alcanza el contorno pierde material en silencio: con 0.3 mm de holgura el modelo se construye con 3176 de 3200 mm² (−24 mm², −0.75 %) y sin aviso del validador; a 0.6 mm el validador avisa pero el modelo se construye igual | Media–Alta | [MEDIDO] fixtures `crease-corta-0.3/0.6` | 2A | Abierto (preservado) |
+| **KI-18** | La "tolerancia 0.5 mm" no es lateral: el criterio punto-sobre-segmento usa la suma de distancias; un extremo de crease a **2.5 mm** lateral de una T todavía se ajusta (pierde 50 mm²) y a **5 mm** deja de hacerlo (se cuela la cara exterior). El validador avisa desde 0.6 mm | Media | [MEDIDO] fixtures `t-desalineada-*` | 2A | Abierto (preservado) |
+| **KI-19** | Paneles pequeños (< 4 mm²) o delgados (relación > 30:1 y < 120 mm²) se descartan en silencio y la cara exterior ocupa su lugar (p. ej. una solapa de 40×1 mm desaparece) | Media | [MEDIDO] fixtures `panel-*` | 2B | Abierto (preservado) |
+| **KI-20** | El validador previo solo avisa y nunca bloquea; no cubre extremos que sobresalen, panel perdido ni ventanas | Baja–Media | [MEDIDO] | 2A | Abierto (preservado) |
+
+## Cobertura de pruebas (A2)
+
+| KI | Pruebas que lo fijan (ambos motores: baseline y panel) |
+|---|---|
+| KI-01 | `browser.test.mjs`: "GPU · baseline: CRECEN" (defecto presente en el baseline) y "GPU · panel … SIN crecimiento" (caja/ill, con y sin arte, 6/5 ciclos; 25 con `--soak`); métrica de crecimiento por 100 ticks |
+| KI-02 | `glb-inspector.test.mjs`: 12 normales de longitud 0 en `mesh_9` y `mesh_30` del GLB de evidencia (opcional si el archivo existe); `browser`: normales de los GLB generados (`glb-ki02-normales.json`, informativo) |
+| KI-03 | `browser`: GLB en mm (caja envolvente > 100 unidades), `roughness 1`, `metallic 0`, `doubleSided`, sin extensiones; kit de calibración en `glb-inspector.test.mjs` |
+| KI-04 | `known-issues`: 11 de 13; T exacta pierde un panel; 8 pares de extremos a 0.497–0.501 mm; `geometry-golden` |
+| KI-05, 06, 07 | `known-issues`: ventana centrada, hueco no restado (+200 mm²), curvas (+143 mm², chaflán 7000 vs 7114.16) |
+| KI-08 | `known-issues`: proxy determinista (reinicios × pares²); tiempos en `metrics.base.json` |
+| KI-09 | `known-issues`: cara exterior colada (rejilla de largo completo; crease que sobresale 0.6 mm) |
+| KI-10 | `extraction.test.mjs`: grupo anidado ⇒ "Script error"; subcadena "Studies"; subcapa; capas ocultas/bloqueadas. **Maqueta**: confirmar en Illustrator con `tesseract_doc_survey.jsx` (L0-1) |
+| KI-11 | `browser`: `preserveDrawingBuffer`, antialias, FPS en reposo y orbitando (métricas) |
+| KI-12 | Pendiente: el botón PNG oculto no tiene prueba de interfaz (se cubrirá al habilitarlo, Fase 5) |
+| KI-13 | `browser`: tamaño y tiempo de exportación GLB con arte (`metrics`/`glb-*.json`) |
+| KI-14 | Pendiente (cosmético; Fase 7) |
+| KI-15 | No reproducido; sin prueba |
+| KI-16 | `isolation.test.mjs`: `panel/` sin `main.js.bak` |
+| KI-17, 18, 19, 20 | `known-issues`: casos `crease-*`, `t-desalineada-*`, `panel-*`; `geometry-golden` |

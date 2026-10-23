@@ -41,7 +41,7 @@ assert '<script src="main.js"></script>' in html
 m = (dest / "main.js").read_text()
 a = "    function setStatus(m){ statusArea.textContent = m; }"
 assert a in m
-m = m.replace(a, "    /* HARNESS */ window.__dbg={get renderer(){return renderer3d},get scene(){return scene3d},get camera(){return camera3d},get orbit(){return orbitState},upd:function(){updateCameraFromOrbit()},fold:function(i,a){foldAngles[i]=a;applyFolding();},get nFold(){return foldTree.length},get panels(){return panelMeshes.length}};\n" + a, 1)
+m = m.replace(a, "    /* HARNESS */ window.__dbg={get renderer(){return renderer3d},get scene(){return scene3d},get camera(){return camera3d},get orbit(){return orbitState},upd:function(){updateCameraFromOrbit()},fold:function(i,a){foldAngles[i]=a;applyFolding();},get nFold(){return foldTree.length},get panels(){return panelMeshes.length},get foldData(){return foldData},get art(){return currentArtState},get panelData(){return currentPanelData},get thickness(){return currentThicknessMm},get preset(){return currentMaterialPreset},get baseIndex(){return currentBasePanelIndex},get angles(){return foldAngles},get tree(){return foldTree},get bridges(){return foldBridgeGroup},get selectedEdge(){return selectedFoldEdgeIdx},get creaseVisuals(){return creaseVisuals}};\n" + a, 1)
 b = "      var path = String(fsPath || '');\n      if(!path) return '';"
 assert b in m
 m = m.replace(b, b + "\n      if(/^(blob:|https?:)/i.test(path)) return path;  /* HARNESS */", 1)

@@ -1,0 +1,504 @@
+{
+ "_nota": "Métricas base INFORMATIVAS del punto de control 2 (A2). Chrome headless real con GPU, puente CEP simulado: NO es CEP/Illustrator. Los tiempos son un piso optimista; los contadores y proporciones sí son comparables.",
+ "fecha": "2026-10-23T17:42:52.377Z",
+ "entorno": {
+  "node": "v24.12.0",
+  "so": "Darwin 25.6.0",
+  "cpu": "Apple M1 Max",
+  "nucleos": 10
+ },
+ "geometria": {
+  "baseline": {
+   "sha256_main_js": "719942d134d2c5ae",
+   "fixtures": {
+    "real-caja-botanica": {
+     "buildPanels_ms_mediana": 30.139,
+     "repeticiones": 15,
+     "paneles": 11,
+     "segmentos_entrada": 81,
+     "segmentos_tras_division": 87,
+     "reinicios_de_barrido": 7
+    },
+    "real-illustrator-export": {
+     "buildPanels_ms_mediana": 8.313,
+     "repeticiones": 15,
+     "paneles": 13,
+     "segmentos_entrada": 68,
+     "segmentos_tras_division": 70,
+     "reinicios_de_barrido": 2
+    },
+    "sin-creases": {
+     "buildPanels_ms_mediana": 0.031,
+     "repeticiones": 15,
+     "paneles": 1,
+     "segmentos_entrada": 4,
+     "segmentos_tras_division": 4,
+     "reinicios_de_barrido": 1
+    },
+    "crease-exacta": {
+     "buildPanels_ms_mediana": 0.104,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 5,
+     "segmentos_tras_division": 7,
+     "reinicios_de_barrido": 3
+    },
+    "crease-corta-0.3": {
+     "buildPanels_ms_mediana": 0.101,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 5,
+     "segmentos_tras_division": 7,
+     "reinicios_de_barrido": 3
+    },
+    "crease-corta-0.6": {
+     "buildPanels_ms_mediana": 0.098,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 5,
+     "segmentos_tras_division": 7,
+     "reinicios_de_barrido": 3
+    },
+    "crease-sobresale-0.3": {
+     "buildPanels_ms_mediana": 0.13,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 5,
+     "segmentos_tras_division": 9,
+     "reinicios_de_barrido": 3
+    },
+    "crease-sobresale-0.6": {
+     "buildPanels_ms_mediana": 0.139,
+     "repeticiones": 15,
+     "paneles": 3,
+     "segmentos_entrada": 5,
+     "segmentos_tras_division": 9,
+     "reinicios_de_barrido": 3
+    },
+    "t-exacta": {
+     "buildPanels_ms_mediana": 0.183,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 6,
+     "segmentos_tras_division": 10,
+     "reinicios_de_barrido": 5
+    },
+    "t-desalineada-0.375": {
+     "buildPanels_ms_mediana": 0.177,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 6,
+     "segmentos_tras_division": 10,
+     "reinicios_de_barrido": 5
+    },
+    "t-desalineada-0.6": {
+     "buildPanels_ms_mediana": 0.179,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 6,
+     "segmentos_tras_division": 10,
+     "reinicios_de_barrido": 5
+    },
+    "t-desalineada-1.0": {
+     "buildPanels_ms_mediana": 0.178,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 6,
+     "segmentos_tras_division": 10,
+     "reinicios_de_barrido": 5
+    },
+    "t-desalineada-2.5": {
+     "buildPanels_ms_mediana": 0.173,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 6,
+     "segmentos_tras_division": 10,
+     "reinicios_de_barrido": 5
+    },
+    "t-desalineada-5": {
+     "buildPanels_ms_mediana": 0.136,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 6,
+     "segmentos_tras_division": 9,
+     "reinicios_de_barrido": 4
+    },
+    "hueco-descentrado": {
+     "buildPanels_ms_mediana": 0.207,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 9,
+     "segmentos_tras_division": 11,
+     "reinicios_de_barrido": 3
+    },
+    "hueco-centrado": {
+     "buildPanels_ms_mediana": 0.208,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 9,
+     "segmentos_tras_division": 11,
+     "reinicios_de_barrido": 3
+    },
+    "panel-pequeno-4.5mm2": {
+     "buildPanels_ms_mediana": 0.097,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 5,
+     "segmentos_tras_division": 7,
+     "reinicios_de_barrido": 3
+    },
+    "panel-muy-pequeno-1.5mm2": {
+     "buildPanels_ms_mediana": 0.091,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 5,
+     "segmentos_tras_division": 7,
+     "reinicios_de_barrido": 3
+    },
+    "panel-delgado-40x1": {
+     "buildPanels_ms_mediana": 0.105,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 5,
+     "segmentos_tras_division": 7,
+     "reinicios_de_barrido": 3
+    },
+    "esquinas-redondeadas": {
+     "buildPanels_ms_mediana": 0.227,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 9,
+     "segmentos_tras_division": 11,
+     "reinicios_de_barrido": 3
+    },
+    "rejilla-2x2": {
+     "buildPanels_ms_mediana": 0.228,
+     "repeticiones": 15,
+     "paneles": 4,
+     "segmentos_entrada": 8,
+     "segmentos_tras_division": 12,
+     "reinicios_de_barrido": 5
+    },
+    "rejilla-4x4": {
+     "buildPanels_ms_mediana": 9.115,
+     "repeticiones": 15,
+     "paneles": 16,
+     "segmentos_entrada": 28,
+     "segmentos_tras_division": 40,
+     "reinicios_de_barrido": 13
+    },
+    "rejilla-6x6": {
+     "buildPanels_ms_mediana": 73.875,
+     "repeticiones": 15,
+     "paneles": 36,
+     "segmentos_entrada": 64,
+     "segmentos_tras_division": 84,
+     "reinicios_de_barrido": 21
+    },
+    "rejilla-8x8": {
+     "buildPanels_ms_mediana": 320.024,
+     "repeticiones": 5,
+     "paneles": 64,
+     "segmentos_entrada": 116,
+     "segmentos_tras_division": 144,
+     "reinicios_de_barrido": 29
+    },
+    "rejilla-lineas-completas-3x3": {
+     "buildPanels_ms_mediana": 1.44,
+     "repeticiones": 15,
+     "paneles": 10,
+     "segmentos_entrada": 8,
+     "segmentos_tras_division": 24,
+     "reinicios_de_barrido": 13
+    },
+    "rejilla-4x4-densa-25": {
+     "buildPanels_ms_mediana": 100.29,
+     "repeticiones": 5,
+     "paneles": 16,
+     "segmentos_entrada": 128,
+     "segmentos_tras_division": 136,
+     "reinicios_de_barrido": 9
+    }
+   }
+  },
+  "panel": {
+   "sha256_main_js": "91b42b7bd4a829c6",
+   "fixtures": {
+    "real-caja-botanica": {
+     "buildPanels_ms_mediana": 29.751,
+     "repeticiones": 15,
+     "paneles": 11,
+     "segmentos_entrada": 81,
+     "segmentos_tras_division": 87,
+     "reinicios_de_barrido": 7
+    },
+    "real-illustrator-export": {
+     "buildPanels_ms_mediana": 8.364,
+     "repeticiones": 15,
+     "paneles": 13,
+     "segmentos_entrada": 68,
+     "segmentos_tras_division": 70,
+     "reinicios_de_barrido": 2
+    },
+    "sin-creases": {
+     "buildPanels_ms_mediana": 0.035,
+     "repeticiones": 15,
+     "paneles": 1,
+     "segmentos_entrada": 4,
+     "segmentos_tras_division": 4,
+     "reinicios_de_barrido": 1
+    },
+    "crease-exacta": {
+     "buildPanels_ms_mediana": 0.102,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 5,
+     "segmentos_tras_division": 7,
+     "reinicios_de_barrido": 3
+    },
+    "crease-corta-0.3": {
+     "buildPanels_ms_mediana": 0.098,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 5,
+     "segmentos_tras_division": 7,
+     "reinicios_de_barrido": 3
+    },
+    "crease-corta-0.6": {
+     "buildPanels_ms_mediana": 0.097,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 5,
+     "segmentos_tras_division": 7,
+     "reinicios_de_barrido": 3
+    },
+    "crease-sobresale-0.3": {
+     "buildPanels_ms_mediana": 0.132,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 5,
+     "segmentos_tras_division": 9,
+     "reinicios_de_barrido": 3
+    },
+    "crease-sobresale-0.6": {
+     "buildPanels_ms_mediana": 0.14,
+     "repeticiones": 15,
+     "paneles": 3,
+     "segmentos_entrada": 5,
+     "segmentos_tras_division": 9,
+     "reinicios_de_barrido": 3
+    },
+    "t-exacta": {
+     "buildPanels_ms_mediana": 0.179,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 6,
+     "segmentos_tras_division": 10,
+     "reinicios_de_barrido": 5
+    },
+    "t-desalineada-0.375": {
+     "buildPanels_ms_mediana": 0.179,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 6,
+     "segmentos_tras_division": 10,
+     "reinicios_de_barrido": 5
+    },
+    "t-desalineada-0.6": {
+     "buildPanels_ms_mediana": 0.179,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 6,
+     "segmentos_tras_division": 10,
+     "reinicios_de_barrido": 5
+    },
+    "t-desalineada-1.0": {
+     "buildPanels_ms_mediana": 0.179,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 6,
+     "segmentos_tras_division": 10,
+     "reinicios_de_barrido": 5
+    },
+    "t-desalineada-2.5": {
+     "buildPanels_ms_mediana": 0.18,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 6,
+     "segmentos_tras_division": 10,
+     "reinicios_de_barrido": 5
+    },
+    "t-desalineada-5": {
+     "buildPanels_ms_mediana": 0.135,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 6,
+     "segmentos_tras_division": 9,
+     "reinicios_de_barrido": 4
+    },
+    "hueco-descentrado": {
+     "buildPanels_ms_mediana": 0.213,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 9,
+     "segmentos_tras_division": 11,
+     "reinicios_de_barrido": 3
+    },
+    "hueco-centrado": {
+     "buildPanels_ms_mediana": 0.216,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 9,
+     "segmentos_tras_division": 11,
+     "reinicios_de_barrido": 3
+    },
+    "panel-pequeno-4.5mm2": {
+     "buildPanels_ms_mediana": 0.103,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 5,
+     "segmentos_tras_division": 7,
+     "reinicios_de_barrido": 3
+    },
+    "panel-muy-pequeno-1.5mm2": {
+     "buildPanels_ms_mediana": 0.097,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 5,
+     "segmentos_tras_division": 7,
+     "reinicios_de_barrido": 3
+    },
+    "panel-delgado-40x1": {
+     "buildPanels_ms_mediana": 0.109,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 5,
+     "segmentos_tras_division": 7,
+     "reinicios_de_barrido": 3
+    },
+    "esquinas-redondeadas": {
+     "buildPanels_ms_mediana": 0.248,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 9,
+     "segmentos_tras_division": 11,
+     "reinicios_de_barrido": 3
+    },
+    "rejilla-2x2": {
+     "buildPanels_ms_mediana": 0.242,
+     "repeticiones": 15,
+     "paneles": 4,
+     "segmentos_entrada": 8,
+     "segmentos_tras_division": 12,
+     "reinicios_de_barrido": 5
+    },
+    "rejilla-4x4": {
+     "buildPanels_ms_mediana": 9.147,
+     "repeticiones": 15,
+     "paneles": 16,
+     "segmentos_entrada": 28,
+     "segmentos_tras_division": 40,
+     "reinicios_de_barrido": 13
+    },
+    "rejilla-6x6": {
+     "buildPanels_ms_mediana": 73.972,
+     "repeticiones": 15,
+     "paneles": 36,
+     "segmentos_entrada": 64,
+     "segmentos_tras_division": 84,
+     "reinicios_de_barrido": 21
+    },
+    "rejilla-8x8": {
+     "buildPanels_ms_mediana": 320.595,
+     "repeticiones": 5,
+     "paneles": 64,
+     "segmentos_entrada": 116,
+     "segmentos_tras_division": 144,
+     "reinicios_de_barrido": 29
+    },
+    "rejilla-lineas-completas-3x3": {
+     "buildPanels_ms_mediana": 1.445,
+     "repeticiones": 15,
+     "paneles": 10,
+     "segmentos_entrada": 8,
+     "segmentos_tras_division": 24,
+     "reinicios_de_barrido": 13
+    },
+    "rejilla-4x4-densa-25": {
+     "buildPanels_ms_mediana": 100.51,
+     "repeticiones": 5,
+     "paneles": 16,
+     "segmentos_entrada": 128,
+     "segmentos_tras_division": 136,
+     "reinicios_de_barrido": 9
+    }
+   }
+  }
+ },
+ "navegador": {
+  "baseline": {
+   "entorno": {
+    "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+    "gpu": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1 Max, Unspecified Version)",
+    "dpr": 1,
+    "w": 1000,
+    "h": 1113
+   },
+   "extraccion_simulada_ms": 6.3,
+   "continuar_a_3d_sincrono_ms": 29.9,
+   "fps_reposo": {
+    "fps": 61,
+    "peor_frame_ms": 16.8
+   },
+   "fps_orbita": {
+    "fps": 60.6,
+    "peor_frame_ms": 16.8
+   },
+   "plegado_por_tick": {
+    "ticks": 100,
+    "mediana_ms": 0.9,
+    "p95_ms": 1.2,
+    "max_ms": 2.5
+   },
+   "crecimiento_por_100_ticks": {
+    "texturas": 1111,
+    "buffers": 5050,
+    "vaos": 2020,
+    "heap_MB": -32
+   },
+   "glb_export_ms_sin_arte": 8
+  },
+  "panel": {
+   "entorno": {
+    "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+    "gpu": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1 Max, Unspecified Version)",
+    "dpr": 1,
+    "w": 1000,
+    "h": 1113
+   },
+   "extraccion_simulada_ms": 5.9,
+   "continuar_a_3d_sincrono_ms": 30.4,
+   "fps_reposo": {
+    "fps": 60.6,
+    "peor_frame_ms": 16.8
+   },
+   "fps_orbita": {
+    "fps": 60.6,
+    "peor_frame_ms": 16.8
+   },
+   "plegado_por_tick": {
+    "ticks": 100,
+    "mediana_ms": 0.6,
+    "p95_ms": 0.8,
+    "max_ms": 1.6
+   },
+   "crecimiento_por_100_ticks": {
+    "texturas": 0,
+    "buffers": 0,
+    "vaos": 0,
+    "heap_MB": -14.4
+   },
+   "glb_export_ms_sin_arte": 8
+  }
+ }
+}

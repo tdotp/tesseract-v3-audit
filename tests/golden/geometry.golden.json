@@ -1,0 +1,11781 @@
+{
+ "_fuente": "reference/legacy-baseline/main.js",
+ "_sha256_main_js": "719942d134d2c5aebb2ed5781cfce25eb5a93fede1583fb05624e64ae6c8ce44",
+ "fixtures": {
+  "real-caja-botanica": {
+   "desc": "Troquel real (salida del extractor del plugin)",
+   "tags": [
+    "real",
+    "KI-04",
+    "KI-07"
+   ],
+   "panels": [
+    {
+     "area": 1580.0625,
+     "vertices": 4,
+     "centroid": [
+      277.6099,
+      -331.5617
+     ]
+    },
+    {
+     "area": 316.1947,
+     "vertices": 4,
+     "centroid": [
+      277.6099,
+      -356.5935
+     ]
+    },
+    {
+     "area": 4800.1629,
+     "vertices": 6,
+     "centroid": [
+      237.6104,
+      -251.144
+     ]
+    },
+    {
+     "area": 4799.7398,
+     "vertices": 4,
+     "centroid": [
+      197.6109,
+      -251.144
+     ]
+    },
+    {
+     "area": 1760.3207,
+     "vertices": 4,
+     "centroid": [
+      170.1684,
+      -251.144
+     ]
+    },
+    {
+     "area": 1599.8194,
+     "vertices": 5,
+     "centroid": [
+      197.6109,
+      -171.145
+     ]
+    },
+    {
+     "area": 319.1315,
+     "vertices": 4,
+     "centroid": [
+      197.468,
+      -146.2073
+     ]
+    },
+    {
+     "area": 4794.7578,
+     "vertices": 11,
+     "centroid": [
+      277.6099,
+      -251.7001
+     ]
+    },
+    {
+     "area": 4800.1623,
+     "vertices": 6,
+     "centroid": [
+      317.6094,
+      -251.144
+     ]
+    },
+    {
+     "area": 665.5745,
+     "vertices": 7,
+     "centroid": [
+      317.5235,
+      -181.61
+     ]
+    },
+    {
+     "area": 666.4256,
+     "vertices": 8,
+     "centroid": [
+      317.6747,
+      -320.6702
+     ]
+    }
+   ],
+   "nPanels": 11,
+   "areaSum": 26102.3517,
+   "creaseEdges": 12,
+   "adjacency": [
+    {
+     "a": 5,
+     "b": 6,
+     "creaseIdx": 0,
+     "crease": [
+      217.1088,
+      -151.1461,
+      178.1094,
+      -151.1461
+     ]
+    },
+    {
+     "a": 8,
+     "b": 9,
+     "creaseIdx": 1,
+     "crease": [
+      337.61,
+      -191.1438,
+      298.1097,
+      -191.1438
+     ]
+    },
+    {
+     "a": 8,
+     "b": 10,
+     "creaseIdx": 2,
+     "crease": [
+      297.6088,
+      -311.1441,
+      337.1091,
+      -311.1441
+     ]
+    },
+    {
+     "a": 0,
+     "b": 1,
+     "creaseIdx": 3,
+     "crease": [
+      258.1084,
+      -351.6463,
+      297.1113,
+      -351.6463
+     ]
+    },
+    {
+     "a": 3,
+     "b": 4,
+     "creaseIdx": 4,
+     "crease": [
+      177.612,
+      -191.1438,
+      177.612,
+      -311.1441
+     ]
+    },
+    {
+     "a": 7,
+     "b": 8,
+     "creaseIdx": 5,
+     "crease": [
+      297.6088,
+      -311.1441,
+      297.6088,
+      -191.1438
+     ]
+    },
+    {
+     "a": 2,
+     "b": 7,
+     "creaseIdx": 6,
+     "crease": [
+      257.611,
+      -191.1438,
+      257.611,
+      -311.1441
+     ]
+    },
+    {
+     "a": 3,
+     "b": 5,
+     "creaseIdx": 8,
+     "crease": [
+      177.612,
+      -190.6464,
+      217.6097,
+      -190.6464
+     ]
+    },
+    {
+     "a": 2,
+     "b": 3,
+     "creaseIdx": 9,
+     "crease": [
+      217.6097,
+      -311.1441,
+      217.6097,
+      -191.1438
+     ]
+    },
+    {
+     "a": 0,
+     "b": 7,
+     "creaseIdx": 11,
+     "crease": [
+      297.6088,
+      -311.6451,
+      257.611,
+      -311.6451
+     ]
+    }
+   ],
+   "defaultBase": 2,
+   "trees": {
+    "base0": [
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       258.1084,
+       -351.6463,
+       297.1113,
+       -351.6463
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 7,
+      "sign": -1,
+      "crease": [
+       297.6088,
+       -311.6451,
+       257.611,
+       -311.6451
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 8,
+      "sign": -1,
+      "crease": [
+       297.6088,
+       -311.1441,
+       297.6088,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 2,
+      "sign": -1,
+      "crease": [
+       257.611,
+       -191.1438,
+       257.611,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 9,
+      "sign": -1,
+      "crease": [
+       337.61,
+       -191.1438,
+       298.1097,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 10,
+      "sign": -1,
+      "crease": [
+       297.6088,
+       -311.1441,
+       337.1091,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 3,
+      "sign": 1,
+      "crease": [
+       217.6097,
+       -311.1441,
+       217.6097,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 4,
+      "sign": -1,
+      "crease": [
+       177.612,
+       -191.1438,
+       177.612,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 5,
+      "sign": 1,
+      "crease": [
+       177.612,
+       -190.6464,
+       217.6097,
+       -190.6464
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 6,
+      "sign": -1,
+      "crease": [
+       217.1088,
+       -151.1461,
+       178.1094,
+       -151.1461
+      ]
+     }
+    ],
+    "base1": [
+     {
+      "parent": 1,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       258.1084,
+       -351.6463,
+       297.1113,
+       -351.6463
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 7,
+      "sign": -1,
+      "crease": [
+       297.6088,
+       -311.6451,
+       257.611,
+       -311.6451
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 8,
+      "sign": -1,
+      "crease": [
+       297.6088,
+       -311.1441,
+       297.6088,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 2,
+      "sign": -1,
+      "crease": [
+       257.611,
+       -191.1438,
+       257.611,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 9,
+      "sign": -1,
+      "crease": [
+       337.61,
+       -191.1438,
+       298.1097,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 10,
+      "sign": -1,
+      "crease": [
+       297.6088,
+       -311.1441,
+       337.1091,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 3,
+      "sign": 1,
+      "crease": [
+       217.6097,
+       -311.1441,
+       217.6097,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 4,
+      "sign": -1,
+      "crease": [
+       177.612,
+       -191.1438,
+       177.612,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 5,
+      "sign": 1,
+      "crease": [
+       177.612,
+       -190.6464,
+       217.6097,
+       -190.6464
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 6,
+      "sign": -1,
+      "crease": [
+       217.1088,
+       -151.1461,
+       178.1094,
+       -151.1461
+      ]
+     }
+    ],
+    "base2": [
+     {
+      "parent": 2,
+      "child": 7,
+      "sign": 1,
+      "crease": [
+       257.611,
+       -191.1438,
+       257.611,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 3,
+      "sign": 1,
+      "crease": [
+       217.6097,
+       -311.1441,
+       217.6097,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 8,
+      "sign": -1,
+      "crease": [
+       297.6088,
+       -311.1441,
+       297.6088,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       297.6088,
+       -311.6451,
+       257.611,
+       -311.6451
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 4,
+      "sign": -1,
+      "crease": [
+       177.612,
+       -191.1438,
+       177.612,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 5,
+      "sign": 1,
+      "crease": [
+       177.612,
+       -190.6464,
+       217.6097,
+       -190.6464
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 9,
+      "sign": -1,
+      "crease": [
+       337.61,
+       -191.1438,
+       298.1097,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 10,
+      "sign": -1,
+      "crease": [
+       297.6088,
+       -311.1441,
+       337.1091,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       258.1084,
+       -351.6463,
+       297.1113,
+       -351.6463
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 6,
+      "sign": -1,
+      "crease": [
+       217.1088,
+       -151.1461,
+       178.1094,
+       -151.1461
+      ]
+     }
+    ],
+    "base3": [
+     {
+      "parent": 3,
+      "child": 4,
+      "sign": -1,
+      "crease": [
+       177.612,
+       -191.1438,
+       177.612,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 5,
+      "sign": 1,
+      "crease": [
+       177.612,
+       -190.6464,
+       217.6097,
+       -190.6464
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 2,
+      "sign": -1,
+      "crease": [
+       217.6097,
+       -311.1441,
+       217.6097,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 6,
+      "sign": -1,
+      "crease": [
+       217.1088,
+       -151.1461,
+       178.1094,
+       -151.1461
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 7,
+      "sign": 1,
+      "crease": [
+       257.611,
+       -191.1438,
+       257.611,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 8,
+      "sign": -1,
+      "crease": [
+       297.6088,
+       -311.1441,
+       297.6088,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       297.6088,
+       -311.6451,
+       257.611,
+       -311.6451
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 9,
+      "sign": -1,
+      "crease": [
+       337.61,
+       -191.1438,
+       298.1097,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 10,
+      "sign": -1,
+      "crease": [
+       297.6088,
+       -311.1441,
+       337.1091,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       258.1084,
+       -351.6463,
+       297.1113,
+       -351.6463
+      ]
+     }
+    ],
+    "base4": [
+     {
+      "parent": 4,
+      "child": 3,
+      "sign": 1,
+      "crease": [
+       177.612,
+       -191.1438,
+       177.612,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 5,
+      "sign": 1,
+      "crease": [
+       177.612,
+       -190.6464,
+       217.6097,
+       -190.6464
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 2,
+      "sign": -1,
+      "crease": [
+       217.6097,
+       -311.1441,
+       217.6097,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 6,
+      "sign": -1,
+      "crease": [
+       217.1088,
+       -151.1461,
+       178.1094,
+       -151.1461
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 7,
+      "sign": 1,
+      "crease": [
+       257.611,
+       -191.1438,
+       257.611,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 8,
+      "sign": -1,
+      "crease": [
+       297.6088,
+       -311.1441,
+       297.6088,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       297.6088,
+       -311.6451,
+       257.611,
+       -311.6451
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 9,
+      "sign": -1,
+      "crease": [
+       337.61,
+       -191.1438,
+       298.1097,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 10,
+      "sign": -1,
+      "crease": [
+       297.6088,
+       -311.1441,
+       337.1091,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       258.1084,
+       -351.6463,
+       297.1113,
+       -351.6463
+      ]
+     }
+    ],
+    "base5": [
+     {
+      "parent": 5,
+      "child": 6,
+      "sign": -1,
+      "crease": [
+       217.1088,
+       -151.1461,
+       178.1094,
+       -151.1461
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 3,
+      "sign": -1,
+      "crease": [
+       177.612,
+       -190.6464,
+       217.6097,
+       -190.6464
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 4,
+      "sign": -1,
+      "crease": [
+       177.612,
+       -191.1438,
+       177.612,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 2,
+      "sign": -1,
+      "crease": [
+       217.6097,
+       -311.1441,
+       217.6097,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 7,
+      "sign": 1,
+      "crease": [
+       257.611,
+       -191.1438,
+       257.611,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 8,
+      "sign": -1,
+      "crease": [
+       297.6088,
+       -311.1441,
+       297.6088,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       297.6088,
+       -311.6451,
+       257.611,
+       -311.6451
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 9,
+      "sign": -1,
+      "crease": [
+       337.61,
+       -191.1438,
+       298.1097,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 10,
+      "sign": -1,
+      "crease": [
+       297.6088,
+       -311.1441,
+       337.1091,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       258.1084,
+       -351.6463,
+       297.1113,
+       -351.6463
+      ]
+     }
+    ],
+    "base6": [
+     {
+      "parent": 6,
+      "child": 5,
+      "sign": 1,
+      "crease": [
+       217.1088,
+       -151.1461,
+       178.1094,
+       -151.1461
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 3,
+      "sign": -1,
+      "crease": [
+       177.612,
+       -190.6464,
+       217.6097,
+       -190.6464
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 4,
+      "sign": -1,
+      "crease": [
+       177.612,
+       -191.1438,
+       177.612,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 2,
+      "sign": -1,
+      "crease": [
+       217.6097,
+       -311.1441,
+       217.6097,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 7,
+      "sign": 1,
+      "crease": [
+       257.611,
+       -191.1438,
+       257.611,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 8,
+      "sign": -1,
+      "crease": [
+       297.6088,
+       -311.1441,
+       297.6088,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       297.6088,
+       -311.6451,
+       257.611,
+       -311.6451
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 9,
+      "sign": -1,
+      "crease": [
+       337.61,
+       -191.1438,
+       298.1097,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 10,
+      "sign": -1,
+      "crease": [
+       297.6088,
+       -311.1441,
+       337.1091,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       258.1084,
+       -351.6463,
+       297.1113,
+       -351.6463
+      ]
+     }
+    ],
+    "base7": [
+     {
+      "parent": 7,
+      "child": 8,
+      "sign": -1,
+      "crease": [
+       297.6088,
+       -311.1441,
+       297.6088,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 2,
+      "sign": -1,
+      "crease": [
+       257.611,
+       -191.1438,
+       257.611,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       297.6088,
+       -311.6451,
+       257.611,
+       -311.6451
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 9,
+      "sign": -1,
+      "crease": [
+       337.61,
+       -191.1438,
+       298.1097,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 10,
+      "sign": -1,
+      "crease": [
+       297.6088,
+       -311.1441,
+       337.1091,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 3,
+      "sign": 1,
+      "crease": [
+       217.6097,
+       -311.1441,
+       217.6097,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       258.1084,
+       -351.6463,
+       297.1113,
+       -351.6463
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 4,
+      "sign": -1,
+      "crease": [
+       177.612,
+       -191.1438,
+       177.612,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 5,
+      "sign": 1,
+      "crease": [
+       177.612,
+       -190.6464,
+       217.6097,
+       -190.6464
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 6,
+      "sign": -1,
+      "crease": [
+       217.1088,
+       -151.1461,
+       178.1094,
+       -151.1461
+      ]
+     }
+    ],
+    "base8": [
+     {
+      "parent": 8,
+      "child": 9,
+      "sign": -1,
+      "crease": [
+       337.61,
+       -191.1438,
+       298.1097,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 10,
+      "sign": -1,
+      "crease": [
+       297.6088,
+       -311.1441,
+       337.1091,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 7,
+      "sign": 1,
+      "crease": [
+       297.6088,
+       -311.1441,
+       297.6088,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 2,
+      "sign": -1,
+      "crease": [
+       257.611,
+       -191.1438,
+       257.611,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       297.6088,
+       -311.6451,
+       257.611,
+       -311.6451
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 3,
+      "sign": 1,
+      "crease": [
+       217.6097,
+       -311.1441,
+       217.6097,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       258.1084,
+       -351.6463,
+       297.1113,
+       -351.6463
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 4,
+      "sign": -1,
+      "crease": [
+       177.612,
+       -191.1438,
+       177.612,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 5,
+      "sign": 1,
+      "crease": [
+       177.612,
+       -190.6464,
+       217.6097,
+       -190.6464
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 6,
+      "sign": -1,
+      "crease": [
+       217.1088,
+       -151.1461,
+       178.1094,
+       -151.1461
+      ]
+     }
+    ],
+    "base9": [
+     {
+      "parent": 9,
+      "child": 8,
+      "sign": 1,
+      "crease": [
+       337.61,
+       -191.1438,
+       298.1097,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 10,
+      "sign": -1,
+      "crease": [
+       297.6088,
+       -311.1441,
+       337.1091,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 7,
+      "sign": 1,
+      "crease": [
+       297.6088,
+       -311.1441,
+       297.6088,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 2,
+      "sign": -1,
+      "crease": [
+       257.611,
+       -191.1438,
+       257.611,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       297.6088,
+       -311.6451,
+       257.611,
+       -311.6451
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 3,
+      "sign": 1,
+      "crease": [
+       217.6097,
+       -311.1441,
+       217.6097,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       258.1084,
+       -351.6463,
+       297.1113,
+       -351.6463
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 4,
+      "sign": -1,
+      "crease": [
+       177.612,
+       -191.1438,
+       177.612,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 5,
+      "sign": 1,
+      "crease": [
+       177.612,
+       -190.6464,
+       217.6097,
+       -190.6464
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 6,
+      "sign": -1,
+      "crease": [
+       217.1088,
+       -151.1461,
+       178.1094,
+       -151.1461
+      ]
+     }
+    ],
+    "base10": [
+     {
+      "parent": 10,
+      "child": 8,
+      "sign": 1,
+      "crease": [
+       297.6088,
+       -311.1441,
+       337.1091,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 9,
+      "sign": -1,
+      "crease": [
+       337.61,
+       -191.1438,
+       298.1097,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 7,
+      "sign": 1,
+      "crease": [
+       297.6088,
+       -311.1441,
+       297.6088,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 2,
+      "sign": -1,
+      "crease": [
+       257.611,
+       -191.1438,
+       257.611,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       297.6088,
+       -311.6451,
+       257.611,
+       -311.6451
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 3,
+      "sign": 1,
+      "crease": [
+       217.6097,
+       -311.1441,
+       217.6097,
+       -191.1438
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       258.1084,
+       -351.6463,
+       297.1113,
+       -351.6463
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 4,
+      "sign": -1,
+      "crease": [
+       177.612,
+       -191.1438,
+       177.612,
+       -311.1441
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 5,
+      "sign": 1,
+      "crease": [
+       177.612,
+       -190.6464,
+       217.6097,
+       -190.6464
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 6,
+      "sign": -1,
+      "crease": [
+       217.1088,
+       -151.1461,
+       178.1094,
+       -151.1461
+      ]
+     }
+    ]
+   },
+   "validate": {
+    "problems": []
+   },
+   "topology": {
+    "inputSegments": 81,
+    "splitSegments": 87,
+    "iterations": 7
+   },
+   "logSummary": {
+    "faces": 14,
+    "connectivity": "Connectivity filter: keeping 11 of 14 panels from largest crease-connected component",
+    "panelsAfterShell": 14
+   }
+  },
+  "real-illustrator-export": {
+   "desc": "Exportación real de Illustrator (SVG→DielineV1)",
+   "tags": [
+    "real",
+    "illustrator"
+   ],
+   "panels": [
+    {
+     "area": 177.8612,
+     "vertices": 4,
+     "centroid": [
+      208.2059,
+      267.4445
+     ]
+    },
+    {
+     "area": 899.9251,
+     "vertices": 4,
+     "centroid": [
+      208.2059,
+      248.4819
+     ]
+    },
+    {
+     "area": 2719.6218,
+     "vertices": 9,
+     "centroid": [
+      208.2059,
+      188.3968
+     ]
+    },
+    {
+     "area": 374.4649,
+     "vertices": 7,
+     "centroid": [
+      178.1416,
+      240.5088
+     ]
+    },
+    {
+     "area": 2666.3054,
+     "vertices": 4,
+     "centroid": [
+      178.2061,
+      188.3569
+     ]
+    },
+    {
+     "area": 2716.7882,
+     "vertices": 4,
+     "centroid": [
+      148.3005,
+      188.4502
+     ]
+    },
+    {
+     "area": 990.1906,
+     "vertices": 4,
+     "centroid": [
+      127.6244,
+      188.3569
+     ]
+    },
+    {
+     "area": 894.2722,
+     "vertices": 4,
+     "centroid": [
+      148.1126,
+      128.3888
+     ]
+    },
+    {
+     "area": 179.5132,
+     "vertices": 4,
+     "centroid": [
+      148.0992,
+      109.654
+     ]
+    },
+    {
+     "area": 374.3895,
+     "vertices": 7,
+     "centroid": [
+      178.2706,
+      136.2062
+     ]
+    },
+    {
+     "area": 374.3895,
+     "vertices": 7,
+     "centroid": [
+      238.1413,
+      136.2062
+     ]
+    },
+    {
+     "area": 2683.2124,
+     "vertices": 4,
+     "centroid": [
+      238.2994,
+      188.4514
+     ]
+    },
+    {
+     "area": 375.0087,
+     "vertices": 7,
+     "centroid": [
+      238.2929,
+      240.4996
+     ]
+    }
+   ],
+   "nPanels": 13,
+   "areaSum": 15425.9426,
+   "creaseEdges": 12,
+   "adjacency": [
+    {
+     "a": 1,
+     "b": 2,
+     "creaseIdx": 0,
+     "crease": [
+      223.2051,
+      233.7329,
+      193.2067,
+      233.7329
+     ]
+    },
+    {
+     "a": 3,
+     "b": 4,
+     "creaseIdx": 1,
+     "crease": [
+      193.2093,
+      233.3572,
+      163.2082,
+      233.3572
+     ]
+    },
+    {
+     "a": 4,
+     "b": 5,
+     "creaseIdx": 2,
+     "crease": [
+      163.2082,
+      233.3572,
+      163.2082,
+      143.3565
+     ]
+    },
+    {
+     "a": 5,
+     "b": 7,
+     "creaseIdx": 3,
+     "crease": [
+      133.2098,
+      142.9835,
+      163.2082,
+      142.9835
+     ]
+    },
+    {
+     "a": 4,
+     "b": 9,
+     "creaseIdx": 4,
+     "crease": [
+      163.2082,
+      143.3565,
+      193.2093,
+      143.3565
+     ]
+    },
+    {
+     "a": 2,
+     "b": 4,
+     "creaseIdx": 5,
+     "crease": [
+      193.2093,
+      143.3565,
+      193.2093,
+      233.3572
+     ]
+    },
+    {
+     "a": 2,
+     "b": 11,
+     "creaseIdx": 6,
+     "crease": [
+      223.2051,
+      233.3572,
+      223.2051,
+      143.3565
+     ]
+    },
+    {
+     "a": 5,
+     "b": 6,
+     "creaseIdx": 7,
+     "crease": [
+      133.2098,
+      143.3565,
+      133.2098,
+      233.3572
+     ]
+    },
+    {
+     "a": 0,
+     "b": 1,
+     "creaseIdx": 8,
+     "crease": [
+      193.5824,
+      263.734,
+      222.8347,
+      263.734
+     ]
+    },
+    {
+     "a": 11,
+     "b": 12,
+     "creaseIdx": 9,
+     "crease": [
+      223.2051,
+      233.3572,
+      252.8305,
+      233.3572
+     ]
+    },
+    {
+     "a": 10,
+     "b": 11,
+     "creaseIdx": 10,
+     "crease": [
+      253.2063,
+      143.3565,
+      223.5809,
+      143.3565
+     ]
+    },
+    {
+     "a": 7,
+     "b": 8,
+     "creaseIdx": 11,
+     "crease": [
+      162.8325,
+      113.3607,
+      133.5828,
+      113.3607
+     ]
+    }
+   ],
+   "defaultBase": 2,
+   "trees": {
+    "base0": [
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       193.5824,
+       263.734,
+       222.8347,
+       263.734
+      ]
+     },
+     {
+      "parent": 1,
+      "child": 2,
+      "sign": 1,
+      "crease": [
+       223.2051,
+       233.7329,
+       193.2067,
+       233.7329
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 4,
+      "sign": 1,
+      "crease": [
+       193.2093,
+       143.3565,
+       193.2093,
+       233.3572
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 11,
+      "sign": 1,
+      "crease": [
+       223.2051,
+       233.3572,
+       223.2051,
+       143.3565
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 3,
+      "sign": -1,
+      "crease": [
+       193.2093,
+       233.3572,
+       163.2082,
+       233.3572
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 5,
+      "sign": -1,
+      "crease": [
+       163.2082,
+       233.3572,
+       163.2082,
+       143.3565
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 9,
+      "sign": -1,
+      "crease": [
+       163.2082,
+       143.3565,
+       193.2093,
+       143.3565
+      ]
+     },
+     {
+      "parent": 11,
+      "child": 12,
+      "sign": 1,
+      "crease": [
+       223.2051,
+       233.3572,
+       252.8305,
+       233.3572
+      ]
+     },
+     {
+      "parent": 11,
+      "child": 10,
+      "sign": 1,
+      "crease": [
+       253.2063,
+       143.3565,
+       223.5809,
+       143.3565
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 7,
+      "sign": -1,
+      "crease": [
+       133.2098,
+       142.9835,
+       163.2082,
+       142.9835
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 6,
+      "sign": 1,
+      "crease": [
+       133.2098,
+       143.3565,
+       133.2098,
+       233.3572
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 8,
+      "sign": 1,
+      "crease": [
+       162.8325,
+       113.3607,
+       133.5828,
+       113.3607
+      ]
+     }
+    ],
+    "base2": [
+     {
+      "parent": 2,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       223.2051,
+       233.7329,
+       193.2067,
+       233.7329
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 4,
+      "sign": 1,
+      "crease": [
+       193.2093,
+       143.3565,
+       193.2093,
+       233.3572
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 11,
+      "sign": 1,
+      "crease": [
+       223.2051,
+       233.3572,
+       223.2051,
+       143.3565
+      ]
+     },
+     {
+      "parent": 1,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       193.5824,
+       263.734,
+       222.8347,
+       263.734
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 3,
+      "sign": -1,
+      "crease": [
+       193.2093,
+       233.3572,
+       163.2082,
+       233.3572
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 5,
+      "sign": -1,
+      "crease": [
+       163.2082,
+       233.3572,
+       163.2082,
+       143.3565
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 9,
+      "sign": -1,
+      "crease": [
+       163.2082,
+       143.3565,
+       193.2093,
+       143.3565
+      ]
+     },
+     {
+      "parent": 11,
+      "child": 12,
+      "sign": 1,
+      "crease": [
+       223.2051,
+       233.3572,
+       252.8305,
+       233.3572
+      ]
+     },
+     {
+      "parent": 11,
+      "child": 10,
+      "sign": 1,
+      "crease": [
+       253.2063,
+       143.3565,
+       223.5809,
+       143.3565
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 7,
+      "sign": -1,
+      "crease": [
+       133.2098,
+       142.9835,
+       163.2082,
+       142.9835
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 6,
+      "sign": 1,
+      "crease": [
+       133.2098,
+       143.3565,
+       133.2098,
+       233.3572
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 8,
+      "sign": 1,
+      "crease": [
+       162.8325,
+       113.3607,
+       133.5828,
+       113.3607
+      ]
+     }
+    ],
+    "base12": [
+     {
+      "parent": 12,
+      "child": 11,
+      "sign": -1,
+      "crease": [
+       223.2051,
+       233.3572,
+       252.8305,
+       233.3572
+      ]
+     },
+     {
+      "parent": 11,
+      "child": 2,
+      "sign": -1,
+      "crease": [
+       223.2051,
+       233.3572,
+       223.2051,
+       143.3565
+      ]
+     },
+     {
+      "parent": 11,
+      "child": 10,
+      "sign": 1,
+      "crease": [
+       253.2063,
+       143.3565,
+       223.5809,
+       143.3565
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       223.2051,
+       233.7329,
+       193.2067,
+       233.7329
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 4,
+      "sign": 1,
+      "crease": [
+       193.2093,
+       143.3565,
+       193.2093,
+       233.3572
+      ]
+     },
+     {
+      "parent": 1,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       193.5824,
+       263.734,
+       222.8347,
+       263.734
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 3,
+      "sign": -1,
+      "crease": [
+       193.2093,
+       233.3572,
+       163.2082,
+       233.3572
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 5,
+      "sign": -1,
+      "crease": [
+       163.2082,
+       233.3572,
+       163.2082,
+       143.3565
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 9,
+      "sign": -1,
+      "crease": [
+       163.2082,
+       143.3565,
+       193.2093,
+       143.3565
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 7,
+      "sign": -1,
+      "crease": [
+       133.2098,
+       142.9835,
+       163.2082,
+       142.9835
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 6,
+      "sign": 1,
+      "crease": [
+       133.2098,
+       143.3565,
+       133.2098,
+       233.3572
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 8,
+      "sign": 1,
+      "crease": [
+       162.8325,
+       113.3607,
+       133.5828,
+       113.3607
+      ]
+     }
+    ]
+   },
+   "validate": {
+    "problems": []
+   },
+   "topology": {
+    "inputSegments": 68,
+    "splitSegments": 70,
+    "iterations": 2
+   },
+   "logSummary": {
+    "faces": 14,
+    "connectivity": "Connectivity filter: keeping 13 of 14 panels from largest crease-connected component",
+    "panelsAfterShell": 14
+   }
+  },
+  "sin-creases": {
+   "desc": "Un solo panel sin creases",
+   "tags": [
+    "KI-09"
+   ],
+   "panels": [
+    {
+     "area": 2400,
+     "vertices": 4,
+     "centroid": [
+      30,
+      20
+     ]
+    }
+   ],
+   "nPanels": 1,
+   "areaSum": 2400,
+   "creaseEdges": 0,
+   "adjacency": [],
+   "defaultBase": 0,
+   "trees": {
+    "base0": []
+   },
+   "validate": {
+    "problems": []
+   },
+   "topology": {
+    "inputSegments": 4,
+    "splitSegments": 4,
+    "iterations": 1
+   },
+   "logSummary": {
+    "faces": 2,
+    "connectivity": null,
+    "panelsAfterShell": 1
+   }
+  },
+  "crease-exacta": {
+   "desc": "2 paneles, crease que toca el contorno",
+   "tags": [
+    "normalizacion"
+   ],
+   "panels": [
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      60,
+      20
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      20,
+      20
+     ]
+    }
+   ],
+   "nPanels": 2,
+   "areaSum": 3200,
+   "creaseEdges": 1,
+   "adjacency": [
+    {
+     "a": 0,
+     "b": 1,
+     "creaseIdx": 0,
+     "crease": [
+      40,
+      0,
+      40,
+      40
+     ]
+    }
+   ],
+   "defaultBase": 0,
+   "trees": {
+    "base0": [
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": 1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     }
+    ],
+    "base1": [
+     {
+      "parent": 1,
+      "child": 0,
+      "sign": -1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     }
+    ]
+   },
+   "validate": {
+    "problems": []
+   },
+   "topology": {
+    "inputSegments": 5,
+    "splitSegments": 7,
+    "iterations": 3
+   },
+   "logSummary": {
+    "faces": 3,
+    "connectivity": "Connectivity filter: keeping 2 of 3 panels from largest crease-connected component",
+    "panelsAfterShell": 3
+   }
+  },
+  "crease-corta-0.3": {
+   "desc": "Crease que no alcanza el contorno 0.3 mm por extremo",
+   "tags": [
+    "normalizacion"
+   ],
+   "panels": [
+    {
+     "area": 1588,
+     "vertices": 4,
+     "centroid": [
+      60.0504,
+      20
+     ]
+    },
+    {
+     "area": 1588,
+     "vertices": 4,
+     "centroid": [
+      19.9496,
+      20
+     ]
+    }
+   ],
+   "nPanels": 2,
+   "areaSum": 3176,
+   "creaseEdges": 1,
+   "adjacency": [
+    {
+     "a": 0,
+     "b": 1,
+     "creaseIdx": 0,
+     "crease": [
+      40,
+      0.3,
+      40,
+      39.7
+     ]
+    }
+   ],
+   "defaultBase": 0,
+   "trees": {
+    "base0": [
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": 1,
+      "crease": [
+       40,
+       0.3,
+       40,
+       39.7
+      ]
+     }
+    ],
+    "base1": [
+     {
+      "parent": 1,
+      "child": 0,
+      "sign": -1,
+      "crease": [
+       40,
+       0.3,
+       40,
+       39.7
+      ]
+     }
+    ]
+   },
+   "validate": {
+    "problems": []
+   },
+   "topology": {
+    "inputSegments": 5,
+    "splitSegments": 7,
+    "iterations": 3
+   },
+   "logSummary": {
+    "faces": 3,
+    "connectivity": "Connectivity filter: keeping 2 of 3 panels from largest crease-connected component",
+    "panelsAfterShell": 3
+   }
+  },
+  "crease-corta-0.6": {
+   "desc": "Crease que no alcanza el contorno 0.6 mm (> 0.5 de tolerancia)",
+   "tags": [
+    "normalizacion"
+   ],
+   "panels": [
+    {
+     "area": 1576,
+     "vertices": 4,
+     "centroid": [
+      60.1015,
+      20
+     ]
+    },
+    {
+     "area": 1576,
+     "vertices": 4,
+     "centroid": [
+      19.8985,
+      20
+     ]
+    }
+   ],
+   "nPanels": 2,
+   "areaSum": 3152,
+   "creaseEdges": 1,
+   "adjacency": [
+    {
+     "a": 0,
+     "b": 1,
+     "creaseIdx": 0,
+     "crease": [
+      40,
+      0.6,
+      40,
+      39.4
+     ]
+    }
+   ],
+   "defaultBase": 0,
+   "trees": {
+    "base0": [
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": 1,
+      "crease": [
+       40,
+       0.6,
+       40,
+       39.4
+      ]
+     }
+    ],
+    "base1": [
+     {
+      "parent": 1,
+      "child": 0,
+      "sign": -1,
+      "crease": [
+       40,
+       0.6,
+       40,
+       39.4
+      ]
+     }
+    ]
+   },
+   "validate": {
+    "problems": [
+     {
+      "type": "Crease endpoint unconnected",
+      "dist": 0.6,
+      "point": [
+       40,
+       0.6
+      ]
+     },
+     {
+      "type": "Crease endpoint unconnected",
+      "dist": 0.6,
+      "point": [
+       40,
+       39.4
+      ]
+     }
+    ]
+   },
+   "topology": {
+    "inputSegments": 5,
+    "splitSegments": 7,
+    "iterations": 3
+   },
+   "logSummary": {
+    "faces": 3,
+    "connectivity": "Connectivity filter: keeping 2 of 3 panels from largest crease-connected component",
+    "panelsAfterShell": 3
+   }
+  },
+  "crease-sobresale-0.3": {
+   "desc": "Crease que sobresale 0.3 mm",
+   "tags": [
+    "normalizacion"
+   ],
+   "panels": [
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      60,
+      20
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      20,
+      20
+     ]
+    }
+   ],
+   "nPanels": 2,
+   "areaSum": 3200,
+   "creaseEdges": 1,
+   "adjacency": [
+    {
+     "a": 0,
+     "b": 1,
+     "creaseIdx": 0,
+     "crease": [
+      40,
+      -0.3,
+      40,
+      40.3
+     ]
+    }
+   ],
+   "defaultBase": 0,
+   "trees": {
+    "base0": [
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": 1,
+      "crease": [
+       40,
+       -0.3,
+       40,
+       40.3
+      ]
+     }
+    ],
+    "base1": [
+     {
+      "parent": 1,
+      "child": 0,
+      "sign": -1,
+      "crease": [
+       40,
+       -0.3,
+       40,
+       40.3
+      ]
+     }
+    ]
+   },
+   "validate": {
+    "problems": []
+   },
+   "topology": {
+    "inputSegments": 5,
+    "splitSegments": 9,
+    "iterations": 3
+   },
+   "logSummary": {
+    "faces": 3,
+    "connectivity": "Connectivity filter: keeping 2 of 3 panels from largest crease-connected component",
+    "panelsAfterShell": 3
+   }
+  },
+  "crease-sobresale-0.6": {
+   "desc": "Crease que sobresale 0.6 mm",
+   "tags": [
+    "normalizacion"
+   ],
+   "panels": [
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      60,
+      20
+     ]
+    },
+    {
+     "area": 3200,
+     "vertices": 10,
+     "centroid": [
+      40,
+      20
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      20,
+      20
+     ]
+    }
+   ],
+   "nPanels": 3,
+   "areaSum": 6400,
+   "creaseEdges": 1,
+   "adjacency": [
+    {
+     "a": 0,
+     "b": 2,
+     "creaseIdx": 0,
+     "crease": [
+      40,
+      0,
+      40,
+      40
+     ]
+    }
+   ],
+   "defaultBase": 1,
+   "trees": {
+    "base0": [
+     {
+      "parent": 0,
+      "child": 2,
+      "sign": 1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     }
+    ],
+    "base1": [],
+    "base2": [
+     {
+      "parent": 2,
+      "child": 0,
+      "sign": -1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     }
+    ]
+   },
+   "validate": {
+    "problems": [
+     {
+      "type": "Crease endpoint unconnected",
+      "dist": 0.6,
+      "point": [
+       40,
+       -0.6
+      ]
+     },
+     {
+      "type": "Crease endpoint unconnected",
+      "dist": 0.6,
+      "point": [
+       40,
+       40.6
+      ]
+     }
+    ]
+   },
+   "topology": {
+    "inputSegments": 5,
+    "splitSegments": 9,
+    "iterations": 3
+   },
+   "logSummary": {
+    "faces": 3,
+    "connectivity": "Connectivity filter: no crease-connected components found, keeping shell-filtered panels",
+    "panelsAfterShell": 3
+   }
+  },
+  "t-exacta": {
+   "desc": "T de creases exacta",
+   "tags": [
+    "normalizacion"
+   ],
+   "panels": [
+    {
+     "area": 800,
+     "vertices": 4,
+     "centroid": [
+      60,
+      10
+     ]
+    },
+    {
+     "area": 800,
+     "vertices": 4,
+     "centroid": [
+      60,
+      30
+     ]
+    }
+   ],
+   "nPanels": 2,
+   "areaSum": 1600,
+   "creaseEdges": 2,
+   "adjacency": [
+    {
+     "a": 0,
+     "b": 1,
+     "creaseIdx": 1,
+     "crease": [
+      40,
+      20,
+      80,
+      20
+     ]
+    }
+   ],
+   "defaultBase": 0,
+   "trees": {
+    "base0": [
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": 1,
+      "crease": [
+       40,
+       20,
+       80,
+       20
+      ]
+     }
+    ],
+    "base1": [
+     {
+      "parent": 1,
+      "child": 0,
+      "sign": -1,
+      "crease": [
+       40,
+       20,
+       80,
+       20
+      ]
+     }
+    ]
+   },
+   "validate": {
+    "problems": []
+   },
+   "topology": {
+    "inputSegments": 6,
+    "splitSegments": 10,
+    "iterations": 5
+   },
+   "logSummary": {
+    "faces": 4,
+    "connectivity": "Connectivity filter: keeping 2 of 4 panels from largest crease-connected component",
+    "panelsAfterShell": 4
+   }
+  },
+  "t-desalineada-0.375": {
+   "desc": "T con la segunda crease a 0.375 mm del cruce (caso Illustrator)",
+   "tags": [
+    "normalizacion"
+   ],
+   "panels": [
+    {
+     "area": 796.25,
+     "vertices": 4,
+     "centroid": [
+      60.0936,
+      9.9843
+     ]
+    },
+    {
+     "area": 796.25,
+     "vertices": 4,
+     "centroid": [
+      60.0936,
+      30.0157
+     ]
+    }
+   ],
+   "nPanels": 2,
+   "areaSum": 1592.5,
+   "creaseEdges": 2,
+   "adjacency": [
+    {
+     "a": 0,
+     "b": 1,
+     "creaseIdx": 1,
+     "crease": [
+      40.375,
+      20,
+      80,
+      20
+     ]
+    }
+   ],
+   "defaultBase": 0,
+   "trees": {
+    "base0": [
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": 1,
+      "crease": [
+       40.375,
+       20,
+       80,
+       20
+      ]
+     }
+    ],
+    "base1": [
+     {
+      "parent": 1,
+      "child": 0,
+      "sign": -1,
+      "crease": [
+       40.375,
+       20,
+       80,
+       20
+      ]
+     }
+    ]
+   },
+   "validate": {
+    "problems": []
+   },
+   "topology": {
+    "inputSegments": 6,
+    "splitSegments": 10,
+    "iterations": 5
+   },
+   "logSummary": {
+    "faces": 4,
+    "connectivity": "Connectivity filter: keeping 2 of 4 panels from largest crease-connected component",
+    "panelsAfterShell": 4
+   }
+  },
+  "t-desalineada-0.6": {
+   "desc": "T con la segunda crease a 0.6 mm del cruce",
+   "tags": [
+    "normalizacion"
+   ],
+   "panels": [
+    {
+     "area": 794,
+     "vertices": 4,
+     "centroid": [
+      60.1496,
+      9.9748
+     ]
+    },
+    {
+     "area": 794,
+     "vertices": 4,
+     "centroid": [
+      60.1496,
+      30.0252
+     ]
+    }
+   ],
+   "nPanels": 2,
+   "areaSum": 1588,
+   "creaseEdges": 2,
+   "adjacency": [
+    {
+     "a": 0,
+     "b": 1,
+     "creaseIdx": 1,
+     "crease": [
+      40.6,
+      20,
+      80,
+      20
+     ]
+    }
+   ],
+   "defaultBase": 0,
+   "trees": {
+    "base0": [
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": 1,
+      "crease": [
+       40.6,
+       20,
+       80,
+       20
+      ]
+     }
+    ],
+    "base1": [
+     {
+      "parent": 1,
+      "child": 0,
+      "sign": -1,
+      "crease": [
+       40.6,
+       20,
+       80,
+       20
+      ]
+     }
+    ]
+   },
+   "validate": {
+    "problems": [
+     {
+      "type": "Crease endpoint unconnected",
+      "dist": 0.6,
+      "point": [
+       40.6,
+       20
+      ]
+     }
+    ]
+   },
+   "topology": {
+    "inputSegments": 6,
+    "splitSegments": 10,
+    "iterations": 5
+   },
+   "logSummary": {
+    "faces": 4,
+    "connectivity": "Connectivity filter: keeping 2 of 4 panels from largest crease-connected component",
+    "panelsAfterShell": 4
+   }
+  },
+  "t-desalineada-1.0": {
+   "desc": "T con la segunda crease a 1.0 mm lateral del cruce",
+   "tags": [
+    "normalizacion"
+   ],
+   "panels": [
+    {
+     "area": 790,
+     "vertices": 4,
+     "centroid": [
+      60.2489,
+      9.9578
+     ]
+    },
+    {
+     "area": 790,
+     "vertices": 4,
+     "centroid": [
+      60.2489,
+      30.0422
+     ]
+    }
+   ],
+   "nPanels": 2,
+   "areaSum": 1580,
+   "creaseEdges": 2,
+   "adjacency": [
+    {
+     "a": 0,
+     "b": 1,
+     "creaseIdx": 1,
+     "crease": [
+      41,
+      20,
+      80,
+      20
+     ]
+    }
+   ],
+   "defaultBase": 0,
+   "trees": {
+    "base0": [
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": 1,
+      "crease": [
+       41,
+       20,
+       80,
+       20
+      ]
+     }
+    ],
+    "base1": [
+     {
+      "parent": 1,
+      "child": 0,
+      "sign": -1,
+      "crease": [
+       41,
+       20,
+       80,
+       20
+      ]
+     }
+    ]
+   },
+   "validate": {
+    "problems": [
+     {
+      "type": "Crease endpoint unconnected",
+      "dist": 1,
+      "point": [
+       41,
+       20
+      ]
+     }
+    ]
+   },
+   "topology": {
+    "inputSegments": 6,
+    "splitSegments": 10,
+    "iterations": 5
+   },
+   "logSummary": {
+    "faces": 4,
+    "connectivity": "Connectivity filter: keeping 2 of 4 panels from largest crease-connected component",
+    "panelsAfterShell": 4
+   }
+  },
+  "t-desalineada-2.5": {
+   "desc": "T con la segunda crease a 2.5 mm lateral del cruce",
+   "tags": [
+    "normalizacion"
+   ],
+   "panels": [
+    {
+     "area": 775,
+     "vertices": 4,
+     "centroid": [
+      60.6183,
+      9.8925
+     ]
+    },
+    {
+     "area": 775,
+     "vertices": 4,
+     "centroid": [
+      60.6183,
+      30.1075
+     ]
+    }
+   ],
+   "nPanels": 2,
+   "areaSum": 1550,
+   "creaseEdges": 2,
+   "adjacency": [
+    {
+     "a": 0,
+     "b": 1,
+     "creaseIdx": 1,
+     "crease": [
+      42.5,
+      20,
+      80,
+      20
+     ]
+    }
+   ],
+   "defaultBase": 0,
+   "trees": {
+    "base0": [
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": 1,
+      "crease": [
+       42.5,
+       20,
+       80,
+       20
+      ]
+     }
+    ],
+    "base1": [
+     {
+      "parent": 1,
+      "child": 0,
+      "sign": -1,
+      "crease": [
+       42.5,
+       20,
+       80,
+       20
+      ]
+     }
+    ]
+   },
+   "validate": {
+    "problems": [
+     {
+      "type": "Crease endpoint unconnected",
+      "dist": 2.5,
+      "point": [
+       42.5,
+       20
+      ]
+     }
+    ]
+   },
+   "topology": {
+    "inputSegments": 6,
+    "splitSegments": 10,
+    "iterations": 5
+   },
+   "logSummary": {
+    "faces": 4,
+    "connectivity": "Connectivity filter: keeping 2 of 4 panels from largest crease-connected component",
+    "panelsAfterShell": 4
+   }
+  },
+  "t-desalineada-5": {
+   "desc": "T con la segunda crease a 5 mm lateral del cruce",
+   "tags": [
+    "normalizacion"
+   ],
+   "panels": [
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      20,
+      20
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 7,
+     "centroid": [
+      60,
+      20
+     ]
+    }
+   ],
+   "nPanels": 2,
+   "areaSum": 3200,
+   "creaseEdges": 2,
+   "adjacency": [
+    {
+     "a": 0,
+     "b": 1,
+     "creaseIdx": 0,
+     "crease": [
+      40,
+      0,
+      40,
+      40
+     ]
+    }
+   ],
+   "defaultBase": 0,
+   "trees": {
+    "base0": [
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     }
+    ],
+    "base1": [
+     {
+      "parent": 1,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     }
+    ]
+   },
+   "validate": {
+    "problems": [
+     {
+      "type": "Crease endpoint unconnected",
+      "dist": 5,
+      "point": [
+       45,
+       20
+      ]
+     }
+    ]
+   },
+   "topology": {
+    "inputSegments": 6,
+    "splitSegments": 9,
+    "iterations": 4
+   },
+   "logSummary": {
+    "faces": 3,
+    "connectivity": "Connectivity filter: keeping 2 of 3 panels from largest crease-connected component",
+    "panelsAfterShell": 3
+   }
+  },
+  "hueco-descentrado": {
+   "desc": "Panel con hueco que no contiene el centroide",
+   "tags": [
+    "KI-06"
+   ],
+   "panels": [
+    {
+     "area": 3200,
+     "vertices": 4,
+     "centroid": [
+      60,
+      40
+     ]
+    },
+    {
+     "area": 3200,
+     "vertices": 4,
+     "centroid": [
+      20,
+      40
+     ]
+    }
+   ],
+   "nPanels": 2,
+   "areaSum": 6400,
+   "creaseEdges": 1,
+   "adjacency": [
+    {
+     "a": 0,
+     "b": 1,
+     "creaseIdx": 0,
+     "crease": [
+      40,
+      0,
+      40,
+      80
+     ]
+    }
+   ],
+   "defaultBase": 0,
+   "trees": {
+    "base0": [
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": 1,
+      "crease": [
+       40,
+       0,
+       40,
+       80
+      ]
+     }
+    ],
+    "base1": [
+     {
+      "parent": 1,
+      "child": 0,
+      "sign": -1,
+      "crease": [
+       40,
+       0,
+       40,
+       80
+      ]
+     }
+    ]
+   },
+   "validate": {
+    "problems": []
+   },
+   "topology": {
+    "inputSegments": 9,
+    "splitSegments": 11,
+    "iterations": 3
+   },
+   "logSummary": {
+    "faces": 5,
+    "connectivity": "Connectivity filter: keeping 2 of 3 panels from largest crease-connected component",
+    "panelsAfterShell": 3
+   }
+  },
+  "hueco-centrado": {
+   "desc": "Panel con ventana centrada (centroide dentro del hueco)",
+   "tags": [
+    "KI-05",
+    "KI-06"
+   ],
+   "panels": [
+    {
+     "area": 6400,
+     "vertices": 6,
+     "centroid": [
+      40,
+      40
+     ]
+    },
+    {
+     "area": 3200,
+     "vertices": 4,
+     "centroid": [
+      20,
+      40
+     ]
+    }
+   ],
+   "nPanels": 2,
+   "areaSum": 9600,
+   "creaseEdges": 1,
+   "adjacency": [],
+   "defaultBase": 0,
+   "trees": {
+    "base0": [],
+    "base1": []
+   },
+   "validate": {
+    "problems": []
+   },
+   "topology": {
+    "inputSegments": 9,
+    "splitSegments": 11,
+    "iterations": 3
+   },
+   "logSummary": {
+    "faces": 5,
+    "connectivity": "Connectivity filter: no crease-connected components found, keeping shell-filtered panels",
+    "panelsAfterShell": 2
+   }
+  },
+  "panel-pequeno-4.5mm2": {
+   "desc": "Panel de 1.5×3 mm = 4.5 mm² (justo sobre el umbral de 4 mm²)",
+   "tags": [
+    "paneles-pequenos"
+   ],
+   "panels": [
+    {
+     "area": 4.5,
+     "vertices": 4,
+     "centroid": [
+      30.75,
+      1.5
+     ]
+    },
+    {
+     "area": 90,
+     "vertices": 4,
+     "centroid": [
+      15,
+      1.5
+     ]
+    }
+   ],
+   "nPanels": 2,
+   "areaSum": 94.5,
+   "creaseEdges": 1,
+   "adjacency": [
+    {
+     "a": 0,
+     "b": 1,
+     "creaseIdx": 0,
+     "crease": [
+      30,
+      0,
+      30,
+      3
+     ]
+    }
+   ],
+   "defaultBase": 1,
+   "trees": {
+    "base0": [
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": 1,
+      "crease": [
+       30,
+       0,
+       30,
+       3
+      ]
+     }
+    ],
+    "base1": [
+     {
+      "parent": 1,
+      "child": 0,
+      "sign": -1,
+      "crease": [
+       30,
+       0,
+       30,
+       3
+      ]
+     }
+    ]
+   },
+   "validate": {
+    "problems": []
+   },
+   "topology": {
+    "inputSegments": 5,
+    "splitSegments": 7,
+    "iterations": 3
+   },
+   "logSummary": {
+    "faces": 3,
+    "connectivity": "Connectivity filter: keeping 2 of 3 panels from largest crease-connected component",
+    "panelsAfterShell": 3
+   }
+  },
+  "panel-muy-pequeno-1.5mm2": {
+   "desc": "Panel de 1×1.5 mm = 1.5 mm² (bajo el umbral: se descarta)",
+   "tags": [
+    "paneles-pequenos"
+   ],
+   "panels": [
+    {
+     "area": 46.5,
+     "vertices": 6,
+     "centroid": [
+      15.5,
+      0.75
+     ]
+    },
+    {
+     "area": 45,
+     "vertices": 4,
+     "centroid": [
+      15,
+      0.75
+     ]
+    }
+   ],
+   "nPanels": 2,
+   "areaSum": 91.5,
+   "creaseEdges": 1,
+   "adjacency": [],
+   "defaultBase": 0,
+   "trees": {
+    "base0": [],
+    "base1": []
+   },
+   "validate": {
+    "problems": []
+   },
+   "topology": {
+    "inputSegments": 5,
+    "splitSegments": 7,
+    "iterations": 3
+   },
+   "logSummary": {
+    "faces": 3,
+    "connectivity": "Connectivity filter: no crease-connected components found, keeping shell-filtered panels",
+    "panelsAfterShell": 2
+   }
+  },
+  "panel-delgado-40x1": {
+   "desc": "Solapa de 40×1 mm (relación 40:1 y 40 mm²: se descarta)",
+   "tags": [
+    "paneles-pequenos"
+   ],
+   "panels": [
+    {
+     "area": 440,
+     "vertices": 6,
+     "centroid": [
+      20,
+      5.5
+     ]
+    },
+    {
+     "area": 400,
+     "vertices": 4,
+     "centroid": [
+      20,
+      6
+     ]
+    }
+   ],
+   "nPanels": 2,
+   "areaSum": 840,
+   "creaseEdges": 1,
+   "adjacency": [],
+   "defaultBase": 0,
+   "trees": {
+    "base0": [],
+    "base1": []
+   },
+   "validate": {
+    "problems": []
+   },
+   "topology": {
+    "inputSegments": 5,
+    "splitSegments": 7,
+    "iterations": 3
+   },
+   "logSummary": {
+    "faces": 3,
+    "connectivity": "Connectivity filter: no crease-connected components found, keeping shell-filtered panels",
+    "panelsAfterShell": 2
+   }
+  },
+  "esquinas-redondeadas": {
+   "desc": "Esquinas Bézier",
+   "tags": [
+    "KI-07"
+   ],
+   "panels": [
+    {
+     "area": 3500,
+     "vertices": 6,
+     "centroid": [
+      89.2381,
+      30
+     ]
+    },
+    {
+     "area": 3500,
+     "vertices": 6,
+     "centroid": [
+      30.7619,
+      30
+     ]
+    }
+   ],
+   "nPanels": 2,
+   "areaSum": 7000,
+   "creaseEdges": 1,
+   "adjacency": [
+    {
+     "a": 0,
+     "b": 1,
+     "creaseIdx": 0,
+     "crease": [
+      60,
+      0,
+      60,
+      60
+     ]
+    }
+   ],
+   "defaultBase": 0,
+   "trees": {
+    "base0": [
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": 1,
+      "crease": [
+       60,
+       0,
+       60,
+       60
+      ]
+     }
+    ],
+    "base1": [
+     {
+      "parent": 1,
+      "child": 0,
+      "sign": -1,
+      "crease": [
+       60,
+       0,
+       60,
+       60
+      ]
+     }
+    ]
+   },
+   "validate": {
+    "problems": []
+   },
+   "topology": {
+    "inputSegments": 9,
+    "splitSegments": 11,
+    "iterations": 3
+   },
+   "logSummary": {
+    "faces": 3,
+    "connectivity": "Connectivity filter: keeping 2 of 3 panels from largest crease-connected component",
+    "panelsAfterShell": 3
+   }
+  },
+  "rejilla-2x2": {
+   "desc": "Rejilla 2×2 (creases por arista)",
+   "tags": [],
+   "panels": [
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      60,
+      20
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      20,
+      20
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      60,
+      60
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      20,
+      60
+     ]
+    }
+   ],
+   "nPanels": 4,
+   "areaSum": 6400,
+   "creaseEdges": 4,
+   "adjacency": [
+    {
+     "a": 0,
+     "b": 1,
+     "creaseIdx": 0,
+     "crease": [
+      40,
+      0,
+      40,
+      40
+     ]
+    },
+    {
+     "a": 1,
+     "b": 3,
+     "creaseIdx": 1,
+     "crease": [
+      0,
+      40,
+      40,
+      40
+     ]
+    },
+    {
+     "a": 2,
+     "b": 3,
+     "creaseIdx": 2,
+     "crease": [
+      40,
+      40,
+      40,
+      80
+     ]
+    },
+    {
+     "a": 0,
+     "b": 2,
+     "creaseIdx": 3,
+     "crease": [
+      40,
+      40,
+      80,
+      40
+     ]
+    }
+   ],
+   "defaultBase": 0,
+   "trees": {
+    "base0": [
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": 1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 2,
+      "sign": 1,
+      "crease": [
+       40,
+       40,
+       80,
+       40
+      ]
+     },
+     {
+      "parent": 1,
+      "child": 3,
+      "sign": 1,
+      "crease": [
+       0,
+       40,
+       40,
+       40
+      ]
+     }
+    ],
+    "base1": [
+     {
+      "parent": 1,
+      "child": 0,
+      "sign": -1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 1,
+      "child": 3,
+      "sign": 1,
+      "crease": [
+       0,
+       40,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 2,
+      "sign": 1,
+      "crease": [
+       40,
+       40,
+       80,
+       40
+      ]
+     }
+    ],
+    "base2": [
+     {
+      "parent": 2,
+      "child": 3,
+      "sign": 1,
+      "crease": [
+       40,
+       40,
+       40,
+       80
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 0,
+      "sign": -1,
+      "crease": [
+       40,
+       40,
+       80,
+       40
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       0,
+       40,
+       40,
+       40
+      ]
+     }
+    ],
+    "base3": [
+     {
+      "parent": 3,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       0,
+       40,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 2,
+      "sign": -1,
+      "crease": [
+       40,
+       40,
+       40,
+       80
+      ]
+     },
+     {
+      "parent": 1,
+      "child": 0,
+      "sign": -1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     }
+    ]
+   },
+   "validate": {
+    "problems": []
+   },
+   "topology": {
+    "inputSegments": 8,
+    "splitSegments": 12,
+    "iterations": 5
+   },
+   "logSummary": {
+    "faces": 5,
+    "connectivity": "Connectivity filter: keeping 4 of 5 panels from largest crease-connected component",
+    "panelsAfterShell": 5
+   }
+  },
+  "rejilla-4x4": {
+   "desc": "Rejilla 4×4",
+   "tags": [],
+   "panels": [
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      60,
+      20
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      20,
+      20
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      60,
+      60
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      20,
+      60
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      60,
+      100
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      20,
+      100
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      100,
+      20
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      100,
+      60
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      60,
+      140
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      20,
+      140
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      140,
+      20
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      140,
+      60
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      100,
+      100
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      100,
+      140
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      140,
+      100
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      140,
+      140
+     ]
+    }
+   ],
+   "nPanels": 16,
+   "areaSum": 25600,
+   "creaseEdges": 24,
+   "adjacency": [
+    {
+     "a": 0,
+     "b": 1,
+     "creaseIdx": 0,
+     "crease": [
+      40,
+      0,
+      40,
+      40
+     ]
+    },
+    {
+     "a": 1,
+     "b": 3,
+     "creaseIdx": 1,
+     "crease": [
+      0,
+      40,
+      40,
+      40
+     ]
+    },
+    {
+     "a": 2,
+     "b": 3,
+     "creaseIdx": 2,
+     "crease": [
+      40,
+      40,
+      40,
+      80
+     ]
+    },
+    {
+     "a": 0,
+     "b": 2,
+     "creaseIdx": 3,
+     "crease": [
+      40,
+      40,
+      80,
+      40
+     ]
+    },
+    {
+     "a": 4,
+     "b": 5,
+     "creaseIdx": 4,
+     "crease": [
+      40,
+      80,
+      40,
+      120
+     ]
+    },
+    {
+     "a": 6,
+     "b": 7,
+     "creaseIdx": 5,
+     "crease": [
+      80,
+      40,
+      120,
+      40
+     ]
+    },
+    {
+     "a": 8,
+     "b": 9,
+     "creaseIdx": 6,
+     "crease": [
+      40,
+      120,
+      40,
+      160
+     ]
+    },
+    {
+     "a": 10,
+     "b": 11,
+     "creaseIdx": 7,
+     "crease": [
+      120,
+      40,
+      160,
+      40
+     ]
+    },
+    {
+     "a": 0,
+     "b": 6,
+     "creaseIdx": 8,
+     "crease": [
+      80,
+      0,
+      80,
+      40
+     ]
+    },
+    {
+     "a": 3,
+     "b": 5,
+     "creaseIdx": 9,
+     "crease": [
+      0,
+      80,
+      40,
+      80
+     ]
+    },
+    {
+     "a": 2,
+     "b": 7,
+     "creaseIdx": 10,
+     "crease": [
+      80,
+      40,
+      80,
+      80
+     ]
+    },
+    {
+     "a": 2,
+     "b": 4,
+     "creaseIdx": 11,
+     "crease": [
+      40,
+      80,
+      80,
+      80
+     ]
+    },
+    {
+     "a": 4,
+     "b": 12,
+     "creaseIdx": 12,
+     "crease": [
+      80,
+      80,
+      80,
+      120
+     ]
+    },
+    {
+     "a": 7,
+     "b": 12,
+     "creaseIdx": 13,
+     "crease": [
+      80,
+      80,
+      120,
+      80
+     ]
+    },
+    {
+     "a": 8,
+     "b": 13,
+     "creaseIdx": 14,
+     "crease": [
+      80,
+      120,
+      80,
+      160
+     ]
+    },
+    {
+     "a": 11,
+     "b": 14,
+     "creaseIdx": 15,
+     "crease": [
+      120,
+      80,
+      160,
+      80
+     ]
+    },
+    {
+     "a": 6,
+     "b": 10,
+     "creaseIdx": 16,
+     "crease": [
+      120,
+      0,
+      120,
+      40
+     ]
+    },
+    {
+     "a": 5,
+     "b": 9,
+     "creaseIdx": 17,
+     "crease": [
+      0,
+      120,
+      40,
+      120
+     ]
+    },
+    {
+     "a": 7,
+     "b": 11,
+     "creaseIdx": 18,
+     "crease": [
+      120,
+      40,
+      120,
+      80
+     ]
+    },
+    {
+     "a": 4,
+     "b": 8,
+     "creaseIdx": 19,
+     "crease": [
+      40,
+      120,
+      80,
+      120
+     ]
+    },
+    {
+     "a": 12,
+     "b": 14,
+     "creaseIdx": 20,
+     "crease": [
+      120,
+      80,
+      120,
+      120
+     ]
+    },
+    {
+     "a": 12,
+     "b": 13,
+     "creaseIdx": 21,
+     "crease": [
+      80,
+      120,
+      120,
+      120
+     ]
+    },
+    {
+     "a": 13,
+     "b": 15,
+     "creaseIdx": 22,
+     "crease": [
+      120,
+      120,
+      120,
+      160
+     ]
+    },
+    {
+     "a": 14,
+     "b": 15,
+     "creaseIdx": 23,
+     "crease": [
+      120,
+      120,
+      160,
+      120
+     ]
+    }
+   ],
+   "defaultBase": 0,
+   "trees": {
+    "base0": [
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": 1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 2,
+      "sign": 1,
+      "crease": [
+       40,
+       40,
+       80,
+       40
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 6,
+      "sign": -1,
+      "crease": [
+       80,
+       0,
+       80,
+       40
+      ]
+     },
+     {
+      "parent": 1,
+      "child": 3,
+      "sign": 1,
+      "crease": [
+       0,
+       40,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 7,
+      "sign": -1,
+      "crease": [
+       80,
+       40,
+       80,
+       80
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 4,
+      "sign": 1,
+      "crease": [
+       40,
+       80,
+       80,
+       80
+      ]
+     },
+     {
+      "parent": 6,
+      "child": 10,
+      "sign": -1,
+      "crease": [
+       120,
+       0,
+       120,
+       40
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 5,
+      "sign": 1,
+      "crease": [
+       0,
+       80,
+       40,
+       80
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 12,
+      "sign": 1,
+      "crease": [
+       80,
+       80,
+       120,
+       80
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 11,
+      "sign": -1,
+      "crease": [
+       120,
+       40,
+       120,
+       80
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 8,
+      "sign": 1,
+      "crease": [
+       40,
+       120,
+       80,
+       120
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 9,
+      "sign": 1,
+      "crease": [
+       0,
+       120,
+       40,
+       120
+      ]
+     },
+     {
+      "parent": 12,
+      "child": 14,
+      "sign": -1,
+      "crease": [
+       120,
+       80,
+       120,
+       120
+      ]
+     },
+     {
+      "parent": 12,
+      "child": 13,
+      "sign": 1,
+      "crease": [
+       80,
+       120,
+       120,
+       120
+      ]
+     },
+     {
+      "parent": 14,
+      "child": 15,
+      "sign": 1,
+      "crease": [
+       120,
+       120,
+       160,
+       120
+      ]
+     }
+    ],
+    "base15": [
+     {
+      "parent": 15,
+      "child": 13,
+      "sign": 1,
+      "crease": [
+       120,
+       120,
+       120,
+       160
+      ]
+     },
+     {
+      "parent": 15,
+      "child": 14,
+      "sign": -1,
+      "crease": [
+       120,
+       120,
+       160,
+       120
+      ]
+     },
+     {
+      "parent": 13,
+      "child": 8,
+      "sign": 1,
+      "crease": [
+       80,
+       120,
+       80,
+       160
+      ]
+     },
+     {
+      "parent": 13,
+      "child": 12,
+      "sign": -1,
+      "crease": [
+       80,
+       120,
+       120,
+       120
+      ]
+     },
+     {
+      "parent": 14,
+      "child": 11,
+      "sign": -1,
+      "crease": [
+       120,
+       80,
+       160,
+       80
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 9,
+      "sign": 1,
+      "crease": [
+       40,
+       120,
+       40,
+       160
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 4,
+      "sign": -1,
+      "crease": [
+       40,
+       120,
+       80,
+       120
+      ]
+     },
+     {
+      "parent": 12,
+      "child": 7,
+      "sign": -1,
+      "crease": [
+       80,
+       80,
+       120,
+       80
+      ]
+     },
+     {
+      "parent": 11,
+      "child": 10,
+      "sign": -1,
+      "crease": [
+       120,
+       40,
+       160,
+       40
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 5,
+      "sign": -1,
+      "crease": [
+       0,
+       120,
+       40,
+       120
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 2,
+      "sign": -1,
+      "crease": [
+       40,
+       80,
+       80,
+       80
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 6,
+      "sign": -1,
+      "crease": [
+       80,
+       40,
+       120,
+       40
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 3,
+      "sign": -1,
+      "crease": [
+       0,
+       80,
+       40,
+       80
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 0,
+      "sign": -1,
+      "crease": [
+       40,
+       40,
+       80,
+       40
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       0,
+       40,
+       40,
+       40
+      ]
+     }
+    ]
+   },
+   "validate": {
+    "problems": []
+   },
+   "topology": {
+    "inputSegments": 28,
+    "splitSegments": 40,
+    "iterations": 13
+   },
+   "logSummary": {
+    "faces": 17,
+    "connectivity": "Connectivity filter: keeping 16 of 17 panels from largest crease-connected component",
+    "panelsAfterShell": 17
+   }
+  },
+  "rejilla-6x6": {
+   "desc": "Rejilla 6×6",
+   "tags": [],
+   "panels": [
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      60,
+      20
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      20,
+      20
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      60,
+      60
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      20,
+      60
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      60,
+      100
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      20,
+      100
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      100,
+      20
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      100,
+      60
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      60,
+      140
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      20,
+      140
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      140,
+      20
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      140,
+      60
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      60,
+      180
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      20,
+      180
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      180,
+      20
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      180,
+      60
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      60,
+      220
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      20,
+      220
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      220,
+      20
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      220,
+      60
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      100,
+      100
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      100,
+      140
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      140,
+      100
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      100,
+      180
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      180,
+      100
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      100,
+      220
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      220,
+      100
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      140,
+      140
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      140,
+      180
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      180,
+      140
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      140,
+      220
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      220,
+      140
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      180,
+      180
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      180,
+      220
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      220,
+      180
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      220,
+      220
+     ]
+    }
+   ],
+   "nPanels": 36,
+   "areaSum": 57600,
+   "creaseEdges": 60,
+   "adjacency": [
+    {
+     "a": 0,
+     "b": 1,
+     "creaseIdx": 0,
+     "crease": [
+      40,
+      0,
+      40,
+      40
+     ]
+    },
+    {
+     "a": 1,
+     "b": 3,
+     "creaseIdx": 1,
+     "crease": [
+      0,
+      40,
+      40,
+      40
+     ]
+    },
+    {
+     "a": 2,
+     "b": 3,
+     "creaseIdx": 2,
+     "crease": [
+      40,
+      40,
+      40,
+      80
+     ]
+    },
+    {
+     "a": 0,
+     "b": 2,
+     "creaseIdx": 3,
+     "crease": [
+      40,
+      40,
+      80,
+      40
+     ]
+    },
+    {
+     "a": 4,
+     "b": 5,
+     "creaseIdx": 4,
+     "crease": [
+      40,
+      80,
+      40,
+      120
+     ]
+    },
+    {
+     "a": 6,
+     "b": 7,
+     "creaseIdx": 5,
+     "crease": [
+      80,
+      40,
+      120,
+      40
+     ]
+    },
+    {
+     "a": 8,
+     "b": 9,
+     "creaseIdx": 6,
+     "crease": [
+      40,
+      120,
+      40,
+      160
+     ]
+    },
+    {
+     "a": 10,
+     "b": 11,
+     "creaseIdx": 7,
+     "crease": [
+      120,
+      40,
+      160,
+      40
+     ]
+    },
+    {
+     "a": 12,
+     "b": 13,
+     "creaseIdx": 8,
+     "crease": [
+      40,
+      160,
+      40,
+      200
+     ]
+    },
+    {
+     "a": 14,
+     "b": 15,
+     "creaseIdx": 9,
+     "crease": [
+      160,
+      40,
+      200,
+      40
+     ]
+    },
+    {
+     "a": 16,
+     "b": 17,
+     "creaseIdx": 10,
+     "crease": [
+      40,
+      200,
+      40,
+      240
+     ]
+    },
+    {
+     "a": 18,
+     "b": 19,
+     "creaseIdx": 11,
+     "crease": [
+      200,
+      40,
+      240,
+      40
+     ]
+    },
+    {
+     "a": 0,
+     "b": 6,
+     "creaseIdx": 12,
+     "crease": [
+      80,
+      0,
+      80,
+      40
+     ]
+    },
+    {
+     "a": 3,
+     "b": 5,
+     "creaseIdx": 13,
+     "crease": [
+      0,
+      80,
+      40,
+      80
+     ]
+    },
+    {
+     "a": 2,
+     "b": 7,
+     "creaseIdx": 14,
+     "crease": [
+      80,
+      40,
+      80,
+      80
+     ]
+    },
+    {
+     "a": 2,
+     "b": 4,
+     "creaseIdx": 15,
+     "crease": [
+      40,
+      80,
+      80,
+      80
+     ]
+    },
+    {
+     "a": 4,
+     "b": 20,
+     "creaseIdx": 16,
+     "crease": [
+      80,
+      80,
+      80,
+      120
+     ]
+    },
+    {
+     "a": 7,
+     "b": 20,
+     "creaseIdx": 17,
+     "crease": [
+      80,
+      80,
+      120,
+      80
+     ]
+    },
+    {
+     "a": 8,
+     "b": 21,
+     "creaseIdx": 18,
+     "crease": [
+      80,
+      120,
+      80,
+      160
+     ]
+    },
+    {
+     "a": 11,
+     "b": 22,
+     "creaseIdx": 19,
+     "crease": [
+      120,
+      80,
+      160,
+      80
+     ]
+    },
+    {
+     "a": 12,
+     "b": 23,
+     "creaseIdx": 20,
+     "crease": [
+      80,
+      160,
+      80,
+      200
+     ]
+    },
+    {
+     "a": 15,
+     "b": 24,
+     "creaseIdx": 21,
+     "crease": [
+      160,
+      80,
+      200,
+      80
+     ]
+    },
+    {
+     "a": 16,
+     "b": 25,
+     "creaseIdx": 22,
+     "crease": [
+      80,
+      200,
+      80,
+      240
+     ]
+    },
+    {
+     "a": 19,
+     "b": 26,
+     "creaseIdx": 23,
+     "crease": [
+      200,
+      80,
+      240,
+      80
+     ]
+    },
+    {
+     "a": 6,
+     "b": 10,
+     "creaseIdx": 24,
+     "crease": [
+      120,
+      0,
+      120,
+      40
+     ]
+    },
+    {
+     "a": 5,
+     "b": 9,
+     "creaseIdx": 25,
+     "crease": [
+      0,
+      120,
+      40,
+      120
+     ]
+    },
+    {
+     "a": 7,
+     "b": 11,
+     "creaseIdx": 26,
+     "crease": [
+      120,
+      40,
+      120,
+      80
+     ]
+    },
+    {
+     "a": 4,
+     "b": 8,
+     "creaseIdx": 27,
+     "crease": [
+      40,
+      120,
+      80,
+      120
+     ]
+    },
+    {
+     "a": 20,
+     "b": 22,
+     "creaseIdx": 28,
+     "crease": [
+      120,
+      80,
+      120,
+      120
+     ]
+    },
+    {
+     "a": 20,
+     "b": 21,
+     "creaseIdx": 29,
+     "crease": [
+      80,
+      120,
+      120,
+      120
+     ]
+    },
+    {
+     "a": 21,
+     "b": 27,
+     "creaseIdx": 30,
+     "crease": [
+      120,
+      120,
+      120,
+      160
+     ]
+    },
+    {
+     "a": 22,
+     "b": 27,
+     "creaseIdx": 31,
+     "crease": [
+      120,
+      120,
+      160,
+      120
+     ]
+    },
+    {
+     "a": 23,
+     "b": 28,
+     "creaseIdx": 32,
+     "crease": [
+      120,
+      160,
+      120,
+      200
+     ]
+    },
+    {
+     "a": 24,
+     "b": 29,
+     "creaseIdx": 33,
+     "crease": [
+      160,
+      120,
+      200,
+      120
+     ]
+    },
+    {
+     "a": 25,
+     "b": 30,
+     "creaseIdx": 34,
+     "crease": [
+      120,
+      200,
+      120,
+      240
+     ]
+    },
+    {
+     "a": 26,
+     "b": 31,
+     "creaseIdx": 35,
+     "crease": [
+      200,
+      120,
+      240,
+      120
+     ]
+    },
+    {
+     "a": 10,
+     "b": 14,
+     "creaseIdx": 36,
+     "crease": [
+      160,
+      0,
+      160,
+      40
+     ]
+    },
+    {
+     "a": 9,
+     "b": 13,
+     "creaseIdx": 37,
+     "crease": [
+      0,
+      160,
+      40,
+      160
+     ]
+    },
+    {
+     "a": 11,
+     "b": 15,
+     "creaseIdx": 38,
+     "crease": [
+      160,
+      40,
+      160,
+      80
+     ]
+    },
+    {
+     "a": 8,
+     "b": 12,
+     "creaseIdx": 39,
+     "crease": [
+      40,
+      160,
+      80,
+      160
+     ]
+    },
+    {
+     "a": 22,
+     "b": 24,
+     "creaseIdx": 40,
+     "crease": [
+      160,
+      80,
+      160,
+      120
+     ]
+    },
+    {
+     "a": 21,
+     "b": 23,
+     "creaseIdx": 41,
+     "crease": [
+      80,
+      160,
+      120,
+      160
+     ]
+    },
+    {
+     "a": 27,
+     "b": 29,
+     "creaseIdx": 42,
+     "crease": [
+      160,
+      120,
+      160,
+      160
+     ]
+    },
+    {
+     "a": 27,
+     "b": 28,
+     "creaseIdx": 43,
+     "crease": [
+      120,
+      160,
+      160,
+      160
+     ]
+    },
+    {
+     "a": 28,
+     "b": 32,
+     "creaseIdx": 44,
+     "crease": [
+      160,
+      160,
+      160,
+      200
+     ]
+    },
+    {
+     "a": 29,
+     "b": 32,
+     "creaseIdx": 45,
+     "crease": [
+      160,
+      160,
+      200,
+      160
+     ]
+    },
+    {
+     "a": 30,
+     "b": 33,
+     "creaseIdx": 46,
+     "crease": [
+      160,
+      200,
+      160,
+      240
+     ]
+    },
+    {
+     "a": 31,
+     "b": 34,
+     "creaseIdx": 47,
+     "crease": [
+      200,
+      160,
+      240,
+      160
+     ]
+    },
+    {
+     "a": 14,
+     "b": 18,
+     "creaseIdx": 48,
+     "crease": [
+      200,
+      0,
+      200,
+      40
+     ]
+    },
+    {
+     "a": 13,
+     "b": 17,
+     "creaseIdx": 49,
+     "crease": [
+      0,
+      200,
+      40,
+      200
+     ]
+    },
+    {
+     "a": 15,
+     "b": 19,
+     "creaseIdx": 50,
+     "crease": [
+      200,
+      40,
+      200,
+      80
+     ]
+    },
+    {
+     "a": 12,
+     "b": 16,
+     "creaseIdx": 51,
+     "crease": [
+      40,
+      200,
+      80,
+      200
+     ]
+    },
+    {
+     "a": 24,
+     "b": 26,
+     "creaseIdx": 52,
+     "crease": [
+      200,
+      80,
+      200,
+      120
+     ]
+    },
+    {
+     "a": 23,
+     "b": 25,
+     "creaseIdx": 53,
+     "crease": [
+      80,
+      200,
+      120,
+      200
+     ]
+    },
+    {
+     "a": 29,
+     "b": 31,
+     "creaseIdx": 54,
+     "crease": [
+      200,
+      120,
+      200,
+      160
+     ]
+    },
+    {
+     "a": 28,
+     "b": 30,
+     "creaseIdx": 55,
+     "crease": [
+      120,
+      200,
+      160,
+      200
+     ]
+    },
+    {
+     "a": 32,
+     "b": 34,
+     "creaseIdx": 56,
+     "crease": [
+      200,
+      160,
+      200,
+      200
+     ]
+    },
+    {
+     "a": 32,
+     "b": 33,
+     "creaseIdx": 57,
+     "crease": [
+      160,
+      200,
+      200,
+      200
+     ]
+    },
+    {
+     "a": 33,
+     "b": 35,
+     "creaseIdx": 58,
+     "crease": [
+      200,
+      200,
+      200,
+      240
+     ]
+    },
+    {
+     "a": 34,
+     "b": 35,
+     "creaseIdx": 59,
+     "crease": [
+      200,
+      200,
+      240,
+      200
+     ]
+    }
+   ],
+   "defaultBase": 0,
+   "trees": {
+    "base0": [
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": 1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 2,
+      "sign": 1,
+      "crease": [
+       40,
+       40,
+       80,
+       40
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 6,
+      "sign": -1,
+      "crease": [
+       80,
+       0,
+       80,
+       40
+      ]
+     },
+     {
+      "parent": 1,
+      "child": 3,
+      "sign": 1,
+      "crease": [
+       0,
+       40,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 7,
+      "sign": -1,
+      "crease": [
+       80,
+       40,
+       80,
+       80
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 4,
+      "sign": 1,
+      "crease": [
+       40,
+       80,
+       80,
+       80
+      ]
+     },
+     {
+      "parent": 6,
+      "child": 10,
+      "sign": -1,
+      "crease": [
+       120,
+       0,
+       120,
+       40
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 5,
+      "sign": 1,
+      "crease": [
+       0,
+       80,
+       40,
+       80
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 20,
+      "sign": 1,
+      "crease": [
+       80,
+       80,
+       120,
+       80
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 11,
+      "sign": -1,
+      "crease": [
+       120,
+       40,
+       120,
+       80
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 8,
+      "sign": 1,
+      "crease": [
+       40,
+       120,
+       80,
+       120
+      ]
+     },
+     {
+      "parent": 10,
+      "child": 14,
+      "sign": -1,
+      "crease": [
+       160,
+       0,
+       160,
+       40
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 9,
+      "sign": 1,
+      "crease": [
+       0,
+       120,
+       40,
+       120
+      ]
+     },
+     {
+      "parent": 20,
+      "child": 22,
+      "sign": -1,
+      "crease": [
+       120,
+       80,
+       120,
+       120
+      ]
+     },
+     {
+      "parent": 20,
+      "child": 21,
+      "sign": 1,
+      "crease": [
+       80,
+       120,
+       120,
+       120
+      ]
+     },
+     {
+      "parent": 11,
+      "child": 15,
+      "sign": -1,
+      "crease": [
+       160,
+       40,
+       160,
+       80
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 12,
+      "sign": 1,
+      "crease": [
+       40,
+       160,
+       80,
+       160
+      ]
+     },
+     {
+      "parent": 14,
+      "child": 18,
+      "sign": -1,
+      "crease": [
+       200,
+       0,
+       200,
+       40
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 13,
+      "sign": 1,
+      "crease": [
+       0,
+       160,
+       40,
+       160
+      ]
+     },
+     {
+      "parent": 22,
+      "child": 27,
+      "sign": 1,
+      "crease": [
+       120,
+       120,
+       160,
+       120
+      ]
+     },
+     {
+      "parent": 22,
+      "child": 24,
+      "sign": -1,
+      "crease": [
+       160,
+       80,
+       160,
+       120
+      ]
+     },
+     {
+      "parent": 21,
+      "child": 23,
+      "sign": 1,
+      "crease": [
+       80,
+       160,
+       120,
+       160
+      ]
+     },
+     {
+      "parent": 15,
+      "child": 19,
+      "sign": -1,
+      "crease": [
+       200,
+       40,
+       200,
+       80
+      ]
+     },
+     {
+      "parent": 12,
+      "child": 16,
+      "sign": 1,
+      "crease": [
+       40,
+       200,
+       80,
+       200
+      ]
+     },
+     {
+      "parent": 13,
+      "child": 17,
+      "sign": 1,
+      "crease": [
+       0,
+       200,
+       40,
+       200
+      ]
+     },
+     {
+      "parent": 27,
+      "child": 29,
+      "sign": -1,
+      "crease": [
+       160,
+       120,
+       160,
+       160
+      ]
+     },
+     {
+      "parent": 27,
+      "child": 28,
+      "sign": 1,
+      "crease": [
+       120,
+       160,
+       160,
+       160
+      ]
+     },
+     {
+      "parent": 24,
+      "child": 26,
+      "sign": -1,
+      "crease": [
+       200,
+       80,
+       200,
+       120
+      ]
+     },
+     {
+      "parent": 23,
+      "child": 25,
+      "sign": 1,
+      "crease": [
+       80,
+       200,
+       120,
+       200
+      ]
+     },
+     {
+      "parent": 29,
+      "child": 32,
+      "sign": 1,
+      "crease": [
+       160,
+       160,
+       200,
+       160
+      ]
+     },
+     {
+      "parent": 29,
+      "child": 31,
+      "sign": -1,
+      "crease": [
+       200,
+       120,
+       200,
+       160
+      ]
+     },
+     {
+      "parent": 28,
+      "child": 30,
+      "sign": 1,
+      "crease": [
+       120,
+       200,
+       160,
+       200
+      ]
+     },
+     {
+      "parent": 32,
+      "child": 34,
+      "sign": -1,
+      "crease": [
+       200,
+       160,
+       200,
+       200
+      ]
+     },
+     {
+      "parent": 32,
+      "child": 33,
+      "sign": 1,
+      "crease": [
+       160,
+       200,
+       200,
+       200
+      ]
+     },
+     {
+      "parent": 34,
+      "child": 35,
+      "sign": 1,
+      "crease": [
+       200,
+       200,
+       240,
+       200
+      ]
+     }
+    ],
+    "base35": [
+     {
+      "parent": 35,
+      "child": 33,
+      "sign": 1,
+      "crease": [
+       200,
+       200,
+       200,
+       240
+      ]
+     },
+     {
+      "parent": 35,
+      "child": 34,
+      "sign": -1,
+      "crease": [
+       200,
+       200,
+       240,
+       200
+      ]
+     },
+     {
+      "parent": 33,
+      "child": 30,
+      "sign": 1,
+      "crease": [
+       160,
+       200,
+       160,
+       240
+      ]
+     },
+     {
+      "parent": 33,
+      "child": 32,
+      "sign": -1,
+      "crease": [
+       160,
+       200,
+       200,
+       200
+      ]
+     },
+     {
+      "parent": 34,
+      "child": 31,
+      "sign": -1,
+      "crease": [
+       200,
+       160,
+       240,
+       160
+      ]
+     },
+     {
+      "parent": 30,
+      "child": 25,
+      "sign": 1,
+      "crease": [
+       120,
+       200,
+       120,
+       240
+      ]
+     },
+     {
+      "parent": 30,
+      "child": 28,
+      "sign": -1,
+      "crease": [
+       120,
+       200,
+       160,
+       200
+      ]
+     },
+     {
+      "parent": 32,
+      "child": 29,
+      "sign": -1,
+      "crease": [
+       160,
+       160,
+       200,
+       160
+      ]
+     },
+     {
+      "parent": 31,
+      "child": 26,
+      "sign": -1,
+      "crease": [
+       200,
+       120,
+       240,
+       120
+      ]
+     },
+     {
+      "parent": 25,
+      "child": 16,
+      "sign": 1,
+      "crease": [
+       80,
+       200,
+       80,
+       240
+      ]
+     },
+     {
+      "parent": 25,
+      "child": 23,
+      "sign": -1,
+      "crease": [
+       80,
+       200,
+       120,
+       200
+      ]
+     },
+     {
+      "parent": 28,
+      "child": 27,
+      "sign": -1,
+      "crease": [
+       120,
+       160,
+       160,
+       160
+      ]
+     },
+     {
+      "parent": 29,
+      "child": 24,
+      "sign": -1,
+      "crease": [
+       160,
+       120,
+       200,
+       120
+      ]
+     },
+     {
+      "parent": 26,
+      "child": 19,
+      "sign": -1,
+      "crease": [
+       200,
+       80,
+       240,
+       80
+      ]
+     },
+     {
+      "parent": 16,
+      "child": 17,
+      "sign": 1,
+      "crease": [
+       40,
+       200,
+       40,
+       240
+      ]
+     },
+     {
+      "parent": 16,
+      "child": 12,
+      "sign": -1,
+      "crease": [
+       40,
+       200,
+       80,
+       200
+      ]
+     },
+     {
+      "parent": 23,
+      "child": 21,
+      "sign": -1,
+      "crease": [
+       80,
+       160,
+       120,
+       160
+      ]
+     },
+     {
+      "parent": 27,
+      "child": 22,
+      "sign": -1,
+      "crease": [
+       120,
+       120,
+       160,
+       120
+      ]
+     },
+     {
+      "parent": 24,
+      "child": 15,
+      "sign": -1,
+      "crease": [
+       160,
+       80,
+       200,
+       80
+      ]
+     },
+     {
+      "parent": 19,
+      "child": 18,
+      "sign": -1,
+      "crease": [
+       200,
+       40,
+       240,
+       40
+      ]
+     },
+     {
+      "parent": 17,
+      "child": 13,
+      "sign": -1,
+      "crease": [
+       0,
+       200,
+       40,
+       200
+      ]
+     },
+     {
+      "parent": 12,
+      "child": 8,
+      "sign": -1,
+      "crease": [
+       40,
+       160,
+       80,
+       160
+      ]
+     },
+     {
+      "parent": 21,
+      "child": 20,
+      "sign": -1,
+      "crease": [
+       80,
+       120,
+       120,
+       120
+      ]
+     },
+     {
+      "parent": 22,
+      "child": 11,
+      "sign": -1,
+      "crease": [
+       120,
+       80,
+       160,
+       80
+      ]
+     },
+     {
+      "parent": 15,
+      "child": 14,
+      "sign": -1,
+      "crease": [
+       160,
+       40,
+       200,
+       40
+      ]
+     },
+     {
+      "parent": 13,
+      "child": 9,
+      "sign": -1,
+      "crease": [
+       0,
+       160,
+       40,
+       160
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 4,
+      "sign": -1,
+      "crease": [
+       40,
+       120,
+       80,
+       120
+      ]
+     },
+     {
+      "parent": 20,
+      "child": 7,
+      "sign": -1,
+      "crease": [
+       80,
+       80,
+       120,
+       80
+      ]
+     },
+     {
+      "parent": 11,
+      "child": 10,
+      "sign": -1,
+      "crease": [
+       120,
+       40,
+       160,
+       40
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 5,
+      "sign": -1,
+      "crease": [
+       0,
+       120,
+       40,
+       120
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 2,
+      "sign": -1,
+      "crease": [
+       40,
+       80,
+       80,
+       80
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 6,
+      "sign": -1,
+      "crease": [
+       80,
+       40,
+       120,
+       40
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 3,
+      "sign": -1,
+      "crease": [
+       0,
+       80,
+       40,
+       80
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 0,
+      "sign": -1,
+      "crease": [
+       40,
+       40,
+       80,
+       40
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       0,
+       40,
+       40,
+       40
+      ]
+     }
+    ]
+   },
+   "validate": {
+    "problems": []
+   },
+   "topology": {
+    "inputSegments": 64,
+    "splitSegments": 84,
+    "iterations": 21
+   },
+   "logSummary": {
+    "faces": 37,
+    "connectivity": "Connectivity filter: keeping 36 of 37 panels from largest crease-connected component",
+    "panelsAfterShell": 37
+   }
+  },
+  "rejilla-8x8": {
+   "desc": "Rejilla 8×8",
+   "tags": [
+    "KI-08"
+   ],
+   "panels": [
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      60,
+      20
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      20,
+      20
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      60,
+      60
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      20,
+      60
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      60,
+      100
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      20,
+      100
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      100,
+      20
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      100,
+      60
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      60,
+      140
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      20,
+      140
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      140,
+      20
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      140,
+      60
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      60,
+      180
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      20,
+      180
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      180,
+      20
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      180,
+      60
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      60,
+      220
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      20,
+      220
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      220,
+      20
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      220,
+      60
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      60,
+      260
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      20,
+      260
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      260,
+      20
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      260,
+      60
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      60,
+      300
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      20,
+      300
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      300,
+      20
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      300,
+      60
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      100,
+      100
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      100,
+      140
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      140,
+      100
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      100,
+      180
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      180,
+      100
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      100,
+      220
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      220,
+      100
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      100,
+      260
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      260,
+      100
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      100,
+      300
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      300,
+      100
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      140,
+      140
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      140,
+      180
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      180,
+      140
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      140,
+      220
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      220,
+      140
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      140,
+      260
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      260,
+      140
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      140,
+      300
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      300,
+      140
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      180,
+      180
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      180,
+      220
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      220,
+      180
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      180,
+      260
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      260,
+      180
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      180,
+      300
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      300,
+      180
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      220,
+      220
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      220,
+      260
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      260,
+      220
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      220,
+      300
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      300,
+      220
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      260,
+      260
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      260,
+      300
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      300,
+      260
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      300,
+      300
+     ]
+    }
+   ],
+   "nPanels": 64,
+   "areaSum": 102400,
+   "creaseEdges": 112,
+   "adjacency": [
+    {
+     "a": 0,
+     "b": 1,
+     "creaseIdx": 0,
+     "crease": [
+      40,
+      0,
+      40,
+      40
+     ]
+    },
+    {
+     "a": 1,
+     "b": 3,
+     "creaseIdx": 1,
+     "crease": [
+      0,
+      40,
+      40,
+      40
+     ]
+    },
+    {
+     "a": 2,
+     "b": 3,
+     "creaseIdx": 2,
+     "crease": [
+      40,
+      40,
+      40,
+      80
+     ]
+    },
+    {
+     "a": 0,
+     "b": 2,
+     "creaseIdx": 3,
+     "crease": [
+      40,
+      40,
+      80,
+      40
+     ]
+    },
+    {
+     "a": 4,
+     "b": 5,
+     "creaseIdx": 4,
+     "crease": [
+      40,
+      80,
+      40,
+      120
+     ]
+    },
+    {
+     "a": 6,
+     "b": 7,
+     "creaseIdx": 5,
+     "crease": [
+      80,
+      40,
+      120,
+      40
+     ]
+    },
+    {
+     "a": 8,
+     "b": 9,
+     "creaseIdx": 6,
+     "crease": [
+      40,
+      120,
+      40,
+      160
+     ]
+    },
+    {
+     "a": 10,
+     "b": 11,
+     "creaseIdx": 7,
+     "crease": [
+      120,
+      40,
+      160,
+      40
+     ]
+    },
+    {
+     "a": 12,
+     "b": 13,
+     "creaseIdx": 8,
+     "crease": [
+      40,
+      160,
+      40,
+      200
+     ]
+    },
+    {
+     "a": 14,
+     "b": 15,
+     "creaseIdx": 9,
+     "crease": [
+      160,
+      40,
+      200,
+      40
+     ]
+    },
+    {
+     "a": 16,
+     "b": 17,
+     "creaseIdx": 10,
+     "crease": [
+      40,
+      200,
+      40,
+      240
+     ]
+    },
+    {
+     "a": 18,
+     "b": 19,
+     "creaseIdx": 11,
+     "crease": [
+      200,
+      40,
+      240,
+      40
+     ]
+    },
+    {
+     "a": 20,
+     "b": 21,
+     "creaseIdx": 12,
+     "crease": [
+      40,
+      240,
+      40,
+      280
+     ]
+    },
+    {
+     "a": 22,
+     "b": 23,
+     "creaseIdx": 13,
+     "crease": [
+      240,
+      40,
+      280,
+      40
+     ]
+    },
+    {
+     "a": 24,
+     "b": 25,
+     "creaseIdx": 14,
+     "crease": [
+      40,
+      280,
+      40,
+      320
+     ]
+    },
+    {
+     "a": 26,
+     "b": 27,
+     "creaseIdx": 15,
+     "crease": [
+      280,
+      40,
+      320,
+      40
+     ]
+    },
+    {
+     "a": 0,
+     "b": 6,
+     "creaseIdx": 16,
+     "crease": [
+      80,
+      0,
+      80,
+      40
+     ]
+    },
+    {
+     "a": 3,
+     "b": 5,
+     "creaseIdx": 17,
+     "crease": [
+      0,
+      80,
+      40,
+      80
+     ]
+    },
+    {
+     "a": 2,
+     "b": 7,
+     "creaseIdx": 18,
+     "crease": [
+      80,
+      40,
+      80,
+      80
+     ]
+    },
+    {
+     "a": 2,
+     "b": 4,
+     "creaseIdx": 19,
+     "crease": [
+      40,
+      80,
+      80,
+      80
+     ]
+    },
+    {
+     "a": 4,
+     "b": 28,
+     "creaseIdx": 20,
+     "crease": [
+      80,
+      80,
+      80,
+      120
+     ]
+    },
+    {
+     "a": 7,
+     "b": 28,
+     "creaseIdx": 21,
+     "crease": [
+      80,
+      80,
+      120,
+      80
+     ]
+    },
+    {
+     "a": 8,
+     "b": 29,
+     "creaseIdx": 22,
+     "crease": [
+      80,
+      120,
+      80,
+      160
+     ]
+    },
+    {
+     "a": 11,
+     "b": 30,
+     "creaseIdx": 23,
+     "crease": [
+      120,
+      80,
+      160,
+      80
+     ]
+    },
+    {
+     "a": 12,
+     "b": 31,
+     "creaseIdx": 24,
+     "crease": [
+      80,
+      160,
+      80,
+      200
+     ]
+    },
+    {
+     "a": 15,
+     "b": 32,
+     "creaseIdx": 25,
+     "crease": [
+      160,
+      80,
+      200,
+      80
+     ]
+    },
+    {
+     "a": 16,
+     "b": 33,
+     "creaseIdx": 26,
+     "crease": [
+      80,
+      200,
+      80,
+      240
+     ]
+    },
+    {
+     "a": 19,
+     "b": 34,
+     "creaseIdx": 27,
+     "crease": [
+      200,
+      80,
+      240,
+      80
+     ]
+    },
+    {
+     "a": 20,
+     "b": 35,
+     "creaseIdx": 28,
+     "crease": [
+      80,
+      240,
+      80,
+      280
+     ]
+    },
+    {
+     "a": 23,
+     "b": 36,
+     "creaseIdx": 29,
+     "crease": [
+      240,
+      80,
+      280,
+      80
+     ]
+    },
+    {
+     "a": 24,
+     "b": 37,
+     "creaseIdx": 30,
+     "crease": [
+      80,
+      280,
+      80,
+      320
+     ]
+    },
+    {
+     "a": 27,
+     "b": 38,
+     "creaseIdx": 31,
+     "crease": [
+      280,
+      80,
+      320,
+      80
+     ]
+    },
+    {
+     "a": 6,
+     "b": 10,
+     "creaseIdx": 32,
+     "crease": [
+      120,
+      0,
+      120,
+      40
+     ]
+    },
+    {
+     "a": 5,
+     "b": 9,
+     "creaseIdx": 33,
+     "crease": [
+      0,
+      120,
+      40,
+      120
+     ]
+    },
+    {
+     "a": 7,
+     "b": 11,
+     "creaseIdx": 34,
+     "crease": [
+      120,
+      40,
+      120,
+      80
+     ]
+    },
+    {
+     "a": 4,
+     "b": 8,
+     "creaseIdx": 35,
+     "crease": [
+      40,
+      120,
+      80,
+      120
+     ]
+    },
+    {
+     "a": 28,
+     "b": 30,
+     "creaseIdx": 36,
+     "crease": [
+      120,
+      80,
+      120,
+      120
+     ]
+    },
+    {
+     "a": 28,
+     "b": 29,
+     "creaseIdx": 37,
+     "crease": [
+      80,
+      120,
+      120,
+      120
+     ]
+    },
+    {
+     "a": 29,
+     "b": 39,
+     "creaseIdx": 38,
+     "crease": [
+      120,
+      120,
+      120,
+      160
+     ]
+    },
+    {
+     "a": 30,
+     "b": 39,
+     "creaseIdx": 39,
+     "crease": [
+      120,
+      120,
+      160,
+      120
+     ]
+    },
+    {
+     "a": 31,
+     "b": 40,
+     "creaseIdx": 40,
+     "crease": [
+      120,
+      160,
+      120,
+      200
+     ]
+    },
+    {
+     "a": 32,
+     "b": 41,
+     "creaseIdx": 41,
+     "crease": [
+      160,
+      120,
+      200,
+      120
+     ]
+    },
+    {
+     "a": 33,
+     "b": 42,
+     "creaseIdx": 42,
+     "crease": [
+      120,
+      200,
+      120,
+      240
+     ]
+    },
+    {
+     "a": 34,
+     "b": 43,
+     "creaseIdx": 43,
+     "crease": [
+      200,
+      120,
+      240,
+      120
+     ]
+    },
+    {
+     "a": 35,
+     "b": 44,
+     "creaseIdx": 44,
+     "crease": [
+      120,
+      240,
+      120,
+      280
+     ]
+    },
+    {
+     "a": 36,
+     "b": 45,
+     "creaseIdx": 45,
+     "crease": [
+      240,
+      120,
+      280,
+      120
+     ]
+    },
+    {
+     "a": 37,
+     "b": 46,
+     "creaseIdx": 46,
+     "crease": [
+      120,
+      280,
+      120,
+      320
+     ]
+    },
+    {
+     "a": 38,
+     "b": 47,
+     "creaseIdx": 47,
+     "crease": [
+      280,
+      120,
+      320,
+      120
+     ]
+    },
+    {
+     "a": 10,
+     "b": 14,
+     "creaseIdx": 48,
+     "crease": [
+      160,
+      0,
+      160,
+      40
+     ]
+    },
+    {
+     "a": 9,
+     "b": 13,
+     "creaseIdx": 49,
+     "crease": [
+      0,
+      160,
+      40,
+      160
+     ]
+    },
+    {
+     "a": 11,
+     "b": 15,
+     "creaseIdx": 50,
+     "crease": [
+      160,
+      40,
+      160,
+      80
+     ]
+    },
+    {
+     "a": 8,
+     "b": 12,
+     "creaseIdx": 51,
+     "crease": [
+      40,
+      160,
+      80,
+      160
+     ]
+    },
+    {
+     "a": 30,
+     "b": 32,
+     "creaseIdx": 52,
+     "crease": [
+      160,
+      80,
+      160,
+      120
+     ]
+    },
+    {
+     "a": 29,
+     "b": 31,
+     "creaseIdx": 53,
+     "crease": [
+      80,
+      160,
+      120,
+      160
+     ]
+    },
+    {
+     "a": 39,
+     "b": 41,
+     "creaseIdx": 54,
+     "crease": [
+      160,
+      120,
+      160,
+      160
+     ]
+    },
+    {
+     "a": 39,
+     "b": 40,
+     "creaseIdx": 55,
+     "crease": [
+      120,
+      160,
+      160,
+      160
+     ]
+    },
+    {
+     "a": 40,
+     "b": 48,
+     "creaseIdx": 56,
+     "crease": [
+      160,
+      160,
+      160,
+      200
+     ]
+    },
+    {
+     "a": 41,
+     "b": 48,
+     "creaseIdx": 57,
+     "crease": [
+      160,
+      160,
+      200,
+      160
+     ]
+    },
+    {
+     "a": 42,
+     "b": 49,
+     "creaseIdx": 58,
+     "crease": [
+      160,
+      200,
+      160,
+      240
+     ]
+    },
+    {
+     "a": 43,
+     "b": 50,
+     "creaseIdx": 59,
+     "crease": [
+      200,
+      160,
+      240,
+      160
+     ]
+    },
+    {
+     "a": 44,
+     "b": 51,
+     "creaseIdx": 60,
+     "crease": [
+      160,
+      240,
+      160,
+      280
+     ]
+    },
+    {
+     "a": 45,
+     "b": 52,
+     "creaseIdx": 61,
+     "crease": [
+      240,
+      160,
+      280,
+      160
+     ]
+    },
+    {
+     "a": 46,
+     "b": 53,
+     "creaseIdx": 62,
+     "crease": [
+      160,
+      280,
+      160,
+      320
+     ]
+    },
+    {
+     "a": 47,
+     "b": 54,
+     "creaseIdx": 63,
+     "crease": [
+      280,
+      160,
+      320,
+      160
+     ]
+    },
+    {
+     "a": 14,
+     "b": 18,
+     "creaseIdx": 64,
+     "crease": [
+      200,
+      0,
+      200,
+      40
+     ]
+    },
+    {
+     "a": 13,
+     "b": 17,
+     "creaseIdx": 65,
+     "crease": [
+      0,
+      200,
+      40,
+      200
+     ]
+    },
+    {
+     "a": 15,
+     "b": 19,
+     "creaseIdx": 66,
+     "crease": [
+      200,
+      40,
+      200,
+      80
+     ]
+    },
+    {
+     "a": 12,
+     "b": 16,
+     "creaseIdx": 67,
+     "crease": [
+      40,
+      200,
+      80,
+      200
+     ]
+    },
+    {
+     "a": 32,
+     "b": 34,
+     "creaseIdx": 68,
+     "crease": [
+      200,
+      80,
+      200,
+      120
+     ]
+    },
+    {
+     "a": 31,
+     "b": 33,
+     "creaseIdx": 69,
+     "crease": [
+      80,
+      200,
+      120,
+      200
+     ]
+    },
+    {
+     "a": 41,
+     "b": 43,
+     "creaseIdx": 70,
+     "crease": [
+      200,
+      120,
+      200,
+      160
+     ]
+    },
+    {
+     "a": 40,
+     "b": 42,
+     "creaseIdx": 71,
+     "crease": [
+      120,
+      200,
+      160,
+      200
+     ]
+    },
+    {
+     "a": 48,
+     "b": 50,
+     "creaseIdx": 72,
+     "crease": [
+      200,
+      160,
+      200,
+      200
+     ]
+    },
+    {
+     "a": 48,
+     "b": 49,
+     "creaseIdx": 73,
+     "crease": [
+      160,
+      200,
+      200,
+      200
+     ]
+    },
+    {
+     "a": 49,
+     "b": 55,
+     "creaseIdx": 74,
+     "crease": [
+      200,
+      200,
+      200,
+      240
+     ]
+    },
+    {
+     "a": 50,
+     "b": 55,
+     "creaseIdx": 75,
+     "crease": [
+      200,
+      200,
+      240,
+      200
+     ]
+    },
+    {
+     "a": 51,
+     "b": 56,
+     "creaseIdx": 76,
+     "crease": [
+      200,
+      240,
+      200,
+      280
+     ]
+    },
+    {
+     "a": 52,
+     "b": 57,
+     "creaseIdx": 77,
+     "crease": [
+      240,
+      200,
+      280,
+      200
+     ]
+    },
+    {
+     "a": 53,
+     "b": 58,
+     "creaseIdx": 78,
+     "crease": [
+      200,
+      280,
+      200,
+      320
+     ]
+    },
+    {
+     "a": 54,
+     "b": 59,
+     "creaseIdx": 79,
+     "crease": [
+      280,
+      200,
+      320,
+      200
+     ]
+    },
+    {
+     "a": 18,
+     "b": 22,
+     "creaseIdx": 80,
+     "crease": [
+      240,
+      0,
+      240,
+      40
+     ]
+    },
+    {
+     "a": 17,
+     "b": 21,
+     "creaseIdx": 81,
+     "crease": [
+      0,
+      240,
+      40,
+      240
+     ]
+    },
+    {
+     "a": 19,
+     "b": 23,
+     "creaseIdx": 82,
+     "crease": [
+      240,
+      40,
+      240,
+      80
+     ]
+    },
+    {
+     "a": 16,
+     "b": 20,
+     "creaseIdx": 83,
+     "crease": [
+      40,
+      240,
+      80,
+      240
+     ]
+    },
+    {
+     "a": 34,
+     "b": 36,
+     "creaseIdx": 84,
+     "crease": [
+      240,
+      80,
+      240,
+      120
+     ]
+    },
+    {
+     "a": 33,
+     "b": 35,
+     "creaseIdx": 85,
+     "crease": [
+      80,
+      240,
+      120,
+      240
+     ]
+    },
+    {
+     "a": 43,
+     "b": 45,
+     "creaseIdx": 86,
+     "crease": [
+      240,
+      120,
+      240,
+      160
+     ]
+    },
+    {
+     "a": 42,
+     "b": 44,
+     "creaseIdx": 87,
+     "crease": [
+      120,
+      240,
+      160,
+      240
+     ]
+    },
+    {
+     "a": 50,
+     "b": 52,
+     "creaseIdx": 88,
+     "crease": [
+      240,
+      160,
+      240,
+      200
+     ]
+    },
+    {
+     "a": 49,
+     "b": 51,
+     "creaseIdx": 89,
+     "crease": [
+      160,
+      240,
+      200,
+      240
+     ]
+    },
+    {
+     "a": 55,
+     "b": 57,
+     "creaseIdx": 90,
+     "crease": [
+      240,
+      200,
+      240,
+      240
+     ]
+    },
+    {
+     "a": 55,
+     "b": 56,
+     "creaseIdx": 91,
+     "crease": [
+      200,
+      240,
+      240,
+      240
+     ]
+    },
+    {
+     "a": 56,
+     "b": 60,
+     "creaseIdx": 92,
+     "crease": [
+      240,
+      240,
+      240,
+      280
+     ]
+    },
+    {
+     "a": 57,
+     "b": 60,
+     "creaseIdx": 93,
+     "crease": [
+      240,
+      240,
+      280,
+      240
+     ]
+    },
+    {
+     "a": 58,
+     "b": 61,
+     "creaseIdx": 94,
+     "crease": [
+      240,
+      280,
+      240,
+      320
+     ]
+    },
+    {
+     "a": 59,
+     "b": 62,
+     "creaseIdx": 95,
+     "crease": [
+      280,
+      240,
+      320,
+      240
+     ]
+    },
+    {
+     "a": 22,
+     "b": 26,
+     "creaseIdx": 96,
+     "crease": [
+      280,
+      0,
+      280,
+      40
+     ]
+    },
+    {
+     "a": 21,
+     "b": 25,
+     "creaseIdx": 97,
+     "crease": [
+      0,
+      280,
+      40,
+      280
+     ]
+    },
+    {
+     "a": 23,
+     "b": 27,
+     "creaseIdx": 98,
+     "crease": [
+      280,
+      40,
+      280,
+      80
+     ]
+    },
+    {
+     "a": 20,
+     "b": 24,
+     "creaseIdx": 99,
+     "crease": [
+      40,
+      280,
+      80,
+      280
+     ]
+    },
+    {
+     "a": 36,
+     "b": 38,
+     "creaseIdx": 100,
+     "crease": [
+      280,
+      80,
+      280,
+      120
+     ]
+    },
+    {
+     "a": 35,
+     "b": 37,
+     "creaseIdx": 101,
+     "crease": [
+      80,
+      280,
+      120,
+      280
+     ]
+    },
+    {
+     "a": 45,
+     "b": 47,
+     "creaseIdx": 102,
+     "crease": [
+      280,
+      120,
+      280,
+      160
+     ]
+    },
+    {
+     "a": 44,
+     "b": 46,
+     "creaseIdx": 103,
+     "crease": [
+      120,
+      280,
+      160,
+      280
+     ]
+    },
+    {
+     "a": 52,
+     "b": 54,
+     "creaseIdx": 104,
+     "crease": [
+      280,
+      160,
+      280,
+      200
+     ]
+    },
+    {
+     "a": 51,
+     "b": 53,
+     "creaseIdx": 105,
+     "crease": [
+      160,
+      280,
+      200,
+      280
+     ]
+    },
+    {
+     "a": 57,
+     "b": 59,
+     "creaseIdx": 106,
+     "crease": [
+      280,
+      200,
+      280,
+      240
+     ]
+    },
+    {
+     "a": 56,
+     "b": 58,
+     "creaseIdx": 107,
+     "crease": [
+      200,
+      280,
+      240,
+      280
+     ]
+    },
+    {
+     "a": 60,
+     "b": 62,
+     "creaseIdx": 108,
+     "crease": [
+      280,
+      240,
+      280,
+      280
+     ]
+    },
+    {
+     "a": 60,
+     "b": 61,
+     "creaseIdx": 109,
+     "crease": [
+      240,
+      280,
+      280,
+      280
+     ]
+    },
+    {
+     "a": 61,
+     "b": 63,
+     "creaseIdx": 110,
+     "crease": [
+      280,
+      280,
+      280,
+      320
+     ]
+    },
+    {
+     "a": 62,
+     "b": 63,
+     "creaseIdx": 111,
+     "crease": [
+      280,
+      280,
+      320,
+      280
+     ]
+    }
+   ],
+   "defaultBase": 0,
+   "trees": {
+    "base0": [
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": 1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 2,
+      "sign": 1,
+      "crease": [
+       40,
+       40,
+       80,
+       40
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 6,
+      "sign": -1,
+      "crease": [
+       80,
+       0,
+       80,
+       40
+      ]
+     },
+     {
+      "parent": 1,
+      "child": 3,
+      "sign": 1,
+      "crease": [
+       0,
+       40,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 7,
+      "sign": -1,
+      "crease": [
+       80,
+       40,
+       80,
+       80
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 4,
+      "sign": 1,
+      "crease": [
+       40,
+       80,
+       80,
+       80
+      ]
+     },
+     {
+      "parent": 6,
+      "child": 10,
+      "sign": -1,
+      "crease": [
+       120,
+       0,
+       120,
+       40
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 5,
+      "sign": 1,
+      "crease": [
+       0,
+       80,
+       40,
+       80
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 28,
+      "sign": 1,
+      "crease": [
+       80,
+       80,
+       120,
+       80
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 11,
+      "sign": -1,
+      "crease": [
+       120,
+       40,
+       120,
+       80
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 8,
+      "sign": 1,
+      "crease": [
+       40,
+       120,
+       80,
+       120
+      ]
+     },
+     {
+      "parent": 10,
+      "child": 14,
+      "sign": -1,
+      "crease": [
+       160,
+       0,
+       160,
+       40
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 9,
+      "sign": 1,
+      "crease": [
+       0,
+       120,
+       40,
+       120
+      ]
+     },
+     {
+      "parent": 28,
+      "child": 30,
+      "sign": -1,
+      "crease": [
+       120,
+       80,
+       120,
+       120
+      ]
+     },
+     {
+      "parent": 28,
+      "child": 29,
+      "sign": 1,
+      "crease": [
+       80,
+       120,
+       120,
+       120
+      ]
+     },
+     {
+      "parent": 11,
+      "child": 15,
+      "sign": -1,
+      "crease": [
+       160,
+       40,
+       160,
+       80
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 12,
+      "sign": 1,
+      "crease": [
+       40,
+       160,
+       80,
+       160
+      ]
+     },
+     {
+      "parent": 14,
+      "child": 18,
+      "sign": -1,
+      "crease": [
+       200,
+       0,
+       200,
+       40
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 13,
+      "sign": 1,
+      "crease": [
+       0,
+       160,
+       40,
+       160
+      ]
+     },
+     {
+      "parent": 30,
+      "child": 39,
+      "sign": 1,
+      "crease": [
+       120,
+       120,
+       160,
+       120
+      ]
+     },
+     {
+      "parent": 30,
+      "child": 32,
+      "sign": -1,
+      "crease": [
+       160,
+       80,
+       160,
+       120
+      ]
+     },
+     {
+      "parent": 29,
+      "child": 31,
+      "sign": 1,
+      "crease": [
+       80,
+       160,
+       120,
+       160
+      ]
+     },
+     {
+      "parent": 15,
+      "child": 19,
+      "sign": -1,
+      "crease": [
+       200,
+       40,
+       200,
+       80
+      ]
+     },
+     {
+      "parent": 12,
+      "child": 16,
+      "sign": 1,
+      "crease": [
+       40,
+       200,
+       80,
+       200
+      ]
+     },
+     {
+      "parent": 18,
+      "child": 22,
+      "sign": -1,
+      "crease": [
+       240,
+       0,
+       240,
+       40
+      ]
+     },
+     {
+      "parent": 13,
+      "child": 17,
+      "sign": 1,
+      "crease": [
+       0,
+       200,
+       40,
+       200
+      ]
+     },
+     {
+      "parent": 39,
+      "child": 41,
+      "sign": -1,
+      "crease": [
+       160,
+       120,
+       160,
+       160
+      ]
+     },
+     {
+      "parent": 39,
+      "child": 40,
+      "sign": 1,
+      "crease": [
+       120,
+       160,
+       160,
+       160
+      ]
+     },
+     {
+      "parent": 32,
+      "child": 34,
+      "sign": -1,
+      "crease": [
+       200,
+       80,
+       200,
+       120
+      ]
+     },
+     {
+      "parent": 31,
+      "child": 33,
+      "sign": 1,
+      "crease": [
+       80,
+       200,
+       120,
+       200
+      ]
+     },
+     {
+      "parent": 19,
+      "child": 23,
+      "sign": -1,
+      "crease": [
+       240,
+       40,
+       240,
+       80
+      ]
+     },
+     {
+      "parent": 16,
+      "child": 20,
+      "sign": 1,
+      "crease": [
+       40,
+       240,
+       80,
+       240
+      ]
+     },
+     {
+      "parent": 22,
+      "child": 26,
+      "sign": -1,
+      "crease": [
+       280,
+       0,
+       280,
+       40
+      ]
+     },
+     {
+      "parent": 17,
+      "child": 21,
+      "sign": 1,
+      "crease": [
+       0,
+       240,
+       40,
+       240
+      ]
+     },
+     {
+      "parent": 41,
+      "child": 48,
+      "sign": 1,
+      "crease": [
+       160,
+       160,
+       200,
+       160
+      ]
+     },
+     {
+      "parent": 41,
+      "child": 43,
+      "sign": -1,
+      "crease": [
+       200,
+       120,
+       200,
+       160
+      ]
+     },
+     {
+      "parent": 40,
+      "child": 42,
+      "sign": 1,
+      "crease": [
+       120,
+       200,
+       160,
+       200
+      ]
+     },
+     {
+      "parent": 34,
+      "child": 36,
+      "sign": -1,
+      "crease": [
+       240,
+       80,
+       240,
+       120
+      ]
+     },
+     {
+      "parent": 33,
+      "child": 35,
+      "sign": 1,
+      "crease": [
+       80,
+       240,
+       120,
+       240
+      ]
+     },
+     {
+      "parent": 23,
+      "child": 27,
+      "sign": -1,
+      "crease": [
+       280,
+       40,
+       280,
+       80
+      ]
+     },
+     {
+      "parent": 20,
+      "child": 24,
+      "sign": 1,
+      "crease": [
+       40,
+       280,
+       80,
+       280
+      ]
+     },
+     {
+      "parent": 21,
+      "child": 25,
+      "sign": 1,
+      "crease": [
+       0,
+       280,
+       40,
+       280
+      ]
+     },
+     {
+      "parent": 48,
+      "child": 50,
+      "sign": -1,
+      "crease": [
+       200,
+       160,
+       200,
+       200
+      ]
+     },
+     {
+      "parent": 48,
+      "child": 49,
+      "sign": 1,
+      "crease": [
+       160,
+       200,
+       200,
+       200
+      ]
+     },
+     {
+      "parent": 43,
+      "child": 45,
+      "sign": -1,
+      "crease": [
+       240,
+       120,
+       240,
+       160
+      ]
+     },
+     {
+      "parent": 42,
+      "child": 44,
+      "sign": 1,
+      "crease": [
+       120,
+       240,
+       160,
+       240
+      ]
+     },
+     {
+      "parent": 36,
+      "child": 38,
+      "sign": -1,
+      "crease": [
+       280,
+       80,
+       280,
+       120
+      ]
+     },
+     {
+      "parent": 35,
+      "child": 37,
+      "sign": 1,
+      "crease": [
+       80,
+       280,
+       120,
+       280
+      ]
+     },
+     {
+      "parent": 50,
+      "child": 55,
+      "sign": 1,
+      "crease": [
+       200,
+       200,
+       240,
+       200
+      ]
+     },
+     {
+      "parent": 50,
+      "child": 52,
+      "sign": -1,
+      "crease": [
+       240,
+       160,
+       240,
+       200
+      ]
+     },
+     {
+      "parent": 49,
+      "child": 51,
+      "sign": 1,
+      "crease": [
+       160,
+       240,
+       200,
+       240
+      ]
+     },
+     {
+      "parent": 45,
+      "child": 47,
+      "sign": -1,
+      "crease": [
+       280,
+       120,
+       280,
+       160
+      ]
+     },
+     {
+      "parent": 44,
+      "child": 46,
+      "sign": 1,
+      "crease": [
+       120,
+       280,
+       160,
+       280
+      ]
+     },
+     {
+      "parent": 55,
+      "child": 57,
+      "sign": -1,
+      "crease": [
+       240,
+       200,
+       240,
+       240
+      ]
+     },
+     {
+      "parent": 55,
+      "child": 56,
+      "sign": 1,
+      "crease": [
+       200,
+       240,
+       240,
+       240
+      ]
+     },
+     {
+      "parent": 52,
+      "child": 54,
+      "sign": -1,
+      "crease": [
+       280,
+       160,
+       280,
+       200
+      ]
+     },
+     {
+      "parent": 51,
+      "child": 53,
+      "sign": 1,
+      "crease": [
+       160,
+       280,
+       200,
+       280
+      ]
+     },
+     {
+      "parent": 57,
+      "child": 60,
+      "sign": 1,
+      "crease": [
+       240,
+       240,
+       280,
+       240
+      ]
+     },
+     {
+      "parent": 57,
+      "child": 59,
+      "sign": -1,
+      "crease": [
+       280,
+       200,
+       280,
+       240
+      ]
+     },
+     {
+      "parent": 56,
+      "child": 58,
+      "sign": 1,
+      "crease": [
+       200,
+       280,
+       240,
+       280
+      ]
+     },
+     {
+      "parent": 60,
+      "child": 62,
+      "sign": -1,
+      "crease": [
+       280,
+       240,
+       280,
+       280
+      ]
+     },
+     {
+      "parent": 60,
+      "child": 61,
+      "sign": 1,
+      "crease": [
+       240,
+       280,
+       280,
+       280
+      ]
+     },
+     {
+      "parent": 62,
+      "child": 63,
+      "sign": 1,
+      "crease": [
+       280,
+       280,
+       320,
+       280
+      ]
+     }
+    ],
+    "base63": [
+     {
+      "parent": 63,
+      "child": 61,
+      "sign": 1,
+      "crease": [
+       280,
+       280,
+       280,
+       320
+      ]
+     },
+     {
+      "parent": 63,
+      "child": 62,
+      "sign": -1,
+      "crease": [
+       280,
+       280,
+       320,
+       280
+      ]
+     },
+     {
+      "parent": 61,
+      "child": 58,
+      "sign": 1,
+      "crease": [
+       240,
+       280,
+       240,
+       320
+      ]
+     },
+     {
+      "parent": 61,
+      "child": 60,
+      "sign": -1,
+      "crease": [
+       240,
+       280,
+       280,
+       280
+      ]
+     },
+     {
+      "parent": 62,
+      "child": 59,
+      "sign": -1,
+      "crease": [
+       280,
+       240,
+       320,
+       240
+      ]
+     },
+     {
+      "parent": 58,
+      "child": 53,
+      "sign": 1,
+      "crease": [
+       200,
+       280,
+       200,
+       320
+      ]
+     },
+     {
+      "parent": 58,
+      "child": 56,
+      "sign": -1,
+      "crease": [
+       200,
+       280,
+       240,
+       280
+      ]
+     },
+     {
+      "parent": 60,
+      "child": 57,
+      "sign": -1,
+      "crease": [
+       240,
+       240,
+       280,
+       240
+      ]
+     },
+     {
+      "parent": 59,
+      "child": 54,
+      "sign": -1,
+      "crease": [
+       280,
+       200,
+       320,
+       200
+      ]
+     },
+     {
+      "parent": 53,
+      "child": 46,
+      "sign": 1,
+      "crease": [
+       160,
+       280,
+       160,
+       320
+      ]
+     },
+     {
+      "parent": 53,
+      "child": 51,
+      "sign": -1,
+      "crease": [
+       160,
+       280,
+       200,
+       280
+      ]
+     },
+     {
+      "parent": 56,
+      "child": 55,
+      "sign": -1,
+      "crease": [
+       200,
+       240,
+       240,
+       240
+      ]
+     },
+     {
+      "parent": 57,
+      "child": 52,
+      "sign": -1,
+      "crease": [
+       240,
+       200,
+       280,
+       200
+      ]
+     },
+     {
+      "parent": 54,
+      "child": 47,
+      "sign": -1,
+      "crease": [
+       280,
+       160,
+       320,
+       160
+      ]
+     },
+     {
+      "parent": 46,
+      "child": 37,
+      "sign": 1,
+      "crease": [
+       120,
+       280,
+       120,
+       320
+      ]
+     },
+     {
+      "parent": 46,
+      "child": 44,
+      "sign": -1,
+      "crease": [
+       120,
+       280,
+       160,
+       280
+      ]
+     },
+     {
+      "parent": 51,
+      "child": 49,
+      "sign": -1,
+      "crease": [
+       160,
+       240,
+       200,
+       240
+      ]
+     },
+     {
+      "parent": 55,
+      "child": 50,
+      "sign": -1,
+      "crease": [
+       200,
+       200,
+       240,
+       200
+      ]
+     },
+     {
+      "parent": 52,
+      "child": 45,
+      "sign": -1,
+      "crease": [
+       240,
+       160,
+       280,
+       160
+      ]
+     },
+     {
+      "parent": 47,
+      "child": 38,
+      "sign": -1,
+      "crease": [
+       280,
+       120,
+       320,
+       120
+      ]
+     },
+     {
+      "parent": 37,
+      "child": 24,
+      "sign": 1,
+      "crease": [
+       80,
+       280,
+       80,
+       320
+      ]
+     },
+     {
+      "parent": 37,
+      "child": 35,
+      "sign": -1,
+      "crease": [
+       80,
+       280,
+       120,
+       280
+      ]
+     },
+     {
+      "parent": 44,
+      "child": 42,
+      "sign": -1,
+      "crease": [
+       120,
+       240,
+       160,
+       240
+      ]
+     },
+     {
+      "parent": 49,
+      "child": 48,
+      "sign": -1,
+      "crease": [
+       160,
+       200,
+       200,
+       200
+      ]
+     },
+     {
+      "parent": 50,
+      "child": 43,
+      "sign": -1,
+      "crease": [
+       200,
+       160,
+       240,
+       160
+      ]
+     },
+     {
+      "parent": 45,
+      "child": 36,
+      "sign": -1,
+      "crease": [
+       240,
+       120,
+       280,
+       120
+      ]
+     },
+     {
+      "parent": 38,
+      "child": 27,
+      "sign": -1,
+      "crease": [
+       280,
+       80,
+       320,
+       80
+      ]
+     },
+     {
+      "parent": 24,
+      "child": 25,
+      "sign": 1,
+      "crease": [
+       40,
+       280,
+       40,
+       320
+      ]
+     },
+     {
+      "parent": 24,
+      "child": 20,
+      "sign": -1,
+      "crease": [
+       40,
+       280,
+       80,
+       280
+      ]
+     },
+     {
+      "parent": 35,
+      "child": 33,
+      "sign": -1,
+      "crease": [
+       80,
+       240,
+       120,
+       240
+      ]
+     },
+     {
+      "parent": 42,
+      "child": 40,
+      "sign": -1,
+      "crease": [
+       120,
+       200,
+       160,
+       200
+      ]
+     },
+     {
+      "parent": 48,
+      "child": 41,
+      "sign": -1,
+      "crease": [
+       160,
+       160,
+       200,
+       160
+      ]
+     },
+     {
+      "parent": 43,
+      "child": 34,
+      "sign": -1,
+      "crease": [
+       200,
+       120,
+       240,
+       120
+      ]
+     },
+     {
+      "parent": 36,
+      "child": 23,
+      "sign": -1,
+      "crease": [
+       240,
+       80,
+       280,
+       80
+      ]
+     },
+     {
+      "parent": 27,
+      "child": 26,
+      "sign": -1,
+      "crease": [
+       280,
+       40,
+       320,
+       40
+      ]
+     },
+     {
+      "parent": 25,
+      "child": 21,
+      "sign": -1,
+      "crease": [
+       0,
+       280,
+       40,
+       280
+      ]
+     },
+     {
+      "parent": 20,
+      "child": 16,
+      "sign": -1,
+      "crease": [
+       40,
+       240,
+       80,
+       240
+      ]
+     },
+     {
+      "parent": 33,
+      "child": 31,
+      "sign": -1,
+      "crease": [
+       80,
+       200,
+       120,
+       200
+      ]
+     },
+     {
+      "parent": 40,
+      "child": 39,
+      "sign": -1,
+      "crease": [
+       120,
+       160,
+       160,
+       160
+      ]
+     },
+     {
+      "parent": 41,
+      "child": 32,
+      "sign": -1,
+      "crease": [
+       160,
+       120,
+       200,
+       120
+      ]
+     },
+     {
+      "parent": 34,
+      "child": 19,
+      "sign": -1,
+      "crease": [
+       200,
+       80,
+       240,
+       80
+      ]
+     },
+     {
+      "parent": 23,
+      "child": 22,
+      "sign": -1,
+      "crease": [
+       240,
+       40,
+       280,
+       40
+      ]
+     },
+     {
+      "parent": 21,
+      "child": 17,
+      "sign": -1,
+      "crease": [
+       0,
+       240,
+       40,
+       240
+      ]
+     },
+     {
+      "parent": 16,
+      "child": 12,
+      "sign": -1,
+      "crease": [
+       40,
+       200,
+       80,
+       200
+      ]
+     },
+     {
+      "parent": 31,
+      "child": 29,
+      "sign": -1,
+      "crease": [
+       80,
+       160,
+       120,
+       160
+      ]
+     },
+     {
+      "parent": 39,
+      "child": 30,
+      "sign": -1,
+      "crease": [
+       120,
+       120,
+       160,
+       120
+      ]
+     },
+     {
+      "parent": 32,
+      "child": 15,
+      "sign": -1,
+      "crease": [
+       160,
+       80,
+       200,
+       80
+      ]
+     },
+     {
+      "parent": 19,
+      "child": 18,
+      "sign": -1,
+      "crease": [
+       200,
+       40,
+       240,
+       40
+      ]
+     },
+     {
+      "parent": 17,
+      "child": 13,
+      "sign": -1,
+      "crease": [
+       0,
+       200,
+       40,
+       200
+      ]
+     },
+     {
+      "parent": 12,
+      "child": 8,
+      "sign": -1,
+      "crease": [
+       40,
+       160,
+       80,
+       160
+      ]
+     },
+     {
+      "parent": 29,
+      "child": 28,
+      "sign": -1,
+      "crease": [
+       80,
+       120,
+       120,
+       120
+      ]
+     },
+     {
+      "parent": 30,
+      "child": 11,
+      "sign": -1,
+      "crease": [
+       120,
+       80,
+       160,
+       80
+      ]
+     },
+     {
+      "parent": 15,
+      "child": 14,
+      "sign": -1,
+      "crease": [
+       160,
+       40,
+       200,
+       40
+      ]
+     },
+     {
+      "parent": 13,
+      "child": 9,
+      "sign": -1,
+      "crease": [
+       0,
+       160,
+       40,
+       160
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 4,
+      "sign": -1,
+      "crease": [
+       40,
+       120,
+       80,
+       120
+      ]
+     },
+     {
+      "parent": 28,
+      "child": 7,
+      "sign": -1,
+      "crease": [
+       80,
+       80,
+       120,
+       80
+      ]
+     },
+     {
+      "parent": 11,
+      "child": 10,
+      "sign": -1,
+      "crease": [
+       120,
+       40,
+       160,
+       40
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 5,
+      "sign": -1,
+      "crease": [
+       0,
+       120,
+       40,
+       120
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 2,
+      "sign": -1,
+      "crease": [
+       40,
+       80,
+       80,
+       80
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 6,
+      "sign": -1,
+      "crease": [
+       80,
+       40,
+       120,
+       40
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 3,
+      "sign": -1,
+      "crease": [
+       0,
+       80,
+       40,
+       80
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 0,
+      "sign": -1,
+      "crease": [
+       40,
+       40,
+       80,
+       40
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       0,
+       40,
+       40,
+       40
+      ]
+     }
+    ]
+   },
+   "validate": {
+    "problems": []
+   },
+   "topology": {
+    "inputSegments": 116,
+    "splitSegments": 144,
+    "iterations": 29
+   },
+   "logSummary": {
+    "faces": 65,
+    "connectivity": "Connectivity filter: keeping 64 of 65 panels from largest crease-connected component",
+    "panelsAfterShell": 65
+   }
+  },
+  "rejilla-lineas-completas-3x3": {
+   "desc": "Rejilla 3×3 con creases de largo completo",
+   "tags": [
+    "KI-09"
+   ],
+   "panels": [
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      20,
+      20
+     ]
+    },
+    {
+     "area": 14400,
+     "vertices": 12,
+     "centroid": [
+      60,
+      60
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      60,
+      20
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      100,
+      20
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      100,
+      60
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      60,
+      100
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      20,
+      100
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      20,
+      60
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      60,
+      60
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      100,
+      100
+     ]
+    }
+   ],
+   "nPanels": 10,
+   "areaSum": 28800,
+   "creaseEdges": 4,
+   "adjacency": [
+    {
+     "a": 0,
+     "b": 2,
+     "creaseIdx": 0,
+     "crease": [
+      40,
+      0,
+      40,
+      40
+     ]
+    },
+    {
+     "a": 0,
+     "b": 5,
+     "creaseIdx": 0,
+     "crease": [
+      40,
+      0,
+      40,
+      40
+     ]
+    },
+    {
+     "a": 0,
+     "b": 6,
+     "creaseIdx": 0,
+     "crease": [
+      40,
+      0,
+      40,
+      40
+     ]
+    },
+    {
+     "a": 0,
+     "b": 7,
+     "creaseIdx": 0,
+     "crease": [
+      40,
+      0,
+      40,
+      40
+     ]
+    },
+    {
+     "a": 0,
+     "b": 8,
+     "creaseIdx": 0,
+     "crease": [
+      40,
+      0,
+      40,
+      40
+     ]
+    },
+    {
+     "a": 2,
+     "b": 5,
+     "creaseIdx": 0,
+     "crease": [
+      40,
+      0,
+      40,
+      40
+     ]
+    },
+    {
+     "a": 2,
+     "b": 6,
+     "creaseIdx": 0,
+     "crease": [
+      40,
+      0,
+      40,
+      40
+     ]
+    },
+    {
+     "a": 2,
+     "b": 7,
+     "creaseIdx": 0,
+     "crease": [
+      40,
+      0,
+      40,
+      40
+     ]
+    },
+    {
+     "a": 2,
+     "b": 8,
+     "creaseIdx": 0,
+     "crease": [
+      40,
+      0,
+      40,
+      40
+     ]
+    },
+    {
+     "a": 5,
+     "b": 6,
+     "creaseIdx": 0,
+     "crease": [
+      40,
+      80,
+      40,
+      120
+     ]
+    },
+    {
+     "a": 5,
+     "b": 7,
+     "creaseIdx": 0,
+     "crease": [
+      40,
+      80,
+      40,
+      120
+     ]
+    },
+    {
+     "a": 5,
+     "b": 8,
+     "creaseIdx": 0,
+     "crease": [
+      40,
+      80,
+      40,
+      120
+     ]
+    },
+    {
+     "a": 6,
+     "b": 7,
+     "creaseIdx": 0,
+     "crease": [
+      40,
+      80,
+      40,
+      120
+     ]
+    },
+    {
+     "a": 6,
+     "b": 8,
+     "creaseIdx": 0,
+     "crease": [
+      40,
+      80,
+      40,
+      120
+     ]
+    },
+    {
+     "a": 7,
+     "b": 8,
+     "creaseIdx": 0,
+     "crease": [
+      40,
+      40,
+      40,
+      80
+     ]
+    },
+    {
+     "a": 0,
+     "b": 2,
+     "creaseIdx": 1,
+     "crease": [
+      0,
+      40,
+      40,
+      40
+     ]
+    },
+    {
+     "a": 0,
+     "b": 3,
+     "creaseIdx": 1,
+     "crease": [
+      0,
+      40,
+      40,
+      40
+     ]
+    },
+    {
+     "a": 0,
+     "b": 4,
+     "creaseIdx": 1,
+     "crease": [
+      0,
+      40,
+      40,
+      40
+     ]
+    },
+    {
+     "a": 0,
+     "b": 7,
+     "creaseIdx": 1,
+     "crease": [
+      0,
+      40,
+      40,
+      40
+     ]
+    },
+    {
+     "a": 0,
+     "b": 8,
+     "creaseIdx": 1,
+     "crease": [
+      0,
+      40,
+      40,
+      40
+     ]
+    },
+    {
+     "a": 2,
+     "b": 3,
+     "creaseIdx": 1,
+     "crease": [
+      40,
+      40,
+      80,
+      40
+     ]
+    },
+    {
+     "a": 2,
+     "b": 4,
+     "creaseIdx": 1,
+     "crease": [
+      40,
+      40,
+      80,
+      40
+     ]
+    },
+    {
+     "a": 2,
+     "b": 7,
+     "creaseIdx": 1,
+     "crease": [
+      40,
+      40,
+      80,
+      40
+     ]
+    },
+    {
+     "a": 2,
+     "b": 8,
+     "creaseIdx": 1,
+     "crease": [
+      40,
+      40,
+      80,
+      40
+     ]
+    },
+    {
+     "a": 3,
+     "b": 4,
+     "creaseIdx": 1,
+     "crease": [
+      80,
+      40,
+      120,
+      40
+     ]
+    },
+    {
+     "a": 3,
+     "b": 7,
+     "creaseIdx": 1,
+     "crease": [
+      80,
+      40,
+      120,
+      40
+     ]
+    },
+    {
+     "a": 3,
+     "b": 8,
+     "creaseIdx": 1,
+     "crease": [
+      80,
+      40,
+      120,
+      40
+     ]
+    },
+    {
+     "a": 4,
+     "b": 7,
+     "creaseIdx": 1,
+     "crease": [
+      80,
+      40,
+      120,
+      40
+     ]
+    },
+    {
+     "a": 4,
+     "b": 8,
+     "creaseIdx": 1,
+     "crease": [
+      80,
+      40,
+      120,
+      40
+     ]
+    },
+    {
+     "a": 7,
+     "b": 8,
+     "creaseIdx": 1,
+     "crease": [
+      0,
+      40,
+      40,
+      40
+     ]
+    },
+    {
+     "a": 2,
+     "b": 3,
+     "creaseIdx": 2,
+     "crease": [
+      80,
+      0,
+      80,
+      40
+     ]
+    },
+    {
+     "a": 2,
+     "b": 4,
+     "creaseIdx": 2,
+     "crease": [
+      80,
+      0,
+      80,
+      40
+     ]
+    },
+    {
+     "a": 2,
+     "b": 5,
+     "creaseIdx": 2,
+     "crease": [
+      80,
+      0,
+      80,
+      40
+     ]
+    },
+    {
+     "a": 2,
+     "b": 8,
+     "creaseIdx": 2,
+     "crease": [
+      80,
+      0,
+      80,
+      40
+     ]
+    },
+    {
+     "a": 2,
+     "b": 9,
+     "creaseIdx": 2,
+     "crease": [
+      80,
+      0,
+      80,
+      40
+     ]
+    },
+    {
+     "a": 3,
+     "b": 4,
+     "creaseIdx": 2,
+     "crease": [
+      80,
+      0,
+      80,
+      40
+     ]
+    },
+    {
+     "a": 3,
+     "b": 5,
+     "creaseIdx": 2,
+     "crease": [
+      80,
+      0,
+      80,
+      40
+     ]
+    },
+    {
+     "a": 3,
+     "b": 8,
+     "creaseIdx": 2,
+     "crease": [
+      80,
+      0,
+      80,
+      40
+     ]
+    },
+    {
+     "a": 3,
+     "b": 9,
+     "creaseIdx": 2,
+     "crease": [
+      80,
+      0,
+      80,
+      40
+     ]
+    },
+    {
+     "a": 4,
+     "b": 5,
+     "creaseIdx": 2,
+     "crease": [
+      80,
+      40,
+      80,
+      80
+     ]
+    },
+    {
+     "a": 4,
+     "b": 8,
+     "creaseIdx": 2,
+     "crease": [
+      80,
+      40,
+      80,
+      80
+     ]
+    },
+    {
+     "a": 4,
+     "b": 9,
+     "creaseIdx": 2,
+     "crease": [
+      80,
+      40,
+      80,
+      80
+     ]
+    },
+    {
+     "a": 5,
+     "b": 8,
+     "creaseIdx": 2,
+     "crease": [
+      80,
+      80,
+      80,
+      120
+     ]
+    },
+    {
+     "a": 5,
+     "b": 9,
+     "creaseIdx": 2,
+     "crease": [
+      80,
+      80,
+      80,
+      120
+     ]
+    },
+    {
+     "a": 8,
+     "b": 9,
+     "creaseIdx": 2,
+     "crease": [
+      80,
+      40,
+      80,
+      80
+     ]
+    },
+    {
+     "a": 4,
+     "b": 5,
+     "creaseIdx": 3,
+     "crease": [
+      80,
+      80,
+      120,
+      80
+     ]
+    },
+    {
+     "a": 4,
+     "b": 6,
+     "creaseIdx": 3,
+     "crease": [
+      80,
+      80,
+      120,
+      80
+     ]
+    },
+    {
+     "a": 4,
+     "b": 7,
+     "creaseIdx": 3,
+     "crease": [
+      80,
+      80,
+      120,
+      80
+     ]
+    },
+    {
+     "a": 4,
+     "b": 8,
+     "creaseIdx": 3,
+     "crease": [
+      80,
+      80,
+      120,
+      80
+     ]
+    },
+    {
+     "a": 4,
+     "b": 9,
+     "creaseIdx": 3,
+     "crease": [
+      80,
+      80,
+      120,
+      80
+     ]
+    },
+    {
+     "a": 5,
+     "b": 6,
+     "creaseIdx": 3,
+     "crease": [
+      40,
+      80,
+      80,
+      80
+     ]
+    },
+    {
+     "a": 5,
+     "b": 7,
+     "creaseIdx": 3,
+     "crease": [
+      40,
+      80,
+      80,
+      80
+     ]
+    },
+    {
+     "a": 5,
+     "b": 8,
+     "creaseIdx": 3,
+     "crease": [
+      40,
+      80,
+      80,
+      80
+     ]
+    },
+    {
+     "a": 5,
+     "b": 9,
+     "creaseIdx": 3,
+     "crease": [
+      40,
+      80,
+      80,
+      80
+     ]
+    },
+    {
+     "a": 6,
+     "b": 7,
+     "creaseIdx": 3,
+     "crease": [
+      0,
+      80,
+      40,
+      80
+     ]
+    },
+    {
+     "a": 6,
+     "b": 8,
+     "creaseIdx": 3,
+     "crease": [
+      0,
+      80,
+      40,
+      80
+     ]
+    },
+    {
+     "a": 6,
+     "b": 9,
+     "creaseIdx": 3,
+     "crease": [
+      0,
+      80,
+      40,
+      80
+     ]
+    },
+    {
+     "a": 7,
+     "b": 8,
+     "creaseIdx": 3,
+     "crease": [
+      0,
+      80,
+      40,
+      80
+     ]
+    },
+    {
+     "a": 7,
+     "b": 9,
+     "creaseIdx": 3,
+     "crease": [
+      0,
+      80,
+      40,
+      80
+     ]
+    },
+    {
+     "a": 8,
+     "b": 9,
+     "creaseIdx": 3,
+     "crease": [
+      40,
+      80,
+      80,
+      80
+     ]
+    }
+   ],
+   "defaultBase": 1,
+   "trees": {
+    "base0": [
+     {
+      "parent": 0,
+      "child": 2,
+      "sign": -1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 5,
+      "sign": -1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 6,
+      "sign": 1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 7,
+      "sign": 1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 8,
+      "sign": -1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 3,
+      "sign": -1,
+      "crease": [
+       0,
+       40,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 4,
+      "sign": 1,
+      "crease": [
+       0,
+       40,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 9,
+      "sign": -1,
+      "crease": [
+       80,
+       0,
+       80,
+       40
+      ]
+     }
+    ],
+    "base1": [],
+    "base2": [
+     {
+      "parent": 2,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 5,
+      "sign": -1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 6,
+      "sign": 1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 7,
+      "sign": 1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 8,
+      "sign": -1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 3,
+      "sign": -1,
+      "crease": [
+       40,
+       40,
+       80,
+       40
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 4,
+      "sign": 1,
+      "crease": [
+       40,
+       40,
+       80,
+       40
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 9,
+      "sign": -1,
+      "crease": [
+       80,
+       0,
+       80,
+       40
+      ]
+     }
+    ],
+    "base3": [
+     {
+      "parent": 3,
+      "child": 0,
+      "sign": -1,
+      "crease": [
+       0,
+       40,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 2,
+      "sign": -1,
+      "crease": [
+       40,
+       40,
+       80,
+       40
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 4,
+      "sign": 1,
+      "crease": [
+       80,
+       40,
+       120,
+       40
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 7,
+      "sign": 1,
+      "crease": [
+       80,
+       40,
+       120,
+       40
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 8,
+      "sign": 1,
+      "crease": [
+       80,
+       40,
+       120,
+       40
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 5,
+      "sign": 1,
+      "crease": [
+       80,
+       0,
+       80,
+       40
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 9,
+      "sign": -1,
+      "crease": [
+       80,
+       0,
+       80,
+       40
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 6,
+      "sign": 1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     }
+    ],
+    "base4": [
+     {
+      "parent": 4,
+      "child": 0,
+      "sign": -1,
+      "crease": [
+       0,
+       40,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 2,
+      "sign": -1,
+      "crease": [
+       40,
+       40,
+       80,
+       40
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 3,
+      "sign": -1,
+      "crease": [
+       80,
+       40,
+       120,
+       40
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 7,
+      "sign": 1,
+      "crease": [
+       80,
+       40,
+       120,
+       40
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 8,
+      "sign": 1,
+      "crease": [
+       80,
+       40,
+       120,
+       40
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 5,
+      "sign": 1,
+      "crease": [
+       80,
+       40,
+       80,
+       80
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 9,
+      "sign": -1,
+      "crease": [
+       80,
+       40,
+       80,
+       80
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 6,
+      "sign": 1,
+      "crease": [
+       80,
+       80,
+       120,
+       80
+      ]
+     }
+    ],
+    "base5": [
+     {
+      "parent": 5,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 2,
+      "sign": -1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 6,
+      "sign": 1,
+      "crease": [
+       40,
+       80,
+       40,
+       120
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 7,
+      "sign": 1,
+      "crease": [
+       40,
+       80,
+       40,
+       120
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 8,
+      "sign": -1,
+      "crease": [
+       40,
+       80,
+       40,
+       120
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 3,
+      "sign": -1,
+      "crease": [
+       80,
+       0,
+       80,
+       40
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 4,
+      "sign": -1,
+      "crease": [
+       80,
+       40,
+       80,
+       80
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 9,
+      "sign": -1,
+      "crease": [
+       80,
+       80,
+       80,
+       120
+      ]
+     }
+    ],
+    "base6": [
+     {
+      "parent": 6,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 6,
+      "child": 2,
+      "sign": -1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 6,
+      "child": 5,
+      "sign": -1,
+      "crease": [
+       40,
+       80,
+       40,
+       120
+      ]
+     },
+     {
+      "parent": 6,
+      "child": 7,
+      "sign": 1,
+      "crease": [
+       40,
+       80,
+       40,
+       120
+      ]
+     },
+     {
+      "parent": 6,
+      "child": 8,
+      "sign": -1,
+      "crease": [
+       40,
+       80,
+       40,
+       120
+      ]
+     },
+     {
+      "parent": 6,
+      "child": 4,
+      "sign": -1,
+      "crease": [
+       80,
+       80,
+       120,
+       80
+      ]
+     },
+     {
+      "parent": 6,
+      "child": 9,
+      "sign": 1,
+      "crease": [
+       0,
+       80,
+       40,
+       80
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 3,
+      "sign": -1,
+      "crease": [
+       0,
+       40,
+       40,
+       40
+      ]
+     }
+    ],
+    "base7": [
+     {
+      "parent": 7,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 2,
+      "sign": -1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 5,
+      "sign": -1,
+      "crease": [
+       40,
+       80,
+       40,
+       120
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 6,
+      "sign": 1,
+      "crease": [
+       40,
+       80,
+       40,
+       120
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 8,
+      "sign": -1,
+      "crease": [
+       40,
+       40,
+       40,
+       80
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 3,
+      "sign": -1,
+      "crease": [
+       80,
+       40,
+       120,
+       40
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 4,
+      "sign": 1,
+      "crease": [
+       80,
+       40,
+       120,
+       40
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 9,
+      "sign": 1,
+      "crease": [
+       0,
+       80,
+       40,
+       80
+      ]
+     }
+    ],
+    "base8": [
+     {
+      "parent": 8,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 2,
+      "sign": -1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 5,
+      "sign": -1,
+      "crease": [
+       40,
+       80,
+       40,
+       120
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 6,
+      "sign": 1,
+      "crease": [
+       40,
+       80,
+       40,
+       120
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 7,
+      "sign": 1,
+      "crease": [
+       40,
+       40,
+       40,
+       80
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 3,
+      "sign": -1,
+      "crease": [
+       80,
+       40,
+       120,
+       40
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 4,
+      "sign": 1,
+      "crease": [
+       80,
+       40,
+       120,
+       40
+      ]
+     },
+     {
+      "parent": 8,
+      "child": 9,
+      "sign": -1,
+      "crease": [
+       80,
+       40,
+       80,
+       80
+      ]
+     }
+    ],
+    "base9": [
+     {
+      "parent": 9,
+      "child": 2,
+      "sign": 1,
+      "crease": [
+       80,
+       0,
+       80,
+       40
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 3,
+      "sign": -1,
+      "crease": [
+       80,
+       0,
+       80,
+       40
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 4,
+      "sign": -1,
+      "crease": [
+       80,
+       40,
+       80,
+       80
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 5,
+      "sign": 1,
+      "crease": [
+       80,
+       80,
+       80,
+       120
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 8,
+      "sign": 1,
+      "crease": [
+       80,
+       40,
+       80,
+       80
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 6,
+      "sign": 1,
+      "crease": [
+       0,
+       80,
+       40,
+       80
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 7,
+      "sign": -1,
+      "crease": [
+       0,
+       80,
+       40,
+       80
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     }
+    ]
+   },
+   "validate": {
+    "problems": []
+   },
+   "topology": {
+    "inputSegments": 8,
+    "splitSegments": 24,
+    "iterations": 13
+   },
+   "logSummary": {
+    "faces": 10,
+    "connectivity": "Connectivity filter: no crease-connected components found, keeping shell-filtered panels",
+    "panelsAfterShell": 10
+   }
+  },
+  "rejilla-4x4-densa-25": {
+   "desc": "Rejilla 4×4 con 25 puntos colineales por arista",
+   "tags": [
+    "KI-08"
+   ],
+   "panels": [
+    {
+     "area": 1600,
+     "vertices": 16,
+     "centroid": [
+      20,
+      20
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 10,
+     "centroid": [
+      60,
+      20
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 10,
+     "centroid": [
+      100,
+      20
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 16,
+     "centroid": [
+      140,
+      20
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 10,
+     "centroid": [
+      140,
+      60
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 10,
+     "centroid": [
+      140,
+      100
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 16,
+     "centroid": [
+      140,
+      140
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 10,
+     "centroid": [
+      100,
+      140
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 10,
+     "centroid": [
+      60,
+      140
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 16,
+     "centroid": [
+      20,
+      140
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 10,
+     "centroid": [
+      20,
+      100
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 10,
+     "centroid": [
+      20,
+      60
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      60,
+      60
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      60,
+      100
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      100,
+      60
+     ]
+    },
+    {
+     "area": 1600,
+     "vertices": 4,
+     "centroid": [
+      100,
+      100
+     ]
+    }
+   ],
+   "nPanels": 16,
+   "areaSum": 25600,
+   "creaseEdges": 24,
+   "adjacency": [
+    {
+     "a": 0,
+     "b": 1,
+     "creaseIdx": 0,
+     "crease": [
+      40,
+      0,
+      40,
+      40
+     ]
+    },
+    {
+     "a": 0,
+     "b": 11,
+     "creaseIdx": 1,
+     "crease": [
+      0,
+      40,
+      40,
+      40
+     ]
+    },
+    {
+     "a": 11,
+     "b": 12,
+     "creaseIdx": 2,
+     "crease": [
+      40,
+      40,
+      40,
+      80
+     ]
+    },
+    {
+     "a": 1,
+     "b": 12,
+     "creaseIdx": 3,
+     "crease": [
+      40,
+      40,
+      80,
+      40
+     ]
+    },
+    {
+     "a": 10,
+     "b": 13,
+     "creaseIdx": 4,
+     "crease": [
+      40,
+      80,
+      40,
+      120
+     ]
+    },
+    {
+     "a": 2,
+     "b": 14,
+     "creaseIdx": 5,
+     "crease": [
+      80,
+      40,
+      120,
+      40
+     ]
+    },
+    {
+     "a": 8,
+     "b": 9,
+     "creaseIdx": 6,
+     "crease": [
+      40,
+      120,
+      40,
+      160
+     ]
+    },
+    {
+     "a": 3,
+     "b": 4,
+     "creaseIdx": 7,
+     "crease": [
+      120,
+      40,
+      160,
+      40
+     ]
+    },
+    {
+     "a": 1,
+     "b": 2,
+     "creaseIdx": 8,
+     "crease": [
+      80,
+      0,
+      80,
+      40
+     ]
+    },
+    {
+     "a": 10,
+     "b": 11,
+     "creaseIdx": 9,
+     "crease": [
+      0,
+      80,
+      40,
+      80
+     ]
+    },
+    {
+     "a": 12,
+     "b": 14,
+     "creaseIdx": 10,
+     "crease": [
+      80,
+      40,
+      80,
+      80
+     ]
+    },
+    {
+     "a": 12,
+     "b": 13,
+     "creaseIdx": 11,
+     "crease": [
+      40,
+      80,
+      80,
+      80
+     ]
+    },
+    {
+     "a": 13,
+     "b": 15,
+     "creaseIdx": 12,
+     "crease": [
+      80,
+      80,
+      80,
+      120
+     ]
+    },
+    {
+     "a": 14,
+     "b": 15,
+     "creaseIdx": 13,
+     "crease": [
+      80,
+      80,
+      120,
+      80
+     ]
+    },
+    {
+     "a": 7,
+     "b": 8,
+     "creaseIdx": 14,
+     "crease": [
+      80,
+      120,
+      80,
+      160
+     ]
+    },
+    {
+     "a": 4,
+     "b": 5,
+     "creaseIdx": 15,
+     "crease": [
+      120,
+      80,
+      160,
+      80
+     ]
+    },
+    {
+     "a": 2,
+     "b": 3,
+     "creaseIdx": 16,
+     "crease": [
+      120,
+      0,
+      120,
+      40
+     ]
+    },
+    {
+     "a": 9,
+     "b": 10,
+     "creaseIdx": 17,
+     "crease": [
+      0,
+      120,
+      40,
+      120
+     ]
+    },
+    {
+     "a": 4,
+     "b": 14,
+     "creaseIdx": 18,
+     "crease": [
+      120,
+      40,
+      120,
+      80
+     ]
+    },
+    {
+     "a": 8,
+     "b": 13,
+     "creaseIdx": 19,
+     "crease": [
+      40,
+      120,
+      80,
+      120
+     ]
+    },
+    {
+     "a": 5,
+     "b": 15,
+     "creaseIdx": 20,
+     "crease": [
+      120,
+      80,
+      120,
+      120
+     ]
+    },
+    {
+     "a": 7,
+     "b": 15,
+     "creaseIdx": 21,
+     "crease": [
+      80,
+      120,
+      120,
+      120
+     ]
+    },
+    {
+     "a": 6,
+     "b": 7,
+     "creaseIdx": 22,
+     "crease": [
+      120,
+      120,
+      120,
+      160
+     ]
+    },
+    {
+     "a": 5,
+     "b": 6,
+     "creaseIdx": 23,
+     "crease": [
+      120,
+      120,
+      160,
+      120
+     ]
+    }
+   ],
+   "defaultBase": 0,
+   "trees": {
+    "base0": [
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       40,
+       0,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 11,
+      "sign": 1,
+      "crease": [
+       0,
+       40,
+       40,
+       40
+      ]
+     },
+     {
+      "parent": 1,
+      "child": 12,
+      "sign": 1,
+      "crease": [
+       40,
+       40,
+       80,
+       40
+      ]
+     },
+     {
+      "parent": 1,
+      "child": 2,
+      "sign": -1,
+      "crease": [
+       80,
+       0,
+       80,
+       40
+      ]
+     },
+     {
+      "parent": 11,
+      "child": 10,
+      "sign": 1,
+      "crease": [
+       0,
+       80,
+       40,
+       80
+      ]
+     },
+     {
+      "parent": 12,
+      "child": 14,
+      "sign": -1,
+      "crease": [
+       80,
+       40,
+       80,
+       80
+      ]
+     },
+     {
+      "parent": 12,
+      "child": 13,
+      "sign": 1,
+      "crease": [
+       40,
+       80,
+       80,
+       80
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 3,
+      "sign": -1,
+      "crease": [
+       120,
+       0,
+       120,
+       40
+      ]
+     },
+     {
+      "parent": 10,
+      "child": 9,
+      "sign": 1,
+      "crease": [
+       0,
+       120,
+       40,
+       120
+      ]
+     },
+     {
+      "parent": 14,
+      "child": 15,
+      "sign": 1,
+      "crease": [
+       80,
+       80,
+       120,
+       80
+      ]
+     },
+     {
+      "parent": 14,
+      "child": 4,
+      "sign": -1,
+      "crease": [
+       120,
+       40,
+       120,
+       80
+      ]
+     },
+     {
+      "parent": 13,
+      "child": 8,
+      "sign": 1,
+      "crease": [
+       40,
+       120,
+       80,
+       120
+      ]
+     },
+     {
+      "parent": 15,
+      "child": 5,
+      "sign": -1,
+      "crease": [
+       120,
+       80,
+       120,
+       120
+      ]
+     },
+     {
+      "parent": 15,
+      "child": 7,
+      "sign": 1,
+      "crease": [
+       80,
+       120,
+       120,
+       120
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 6,
+      "sign": 1,
+      "crease": [
+       120,
+       120,
+       160,
+       120
+      ]
+     }
+    ],
+    "base15": [
+     {
+      "parent": 15,
+      "child": 13,
+      "sign": 1,
+      "crease": [
+       80,
+       80,
+       80,
+       120
+      ]
+     },
+     {
+      "parent": 15,
+      "child": 14,
+      "sign": -1,
+      "crease": [
+       80,
+       80,
+       120,
+       80
+      ]
+     },
+     {
+      "parent": 15,
+      "child": 5,
+      "sign": -1,
+      "crease": [
+       120,
+       80,
+       120,
+       120
+      ]
+     },
+     {
+      "parent": 15,
+      "child": 7,
+      "sign": 1,
+      "crease": [
+       80,
+       120,
+       120,
+       120
+      ]
+     },
+     {
+      "parent": 13,
+      "child": 10,
+      "sign": 1,
+      "crease": [
+       40,
+       80,
+       40,
+       120
+      ]
+     },
+     {
+      "parent": 13,
+      "child": 12,
+      "sign": -1,
+      "crease": [
+       40,
+       80,
+       80,
+       80
+      ]
+     },
+     {
+      "parent": 13,
+      "child": 8,
+      "sign": 1,
+      "crease": [
+       40,
+       120,
+       80,
+       120
+      ]
+     },
+     {
+      "parent": 14,
+      "child": 2,
+      "sign": -1,
+      "crease": [
+       80,
+       40,
+       120,
+       40
+      ]
+     },
+     {
+      "parent": 14,
+      "child": 4,
+      "sign": -1,
+      "crease": [
+       120,
+       40,
+       120,
+       80
+      ]
+     },
+     {
+      "parent": 5,
+      "child": 6,
+      "sign": 1,
+      "crease": [
+       120,
+       120,
+       160,
+       120
+      ]
+     },
+     {
+      "parent": 10,
+      "child": 11,
+      "sign": -1,
+      "crease": [
+       0,
+       80,
+       40,
+       80
+      ]
+     },
+     {
+      "parent": 10,
+      "child": 9,
+      "sign": 1,
+      "crease": [
+       0,
+       120,
+       40,
+       120
+      ]
+     },
+     {
+      "parent": 12,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       40,
+       40,
+       80,
+       40
+      ]
+     },
+     {
+      "parent": 2,
+      "child": 3,
+      "sign": -1,
+      "crease": [
+       120,
+       0,
+       120,
+       40
+      ]
+     },
+     {
+      "parent": 11,
+      "child": 0,
+      "sign": -1,
+      "crease": [
+       0,
+       40,
+       40,
+       40
+      ]
+     }
+    ]
+   },
+   "validate": {
+    "problems": []
+   },
+   "topology": {
+    "inputSegments": 128,
+    "splitSegments": 136,
+    "iterations": 9
+   },
+   "logSummary": {
+    "faces": 17,
+    "connectivity": "Connectivity filter: keeping 16 of 17 panels from largest crease-connected component",
+    "panelsAfterShell": 17
+   }
+  }
+ }
+}

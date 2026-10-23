@@ -21,5 +21,5 @@ echo "== 3) panel/ vs baseline (diferencias esperadas)"
 d=$(diff -rq "$ROOT/reference/legacy-baseline" "$ROOT/panel" | grep -v '\.DS_Store' || true)
 echo "${d:-(sin diferencias)}"
 echo "== 4) no hay rutas instaladas del bundle V3 en el CEP del usuario (no autorizado)"
-if [ -e "$HOME/Library/Application Support/Adobe/CEP/extensions/tesseract-v3" ]; then echo "AVISO: existe tesseract-v3 en CEP del usuario"; fail=1; else echo "OK (no instalado)"; fi
+if ls -d "$HOME/Library/Application Support/Adobe/CEP/extensions/tesseract-v3"* >/dev/null 2>&1; then echo "AVISO: existe una copia tesseract-v3* en el CEP del usuario (no autorizada o pendiente de retirar)"; fail=1; else echo "OK (no instalado)"; fi
 exit $fail

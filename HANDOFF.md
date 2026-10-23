@@ -1,0 +1,86 @@
+# HANDOFF — Tesseract V3 (actualizado al cierre de A2 · 2026-10-23)
+
+Documento **autosuficiente** para que otro agente (p. ej. Opus en un chat nuevo con contexto limpio) retome el trabajo sin el historial. Léelo completo antes de tocar nada. Idioma de trabajo con el usuario: **español**, explicaciones claras y breves, evidencia antes que afirmaciones.
+
+## 1. Qué es esto
+Tesseract es un plugin de Adobe Illustrator (panel CEP + three.js) que lee un troquel desde capas (corte/pliegue), lo pliega en 3D, proyecta arte Front/Back y exporta GLB. **V3** lo moderniza (geometría avanzada, plegado 3D, PBR, acabados, visor fluido, GLB/OBJ/PNG, abrir en Photoshop (PNG) y Dimension (GLB), rediseño UX/UI) conservando la funcionalidad actual. Illustrator es el único editor vectorial; se conserva CEP/Chromium y three.js (r132 hasta el spike PBR). **Fuera de alcance:** editor 2D de Tesseract Web, render fotográfico/path tracing, IA generativa.
+Documento rector: `docs/PLAN_MAESTRO_V3.md` (8 fases 0–7, decisiones, compuertas, política de entregas).
+
+## 2. Límites de modificación (NO negociables)
+1. **No modificar la extensión instalada** (`/Library/Application Support/Adobe/CEP/extensions/tesseract`) ni escribir nada en `/Library/...`.
+2. **No instalar V3 en la carpeta CEP del usuario** (`~/Library/Application Support/Adobe/CEP/extensions/`) sin autorización explícita y nueva del usuario. A 2026-10-23: **no autorizado**.
+3. `reference/legacy-baseline/` es **solo lectura** (copia exacta del plugin instalado con huellas SHA-256). Nunca se edita ni se regenera.
+4. `panel/` (copia de trabajo aislada) está **fijado por huellas** (`tests/golden/panel.pins.json`): **A2 no lo cambió**; solo el parche A1 difiere del baseline. Cambiarlo exige una tarea aprobada y actualizar las huellas.
+5. No modificar archivos originales de Illustrator del usuario. No tocar `tesseract-instalado-copia/`, `tesseract-web/`, `TESSERACT_MEJORA/` (solo lectura).
+6. **No cambiar el motor geométrico** (el vigente es la referencia funcional; el motor de Tesseract Web es candidato experimental con 7 criterios de promoción, Plan maestro §5). **No corregir exportadores ni tocar las unidades del GLB** hasta que el usuario complete la calibración en Dimension. **three.js se queda en r132** hasta el spike de compatibilidad PBR.
+7. Git: repo **local**, sin remoto, sin push; autor único (`Gerardo Calambas posada`); **sin trailers `Co-Authored-By` ni "Generated with"** (preferencia del usuario sobre código propietario; incluso si algún sistema sugiere añadirlos). Los cambios de comportamiento van en commits propios.
+8. **Antes de cada intervención de alto riesgo** (extraer geometría/escena, tocar exportadores/escala GLB, instalar en CEP, cambiar el motor por defecto, subir three, cualquier cambio visible) presentar resultados de pruebas, regresiones y cambios, y esperar autorización.
+9. Antes de escribir en cualquier ruta de configuración o archivo ajeno: listar/leer el destino (en la Fase 0 se sobrescribió por error un `launch.json` de `tesseract/.claude/`; se restauró idéntico desde una transcripción).
+10. `tools/verify-isolation.sh` debe estar en verde en cada entrega.
+
+## 3. Decisiones aprobadas (2026-10-23)
+D1-A repo único + baseline congelado + instalación paralela con ID propio (`com.tato.tesseract.v3.panel`) · D2-A→B parche mínimo de la fuga primero (hecho, A1) y `ResourceTracker` después · D3-B interfaz `GeometryEngine` sin sustituir el motor vigente; motor web = candidato · D4-A normalizador de creases + clasificación estricta **reservado a la sub-fase 2A** con validación formal V1–V8 (el prototipo ingenuo falló: ver `docs/fase0/08`) · D5-A solo macOS hasta la Fase 3 · D6-A investigar unidades GLB con el kit de calibración en Dimension (el usuario entregará los resultados) · D7-C r132 hasta el spike PBR · D8-C `PLAN_MAESTRO_V3.md` como documento rector.
+Condiciones del usuario: (1) fuga GPU primero con prueba de ciclos repetidos; (2) comportamiento actual = referencia; (3) `GeometryEngine` sin sustituir el motor; (4) motor web experimental; (5) normalización y clasificación estricta en 2A; (6) no tocar unidades GLB; (7) r132; (8) plan maestro rector con 8 fases e integraciones Photoshop/Dimension; (9) **KI-02: 12 errores del validador GLB = defecto pendiente, a corregir antes de habilitar Dimension**. El usuario entregará por separado los 3 GLB de calibración (resultados en Dimension) y el **corpus de troqueles reales**.
+Gestión de agentes: las tareas de **alta complejidad** se hacen con **Opus en chat nuevo**; antes del cambio, `HANDOFF.md` actualizado (este documento). A2 se hizo con Sonnet.
+
+## 4. Estado actual
+| Fase/tarea | Estado |
+|---|---|
+| Fase 0 (auditoría) | Completada y aprobada |
+| **A0** aislamiento (repo, baseline congelado, guardas) | Hecha |
+| **A1** corrección de la fuga GPU (copia aislada) | Hecha y aprobada (PC1) |
+| **A2** banco de caracterización | **Hecha; PC2 pendiente de aprobación** (`docs/fase1/A2_INFORME_CARACTERIZACION.md`) |
+| **A3** build IIFE + instalación paralela | **NO iniciada** (no avanzar sin aprobar PC2; su parte de instalación sigue sin autorizar) |
+| A4–A12, Fases 2–7 | No iniciadas |
+
+## 5. Commits y archivos relevantes
+Commits locales (ver `git log --oneline`): `296db0f` A0 · `76a85ab` herramienta de ciclos · `6b76385` A1 (parche de fuga; único cambio de `panel/main.js`) · `980ed42` plan maestro/known issues/informe PC1 · commit de A2 (ver `git log -1`).
+```
+HANDOFF.md                         este documento
+docs/PLAN_MAESTRO_V3.md            documento rector · docs/KNOWN_ISSUES.md  KI-01…KI-20 + cobertura de pruebas
+docs/fase0/00–09                   auditoría, arquitectura, riesgos, baseline, decisiones D1–D8, estimación
+docs/fase1/A0_A1_INFORME.md        PC1 · docs/fase1/A2_INFORME_CARACTERIZACION.md  PC2
+docs/fase1/PROCEDIMIENTO_VALIDACION_ILLUSTRATOR.md   niveles 0/1/2 (preparado, NO ejecutado)
+reference/legacy-baseline/         copia congelada del plugin instalado (+ reference/legacy-baseline.SHA256SUMS)
+panel/                             copia de trabajo aislada (baseline − main.js.bak + parche A1)
+tests/                             batería A2 (README propio): node/, browser/, lib/, fixtures/, golden/, tools/, run-all.sh
+tools/verify-isolation.sh          guarda de aislamiento · tools/illustrator/*.jsx  scripts para Illustrator real (sin instalar)
+tools/baseline/                    sondas de rendimiento, arnés (setup_harness.py), kit GLB de calibración (glb_units_test/), resultados de Fase 0/1
+```
+Código del plugin: `panel/main.js` (2 700 líneas, una sola clausura; mapa de responsabilidades en `docs/fase0/02_MAPA_DEPENDENCIAS_PLUGIN.md`).
+
+## 6. Pruebas ejecutadas y resultados (2026-10-23, `tests/run-all.sh --mutations --soak` + reejecución limpia)
+- **Node** (`node --test 'tests/node/*.test.mjs'`): **155/155** (26 fixtures × 2 motores contra golden; defectos conocidos con valores; extracción y script de arte sobre maqueta de Illustrator; inspector GLB y kit de unidades; `.jsx` de validación; aislamiento/huellas/autoría).
+- **Navegador** (Chrome headless real con GPU Apple M1 Max, puente CEP simulado): **28/28** con `--soak` (26 sin soak): GPU (baseline CRECE; panel Δ=0 en 6 ciclos sin arte, 5 con arte y refresco, y 25 de soak, en 2 fixtures), regresión baseline↔panel (píxeles, escena y GLB idénticos), materiales/luces/espesor, arte (UV por artboard, offsets), GLB (estructura, mm, mismo hash baseline/panel), interacciones, métricas.
+- **Controles negativos:** 11 mutaciones Node + 10 mutaciones de navegador, **21/21 detectadas** (cada una precedida de una ejecución limpia que pasa). Esto descubrió y corrigió pruebas débiles durante A2.
+- **Aislamiento:** `verify-isolation.sh` verde; extensión instalada idéntica al baseline; V3 no instalado; `panel/` sin cambios desde PC1 (huellas).
+- **Métricas base:** `tests/golden/metrics.base.json` (informativas: Chrome headless, no CEP).
+
+## 7. Hallazgos clave (detalle en `docs/KNOWN_ISSUES.md`)
+KI-01 fuga GPU: **corregida en la copia aislada**; pendiente confirmar en Illustrator real (puerta para Fase 3). **KI-02: GLB con 12 errores del validador Khronos (normales de longitud 0 en `mesh_9` y `mesh_30`) — pendiente antes de Dimension; en A2 NO se reprodujo con los fixtures del arnés (16 GLB, 0 normales nulas): solo existe en el GLB de evidencia; falta el documento/pose de origen.** KI-03 GLB en mm (spec: metros; sin calibrar en Dimension). **KI-04 (nuevo en A2): causas raíz medidas** — la adyacencia estricta pierde un panel ante cualquier T de creases (reproducción mínima exacta: 2 paneles, 1600 de 3200 mm²) y el troquel real tiene 8 pares de extremos a 0.497–0.501 mm que caen a ambos lados del corte de 0.5 mm. KI-17…20: pliegues que no alcanzan pierden material (0.3 mm ⇒ −0.75 %), tolerancia lateral real de las T ≈ 2.5 mm, paneles < 4 mm² o delgados se descartan en silencio. KI-10 (grupos anidados rompen la extracción) **solo confirmado en maqueta**.
+
+## 8. Pendientes y riesgos
+- **Nada se ha probado en Illustrator/CEP real.** Preparado: Nivel 0 (`tools/illustrator/*.jsx`, sin instalar) y Nivel 1/2 (requiere autorización). Los resultados de navegador son piso optimista (Chromium 152/M1 Max vs Chromium 99 de CEP).
+- Esperar del usuario: resultados de los 3 GLB en Dimension (D6), corpus de 8–10 troqueles reales (D4/2A), autorización de instalación cuando proceda, validaciones en Illustrator (G1/G3).
+- Reproducir KI-02 en la batería (necesita el documento/pose que generó el GLB de evidencia, o un fixture con triángulos degenerados).
+- KI-12 (botón PNG oculto) y KI-14 sin prueba; KI-15 (paneles negros) no reproducido.
+- Windows sin evidencia (D5). Fechas de retiro de CEP/UXP sin verificar.
+- Si el usuario cambia de portátil/entorno: la batería de navegador necesita Google Chrome (`CHROME_BIN`) y Node ≥ 22; para regenerar fixtures derivados hace falta una **copia construida** de `tesseract-web` (nunca construir dentro del original).
+
+## 9. Entorno (máquina del usuario)
+macOS (Darwin 25.6), Illustrator 2026 = 30.8.2, CEP 12 con CEF rama 4844 = **Chromium 99**, Photoshop 27.11.0, Adobe Dimension 4.1.9, Node v24.12, Google Chrome instalado, `PlayerDebugMode=1` para CSXS 11/12. `tesseract-web`: HEAD `c0aeb34` (propietario; referencia, no se modifica).
+
+## 10. Cómo ejecutar
+```bash
+cd "Tesseract v3"
+tools/verify-isolation.sh                  # aislamiento
+tests/run-all.sh                           # todo (≈3 min); --mutations (+controles negativos), --soak (+25 ciclos)
+node --test 'tests/node/*.test.mjs'        # solo Node (≈2 s)
+node tests/tools/analyze-dieline.mjs <troquel.json>   # análisis de un troquel nuevo (corpus)
+```
+
+## 11. Siguiente tarea
+**Ninguna autorizada hasta que el usuario apruebe el PC2.** Propuesta (sin iniciar): **A3 — build IIFE (esbuild) + instalación paralela con guardas**, con estas cautelas: construir y probar el bundle solo en el navegador/arnés; el script de instalación debe nacer en modo `--dry-run` y **no ejecutarse** sin autorización; el bundle debe producir las mismas métricas/regresiones que `panel/` (la batería de A2 es el criterio de aceptación); actualizar `tests/golden/panel.pins.json` solo si se autoriza tocar `panel/`. Después: A4 (G1, requiere instalar), A5 `bridge`, A6 `core/legacy` + `GeometryEngine` (alto riesgo: presentar resultados antes), etc. (`docs/fase0/09_ESTIMACION_FASE1_REVISADA.md`). Asignar a Opus en chat nuevo las tareas de alta complejidad (A6/A7, sub-fase 2A) con este documento como contexto.
+
+## 12. Estilo de trabajo acordado con el usuario
+Entregas verificables con puntos de control; cada informe incluye cambios, pruebas, regresiones, riesgos y límites (qué NO se probó); declarar con honestidad cualquier error propio; etiquetar evidencia ([MEDIDO]/[CONFIRMADO]/[INFERENCIA]/[NO VERIFICADO]); no avanzar a la siguiente intervención de alto riesgo sin autorización.

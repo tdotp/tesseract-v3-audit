@@ -89,6 +89,7 @@ window.tesseractBaseline = async function tesseractBaseline(opts) {
     times.sort((a, b) => a - b);
     const q = (p) => +times[Math.min(times.length - 1, Math.floor(p * times.length))].toFixed(2);
     out.plegado = { ticks: o.sliderTicks, mediana_ms: q(0.5), p95_ms: q(0.95), max_ms: q(1) };
+    slider.value = '0'; slider.dispatchEvent(new Event('input', { bubbles: true })); await raf(); await raf(); // vuelve a la pose inicial: así el conteo compara el MISMO estado (en pose plegada hay puentes vivos que no son fuga)
     const after = live();
     out.crecimiento_por_100_ticks = {
       texturas: Math.round(((after.texturas - before.texturas) / o.sliderTicks) * 100),
