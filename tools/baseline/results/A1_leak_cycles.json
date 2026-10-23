@@ -1,0 +1,145 @@
+{
+ "_nota": "2026-10-23 · navegador integrado de Claude Desktop (Chromium 152, Apple M1 Max) con el arnés instrumentado (shim CEP). NO es el panel real en Illustrator (Chromium 99). Contadores = recursos WebGL vivos (creados − borrados) medidos desde fuera con leak_cycles.js; ciclo 0 = referencia tras entrar a 3D. Fixture: caja-botanica-real.json (11 paneles, 10 pliegues).",
+ "baseline_sin_modificar": {
+  "sin_arte_6_ciclos": {
+   "deltas_por_ciclo": {
+    "ciclo1": {
+     "tex": 1052,
+     "buf": 5155,
+     "vao": 2095,
+     "prog": 0
+    },
+    "ciclos2a6_cada_uno": {
+     "tex": 102,
+     "buf": 5155,
+     "vao": 2095,
+     "prog": 0
+    }
+   },
+   "acumulado_ciclo6": {
+    "tex": 1562,
+    "buf": 30930,
+    "vao": 12570
+   },
+   "veredicto": "CRECE"
+  },
+  "con_arte_6_ciclos": {
+   "deltas_por_ciclo": {
+    "ciclo1": {
+     "tex": 1052,
+     "buf": 5595,
+     "vao": 2315,
+     "prog": 0
+    },
+    "ciclos2a6_cada_uno": {
+     "tex": 102,
+     "buf": 5595,
+     "vao": 2315,
+     "prog": 0
+    }
+   },
+   "acumulado_ciclo6": {
+    "tex": 1562,
+    "buf": 33570,
+    "vao": 13890
+   },
+   "veredicto": "CRECE"
+  }
+ },
+ "copia_con_parche_A1": {
+  "sin_arte_6_ciclos": {
+   "deltas_ciclos_2_en_adelante": {
+    "tex": 0,
+    "buf": 0,
+    "vao": 0,
+    "prog": 0
+   },
+   "ciclo1": {
+    "tex": -10,
+    "buf": 0,
+    "vao": 0,
+    "prog": 0
+   },
+   "veredicto": "SIN CRECIMIENTO ACUMULATIVO"
+  },
+  "con_arte_8_ciclos_con_refresh_de_arte": {
+   "deltas_ciclos_2_en_adelante": {
+    "tex": 0,
+    "buf": 0,
+    "vao": 0,
+    "prog": 0
+   },
+   "ciclo1": {
+    "tex": -10,
+    "buf": 0,
+    "vao": 0,
+    "prog": 0
+   },
+   "veredicto": "SIN CRECIMIENTO ACUMULATIVO"
+  },
+  "soak_25_ciclos_sin_arte": {
+   "eventos_slider_totales": 2350,
+   "duracion_s": 52.3,
+   "deltas": "tex:-10 en el ciclo 1 y 0 en los 24 restantes; buf/vao/prog: 0 en los 25",
+   "recursos_finales": {
+    "tex": -10,
+    "buf": 0,
+    "vao": 0,
+    "prog": 0
+   },
+   "heap_MB_primeros5": [
+    24.9,
+    20.3,
+    25.6,
+    11.6,
+    30.3
+   ],
+   "heap_MB_ultimos5": [
+    12.4,
+    11.8,
+    17.7,
+    24,
+    10.7
+   ],
+   "veredicto": "SIN CRECIMIENTO ACUMULATIVO"
+  },
+  "nota_tex_-10": "Esperado: al inicio hay 11 etiquetas (todas hasta que el usuario elige base); tras elegir base solo se muestra 1. Antes del parche esas 11 se perdían en cada tick; ahora se liberan al reconstruir."
+ },
+ "regresion_baseline_vs_parche": {
+  "pixeles_distintos_4_poses": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "tamano_canvas": "424x276",
+  "control_negativo_pixeles_distintos_tras_mover_5_grados_solo_en_B": 11001,
+  "escena_identica_4_poses": true,
+  "paneles": 11,
+  "aristas_pliegue": 10,
+  "glb_sin_arte": {
+   "bytes": 30592,
+   "sha256_16": "7750a221cc0f2aaa",
+   "identico": true
+  },
+  "glb_con_arte": {
+   "bytes": 18187072,
+   "sha256_16": "1dc8a0cf6546981f",
+   "identico": true
+  },
+  "funciones_main_js": {
+   "identicas": 96,
+   "modificadas": [
+    "makePanelLabelSprite",
+    "clearAllMeshes",
+    "rebuildCreaseVisuals"
+   ],
+   "anadidas": [
+    "getLabelResources",
+    "disposeLabelCache",
+    "disposeCreaseVisuals"
+   ],
+   "eliminadas": []
+  }
+ }
+}

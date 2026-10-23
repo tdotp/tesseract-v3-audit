@@ -160,12 +160,31 @@
       ctx.closePath();
     }
 
+    /* A1 (fuga GPU): textura y material de cada etiqueta se crean UNA vez por (texto, base) y se reutilizan;
+       antes se creaban nuevos en cada applyFolding (11 texturas por evento de slider) y nunca se liberaban. */
+    var labelCache = {};
+    function getLabelResources(text,isBase){
+      var key = text + '|' + (isBase ? 1 : 0);
+      var r = labelCache[key];
+      if(!r){
+        var canvas=makeLabelCanvas(text, isBase ? 'rgba(37,99,235,0.96)' : 'rgba(15,23,42,0.90)', '#ffffff');
+        var tex=new THREE.CanvasTexture(canvas);
+        tex.minFilter=THREE.LinearFilter; tex.needsUpdate=true;
+        var mat=new THREE.SpriteMaterial({map:tex, transparent:true, depthTest:false, depthWrite:false});
+        r = labelCache[key] = {tex:tex, mat:mat};
+      }
+      return r;
+    }
+    function disposeLabelCache(){
+      Object.keys(labelCache).forEach(function(k){
+        try{ labelCache[k].mat.dispose(); }catch(ex){}
+        try{ labelCache[k].tex.dispose(); }catch(ex){}
+      });
+      labelCache = {};
+    }
+
     function makePanelLabelSprite(text,isBase){
-      var canvas=makeLabelCanvas(text, isBase ? 'rgba(37,99,235,0.96)' : 'rgba(15,23,42,0.90)', '#ffffff');
-      var tex=new THREE.CanvasTexture(canvas);
-      tex.minFilter=THREE.LinearFilter; tex.needsUpdate=true;
-      var mat=new THREE.SpriteMaterial({map:tex, transparent:true, depthTest:false, depthWrite:false});
-      var sp=new THREE.Sprite(mat);
+      var sp=new THREE.Sprite(getLabelResources(text,isBase).mat);
       sp.scale.set(34,12.75,1);
       sp.renderOrder = 120;
       return sp;
@@ -938,10 +957,13 @@
       panelMeshes.forEach(function(m){
         if(m.parent) m.parent.remove(m);
         else if(scene3d) scene3d.remove(m);
-        if(m.geometry) m.geometry.dispose();
-        if(m.material) m.material.dispose();
+        /* A1 (fuga GPU): también libera los hijos (aristas EdgesGeometry y overlays de arte); antes solo geometría/material del panel.
+           Las texturas de arte son compartidas y las libera disposeCurrentArtTextures(), no esto. */
+        disposeObject3D(m);
       });
       panelMeshes=[];
+      disposeCreaseVisuals();   /* A1 */
+      disposeLabelCache();      /* A1 */
       if(creaseLinesGroup){
         if(creaseLinesGroup.parent) creaseLinesGroup.parent.remove(creaseLinesGroup);
         else if(scene3d) scene3d.remove(creaseLinesGroup);
@@ -1536,6 +1558,18 @@
     }
 
 
+    /* A1 (fuga GPU): libera geometría y material de las líneas visibles y cajas de selección de crease. */
+    function disposeCreaseVisuals(){
+      (creaseVisuals || []).forEach(function(entry){
+        [entry.visible, entry.pick].forEach(function(o){
+          if(!o) return;
+          if(o.parent) o.parent.remove(o);
+          if(o.geometry) try{ o.geometry.dispose(); }catch(ex){}
+          if(o.material) try{ o.material.dispose(); }catch(ex){}
+        });
+      });
+    }
+
     function projectInsetDir(mid, centroid, tx, ty, fallbackSign){
       var vx = centroid.x - mid.x;
       var vy = centroid.y - mid.y;
@@ -1681,6 +1715,7 @@
         foldBridgeGroup=null;
       }
       if(scene3d) scene3d.updateMatrixWorld(true);
+      disposeCreaseVisuals();   /* A1 (fuga GPU): líneas y cajas de selección anteriores se liberaban nunca */
       creasePickables = [];
       creaseVisuals = [];
       if(!panelGroupMap.length || !foldTree.length) return;
