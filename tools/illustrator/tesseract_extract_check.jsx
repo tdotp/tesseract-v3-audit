@@ -1,19 +1,50 @@
 #target illustrator
 /*
- * tesseract_extract_check.jsx — Tesseract V3 (herramienta de validación; generado por tools/illustrator/make-jsx.mjs desde reference/legacy-baseline/main.js)
- * SOLO LECTURA: no modifica el documento.
- * Resultado: se guarda en el archivo que elijas (cuadro "Guardar como"). Nada se instala; para quitarlo basta borrar este .jsx.
+ * tesseract_extract_check.jsx — Tesseract V3 (Nivel 0; generado por tools/illustrator/make-jsx.mjs desde reference/legacy-baseline/main.js)
+ * SOLO LECTURA: no modifica el documento (el guardián lo comprueba).
+ * Guardián de estado incluido: compara y restaura documento, artboard activo, selección, nº de elementos y visibilidad/bloqueo de capas.
+ * Resultado: ~/Desktop/Tesseract_Nivel0/<documento>__<script>.json. No instala nada; para quitarlo basta borrar este .jsx y esa carpeta.
+ * EJECUTAR SOLO sobre documentos de prueba o copias desechables.
  */
 
-function __tess_save(defaultName, text) {
-  var f = File.saveDialog("Guardar resultado como…", "*.json");
-  if (!f) { alert("Cancelado: no se guardó nada."); return; }
-  f.encoding = "UTF-8"; f.open("w"); f.write(text); f.close();
-  alert("Guardado en:\n" + f.fsName + "\n\n" + Math.round(text.length / 1024) + " KB");
-}
-var __tess_result;
+var OUT_DIR = Folder.desktop.fsName + "/Tesseract_Nivel0";
+var PT = 0.352778;
+function ser(v){ if(v===null||typeof v==="undefined") return "null"; if(typeof v==="boolean") return v?"true":"false"; if(typeof v==="number") return isFinite(v)?String(v):"null";
+  if(typeof v==="string") return '"' + v.replace(/\\/g,"\\\\").replace(/"/g,'\\"').replace(/\n/g,"\\n").replace(/\r/g,"\\r").replace(/\t/g,"\\t") + '"';
+  if(v instanceof Array){ var a=[]; for(var i=0;i<v.length;i++) a.push(ser(v[i])); return "["+a.join(",")+"]"; }
+  var p=[]; for(var k in v){ if(v.hasOwnProperty(k)) p.push(ser(String(k))+":"+ser(v[k])); } return "{"+p.join(",")+"}"; }
+function __tess_snap(){
+  var o={ documentos: app.documents.length, capas: [] };
+  if(!app.documents.length) return o;
+  var d=app.activeDocument; o.nombre=d.name; o.artboardActivo=d.artboards.getActiveArtboardIndex(); o.artboards=d.artboards.length; o.items=d.pageItems.length;
+  try{ o.seleccion=d.selection ? d.selection.length : 0; }catch(e1){ o.seleccion=-1; }
+  try{ o.guardado=d.saved; }catch(e2){ o.guardado=null; }
+  (function walk(arr){ for(var i=0;i<arr.length;i++){ var l=arr[i]; o.capas.push({ n:l.name, v:l.visible, l:l.locked }); if(l.layers && l.layers.length) walk(l.layers); } })(d.layers);
+  return o; }
+function __tess_restore(before){ // devuelve la lista de lo que hubo que restaurar
+  var fixed=[]; if(!app.documents.length) return fixed; var d=app.activeDocument;
+  try{ if(d.artboards.getActiveArtboardIndex()!==before.artboardActivo){ d.artboards.setActiveArtboardIndex(before.artboardActivo); fixed.push("artboardActivo"); } }catch(e1){ fixed.push("artboardActivo(error)"); }
+  var idx=0; (function walk(arr){ for(var i=0;i<arr.length;i++){ var l=arr[i], rec=before.capas[idx++]; if(!rec) continue;
+      try{ if(l.locked!==rec.l){ l.locked=rec.l; fixed.push("bloqueo:"+rec.n); } }catch(e2){ fixed.push("bloqueo(error):"+rec.n); }
+      try{ if(l.visible!==rec.v){ l.visible=rec.v; fixed.push("visibilidad:"+rec.n); } }catch(e3){ fixed.push("visibilidad(error):"+rec.n); }
+      if(l.layers && l.layers.length) walk(l.layers); } })(d.layers);
+  return fixed; }
+function __tess_selection_ref(){ try{ return app.documents.length ? app.activeDocument.selection : null; }catch(e){ return null; } }
+function __tess_restore_selection(ref, before){ try{ if(ref && app.documents.length && app.activeDocument.selection.length!==before.seleccion){ app.activeDocument.selection=ref; return true; } }catch(e){} return false; }
+function __tess_integrity(before, fixed, selRestored){
+  var after=__tess_snap(); var same=(ser(before)===ser(after));
+  return { antes: before, despues: after, identicos: same, restaurado: fixed, seleccionRestaurada: selRestored, nota: same ? "El estado del documento es idéntico antes y después." : "DIFERENCIA tras restaurar: revisar a mano (ver antes/después)." }; }
+function __tess_env(){ var e={ illustrator: app.version, os: ""+$.os, extendscript: ""+$.version, locale: "" }; try{ e.locale=""+$.locale; }catch(x){} try{ e.nombre=""+app.name; }catch(y){} try{ e.temp=Folder.temp.fsName; }catch(z){} try{ e.escritorio=Folder.desktop.fsName; }catch(w){} return e; }
+function __tess_write(scriptName, obj){
+  var folder=new Folder(OUT_DIR); if(!folder.exists) folder.create();
+  var doc=app.documents.length ? app.activeDocument.name : "sin_documento"; var safe=String(doc).replace(/[^A-Za-z0-9_\-\.]+/g,"_");
+  var f=new File(folder.fsName+"/"+safe+"__"+scriptName+".json"); f.encoding="UTF-8"; f.open("w"); f.write(ser(obj)); f.close();
+  alert("Tesseract Nivel 0 · "+scriptName+"\n\nGuardado en:\n"+f.fsName+"\n\nEstado del documento idéntico antes/después: "+(obj._integridad && obj._integridad.identicos ? "SÍ" : "NO — avisa a Claude"));
+  return f.fsName; }
+
+var __before=__tess_snap(), __selRef=__tess_selection_ref(), __raw, __fixed=[], __selRest=false;
 try {
-__tess_result = (function(){
+__raw = (function(){
 try{
 var toJSON=(function(){
   function esc(s){ var r="",c; for(var i=0;i<s.length;i++){ c=s.charAt(i);
@@ -105,6 +136,7 @@ return toJSON({version:"1.0",units:"mm",thickness_mm:0.25,outerBoundary:outer,ho
   meta:{cutLayer:cutL.name,creaseLayer:crL?crL.name:"(none)",closedCutCount:closed.length,openCutCount:open.length,creaseCount:creases.length,totalCutPaths:cutA.length,totalCreasePaths:crA.length}});
 }catch(e){return toJSON({error:"Script error: "+e.message+" line:"+e.line});}
 })();
-} catch (e) { __tess_result = '{"error":"' + String(e.message).replace(/"/g, "'") + ' (línea ' + e.line + ')"}'; }
-var __doc = app.documents.length ? app.activeDocument.name : '(sin documento)';
-__tess_save(__doc, '{"_origen":"EXTRACT_SCRIPT del baseline (sin cambios)","_illustrator":"' + app.version + '","_documento":"' + String(__doc).replace(/"/g, "'") + '","_resultado":' + __tess_result + '}');
+} catch (e) { __raw = '{"error":"' + String(e.message).replace(/"/g, "'") + ' (línea ' + e.line + ')"}'; }
+finally { try{ __fixed=__tess_restore(__before); }catch(e4){ __fixed=["restauración fallida: "+e4.message]; } __selRest=__tess_restore_selection(__selRef, __before); }
+var __parsed; try{ __parsed=eval("("+__raw+")"); }catch(e5){ __parsed={ error:"resultado no es JSON: "+String(e5.message) }; }
+__tess_write("extract", { _origen: "EXTRACT_SCRIPT del baseline (sin cambios)", _script: "extract", _env: __tess_env(), _integridad: __tess_integrity(__before, __fixed, __selRest), _resultado: __parsed });

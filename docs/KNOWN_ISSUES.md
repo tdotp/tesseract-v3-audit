@@ -25,6 +25,7 @@ Evidencia: `docs/fase0/00_INFORME_AUDITORIA.md`, `tools/baseline/results/`. Etiq
 | **KI-18** | La "tolerancia 0.5 mm" no es lateral: el criterio punto-sobre-segmento usa la suma de distancias; un extremo de crease a **2.5 mm** lateral de una T todavía se ajusta (pierde 50 mm²) y a **5 mm** deja de hacerlo (se cuela la cara exterior). El validador avisa desde 0.6 mm | Media | [MEDIDO] fixtures `t-desalineada-*` | 2A | Abierto (preservado) |
 | **KI-19** | Paneles pequeños (< 4 mm²) o delgados (relación > 30:1 y < 120 mm²) se descartan en silencio y la cara exterior ocupa su lugar (p. ej. una solapa de 40×1 mm desaparece) | Media | [MEDIDO] fixtures `panel-*` | 2B | Abierto (preservado) |
 | **KI-20** | El validador previo solo avisa y nunca bloquea; no cubre extremos que sobresalen, panel perdido ni ventanas | Baja–Media | [MEDIDO] | 2A | Abierto (preservado) |
+| **KI-21** | El script de arte del plugin **no restaura el artboard activo si una exportación falla** (en modo artboards solo lo restaura en el camino feliz) y no registra el bloqueo de capas al ocultarlas | Media | [CONFIRMADO por lectura] + [MEDIDO en maqueta] (`tests/node/jsx-validation-scripts.test.mjs`) | 4/5 (exportadores y arte) | Abierto (preservado). Los scripts del Nivel 0 lo compensan con un guardián de estado |
 
 ## Cobertura de pruebas (A2)
 
@@ -44,4 +45,5 @@ Evidencia: `docs/fase0/00_INFORME_AUDITORIA.md`, `tools/baseline/results/`. Etiq
 | KI-14 | Pendiente (cosmético; Fase 7) |
 | KI-15 | No reproducido; sin prueba |
 | KI-16 | `isolation.test.mjs`: `panel/` sin `main.js.bak` |
+| KI-21 | `jsx-validation-scripts`: la exportación falla a mitad ⇒ el script del plugin deja el artboard activo cambiado; el guardián lo restaura |
 | KI-17, 18, 19, 20 | `known-issues`: casos `crease-*`, `t-desalineada-*`, `panel-*`; `geometry-golden` |

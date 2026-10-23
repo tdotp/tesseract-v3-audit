@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="396.850144" height="283.464388" viewBox="0 0 396.850144 283.464388">
+  <g id="Back">
+    <rect x="56.692878" y="56.692878" width="283.464388" height="170.078633" fill="#ffd166"/>
+  </g>
+  <g id="Front">
+    <rect x="56.692878" y="56.692878" width="283.464388" height="170.078633" fill="#06d6a0"/>
+  </g>
+  <g id="Creases">
+    <path fill="none" stroke="#d3195b" stroke-width="0.5" d="M198.425072,56.692878L198.425072,226.771511"/>
+  </g>
+  <g id="Cuts">
+    <path fill="none" stroke="#28aae1" stroke-width="0.75" d="M56.692878,56.692878L340.157266,56.692878L340.157266,226.771511L56.692878,226.771511Z"/>
+    <path fill="none" stroke="#28aae1" stroke-width="0.75" d="M85.039317,70.866097L113.385755,70.866097L113.385755,99.212536L85.039317,99.212536Z"/>
+  </g>
+</svg>

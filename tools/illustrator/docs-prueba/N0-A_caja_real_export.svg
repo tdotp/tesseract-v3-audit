@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1417.32 1417.32">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: #28aae1;
+        stroke-width: .75px;
+      }
+
+      .cls-1, .cls-2 {
+        fill: none;
+        stroke-miterlimit: 4;
+      }
+
+      .cls-2 {
+        stroke: #d3195b;
+        stroke-width: .5px;
+      }
+    </style>
+  </defs>
+  <g id="Creases">
+    <g id="page-fold">
+      <path id="page-fold-hor-south-1" class="cls-1" d="M843.61,883.4h-113.38"/>
+      <path id="page-fold-hor-south-2" class="cls-1" d="M730.24,881.98h-113.39"/>
+      <path id="page-fold-vert-tube-2" class="cls-1" d="M616.85,881.98v-340.16"/>
+      <path id="page-fold-hor-north-center" class="cls-1" d="M503.47,540.41h113.38"/>
+      <path id="page-fold-hor-north-east" class="cls-1" d="M616.85,541.82h113.39"/>
+      <path id="page-fold-vert-tube-1" class="cls-1" d="M730.24,541.82v340.16"/>
+      <path id="page-fold-vert-tube-3" class="cls-1" d="M843.61,881.98v-340.16"/>
+      <path id="page-fold-left-side-flap-1" class="cls-1" d="M503.47,541.82v340.16"/>
+      <path id="page-fold-slit-lock-south-fold" class="cls-1" d="M731.65,996.79h110.56"/>
+      <path id="page-fold-fold" class="cls-1" d="M843.61,881.98h111.97"/>
+      <path id="page-fold-anonymous-path-11" class="cls-1" d="M957,541.82h-111.97"/>
+      <path id="page-fold-slitlock-north-fold" class="cls-1" d="M615.43,428.45h-110.55"/>
+    </g>
+  </g>
+  <g id="Cuts">
+    <path class="cls-2" d="M842.2,996.79h0c0,18-14.6,32.59-32.6,32.59h-45.36c-18,0-32.59-14.59-32.6-32.59h-1.41v-114.81l-8.5,8.51-4.22,48.19h-82.95l-10.63-39.69-5.67-5.67v-11.34h-114.8l-42.52-7.5v-325.16l42.52-7.5v-113.38h1.41c0-18,14.6-32.6,32.6-32.6h45.36c18,0,32.59,14.6,32.59,32.6h1.42v113.38l8.5-8.5,4.22-48.19h82.95l10.63,39.69,5.67,5.67v11.33h43.94s0,0,.01,0c1.96,0,3.54,1.59,3.53,3.55h0c0,5.87,4.76,10.63,10.63,10.63h0c5.87,0,10.63-4.76,10.63-10.63h0c0-1.97,1.58-3.55,3.54-3.55h43.94v-11.33l5.67-5.67,10.63-39.69h82.95l4.22,48.19,8.5,8.5v340.16h-1.42v11.34l-5.67,5.67-10.63,39.69h-82.95l-4.21-48.19-8.51-8.51v114.81h-1.41Z"/>
+  </g>
+</svg>

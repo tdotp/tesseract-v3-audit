@@ -2,7 +2,7 @@
 
 Proyecto de trabajo de la versión 3 del plugin de Adobe Illustrator Tesseract (panel CEP + three.js).
 
-**Estado (2026-10-23):** Fase 0 completada y aprobada. Fase 1: **A0 (aislamiento), A1 (fuga GPU), A2 (banco de caracterización) y A3 (build IIFE + instalación en dry-run) entregados**; PC1 y PC2 aprobados, **PC3 pendiente** (`docs/fase1/A3_INFORME_BUNDLE.md`). **Nada está instalado en CEP.** A4 y la refactorización estructural **no iniciados**. Para retomar el trabajo (otro agente/chat): `HANDOFF.md`. Documento rector: `docs/PLAN_MAESTRO_V3.md`.
+**Estado (2026-10-23):** Fase 0 completada. Fase 1: A0, A1, A2 y A3 entregados y **aprobados** (PC1–PC3). **Nivel 0 (validación en Illustrator real, sin instalar nada) preparado y pendiente de ejecución:** `docs/fase1/NIVEL0_GUIA.md`. **Nada está instalado en CEP.** A4 y la refactorización estructural **no iniciados ni autorizados**. Para retomar el trabajo (otro agente/chat): `HANDOFF.md`. Documento rector: `docs/PLAN_MAESTRO_V3.md`.
 
 | Carpeta | Contenido |
 |---|---|
