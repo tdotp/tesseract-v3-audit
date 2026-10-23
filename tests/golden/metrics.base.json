@@ -1,6 +1,6 @@
 {
- "_nota": "Métricas base INFORMATIVAS del punto de control 2 (A2). Chrome headless real con GPU, puente CEP simulado: NO es CEP/Illustrator. Los tiempos son un piso optimista; los contadores y proporciones sí son comparables.",
- "fecha": "2026-10-23T17:42:52.377Z",
+ "_nota": "Métricas base INFORMATIVAS (A2; ampliadas en A3 con el bundle). Chrome headless real con GPU, puente CEP simulado: NO es CEP/Illustrator. Los tiempos son un piso optimista; los contadores y proporciones sí son comparables.",
+ "fecha": "2026-10-23T18:30:37.319Z",
  "entorno": {
   "node": "v24.12.0",
   "so": "Darwin 25.6.0",
@@ -12,7 +12,7 @@
    "sha256_main_js": "719942d134d2c5ae",
    "fixtures": {
     "real-caja-botanica": {
-     "buildPanels_ms_mediana": 30.139,
+     "buildPanels_ms_mediana": 30.911,
      "repeticiones": 15,
      "paneles": 11,
      "segmentos_entrada": 81,
@@ -20,7 +20,7 @@
      "reinicios_de_barrido": 7
     },
     "real-illustrator-export": {
-     "buildPanels_ms_mediana": 8.313,
+     "buildPanels_ms_mediana": 8.47,
      "repeticiones": 15,
      "paneles": 13,
      "segmentos_entrada": 68,
@@ -36,7 +36,7 @@
      "reinicios_de_barrido": 1
     },
     "crease-exacta": {
-     "buildPanels_ms_mediana": 0.104,
+     "buildPanels_ms_mediana": 0.097,
      "repeticiones": 15,
      "paneles": 2,
      "segmentos_entrada": 5,
@@ -44,7 +44,7 @@
      "reinicios_de_barrido": 3
     },
     "crease-corta-0.3": {
-     "buildPanels_ms_mediana": 0.101,
+     "buildPanels_ms_mediana": 0.096,
      "repeticiones": 15,
      "paneles": 2,
      "segmentos_entrada": 5,
@@ -52,7 +52,7 @@
      "reinicios_de_barrido": 3
     },
     "crease-corta-0.6": {
-     "buildPanels_ms_mediana": 0.098,
+     "buildPanels_ms_mediana": 0.096,
      "repeticiones": 15,
      "paneles": 2,
      "segmentos_entrada": 5,
@@ -60,7 +60,7 @@
      "reinicios_de_barrido": 3
     },
     "crease-sobresale-0.3": {
-     "buildPanels_ms_mediana": 0.13,
+     "buildPanels_ms_mediana": 0.131,
      "repeticiones": 15,
      "paneles": 2,
      "segmentos_entrada": 5,
@@ -68,7 +68,7 @@
      "reinicios_de_barrido": 3
     },
     "crease-sobresale-0.6": {
-     "buildPanels_ms_mediana": 0.139,
+     "buildPanels_ms_mediana": 0.138,
      "repeticiones": 15,
      "paneles": 3,
      "segmentos_entrada": 5,
@@ -76,7 +76,7 @@
      "reinicios_de_barrido": 3
     },
     "t-exacta": {
-     "buildPanels_ms_mediana": 0.183,
+     "buildPanels_ms_mediana": 0.174,
      "repeticiones": 15,
      "paneles": 2,
      "segmentos_entrada": 6,
@@ -84,7 +84,7 @@
      "reinicios_de_barrido": 5
     },
     "t-desalineada-0.375": {
-     "buildPanels_ms_mediana": 0.177,
+     "buildPanels_ms_mediana": 0.176,
      "repeticiones": 15,
      "paneles": 2,
      "segmentos_entrada": 6,
@@ -100,7 +100,7 @@
      "reinicios_de_barrido": 5
     },
     "t-desalineada-1.0": {
-     "buildPanels_ms_mediana": 0.178,
+     "buildPanels_ms_mediana": 0.181,
      "repeticiones": 15,
      "paneles": 2,
      "segmentos_entrada": 6,
@@ -108,7 +108,7 @@
      "reinicios_de_barrido": 5
     },
     "t-desalineada-2.5": {
-     "buildPanels_ms_mediana": 0.173,
+     "buildPanels_ms_mediana": 0.184,
      "repeticiones": 15,
      "paneles": 2,
      "segmentos_entrada": 6,
@@ -124,7 +124,7 @@
      "reinicios_de_barrido": 4
     },
     "hueco-descentrado": {
-     "buildPanels_ms_mediana": 0.207,
+     "buildPanels_ms_mediana": 0.221,
      "repeticiones": 15,
      "paneles": 2,
      "segmentos_entrada": 9,
@@ -132,7 +132,7 @@
      "reinicios_de_barrido": 3
     },
     "hueco-centrado": {
-     "buildPanels_ms_mediana": 0.208,
+     "buildPanels_ms_mediana": 0.203,
      "repeticiones": 15,
      "paneles": 2,
      "segmentos_entrada": 9,
@@ -140,7 +140,7 @@
      "reinicios_de_barrido": 3
     },
     "panel-pequeno-4.5mm2": {
-     "buildPanels_ms_mediana": 0.097,
+     "buildPanels_ms_mediana": 0.095,
      "repeticiones": 15,
      "paneles": 2,
      "segmentos_entrada": 5,
@@ -156,7 +156,7 @@
      "reinicios_de_barrido": 3
     },
     "panel-delgado-40x1": {
-     "buildPanels_ms_mediana": 0.105,
+     "buildPanels_ms_mediana": 0.101,
      "repeticiones": 15,
      "paneles": 2,
      "segmentos_entrada": 5,
@@ -164,7 +164,7 @@
      "reinicios_de_barrido": 3
     },
     "esquinas-redondeadas": {
-     "buildPanels_ms_mediana": 0.227,
+     "buildPanels_ms_mediana": 0.234,
      "repeticiones": 15,
      "paneles": 2,
      "segmentos_entrada": 9,
@@ -172,7 +172,7 @@
      "reinicios_de_barrido": 3
     },
     "rejilla-2x2": {
-     "buildPanels_ms_mediana": 0.228,
+     "buildPanels_ms_mediana": 0.227,
      "repeticiones": 15,
      "paneles": 4,
      "segmentos_entrada": 8,
@@ -180,7 +180,7 @@
      "reinicios_de_barrido": 5
     },
     "rejilla-4x4": {
-     "buildPanels_ms_mediana": 9.115,
+     "buildPanels_ms_mediana": 9.265,
      "repeticiones": 15,
      "paneles": 16,
      "segmentos_entrada": 28,
@@ -188,7 +188,7 @@
      "reinicios_de_barrido": 13
     },
     "rejilla-6x6": {
-     "buildPanels_ms_mediana": 73.875,
+     "buildPanels_ms_mediana": 75.492,
      "repeticiones": 15,
      "paneles": 36,
      "segmentos_entrada": 64,
@@ -196,7 +196,7 @@
      "reinicios_de_barrido": 21
     },
     "rejilla-8x8": {
-     "buildPanels_ms_mediana": 320.024,
+     "buildPanels_ms_mediana": 326.825,
      "repeticiones": 5,
      "paneles": 64,
      "segmentos_entrada": 116,
@@ -204,7 +204,7 @@
      "reinicios_de_barrido": 29
     },
     "rejilla-lineas-completas-3x3": {
-     "buildPanels_ms_mediana": 1.44,
+     "buildPanels_ms_mediana": 1.437,
      "repeticiones": 15,
      "paneles": 10,
      "segmentos_entrada": 8,
@@ -212,7 +212,7 @@
      "reinicios_de_barrido": 13
     },
     "rejilla-4x4-densa-25": {
-     "buildPanels_ms_mediana": 100.29,
+     "buildPanels_ms_mediana": 102.709,
      "repeticiones": 5,
      "paneles": 16,
      "segmentos_entrada": 128,
@@ -225,7 +225,7 @@
    "sha256_main_js": "91b42b7bd4a829c6",
    "fixtures": {
     "real-caja-botanica": {
-     "buildPanels_ms_mediana": 29.751,
+     "buildPanels_ms_mediana": 30.596,
      "repeticiones": 15,
      "paneles": 11,
      "segmentos_entrada": 81,
@@ -233,7 +233,7 @@
      "reinicios_de_barrido": 7
     },
     "real-illustrator-export": {
-     "buildPanels_ms_mediana": 8.364,
+     "buildPanels_ms_mediana": 8.55,
      "repeticiones": 15,
      "paneles": 13,
      "segmentos_entrada": 68,
@@ -249,7 +249,7 @@
      "reinicios_de_barrido": 1
     },
     "crease-exacta": {
-     "buildPanels_ms_mediana": 0.102,
+     "buildPanels_ms_mediana": 0.106,
      "repeticiones": 15,
      "paneles": 2,
      "segmentos_entrada": 5,
@@ -257,7 +257,7 @@
      "reinicios_de_barrido": 3
     },
     "crease-corta-0.3": {
-     "buildPanels_ms_mediana": 0.098,
+     "buildPanels_ms_mediana": 0.099,
      "repeticiones": 15,
      "paneles": 2,
      "segmentos_entrada": 5,
@@ -265,7 +265,7 @@
      "reinicios_de_barrido": 3
     },
     "crease-corta-0.6": {
-     "buildPanels_ms_mediana": 0.097,
+     "buildPanels_ms_mediana": 0.099,
      "repeticiones": 15,
      "paneles": 2,
      "segmentos_entrada": 5,
@@ -273,7 +273,7 @@
      "reinicios_de_barrido": 3
     },
     "crease-sobresale-0.3": {
-     "buildPanels_ms_mediana": 0.132,
+     "buildPanels_ms_mediana": 0.133,
      "repeticiones": 15,
      "paneles": 2,
      "segmentos_entrada": 5,
@@ -281,7 +281,7 @@
      "reinicios_de_barrido": 3
     },
     "crease-sobresale-0.6": {
-     "buildPanels_ms_mediana": 0.14,
+     "buildPanels_ms_mediana": 0.144,
      "repeticiones": 15,
      "paneles": 3,
      "segmentos_entrada": 5,
@@ -289,7 +289,7 @@
      "reinicios_de_barrido": 3
     },
     "t-exacta": {
-     "buildPanels_ms_mediana": 0.179,
+     "buildPanels_ms_mediana": 0.178,
      "repeticiones": 15,
      "paneles": 2,
      "segmentos_entrada": 6,
@@ -313,7 +313,7 @@
      "reinicios_de_barrido": 5
     },
     "t-desalineada-1.0": {
-     "buildPanels_ms_mediana": 0.179,
+     "buildPanels_ms_mediana": 0.19,
      "repeticiones": 15,
      "paneles": 2,
      "segmentos_entrada": 6,
@@ -321,7 +321,7 @@
      "reinicios_de_barrido": 5
     },
     "t-desalineada-2.5": {
-     "buildPanels_ms_mediana": 0.18,
+     "buildPanels_ms_mediana": 0.189,
      "repeticiones": 15,
      "paneles": 2,
      "segmentos_entrada": 6,
@@ -329,7 +329,7 @@
      "reinicios_de_barrido": 5
     },
     "t-desalineada-5": {
-     "buildPanels_ms_mediana": 0.135,
+     "buildPanels_ms_mediana": 0.137,
      "repeticiones": 15,
      "paneles": 2,
      "segmentos_entrada": 6,
@@ -337,7 +337,7 @@
      "reinicios_de_barrido": 4
     },
     "hueco-descentrado": {
-     "buildPanels_ms_mediana": 0.213,
+     "buildPanels_ms_mediana": 0.228,
      "repeticiones": 15,
      "paneles": 2,
      "segmentos_entrada": 9,
@@ -345,7 +345,7 @@
      "reinicios_de_barrido": 3
     },
     "hueco-centrado": {
-     "buildPanels_ms_mediana": 0.216,
+     "buildPanels_ms_mediana": 0.207,
      "repeticiones": 15,
      "paneles": 2,
      "segmentos_entrada": 9,
@@ -353,14 +353,6 @@
      "reinicios_de_barrido": 3
     },
     "panel-pequeno-4.5mm2": {
-     "buildPanels_ms_mediana": 0.103,
-     "repeticiones": 15,
-     "paneles": 2,
-     "segmentos_entrada": 5,
-     "segmentos_tras_division": 7,
-     "reinicios_de_barrido": 3
-    },
-    "panel-muy-pequeno-1.5mm2": {
      "buildPanels_ms_mediana": 0.097,
      "repeticiones": 15,
      "paneles": 2,
@@ -368,8 +360,16 @@
      "segmentos_tras_division": 7,
      "reinicios_de_barrido": 3
     },
+    "panel-muy-pequeno-1.5mm2": {
+     "buildPanels_ms_mediana": 0.094,
+     "repeticiones": 15,
+     "paneles": 2,
+     "segmentos_entrada": 5,
+     "segmentos_tras_division": 7,
+     "reinicios_de_barrido": 3
+    },
     "panel-delgado-40x1": {
-     "buildPanels_ms_mediana": 0.109,
+     "buildPanels_ms_mediana": 0.104,
      "repeticiones": 15,
      "paneles": 2,
      "segmentos_entrada": 5,
@@ -377,7 +377,7 @@
      "reinicios_de_barrido": 3
     },
     "esquinas-redondeadas": {
-     "buildPanels_ms_mediana": 0.248,
+     "buildPanels_ms_mediana": 0.242,
      "repeticiones": 15,
      "paneles": 2,
      "segmentos_entrada": 9,
@@ -385,7 +385,7 @@
      "reinicios_de_barrido": 3
     },
     "rejilla-2x2": {
-     "buildPanels_ms_mediana": 0.242,
+     "buildPanels_ms_mediana": 0.233,
      "repeticiones": 15,
      "paneles": 4,
      "segmentos_entrada": 8,
@@ -393,7 +393,7 @@
      "reinicios_de_barrido": 5
     },
     "rejilla-4x4": {
-     "buildPanels_ms_mediana": 9.147,
+     "buildPanels_ms_mediana": 9.398,
      "repeticiones": 15,
      "paneles": 16,
      "segmentos_entrada": 28,
@@ -401,7 +401,7 @@
      "reinicios_de_barrido": 13
     },
     "rejilla-6x6": {
-     "buildPanels_ms_mediana": 73.972,
+     "buildPanels_ms_mediana": 75.715,
      "repeticiones": 15,
      "paneles": 36,
      "segmentos_entrada": 64,
@@ -409,7 +409,7 @@
      "reinicios_de_barrido": 21
     },
     "rejilla-8x8": {
-     "buildPanels_ms_mediana": 320.595,
+     "buildPanels_ms_mediana": 326.82,
      "repeticiones": 5,
      "paneles": 64,
      "segmentos_entrada": 116,
@@ -417,7 +417,7 @@
      "reinicios_de_barrido": 29
     },
     "rejilla-lineas-completas-3x3": {
-     "buildPanels_ms_mediana": 1.445,
+     "buildPanels_ms_mediana": 1.446,
      "repeticiones": 15,
      "paneles": 10,
      "segmentos_entrada": 8,
@@ -425,7 +425,7 @@
      "reinicios_de_barrido": 13
     },
     "rejilla-4x4-densa-25": {
-     "buildPanels_ms_mediana": 100.51,
+     "buildPanels_ms_mediana": 103.093,
      "repeticiones": 5,
      "paneles": 16,
      "segmentos_entrada": 128,
@@ -444,10 +444,10 @@
     "w": 1000,
     "h": 1113
    },
-   "extraccion_simulada_ms": 6.3,
-   "continuar_a_3d_sincrono_ms": 29.9,
+   "extraccion_simulada_ms": 6,
+   "continuar_a_3d_sincrono_ms": 25,
    "fps_reposo": {
-    "fps": 61,
+    "fps": 60.6,
     "peor_frame_ms": 16.8
    },
    "fps_orbita": {
@@ -456,15 +456,15 @@
    },
    "plegado_por_tick": {
     "ticks": 100,
-    "mediana_ms": 0.9,
+    "mediana_ms": 1,
     "p95_ms": 1.2,
-    "max_ms": 2.5
+    "max_ms": 2.6
    },
    "crecimiento_por_100_ticks": {
     "texturas": 1111,
     "buffers": 5050,
     "vaos": 2020,
-    "heap_MB": -32
+    "heap_MB": 15.4
    },
    "glb_export_ms_sin_arte": 8
   },
@@ -476,19 +476,51 @@
     "w": 1000,
     "h": 1113
    },
-   "extraccion_simulada_ms": 5.9,
-   "continuar_a_3d_sincrono_ms": 30.4,
+   "extraccion_simulada_ms": 6.3,
+   "continuar_a_3d_sincrono_ms": 25.5,
    "fps_reposo": {
-    "fps": 60.6,
+    "fps": 60.8,
     "peor_frame_ms": 16.8
    },
    "fps_orbita": {
-    "fps": 60.6,
+    "fps": 60.5,
     "peor_frame_ms": 16.8
    },
    "plegado_por_tick": {
     "ticks": 100,
     "mediana_ms": 0.6,
+    "p95_ms": 0.7,
+    "max_ms": 0.9
+   },
+   "crecimiento_por_100_ticks": {
+    "texturas": 0,
+    "buffers": 0,
+    "vaos": 0,
+    "heap_MB": 14.7
+   },
+   "glb_export_ms_sin_arte": 8
+  },
+  "bundle": {
+   "entorno": {
+    "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+    "gpu": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1 Max, Unspecified Version)",
+    "dpr": 1,
+    "w": 1000,
+    "h": 1113
+   },
+   "extraccion_simulada_ms": 5.9,
+   "continuar_a_3d_sincrono_ms": 34,
+   "fps_reposo": {
+    "fps": 60.8,
+    "peor_frame_ms": 16.8
+   },
+   "fps_orbita": {
+    "fps": 60.5,
+    "peor_frame_ms": 16.8
+   },
+   "plegado_por_tick": {
+    "ticks": 100,
+    "mediana_ms": 0.5,
     "p95_ms": 0.8,
     "max_ms": 1.6
    },
@@ -496,9 +528,9 @@
     "texturas": 0,
     "buffers": 0,
     "vaos": 0,
-    "heap_MB": -14.4
+    "heap_MB": 13.9
    },
-   "glb_export_ms_sin_arte": 8
+   "glb_export_ms_sin_arte": 7
   }
  }
 }

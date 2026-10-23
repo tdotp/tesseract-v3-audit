@@ -20,7 +20,7 @@ Evolucionar el plugin de Illustrator Tesseract (panel CEP + three.js) hacia una 
 | Fase | Contenido | Entra en alcance V3 | Depende de | Estado |
 |---|---|---|---|---|
 | **0** | Auditoría y preparación (informe, matriz de reutilización, mapa de dependencias, arquitectura, riesgos, baseline) | — | — | **Completada y aprobada** (2026-10-23) |
-| **1** | Base técnica: aislamiento, **corrección de la fuga GPU**, pruebas de caracterización, build IIFE, `GeometryEngine`, modularización sin cambios visibles, validación de paridad | Estabilidad / rendimiento | 0 | **En curso:** A0 ✔, A1 ✔ (checkpoint 1 pendiente de revisión) |
+| **1** | Base técnica: aislamiento, **corrección de la fuga GPU**, pruebas de caracterización, build IIFE, `GeometryEngine`, modularización sin cambios visibles, validación de paridad | Estabilidad / rendimiento | 0 | **En curso:** A0 ✔, A1 ✔ (PC1), A2 ✔ (PC2), A3 ✔ (PC3 pendiente de aprobación) |
 | **2** | Motor geométrico. **2A:** normalización geométrica de creases + clasificación estricta, con validación formal (V1–V8). **2B:** motor candidato de Tesseract Web detrás de interruptor, con criterios de promoción | Interpretación geométrica avanzada | 1, corpus de troqueles | Pendiente |
 | **3** | Visor 3D fluido (render bajo demanda), materiales y cantos PBR, entorno; **spike de compatibilidad PBR** previo | Materiales y cantos PBR; visor fluido | 1 (fuga = 0 en CEP real), spike | Pendiente |
 | **4** | Acabados especiales: UVI, emboss/deboss, foil, mate/brillo (capas con sufijos → máscaras); ExtendScript a `.jsx` | Acabados especiales | 3 | Pendiente |

@@ -16,8 +16,8 @@ window.harnessLoadArt = async function () {
     const c = document.createElement('canvas'); c.width = pw; c.height = ph;
     const x = c.getContext('2d'); const g = x.createLinearGradient(0, 0, pw, ph);
     g.addColorStop(0, `hsl(${hue},70%,60%)`); g.addColorStop(1, `hsl(${hue + 80},70%,40%)`);
-    x.fillStyle = g; x.fillRect(0, 0, pw, ph); x.fillStyle = '#fff'; x.font = 'bold 220px sans-serif';
-    for (let i = 0; i < 8; i++) x.fillText(label + ' ' + i, 100, 300 + i * 400);
+    x.fillStyle = g; x.fillRect(0, 0, pw, ph); x.fillStyle = '#fff'; // solo formas geométricas (sin texto): el texto del canvas varía entre cargas por la caché de fuentes y hacía el PNG no determinista
+    for (let i = 0; i < 8; i++) { x.fillRect(100 + i * 40, 300 + i * 400, 900 + (label === 'FRONT' ? 0 : 300), 160); x.beginPath(); x.arc(pw - 400, 300 + i * 400, 90, 0, Math.PI * 2); x.fill(); }
     const b = await new Promise((res) => c.toBlob(res, 'image/png'));
     return { url: URL.createObjectURL(b), bytes: b.size };
   }

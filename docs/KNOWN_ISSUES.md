@@ -1,6 +1,6 @@
 # Registro de defectos conocidos (referencia funcional)
 
-Actualizado: 2026-10-23 (A2: causas raíz medidas, KI-17…KI-20 y cobertura de pruebas). El motor y el exportador vigentes son la **referencia funcional** (Plan maestro §5): estos defectos se **preservan a propósito** hasta la fase indicada; una diferencia de comportamiento solo es aceptable si corresponde a uno de estos registros.
+Estado a cierre de A3 (2026-10-23): **KI-02, KI-04 y KI-17…KI-20 siguen ABIERTOS y preservados** (A3 no toca motor, plegado, materiales ni exportadores). Actualizado: 2026-10-23 (A2: causas raíz medidas, KI-17…KI-20 y cobertura de pruebas). El motor y el exportador vigentes son la **referencia funcional** (Plan maestro §5): estos defectos se **preservan a propósito** hasta la fase indicada; una diferencia de comportamiento solo es aceptable si corresponde a uno de estos registros.
 Evidencia: `docs/fase0/00_INFORME_AUDITORIA.md`, `tools/baseline/results/`. Etiquetas: [MEDIDO] [CONFIRMADO] [INFERENCIA] [NO VERIFICADO].
 
 | ID | Defecto | Severidad | Evidencia | Fase de corrección | Estado |
@@ -20,7 +20,7 @@ Evidencia: `docs/fase0/00_INFORME_AUDITORIA.md`, `tools/baseline/results/`. Etiq
 | KI-13 | La exportación GLB con arte de 4096 px produce ≈18 MB y bloquea la UI ≈1.4 s (re-codifica los PNG) | Media | [MEDIDO] en navegador (M1 Max) | 5 | Abierto (preservado) |
 | KI-14 | Estado de espesor muestra `0.3mm` para 0.25 (`toFixed(1)`) | Cosmética | [MEDIDO] | 7 | Abierto (preservado) |
 | KI-15 | "Paneles negros con rayas" de una captura previa: no reproducido; hipótesis de z-fighting del arte (offset 0.08 mm) | ? | [MEDIDO] no reproduce en M1 Max | 3 | Abierto; requiere el origen de la captura |
-| KI-16 | `OrbitControls.js` se carga y no se usa; `main.js.bak` en la extensión instalada | Baja | [CONFIRMADO] | 1 (A3) / n.a. | `main.js.bak` ya excluido de `panel/`; `OrbitControls.js` se retira en A3 |
+| KI-16 | `OrbitControls.js` se carga y no se usa; `main.js.bak` en la extensión instalada | Baja | [CONFIRMADO] | Tarea posterior | `main.js.bak` ya excluido de `panel/` y de `dist/`. **A3 NO retira `OrbitControls.js`** (el bundle es funcionalmente idéntico a `panel/`): sigue cargándose desde `index.html` |
 | **KI-17** | Una crease que no alcanza el contorno pierde material en silencio: con 0.3 mm de holgura el modelo se construye con 3176 de 3200 mm² (−24 mm², −0.75 %) y sin aviso del validador; a 0.6 mm el validador avisa pero el modelo se construye igual | Media–Alta | [MEDIDO] fixtures `crease-corta-0.3/0.6` | 2A | Abierto (preservado) |
 | **KI-18** | La "tolerancia 0.5 mm" no es lateral: el criterio punto-sobre-segmento usa la suma de distancias; un extremo de crease a **2.5 mm** lateral de una T todavía se ajusta (pierde 50 mm²) y a **5 mm** deja de hacerlo (se cuela la cara exterior). El validador avisa desde 0.6 mm | Media | [MEDIDO] fixtures `t-desalineada-*` | 2A | Abierto (preservado) |
 | **KI-19** | Paneles pequeños (< 4 mm²) o delgados (relación > 30:1 y < 120 mm²) se descartan en silencio y la cara exterior ocupa su lugar (p. ej. una solapa de 40×1 mm desaparece) | Media | [MEDIDO] fixtures `panel-*` | 2B | Abierto (preservado) |

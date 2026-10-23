@@ -50,6 +50,7 @@ export async function launchChrome({ gpu = 'default', width = 1000, height = 120
       if (r.exceptionDetails) throw new Error(r.exceptionDetails.exception?.description || r.exceptionDetails.text);
       return r.result.value;
     },
+    async addInitScript(source) { await send('Page.addScriptToEvaluateOnNewDocument', { source }); },
     async close() { try { ws.close(); } catch {} try { process.kill(-proc.pid, 'SIGKILL'); } catch {} await new Promise((r) => setTimeout(r, 300)); fs.rmSync(dir, { recursive: true, force: true }); },
   };
   return api;

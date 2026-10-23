@@ -1,0 +1,19 @@
+{
+  "name": "tesseract-v3",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Tesseract V3 — herramientas de build y pruebas (software propietario; ver LICENSE)",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=22"
+  },
+  "packageManager": "pnpm@9.15.4",
+  "scripts": {
+    "build": "node tools/build/build.mjs",
+    "test": "tests/run-all.sh",
+    "verify": "tools/verify-isolation.sh && node tools/build/build.mjs --verify"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  }
+}

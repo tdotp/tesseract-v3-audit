@@ -11,7 +11,7 @@ const consts = loadGeometry(TARGETS.baseline).consts; const PRESETS = consts.MAT
 const GOLD = path.join(ROOT, 'tests/golden/glb.golden.json'); const UPDATE = !!process.env.UPDATE_GOLDEN;
 const goldenGlb = fs.existsSync(GOLD) ? JSON.parse(fs.readFileSync(GOLD, 'utf8')) : {};
 const SOAK = !!process.env.SOAK;
-let H; const names = { base: 'baseline', fix: 'panel' };
+let H; const names = { base: 'baseline', fix: 'panel', dist: 'bundle' }; const TG = ['base', 'fix', 'dist'];
 before(async () => { H = await prepare(); });
 after(async () => { await H?.close(); process.exit(process.exitCode ?? 0); });
 
@@ -29,18 +29,18 @@ test('GPU · baseline (KI-01): los recursos de GPU CRECEN en cada ciclo de plega
   assert.equal(r.veredicto, 'CRECE'); const w = r.peor_delta_ciclos_2_en_adelante; assert.ok(w.tex >= 90 && w.buf >= 1000 && w.vao >= 500, JSON.stringify(w));
 });
 for (const [label, withArt, cycles] of [['sin arte', false, 6], ['con arte y refresco', true, 5], ...(SOAK ? [['soak 25 ciclos', false, 25]] : [])]) {
-  for (const fx of ['caja', 'ill']) test(`GPU · panel (${fx}, ${label}): SIN crecimiento acumulativo tras ${cycles} ciclos`, async () => {
-    await load('fix-' + fx); if (withArt) { await evalIn(`T.build()`); await evalIn(`harnessLoadArt()`); }
-    const r = await evalIn(`tesseractLeakCycles({ cycles: ${cycles}, withArt: ${withArt} })`); save(`gpu-panel-${fx}-${label.replace(/\W+/g, '_')}`, r);
+  for (const t of ['fix', 'dist']) for (const fx of ['caja', 'ill']) test(`GPU · ${names[t]} (${fx}, ${label}): SIN crecimiento acumulativo tras ${cycles} ciclos`, async () => {
+    await load(`${t}-${fx}`); if (withArt) { await evalIn(`T.build()`); await evalIn(`harnessLoadArt()`); }
+    const r = await evalIn(`tesseractLeakCycles({ cycles: ${cycles}, withArt: ${withArt} })`); save(`gpu-${names[t]}-${fx}-${label.replace(/\W+/g, '_')}`, r);
     assert.equal(r.veredicto, 'SIN CRECIMIENTO ACUMULATIVO', JSON.stringify(r.peor_delta_ciclos_2_en_adelante));
     assert.deepEqual(H.browser.errors, [], 'errores JS durante los ciclos');
   });
 }
 
 // ───────────────────────── Regresión baseline ↔ panel ─────────────────────────
-for (const fx of ['caja', 'ill']) test(`Regresión · baseline vs panel (${fx}): píxeles, escena y GLB idénticos`, async () => {
-  await H.browser.goto(`${H.url}/compare-${fx}.html`); await evalIn(`new Promise(r => setTimeout(r, 1200))`);
-  const r = await evalIn(`tesseractCompareFrames()`); save('regresion-' + fx, r);
+for (const t of ['fix', 'dist']) for (const fx of ['caja', 'ill']) test(`Regresión · baseline vs ${names[t]} (${fx}): píxeles, escena y GLB idénticos`, async () => {
+  await H.browser.goto(`${H.url}/${t === 'fix' ? 'compare' : 'compare-dist'}-${fx}.html`); await evalIn(`new Promise(r => setTimeout(r, 1200))`);
+  const r = await evalIn(`tesseractCompareFrames()`); save(`regresion-${names[t]}-${fx}`, r);
   assert.deepEqual(r.resumen, { poses_identicas: true, escena_identica: true, glb_identico: true }, JSON.stringify(r.poses));
   assert.equal(r.paneles.A, r.paneles.B);
 });
@@ -61,7 +61,7 @@ const MAT = `(async () => { const { sleep, raf2, $, panelMeshes, fire, build, se
   const before = D.thickness; out.invalid = {}; for (const v of ['0', '-1', 'abc']) { th.value = v; $('apply-thickness-btn').click(); await sleep(60); out.invalid[v] = { thickness: D.thickness, same: D.thickness === before, status: $('status-area').textContent }; }
   return out; })()`;
 const mats = {};
-for (const t of ['base', 'fix']) test(`Escena/materiales · ${names[t]}: luces, renderer, presets, bisagras y espesor`, async () => {
+for (const t of TG) test(`Escena/materiales · ${names[t]}: luces, renderer, presets, bisagras y espesor`, async () => {
   await load(t + '-caja'); const r = mats[t] = await evalIn(MAT); save('materiales-' + names[t], r);
   assert.deepEqual(r.render.attrs, { antialias: true, alpha: false, preserveDrawingBuffer: true }); assert.equal(r.render.clear, 'ffffff'); assert.equal(r.render.camera.fov, 45);
   assert.deepEqual(r.render.lights.map((l) => [l.type, l.intensity]), [['AmbientLight', 0.6], ['DirectionalLight', 0.8], ['HemisphereLight', 0.65]]);
@@ -74,7 +74,7 @@ for (const t of ['base', 'fix']) test(`Escena/materiales · ${names[t]}: luces, 
   for (const v of ['0', '-1', 'abc']) { assert.equal(r.invalid[v].same, true); assert.equal(r.invalid[v].status, 'Thickness must be greater than 0'); }
   assert.deepEqual(H.browser.errors, []);
 });
-test('Escena/materiales · baseline y panel son idénticos', () => { assert.deepEqual(mats.fix, mats.base); });
+test('Escena/materiales · baseline, panel y bundle son idénticos', () => { assert.deepEqual(mats.fix, mats.base); assert.deepEqual(mats.dist, mats.base); });
 
 // ───────────────────────── Arte ─────────────────────────
 const ART = `(async () => { const { sleep, raf2, panelMeshes, build, setAll } = T; await build(); const D = __dbg; const out = {}; out.sinArte = panelMeshes().map((m) => (m.userData.artOverlays || []).length);
@@ -89,7 +89,7 @@ const ART = `(async () => { const { sleep, raf2, panelMeshes, build, setAll } = 
   out.bridges = [...new Set(br.map((b) => JSON.stringify(b)))].map((s) => JSON.parse(s)); out.stats = { gl: D.renderer.info.memory };
   return out; })()`;
 const arts = {};
-for (const t of ['base', 'fix']) test(`Arte · ${names[t]}: overlays, UV por artboard, desplazamientos, materiales y textura`, async () => {
+for (const t of TG) test(`Arte · ${names[t]}: overlays, UV por artboard, desplazamientos, materiales y textura`, async () => {
   await load(t + '-caja'); const r = arts[t] = await evalIn(ART); save('arte-' + names[t], r);
   assert.deepEqual(r.sinArte, new Array(11).fill(0)); assert.equal(r.mode, 'artboards'); assert.equal(r.overlays.length, 22);
   assert.ok(r.maxUvErr < 1e-5, 'UV vs proyección de artboard completo: error ' + r.maxUvErr);
@@ -99,12 +99,12 @@ for (const t of ['base', 'fix']) test(`Arte · ${names[t]}: overlays, UV por art
   assert.ok(r.bridges.length > 0 && r.bridges.every((b) => b.type === 'MeshBasicMaterial' && b.withMap), JSON.stringify(r.bridges)); assert.deepEqual(r.bridges.map((b) => [b.role, b.renderOrder]).sort(), [['foldBridgeBottom', 32], ['foldBridgeTop', 33]]);
   assert.deepEqual(H.browser.errors, []);
 });
-test('Arte · baseline y panel son idénticos', () => { const strip = (o) => ({ ...o, carga: undefined, stats: undefined }); assert.deepEqual(strip(arts.fix), strip(arts.base)); });
+test('Arte · baseline, panel y bundle son idénticos', () => { const strip = (o) => ({ ...o, carga: undefined, stats: undefined }); assert.deepEqual(strip(arts.fix), strip(arts.base)); assert.deepEqual(strip(arts.dist), strip(arts.base)); });
 
 // ───────────────────────── Exportación GLB ─────────────────────────
 const poseCases = [['plano_sin_arte', 0, false], ['plegado60_sin_arte', 60, false], ['plano_con_arte', 0, true], ['plegado60_con_arte', 60, true]];
 const glbResults = {};
-for (const t of ['base', 'fix']) for (const fx of ['caja', 'ill']) test(`GLB · ${names[t]} (${fx}): estructura, materiales, unidades (mm) y normales (KI-02/KI-03)`, async () => {
+for (const t of TG) for (const fx of ['caja', 'ill']) test(`GLB · ${names[t]} (${fx}): estructura, materiales, unidades (mm) y normales (KI-02/KI-03)`, async () => {
   await load(`${t}-${fx}`); await evalIn(CAPTURE); await evalIn(`T.build()`); const res = glbResults[`${t}-${fx}`] = {};
   let artLoaded = false;
   for (const [name, deg, withArt] of poseCases) {
@@ -119,7 +119,7 @@ for (const t of ['base', 'fix']) for (const fx of ['caja', 'ill']) test(`GLB · 
     assert.ok(s.materialSummary.filter((m) => m.texture).every((m) => m.alphaMode === 'BLEND'), 'arte con alphaMode BLEND'); }
   assert.deepEqual(H.browser.errors, []);
 });
-test('GLB · baseline y panel producen GLB idénticos byte a byte (caja e ill)', () => { for (const fx of ['caja', 'ill']) for (const [name] of poseCases) assert.equal(glbResults[`fix-${fx}`][name].sha, glbResults[`base-${fx}`][name].sha, `${fx}/${name}`); });
+test('GLB · baseline, panel y bundle producen GLB idénticos byte a byte (caja e ill)', () => { for (const fx of ['caja', 'ill']) for (const [name] of poseCases) for (const t of ['fix', 'dist']) assert.equal(glbResults[`${t}-${fx}`][name].sha, glbResults[`base-${fx}`][name].sha, `${t}/${fx}/${name}`); });
 test('GLB · estructura coincide con el golden del baseline (o se regenera con UPDATE_GOLDEN=1)', () => {
   const pick = (s) => { const { bytes, sha, ...rest } = s; return rest; };
   const cur = JSON.parse(JSON.stringify(Object.fromEntries(['caja', 'ill'].map((fx) => [fx, Object.fromEntries(poseCases.map(([n]) => [n, pick(glbResults[`base-${fx}`][n])]))])))); // JSON: normaliza -0
@@ -149,7 +149,7 @@ const INTERACT = `(async () => { const { sleep, raf2, $, panelMeshes, build } = 
   document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); out.escape = $('status-area').textContent;
   return out; })()`;
 const inter = {};
-for (const t of ['base', 'fix']) test(`Interacciones · ${names[t]}: Shift+clic (base), Alt+clic (crease), órbita, pan, zoom y Esc`, async () => {
+for (const t of TG) test(`Interacciones · ${names[t]}: Shift+clic (base), Alt+clic (crease), órbita, pan, zoom y Esc`, async () => {
   await load(t + '-caja'); const r = inter[t] = await evalIn(INTERACT); save('interacciones-' + names[t], r);
   assert.equal(r.shiftClick.base, r.shiftClick.esperado); assert.equal(r.shiftClick.select, String(r.shiftClick.esperado)); assert.match(r.shiftClick.status, new RegExp(`^Base set to P${r.shiftClick.esperado}\\b`));
   assert.equal(r.clickSinModificador.baseIgual, true, 'un clic sin Shift no debe cambiar la base');
@@ -157,16 +157,29 @@ for (const t of ['base', 'fix']) test(`Interacciones · ${names[t]}: Shift+clic 
   assert.ok(Math.abs(r.orbita.dTheta + 0.24) < 1e-3 && Math.abs(r.orbita.dPhi + 0.12) < 1e-3, JSON.stringify(r.orbita)); assert.equal(r.pan.moved, true);
   assert.deepEqual(r.zoom, { alejar: 1.08, acercar: 0.92 }); assert.equal(r.escape, 'Crease selection mode enabled'); assert.deepEqual(H.browser.errors, []);
 });
-test('Interacciones · baseline y panel son idénticos', () => { assert.deepEqual(inter.fix, inter.base); });
+test('Interacciones · baseline, panel y bundle son idénticos', () => { assert.deepEqual(inter.fix, inter.base); assert.deepEqual(inter.dist, inter.base); });
+
+
+// ───────────────────────── Geometría dentro de la página vs golden (Node) ─────────────────────────
+const r4 = (x) => { const v = Math.round(x * 1e4) / 1e4; return Object.is(v, -0) ? 0 : v; };
+const GEO = `(async () => { await T.build(); const D = __dbg; const r4 = (x) => { const v = Math.round(x * 1e4) / 1e4; return Object.is(v, -0) ? 0 : v; }; const seg = (c) => [r4(c.a.x), r4(c.a.y), r4(c.b.x), r4(c.b.y)];
+  return { panels: D.panelData.panels.map((p) => ({ area: r4(Math.abs(p.area)), vertices: p.vertices.length, centroid: [r4(p.centroid.x), r4(p.centroid.y)] })), adjacency: D.adj.map((a) => ({ a: a.panelA, b: a.panelB, creaseIdx: a.creaseIdx, crease: seg(a.crease) })),
+    base: D.baseIndex, tree: D.tree.map((e) => ({ parent: e.parent, child: e.child, sign: e.sign, crease: seg(e.crease) })) }; })()`;
+const goldenGeo = JSON.parse(fs.readFileSync(path.join(ROOT, 'tests/golden/geometry.golden.json'), 'utf8')).fixtures;
+for (const t of TG) for (const [fx, id] of [['caja', 'real-caja-botanica'], ['ill', 'real-illustrator-export']]) test(`Geometría en página · ${names[t]} (${fx}): paneles, adyacencias y árbol de plegado = golden de Node`, async () => {
+  await load(`${t}-${fx}`); const r = JSON.parse(JSON.stringify(await evalIn(GEO))); const g = goldenGeo[id];
+  assert.deepEqual(r.panels, g.panels); assert.deepEqual(r.adjacency, g.adjacency);
+  assert.equal(r.base, 0, 'la base inicial en la interfaz es P0 (currentBasePanelIndex arranca en 0 y solo usa getDefaultBaseIndex si está fuera de rango)'); assert.deepEqual(r.tree, g.trees.base0, 'árbol desde la base inicial P0');
+});
 
 // ───────────────────────── Métricas base ─────────────────────────
 const metrics = {};
-for (const t of ['base', 'fix']) test(`Métricas · ${names[t]}: construcción, FPS, plegado, recursos y exportación (informativo)`, async () => {
+for (const t of TG) test(`Métricas · ${names[t]}: construcción, FPS, plegado, recursos y exportación (informativo)`, async () => {
   await load(t + '-caja'); const info = await evalIn(`(() => { const c = document.createElement('canvas'); const gl = c.getContext('webgl2'); const e = gl.getExtension('WEBGL_debug_renderer_info'); return { ua: navigator.userAgent, gpu: gl.getParameter(e.UNMASKED_RENDERER_WEBGL), dpr: devicePixelRatio, w: innerWidth, h: innerHeight }; })()`);
   await evalIn(`(() => { const o = window.__adobe_cep__.evalScript; window.__adobe_cep__.evalScript = (s, cb) => (s.indexOf('saveDialog') > -1 ? setTimeout(() => cb(''), 0) : o(s, cb)); })()`);
   const m = await evalIn(`tesseractBaseline({ skipGlb: false, sliderTicks: 100, orbitMs: 2000, idleMs: 2000 })`); metrics[t] = { entorno: info, ...m }; save('metricas-' + names[t], metrics[t]);
   assert.ok(m.fps_reposo.fps > 5 && m.plegado.mediana_ms < 100, JSON.stringify([m.fps_reposo, m.plegado]));
 });
-test('Métricas · el crecimiento por 100 ticks: baseline > 1000 texturas+buffers, panel = 0', () => {
-  const g = (t) => metrics[t].crecimiento_por_100_ticks; assert.ok(g('base').buffers > 1000 && g('base').texturas > 500, JSON.stringify(g('base'))); assert.deepEqual([g('fix').texturas, g('fix').buffers, g('fix').vaos], [0, 0, 0], JSON.stringify(g('fix')));
+test('Métricas · el crecimiento por 100 ticks: baseline > 1000 texturas+buffers; panel y bundle = 0', () => {
+  const g = (t) => metrics[t].crecimiento_por_100_ticks; assert.ok(g('base').buffers > 1000 && g('base').texturas > 500, JSON.stringify(g('base'))); for (const t of ['fix', 'dist']) assert.deepEqual([g(t).texturas, g(t).buffers, g(t).vaos], [0, 0, 0], t + ' ' + JSON.stringify(g(t)));
 });
