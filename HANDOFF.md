@@ -1,4 +1,4 @@
-# HANDOFF — Tesseract V3 (actualizado: A5 COMPLETADA, esperando PC6; A4 ejecutado y revertido · 2026-10-24)
+# HANDOFF — Tesseract V3 (actualizado: A5 aprobada en PC6; validación A5 en CEP real preparada, pendiente de autorización · 2026-10-24)
 
 Documento **autosuficiente** para que otro agente (p. ej. Opus en un chat nuevo con contexto limpio) retome el trabajo sin el historial. Léelo completo antes de tocar nada. Idioma de trabajo con el usuario: **español**, explicaciones claras y breves, evidencia antes que afirmaciones.
 
@@ -95,7 +95,7 @@ node tests/tools/analyze-dieline.mjs <troquel.json>   # análisis de un troquel 
 ```
 
 ## 11. Siguiente tarea
-**Ninguna autorizada: esperar PC6** (decisiones en `docs/fase1/A5_INFORME.md` §10: aceptar A5 con la excepción binaria y sus reservas; si validar el bundle de A5 en CEP real; orden A6 vs F2/2A). Red de seguridad: Node 330, navegador 44+6+4+7, 36 mutaciones, GLB = baseline byte a byte, evidencia de A4 fijada. KI-22 sigue siendo el defecto crítico para F2 y se trata sin tolerancias ad hoc.
+**PC6 APROBADO (2026-10-24): A5 aceptada; A6 NO autorizada.** Siguiente paso preparado (commit `a776957`, NO ejecutado): **validación corta del bundle A5 en CEP real** según `docs/fase1/A5_VALIDACION_CEP_PROCEDIMIENTO.md` (carga, extracción, arte, diálogo «Save GLB» real con `tools/a4/a5-observar.mjs`, GLB). Requiere autorización ESPECÍFICA del usuario para instalar temporalmente el bundle A5 (fecha en `--autorizado-por-usuario`). Después de esa validación: presentar la propuesta detallada de A6 (contratos de `GeometryEngine`, límites de módulos, preservación del legacy) **sin implementarla**. KI-22 y demás defectos geométricos: reservados para F2. Baseline de regresión vigente: `be23895` / `dist-a5.SHA256SUMS` / `docs/fase1/a5/bridge-a5-baseline.json`.
 **Con autorización nueva y por separado:** A6 (`core/legacy` con las 24 funciones de geometría en texto idéntico + `GeometryEngine` con solo `legacy`, puerta G2; ojo: `tests/lib/legacy.mjs` ya lee módulos sin sangría con `export`), A7 (estado + escena + `ResourceTracker`; exige sustituir el anclaje de `__dbg` del arnés), A8 (GLB envuelto), A9 (UI), F2/2A (KI-22) e instalación/recarga en CEP (`tools/a4/a4.sh` exige `--autorizado-por-usuario`). **Tareas de alta complejidad: Opus en un chat NUEVO** con este documento, los commits y las evidencias.
 **Cómo se reproduce el Nivel 0** (solo con autorización, Illustrator abierto sin documentos): `node tools/illustrator/run-nivel0.mjs preflight|minimal|rest` → JSON en `tests/results/nivel0-real/` (ignorado por git) y `node tests/tools/nivel0-analizar.mjs <carpeta> --out <dir>`. El orquestador solo abre copias en `/tmp` de los SVG `N0-*`, cierra sin guardar y aborta ante cualquier anomalía. La sub-fase 2A depende además del corpus de troqueles del usuario.
 
