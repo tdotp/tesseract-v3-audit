@@ -1,0 +1,148 @@
+A5.4 — diff del bundle (dist/main.js) A5.3 → A5.4. Esperado: triggerDownload, blobToBase64, askSavePathViaIllustrator y saveBlobWithDialog se reubican en src/bridge/fs.js sin cambios (código impreso idéntico); SAVE_GLB_DIALOG_SCRIPT cambia de posición por el orden de importación.
+1c1
+< /* Tesseract V3 · bundle IIFE · fuente main.js sha256:2aa7a383303710d0 · esbuild 0.28.2 · target chrome99 · NO editar a mano (tools/build/build.mjs) */
+---
+> /* Tesseract V3 · bundle IIFE · fuente main.js sha256:88d3f74c2784f589 · esbuild 0.28.2 · target chrome99 · NO editar a mano (tools/build/build.mjs) */
+183,185d182
+<   // src/host/save-dialog.js
+<   var SAVE_GLB_DIALOG_SCRIPT = '(function(){\nvar f = File.saveDialog("Save GLB", "*.glb");\nif(!f) return "";\nvar name = String(f.name||"");\nif(!/.glb$/i.test(name)) f = new File(f.fsName + ".glb");\nreturn f.fsName;\n})();';
+< 
+213a211,281
+>   }
+> 
+>   // src/host/save-dialog.js
+>   var SAVE_GLB_DIALOG_SCRIPT = '(function(){\nvar f = File.saveDialog("Save GLB", "*.glb");\nif(!f) return "";\nvar name = String(f.name||"");\nif(!/.glb$/i.test(name)) f = new File(f.fsName + ".glb");\nreturn f.fsName;\n})();';
+> 
+>   // src/bridge/fs.js
+>   function triggerDownload(blob, filename) {
+>     var url = URL.createObjectURL(blob);
+>     var a = document.createElement("a");
+>     a.href = url;
+>     a.download = filename;
+>     document.body.appendChild(a);
+>     a.click();
+>     setTimeout(function() {
+>       try {
+>         document.body.removeChild(a);
+>       } catch (ex) {
+>       }
+>       URL.revokeObjectURL(url);
+>     }, 250);
+>   }
+>   function blobToBase64(blob) {
+>     return new Promise(function(resolve, reject) {
+>       try {
+>         var fr = new FileReader();
+>         fr.onerror = function() {
+>           reject(new Error("Could not read GLB blob"));
+>         };
+>         fr.onloadend = function() {
+>           try {
+>             var s = String(fr.result || "");
+>             var comma = s.indexOf(",");
+>             resolve(comma >= 0 ? s.slice(comma + 1) : s);
+>           } catch (ex) {
+>             reject(ex);
+>           }
+>         };
+>         fr.readAsDataURL(blob);
+>       } catch (ex) {
+>         reject(ex);
+>       }
+>     });
+>   }
+>   function askSavePathViaIllustrator(defaultName) {
+>     return new Promise(function(resolve, reject) {
+>       try {
+>         var safeName = String(defaultName || "tesseract_model.glb").replace(/[^A-Za-z0-9._-]+/g, "_");
+>         var jsx = SAVE_GLB_DIALOG_SCRIPT;
+>         window.__adobe_cep__.evalScript(jsx, function(result) {
+>           if (result === "EvalScript error.") return reject(new Error("Illustrator save dialog failed"));
+>           resolve(String(result || ""));
+>         });
+>       } catch (ex) {
+>         reject(ex);
+>       }
+>     });
+>   }
+>   async function saveBlobWithDialog(blob, defaultName) {
+>     var path = await askSavePathViaIllustrator(defaultName || "tesseract_model.glb");
+>     if (!path) return { cancelled: true, path: "" };
+>     if (!(window.cep && window.cep.fs && typeof window.cep.fs.writeFile === "function")) {
+>       triggerDownload(blob, defaultName || "tesseract_model.glb");
+>       return { cancelled: false, path: "", fallback: true };
+>     }
+>     var base64 = await blobToBase64(blob);
+>     var enc = window.cep.encoding && (window.cep.encoding.Base64 || window.cep.encoding.base64) || "Base64";
+>     var res = window.cep.fs.writeFile(path, base64, enc);
+>     if (!res || res.err !== 0 && res.err !== "0") {
+>       throw new Error("Could not save GLB file" + (res && res.err !== void 0 ? " (err " + res.err + ")" : ""));
+>     }
+>     return { cancelled: false, path };
+2235,2300d2302
+<       }
+<       function triggerDownload(blob, filename) {
+<         var url = URL.createObjectURL(blob);
+<         var a = document.createElement("a");
+<         a.href = url;
+<         a.download = filename;
+<         document.body.appendChild(a);
+<         a.click();
+<         setTimeout(function() {
+<           try {
+<             document.body.removeChild(a);
+<           } catch (ex) {
+<           }
+<           URL.revokeObjectURL(url);
+<         }, 250);
+<       }
+<       function blobToBase64(blob) {
+<         return new Promise(function(resolve, reject) {
+<           try {
+<             var fr = new FileReader();
+<             fr.onerror = function() {
+<               reject(new Error("Could not read GLB blob"));
+<             };
+<             fr.onloadend = function() {
+<               try {
+<                 var s = String(fr.result || "");
+<                 var comma = s.indexOf(",");
+<                 resolve(comma >= 0 ? s.slice(comma + 1) : s);
+<               } catch (ex) {
+<                 reject(ex);
+<               }
+<             };
+<             fr.readAsDataURL(blob);
+<           } catch (ex) {
+<             reject(ex);
+<           }
+<         });
+<       }
+<       function askSavePathViaIllustrator(defaultName) {
+<         return new Promise(function(resolve, reject) {
+<           try {
+<             var safeName = String(defaultName || "tesseract_model.glb").replace(/[^A-Za-z0-9._-]+/g, "_");
+<             var jsx = SAVE_GLB_DIALOG_SCRIPT;
+<             window.__adobe_cep__.evalScript(jsx, function(result) {
+<               if (result === "EvalScript error.") return reject(new Error("Illustrator save dialog failed"));
+<               resolve(String(result || ""));
+<             });
+<           } catch (ex) {
+<             reject(ex);
+<           }
+<         });
+<       }
+<       async function saveBlobWithDialog(blob, defaultName) {
+<         var path = await askSavePathViaIllustrator(defaultName || "tesseract_model.glb");
+<         if (!path) return { cancelled: true, path: "" };
+<         if (!(window.cep && window.cep.fs && typeof window.cep.fs.writeFile === "function")) {
+<           triggerDownload(blob, defaultName || "tesseract_model.glb");
+<           return { cancelled: false, path: "", fallback: true };
+<         }
+<         var base64 = await blobToBase64(blob);
+<         var enc = window.cep.encoding && (window.cep.encoding.Base64 || window.cep.encoding.base64) || "Base64";
+<         var res = window.cep.fs.writeFile(path, base64, enc);
+<         if (!res || res.err !== 0 && res.err !== "0") {
+<           throw new Error("Could not save GLB file" + (res && res.err !== void 0 ? " (err " + res.err + ")" : ""));
+<         }
+<         return { cancelled: false, path };
