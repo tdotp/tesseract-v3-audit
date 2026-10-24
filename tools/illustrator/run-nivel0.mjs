@@ -63,9 +63,12 @@ const MIN = [['N0-A', ['survey', 'extract']], ['N0-B', ['survey', 'extract', 'ar
 const REST = [['N0-D', ['survey', 'extract']], ['N0-F', ['survey', 'extract']], ['N0-G', ['survey', 'extract']]];
 const cmd = process.argv[2];
 async function main() {
-  if (!['preflight', 'minimal', 'rest'].includes(cmd)) { console.error('uso: run-nivel0.mjs preflight|minimal|rest'); process.exit(2); }
+  if (!['preflight', 'minimal', 'rest', 'a4-open', 'a4-close'].includes(cmd)) { console.error('uso: run-nivel0.mjs preflight|minimal|rest|a4-open [N0-A|N0-B…]|a4-close'); process.exit(2); }
   const hashes = stage(); fs.mkdirSync(OUT, { recursive: true }); const start = snapshot(); note({ paso: 'estado inicial de Illustrator', ...start });
   const ver = ai('app.version + " | " + $.version + " | " + $.os;'); note({ paso: 'versión', illustrator_extendscript_so: ver });
+  // A4 (solo con autorización): deja abierto UN documento desechable preparado para probar el panel; a4-close lo cierra sin guardar. Mismas guardas N0-*.
+  if (cmd === 'a4-open') { const id = process.argv[3] || 'N0-A'; if (!DOCS[id]) throw new Anomaly('documento de prueba desconocido: ' + id); if (start.docs.length) throw new Anomaly('Illustrator ya tiene documentos abiertos; a4-open exige 0: ' + JSON.stringify(start.docs)); openDoc(id); prepDoc(id); console.log(`A4: ${id} abierto y preparado (desechable). Ciérralo con: node tools/illustrator/run-nivel0.mjs a4-close`); return; }
+  if (cmd === 'a4-close') { if (!(start.activo || '').startsWith('N0-')) throw new Anomaly('el documento activo no es de prueba N0-*: ' + start.activo); const c = closeActiveTest(); if (c.docs.length) throw new Anomaly('quedan documentos abiertos: ' + JSON.stringify(c.docs)); console.log('A4: documento de prueba cerrado sin guardar; Illustrator sin documentos.'); return; }
   if (cmd === 'preflight') { console.log('PREFLIGHT OK: permiso de Automatización concedido y estado leído (solo lectura).'); return; }
   if (cmd === 'minimal') for (const [id, kinds] of MIN) await withDoc(id, null, () => { for (const k of kinds) runScript(k); });
   if (cmd === 'rest') {

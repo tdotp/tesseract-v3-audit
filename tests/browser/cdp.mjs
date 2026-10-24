@@ -43,10 +43,10 @@ export async function launchChrome({ gpu = 'default', width = 1000, height = 120
   const send = (method, params = {}) => new Promise((resolve, reject) => { const i = ++id; pending.set(i, { resolve, reject }); ws.send(JSON.stringify({ id: i, method, params })); });
   await send('Runtime.enable'); await send('Page.enable');
   const api = {
-    consoleMsgs, errors,
+    port, consoleMsgs, errors,
     async goto(url) { await send('Page.navigate', { url }); await new Promise((r) => setTimeout(r, 300)); for (let i = 0; i < 100; i++) { const s = await api.eval('document.readyState'); if (s === 'complete') return; await new Promise((r) => setTimeout(r, 100)); } },
     async eval(expression, { timeout = 300000 } = {}) {
-      const r = await Promise.race([send('Runtime.evaluate', { expression, awaitPromise: true, returnByValue: true }), new Promise((_, j) => setTimeout(() => j(new Error('timeout evaluando en el navegador')), timeout))]);
+      let to; const r = await Promise.race([send('Runtime.evaluate', { expression, awaitPromise: true, returnByValue: true }), new Promise((_, j) => { to = setTimeout(() => j(new Error('timeout evaluando en el navegador')), timeout); })]).finally(() => clearTimeout(to)); // el temporizador se cancela: si no, mantiene vivo el proceso hasta 5 min
       if (r.exceptionDetails) throw new Error(r.exceptionDetails.exception?.description || r.exceptionDetails.text);
       return r.result.value;
     },

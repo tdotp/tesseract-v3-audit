@@ -59,6 +59,8 @@ Baseline congelado: intacto (huellas) · extensión instalada: idéntica al base
 Lo único que se escribió fuera del repositorio: `/tmp/Tesseract_Nivel0*` (copias de trabajo y salida) y PNG temporales (ya borrados).
 
 ## 7. Recomendación para el siguiente punto de control (PC4)
+**Resolución del usuario (2026-10-23):** KI-22 registrado como crítico para F2; fixtures históricos intactos; nueva familia ×1,0 creada; discrepancia 13/11 registrada; sin tolerancias ad hoc; A4 preparado (`A4_PROCEDIMIENTO.md`) y no ejecutado. Las opciones siguientes quedan como contexto histórico.
+
 1. **Decidir qué hacer con KI-22** antes de cualquier refactorización: es el hallazgo con más impacto para el producto (pérdida silenciosa de paneles según la escala). Opciones: (a) tratarlo en la subfase 2A con tolerancias relativas/normalización validada con las 3 escalas de N0-A; (b) añadir primero un aviso de validación (no cambia el motor) — requiere autorización porque modifica comportamiento observable.
 2. **Decidir el destino de los fixtures a ×0.75** (conservarlos como «caso a escala reducida» y añadir el fixture a escala real extraído por Illustrator) — cambia goldens de A2/A3, por eso no se hizo.
 3. **Autorizar A4 (primera carga del bundle en el CEP real)**, con alcance acotado: instalar `tesseract-v3` (id `com.tato.tesseract.v3`), snapshot antes/después, rollback probado, lista de paridad y medición con `measure_ui.js`/`leak_cycles.js`. Es el único paso que cubre lo que el Nivel 0 no puede (Chromium 99 real, `evalScript`, manifiesto).

@@ -10,5 +10,6 @@ echo "== 4/4 navegador (Chrome headless: baseline · panel · bundle; y con APIs
 if [[ " $* " == *" --soak "* ]]; then export SOAK=1; fi
 node --test tests/browser/browser.test.mjs 2>&1 | grep -E "^(✖|ℹ (tests|pass|fail|skipped))"; [ "${PIPESTATUS[0]}" = 0 ] || fail=1
 node --test tests/browser/chromium99.test.mjs 2>&1 | grep -E "^(✖|ℹ (tests|pass|fail|skipped))"; [ "${PIPESTATUS[0]}" = 0 ] || fail=1
+node --test tests/browser/a4-cdp.test.mjs 2>&1 | grep -E "^(✖|ℹ (tests|pass|fail|skipped))"; [ "${PIPESTATUS[0]}" = 0 ] || fail=1
 if [[ " $* " == *" --mutations "* ]]; then echo "== controles negativos"; tests/tools/mutation-check.sh || fail=1; tests/tools/mutation-check-browser.sh || fail=1; tests/tools/mutation-check-dist.sh || fail=1; fi
 [ $fail = 0 ] && echo "TODO EN VERDE" || echo "HAY FALLOS"; exit $fail
