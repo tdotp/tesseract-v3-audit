@@ -9,3 +9,11 @@
 Los casos sintéticos se generan por código (`tests/lib/fixtures.mjs`), de forma determinista.
 
 **Nota (Nivel 0, 2026-10-23):** `real/caja-botanica-illustrator-export.dieline.json` se derivó del SVG interpretando 1 px = 1 px CSS (0.2646 mm), es decir **a escala ×0.75 respecto del tamaño real**. Illustrator real reabre ese SVG con 1 px = 1 pt y la extracción (175.0 × 223.5 mm) coincide con `real/caja-botanica-real.dieline.json`. El fixture se conserva sin cambios (sus golden/pruebas siguen siendo válidos como caso a ×0.75: 13 paneles); a escala real el motor vigente da 11 (KI-22, KI-04). Evidencia: `docs/fase1/nivel0-real/` y `tests/node/nivel0-evidencia.test.mjs`.
+
+## Familia `illustrator-real/` (añadida tras el Nivel 0; 2026-10-23)
+Extracciones hechas por **Illustrator 30.8.2 real** (1 px del SVG = 1 pt, escala ×1,0). Generadas de forma determinista por `tests/tools/make-illustrator-real-fixtures.mjs` desde la evidencia `docs/fase1/nivel0-real/*__extract.json` (cada golden guarda el SHA-256 de su fuente). **No sustituyen ni modifican** los fixtures/goldens históricos: estos quedan congelados por `tests/golden/fixtures.pins.json`.
+| Archivo | Origen | Notas |
+|---|---|---|
+| `illustrator-real/ill-real-caja-botanica.dieline.json` | N0-A: SVG exportado por Illustrator del troquel real, reabierto en Illustrator | 175.0 × 223.5 mm; el motor vigente da **11** paneles (el histórico a ×0.75 da 13: KI-22) |
+| `illustrator-real/ill-real-caja-simple.dieline.json` · `ill-real-compuesto…` · `ill-real-curvas…` | N0-B / N0-F / N0-G: SVG sintéticos (`tools/illustrator/docs-prueba.mjs`) extraídos por Illustrator real | Casos pequeños con hueco, trazado compuesto y Bézier |
+

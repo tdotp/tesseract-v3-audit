@@ -1,0 +1,12 @@
+{
+ "_nota": "Huellas SHA-256 que CONGELAN los fixtures y goldens históricos de A2/A3. Un cambio exige una decisión explícita del usuario.",
+ "archivos": {
+  "tests/fixtures/real/caja-botanica-real.dieline.json": "26f784341d67e02420fed54aa2f79af4f43a9d5b5a55032b20868487920982ea",
+  "tests/fixtures/real/caja-botanica-illustrator-export.dieline.json": "ead6bed5e659ee6318d0c226f3f5c1af4695e848261b121811629e63303258d7",
+  "tests/fixtures/real/caja-botanica-illustrator-export.svg": "02714e637c50d253820d9ad15ea7db117ba8f2e662bd638bdd59275e3b8f6b43",
+  "tests/golden/geometry.golden.json": "41f837afc5ceaf27f11da11cb45182ecd6afe7bf7d6e740e587517069a374587",
+  "tests/golden/glb.golden.json": "b56e74a7b68cee743d760404c852a69fda25de1f1c8c0ad5ecf9b43f147bf808",
+  "tests/golden/constants.golden.json": "77272f96d6743bae6c693890d4fce1c5be11f4b981b1b4f7d57262067555cb59",
+  "tests/golden/panel.pins.json": "b71aed463ebbc0783dd69a32e92a7e95bb44020838b851dc8e52bf2b61192f4f"
+ }
+}

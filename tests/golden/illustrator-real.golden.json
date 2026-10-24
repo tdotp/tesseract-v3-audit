@@ -1,0 +1,1734 @@
+{
+ "_fuente": "docs/fase1/nivel0-real (Nivel 0, Illustrator 30.8.2 real)",
+ "_sha256_main_js": "719942d134d2c5aebb2ed5781cfce25eb5a93fede1583fb05624e64ae6c8ce44",
+ "fixtures": {
+  "ill-real-caja-botanica": {
+   "desc": "Caja Botánica: exportación SVG real de Illustrator reabierta en Illustrator real (1 px = 1 pt); 175.0 × 223.5 mm; equivale a la salida real del plugin",
+   "tags": [
+    "real",
+    "KI-04",
+    "KI-22",
+    "x1.0"
+   ],
+   "fuente": "N0-A_caja_real_export.svg__extract.json",
+   "sha256Fuente": "ad8401c5fb84099d4513691d93973f3ac3a89be2f88926dc19bc49b5b06ae590",
+   "panels": [
+    {
+     "area": 1580.0793,
+     "vertices": 4,
+     "centroid": [
+      277.6081,
+      168.4384
+     ]
+    },
+    {
+     "area": 316.1981,
+     "vertices": 4,
+     "centroid": [
+      277.6081,
+      143.4065
+     ]
+    },
+    {
+     "area": 666.4683,
+     "vertices": 8,
+     "centroid": [
+      237.5439,
+      179.3302
+     ]
+    },
+    {
+     "area": 4770.5788,
+     "vertices": 5,
+     "centroid": [
+      237.7351,
+      248.9827
+     ]
+    },
+    {
+     "area": 4829.8522,
+     "vertices": 4,
+     "centroid": [
+      197.7341,
+      248.7322
+     ]
+    },
+    {
+     "area": 1760.3408,
+     "vertices": 4,
+     "centroid": [
+      170.166,
+      248.8567
+     ]
+    },
+    {
+     "area": 1918.9729,
+     "vertices": 9,
+     "centroid": [
+      197.5849,
+      333.0034
+     ]
+    },
+    {
+     "area": 4794.3909,
+     "vertices": 11,
+     "centroid": [
+      277.6098,
+      248.3005
+     ]
+    },
+    {
+     "area": 665.5821,
+     "vertices": 7,
+     "centroid": [
+      317.5219,
+      318.391
+     ]
+    },
+    {
+     "area": 4800.2245,
+     "vertices": 6,
+     "centroid": [
+      317.6078,
+      248.8567
+     ]
+    },
+    {
+     "area": 666.4333,
+     "vertices": 8,
+     "centroid": [
+      317.6732,
+      179.3301
+     ]
+    }
+   ],
+   "nPanels": 11,
+   "areaSum": 26769.1212,
+   "creaseEdges": 12,
+   "adjacency": [
+    {
+     "a": 8,
+     "b": 9,
+     "creaseIdx": 1,
+     "crease": [
+      337.6085,
+      308.8571,
+      298.108,
+      308.8571
+     ]
+    },
+    {
+     "a": 9,
+     "b": 10,
+     "creaseIdx": 2,
+     "crease": [
+      297.607,
+      188.8562,
+      337.1076,
+      188.8562
+     ]
+    },
+    {
+     "a": 0,
+     "b": 1,
+     "creaseIdx": 3,
+     "crease": [
+      258.11,
+      148.3537,
+      297.1132,
+      148.3537
+     ]
+    },
+    {
+     "a": 4,
+     "b": 5,
+     "creaseIdx": 4,
+     "crease": [
+      177.6131,
+      308.8571,
+      177.6131,
+      188.8562
+     ]
+    },
+    {
+     "a": 7,
+     "b": 9,
+     "creaseIdx": 5,
+     "crease": [
+      297.607,
+      188.8562,
+      297.607,
+      308.8571
+     ]
+    },
+    {
+     "a": 3,
+     "b": 7,
+     "creaseIdx": 6,
+     "crease": [
+      257.6126,
+      308.8571,
+      257.6126,
+      188.8562
+     ]
+    },
+    {
+     "a": 4,
+     "b": 6,
+     "creaseIdx": 8,
+     "crease": [
+      177.6131,
+      309.3545,
+      217.6111,
+      309.3545
+     ]
+    },
+    {
+     "a": 3,
+     "b": 4,
+     "creaseIdx": 9,
+     "crease": [
+      217.6111,
+      188.8562,
+      217.6111,
+      308.8571
+     ]
+    },
+    {
+     "a": 2,
+     "b": 3,
+     "creaseIdx": 10,
+     "crease": [
+      257.6126,
+      188.8562,
+      217.6111,
+      188.8562
+     ]
+    },
+    {
+     "a": 0,
+     "b": 7,
+     "creaseIdx": 11,
+     "crease": [
+      297.607,
+      188.3552,
+      257.6091,
+      188.3552
+     ]
+    }
+   ],
+   "defaultBase": 4,
+   "trees": {
+    "base0": [
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       258.11,
+       148.3537,
+       297.1132,
+       148.3537
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 7,
+      "sign": -1,
+      "crease": [
+       297.607,
+       188.3552,
+       257.6091,
+       188.3552
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 9,
+      "sign": -1,
+      "crease": [
+       297.607,
+       188.8562,
+       297.607,
+       308.8571
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 3,
+      "sign": -1,
+      "crease": [
+       257.6126,
+       308.8571,
+       257.6126,
+       188.8562
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 8,
+      "sign": -1,
+      "crease": [
+       337.6085,
+       308.8571,
+       298.108,
+       308.8571
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 10,
+      "sign": -1,
+      "crease": [
+       297.607,
+       188.8562,
+       337.1076,
+       188.8562
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 4,
+      "sign": 1,
+      "crease": [
+       217.6111,
+       188.8562,
+       217.6111,
+       308.8571
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 2,
+      "sign": 1,
+      "crease": [
+       257.6126,
+       188.8562,
+       217.6111,
+       188.8562
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 5,
+      "sign": -1,
+      "crease": [
+       177.6131,
+       308.8571,
+       177.6131,
+       188.8562
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 6,
+      "sign": 1,
+      "crease": [
+       177.6131,
+       309.3545,
+       217.6111,
+       309.3545
+      ]
+     }
+    ],
+    "base1": [
+     {
+      "parent": 1,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       258.11,
+       148.3537,
+       297.1132,
+       148.3537
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 7,
+      "sign": -1,
+      "crease": [
+       297.607,
+       188.3552,
+       257.6091,
+       188.3552
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 9,
+      "sign": -1,
+      "crease": [
+       297.607,
+       188.8562,
+       297.607,
+       308.8571
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 3,
+      "sign": -1,
+      "crease": [
+       257.6126,
+       308.8571,
+       257.6126,
+       188.8562
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 8,
+      "sign": -1,
+      "crease": [
+       337.6085,
+       308.8571,
+       298.108,
+       308.8571
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 10,
+      "sign": -1,
+      "crease": [
+       297.607,
+       188.8562,
+       337.1076,
+       188.8562
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 4,
+      "sign": 1,
+      "crease": [
+       217.6111,
+       188.8562,
+       217.6111,
+       308.8571
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 2,
+      "sign": 1,
+      "crease": [
+       257.6126,
+       188.8562,
+       217.6111,
+       188.8562
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 5,
+      "sign": -1,
+      "crease": [
+       177.6131,
+       308.8571,
+       177.6131,
+       188.8562
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 6,
+      "sign": 1,
+      "crease": [
+       177.6131,
+       309.3545,
+       217.6111,
+       309.3545
+      ]
+     }
+    ],
+    "base2": [
+     {
+      "parent": 2,
+      "child": 3,
+      "sign": -1,
+      "crease": [
+       257.6126,
+       188.8562,
+       217.6111,
+       188.8562
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 7,
+      "sign": 1,
+      "crease": [
+       257.6126,
+       308.8571,
+       257.6126,
+       188.8562
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 4,
+      "sign": 1,
+      "crease": [
+       217.6111,
+       188.8562,
+       217.6111,
+       308.8571
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 9,
+      "sign": -1,
+      "crease": [
+       297.607,
+       188.8562,
+       297.607,
+       308.8571
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       297.607,
+       188.3552,
+       257.6091,
+       188.3552
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 5,
+      "sign": -1,
+      "crease": [
+       177.6131,
+       308.8571,
+       177.6131,
+       188.8562
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 6,
+      "sign": 1,
+      "crease": [
+       177.6131,
+       309.3545,
+       217.6111,
+       309.3545
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 8,
+      "sign": -1,
+      "crease": [
+       337.6085,
+       308.8571,
+       298.108,
+       308.8571
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 10,
+      "sign": -1,
+      "crease": [
+       297.607,
+       188.8562,
+       337.1076,
+       188.8562
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       258.11,
+       148.3537,
+       297.1132,
+       148.3537
+      ]
+     }
+    ],
+    "base3": [
+     {
+      "parent": 3,
+      "child": 7,
+      "sign": 1,
+      "crease": [
+       257.6126,
+       308.8571,
+       257.6126,
+       188.8562
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 4,
+      "sign": 1,
+      "crease": [
+       217.6111,
+       188.8562,
+       217.6111,
+       308.8571
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 2,
+      "sign": 1,
+      "crease": [
+       257.6126,
+       188.8562,
+       217.6111,
+       188.8562
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 9,
+      "sign": -1,
+      "crease": [
+       297.607,
+       188.8562,
+       297.607,
+       308.8571
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       297.607,
+       188.3552,
+       257.6091,
+       188.3552
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 5,
+      "sign": -1,
+      "crease": [
+       177.6131,
+       308.8571,
+       177.6131,
+       188.8562
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 6,
+      "sign": 1,
+      "crease": [
+       177.6131,
+       309.3545,
+       217.6111,
+       309.3545
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 8,
+      "sign": -1,
+      "crease": [
+       337.6085,
+       308.8571,
+       298.108,
+       308.8571
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 10,
+      "sign": -1,
+      "crease": [
+       297.607,
+       188.8562,
+       337.1076,
+       188.8562
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       258.11,
+       148.3537,
+       297.1132,
+       148.3537
+      ]
+     }
+    ],
+    "base4": [
+     {
+      "parent": 4,
+      "child": 5,
+      "sign": -1,
+      "crease": [
+       177.6131,
+       308.8571,
+       177.6131,
+       188.8562
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 6,
+      "sign": 1,
+      "crease": [
+       177.6131,
+       309.3545,
+       217.6111,
+       309.3545
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 3,
+      "sign": -1,
+      "crease": [
+       217.6111,
+       188.8562,
+       217.6111,
+       308.8571
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 7,
+      "sign": 1,
+      "crease": [
+       257.6126,
+       308.8571,
+       257.6126,
+       188.8562
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 2,
+      "sign": 1,
+      "crease": [
+       257.6126,
+       188.8562,
+       217.6111,
+       188.8562
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 9,
+      "sign": -1,
+      "crease": [
+       297.607,
+       188.8562,
+       297.607,
+       308.8571
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       297.607,
+       188.3552,
+       257.6091,
+       188.3552
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 8,
+      "sign": -1,
+      "crease": [
+       337.6085,
+       308.8571,
+       298.108,
+       308.8571
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 10,
+      "sign": -1,
+      "crease": [
+       297.607,
+       188.8562,
+       337.1076,
+       188.8562
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       258.11,
+       148.3537,
+       297.1132,
+       148.3537
+      ]
+     }
+    ],
+    "base5": [
+     {
+      "parent": 5,
+      "child": 4,
+      "sign": 1,
+      "crease": [
+       177.6131,
+       308.8571,
+       177.6131,
+       188.8562
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 6,
+      "sign": 1,
+      "crease": [
+       177.6131,
+       309.3545,
+       217.6111,
+       309.3545
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 3,
+      "sign": -1,
+      "crease": [
+       217.6111,
+       188.8562,
+       217.6111,
+       308.8571
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 7,
+      "sign": 1,
+      "crease": [
+       257.6126,
+       308.8571,
+       257.6126,
+       188.8562
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 2,
+      "sign": 1,
+      "crease": [
+       257.6126,
+       188.8562,
+       217.6111,
+       188.8562
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 9,
+      "sign": -1,
+      "crease": [
+       297.607,
+       188.8562,
+       297.607,
+       308.8571
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       297.607,
+       188.3552,
+       257.6091,
+       188.3552
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 8,
+      "sign": -1,
+      "crease": [
+       337.6085,
+       308.8571,
+       298.108,
+       308.8571
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 10,
+      "sign": -1,
+      "crease": [
+       297.607,
+       188.8562,
+       337.1076,
+       188.8562
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       258.11,
+       148.3537,
+       297.1132,
+       148.3537
+      ]
+     }
+    ],
+    "base6": [
+     {
+      "parent": 6,
+      "child": 4,
+      "sign": -1,
+      "crease": [
+       177.6131,
+       309.3545,
+       217.6111,
+       309.3545
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 5,
+      "sign": -1,
+      "crease": [
+       177.6131,
+       308.8571,
+       177.6131,
+       188.8562
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 3,
+      "sign": -1,
+      "crease": [
+       217.6111,
+       188.8562,
+       217.6111,
+       308.8571
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 7,
+      "sign": 1,
+      "crease": [
+       257.6126,
+       308.8571,
+       257.6126,
+       188.8562
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 2,
+      "sign": 1,
+      "crease": [
+       257.6126,
+       188.8562,
+       217.6111,
+       188.8562
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 9,
+      "sign": -1,
+      "crease": [
+       297.607,
+       188.8562,
+       297.607,
+       308.8571
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       297.607,
+       188.3552,
+       257.6091,
+       188.3552
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 8,
+      "sign": -1,
+      "crease": [
+       337.6085,
+       308.8571,
+       298.108,
+       308.8571
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 10,
+      "sign": -1,
+      "crease": [
+       297.607,
+       188.8562,
+       337.1076,
+       188.8562
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       258.11,
+       148.3537,
+       297.1132,
+       148.3537
+      ]
+     }
+    ],
+    "base7": [
+     {
+      "parent": 7,
+      "child": 9,
+      "sign": -1,
+      "crease": [
+       297.607,
+       188.8562,
+       297.607,
+       308.8571
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 3,
+      "sign": -1,
+      "crease": [
+       257.6126,
+       308.8571,
+       257.6126,
+       188.8562
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       297.607,
+       188.3552,
+       257.6091,
+       188.3552
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 8,
+      "sign": -1,
+      "crease": [
+       337.6085,
+       308.8571,
+       298.108,
+       308.8571
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 10,
+      "sign": -1,
+      "crease": [
+       297.607,
+       188.8562,
+       337.1076,
+       188.8562
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 4,
+      "sign": 1,
+      "crease": [
+       217.6111,
+       188.8562,
+       217.6111,
+       308.8571
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 2,
+      "sign": 1,
+      "crease": [
+       257.6126,
+       188.8562,
+       217.6111,
+       188.8562
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       258.11,
+       148.3537,
+       297.1132,
+       148.3537
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 5,
+      "sign": -1,
+      "crease": [
+       177.6131,
+       308.8571,
+       177.6131,
+       188.8562
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 6,
+      "sign": 1,
+      "crease": [
+       177.6131,
+       309.3545,
+       217.6111,
+       309.3545
+      ]
+     }
+    ],
+    "base8": [
+     {
+      "parent": 8,
+      "child": 9,
+      "sign": 1,
+      "crease": [
+       337.6085,
+       308.8571,
+       298.108,
+       308.8571
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 10,
+      "sign": -1,
+      "crease": [
+       297.607,
+       188.8562,
+       337.1076,
+       188.8562
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 7,
+      "sign": 1,
+      "crease": [
+       297.607,
+       188.8562,
+       297.607,
+       308.8571
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 3,
+      "sign": -1,
+      "crease": [
+       257.6126,
+       308.8571,
+       257.6126,
+       188.8562
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       297.607,
+       188.3552,
+       257.6091,
+       188.3552
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 4,
+      "sign": 1,
+      "crease": [
+       217.6111,
+       188.8562,
+       217.6111,
+       308.8571
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 2,
+      "sign": 1,
+      "crease": [
+       257.6126,
+       188.8562,
+       217.6111,
+       188.8562
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       258.11,
+       148.3537,
+       297.1132,
+       148.3537
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 5,
+      "sign": -1,
+      "crease": [
+       177.6131,
+       308.8571,
+       177.6131,
+       188.8562
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 6,
+      "sign": 1,
+      "crease": [
+       177.6131,
+       309.3545,
+       217.6111,
+       309.3545
+      ]
+     }
+    ],
+    "base9": [
+     {
+      "parent": 9,
+      "child": 8,
+      "sign": -1,
+      "crease": [
+       337.6085,
+       308.8571,
+       298.108,
+       308.8571
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 10,
+      "sign": -1,
+      "crease": [
+       297.607,
+       188.8562,
+       337.1076,
+       188.8562
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 7,
+      "sign": 1,
+      "crease": [
+       297.607,
+       188.8562,
+       297.607,
+       308.8571
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 3,
+      "sign": -1,
+      "crease": [
+       257.6126,
+       308.8571,
+       257.6126,
+       188.8562
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       297.607,
+       188.3552,
+       257.6091,
+       188.3552
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 4,
+      "sign": 1,
+      "crease": [
+       217.6111,
+       188.8562,
+       217.6111,
+       308.8571
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 2,
+      "sign": 1,
+      "crease": [
+       257.6126,
+       188.8562,
+       217.6111,
+       188.8562
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       258.11,
+       148.3537,
+       297.1132,
+       148.3537
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 5,
+      "sign": -1,
+      "crease": [
+       177.6131,
+       308.8571,
+       177.6131,
+       188.8562
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 6,
+      "sign": 1,
+      "crease": [
+       177.6131,
+       309.3545,
+       217.6111,
+       309.3545
+      ]
+     }
+    ],
+    "base10": [
+     {
+      "parent": 10,
+      "child": 9,
+      "sign": 1,
+      "crease": [
+       297.607,
+       188.8562,
+       337.1076,
+       188.8562
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 8,
+      "sign": -1,
+      "crease": [
+       337.6085,
+       308.8571,
+       298.108,
+       308.8571
+      ]
+     },
+     {
+      "parent": 9,
+      "child": 7,
+      "sign": 1,
+      "crease": [
+       297.607,
+       188.8562,
+       297.607,
+       308.8571
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 3,
+      "sign": -1,
+      "crease": [
+       257.6126,
+       308.8571,
+       257.6126,
+       188.8562
+      ]
+     },
+     {
+      "parent": 7,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       297.607,
+       188.3552,
+       257.6091,
+       188.3552
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 4,
+      "sign": 1,
+      "crease": [
+       217.6111,
+       188.8562,
+       217.6111,
+       308.8571
+      ]
+     },
+     {
+      "parent": 3,
+      "child": 2,
+      "sign": 1,
+      "crease": [
+       257.6126,
+       188.8562,
+       217.6111,
+       188.8562
+      ]
+     },
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       258.11,
+       148.3537,
+       297.1132,
+       148.3537
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 5,
+      "sign": -1,
+      "crease": [
+       177.6131,
+       308.8571,
+       177.6131,
+       188.8562
+      ]
+     },
+     {
+      "parent": 4,
+      "child": 6,
+      "sign": 1,
+      "crease": [
+       177.6131,
+       309.3545,
+       217.6111,
+       309.3545
+      ]
+     }
+    ]
+   },
+   "validate": {
+    "problems": []
+   },
+   "topology": {
+    "inputSegments": 68,
+    "splitSegments": 78,
+    "iterations": 9
+   },
+   "logSummary": {
+    "faces": 13,
+    "connectivity": "Connectivity filter: keeping 11 of 13 panels from largest crease-connected component",
+    "panelsAfterShell": 13
+   }
+  },
+  "ill-real-caja-simple": {
+   "desc": "Caja simple 100×60 con hueco 10×10 y 1 crease, extraída por Illustrator real (fuente SVG sintética)",
+   "tags": [
+    "extraccion-real",
+    "sintetico",
+    "x1.0"
+   ],
+   "fuente": "N0-B_caja_simple_arte.svg__extract.json",
+   "sha256Fuente": "bf9f0e6778bbc2ebe3c460ab2eec1ea8c70f7083594d203e4be3abafba459d3d",
+   "panels": [
+    {
+     "area": 2999.9997,
+     "vertices": 4,
+     "centroid": [
+      95,
+      50
+     ]
+    },
+    {
+     "area": 3000.0002,
+     "vertices": 4,
+     "centroid": [
+      45,
+      50
+     ]
+    }
+   ],
+   "nPanels": 2,
+   "areaSum": 5999.9999,
+   "creaseEdges": 1,
+   "adjacency": [
+    {
+     "a": 0,
+     "b": 1,
+     "creaseIdx": 0,
+     "crease": [
+      70,
+      80,
+      70,
+      20
+     ]
+    }
+   ],
+   "defaultBase": 1,
+   "trees": {
+    "base0": [
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       70,
+       80,
+       70,
+       20
+      ]
+     }
+    ],
+    "base1": [
+     {
+      "parent": 1,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       70,
+       80,
+       70,
+       20
+      ]
+     }
+    ]
+   },
+   "validate": {
+    "problems": []
+   },
+   "topology": {
+    "inputSegments": 9,
+    "splitSegments": 11,
+    "iterations": 3
+   },
+   "logSummary": {
+    "faces": 5,
+    "connectivity": "Connectivity filter: keeping 2 of 3 panels from largest crease-connected component",
+    "panelsAfterShell": 3
+   }
+  },
+  "ill-real-compuesto": {
+   "desc": "Contorno + hueco como trazado compuesto, extraído por Illustrator real (fuente SVG sintética)",
+   "tags": [
+    "extraccion-real",
+    "sintetico",
+    "x1.0"
+   ],
+   "fuente": "N0-F_trazado_compuesto.svg__extract.json",
+   "sha256Fuente": "18b5846065a7cbe9918444ea5b8abcb4d99ee369af364f650a8174ba61e242b0",
+   "panels": [
+    {
+     "area": 2999.9997,
+     "vertices": 4,
+     "centroid": [
+      95,
+      50
+     ]
+    },
+    {
+     "area": 3000.0002,
+     "vertices": 4,
+     "centroid": [
+      45,
+      50
+     ]
+    }
+   ],
+   "nPanels": 2,
+   "areaSum": 5999.9999,
+   "creaseEdges": 1,
+   "adjacency": [
+    {
+     "a": 0,
+     "b": 1,
+     "creaseIdx": 0,
+     "crease": [
+      70,
+      80,
+      70,
+      20
+     ]
+    }
+   ],
+   "defaultBase": 1,
+   "trees": {
+    "base0": [
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       70,
+       80,
+       70,
+       20
+      ]
+     }
+    ],
+    "base1": [
+     {
+      "parent": 1,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       70,
+       80,
+       70,
+       20
+      ]
+     }
+    ]
+   },
+   "validate": {
+    "problems": []
+   },
+   "topology": {
+    "inputSegments": 9,
+    "splitSegments": 11,
+    "iterations": 3
+   },
+   "logSummary": {
+    "faces": 5,
+    "connectivity": "Connectivity filter: keeping 2 of 3 panels from largest crease-connected component",
+    "panelsAfterShell": 3
+   }
+  },
+  "ill-real-curvas": {
+   "desc": "Rectángulo 120×60 con esquinas Bézier y 1 crease, extraído por Illustrator real (fuente SVG sintética)",
+   "tags": [
+    "extraccion-real",
+    "sintetico",
+    "x1.0"
+   ],
+   "fuente": "N0-G_curvas.svg__extract.json",
+   "sha256Fuente": "bac0ecfaa4d8dae12fc1b7f20c3bf7d85066ff81f3062648f7a30974f9bb12a7",
+   "panels": [
+    {
+     "area": 3500.0002,
+     "vertices": 6,
+     "centroid": [
+      109.2381,
+      50
+     ]
+    },
+    {
+     "area": 3500.0002,
+     "vertices": 6,
+     "centroid": [
+      50.7619,
+      50
+     ]
+    }
+   ],
+   "nPanels": 2,
+   "areaSum": 7000.0004,
+   "creaseEdges": 1,
+   "adjacency": [
+    {
+     "a": 0,
+     "b": 1,
+     "creaseIdx": 0,
+     "crease": [
+      80,
+      80,
+      80,
+      20
+     ]
+    }
+   ],
+   "defaultBase": 0,
+   "trees": {
+    "base0": [
+     {
+      "parent": 0,
+      "child": 1,
+      "sign": -1,
+      "crease": [
+       80,
+       80,
+       80,
+       20
+      ]
+     }
+    ],
+    "base1": [
+     {
+      "parent": 1,
+      "child": 0,
+      "sign": 1,
+      "crease": [
+       80,
+       80,
+       80,
+       20
+      ]
+     }
+    ]
+   },
+   "validate": {
+    "problems": []
+   },
+   "topology": {
+    "inputSegments": 9,
+    "splitSegments": 11,
+    "iterations": 3
+   },
+   "logSummary": {
+    "faces": 3,
+    "connectivity": "Connectivity filter: keeping 2 of 3 panels from largest crease-connected component",
+    "panelsAfterShell": 3
+   }
+  }
+ },
+ "discrepancia_KI22": {
+  "descripcion": "La MISMA Caja Botánica: el fixture histórico (derivado del SVG a ×0.75, px CSS) da 13 paneles; la extracción real de Illustrator a ×1.0 da 11. Ambos sin avisos.",
+  "historico": "real/caja-botanica-illustrator-export",
+  "real": "ill-real-caja-botanica",
+  "factor": 1.3333333333333333
+ }
+}
