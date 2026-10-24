@@ -7,23 +7,30 @@ import { ROOT } from './fixtures.mjs';
 export const TARGETS = { baseline: path.join(ROOT, 'reference/legacy-baseline/main.js'), panel: process.env.TESS_PANEL_MAIN || path.join(ROOT, 'panel/main.js'), src: path.join(process.env.TESS_SRC_DIR || path.join(ROOT, 'src'), 'main.js') }; // TESS_PANEL_MAIN / TESS_SRC_DIR solo para controles negativos (mutaciones)
 export const sha256 = (f) => crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex');
 
+// Texto fuente de un objetivo. El objetivo src/ (A5) es main.js + los módulos .js de su árbol, concatenados (main.js primero, el resto en orden alfabético).
+export function sourceText(file) {
+  if (path.resolve(file) !== path.resolve(TARGETS.src)) return fs.readFileSync(file, 'utf8');
+  const files = []; (function walk(d) { for (const e of fs.readdirSync(d, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) { const p = path.join(d, e.name); if (e.isDirectory()) walk(p); else if (/\.js$/.test(e.name) && p !== path.resolve(file)) files.push(p); } })(path.dirname(path.resolve(file)));
+  return [path.resolve(file), ...files].map((f) => fs.readFileSync(f, 'utf8')).join('\n');
+}
+// Funciones de la clausura (4 espacios) o de módulo (sin sangría, con o sin export: se devuelve sin «export»).
 export function extractFunctions(src) {
   const L = src.split('\n'), out = new Map();
   for (let i = 0; i < L.length; i++) {
-    const m = /^    (?:async )?function (\w+)\(/.exec(L[i]); if (!m) continue;
+    const m = /^( {4}|)(?:export )?(?:async )?function (\w+)\(/.exec(L[i]); if (!m) continue;
     const bal = (s) => (s.match(/\{/g) || []).length - (s.match(/\}/g) || []).length;
-    let j = i, text = L[i];
-    if (bal(L[i]) !== 0) { while (++j < L.length) { text += '\n' + L[j]; if (L[j] === '    }') break; } }
-    out.set(m[1], text); i = j;
+    let j = i, text = L[i].replace(/^export /, '');
+    if (bal(L[i]) !== 0) { while (++j < L.length) { text += '\n' + L[j]; if (L[j] === m[1] + '}') break; } }
+    out.set(m[2], text); i = j;
   }
   return out;
 }
 export function extractConstants(src) {
   const consts = {};
   for (const name of ['TOLERANCE_MM', 'GRAPH_EPS', 'DEFAULT_THICKNESS_MM', 'CREASE_HINGE_RADIUS_FACTOR', 'CREASE_HINGE_MIN_RADIUS', 'CREASE_HINGE_SEGMENTS', 'CREASE_HINGE_SHOW_THRESHOLD_DEG', 'FOLD_BRIDGE_TOP_Z', 'FOLD_BRIDGE_BOTTOM_Z', 'CREASE_LINE_Z_OFFSET', 'ART_TOP_OFFSET', 'ART_BOTTOM_OFFSET']) {
-    const m = new RegExp('^    var ' + name + '\\s*=\\s*([^;]+);', 'm').exec(src); if (!m) throw new Error('constante no encontrada: ' + name); consts[name] = Number(m[1]);
+    const m = new RegExp('^(?:    var|export const) ' + name + '\\s*=\\s*([^;]+);', 'm').exec(src); if (!m) throw new Error('constante no encontrada: ' + name); consts[name] = Number(m[1]);
   }
-  const mp = /^    var MATERIAL_PRESETS = (\{[\s\S]*?\n    \});/m.exec(src); if (!mp) throw new Error('MATERIAL_PRESETS no encontrado');
+  const mp = /^(?:    var|export const) MATERIAL_PRESETS = (\{[\s\S]*?\n(?: {4})?\});/m.exec(src); if (!mp) throw new Error('MATERIAL_PRESETS no encontrado');
   consts.MATERIAL_PRESETS = JSON.parse(JSON.stringify(vm.runInNewContext('(' + mp[1] + ')')));
   return consts;
 }
@@ -32,7 +39,7 @@ const GEOMETRY_FUNCTIONS = ['distPtSeg', 'segsFromPath', 'buildAllSegs', 'valida
   'getPolyCentroid', 'edgeMatch', 'buildAdjacencyStrict', 'buildAdjacency', 'buildFoldTree', 'computeFoldSign', 'getDefaultBaseIndex'];
 
 export function loadGeometry(file) {
-  const src = fs.readFileSync(file, 'utf8'), fns = extractFunctions(src), consts = extractConstants(src);
+  const src = sourceText(file), fns = extractFunctions(src), consts = extractConstants(src);
   const missing = GEOMETRY_FUNCTIONS.filter((n) => !fns.has(n)); if (missing.length) throw new Error('funciones no encontradas: ' + missing.join(', '));
   const code = `(function(){
     var TOLERANCE_MM=${consts.TOLERANCE_MM}, GRAPH_EPS=${consts.GRAPH_EPS};
@@ -48,7 +55,7 @@ export function loadGeometry(file) {
 
 // Texto de los scripts ExtendScript embebidos en main.js
 export function extractScripts(file) {
-  const src = fs.readFileSync(file, 'utf8');
+  const src = sourceText(file);
   const m = /^    var EXTRACT_SCRIPT = (\[[\s\S]*?\n    \]\.join\('\\n'\));/m.exec(src); if (!m) throw new Error('EXTRACT_SCRIPT no encontrado');
   const extract = vm.runInNewContext(m[1]);
   const fn = extractFunctions(src).get('buildArtworkExportScript'); if (!fn) throw new Error('buildArtworkExportScript no encontrado');

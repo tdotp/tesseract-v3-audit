@@ -1,3 +1,5 @@
+import { DEFAULT_THICKNESS_MM, MATERIAL_PRESETS, CREASE_HINGE_RADIUS_FACTOR, CREASE_HINGE_MIN_RADIUS, CREASE_HINGE_SEGMENTS, CREASE_HINGE_SHOW_THRESHOLD_DEG, FOLD_BRIDGE_TOP_Z, FOLD_BRIDGE_BOTTOM_Z, CREASE_LINE_Z_OFFSET, ART_TOP_OFFSET, ART_BOTTOM_OFFSET } from './config/look.js';
+
 (function () {
   'use strict';
 
@@ -45,21 +47,6 @@
 
     var TOLERANCE_MM   = 0.5;
     var GRAPH_EPS      = 0.5;
-    var DEFAULT_THICKNESS_MM = 0.25;
-    var MATERIAL_PRESETS = {
-      white: { key:'white', label:'White board', shell:'#d9d5cc', shellBase:'#ece7dd', line:'#bbb3a5', hinge:'#e5dfd3' },
-      kraft: { key:'kraft', label:'Kraft board', shell:'#b7aa87', shellBase:'#c7b996', line:'#8e7f5c', hinge:'#b49a6c' },
-      gray:  { key:'gray',  label:'Gray board',  shell:'#aaa7a0', shellBase:'#bab7b0', line:'#807b74', hinge:'#9c978f' }
-    };
-    var CREASE_HINGE_RADIUS_FACTOR = 0.46;
-    var CREASE_HINGE_MIN_RADIUS = 0.45;
-    var CREASE_HINGE_SEGMENTS = 10;
-    var CREASE_HINGE_SHOW_THRESHOLD_DEG = 2.0;
-    var FOLD_BRIDGE_TOP_Z = 0.003;
-    var FOLD_BRIDGE_BOTTOM_Z = 0.003;
-    var CREASE_LINE_Z_OFFSET = 0.18;
-    var ART_TOP_OFFSET = 0.08;
-    var ART_BOTTOM_OFFSET = 0.08;
 
     var currentThicknessMm = DEFAULT_THICKNESS_MM;
     var currentMaterialPreset = 'white';

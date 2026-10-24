@@ -14,9 +14,9 @@ for pat in "GPU · bundle \(caja, sin arte\)" "Arte · bundle" "Interacciones ·
 node --test --test-name-pattern="Puente CEP · (baseline|bundle)" tests/browser/bridge.test.mjs >/dev/null 2>&1 || { echo "ERROR: el puente del bundle falla sin mutaciones"; exit 2; }
 node --test tests/node/build.test.mjs >/dev/null 2>&1 || { echo "ERROR: build.test falla sin mutaciones"; exit 2; }; echo "precondición OK"
 browser "bundle construido SIN el parche A1 (baseline como fuente)" "GPU · bundle \(caja, sin arte\)" reference/legacy-baseline NONE
-browser "bundle: offset del arte frontal"                          "Arte · bundle"                      src 's/var ART_TOP_OFFSET = 0.08;/var ART_TOP_OFFSET = 0.12;/'
+browser "bundle: offset del arte frontal"                          "Arte · bundle"                      src 's/ART_TOP_OFFSET = 0.08;/ART_TOP_OFFSET = 0.12;/'
 browser "bundle: Shift+clic ya no cambia la base"                  "Interacciones · bundle"             src 's/if(pickPanelFromEvent(e)) return;/if(false) return;/'
 browser "bundle: tolerancia del grafo (GRAPH_EPS 0.5→0.6)"         "Geometría en página · bundle \(caja\)" src 's/var GRAPH_EPS      = 0.5;/var GRAPH_EPS      = 0.6;/'
 browser "bundle: puente CEP, mensaje de escritura de GLB"         "Puente CEP · (baseline|bundle)"     src "s/'Could not save GLB file'/'Could not write GLB file'/" tests/browser/bridge.test.mjs
-node_pins "huellas del bundle: cambio mínimo en la fuente"         's/var DEFAULT_THICKNESS_MM = 0.25;/var DEFAULT_THICKNESS_MM = 0.26;/'
+node_pins "huellas del bundle: cambio mínimo en la fuente"         's/DEFAULT_THICKNESS_MM = 0.25;/DEFAULT_THICKNESS_MM = 0.26;/'
 echo "mutaciones detectadas (bundle): $ok · no detectadas: $bad"; [ "$bad" = 0 ]

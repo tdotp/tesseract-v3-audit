@@ -19,7 +19,7 @@ run "se revierte el parche A1 (fuga vuelve)"        "GPU · bundle \(caja, sin a
 run "etiquetas: la caché deja de reutilizar"        "GPU · bundle \(caja, sin arte\)"  's/var r = labelCache\[key\];/var r = null;/'
 run "color del preset white (shell)"                "Escena/materiales · bundle"       "s/shell:'#d9d5cc'/shell:'#d9d5cd'/"
 run "luz direccional 0.8 → 0.9"                     "Escena/materiales · bundle"       's/new THREE.DirectionalLight(0xffffff,0.8)/new THREE.DirectionalLight(0xffffff,0.9)/'
-run "desplazamiento del arte frontal"               "Arte · bundle"                    's/var ART_TOP_OFFSET = 0.08;/var ART_TOP_OFFSET = 0.12;/'
+run "desplazamiento del arte frontal"               "Arte · bundle"                    's/ART_TOP_OFFSET = 0.08;/ART_TOP_OFFSET = 0.12;/'
 run "UV del arte (se invierte v)"                   "Arte · bundle"                    's/var v = (artRect.top - y) \/ artRect.height;/var v = (y - artRect.top) \/ artRect.height;/'
 run "generador del GLB"                             "GLB · bundle \(caja\)"            "s/generator:'Tesseract Phase 7B'/generator:'Tesseract Phase 7C'/"
 run "rugosidad del GLB (1 → 0.5)"                   "GLB · bundle \(caja\)"            's/roughnessFactor: 1$/roughnessFactor: 0.5/'

@@ -15,7 +15,7 @@ mut() { # nombre, patrón sed
 mut "GRAPH_EPS 0.5→0.6"                         's/var GRAPH_EPS      = 0.5;/var GRAPH_EPS      = 0.6;/'
 mut "TOLERANCE_MM 0.5→0.4"                      's/var TOLERANCE_MM   = 0.5;/var TOLERANCE_MM   = 0.4;/'
 mut "color del preset kraft"                    "s/shell:'#b7aa87'/shell:'#b7aa88'/"
-mut "espesor por defecto 0.25→0.30"             's/var DEFAULT_THICKNESS_MM = 0.25;/var DEFAULT_THICKNESS_MM = 0.30;/'
+mut "espesor por defecto 0.25→0.30"             's/DEFAULT_THICKNESS_MM = 0.25;/DEFAULT_THICKNESS_MM = 0.30;/'
 mut "umbral de panel pequeño (absArea < 4 → < 5)" 's/if(absArea < 4) return;/if(absArea < 5) return;/'
 mut "filtro de panel delgado (aspect > 30 → > 41)" 's/if(aspect > 30 \&\& absArea < 120) return;/if(aspect > 41 \&\& absArea < 120) return;/'
 mut "tolerancia de punto-sobre-segmento (GRAPH_EPS → 0.2)" 's/return d1>GRAPH_EPS \&\& d2>GRAPH_EPS \&\& Math.abs(d1+d2-len)<GRAPH_EPS;/return d1>GRAPH_EPS \&\& d2>GRAPH_EPS \&\& Math.abs(d1+d2-len)<0.2;/'
@@ -23,5 +23,5 @@ mut "búsqueda de vértice (ptEq: < GRAPH_EPS → < 0.2)" 's/function ptEq(a,b){
 # Nota: la mutación del épsilon de paralelismo en segSegIntersect (1e-9) es inalcanzable con troqueles realistas (exige rectas con ángulo ~1e-7 rad) y no se contrasta.
 mut "factor pt→mm del extractor"                's/var PT=0.352778; var EPS=0.5; var SMALL=10;/var PT=0.35; var EPS=0.5; var SMALL=10;/'
 mut "tope de escala del PNG de arte (800→700)"  's/Math.min(800,Math.max(100/Math.min(700,Math.max(100/'
-mut "offset del arte (ART_TOP_OFFSET 0.08→0.09)" 's/var ART_TOP_OFFSET = 0.08;/var ART_TOP_OFFSET = 0.09;/'
+mut "offset del arte (ART_TOP_OFFSET 0.08→0.09)" 's/ART_TOP_OFFSET = 0.08;/ART_TOP_OFFSET = 0.09;/'
 echo "mutaciones detectadas: $ok · no detectadas: $bad"; [ "$bad" = 0 ]
