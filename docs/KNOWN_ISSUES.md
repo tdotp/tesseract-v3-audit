@@ -1,5 +1,6 @@
 # Registro de defectos conocidos (referencia funcional)
 
+Cierre de A5 (2026-10-24): la refactorización A5.1–A5.4 (constantes, textos ExtendScript, puente CEP, guardado) **no cambió ningún defecto**; KI-01 sigue corregido (Δ=0 en el bundle desde `src/`) y KI-02…KI-26 preservados.
 A5.0a (2026-10-23): **KI-24 reproducido** (antes solo por inspección estática); nuevos KI-25 y KI-26 medidos al caracterizar el puente CEP; todos preservados.
 
 Estado tras A4 en el CEP real (2026-10-23: KI-01 corregido confirmado con Δ=0; KI-04/KI-22 reproducidos; KI-02 no reproducido; KI-03 mm confirmado; KI-11 ≈30 FPS en CEF; ver `docs/fase1/A4_INFORME.md`) y tras el Nivel 0 y las decisiones de cierre: KI-10 confirmado, KI-04 reproducido con datos reales, **KI-22 registrado como defecto geométrico crítico (F2)**, KI-23 documentado; KI-10, KI-21 y KI-23 se mantienen documentados y abiertos. Estado a cierre de A3: **KI-02, KI-04 y KI-17…KI-20 siguen ABIERTOS y preservados** (A3 no toca motor, plegado, materiales ni exportadores). Actualizado: 2026-10-23 (A2: causas raíz medidas, KI-17…KI-20 y cobertura de pruebas). El motor y el exportador vigentes son la **referencia funcional** (Plan maestro §5): estos defectos se **preservan a propósito** hasta la fase indicada; una diferencia de comportamiento solo es aceptable si corresponde a uno de estos registros.

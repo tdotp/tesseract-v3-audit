@@ -26,4 +26,5 @@ mut "tope de escala del PNG de arte (800→700)"  's/Math.min(800,Math.max(100/M
 mut "offset del arte (ART_TOP_OFFSET 0.08→0.09)" 's/ART_TOP_OFFSET = 0.08;/ART_TOP_OFFSET = 0.09;/'
 mut "puente: pathToFileURL sin encodeURI (bridge/cep.js)"  's/+ encodeURI(path);/+ path;/'
 mut "guardado: cancelar deja de marcar cancelled (bridge/fs.js)"  "s/return { cancelled:true, path:'' };/return { cancelled:false, path:'' };/"
+mut "límites: bridge/cep toca document (a5-limites)"  's/return !!window.__adobe_cep__; }/return !!window.__adobe_cep__ \&\& !!document; }/'
 echo "mutaciones detectadas: $ok · no detectadas: $bad"; [ "$bad" = 0 ]
