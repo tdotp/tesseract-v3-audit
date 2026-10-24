@@ -1,5 +1,7 @@
 # Registro de defectos conocidos (referencia funcional)
 
+Validación real del bundle A5 en CEP (2026-10-24, `docs/fase1/A5_VALIDACION_CEP_INFORME.md`): **KI-25 reproducido en Illustrator real** (diálogo «Save GLB» real, guardar y cancelar); KI-04/KI-22 (11 de 13) y KI-03 (mm) también, sin cambios; ningún defecto nuevo.
+
 Cierre de A5 (2026-10-24): la refactorización A5.1–A5.4 (constantes, textos ExtendScript, puente CEP, guardado) **no cambió ningún defecto**; KI-01 sigue corregido (Δ=0 en el bundle desde `src/`) y KI-02…KI-26 preservados.
 A5.0a (2026-10-23): **KI-24 reproducido** (antes solo por inspección estática); nuevos KI-25 y KI-26 medidos al caracterizar el puente CEP; todos preservados.
 
