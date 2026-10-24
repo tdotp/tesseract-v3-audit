@@ -2,7 +2,7 @@
 // A4 — diagnóstico y medición DENTRO del panel V3 cargado por CEP, vía DevTools remoto (.debug → http://127.0.0.1:<puerto>). Sin dependencias (WebSocket global de Node ≥ 22).
 //   node tools/a4/cdp-run.mjs targets                     lista los objetivos de DevTools (solo lectura)
 //   node tools/a4/cdp-run.mjs identity [--simulated]      prueba de identidad del panel cargado (id de extensión, host, Chromium, three, huella de main.js vs dist/)
-//   node tools/a4/cdp-run.mjs console [--seconds=10]      recoge errores/avisos de la consola y excepciones durante N segundos (solo lectura)
+//   node tools/a4/cdp-run.mjs console [--seconds=10] [--reload]   recoge (con --reload recarga el panel para ver la consola desde la carga) errores/avisos de la consola y excepciones durante N segundos (solo lectura)
 //   node tools/a4/cdp-run.mjs measure                     tools/baseline/measure_ui.js → tesseractBaseline({skipGlb:true})   [MUEVE el panel: pulsa botones de la UI]
 //   node tools/a4/cdp-run.mjs leak [--cycles=6]           tools/baseline/leak_cycles.js → tesseractLeakCycles               [MUEVE el panel]
 // Salvaguardas: solo 127.0.0.1; solo el objetivo cuya URL contiene --url-match (por defecto «tesseract-v3»); NUNCA el panel del plugin instalado (URL con /extensions/tesseract/);
@@ -11,8 +11,8 @@ import fs from 'node:fs'; import http from 'node:http'; import path from 'node:p
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const EXPECT_EXT = 'com.tato.tesseract.v3.panel';
 
-export function parseArgs(argv) { const o = { cmd: argv[0], port: 8088, urlMatch: 'tesseract-v3', out: path.join(ROOT, 'tests/results/a4'), seconds: 10, cycles: 6, simulated: false, dist: path.join(ROOT, 'dist') };
-  for (const a of argv.slice(1)) { const [k, v] = a.replace(/^--/, '').split('='); if (k === 'port') o.port = +v; else if (k === 'url-match') o.urlMatch = v; else if (k === 'out') o.out = path.resolve(v); else if (k === 'seconds') o.seconds = +v; else if (k === 'cycles') o.cycles = +v; else if (k === 'simulated') o.simulated = true; else if (k === 'dist') o.dist = path.resolve(v); else throw new Error('opción desconocida: ' + a); }
+export function parseArgs(argv) { const o = { cmd: argv[0], port: 8088, urlMatch: 'tesseract-v3', out: path.join(ROOT, 'tests/results/a4'), seconds: 10, cycles: 6, simulated: false, reload: false, dist: path.join(ROOT, 'dist') };
+  for (const a of argv.slice(1)) { const [k, v] = a.replace(/^--/, '').split('='); if (k === 'port') o.port = +v; else if (k === 'url-match') o.urlMatch = v; else if (k === 'out') o.out = path.resolve(v); else if (k === 'seconds') o.seconds = +v; else if (k === 'cycles') o.cycles = +v; else if (k === 'simulated') o.simulated = true; else if (k === 'reload') o.reload = true; else if (k === 'dist') o.dist = path.resolve(v); else throw new Error('opción desconocida: ' + a); }
   if (!Number.isInteger(o.port) || o.port < 1 || o.port > 65535) throw new Error('puerto inválido'); return o; }
 
 export function listTargets(port) { // http.get sin keep-alive (agent:false): no deja sockets abiertos
@@ -56,10 +56,10 @@ export async function run(argv) {
   const target = pickTarget(targets, o.urlMatch); const c = await connect(target);
   try {
     if (o.cmd === 'identity') { const id = await c.eval(IDENTITY_JS, 30000); const v = verdict(id, { simulated: o.simulated, distSums: readSums(o.dist) }); const out = { fecha: new Date().toISOString(), simulated: o.simulated, identidad: id, veredicto: v }; const f = save(o, out, 'identity'); for (const k of v.checks) console.log(`  ${k.ok ? 'OK   ' : 'FALLA'} ${k.name}: ${k.detail}`); console.log(v.ok ? 'IDENTIDAD CORRECTA' : 'IDENTIDAD INCORRECTA', '→', f); return out; }
-    if (o.cmd === 'console') { await new Promise((r) => setTimeout(r, o.seconds * 1000)); const ev = c.events.map((e) => e.method === 'Runtime.consoleAPICalled' ? { tipo: e.params.type, texto: e.params.args.map((a) => a.value ?? a.description).join(' ') } : e.method === 'Runtime.exceptionThrown' ? { tipo: 'excepcion', texto: e.params.exceptionDetails.exception?.description || e.params.exceptionDetails.text } : e.method === 'Log.entryAdded' ? { tipo: 'log-' + e.params.entry.level, texto: e.params.entry.text } : null).filter(Boolean);
+    if (o.cmd === 'console') { if (o.reload) { await c.send('Page.enable'); await c.send('Page.reload', { ignoreCache: true }); } await new Promise((r) => setTimeout(r, o.seconds * 1000)); const ev = c.events.map((e) => e.method === 'Runtime.consoleAPICalled' ? { tipo: e.params.type, texto: e.params.args.map((a) => a.value ?? a.description).join(' ') } : e.method === 'Runtime.exceptionThrown' ? { tipo: 'excepcion', texto: e.params.exceptionDetails.exception?.description || e.params.exceptionDetails.text } : e.method === 'Log.entryAdded' ? { tipo: 'log-' + e.params.entry.level, texto: e.params.entry.text } : null).filter(Boolean);
       const malos = ev.filter((e) => ['error', 'excepcion', 'log-error', 'assert'].includes(e.tipo)); const out = { fecha: new Date().toISOString(), segundos: o.seconds, eventos: ev, errores: malos.length }; console.log(`  ${ev.length} eventos, ${malos.length} errores`, '→', save(o, out, 'console')); return out; }
     const file = o.cmd === 'measure' ? 'measure_ui.js' : 'leak_cycles.js'; await c.eval(fs.readFileSync(path.join(ROOT, 'tools/baseline', file), 'utf8'), 30000);
     const call = o.cmd === 'measure' ? 'tesseractBaseline({ skipGlb: true })' : `tesseractLeakCycles({ cycles: ${o.cycles} })`; const res = await c.eval(call); const out = { fecha: new Date().toISOString(), orden: o.cmd, resultado: res }; console.log(`  ${o.cmd} terminado →`, save(o, out, o.cmd)); return out;
   } finally { await c.close(); }
 }
-if (import.meta.url === pathToFileURL(process.argv[1]).href) run(process.argv.slice(2)).catch((e) => { console.error('ERROR:', e.message); process.exit(1); });
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) run(process.argv.slice(2)).catch((e) => { console.error('ERROR:', e.message); process.exit(1); });

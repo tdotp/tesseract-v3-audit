@@ -1,10 +1,10 @@
 // A4 — tools/a4/cdp-run.mjs contra Chrome headless real (DevTools en 127.0.0.1) con el bundle de dist/: identidad, consola, ciclos de GPU y salvaguardas del objetivo.
 // LÍMITE: no es el CEP real; el puente CEP está simulado. Prueba la HERRAMIENTA, no el panel en Illustrator.
 import test, { before, after } from 'node:test'; import assert from 'node:assert/strict'; import fs from 'node:fs'; import os from 'node:os'; import path from 'node:path';
-import { prepare } from './harness.mjs'; import { serveDir } from './cdp.mjs'; import { ROOT } from '../lib/fixtures.mjs'; import { build } from '../../tools/build/build.mjs';
-import { run, pickTarget, parseArgs } from '../../tools/a4/cdp-run.mjs';
+import { prepare } from './harness.mjs'; import { serveDir } from './cdp.mjs'; import { ROOT } from '../lib/fixtures.mjs';
+import { ensureDist } from '../lib/dist.mjs'; import { run, pickTarget, parseArgs } from '../../tools/a4/cdp-run.mjs'; import { main as glbRef } from '../../tools/a4/glb-baseline.mjs';
 let H, plain, tmp, out; const T = (url) => ({ type: 'page', url, title: 'x', webSocketDebuggerUrl: 'ws://x' });
-before(async () => { await build({ out: ROOT + '/dist' }); H = await prepare(); tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'tess-a4cdp-')); out = path.join(tmp, 'out'); fs.cpSync(ROOT + '/dist', path.join(tmp, 'site/tesseract-v3'), { recursive: true }); plain = await serveDir(path.join(tmp, 'site')); });
+before(async () => { await ensureDist(); H = await prepare(); tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'tess-a4cdp-')); out = path.join(tmp, 'out'); fs.cpSync(ROOT + '/dist', path.join(tmp, 'site/tesseract-v3'), { recursive: true }); plain = await serveDir(path.join(tmp, 'site')); });
 after(async () => { await plain.close(); await H.close(); fs.rmSync(tmp, { recursive: true, force: true }); });
 const a = (cmd, extra = []) => [cmd, `--port=${H.browser.port}`, `--out=${out}`, ...extra];
 
@@ -42,4 +42,9 @@ test('measure: inyecta measure_ui.js y devuelve métricas del panel (estado, FPS
 });
 test('targets: lista los objetivos (solo lectura) y se niega si el puerto no responde', async () => {
   const t = await run(['targets', `--port=${H.browser.port}`]); assert.ok(t.targets.length >= 1); await assert.rejects(() => run(['targets', '--port=1']), /no se pudo consultar DevTools/);
+});
+test('A4 · la referencia GLB (baseline, panel y bundle en Chrome headless) se reproduce y coincide con lo exportado por el CEP REAL (docs/fase1/a4-real)', async () => {
+  const real = JSON.parse(fs.readFileSync(ROOT + '/docs/fase1/a4-real/glb-referencia.json', 'utf8')).resultados; const r = await glbRef([`--out=${out}`]);
+  for (const n of ['baseline', 'panel', 'bundle']) { assert.deepEqual(r[n].errores, [], n); assert.ok(r[n].paneles.some((l) => /keeping 11 of 13/.test(l)), n); for (const pose of ['plano', 'todas60']) assert.equal(r[n][pose].sha256, real[n][pose].sha256, `${n} ${pose}`); }
+  assert.equal(r.baseline.plano.sha256, r.bundle.plano.sha256); assert.equal(r.baseline.todas60.sha256, r.bundle.todas60.sha256);
 });

@@ -1,9 +1,9 @@
 // A4 — tools/a4/a4.sh y verify-isolation.sh --a4-instalado, ejercitados SOLO en un HOME temporal (nunca en el CEP real): la instalación real exige autorización expresa.
 import test from 'node:test'; import assert from 'node:assert/strict'; import fs from 'node:fs'; import os from 'node:os'; import path from 'node:path'; import { spawnSync } from 'node:child_process';
-import { ROOT } from '../lib/fixtures.mjs'; import { build } from '../../tools/build/build.mjs';
+import { ROOT } from '../lib/fixtures.mjs'; import { ensureDist } from '../lib/dist.mjs';
 const A4 = ROOT + '/tools/a4/a4.sh', ISO = ROOT + '/tools/verify-isolation.sh'; const REAL_USER_CEP = os.homedir() + '/Library/Application Support/Adobe/CEP/extensions'; const AUTH = '--autorizado-por-usuario=2026-10-23';
 const listing = () => spawnSync('find', [REAL_USER_CEP, '-maxdepth', '2'], { encoding: 'utf8' }).stdout;
-await build({ out: ROOT + '/dist' }); const realBefore = listing(); const tmps = [];
+await ensureDist(); const realBefore = listing(); const tmps = [];
 function sandbox() { const t = fs.mkdtempSync(path.join(os.tmpdir(), 'tess-a4-')); tmps.push(t); const home = path.join(t, 'home'), cep = path.join(home, 'Library/Application Support/Adobe/CEP/extensions'), sys = path.join(t, 'sys'), state = path.join(t, 'state');
   for (const [d, n] of [[cep, 'OtraExt'], [sys, 'ExtSistema']]) { fs.mkdirSync(path.join(d, n, 'CSXS'), { recursive: true }); fs.writeFileSync(path.join(d, n, 'CSXS/manifest.xml'), `<ExtensionManifest Version="12.0" ExtensionBundleId="com.otro.${n}"><ExtensionList><Extension Id="com.otro.${n}.panel"/></ExtensionList></ExtensionManifest>`); fs.writeFileSync(path.join(d, n, 'index.html'), n); }
   const env = { ...process.env, HOME: home, TESS_SYS_CEP: sys, TESS_A4_STATE: state, TESS_SKIP_SYSTEM_CHECKS: '1' };

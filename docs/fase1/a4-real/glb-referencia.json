@@ -1,0 +1,54 @@
+{
+ "fecha": "2026-10-24T01:56:46.995Z",
+ "fixture": "tests/fixtures/illustrator-real/ill-real-caja-botanica.dieline.json",
+ "resultados": {
+  "baseline": {
+   "paneles": [
+    "Faces traced: 13",
+    "Panels after shell filter: 13",
+    "Connectivity filter: keeping 11 of 13 panels from largest crease-connected component"
+   ],
+   "plano": {
+    "bytes": 33436,
+    "sha256": "737bcd2312da1191a57f5b6530749ffd6bf20b6dd1737c454a62d7f38d8e40b4"
+   },
+   "todas60": {
+    "bytes": 54224,
+    "sha256": "87aa2e4c5cc39092e4b040b77f713bc371f6e7c8b47cc56b8711cb5167275017"
+   },
+   "errores": []
+  },
+  "panel": {
+   "paneles": [
+    "Faces traced: 13",
+    "Panels after shell filter: 13",
+    "Connectivity filter: keeping 11 of 13 panels from largest crease-connected component"
+   ],
+   "plano": {
+    "bytes": 33436,
+    "sha256": "737bcd2312da1191a57f5b6530749ffd6bf20b6dd1737c454a62d7f38d8e40b4"
+   },
+   "todas60": {
+    "bytes": 54224,
+    "sha256": "87aa2e4c5cc39092e4b040b77f713bc371f6e7c8b47cc56b8711cb5167275017"
+   },
+   "errores": []
+  },
+  "bundle": {
+   "paneles": [
+    "Faces traced: 13",
+    "Panels after shell filter: 13",
+    "Connectivity filter: keeping 11 of 13 panels from largest crease-connected component"
+   ],
+   "plano": {
+    "bytes": 33436,
+    "sha256": "737bcd2312da1191a57f5b6530749ffd6bf20b6dd1737c454a62d7f38d8e40b4"
+   },
+   "todas60": {
+    "bytes": 54224,
+    "sha256": "87aa2e4c5cc39092e4b040b77f713bc371f6e7c8b47cc56b8711cb5167275017"
+   },
+   "errores": []
+  }
+ }
+}

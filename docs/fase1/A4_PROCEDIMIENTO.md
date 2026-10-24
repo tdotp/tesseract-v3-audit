@@ -1,6 +1,6 @@
 # A4 — Primera carga del bundle V3 en el CEP real: procedimiento exacto
 
-Estado: **PREPARADO. NO EJECUTADO. NADA INSTALADO.** Fecha de preparación: 2026-10-23. Para ejecutarlo hace falta la **autorización EXPRESA del usuario en el chat** ("autorizo instalar V3 para A4"); la herramienta exige además la fecha de esa autorización en la línea de comandos (`--autorizado-por-usuario=AAAA-MM-DD`) y se niega sin ella.
+Estado: **EJECUTADO el 2026-10-23 (autorización expresa) y REVERTIDO — ver `A4_INFORME.md`.** Tras la ejecución se añadieron `tools/a4/a4-paridad.mjs` (P-0…P-9 conducidos por DevTools) y `tools/a4/glb-baseline.mjs` (referencia GLB del baseline); el cierre/reinicio de Illustrator y la apertura de menús los hizo el usuario (sin permiso de accesibilidad). Texto original de preparación (2026-10-23): Para ejecutarlo hace falta la **autorización EXPRESA del usuario en el chat** ("autorizo instalar V3 para A4"); la herramienta exige además la fecha de esa autorización en la línea de comandos (`--autorizado-por-usuario=AAAA-MM-DD`) y se niega sin ella.
 Etiquetas: **[MEDIDO]** probado en esta sesión · **[CONFIRMADO]** leído en código/archivos · **[INFERENCIA]** · **[NO VERIFICADO]**.
 
 ## 1. Qué es A4 y qué NO es

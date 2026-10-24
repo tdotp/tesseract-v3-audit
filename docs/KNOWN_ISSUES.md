@@ -1,6 +1,6 @@
 # Registro de defectos conocidos (referencia funcional)
 
-Estado tras el Nivel 0 en Illustrator real y las decisiones de cierre (2026-10-23): KI-10 confirmado, KI-04 reproducido con datos reales, **KI-22 registrado como defecto geométrico crítico (F2)**, KI-23 documentado; KI-10, KI-21 y KI-23 se mantienen documentados y abiertos. Estado a cierre de A3: **KI-02, KI-04 y KI-17…KI-20 siguen ABIERTOS y preservados** (A3 no toca motor, plegado, materiales ni exportadores). Actualizado: 2026-10-23 (A2: causas raíz medidas, KI-17…KI-20 y cobertura de pruebas). El motor y el exportador vigentes son la **referencia funcional** (Plan maestro §5): estos defectos se **preservan a propósito** hasta la fase indicada; una diferencia de comportamiento solo es aceptable si corresponde a uno de estos registros.
+Estado tras A4 en el CEP real (2026-10-23: KI-01 corregido confirmado con Δ=0; KI-04/KI-22 reproducidos; KI-02 no reproducido; KI-03 mm confirmado; KI-11 ≈30 FPS en CEF; ver `docs/fase1/A4_INFORME.md`) y tras el Nivel 0 y las decisiones de cierre: KI-10 confirmado, KI-04 reproducido con datos reales, **KI-22 registrado como defecto geométrico crítico (F2)**, KI-23 documentado; KI-10, KI-21 y KI-23 se mantienen documentados y abiertos. Estado a cierre de A3: **KI-02, KI-04 y KI-17…KI-20 siguen ABIERTOS y preservados** (A3 no toca motor, plegado, materiales ni exportadores). Actualizado: 2026-10-23 (A2: causas raíz medidas, KI-17…KI-20 y cobertura de pruebas). El motor y el exportador vigentes son la **referencia funcional** (Plan maestro §5): estos defectos se **preservan a propósito** hasta la fase indicada; una diferencia de comportamiento solo es aceptable si corresponde a uno de estos registros.
 Evidencia: `docs/fase0/00_INFORME_AUDITORIA.md`, `tools/baseline/results/`. Etiquetas: [MEDIDO] [CONFIRMADO] [INFERENCIA] [NO VERIFICADO].
 
 | ID | Defecto | Severidad | Evidencia | Fase de corrección | Estado |
@@ -49,5 +49,6 @@ Evidencia: `docs/fase0/00_INFORME_AUDITORIA.md`, `tools/baseline/results/`. Etiq
 | KI-16 | `isolation.test.mjs`: `panel/` sin `main.js.bak` |
 | KI-21 | `jsx-validation-scripts`: la exportación falla a mitad ⇒ el script del plugin deja el artboard activo cambiado; el guardián lo restaura |
 | KI-22 (familia real ×1.0) | `illustrator-real-fixtures.test.mjs`: golden del motor sobre 4 extracciones reales (baseline y panel), discrepancia 13↔11 y fixture real = histórico ×4/3; huellas que congelan los históricos |
+| KI-01, KI-03, KI-04, KI-22 (CEP real, A4) | `a4-evidencia.test.mjs`: Δ GPU=0 con control positivo, 11 de 13 en el panel real, GLB del CEP = GLB del baseline, mm |
 | KI-04, KI-10, KI-22, KI-23 (Illustrator real) | `nivel0-evidencia.test.mjs` (evidencia de `docs/fase1/nivel0-real/`): KI-10 error/subcadena/ocultas; N0-A 11 de 13; barrido de escala 13↔11; PNG 3176×2264 |
 | KI-17, 18, 19, 20 | `known-issues`: casos `crease-*`, `t-desalineada-*`, `panel-*`; `geometry-golden` |

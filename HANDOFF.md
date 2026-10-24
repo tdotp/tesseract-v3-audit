@@ -1,4 +1,4 @@
-# HANDOFF — Tesseract V3 (actualizado: Nivel 0 ejecutado y A4 PREPARADO (no ejecutado) · 2026-10-23)
+# HANDOFF — Tesseract V3 (actualizado: A4 EJECUTADO y revertido; Nivel 0 ejecutado · 2026-10-23)
 
 Documento **autosuficiente** para que otro agente (p. ej. Opus en un chat nuevo con contexto limpio) retome el trabajo sin el historial. Léelo completo antes de tocar nada. Idioma de trabajo con el usuario: **español**, explicaciones claras y breves, evidencia antes que afirmaciones.
 
@@ -31,7 +31,7 @@ Gestión de agentes: las tareas de **alta complejidad** se hacen con **Opus en c
 | Fase 0 (auditoría) | Completada y aprobada |
 | **A0** aislamiento · **A1** fuga GPU · **A2** caracterización · **A3** build IIFE + dry-run | Hechas y **aprobadas** (PC1, PC2, PC3; A3 = commit `b5a946e`) |
 | **Validación Nivel 0 en Illustrator real** (sin instalar nada) | **EJECUTADA completa** (Illustrator 30.8.2, 16 ejecuciones de script sobre 6 documentos desechables, estado idéntico antes/después en todas). Informe: `docs/fase1/NIVEL0_INFORME.md`; diferencias: `NIVEL0_DIFERENCIAS_MAQUETA_VS_REAL.md`; evidencia: `docs/fase1/nivel0-real/`. Resultado: KI-10 confirmado; KI-04 reproducido con datos reales; nuevos KI-22 (escala) y KI-23 (PNG). Decisiones de cierre registradas (ver §3) |
-| **A4 — primera carga del bundle en CEP real** | **PREPARADO, NO EJECUTADO, NADA INSTALADO.** Procedimiento exacto: `docs/fase1/A4_PROCEDIMIENTO.md`; herramientas `tools/a4/a4.sh` (preflight/snapshot/install/verify/diagnose/rollback) y `tools/a4/cdp-run.mjs` (identidad y medición en el panel vía DevTools). Requiere autorización expresa de instalación |
+| **A4 — primera carga del bundle en CEP real** | **EJECUTADO el 2026-10-23 (autorización expresa) y REVERTIDO.** Informe: `docs/fase1/A4_INFORME.md`; evidencia: `docs/fase1/a4-real/`. Resultado: carga a la primera en Illustrator 30.8.2 / CEP 12.1.1 / Chromium 99.0.4844.84; identidad y SHA-256 correctos; P-0…P-11 ✅ (reservas: arte a simple vista, visor externo, Shift+clic, memoria del proceso); 11 de 13 paneles (KI-04/22); GLB del CEP = GLB del baseline byte a byte; GPU Δ=0 (control positivo); 0 errores; rollback verificado (CEP, baseline e instalada intactos). **V3 NO está instalada ahora.** Pendiente: PC5 (decisión del usuario). Herramientas: `tools/a4/a4.sh` (install/rollback exigen `--autorizado-por-usuario=AAAA-MM-DD`), `cdp-run.mjs`, `a4-paridad.mjs`, `glb-baseline.mjs` |
 | **A4** (primera carga real del bundle en CEP; requiere instalar) y refactorización estructural | **NO iniciadas y NO autorizadas** |
 
 ## 5. Commits y archivos relevantes
@@ -57,9 +57,9 @@ tools/baseline/                    sondas de rendimiento, arnés (setup_harness.
 Código del plugin: `panel/main.js` (2 700 líneas, una sola clausura; mapa de responsabilidades en `docs/fase0/02_MAPA_DEPENDENCIAS_PLUGIN.md`).
 
 ## 6. Pruebas ejecutadas y resultados (2026-10-23, `tests/run-all.sh --mutations --soak` + reejecución limpia)
-- **Node** (`node --test 'tests/node/*.test.mjs'`): **225/225** (205 previas + 13 de la familia de fixtures real ×1,0 + 7 de la herramienta A4 en HOME temporal).
+- **Node** (`node --test 'tests/node/*.test.mjs'`): **233/233** (205 previas + 13 de la familia de fixtures real ×1,0 + 7 de la herramienta A4 en HOME temporal + 8 de evidencia de A4 real).
 - **Navegador** (Chrome 155 headless real con GPU Apple M1 Max; puente CEP simulado): **44/44** (48/48 con `--soak`), ahora sobre **tres versiones**: baseline congelado, `panel/` y **bundle** (`dist/`): GPU (baseline crece; panel y bundle Δ=0), regresión baseline↔panel y baseline↔bundle (píxeles 4 poses, escena y GLB byte a byte, 2 troqueles), geometría en página = golden de Node, materiales/luces/espesor, arte (UV, offsets), GLB, interacciones, métricas. **`chromium99.test.mjs` 4/4:** flujo completo con ~40 APIs posteriores a la 99 ELIMINADAS; mismo GLB que con APIs completas.
-- **Navegador de A4:** `tests/browser/a4-cdp.test.mjs` 6/6 (identidad, consola, fuga, medidas contra Chrome headless real; selección de objetivo que jamás actúa sobre el plugin instalado).
+- **Navegador de A4:** `tests/browser/a4-cdp.test.mjs` 7/7 (identidad, consola, fuga, medidas contra Chrome headless real; selección de objetivo que jamás actúa sobre el plugin instalado; referencia GLB = la del CEP real). `tests/lib/dist.mjs` serializa la reconstrucción de `dist/` entre archivos de prueba paralelos (había una carrera real).
 - **Controles negativos: 26/26 detectadas** (11 Node + 10 navegador + 5 del bundle); cada serie exige antes una ejecución limpia que pase.
 - **Build:** reproducible; huellas fijadas en `tests/golden/dist.SHA256SUMS`; `--verify` OK. **Instalador:** dry-run correcto; `--install` rechazado; sin escrituras.
 - **Aislamiento:** `verify-isolation.sh` verde; `panel/` sin cambios desde PC1; V3 no instalado.
@@ -90,7 +90,7 @@ node tests/tools/analyze-dieline.mjs <troquel.json>   # análisis de un troquel 
 ```
 
 ## 11. Siguiente tarea
-**Ninguna autorizada.** A4 está preparado y detenido a la espera de la autorización expresa de instalación (`docs/fase1/A4_PROCEDIMIENTO.md`: 10 pasos, criterios C1–C6, rollback). KI-22 (crítico) se tratará en **F2/2A por Opus en chat nuevo**, sin tolerancias ad hoc; la entrada son los KI-04/10/22/23, `docs/fase1/NIVEL0_INFORME.md` y la familia de fixtures ×1,0.
+**Ninguna autorizada: esperar PC5.** A4 terminó y se revirtió (`docs/fase1/A4_INFORME.md` §11 recomienda: aprobar A4 con sus reservas; priorizar **KI-22 (F2/2A)** antes que A5; ambos con **Opus en chat nuevo**). Red de seguridad actual: Node 225+ pruebas, GLB del CEP real = baseline (2 poses), familia de fixtures ×1,0 (11 paneles) y evidencia de A4 fijada por pruebas. KI-22 se trata sin tolerancias ad hoc; la entrada son KI-04/10/22/23, `NIVEL0_INFORME.md` y `A4_INFORME.md`.
 **Con autorización nueva y por separado:** A4 (primera carga real del bundle; instalar a nivel de usuario solo con autorización explícita, `--snapshot` antes/después, rollback, `measure_ui.js` + `leak_cycles.js`, paridad P-1…P-10) y la refactorización estructural (A5 `bridge`, A6 `core/legacy` + `GeometryEngine`, A7 escena). **Esas tareas de alta complejidad se hacen con Opus en un chat NUEVO con contexto limpio**, usando este documento, los commits y las evidencias como único contexto; la validación de compatibilidad real (Nivel 0) está completa; no iniciar a Opus hasta recibir autorización (el usuario condicionó la refactorización a esa validación y a su aprobación).
 **Cómo se reproduce el Nivel 0** (solo con autorización, Illustrator abierto sin documentos): `node tools/illustrator/run-nivel0.mjs preflight|minimal|rest` → JSON en `tests/results/nivel0-real/` (ignorado por git) y `node tests/tools/nivel0-analizar.mjs <carpeta> --out <dir>`. El orquestador solo abre copias en `/tmp` de los SVG `N0-*`, cierra sin guardar y aborta ante cualquier anomalía. La sub-fase 2A depende además del corpus de troqueles del usuario.
 

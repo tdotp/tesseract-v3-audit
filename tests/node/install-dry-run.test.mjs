@@ -1,10 +1,10 @@
 // A3 — tools/install.sh en modo DRY-RUN: verifica sin escribir; la instalación real está rechazada. NADA se instala en el CEP del usuario.
 import test from 'node:test'; import assert from 'node:assert/strict'; import fs from 'node:fs'; import os from 'node:os'; import path from 'node:path'; import { spawnSync, execFileSync } from 'node:child_process';
-import { ROOT } from '../lib/fixtures.mjs'; import { build } from '../../tools/build/build.mjs';
+import { ROOT } from '../lib/fixtures.mjs'; import { ensureDist } from '../lib/dist.mjs';
 const SH = ROOT + '/tools/install.sh'; const USER_CEP = os.homedir() + '/Library/Application Support/Adobe/CEP/extensions'; const DEST = USER_CEP + '/tesseract-v3';
 const run = (args, env = {}) => spawnSync(SH, args, { encoding: 'utf8', env: { ...process.env, ...env } });
 const listing = () => spawnSync('find', [USER_CEP, '-maxdepth', '2'], { encoding: 'utf8' }).stdout; const tmp = () => fs.mkdtempSync(path.join(os.tmpdir(), 'tess-inst-test-'));
-await build({ out: ROOT + '/dist' }); const tmps = [];
+await ensureDist(); const tmps = [];
 test('dry-run correcto: 6 bloques de comprobaciones en verde, plan con huellas, rollback descrito y NADA escrito', () => {
   const before = listing(), snap0 = run(['--snapshot']).stdout; const r = run(['--dry-run']); assert.equal(r.status, 0, r.stdout);
   for (const t of ['SHA256SUMS verifica', 'identidad V3', 'sin colisión', 'dentro de ~/Library', 'el destino no existe', 'verify-isolation.sh verde', 'DRY-RUN CORRECTO', 'La instalación real sigue sin autorización', 'rollback']) assert.match(r.stdout, new RegExp(t), t);

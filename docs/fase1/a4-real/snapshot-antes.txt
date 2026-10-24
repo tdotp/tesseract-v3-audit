@@ -1,0 +1,11 @@
+## /Library/Application Support/Adobe/CEP/extensions
+CC_LIBRARIES_PANEL_EXTENSION_3_13_164	com.adobe.DesignLibraries.angular.2015.1	archivos=310	tree=d19028f74704de31
+CC_LIBRARIES_PANEL_EXTENSION_3_25_28	com.adobe.DesignLibraries.angular.2015.1	archivos=339	tree=6d2f0244d423bf08
+CC_LIBRARIES_PANEL_EXTENSION_3_8_299	com.adobe.DesignLibraries.angular.2015.1	archivos=281	tree=86bf4520746d7950
+CC_LIBRARIES_PANEL_EXTENSION_4_15_60	com.adobe.DesignLibraries.angular.2015.1	archivos=901	tree=40e344c929c61c0a
+com.adobe.ccx.fnft-3.5.0	com.adobe.ccx.fnft	archivos=180	tree=c4cf46af92a7858a
+com.adobe.ccx.start-2.16.0	com.adobe.ccx.start	archivos=481	tree=723199aa255080b0
+com.adobe.ccx.start-2.7.2	com.adobe.ccx.start	archivos=400	tree=2785b2c0cb9193f1
+tesseract	com.tato.tesseract	archivos=15	tree=298fe1611c4ce1d7
+## /Users/gerardocalambasposada/Library/Application Support/Adobe/CEP/extensions
+TesserArt_Validator	com.tato.editorialvalidator	archivos=7	tree=d009e37a005d8fe4

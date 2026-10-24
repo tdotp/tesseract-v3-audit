@@ -1,0 +1,27 @@
+{
+ "fecha": "2026-10-24T01:58:04.972Z",
+ "ctx": "webgl2",
+ "instrumentado": true,
+ "antes": {
+  "tex": 0,
+  "buf": 0,
+  "vao": 0,
+  "prog": 0
+ },
+ "tras50sinBorrar": {
+  "tex": 50,
+  "buf": 50,
+  "vao": 0,
+  "prog": 0
+ },
+ "trasBorrar": {
+  "tex": 0,
+  "buf": 0,
+  "vao": 0,
+  "prog": 0
+ },
+ "renderer": "Apple M1 Max",
+ "vendor": "Apple",
+ "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+ "perfMemory": "object"
+}

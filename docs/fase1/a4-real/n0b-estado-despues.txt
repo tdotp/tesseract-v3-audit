@@ -1,0 +1,1 @@
+({docs:1, name:"N0-B_caja_simple_arte.svg", activeArtboard:0, artboards:1, layers:[["Cuts", true, false], ["Creases", true, false], ["Front", true, false], ["Back", true, false]], selection:0, items:5, saved:false})

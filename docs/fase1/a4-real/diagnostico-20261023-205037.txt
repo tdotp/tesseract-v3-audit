@@ -1,0 +1,58 @@
+# Diagnóstico A4 (solo lectura) Fri Oct 23 20:50:37 -05 2026
+## destino
+total 336
+drwx------@ 14 gerardocalambasposada  staff     448 Oct 23 20:02 .
+drwxr-xr-x   4 gerardocalambasposada  staff     128 Oct 23 20:02 ..
+-rw-r--r--@  1 gerardocalambasposada  staff     179 Oct 23 20:02 .debug
+-rw-r--r--@  1 gerardocalambasposada  staff    2363 Oct 23 20:02 BUILD_INFO.json
+drwxr-xr-x@  3 gerardocalambasposada  staff      96 Oct 23 20:02 CSXS
+-rw-r--r--@  1 gerardocalambasposada  staff    1117 Oct 23 20:02 SHA256SUMS
+drwxr-xr-x@  6 gerardocalambasposada  staff     192 Oct 23 20:02 icons
+-rw-r--r--@  1 gerardocalambasposada  staff    7851 Oct 23 20:02 index.html
+drwxr-xr-x@  4 gerardocalambasposada  staff     128 Oct 23 20:02 libs
+-rw-r--r--@  1 gerardocalambasposada  staff    1500 Oct 23 20:02 linkedin_logo.svg
+-rw-r--r--@  1 gerardocalambasposada  staff  126415 Oct 23 20:02 main.js
+-rw-r--r--@  1 gerardocalambasposada  staff    8604 Oct 23 20:02 style.css
+-rw-r--r--@  1 gerardocalambasposada  staff    2110 Oct 23 20:02 tesseract_icon.svg
+-rw-r--r--@  1 gerardocalambasposada  staff    2405 Oct 23 20:02 tesseract_logo.svg
+## snapshot
+## /Library/Application Support/Adobe/CEP/extensions
+CC_LIBRARIES_PANEL_EXTENSION_3_13_164	com.adobe.DesignLibraries.angular.2015.1	archivos=310	tree=d19028f74704de31
+CC_LIBRARIES_PANEL_EXTENSION_3_25_28	com.adobe.DesignLibraries.angular.2015.1	archivos=339	tree=6d2f0244d423bf08
+CC_LIBRARIES_PANEL_EXTENSION_3_8_299	com.adobe.DesignLibraries.angular.2015.1	archivos=281	tree=86bf4520746d7950
+CC_LIBRARIES_PANEL_EXTENSION_4_15_60	com.adobe.DesignLibraries.angular.2015.1	archivos=901	tree=40e344c929c61c0a
+com.adobe.ccx.fnft-3.5.0	com.adobe.ccx.fnft	archivos=180	tree=c4cf46af92a7858a
+com.adobe.ccx.start-2.16.0	com.adobe.ccx.start	archivos=481	tree=723199aa255080b0
+com.adobe.ccx.start-2.7.2	com.adobe.ccx.start	archivos=400	tree=2785b2c0cb9193f1
+tesseract	com.tato.tesseract	archivos=15	tree=298fe1611c4ce1d7
+## /Users/gerardocalambasposada/Library/Application Support/Adobe/CEP/extensions
+TesserArt_Validator	com.tato.editorialvalidator	archivos=7	tree=d009e37a005d8fe4
+tesseract-v3	com.tato.tesseract.v3	archivos=16	tree=c0776d5b9d25ae9c
+## PlayerDebugMode
+CSXS.11: 1
+CSXS.12: 1
+## Illustrator
+en_ejecucion_docs=0
+39509 /Applications/Adobe Illustrator 2026/Adobe Illustrator.app/Contents/MacOS/IllustratorDiagnosys.app/Contents/MacOS/IllustratorDiagnosys --pid 39481 --analytics-identifier fe44d26f-16a2-4780-8790-4e30f85abdfc --logs-path /Users/gerardocalambasposada/Library/Logs/Adobe/Adobe Illustrator/30.8/Adobe Illustrator/IllustratorDiagnosysSession_2026-10-23_18-17-36_PID39481.log --diagnosys-logs-path /Users/gerardocalambasposada/Library/Logs/Adobe/Adobe Illustrator/30.8/Adobe Illustrator/IllustratorDiagnosysInfoSession_2026-10-23_18-17-36_PID39481.log --forcequit-log-path /Users/gerardocalambasposada/Library/Logs/Adobe/Adobe Illustrator/30.8/Adobe Illustrator/ForceQuit.log --hang-report-log-path /Users/gerardocalambasposada/Library/Logs/Adobe/Adobe Illustrator/30.8/Adobe Illustrator/IllustratorHangReport_2026-10-23_18-17-36_PID39481.log --diag-report-log-path /Users/gerardocalambasposada/Library/Logs/Adobe/Adobe Illustrator/30.8/Adobe Illustrator/IllustratorDiagReport_2026-10-23_18-17-36_PID39481.log --watchdog-logs-path /Users/gerardocalambasposada/Library/Logs/Adobe/Adobe Illustrator/30.8/Adobe Illustrator/IllustratorParamsInfoSession_2026-10-23_18-17-36_PID39481.log --watchdog-initial-logs-path /Users/gerardocalambasposada/Library/Logs/Adobe/Adobe Illustrator/30.8/Adobe Illustrator/IllustratorParamsInitialInfoSession_2026-10-23_18-17-36_PID39481.log --encode-logs true --memory-diagnostics-enabled false
+94921 /Applications/Adobe Illustrator 2026/Adobe Illustrator.app/Contents/MacOS/Adobe Illustrator
+94937 /Applications/Adobe Illustrator 2026/Adobe Illustrator.app/Contents/MacOS/AIRobin.app/Contents/MacOS/AIRobin -json /Volumes/SmarPR/.TemporaryItems/folders.501/TemporaryItems/NSIRD_Illustrator_Ng4wX6/AI_30_8/ai17928066363.tmp
+## procesos CEP
+## DevTools remoto en el puerto 8088
+## registros CSXS que mencionan tesseract (últimas líneas)
+## caché de CEP (entradas con tesseract)
+ILST_30.2.1_com.tato.tesseract.panel
+ILST_30.5.1_com.tato.tesseract.panel
+ILST_30.6.0_com.tato.tesseract.panel
+ILST_30.8.2_com.tato.tesseract.panel
+## informes de fallo recientes de Illustrator
+## verify (resumen)
+== verify · identidad, huellas y nada más tocado
+  OK   manifiesto: bundle com.tato.tesseract.v3
+  OK   extensión com.tato.tesseract.v3.panel
+  OK   menú «Tesseract V3»
+  OK   huellas SHA-256 = dist/ (13 archivos)
+  OK   sin archivos de más ni de menos (salvo .debug)
+  OK   .debug válido (solo com.tato.tesseract.v3.panel, host ILST)
+  OK   permisos del destino razonables
+  OK   las demás extensiones (sistema y usuario, incl. «tesseract» instalada) están estructuralmente idénticas al snapshot previo
+  OK   verify-isolation.sh --a4-instalado verde
