@@ -3,6 +3,7 @@ import { EXTRACT_SCRIPT } from './host/extract.js';
 import { buildArtworkExportScript } from './host/art.js';
 import { TEST_CONNECTION_SCRIPT } from './host/test-connection.js';
 import { SAVE_GLB_DIALOG_SCRIPT } from './host/save-dialog.js';
+import { hasCep, evalScript, evalScriptJSON, pathToFileURL } from './bridge/cep.js';
 
 (function () {
   'use strict';
@@ -197,7 +198,7 @@ import { SAVE_GLB_DIALOG_SCRIPT } from './host/save-dialog.js';
        CEP BRIDGE — clean, no intrusive catch
        ================================================================ */
     function ensureCep(){
-      if(!window.__adobe_cep__){
+      if(!hasCep()){
         errorMsg.style.display='block';
         [testBtn,extractBtn,previewBtn,continueBtn,backBtn,export3dBtn].forEach(function(b){b.disabled=true;});
         setStatus('CEP bridge not found.'); return false;
@@ -253,30 +254,6 @@ import { SAVE_GLB_DIALOG_SCRIPT } from './host/save-dialog.js';
       validationStatus.textContent='Waiting for extraction...';
       validationStatus.className='check-status';
       continueBtn.disabled=true;
-    }
-
-    function pathToFileURL(fsPath){
-      var path = String(fsPath || '');
-      if(!path) return '';
-      if(/^file:\/\//i.test(path)) return path;
-      path = path.replace(/\\/g,'/');
-      if(path.charAt(0)!=='/') path = '/' + path;
-      return 'file://' + encodeURI(path);
-    }
-
-    function evalScriptJSON(script){
-      return new Promise(function(resolve,reject){
-        window.__adobe_cep__.evalScript(script,function(result){
-          try{
-            if(!result || result==='undefined' || result==='null' || result==='EvalScript error.') throw new Error(String(result || 'No result returned'));
-            var parsed = JSON.parse(result);
-            if(parsed && parsed.error) throw new Error(parsed.error);
-            resolve(parsed);
-          }catch(err){
-            reject(err);
-          }
-        });
-      });
     }
 
     function loadTextureFromPath(fsPath){
@@ -2337,7 +2314,7 @@ import { SAVE_GLB_DIALOG_SCRIPT } from './host/save-dialog.js';
     testBtn.addEventListener('click',function(){
       setStatus('Testing...');
       var jsx=TEST_CONNECTION_SCRIPT;
-      window.__adobe_cep__.evalScript(jsx,function(result){
+      evalScript(jsx,function(result){
         setStatus((result&&String(result).trim())?result:'No result returned');
       });
     });
@@ -2347,7 +2324,7 @@ import { SAVE_GLB_DIALOG_SCRIPT } from './host/save-dialog.js';
       outputArea.value='';
       resetValidationUI();
 
-      window.__adobe_cep__.evalScript(EXTRACT_SCRIPT,function(result){
+      evalScript(EXTRACT_SCRIPT,function(result){
         try{
           if(!result || result==='undefined' || result==='null' || result==='EvalScript error.'){
             setStatus('Error: ' + String(result || 'No result returned'));

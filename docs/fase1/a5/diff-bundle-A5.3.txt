@@ -1,0 +1,72 @@
+A5.3 — diff del bundle (dist/main.js) A5.2 → A5.3. Esperado: pathToFileURL y evalScriptJSON se reubican sin cambios; hasCep/evalScript nuevos envoltorios; 3 llamadas pasan a usarlos. src/package.json (type: module) no altera el bundle (comprobado con cmp).
+1c1
+< /* Tesseract V3 · bundle IIFE · fuente main.js sha256:5437aeb54c0c2e49 · esbuild 0.28.2 · target chrome99 · NO editar a mano (tools/build/build.mjs) */
+---
+> /* Tesseract V3 · bundle IIFE · fuente main.js sha256:2aa7a383303710d0 · esbuild 0.28.2 · target chrome99 · NO editar a mano (tools/build/build.mjs) */
+184a185,214
+> 
+>   // src/bridge/cep.js
+>   function hasCep() {
+>     return !!window.__adobe_cep__;
+>   }
+>   function evalScript(script, callback) {
+>     window.__adobe_cep__.evalScript(script, callback);
+>   }
+>   function pathToFileURL(fsPath) {
+>     var path = String(fsPath || "");
+>     if (!path) return "";
+>     if (/^file:\/\//i.test(path)) return path;
+>     path = path.replace(/\\/g, "/");
+>     if (path.charAt(0) !== "/") path = "/" + path;
+>     return "file://" + encodeURI(path);
+>   }
+>   function evalScriptJSON(script) {
+>     return new Promise(function(resolve, reject) {
+>       window.__adobe_cep__.evalScript(script, function(result) {
+>         try {
+>           if (!result || result === "undefined" || result === "null" || result === "EvalScript error.") throw new Error(String(result || "No result returned"));
+>           var parsed = JSON.parse(result);
+>           if (parsed && parsed.error) throw new Error(parsed.error);
+>           resolve(parsed);
+>         } catch (err) {
+>           reject(err);
+>         }
+>       });
+>     });
+>   }
+376c406
+<         if (!window.__adobe_cep__) {
+---
+>         if (!hasCep()) {
+443,450d472
+<       }
+<       function pathToFileURL(fsPath) {
+<         var path = String(fsPath || "");
+<         if (!path) return "";
+<         if (/^file:\/\//i.test(path)) return path;
+<         path = path.replace(/\\/g, "/");
+<         if (path.charAt(0) !== "/") path = "/" + path;
+<         return "file://" + encodeURI(path);
+452,465d473
+<       function evalScriptJSON(script) {
+<         return new Promise(function(resolve, reject) {
+<           window.__adobe_cep__.evalScript(script, function(result) {
+<             try {
+<               if (!result || result === "undefined" || result === "null" || result === "EvalScript error.") throw new Error(String(result || "No result returned"));
+<               var parsed = JSON.parse(result);
+<               if (parsed && parsed.error) throw new Error(parsed.error);
+<               resolve(parsed);
+<             } catch (err) {
+<               reject(err);
+<             }
+<           });
+<         });
+<       }
+2580c2588
+<         window.__adobe_cep__.evalScript(jsx, function(result) {
+---
+>         evalScript(jsx, function(result) {
+2588c2596
+<         window.__adobe_cep__.evalScript(EXTRACT_SCRIPT, function(result) {
+---
+>         evalScript(EXTRACT_SCRIPT, function(result) {

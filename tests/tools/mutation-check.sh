@@ -24,4 +24,5 @@ mut "búsqueda de vértice (ptEq: < GRAPH_EPS → < 0.2)" 's/function ptEq(a,b){
 mut "factor pt→mm del extractor"                's/var PT=0.352778; var EPS=0.5; var SMALL=10;/var PT=0.35; var EPS=0.5; var SMALL=10;/'
 mut "tope de escala del PNG de arte (800→700)"  's/Math.min(800,Math.max(100/Math.min(700,Math.max(100/'
 mut "offset del arte (ART_TOP_OFFSET 0.08→0.09)" 's/ART_TOP_OFFSET = 0.08;/ART_TOP_OFFSET = 0.09;/'
+mut "puente: pathToFileURL sin encodeURI (bridge/cep.js)"  's/+ encodeURI(path);/+ path;/'
 echo "mutaciones detectadas: $ok · no detectadas: $bad"; [ "$bad" = 0 ]

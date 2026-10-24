@@ -1,0 +1,4 @@
+{
+  "//": "src/ son módulos ES (A5): esbuild los empaqueta en un IIFE para CEP; este archivo solo permite importarlos desde las pruebas de Node",
+  "type": "module"
+}
