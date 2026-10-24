@@ -56,9 +56,11 @@ export function loadGeometry(file) {
 // Texto de los scripts ExtendScript embebidos en main.js
 export function extractScripts(file) {
   const src = sourceText(file);
-  const m = /^    var EXTRACT_SCRIPT = (\[[\s\S]*?\n    \]\.join\('\\n'\));/m.exec(src); if (!m) throw new Error('EXTRACT_SCRIPT no encontrado');
+  const m = /^(?:    var|export const) EXTRACT_SCRIPT = (\[[\s\S]*?\n(?: {4})?\]\.join\('\\n'\));/m.exec(src); if (!m) throw new Error('EXTRACT_SCRIPT no encontrado');
   const extract = vm.runInNewContext(m[1]);
   const fn = extractFunctions(src).get('buildArtworkExportScript'); if (!fn) throw new Error('buildArtworkExportScript no encontrado');
-  const art = vm.runInNewContext('(' + fn.replace(/^    function buildArtworkExportScript/, 'function') + ')')();
-  return { extract, art };
+  const art = vm.runInNewContext('(' + fn.replace(/^ *function buildArtworkExportScript/, 'function') + ')')();
+  const t = /(?:var jsx=|export const TEST_CONNECTION_SCRIPT = )('\(function\(\)\{ return "OK_FROM_ILLUSTRATOR"; \}\)\(\);')/.exec(src); if (!t) throw new Error('script de Test Connection no encontrado');
+  const sv = /(?:var jsx = |export const SAVE_GLB_DIALOG_SCRIPT = )('\(function\(\)\{\\n'[\s\S]*?'\}\)\(\);');/.exec(src); if (!sv) throw new Error('script del diálogo de guardado no encontrado');
+  return { extract, art, test: vm.runInNewContext(t[1]), save: vm.runInNewContext(sv[1]) };
 }
