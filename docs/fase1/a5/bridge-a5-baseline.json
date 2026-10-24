@@ -1,0 +1,1405 @@
+{
+ "conexion-ok": {
+  "estado": "OK_FROM_ILLUSTRATOR",
+  "historial": [
+   "Testing...",
+   "OK_FROM_ILLUSTRATOR"
+  ],
+  "arte": [
+   "Looks for Front/Back or Tiro/Retiro as artboards or layers. Mapping is aligned to the full artboard.",
+   "No art"
+  ],
+  "historialArte": [],
+  "errorMsg": "none",
+  "deshabilitados": [
+   false,
+   false,
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "vistas": [
+   "block",
+   "none"
+  ],
+  "salida": "0:e3b0c44298fc1c14",
+  "salidaVisible": "none",
+  "validacion": [
+   "Waiting for extraction...",
+   "check-status"
+  ],
+  "problemas": 0,
+  "log": "",
+  "depuracionAbierta": false,
+  "stock": [
+   "white",
+   "White board"
+  ],
+  "scripts": [
+   "test:48:444efa9b8bdb7395"
+  ],
+  "descargas": [],
+  "escrituras": [],
+  "paneles": 0,
+  "excepciones": []
+ },
+ "conexion-vacia": {
+  "estado": "No result returned",
+  "historial": [
+   "Testing...",
+   "No result returned"
+  ],
+  "arte": [
+   "Looks for Front/Back or Tiro/Retiro as artboards or layers. Mapping is aligned to the full artboard.",
+   "No art"
+  ],
+  "historialArte": [],
+  "errorMsg": "none",
+  "deshabilitados": [
+   false,
+   false,
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "vistas": [
+   "block",
+   "none"
+  ],
+  "salida": "0:e3b0c44298fc1c14",
+  "salidaVisible": "none",
+  "validacion": [
+   "Waiting for extraction...",
+   "check-status"
+  ],
+  "problemas": 0,
+  "log": "",
+  "depuracionAbierta": false,
+  "stock": [
+   "white",
+   "White board"
+  ],
+  "scripts": [
+   "test:48:444efa9b8bdb7395"
+  ],
+  "descargas": [],
+  "escrituras": [],
+  "paneles": 0,
+  "excepciones": []
+ },
+ "conexion-evalerror": {
+  "estado": "EvalScript error.",
+  "historial": [
+   "Testing...",
+   "EvalScript error."
+  ],
+  "arte": [
+   "Looks for Front/Back or Tiro/Retiro as artboards or layers. Mapping is aligned to the full artboard.",
+   "No art"
+  ],
+  "historialArte": [],
+  "errorMsg": "none",
+  "deshabilitados": [
+   false,
+   false,
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "vistas": [
+   "block",
+   "none"
+  ],
+  "salida": "0:e3b0c44298fc1c14",
+  "salidaVisible": "none",
+  "validacion": [
+   "Waiting for extraction...",
+   "check-status"
+  ],
+  "problemas": 0,
+  "log": "",
+  "depuracionAbierta": false,
+  "stock": [
+   "white",
+   "White board"
+  ],
+  "scripts": [
+   "test:48:444efa9b8bdb7395"
+  ],
+  "descargas": [],
+  "escrituras": [],
+  "paneles": 0,
+  "excepciones": []
+ },
+ "extraccion-ok": {
+  "estado": "Extraction complete",
+  "historial": [
+   "Extracting...",
+   "Extraction complete"
+  ],
+  "arte": [
+   "Looks for Front/Back or Tiro/Retiro as artboards or layers. Mapping is aligned to the full artboard.",
+   "No art"
+  ],
+  "historialArte": [],
+  "errorMsg": "none",
+  "deshabilitados": [
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "vistas": [
+   "block",
+   "none"
+  ],
+  "salida": "29958:26f784341d67e024",
+  "salidaVisible": "block",
+  "validacion": [
+   "✅ No problems found",
+   "check-status status-ok"
+  ],
+  "problemas": 0,
+  "log": "",
+  "depuracionAbierta": false,
+  "stock": [
+   "white",
+   "White board"
+  ],
+  "scripts": [
+   "extraer:5536:bd4c215d56fb4cdc"
+  ],
+  "descargas": [],
+  "escrituras": [],
+  "paneles": 0,
+  "excepciones": []
+ },
+ "extraccion-evalerror": {
+  "estado": "Nothing to preview. Extract first.",
+  "historial": [
+   "Extracting...",
+   "Error: EvalScript error.",
+   "Nothing to preview. Extract first."
+  ],
+  "arte": [
+   "Looks for Front/Back or Tiro/Retiro as artboards or layers. Mapping is aligned to the full artboard.",
+   "No art"
+  ],
+  "historialArte": [],
+  "errorMsg": "none",
+  "deshabilitados": [
+   false,
+   false,
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "vistas": [
+   "block",
+   "none"
+  ],
+  "salida": "0:e3b0c44298fc1c14",
+  "salidaVisible": "block",
+  "validacion": [
+   "Waiting for extraction...",
+   "check-status"
+  ],
+  "problemas": 0,
+  "log": "",
+  "depuracionAbierta": false,
+  "stock": [
+   "white",
+   "White board"
+  ],
+  "scripts": [
+   "extraer:5536:bd4c215d56fb4cdc"
+  ],
+  "descargas": [],
+  "escrituras": [],
+  "paneles": 0,
+  "excepciones": []
+ },
+ "extraccion-vacia": {
+  "estado": "Error: No result returned",
+  "historial": [
+   "Extracting...",
+   "Error: No result returned"
+  ],
+  "arte": [
+   "Looks for Front/Back or Tiro/Retiro as artboards or layers. Mapping is aligned to the full artboard.",
+   "No art"
+  ],
+  "historialArte": [],
+  "errorMsg": "none",
+  "deshabilitados": [
+   false,
+   false,
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "vistas": [
+   "block",
+   "none"
+  ],
+  "salida": "0:e3b0c44298fc1c14",
+  "salidaVisible": "block",
+  "validacion": [
+   "Waiting for extraction...",
+   "check-status"
+  ],
+  "problemas": 0,
+  "log": "",
+  "depuracionAbierta": false,
+  "stock": [
+   "white",
+   "White board"
+  ],
+  "scripts": [
+   "extraer:5536:bd4c215d56fb4cdc"
+  ],
+  "descargas": [],
+  "escrituras": [],
+  "paneles": 0,
+  "excepciones": []
+ },
+ "extraccion-null": {
+  "estado": "Error: null",
+  "historial": [
+   "Extracting...",
+   "Error: null"
+  ],
+  "arte": [
+   "Looks for Front/Back or Tiro/Retiro as artboards or layers. Mapping is aligned to the full artboard.",
+   "No art"
+  ],
+  "historialArte": [],
+  "errorMsg": "none",
+  "deshabilitados": [
+   false,
+   false,
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "vistas": [
+   "block",
+   "none"
+  ],
+  "salida": "0:e3b0c44298fc1c14",
+  "salidaVisible": "block",
+  "validacion": [
+   "Waiting for extraction...",
+   "check-status"
+  ],
+  "problemas": 0,
+  "log": "",
+  "depuracionAbierta": false,
+  "stock": [
+   "white",
+   "White board"
+  ],
+  "scripts": [
+   "extraer:5536:bd4c215d56fb4cdc"
+  ],
+  "descargas": [],
+  "escrituras": [],
+  "paneles": 0,
+  "excepciones": []
+ },
+ "extraccion-undefined": {
+  "estado": "Error: undefined",
+  "historial": [
+   "Extracting...",
+   "Error: undefined"
+  ],
+  "arte": [
+   "Looks for Front/Back or Tiro/Retiro as artboards or layers. Mapping is aligned to the full artboard.",
+   "No art"
+  ],
+  "historialArte": [],
+  "errorMsg": "none",
+  "deshabilitados": [
+   false,
+   false,
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "vistas": [
+   "block",
+   "none"
+  ],
+  "salida": "0:e3b0c44298fc1c14",
+  "salidaVisible": "block",
+  "validacion": [
+   "Waiting for extraction...",
+   "check-status"
+  ],
+  "problemas": 0,
+  "log": "",
+  "depuracionAbierta": false,
+  "stock": [
+   "white",
+   "White board"
+  ],
+  "scripts": [
+   "extraer:5536:bd4c215d56fb4cdc"
+  ],
+  "descargas": [],
+  "escrituras": [],
+  "paneles": 0,
+  "excepciones": []
+ },
+ "extraccion-json-invalido": {
+  "estado": "Nothing to preview. Extract first.",
+  "historial": [
+   "Extracting...",
+   "Parse error: Unexpected end of JSON input",
+   "Nothing to preview. Extract first."
+  ],
+  "arte": [
+   "Looks for Front/Back or Tiro/Retiro as artboards or layers. Mapping is aligned to the full artboard.",
+   "No art"
+  ],
+  "historialArte": [],
+  "errorMsg": "none",
+  "deshabilitados": [
+   false,
+   false,
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "vistas": [
+   "block",
+   "none"
+  ],
+  "salida": "11:dcf58d6c8a2d9f3f",
+  "salidaVisible": "block",
+  "validacion": [
+   "Waiting for extraction...",
+   "check-status"
+  ],
+  "problemas": 0,
+  "log": "Parse error: Unexpected end of JSON input\n",
+  "depuracionAbierta": false,
+  "stock": [
+   "white",
+   "White board"
+  ],
+  "scripts": [
+   "extraer:5536:bd4c215d56fb4cdc"
+  ],
+  "descargas": [],
+  "escrituras": [],
+  "paneles": 0,
+  "excepciones": []
+ },
+ "extraccion-error-sin-documento": {
+  "estado": "Nothing to preview. Extract first.",
+  "historial": [
+   "Extracting...",
+   "No document open",
+   "Nothing to preview. Extract first."
+  ],
+  "arte": [
+   "Looks for Front/Back or Tiro/Retiro as artboards or layers. Mapping is aligned to the full artboard.",
+   "No art"
+  ],
+  "historialArte": [],
+  "errorMsg": "none",
+  "deshabilitados": [
+   false,
+   false,
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "vistas": [
+   "block",
+   "none"
+  ],
+  "salida": "28:4e1b4f5ae18149b0",
+  "salidaVisible": "block",
+  "validacion": [
+   "Waiting for extraction...",
+   "check-status"
+  ],
+  "problemas": 0,
+  "log": "",
+  "depuracionAbierta": false,
+  "stock": [
+   "white",
+   "White board"
+  ],
+  "scripts": [
+   "extraer:5536:bd4c215d56fb4cdc"
+  ],
+  "descargas": [],
+  "escrituras": [],
+  "paneles": 0,
+  "excepciones": []
+ },
+ "extraccion-error-capa": {
+  "estado": "Nothing to preview. Extract first.",
+  "historial": [
+   "Extracting...",
+   "CUT layer not found. Expected: cuts/cut/corte/troquel/die",
+   "Nothing to preview. Extract first."
+  ],
+  "arte": [
+   "Looks for Front/Back or Tiro/Retiro as artboards or layers. Mapping is aligned to the full artboard.",
+   "No art"
+  ],
+  "historialArte": [],
+  "errorMsg": "none",
+  "deshabilitados": [
+   false,
+   false,
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "vistas": [
+   "block",
+   "none"
+  ],
+  "salida": "69:d6042bd94e4cee5a",
+  "salidaVisible": "block",
+  "validacion": [
+   "Waiting for extraction...",
+   "check-status"
+  ],
+  "problemas": 0,
+  "log": "",
+  "depuracionAbierta": false,
+  "stock": [
+   "white",
+   "White board"
+  ],
+  "scripts": [
+   "extraer:5536:bd4c215d56fb4cdc"
+  ],
+  "descargas": [],
+  "escrituras": [],
+  "paneles": 0,
+  "excepciones": []
+ },
+ "sin-extraer": {
+  "estado": "Nothing to preview. Extract first.",
+  "historial": [
+   "Nothing to preview. Extract first."
+  ],
+  "arte": [
+   "Looks for Front/Back or Tiro/Retiro as artboards or layers. Mapping is aligned to the full artboard.",
+   "No art"
+  ],
+  "historialArte": [],
+  "errorMsg": "none",
+  "deshabilitados": [
+   false,
+   false,
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "vistas": [
+   "block",
+   "none"
+  ],
+  "salida": "0:e3b0c44298fc1c14",
+  "salidaVisible": "none",
+  "validacion": [
+   "Waiting for extraction...",
+   "check-status"
+  ],
+  "problemas": 0,
+  "log": "",
+  "depuracionAbierta": false,
+  "stock": [
+   "white",
+   "White board"
+  ],
+  "scripts": [],
+  "descargas": [],
+  "escrituras": [],
+  "paneles": 0,
+  "excepciones": []
+ },
+ "arte-antes-de-3d": {
+  "estado": "Ready",
+  "historial": [],
+  "arte": [
+   "Build 3D first, then refresh art.",
+   "No art"
+  ],
+  "historialArte": [
+   "Build 3D first, then refresh art."
+  ],
+  "errorMsg": "none",
+  "deshabilitados": [
+   false,
+   false,
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "vistas": [
+   "block",
+   "none"
+  ],
+  "salida": "0:e3b0c44298fc1c14",
+  "salidaVisible": "none",
+  "validacion": [
+   "Waiting for extraction...",
+   "check-status"
+  ],
+  "problemas": 0,
+  "log": "",
+  "depuracionAbierta": false,
+  "stock": [
+   "white",
+   "White board"
+  ],
+  "scripts": [],
+  "descargas": [],
+  "escrituras": [],
+  "paneles": 0,
+  "excepciones": []
+ },
+ "exportar-antes-de-3d": {
+  "estado": "GLB export failed: Build 3D first",
+  "historial": [
+   "Exporting GLB…",
+   "GLB export failed: Build 3D first"
+  ],
+  "arte": [
+   "Looks for Front/Back or Tiro/Retiro as artboards or layers. Mapping is aligned to the full artboard.",
+   "No art"
+  ],
+  "historialArte": [],
+  "errorMsg": "none",
+  "deshabilitados": [
+   false,
+   false,
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "vistas": [
+   "block",
+   "none"
+  ],
+  "salida": "0:e3b0c44298fc1c14",
+  "salidaVisible": "none",
+  "validacion": [
+   "Waiting for extraction...",
+   "check-status"
+  ],
+  "problemas": 0,
+  "log": "GLB export failed: Build 3D first\n",
+  "depuracionAbierta": true,
+  "stock": [
+   "white",
+   "White board"
+  ],
+  "scripts": [],
+  "descargas": [],
+  "escrituras": [],
+  "paneles": 0,
+  "excepciones": []
+ },
+ "ki24-stock-antes-de-3d": {
+  "estado": "Ready",
+  "historial": [],
+  "arte": [
+   "Looks for Front/Back or Tiro/Retiro as artboards or layers. Mapping is aligned to the full artboard.",
+   "No art"
+  ],
+  "historialArte": [],
+  "errorMsg": "none",
+  "deshabilitados": [
+   false,
+   false,
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "vistas": [
+   "block",
+   "none"
+  ],
+  "salida": "0:e3b0c44298fc1c14",
+  "salidaVisible": "none",
+  "validacion": [
+   "Waiting for extraction...",
+   "check-status"
+  ],
+  "problemas": 0,
+  "log": "",
+  "depuracionAbierta": false,
+  "stock": [
+   "kraft",
+   "Kraft board"
+  ],
+  "scripts": [],
+  "descargas": [],
+  "escrituras": [],
+  "paneles": 0,
+  "excepciones": [
+   "ReferenceError: buildChildrenOfMap is not defined"
+  ]
+ },
+ "stock-despues-de-3d": {
+  "estado": "Material preset applied: Gray board",
+  "historial": [
+   "3D model ready - 11 panels, 10 fold edges",
+   "Material preset applied: Gray board"
+  ],
+  "arte": [
+   "No Front/Back or Tiro/Retiro art detected.",
+   "No art"
+  ],
+  "historialArte": [],
+  "errorMsg": "none",
+  "deshabilitados": [
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "vistas": [
+   "none",
+   "block"
+  ],
+  "salida": "29958:26f784341d67e024",
+  "salidaVisible": "none",
+  "validacion": [
+   "✅ No problems found",
+   "check-status status-ok"
+  ],
+  "problemas": 0,
+  "log": "Renderer created OK\nOverlay controls attached\nFirst frame rendered\n=== buildPanels ===\nClosed cut contours reclassified · shells=1 holes=0 total=1\nTotal topo segments (closed cuts + creases): 81\nbuildTopology: 81 input segments\nAfter splitting: 87 segments (7 iterations)\nGraph: 52 vertices, 52 adj entries\nFaces traced: 14\n  Face 0: area=-27434.4 verts=50 hole=true\n  Face 1: area=1580.1 verts=4 hole=false\n  Face 2: area=316.2 verts=4 hole=false\n  Face 3: area=666.5 verts=8 hole=false\n  Face 4: area=4800.2 verts=6 hole=false\n  Face 5: area=4799.7 verts=4 hole=false\n  Face 6: area=1760.3 verts=4 hole=false\n  Face 7: area=1599.8 verts=5 hole=false\n  Face 8: area=319.1 verts=4 hole=false\n  Face 9: area=665.6 verts=7 hole=false\n  Face 10: area=4794.8 verts=11 hole=false\n  Face 11: area=4800.2 verts=6 hole=false\n  Face 12: area=665.6 verts=7 hole=false\n  Face 13: area=666.4 verts=8 hole=false\nPanels after shell filter: 14\nConnectivity filter: keeping 11 of 14 panels from largest crease-connected component\nBuilt 11 panel meshes, 12 crease edge segments\nAdjacency edges: 10 (strict)\nFold tree edges: 10 (base=P0)\nBuilt 11 panel meshes, 12 crease edge segments\nAdjacency edges: 10 (strict)\nFold tree edges: 10 (base=P0)\n",
+  "depuracionAbierta": false,
+  "stock": [
+   "gray",
+   "Gray board"
+  ],
+  "scripts": [],
+  "descargas": [],
+  "escrituras": [],
+  "paneles": 11,
+  "excepciones": []
+ },
+ "arte-evalerror": {
+  "estado": "3D ready · thickness=0.3mm",
+  "historial": [],
+  "arte": [
+   "Artwork load failed: EvalScript error.",
+   "Art error"
+  ],
+  "historialArte": [
+   "Searching Front/Back or Tiro/Retiro…",
+   "Artwork load failed: EvalScript error."
+  ],
+  "errorMsg": "none",
+  "deshabilitados": [
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "vistas": [
+   "none",
+   "block"
+  ],
+  "salida": "29958:26f784341d67e024",
+  "salidaVisible": "none",
+  "validacion": [
+   "✅ No problems found",
+   "check-status status-ok"
+  ],
+  "problemas": 0,
+  "log": "Renderer created OK\nOverlay controls attached\nFirst frame rendered\n=== buildPanels ===\nClosed cut contours reclassified · shells=1 holes=0 total=1\nTotal topo segments (closed cuts + creases): 81\nbuildTopology: 81 input segments\nAfter splitting: 87 segments (7 iterations)\nGraph: 52 vertices, 52 adj entries\nFaces traced: 14\n  Face 0: area=-27434.4 verts=50 hole=true\n  Face 1: area=1580.1 verts=4 hole=false\n  Face 2: area=316.2 verts=4 hole=false\n  Face 3: area=666.5 verts=8 hole=false\n  Face 4: area=4800.2 verts=6 hole=false\n  Face 5: area=4799.7 verts=4 hole=false\n  Face 6: area=1760.3 verts=4 hole=false\n  Face 7: area=1599.8 verts=5 hole=false\n  Face 8: area=319.1 verts=4 hole=false\n  Face 9: area=665.6 verts=7 hole=false\n  Face 10: area=4794.8 verts=11 hole=false\n  Face 11: area=4800.2 verts=6 hole=false\n  Face 12: area=665.6 verts=7 hole=false\n  Face 13: area=666.4 verts=8 hole=false\nPanels after shell filter: 14\nConnectivity filter: keeping 11 of 14 panels from largest crease-connected component\nBuilt 11 panel meshes, 12 crease edge segments\nAdjacency edges: 10 (strict)\nFold tree edges: 10 (base=P0)\nArtwork load failed: EvalScript error.\n",
+  "depuracionAbierta": false,
+  "stock": [
+   "white",
+   "White board"
+  ],
+  "scripts": [
+   "arte:5677:ab1c20da805454b7"
+  ],
+  "descargas": [],
+  "escrituras": [],
+  "paneles": 11,
+  "excepciones": []
+ },
+ "arte-vacio": {
+  "estado": "3D ready · thickness=0.3mm",
+  "historial": [],
+  "arte": [
+   "Artwork load failed: No result returned",
+   "Art error"
+  ],
+  "historialArte": [
+   "Searching Front/Back or Tiro/Retiro…",
+   "Artwork load failed: No result returned"
+  ],
+  "errorMsg": "none",
+  "deshabilitados": [
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "vistas": [
+   "none",
+   "block"
+  ],
+  "salida": "29958:26f784341d67e024",
+  "salidaVisible": "none",
+  "validacion": [
+   "✅ No problems found",
+   "check-status status-ok"
+  ],
+  "problemas": 0,
+  "log": "Renderer created OK\nOverlay controls attached\nFirst frame rendered\n=== buildPanels ===\nClosed cut contours reclassified · shells=1 holes=0 total=1\nTotal topo segments (closed cuts + creases): 81\nbuildTopology: 81 input segments\nAfter splitting: 87 segments (7 iterations)\nGraph: 52 vertices, 52 adj entries\nFaces traced: 14\n  Face 0: area=-27434.4 verts=50 hole=true\n  Face 1: area=1580.1 verts=4 hole=false\n  Face 2: area=316.2 verts=4 hole=false\n  Face 3: area=666.5 verts=8 hole=false\n  Face 4: area=4800.2 verts=6 hole=false\n  Face 5: area=4799.7 verts=4 hole=false\n  Face 6: area=1760.3 verts=4 hole=false\n  Face 7: area=1599.8 verts=5 hole=false\n  Face 8: area=319.1 verts=4 hole=false\n  Face 9: area=665.6 verts=7 hole=false\n  Face 10: area=4794.8 verts=11 hole=false\n  Face 11: area=4800.2 verts=6 hole=false\n  Face 12: area=665.6 verts=7 hole=false\n  Face 13: area=666.4 verts=8 hole=false\nPanels after shell filter: 14\nConnectivity filter: keeping 11 of 14 panels from largest crease-connected component\nBuilt 11 panel meshes, 12 crease edge segments\nAdjacency edges: 10 (strict)\nFold tree edges: 10 (base=P0)\nArtwork load failed: No result returned\n",
+  "depuracionAbierta": false,
+  "stock": [
+   "white",
+   "White board"
+  ],
+  "scripts": [
+   "arte:5677:ab1c20da805454b7"
+  ],
+  "descargas": [],
+  "escrituras": [],
+  "paneles": 11,
+  "excepciones": []
+ },
+ "arte-error": {
+  "estado": "3D ready · thickness=0.3mm",
+  "historial": [],
+  "arte": [
+   "Artwork load failed: Artwork export failed: prueba line:1",
+   "Art error"
+  ],
+  "historialArte": [
+   "Searching Front/Back or Tiro/Retiro…",
+   "Artwork load failed: Artwork export failed: prueba line:1"
+  ],
+  "errorMsg": "none",
+  "deshabilitados": [
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "vistas": [
+   "none",
+   "block"
+  ],
+  "salida": "29958:26f784341d67e024",
+  "salidaVisible": "none",
+  "validacion": [
+   "✅ No problems found",
+   "check-status status-ok"
+  ],
+  "problemas": 0,
+  "log": "Renderer created OK\nOverlay controls attached\nFirst frame rendered\n=== buildPanels ===\nClosed cut contours reclassified · shells=1 holes=0 total=1\nTotal topo segments (closed cuts + creases): 81\nbuildTopology: 81 input segments\nAfter splitting: 87 segments (7 iterations)\nGraph: 52 vertices, 52 adj entries\nFaces traced: 14\n  Face 0: area=-27434.4 verts=50 hole=true\n  Face 1: area=1580.1 verts=4 hole=false\n  Face 2: area=316.2 verts=4 hole=false\n  Face 3: area=666.5 verts=8 hole=false\n  Face 4: area=4800.2 verts=6 hole=false\n  Face 5: area=4799.7 verts=4 hole=false\n  Face 6: area=1760.3 verts=4 hole=false\n  Face 7: area=1599.8 verts=5 hole=false\n  Face 8: area=319.1 verts=4 hole=false\n  Face 9: area=665.6 verts=7 hole=false\n  Face 10: area=4794.8 verts=11 hole=false\n  Face 11: area=4800.2 verts=6 hole=false\n  Face 12: area=665.6 verts=7 hole=false\n  Face 13: area=666.4 verts=8 hole=false\nPanels after shell filter: 14\nConnectivity filter: keeping 11 of 14 panels from largest crease-connected component\nBuilt 11 panel meshes, 12 crease edge segments\nAdjacency edges: 10 (strict)\nFold tree edges: 10 (base=P0)\nArtwork load failed: Artwork export failed: prueba line:1\n",
+  "depuracionAbierta": false,
+  "stock": [
+   "white",
+   "White board"
+  ],
+  "scripts": [
+   "arte:5677:ab1c20da805454b7"
+  ],
+  "descargas": [],
+  "escrituras": [],
+  "paneles": 11,
+  "excepciones": []
+ },
+ "arte-json-invalido": {
+  "estado": "3D ready · thickness=0.3mm",
+  "historial": [],
+  "arte": [
+   "Artwork load failed: Unexpected end of JSON input",
+   "Art error"
+  ],
+  "historialArte": [
+   "Searching Front/Back or Tiro/Retiro…",
+   "Artwork load failed: Unexpected end of JSON input"
+  ],
+  "errorMsg": "none",
+  "deshabilitados": [
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "vistas": [
+   "none",
+   "block"
+  ],
+  "salida": "29958:26f784341d67e024",
+  "salidaVisible": "none",
+  "validacion": [
+   "✅ No problems found",
+   "check-status status-ok"
+  ],
+  "problemas": 0,
+  "log": "Renderer created OK\nOverlay controls attached\nFirst frame rendered\n=== buildPanels ===\nClosed cut contours reclassified · shells=1 holes=0 total=1\nTotal topo segments (closed cuts + creases): 81\nbuildTopology: 81 input segments\nAfter splitting: 87 segments (7 iterations)\nGraph: 52 vertices, 52 adj entries\nFaces traced: 14\n  Face 0: area=-27434.4 verts=50 hole=true\n  Face 1: area=1580.1 verts=4 hole=false\n  Face 2: area=316.2 verts=4 hole=false\n  Face 3: area=666.5 verts=8 hole=false\n  Face 4: area=4800.2 verts=6 hole=false\n  Face 5: area=4799.7 verts=4 hole=false\n  Face 6: area=1760.3 verts=4 hole=false\n  Face 7: area=1599.8 verts=5 hole=false\n  Face 8: area=319.1 verts=4 hole=false\n  Face 9: area=665.6 verts=7 hole=false\n  Face 10: area=4794.8 verts=11 hole=false\n  Face 11: area=4800.2 verts=6 hole=false\n  Face 12: area=665.6 verts=7 hole=false\n  Face 13: area=666.4 verts=8 hole=false\nPanels after shell filter: 14\nConnectivity filter: keeping 11 of 14 panels from largest crease-connected component\nBuilt 11 panel meshes, 12 crease edge segments\nAdjacency edges: 10 (strict)\nFold tree edges: 10 (base=P0)\nArtwork load failed: Unexpected end of JSON input\n",
+  "depuracionAbierta": false,
+  "stock": [
+   "white",
+   "White board"
+  ],
+  "scripts": [
+   "arte:5677:ab1c20da805454b7"
+  ],
+  "descargas": [],
+  "escrituras": [],
+  "paneles": 11,
+  "excepciones": []
+ },
+ "arte-ninguno": {
+  "estado": "3D ready · thickness=0.3mm",
+  "historial": [],
+  "arte": [
+   "No Front/Back or Tiro/Retiro art detected.",
+   "No art"
+  ],
+  "historialArte": [
+   "Searching Front/Back or Tiro/Retiro…",
+   "No Front/Back or Tiro/Retiro art detected."
+  ],
+  "errorMsg": "none",
+  "deshabilitados": [
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "vistas": [
+   "none",
+   "block"
+  ],
+  "salida": "29958:26f784341d67e024",
+  "salidaVisible": "none",
+  "validacion": [
+   "✅ No problems found",
+   "check-status status-ok"
+  ],
+  "problemas": 0,
+  "log": "Renderer created OK\nOverlay controls attached\nFirst frame rendered\n=== buildPanels ===\nClosed cut contours reclassified · shells=1 holes=0 total=1\nTotal topo segments (closed cuts + creases): 81\nbuildTopology: 81 input segments\nAfter splitting: 87 segments (7 iterations)\nGraph: 52 vertices, 52 adj entries\nFaces traced: 14\n  Face 0: area=-27434.4 verts=50 hole=true\n  Face 1: area=1580.1 verts=4 hole=false\n  Face 2: area=316.2 verts=4 hole=false\n  Face 3: area=666.5 verts=8 hole=false\n  Face 4: area=4800.2 verts=6 hole=false\n  Face 5: area=4799.7 verts=4 hole=false\n  Face 6: area=1760.3 verts=4 hole=false\n  Face 7: area=1599.8 verts=5 hole=false\n  Face 8: area=319.1 verts=4 hole=false\n  Face 9: area=665.6 verts=7 hole=false\n  Face 10: area=4794.8 verts=11 hole=false\n  Face 11: area=4800.2 verts=6 hole=false\n  Face 12: area=665.6 verts=7 hole=false\n  Face 13: area=666.4 verts=8 hole=false\nPanels after shell filter: 14\nConnectivity filter: keeping 11 of 14 panels from largest crease-connected component\nBuilt 11 panel meshes, 12 crease edge segments\nAdjacency edges: 10 (strict)\nFold tree edges: 10 (base=P0)\n",
+  "depuracionAbierta": false,
+  "stock": [
+   "white",
+   "White board"
+  ],
+  "scripts": [
+   "arte:5677:ab1c20da805454b7"
+  ],
+  "descargas": [],
+  "escrituras": [],
+  "paneles": 11,
+  "excepciones": []
+ },
+ "arte-textura-inexistente": {
+  "estado": "3D ready · thickness=0.3mm",
+  "historial": [],
+  "arte": [
+   "Artwork load failed: undefined",
+   "Art error"
+  ],
+  "historialArte": [
+   "Searching Front/Back or Tiro/Retiro…",
+   "Artwork load failed: undefined"
+  ],
+  "errorMsg": "none",
+  "deshabilitados": [
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "vistas": [
+   "none",
+   "block"
+  ],
+  "salida": "29958:26f784341d67e024",
+  "salidaVisible": "none",
+  "validacion": [
+   "✅ No problems found",
+   "check-status status-ok"
+  ],
+  "problemas": 0,
+  "log": "Renderer created OK\nOverlay controls attached\nFirst frame rendered\n=== buildPanels ===\nClosed cut contours reclassified · shells=1 holes=0 total=1\nTotal topo segments (closed cuts + creases): 81\nbuildTopology: 81 input segments\nAfter splitting: 87 segments (7 iterations)\nGraph: 52 vertices, 52 adj entries\nFaces traced: 14\n  Face 0: area=-27434.4 verts=50 hole=true\n  Face 1: area=1580.1 verts=4 hole=false\n  Face 2: area=316.2 verts=4 hole=false\n  Face 3: area=666.5 verts=8 hole=false\n  Face 4: area=4800.2 verts=6 hole=false\n  Face 5: area=4799.7 verts=4 hole=false\n  Face 6: area=1760.3 verts=4 hole=false\n  Face 7: area=1599.8 verts=5 hole=false\n  Face 8: area=319.1 verts=4 hole=false\n  Face 9: area=665.6 verts=7 hole=false\n  Face 10: area=4794.8 verts=11 hole=false\n  Face 11: area=4800.2 verts=6 hole=false\n  Face 12: area=665.6 verts=7 hole=false\n  Face 13: area=666.4 verts=8 hole=false\nPanels after shell filter: 14\nConnectivity filter: keeping 11 of 14 panels from largest crease-connected component\nBuilt 11 panel meshes, 12 crease edge segments\nAdjacency edges: 10 (strict)\nFold tree edges: 10 (base=P0)\nArtwork load failed: undefined\n",
+  "depuracionAbierta": false,
+  "stock": [
+   "white",
+   "White board"
+  ],
+  "scripts": [
+   "arte:5677:ab1c20da805454b7"
+  ],
+  "descargas": [],
+  "escrituras": [],
+  "paneles": 11,
+  "excepciones": []
+ },
+ "guardar-cancelado": {
+  "estado": "GLB exported from current 3D pose",
+  "historial": [
+   "Exporting GLB…",
+   "GLB export cancelled",
+   "GLB exported from current 3D pose"
+  ],
+  "arte": [
+   "No Front/Back or Tiro/Retiro art detected.",
+   "No art"
+  ],
+  "historialArte": [],
+  "errorMsg": "none",
+  "deshabilitados": [
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "vistas": [
+   "none",
+   "block"
+  ],
+  "salida": "29958:26f784341d67e024",
+  "salidaVisible": "none",
+  "validacion": [
+   "✅ No problems found",
+   "check-status status-ok"
+  ],
+  "problemas": 0,
+  "log": "Renderer created OK\nOverlay controls attached\nFirst frame rendered\n=== buildPanels ===\nClosed cut contours reclassified · shells=1 holes=0 total=1\nTotal topo segments (closed cuts + creases): 81\nbuildTopology: 81 input segments\nAfter splitting: 87 segments (7 iterations)\nGraph: 52 vertices, 52 adj entries\nFaces traced: 14\n  Face 0: area=-27434.4 verts=50 hole=true\n  Face 1: area=1580.1 verts=4 hole=false\n  Face 2: area=316.2 verts=4 hole=false\n  Face 3: area=666.5 verts=8 hole=false\n  Face 4: area=4800.2 verts=6 hole=false\n  Face 5: area=4799.7 verts=4 hole=false\n  Face 6: area=1760.3 verts=4 hole=false\n  Face 7: area=1599.8 verts=5 hole=false\n  Face 8: area=319.1 verts=4 hole=false\n  Face 9: area=665.6 verts=7 hole=false\n  Face 10: area=4794.8 verts=11 hole=false\n  Face 11: area=4800.2 verts=6 hole=false\n  Face 12: area=665.6 verts=7 hole=false\n  Face 13: area=666.4 verts=8 hole=false\nPanels after shell filter: 14\nConnectivity filter: keeping 11 of 14 panels from largest crease-connected component\nBuilt 11 panel meshes, 12 crease edge segments\nAdjacency edges: 10 (strict)\nFold tree edges: 10 (base=P0)\n",
+  "depuracionAbierta": false,
+  "stock": [
+   "white",
+   "White board"
+  ],
+  "scripts": [
+   "guardar:188:be6c47e148487d9d"
+  ],
+  "descargas": [],
+  "escrituras": [],
+  "paneles": 11,
+  "excepciones": []
+ },
+ "guardar-evalerror": {
+  "estado": "GLB export failed: Illustrator save dialog failed",
+  "historial": [
+   "Exporting GLB…",
+   "GLB export failed: Illustrator save dialog failed"
+  ],
+  "arte": [
+   "No Front/Back or Tiro/Retiro art detected.",
+   "No art"
+  ],
+  "historialArte": [],
+  "errorMsg": "none",
+  "deshabilitados": [
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "vistas": [
+   "none",
+   "block"
+  ],
+  "salida": "29958:26f784341d67e024",
+  "salidaVisible": "none",
+  "validacion": [
+   "✅ No problems found",
+   "check-status status-ok"
+  ],
+  "problemas": 0,
+  "log": "Renderer created OK\nOverlay controls attached\nFirst frame rendered\n=== buildPanels ===\nClosed cut contours reclassified · shells=1 holes=0 total=1\nTotal topo segments (closed cuts + creases): 81\nbuildTopology: 81 input segments\nAfter splitting: 87 segments (7 iterations)\nGraph: 52 vertices, 52 adj entries\nFaces traced: 14\n  Face 0: area=-27434.4 verts=50 hole=true\n  Face 1: area=1580.1 verts=4 hole=false\n  Face 2: area=316.2 verts=4 hole=false\n  Face 3: area=666.5 verts=8 hole=false\n  Face 4: area=4800.2 verts=6 hole=false\n  Face 5: area=4799.7 verts=4 hole=false\n  Face 6: area=1760.3 verts=4 hole=false\n  Face 7: area=1599.8 verts=5 hole=false\n  Face 8: area=319.1 verts=4 hole=false\n  Face 9: area=665.6 verts=7 hole=false\n  Face 10: area=4794.8 verts=11 hole=false\n  Face 11: area=4800.2 verts=6 hole=false\n  Face 12: area=665.6 verts=7 hole=false\n  Face 13: area=666.4 verts=8 hole=false\nPanels after shell filter: 14\nConnectivity filter: keeping 11 of 14 panels from largest crease-connected component\nBuilt 11 panel meshes, 12 crease edge segments\nAdjacency edges: 10 (strict)\nFold tree edges: 10 (base=P0)\nGLB export failed: Illustrator save dialog failed\n",
+  "depuracionAbierta": true,
+  "stock": [
+   "white",
+   "White board"
+  ],
+  "scripts": [
+   "guardar:188:be6c47e148487d9d"
+  ],
+  "descargas": [],
+  "escrituras": [],
+  "paneles": 11,
+  "excepciones": []
+ },
+ "guardar-respaldo-sin-cep-fs": {
+  "estado": "GLB exported from current 3D pose",
+  "historial": [
+   "Exporting GLB…",
+   "GLB exported with browser download fallback",
+   "GLB exported from current 3D pose"
+  ],
+  "arte": [
+   "No Front/Back or Tiro/Retiro art detected.",
+   "No art"
+  ],
+  "historialArte": [],
+  "errorMsg": "none",
+  "deshabilitados": [
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "vistas": [
+   "none",
+   "block"
+  ],
+  "salida": "29958:26f784341d67e024",
+  "salidaVisible": "none",
+  "validacion": [
+   "✅ No problems found",
+   "check-status status-ok"
+  ],
+  "problemas": 0,
+  "log": "Renderer created OK\nOverlay controls attached\nFirst frame rendered\n=== buildPanels ===\nClosed cut contours reclassified · shells=1 holes=0 total=1\nTotal topo segments (closed cuts + creases): 81\nbuildTopology: 81 input segments\nAfter splitting: 87 segments (7 iterations)\nGraph: 52 vertices, 52 adj entries\nFaces traced: 14\n  Face 0: area=-27434.4 verts=50 hole=true\n  Face 1: area=1580.1 verts=4 hole=false\n  Face 2: area=316.2 verts=4 hole=false\n  Face 3: area=666.5 verts=8 hole=false\n  Face 4: area=4800.2 verts=6 hole=false\n  Face 5: area=4799.7 verts=4 hole=false\n  Face 6: area=1760.3 verts=4 hole=false\n  Face 7: area=1599.8 verts=5 hole=false\n  Face 8: area=319.1 verts=4 hole=false\n  Face 9: area=665.6 verts=7 hole=false\n  Face 10: area=4794.8 verts=11 hole=false\n  Face 11: area=4800.2 verts=6 hole=false\n  Face 12: area=665.6 verts=7 hole=false\n  Face 13: area=666.4 verts=8 hole=false\nPanels after shell filter: 14\nConnectivity filter: keeping 11 of 14 panels from largest crease-connected component\nBuilt 11 panel meshes, 12 crease edge segments\nAdjacency edges: 10 (strict)\nFold tree edges: 10 (base=P0)\n",
+  "depuracionAbierta": false,
+  "stock": [
+   "white",
+   "White board"
+  ],
+  "scripts": [
+   "guardar:188:be6c47e148487d9d"
+  ],
+  "descargas": [
+   {
+    "name": "tesseract_model.glb",
+    "scheme": "blob"
+   }
+  ],
+  "escrituras": [],
+  "paneles": 11,
+  "excepciones": []
+ },
+ "guardar-error-escritura": {
+  "estado": "GLB export failed: Could not save GLB file (err 3)",
+  "historial": [
+   "Exporting GLB…",
+   "GLB export failed: Could not save GLB file (err 3)"
+  ],
+  "arte": [
+   "No Front/Back or Tiro/Retiro art detected.",
+   "No art"
+  ],
+  "historialArte": [],
+  "errorMsg": "none",
+  "deshabilitados": [
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "vistas": [
+   "none",
+   "block"
+  ],
+  "salida": "29958:26f784341d67e024",
+  "salidaVisible": "none",
+  "validacion": [
+   "✅ No problems found",
+   "check-status status-ok"
+  ],
+  "problemas": 0,
+  "log": "Renderer created OK\nOverlay controls attached\nFirst frame rendered\n=== buildPanels ===\nClosed cut contours reclassified · shells=1 holes=0 total=1\nTotal topo segments (closed cuts + creases): 81\nbuildTopology: 81 input segments\nAfter splitting: 87 segments (7 iterations)\nGraph: 52 vertices, 52 adj entries\nFaces traced: 14\n  Face 0: area=-27434.4 verts=50 hole=true\n  Face 1: area=1580.1 verts=4 hole=false\n  Face 2: area=316.2 verts=4 hole=false\n  Face 3: area=666.5 verts=8 hole=false\n  Face 4: area=4800.2 verts=6 hole=false\n  Face 5: area=4799.7 verts=4 hole=false\n  Face 6: area=1760.3 verts=4 hole=false\n  Face 7: area=1599.8 verts=5 hole=false\n  Face 8: area=319.1 verts=4 hole=false\n  Face 9: area=665.6 verts=7 hole=false\n  Face 10: area=4794.8 verts=11 hole=false\n  Face 11: area=4800.2 verts=6 hole=false\n  Face 12: area=665.6 verts=7 hole=false\n  Face 13: area=666.4 verts=8 hole=false\nPanels after shell filter: 14\nConnectivity filter: keeping 11 of 14 panels from largest crease-connected component\nBuilt 11 panel meshes, 12 crease edge segments\nAdjacency edges: 10 (strict)\nFold tree edges: 10 (base=P0)\nGLB export failed: Could not save GLB file (err 3)\n",
+  "depuracionAbierta": true,
+  "stock": [
+   "white",
+   "White board"
+  ],
+  "scripts": [
+   "guardar:188:be6c47e148487d9d"
+  ],
+  "descargas": [],
+  "escrituras": [
+   {
+    "path": "/tmp/tesseract_a5.glb",
+    "enc": "Base64",
+    "len": 40792,
+    "head": "Z2xURgIAAACA"
+   }
+  ],
+  "paneles": 11,
+  "excepciones": []
+ },
+ "guardar-error-sin-respuesta": {
+  "estado": "GLB export failed: Could not save GLB file",
+  "historial": [
+   "Exporting GLB…",
+   "GLB export failed: Could not save GLB file"
+  ],
+  "arte": [
+   "No Front/Back or Tiro/Retiro art detected.",
+   "No art"
+  ],
+  "historialArte": [],
+  "errorMsg": "none",
+  "deshabilitados": [
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "vistas": [
+   "none",
+   "block"
+  ],
+  "salida": "29958:26f784341d67e024",
+  "salidaVisible": "none",
+  "validacion": [
+   "✅ No problems found",
+   "check-status status-ok"
+  ],
+  "problemas": 0,
+  "log": "Renderer created OK\nOverlay controls attached\nFirst frame rendered\n=== buildPanels ===\nClosed cut contours reclassified · shells=1 holes=0 total=1\nTotal topo segments (closed cuts + creases): 81\nbuildTopology: 81 input segments\nAfter splitting: 87 segments (7 iterations)\nGraph: 52 vertices, 52 adj entries\nFaces traced: 14\n  Face 0: area=-27434.4 verts=50 hole=true\n  Face 1: area=1580.1 verts=4 hole=false\n  Face 2: area=316.2 verts=4 hole=false\n  Face 3: area=666.5 verts=8 hole=false\n  Face 4: area=4800.2 verts=6 hole=false\n  Face 5: area=4799.7 verts=4 hole=false\n  Face 6: area=1760.3 verts=4 hole=false\n  Face 7: area=1599.8 verts=5 hole=false\n  Face 8: area=319.1 verts=4 hole=false\n  Face 9: area=665.6 verts=7 hole=false\n  Face 10: area=4794.8 verts=11 hole=false\n  Face 11: area=4800.2 verts=6 hole=false\n  Face 12: area=665.6 verts=7 hole=false\n  Face 13: area=666.4 verts=8 hole=false\nPanels after shell filter: 14\nConnectivity filter: keeping 11 of 14 panels from largest crease-connected component\nBuilt 11 panel meshes, 12 crease edge segments\nAdjacency edges: 10 (strict)\nFold tree edges: 10 (base=P0)\nGLB export failed: Could not save GLB file\n",
+  "depuracionAbierta": true,
+  "stock": [
+   "white",
+   "White board"
+  ],
+  "scripts": [
+   "guardar:188:be6c47e148487d9d"
+  ],
+  "descargas": [],
+  "escrituras": [
+   {
+    "path": "/tmp/tesseract_a5.glb",
+    "enc": "Base64",
+    "len": 40792,
+    "head": "Z2xURgIAAACA"
+   }
+  ],
+  "paneles": 11,
+  "excepciones": []
+ },
+ "guardar-ok": {
+  "estado": "GLB exported from current 3D pose",
+  "historial": [
+   "Exporting GLB…",
+   "GLB saved: /tmp/tesseract_a5.glb",
+   "GLB exported from current 3D pose"
+  ],
+  "arte": [
+   "No Front/Back or Tiro/Retiro art detected.",
+   "No art"
+  ],
+  "historialArte": [],
+  "errorMsg": "none",
+  "deshabilitados": [
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "vistas": [
+   "none",
+   "block"
+  ],
+  "salida": "29958:26f784341d67e024",
+  "salidaVisible": "none",
+  "validacion": [
+   "✅ No problems found",
+   "check-status status-ok"
+  ],
+  "problemas": 0,
+  "log": "Renderer created OK\nOverlay controls attached\nFirst frame rendered\n=== buildPanels ===\nClosed cut contours reclassified · shells=1 holes=0 total=1\nTotal topo segments (closed cuts + creases): 81\nbuildTopology: 81 input segments\nAfter splitting: 87 segments (7 iterations)\nGraph: 52 vertices, 52 adj entries\nFaces traced: 14\n  Face 0: area=-27434.4 verts=50 hole=true\n  Face 1: area=1580.1 verts=4 hole=false\n  Face 2: area=316.2 verts=4 hole=false\n  Face 3: area=666.5 verts=8 hole=false\n  Face 4: area=4800.2 verts=6 hole=false\n  Face 5: area=4799.7 verts=4 hole=false\n  Face 6: area=1760.3 verts=4 hole=false\n  Face 7: area=1599.8 verts=5 hole=false\n  Face 8: area=319.1 verts=4 hole=false\n  Face 9: area=665.6 verts=7 hole=false\n  Face 10: area=4794.8 verts=11 hole=false\n  Face 11: area=4800.2 verts=6 hole=false\n  Face 12: area=665.6 verts=7 hole=false\n  Face 13: area=666.4 verts=8 hole=false\nPanels after shell filter: 14\nConnectivity filter: keeping 11 of 14 panels from largest crease-connected component\nBuilt 11 panel meshes, 12 crease edge segments\nAdjacency edges: 10 (strict)\nFold tree edges: 10 (base=P0)\n",
+  "depuracionAbierta": false,
+  "stock": [
+   "white",
+   "White board"
+  ],
+  "scripts": [
+   "guardar:188:be6c47e148487d9d"
+  ],
+  "descargas": [],
+  "escrituras": [
+   {
+    "path": "/tmp/tesseract_a5.glb",
+    "enc": "Base64",
+    "len": 40792,
+    "head": "Z2xURgIAAACA"
+   }
+  ],
+  "paneles": 11,
+  "excepciones": []
+ },
+ "guardar-ok-err-cadena-y-encoding": {
+  "estado": "GLB exported from current 3D pose",
+  "historial": [
+   "Exporting GLB…",
+   "GLB saved: /tmp/tesseract_a5.glb",
+   "GLB exported from current 3D pose"
+  ],
+  "arte": [
+   "No Front/Back or Tiro/Retiro art detected.",
+   "No art"
+  ],
+  "historialArte": [],
+  "errorMsg": "none",
+  "deshabilitados": [
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "vistas": [
+   "none",
+   "block"
+  ],
+  "salida": "29958:26f784341d67e024",
+  "salidaVisible": "none",
+  "validacion": [
+   "✅ No problems found",
+   "check-status status-ok"
+  ],
+  "problemas": 0,
+  "log": "Renderer created OK\nOverlay controls attached\nFirst frame rendered\n=== buildPanels ===\nClosed cut contours reclassified · shells=1 holes=0 total=1\nTotal topo segments (closed cuts + creases): 81\nbuildTopology: 81 input segments\nAfter splitting: 87 segments (7 iterations)\nGraph: 52 vertices, 52 adj entries\nFaces traced: 14\n  Face 0: area=-27434.4 verts=50 hole=true\n  Face 1: area=1580.1 verts=4 hole=false\n  Face 2: area=316.2 verts=4 hole=false\n  Face 3: area=666.5 verts=8 hole=false\n  Face 4: area=4800.2 verts=6 hole=false\n  Face 5: area=4799.7 verts=4 hole=false\n  Face 6: area=1760.3 verts=4 hole=false\n  Face 7: area=1599.8 verts=5 hole=false\n  Face 8: area=319.1 verts=4 hole=false\n  Face 9: area=665.6 verts=7 hole=false\n  Face 10: area=4794.8 verts=11 hole=false\n  Face 11: area=4800.2 verts=6 hole=false\n  Face 12: area=665.6 verts=7 hole=false\n  Face 13: area=666.4 verts=8 hole=false\nPanels after shell filter: 14\nConnectivity filter: keeping 11 of 14 panels from largest crease-connected component\nBuilt 11 panel meshes, 12 crease edge segments\nAdjacency edges: 10 (strict)\nFold tree edges: 10 (base=P0)\n",
+  "depuracionAbierta": false,
+  "stock": [
+   "white",
+   "White board"
+  ],
+  "scripts": [
+   "guardar:188:be6c47e148487d9d"
+  ],
+  "descargas": [],
+  "escrituras": [
+   {
+    "path": "/tmp/tesseract_a5.glb",
+    "enc": "b64-minuscula",
+    "len": 40792,
+    "head": "Z2xURgIAAACA"
+   }
+  ],
+  "paneles": 11,
+  "excepciones": []
+ },
+ "sin-cep": {
+  "estado": "CEP bridge not found.",
+  "historial": [],
+  "arte": [
+   "Looks for Front/Back or Tiro/Retiro as artboards or layers. Mapping is aligned to the full artboard.",
+   "No art"
+  ],
+  "historialArte": [],
+  "errorMsg": "block",
+  "deshabilitados": [
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   false
+  ],
+  "vistas": [
+   "",
+   "none"
+  ],
+  "salida": "0:e3b0c44298fc1c14",
+  "salidaVisible": "",
+  "validacion": [
+   "Waiting for extraction...",
+   "check-status"
+  ],
+  "problemas": 0,
+  "log": "",
+  "depuracionAbierta": false,
+  "stock": [
+   "white",
+   "White board"
+  ],
+  "scripts": [],
+  "descargas": [],
+  "escrituras": [],
+  "paneles": 0,
+  "excepciones": []
+ }
+}

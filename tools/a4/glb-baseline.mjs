@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 // A4 — referencia para comparar con lo exportado por el panel V3 REAL: ejecuta el MISMO guion de a4-paridad.mjs («caja») en Chrome headless, con el puente CEP simulado del arnés,
-// sobre el baseline congelado, panel/ y el bundle, usando la extracción real de Illustrator (tests/fixtures/illustrator-real/ill-real-caja-botanica.dieline.json). Solo copias temporales.
+// sobre el baseline congelado, panel/ (referencia A1) y el bundle vigente construido desde src/, usando la extracción real de Illustrator (tests/fixtures/illustrator-real/ill-real-caja-botanica.dieline.json). Solo copias temporales.
 //   node tools/a4/glb-baseline.mjs [--out=dir]   →  tests/results/a4/glb-referencia.json  {baseline|panel|bundle: {plano, todas60}}
 import fs from 'node:fs'; import os from 'node:os'; import path from 'node:path'; import { execFileSync } from 'node:child_process'; import { fileURLToPath, pathToFileURL } from 'node:url';
 import { serveDir, launchChrome } from '../../tests/browser/cdp.mjs'; import { build } from '../build/build.mjs'; import { PAGE } from './a4-paridad.mjs';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..'); const FIX = path.join(ROOT, 'tests/fixtures/illustrator-real/ill-real-caja-botanica.dieline.json');
 export async function main(argv = []) {
   const out = argv.find((a) => a.startsWith('--out='))?.slice(6) || path.join(ROOT, 'tests/results/a4'); fs.mkdirSync(out, { recursive: true });
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'tess-a4ref-')); const distSrc = path.join(dir, '_dist'); await build({ src: path.join(ROOT, 'panel'), out: distSrc });
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'tess-a4ref-')); const distSrc = path.join(dir, '_dist'); await build({ out: distSrc }); // bundle vigente: desde src/ (A5); el de A4 se reconstruye con build({ src: panel })
   const dirs = {}; for (const [name, src] of [['baseline', path.join(ROOT, 'reference/legacy-baseline')], ['panel', path.join(ROOT, 'panel')], ['bundle', distSrc]]) { const d = path.join(dir, name); execFileSync('python3', [ROOT + '/tools/baseline/setup_harness.py', src, FIX, d], { stdio: 'pipe' }); dirs[name] = d; }
   const server = await serveDir(dir); const res = {};
   try { for (const name of Object.keys(dirs)) { const b = await launchChrome(); try {
