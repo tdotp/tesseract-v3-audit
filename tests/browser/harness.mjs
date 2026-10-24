@@ -6,7 +6,7 @@ import { ROOT } from '../lib/fixtures.mjs'; import { serveDir, launchChrome } fr
 export const FIXTURE_FILES = { caja: 'tests/fixtures/real/caja-botanica-real.dieline.json', ill: 'tests/fixtures/real/caja-botanica-illustrator-export.dieline.json' };
 export async function prepare({ gpu = 'default', initScript = null } = {}) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'tess-harness-')); const dirs = {};
-  const distSrc = path.join(dir, '_dist'); await build({ src: path.resolve(ROOT, process.env.TESS_DIST_FROM || 'panel'), out: distSrc }); // bundle IIFE construido desde panel/ (o desde una copia mutada en controles negativos)
+  const distSrc = path.join(dir, '_dist'); await build({ src: process.env.TESS_DIST_FROM ? path.resolve(ROOT, process.env.TESS_DIST_FROM) : undefined, entry: process.env.TESS_DIST_ENTRY || undefined, out: distSrc }); // bundle IIFE construido desde src/ (controles negativos: TESS_DIST_ENTRY = copia mutada de src/, TESS_DIST_FROM = carpeta de plugin, p. ej. el baseline)
   for (const [fx, file] of Object.entries(FIXTURE_FILES)) for (const [t, src] of [['base', 'reference/legacy-baseline'], ['fix', process.env.TESS_PANEL_DIR || 'panel'], ['dist', distSrc]]) { // TESS_PANEL_DIR: solo controles negativos
     const dest = path.join(dir, `${t}-${fx}`); execFileSync('python3', [ROOT + '/tools/baseline/setup_harness.py', path.resolve(ROOT, src), path.join(ROOT, file), dest], { stdio: 'pipe' }); dirs[`${t}-${fx}`] = dest;
   }

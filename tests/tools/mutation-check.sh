@@ -1,14 +1,16 @@
 #!/bin/bash
-# Control negativo de la batería Node: aplica mutaciones PEQUEÑAS a una COPIA de panel/main.js (nunca al original) y exige que las pruebas fallen.
+# Control negativo de la batería Node: aplica mutaciones PEQUEÑAS a una COPIA de la fuente src/ (nunca al original) y exige que las pruebas fallen.
+# (Desde A5 la fuente del build es src/; panel/main.js queda congelado como referencia A1.)
 # Uso: tests/tools/mutation-check.sh        (salida 0 si TODAS las mutaciones fueron detectadas)
 cd "$(dirname "$0")/../.." || exit 2
 TMP=$(mktemp -d); trap 'rm -rf "$TMP"' EXIT; ok=0; bad=0
 # precondición: sin mutar, la batería debe pasar (si no, 'detectada' no significaría nada)
 node --test 'tests/node/*.test.mjs' >/dev/null 2>&1 || { echo 'ERROR: la batería falla sin mutaciones'; exit 2; }
+mutsrc() { # aplica la mutación sed a TODOS los .js de una COPIA de src/ (nunca al original); falla si no cambió nada
+  rm -rf "$TMP/src" "$TMP/src.orig"; cp -R src "$TMP/src"; cp -R src "$TMP/src.orig"; find "$TMP/src" -name '*.js' -exec sed -i '' "$1" {} +; ! diff -rq "$TMP/src.orig" "$TMP/src" >/dev/null; }
 mut() { # nombre, patrón sed
-  cp panel/main.js "$TMP/m.js"; sed -i '' "$2" "$TMP/m.js"
-  if cmp -s panel/main.js "$TMP/m.js"; then echo "NO APLICÓ  $1"; bad=$((bad+1)); return; fi
-  if TESS_PANEL_MAIN="$TMP/m.js" node --test 'tests/node/*.test.mjs' >/dev/null 2>&1; then echo "NO DETECTADA  $1"; bad=$((bad+1)); else echo "detectada     $1"; ok=$((ok+1)); fi
+  mutsrc "$2" || { echo "NO APLICÓ  $1"; bad=$((bad+1)); return; }
+  if TESS_SRC_DIR="$TMP/src" node --test 'tests/node/*.test.mjs' >/dev/null 2>&1; then echo "NO DETECTADA  $1"; bad=$((bad+1)); else echo "detectada     $1"; ok=$((ok+1)); fi
 }
 mut "GRAPH_EPS 0.5→0.6"                         's/var GRAPH_EPS      = 0.5;/var GRAPH_EPS      = 0.6;/'
 mut "TOLERANCE_MM 0.5→0.4"                      's/var TOLERANCE_MM   = 0.5;/var TOLERANCE_MM   = 0.4;/'

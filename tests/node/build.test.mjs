@@ -1,6 +1,6 @@
 // A3 — el build: reproducible, huellas fijadas, solo cambia la identidad del manifiesto, script clásico (sin módulos), zonas protegidas.
 import test from 'node:test'; import assert from 'node:assert/strict'; import fs from 'node:fs'; import os from 'node:os'; import path from 'node:path'; import crypto from 'node:crypto'; import { spawnSync, execFileSync } from 'node:child_process';
-import { ROOT } from '../lib/fixtures.mjs'; import { build, verifyDir, V3_IDS, TARGET } from '../../tools/build/build.mjs';
+import { ROOT } from '../lib/fixtures.mjs'; import { build, verifyDir, V3_IDS, TARGET } from '../../tools/build/build.mjs'; import { DIST_PIN } from '../lib/dist.mjs';
 const sha = (f) => crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex');
 const tmp = () => fs.mkdtempSync(path.join(os.tmpdir(), 'tess-build-test-')); const walk = (root, d = root, o = []) => { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const p = path.join(d, e.name); e.isDirectory() ? walk(root, p, o) : o.push(path.relative(root, p)); } return o.sort(); };
 const cli = (args) => spawnSync('node', [ROOT + '/tools/build/build.mjs', ...args], { encoding: 'utf8' });
@@ -9,8 +9,12 @@ test('el build se ejecuta dos veces y produce EXACTAMENTE los mismos bytes (repr
   const t = tmp(); dirs.push(t); A = await build({ out: path.join(t, 'a') }); B = await build({ out: path.join(t, 'b') }); assert.equal(A.sums, B.sums);
   for (const f of walk(path.join(t, 'a'))) if (f !== 'BUILD_INFO.json') assert.equal(sha(path.join(t, 'a', f)), sha(path.join(t, 'b', f)), f);
 });
-test('HUELLAS FIJADAS: SHA256SUMS del build = tests/golden/dist.SHA256SUMS (detecta cambios en panel/ o en la versión de esbuild)', () => {
-  assert.equal(A.sums, fs.readFileSync(ROOT + '/tests/golden/dist.SHA256SUMS', 'utf8'), 'si el cambio es intencional (tarea aprobada), regenera la huella con: node tools/build/build.mjs && cp dist/SHA256SUMS tests/golden/dist.SHA256SUMS');
+test('HUELLAS FIJADAS: SHA256SUMS del build = tests/golden/dist-a5.SHA256SUMS (huella vigente; detecta cambios en src/, en los estáticos de panel/ o en la versión de esbuild)', () => {
+  assert.equal(A.sums, fs.readFileSync(DIST_PIN, 'utf8'), 'si el cambio es intencional (paso aprobado de A5), regenera la huella vigente con: node tools/build/build.mjs && cp dist/SHA256SUMS tests/golden/dist-a5.SHA256SUMS');
+});
+test('HISTÓRICO A3/A4: construir desde la carpeta de plugin panel/ (referencia A1 congelada) reproduce EXACTAMENTE tests/golden/dist.SHA256SUMS (bundle validado en el CEP real)', async () => {
+  const t = tmp(); dirs.push(t); const h = await build({ src: ROOT + '/panel', out: path.join(t, 'h') }); assert.equal(h.sums, fs.readFileSync(ROOT + '/tests/golden/dist.SHA256SUMS', 'utf8'));
+  assert.match(h.sums, /^bc2606957595d086ac8b81d2e3af019e0c1d44344bd8c273c9ddb45bb159b5bd  \.\/main\.js$/m);
 });
 test('el conjunto de archivos de dist = panel/ − (main.js.bak, *.md) + SHA256SUMS + BUILD_INFO.json; los estáticos son idénticos byte a byte', () => {
   const panel = walk(ROOT + '/panel').filter((f) => !/main\.js\.bak$|\.md$|\.DS_Store$/.test(f)); const dist = walk(A.out);
@@ -35,7 +39,7 @@ test('main.js es un script CLÁSICO autocontenido: IIFE, sin import/export/requi
 test('BUILD_INFO.json: herramientas y versiones, huella de la fuente, huellas de la salida, instalado=false', () => {
   const i = JSON.parse(fs.readFileSync(path.join(A.out, 'BUILD_INFO.json'), 'utf8')); const pk = JSON.parse(fs.readFileSync(ROOT + '/package.json', 'utf8')); const es = JSON.parse(fs.readFileSync(ROOT + '/node_modules/esbuild/package.json', 'utf8'));
   assert.equal(i.herramientas.esbuild, pk.devDependencies.esbuild); assert.equal(i.herramientas.esbuild, es.version); assert.equal(i.herramientas.target, TARGET); assert.equal(i.herramientas.formato, 'iife'); assert.equal(i.herramientas.minify, false);
-  assert.equal(i.fuente.main_js_sha256, sha(ROOT + '/panel/main.js')); assert.equal(i.instalado, false); assert.equal(i.depuracion, null);
+  assert.equal(i.fuente.main_js_sha256, sha(ROOT + '/src/main.js')); assert.equal(i.fuente.entrada, 'src/main.js'); assert.equal(i.fuente.estaticos, 'panel'); assert.equal(i.instalado, false); assert.equal(i.depuracion, null);
   for (const [f, v] of Object.entries(i.salida)) assert.equal(sha(path.join(A.out, f)), v.sha256, f); assert.deepEqual(verifyDir(A.out), []);
 });
 test('dependencias fijadas: esbuild exacto (sin ^/~), MIT, presente en el lockfile', () => {
@@ -48,7 +52,7 @@ test('--debug-port añade .debug (solo validación), queda en SHA256SUMS y en BU
 });
 test('zonas protegidas: el build rechaza --out en panel/, reference/, la raíz del repo, /Library y ~/Library y no crea nada', () => {
   const before = { panel: sha(ROOT + '/panel/main.js'), ref: sha(ROOT + '/reference/legacy-baseline/main.js') };
-  for (const out of [ROOT + '/panel', ROOT + '/panel/sub', ROOT + '/reference/x', ROOT, ROOT + '/tests/x', '/Library/Application Support/Adobe/CEP/extensions/tesseract-v3-x', os.homedir() + '/Library/Application Support/Adobe/CEP/extensions/tesseract-v3-x', '/tmp/../etc/x']) {
+  for (const out of [ROOT + '/panel', ROOT + '/panel/sub', ROOT + '/src', ROOT + '/src/x', ROOT + '/reference/x', ROOT, ROOT + '/tests/x', '/Library/Application Support/Adobe/CEP/extensions/tesseract-v3-x', os.homedir() + '/Library/Application Support/Adobe/CEP/extensions/tesseract-v3-x', '/tmp/../etc/x']) {
     const r = cli(['--out', out]); assert.equal(r.status, 1, out + ' → ' + r.stdout + r.stderr); assert.match(r.stderr, /rechazado/, out);
   }
   assert.ok(!fs.existsSync(os.homedir() + '/Library/Application Support/Adobe/CEP/extensions/tesseract-v3-x')); assert.ok(!fs.existsSync(ROOT + '/panel/sub')); assert.ok(!fs.existsSync(ROOT + '/tests/x'));
@@ -56,7 +60,7 @@ test('zonas protegidas: el build rechaza --out en panel/, reference/, la raíz d
 });
 test('--verify: acepta un dist íntegro y rechaza uno manipulado', async () => {
   const t = tmp(); dirs.push(t); const d = path.join(t, 'dist'); await build({ out: d });
-  // verify reconstruye desde panel/ y compara con el dist indicado
+  // verify reconstruye desde src/ (+ estáticos de panel/) y compara con el dist indicado
   assert.equal(cli(['--verify', '--out', d]).status, 0); fs.appendFileSync(path.join(d, 'main.js'), '\n// manipulado\n'); const r = cli(['--verify', '--out', d]); assert.equal(r.status, 1); assert.match(r.stderr, /VERIFICACIÓN FALLIDA/);
 });
 test('limpieza', () => { for (const d of dirs) fs.rmSync(d, { recursive: true, force: true }); });

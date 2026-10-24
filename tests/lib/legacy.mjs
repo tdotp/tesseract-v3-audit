@@ -3,7 +3,8 @@
 import fs from 'node:fs'; import vm from 'node:vm'; import path from 'node:path'; import crypto from 'node:crypto';
 import { ROOT } from './fixtures.mjs';
 
-export const TARGETS = { baseline: path.join(ROOT, 'reference/legacy-baseline/main.js'), panel: process.env.TESS_PANEL_MAIN || path.join(ROOT, 'panel/main.js') }; // TESS_PANEL_MAIN solo para controles negativos (mutaciones)
+// baseline = plugin instalado congelado · panel = referencia A1 congelada (panel/main.js) · src = fuente modular del build desde A5 (entrada src/main.js)
+export const TARGETS = { baseline: path.join(ROOT, 'reference/legacy-baseline/main.js'), panel: process.env.TESS_PANEL_MAIN || path.join(ROOT, 'panel/main.js'), src: path.join(process.env.TESS_SRC_DIR || path.join(ROOT, 'src'), 'main.js') }; // TESS_PANEL_MAIN / TESS_SRC_DIR solo para controles negativos (mutaciones)
 export const sha256 = (f) => crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex');
 
 export function extractFunctions(src) {

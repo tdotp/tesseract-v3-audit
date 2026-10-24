@@ -1,0 +1,13 @@
+A5.0b — equivalencia del primer build desde src/ con el bundle validado en A4 (2026-10-24T04:14:58Z)
+fuente: cmp panel/main.js src/main.js → IDÉNTICOS
+sha256 src/main.js = 91b42b7bd4a829c67fe356f0351879a947f4a9eeb827e094a313d4d99fc41706
+sha256 dist/main.js desde src/   = f3ac8902f018e93121f009ce9c29f8a63978898680a82a0b688a68078874fab5
+sha256 bundle validado en A4    = bc2606957595d086ac8b81d2e3af019e0c1d44344bd8c273c9ddb45bb159b5bd
+diff (única diferencia; comentario de ruta de módulo que esbuild inserta en bundles sin minificar):
+  3c3
+  <   // src/main.js
+  ---
+  >   // panel/main.js
+sha256 dist/main.js desde src/ con la línea 3 normalizada a «  // panel/main.js» = bc2606957595d086ac8b81d2e3af019e0c1d44344bd8c273c9ddb45bb159b5bd
+resto de archivos de dist/: IDÉNTICOS (12/12) a tests/golden/dist.SHA256SUMS
+build con --src panel (herramienta nueva) = tests/golden/dist.SHA256SUMS: SÍ
