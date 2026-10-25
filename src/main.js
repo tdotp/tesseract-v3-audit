@@ -4,6 +4,7 @@ import { buildArtworkExportScript } from './host/art.js';
 import { TEST_CONNECTION_SCRIPT } from './host/test-connection.js';
 import { hasCep, evalScript, evalScriptJSON, pathToFileURL } from './bridge/cep.js';
 import { saveBlobWithDialog } from './bridge/fs.js';
+import { TOLERANCE_MM, GRAPH_EPS } from './core/legacy/constants.js';
 
 (function () {
   'use strict';
@@ -49,9 +50,6 @@ import { saveBlobWithDialog } from './bridge/fs.js';
     var creaseControlsSlot = byId('crease-controls-slot');
     if(modeFoldBtn) modeFoldBtn.style.display='none';
     if(modeBaseBtn) modeBaseBtn.style.display='none';
-
-    var TOLERANCE_MM   = 0.5;
-    var GRAPH_EPS      = 0.5;
 
     var currentThicknessMm = DEFAULT_THICKNESS_MM;
     var currentMaterialPreset = 'white';

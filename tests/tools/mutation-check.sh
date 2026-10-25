@@ -12,8 +12,8 @@ mut() { # nombre, patrón sed
   mutsrc "$2" || { echo "NO APLICÓ  $1"; bad=$((bad+1)); return; }
   if TESS_SRC_DIR="$TMP/src" node --test 'tests/node/*.test.mjs' >/dev/null 2>&1; then echo "NO DETECTADA  $1"; bad=$((bad+1)); else echo "detectada     $1"; ok=$((ok+1)); fi
 }
-mut "GRAPH_EPS 0.5→0.6"                         's/var GRAPH_EPS      = 0.5;/var GRAPH_EPS      = 0.6;/'
-mut "TOLERANCE_MM 0.5→0.4"                      's/var TOLERANCE_MM   = 0.5;/var TOLERANCE_MM   = 0.4;/'
+mut "GRAPH_EPS 0.5→0.6"                         's/export const GRAPH_EPS = 0.5;/export const GRAPH_EPS = 0.6;/'      # A6.1: mismo cambio de valor, ahora en core/legacy/constants.js
+mut "TOLERANCE_MM 0.5→0.4"                      's/export const TOLERANCE_MM = 0.5;/export const TOLERANCE_MM = 0.4;/'
 mut "color del preset kraft"                    "s/shell:'#b7aa87'/shell:'#b7aa88'/"
 mut "espesor por defecto 0.25→0.30"             's/DEFAULT_THICKNESS_MM = 0.25;/DEFAULT_THICKNESS_MM = 0.30;/'
 mut "umbral de panel pequeño (absArea < 4 → < 5)" 's/if(absArea < 4) return;/if(absArea < 5) return;/'

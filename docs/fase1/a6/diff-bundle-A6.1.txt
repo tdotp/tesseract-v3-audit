@@ -1,0 +1,29 @@
+# Diff del bundle dist/main.js: A6.0 → A6.1 (diff -u; la línea 1 es el banner con la huella de src/main.js)
+--- .scratch/bundle-A6.0.js	2026-10-25 17:47:37
++++ dist/main.js	2026-10-25 18:13:18
+@@ -1,4 +1,4 @@
+-/* Tesseract V3 · bundle IIFE · fuente main.js sha256:88d3f74c2784f589 · esbuild 0.28.2 · target chrome99 · NO editar a mano (tools/build/build.mjs) */
++/* Tesseract V3 · bundle IIFE · fuente main.js sha256:daf89989ce44f0fc · esbuild 0.28.2 · target chrome99 · NO editar a mano (tools/build/build.mjs) */
+ (() => {
+   // src/config/look.js
+   var DEFAULT_THICKNESS_MM = 0.25;
+@@ -280,6 +280,10 @@
+     }
+     return { cancelled: false, path };
+   }
++
++  // src/core/legacy/constants.js
++  var TOLERANCE_MM = 0.5;
++  var GRAPH_EPS = 0.5;
+ 
+   // src/main.js
+   (function() {
+@@ -326,8 +330,6 @@
+       var creaseControlsSlot = byId("crease-controls-slot");
+       if (modeFoldBtn) modeFoldBtn.style.display = "none";
+       if (modeBaseBtn) modeBaseBtn.style.display = "none";
+-      var TOLERANCE_MM = 0.5;
+-      var GRAPH_EPS = 0.5;
+       var currentThicknessMm = DEFAULT_THICKNESS_MM;
+       var currentMaterialPreset = "white";
+       var lastData = null;

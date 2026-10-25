@@ -6,8 +6,8 @@ import { TARGETS } from '../lib/legacy.mjs';
 const SRC = path.dirname(TARGETS.src); const CORE = path.join(SRC, 'core');
 
 // Estado esperado en ESTE paso de A6 (se actualiza en cada paso aprobado; igualdad exacta, no «contiene»).
-const CORE_INVENTORY = [];
-const MAIN_CORE_IMPORTS = {}; // especificador → nombres importados
+const CORE_INVENTORY = ['core/legacy/constants.js'];
+const MAIN_CORE_IMPORTS = { './core/legacy/constants.js': ['TOLERANCE_MM', 'GRAPH_EPS'] }; // especificador → nombres importados
 
 const files = []; if (fs.existsSync(CORE)) (function walk(d) { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const p = path.join(d, e.name); if (e.isDirectory()) walk(p); else if (e.name.endsWith('.js')) files.push(path.relative(SRC, p)); } })(CORE); files.sort();
 const raw = (f) => fs.readFileSync(path.join(SRC, f), 'utf8');
