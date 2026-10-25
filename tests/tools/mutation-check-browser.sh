@@ -4,11 +4,11 @@
 cd "$(dirname "$0")/../.." || exit 2
 TMP=$(mktemp -d); trap 'rm -rf "$TMP"' EXIT; ok=0; bad=0
 # precondición: sin mutar, cada patrón debe PASAR (si no, 'detectada' no significaría nada)
-for pat in "GPU · bundle \(caja, sin arte\)" "Escena/materiales · bundle" "Arte · bundle" "GLB · bundle \(caja\)" "Interacciones · bundle"; do
+for pat in "GPU · bundle \(caja, sin arte\)" "Escena/materiales · bundle" "Arte · bundle" "GLB · bundle \(caja\)" "Interacciones · bundle" "Log de depuración \(A6\)"; do
   node --test --test-name-pattern="$pat" tests/browser/browser.test.mjs >/dev/null 2>&1 || { echo "ERROR: la prueba '$pat' falla sin mutaciones"; exit 2; }
 done
 node --test --test-name-pattern="Puente CEP · (baseline|bundle)" tests/browser/bridge.test.mjs >/dev/null 2>&1 || { echo "ERROR: la prueba del puente falla sin mutaciones"; exit 2; }
-echo "precondición OK (6 patrones pasan sin mutar)"
+echo "precondición OK (7 patrones pasan sin mutar)"
 mutsrc() { # aplica la mutación sed a TODOS los .js de una COPIA de src/ (nunca al original); falla si no cambió nada
   rm -rf "$TMP/src" "$TMP/src.orig"; cp -R src "$TMP/src"; cp -R src "$TMP/src.orig"; find "$TMP/src" -name '*.js' -exec sed -i '' "$1" {} +; ! diff -rq "$TMP/src.orig" "$TMP/src" >/dev/null; }
 run() { # nombre, patrón de prueba, mutación sed (sobre una copia de src/) o REVERT (bundle construido desde el baseline, sin el parche A1), [archivo de prueba]
@@ -31,4 +31,6 @@ run "puente: codificación por defecto Base64 → base64" "Puente CEP · (baseli
 run "puente: ensureCep ya no deshabilita «Back»"     "Puente CEP · (baseline|bundle)" 's/\[testBtn,extractBtn,previewBtn,continueBtn,backBtn,export3dBtn\]/[testBtn,extractBtn,previewBtn,continueBtn,export3dBtn]/' tests/browser/bridge.test.mjs
 run "KI-25 corregido sin tarea (mensaje final del GLB)" "Puente CEP · (baseline|bundle)" "s/setStatus('GLB exported from current 3D pose');//" tests/browser/bridge.test.mjs
 run "KI-24 corregido sin tarea (buildChildrenOfMap)" "Puente CEP · (baseline|bundle)" 's/rebuildCreaseVisuals(buildChildrenOfMap());/rebuildCreaseVisuals([]);/' tests/browser/bridge.test.mjs
+# A6.0a — número y orden de llamadas al motor (solo lo ve el log de depuración, T1): setBasePanel deja de recalcular el árbol (buildFoldUI lo recalcula igual)
+run "A6 · log: setBasePanel ya no llama a buildFoldTree"      "Log de depuración \(A6\)"      's/foldTree = buildFoldTree(currentPanelData.panels, currentAdjEdges, currentBasePanelIndex);/foldTree = foldTree;/'
 echo "mutaciones detectadas: $ok · no detectadas: $bad"; [ "$bad" = 0 ]

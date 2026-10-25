@@ -172,6 +172,29 @@ for (const t of TG) for (const [fx, id] of [['caja', 'real-caja-botanica'], ['il
   assert.equal(r.base, 0, 'la base inicial en la interfaz es P0 (currentBasePanelIndex arranca en 0 y solo usa getDefaultBaseIndex si está fuera de rango)'); assert.deepEqual(r.tree, g.trees.base0, 'árbol desde la base inicial P0');
 });
 
+// ───────────────────────── A6 (T1): log de depuración completo en 5 flujos ─────────────────────────
+// Fija el TEXTO y el ORDEN de todo lo que el motor y la escena escriben en #log-area (más estado, validación y problemas) al extraer,
+// construir el 3D, cambiar la base, aplicar espesor, cambiar el preset con 3D y plegar. Baseline, panel y bundle deben coincidir.
+const LOGFLOW = `(async () => { const { sleep, raf2, $, fire, setAll } = T; const out = {};
+  const snap = () => ({ log: $('log-area').textContent, status: $('status-area').textContent });
+  $('extract-btn').click(); await sleep(250);
+  out.extraccion = { ...snap(), validacion: [$('validation-status').textContent, $('validation-status').className], problemas: [...$('problems-list').children].map((li) => li.textContent), continuarDeshabilitado: $('continue-3d-btn').disabled };
+  $('continue-3d-btn').click(); await sleep(700); await raf2(); out.construir = snap();
+  const sel = document.querySelector('#fold-panel select'); sel.value = String(sel.options.length - 1); fire(sel, 'change'); await sleep(200); await raf2(); out.base = { ...snap(), base: __dbg.baseIndex };
+  $('thickness-input').value = '0.8'; $('apply-thickness-btn').click(); await sleep(200); await raf2(); out.espesor = snap();
+  const mp = $('material-preset'); mp.value = 'kraft'; fire(mp, 'change'); await sleep(200); await raf2(); out.preset = snap();
+  await setAll(60); await sleep(100); out.plegado = snap();
+  return out; })()`;
+const logflows = {};
+for (const fx of ['caja', 'ill']) for (const t of TG) test(`Log de depuración (A6) · ${names[t]} (${fx}): extraer, 3D, base, espesor, preset y plegado`, async () => {
+  await load(`${t}-${fx}`); const r = logflows[`${t}-${fx}`] = await evalIn(LOGFLOW); save(`logflow-${names[t]}-${fx}`, r);
+  assert.match(r.construir.log, /=== buildPanels ===[\s\S]*Fold tree edges: \d+ \(base=P0\)/); assert.equal((r.preset.log.match(/^Adjacency edges: /gm) || []).length, 4, 'buildAdjacency: 3D, base, espesor y preset');
+  assert.deepEqual(H.browser.errors, []);
+});
+for (const fx of ['caja', 'ill']) test(`Log de depuración (A6) · ${fx}: baseline, panel y bundle idénticos (texto y orden)`, () => {
+  assert.deepEqual(logflows[`fix-${fx}`], logflows[`base-${fx}`]); assert.deepEqual(logflows[`dist-${fx}`], logflows[`base-${fx}`]);
+});
+
 // ───────────────────────── Métricas base ─────────────────────────
 const metrics = {};
 for (const t of TG) test(`Métricas · ${names[t]}: construcción, FPS, plegado, recursos y exportación (informativo)`, async () => {

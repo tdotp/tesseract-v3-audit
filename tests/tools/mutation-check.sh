@@ -27,4 +27,7 @@ mut "offset del arte (ART_TOP_OFFSET 0.08→0.09)" 's/ART_TOP_OFFSET = 0.08;/ART
 mut "puente: pathToFileURL sin encodeURI (bridge/cep.js)"  's/+ encodeURI(path);/+ path;/'
 mut "guardado: cancelar deja de marcar cancelled (bridge/fs.js)"  "s/return { cancelled:true, path:'' };/return { cancelled:false, path:'' };/"
 mut "límites: bridge/cep toca document (a5-limites)"  's/return !!window.__adobe_cep__; }/return !!window.__adobe_cep__ \&\& !!document; }/'
+# A6.0a — contratos del motor que los goldens de geometría NO ven (log, alias): los detectan a6-logs-golden y a6-contratos
+mut "A6 · log del motor: texto de la adyacencia estricta"   "s/' (strict)');/' (estricta)');/"
+mut "A6 · alias: la adyacencia estricta copia el creaseEdge" 's/adj.push({panelA:sharing\[0\],panelB:sharing\[1\],crease:ce,creaseIdx:ce.creaseIdx});/adj.push({panelA:sharing[0],panelB:sharing[1],crease:{a:ce.a,b:ce.b,creaseIdx:ce.creaseIdx,segIdx:ce.segIdx},creaseIdx:ce.creaseIdx});/'
 echo "mutaciones detectadas: $ok · no detectadas: $bad"; [ "$bad" = 0 ]

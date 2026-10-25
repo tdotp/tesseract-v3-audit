@@ -1,0 +1,1141 @@
+{
+ "_fuente": "reference/legacy-baseline/main.js",
+ "_sha256_main_js": "719942d134d2c5aebb2ed5781cfce25eb5a93fede1583fb05624e64ae6c8ce44",
+ "fixtures": {
+  "real-caja-botanica": {
+   "buildPanels": [
+    "=== buildPanels ===",
+    "Closed cut contours reclassified · shells=1 holes=0 total=1",
+    "Total topo segments (closed cuts + creases): 81",
+    "buildTopology: 81 input segments",
+    "After splitting: 87 segments (7 iterations)",
+    "Graph: 52 vertices, 52 adj entries",
+    "Faces traced: 14",
+    "  Face 0: area=-27434.4 verts=50 hole=true",
+    "  Face 1: area=1580.1 verts=4 hole=false",
+    "  Face 2: area=316.2 verts=4 hole=false",
+    "  Face 3: area=666.5 verts=8 hole=false",
+    "  Face 4: area=4800.2 verts=6 hole=false",
+    "  Face 5: area=4799.7 verts=4 hole=false",
+    "  Face 6: area=1760.3 verts=4 hole=false",
+    "  Face 7: area=1599.8 verts=5 hole=false",
+    "  Face 8: area=319.1 verts=4 hole=false",
+    "  Face 9: area=665.6 verts=7 hole=false",
+    "  Face 10: area=4794.8 verts=11 hole=false",
+    "  Face 11: area=4800.2 verts=6 hole=false",
+    "  Face 12: area=665.6 verts=7 hole=false",
+    "  Face 13: area=666.4 verts=8 hole=false",
+    "Panels after shell filter: 14",
+    "Connectivity filter: keeping 11 of 14 panels from largest crease-connected component"
+   ],
+   "buildAdjacency": [
+    "Adjacency edges: 10 (strict)"
+   ],
+   "getDefaultBaseIndex": [],
+   "buildFoldTree": {
+    "base0": [
+     "Fold tree edges: 10 (base=P0)"
+    ],
+    "base1": [
+     "Fold tree edges: 10 (base=P1)"
+    ],
+    "base2": [
+     "Fold tree edges: 10 (base=P2)"
+    ],
+    "base3": [
+     "Fold tree edges: 10 (base=P3)"
+    ],
+    "base4": [
+     "Fold tree edges: 10 (base=P4)"
+    ],
+    "base5": [
+     "Fold tree edges: 10 (base=P5)"
+    ],
+    "base6": [
+     "Fold tree edges: 10 (base=P6)"
+    ],
+    "base7": [
+     "Fold tree edges: 10 (base=P7)"
+    ],
+    "base8": [
+     "Fold tree edges: 10 (base=P8)"
+    ],
+    "base9": [
+     "Fold tree edges: 10 (base=P9)"
+    ],
+    "base10": [
+     "Fold tree edges: 10 (base=P10)"
+    ]
+   },
+   "validate": []
+  },
+  "real-illustrator-export": {
+   "buildPanels": [
+    "=== buildPanels ===",
+    "Closed cut contours reclassified · shells=1 holes=0 total=1",
+    "Total topo segments (closed cuts + creases): 68",
+    "buildTopology: 68 input segments",
+    "After splitting: 70 segments (2 iterations)",
+    "Graph: 45 vertices, 45 adj entries",
+    "Faces traced: 14",
+    "  Face 0: area=-15425.9 verts=45 hole=true",
+    "  Face 1: area=177.9 verts=4 hole=false",
+    "  Face 2: area=899.9 verts=4 hole=false",
+    "  Face 3: area=2719.6 verts=9 hole=false",
+    "  Face 4: area=374.5 verts=7 hole=false",
+    "  Face 5: area=2666.3 verts=4 hole=false",
+    "  Face 6: area=2716.8 verts=4 hole=false",
+    "  Face 7: area=990.2 verts=4 hole=false",
+    "  Face 8: area=894.3 verts=4 hole=false",
+    "  Face 9: area=179.5 verts=4 hole=false",
+    "  Face 10: area=374.4 verts=7 hole=false",
+    "  Face 11: area=374.4 verts=7 hole=false",
+    "  Face 12: area=2683.2 verts=4 hole=false",
+    "  Face 13: area=375.0 verts=7 hole=false",
+    "Panels after shell filter: 14",
+    "Connectivity filter: keeping 13 of 14 panels from largest crease-connected component"
+   ],
+   "buildAdjacency": [
+    "Adjacency edges: 12 (strict)"
+   ],
+   "getDefaultBaseIndex": [],
+   "buildFoldTree": {
+    "base0": [
+     "Fold tree edges: 12 (base=P0)"
+    ],
+    "base2": [
+     "Fold tree edges: 12 (base=P2)"
+    ],
+    "base12": [
+     "Fold tree edges: 12 (base=P12)"
+    ]
+   },
+   "validate": []
+  },
+  "sin-creases": {
+   "buildPanels": [
+    "=== buildPanels ===",
+    "Closed cut contours reclassified · shells=1 holes=0 total=1",
+    "Total topo segments (closed cuts + creases): 4",
+    "buildTopology: 4 input segments",
+    "After splitting: 4 segments (1 iterations)",
+    "Graph: 4 vertices, 4 adj entries",
+    "Faces traced: 2",
+    "  Face 0: area=2400.0 verts=4 hole=false",
+    "  Face 1: area=-2400.0 verts=4 hole=true",
+    "Panels after shell filter: 1"
+   ],
+   "buildAdjacency": [
+    "Adjacency edges: 0 (no explicit crease segments available)"
+   ],
+   "getDefaultBaseIndex": [],
+   "buildFoldTree": {
+    "base0": [
+     "Fold tree edges: 0 (base=P0)"
+    ]
+   },
+   "validate": []
+  },
+  "crease-exacta": {
+   "buildPanels": [
+    "=== buildPanels ===",
+    "Closed cut contours reclassified · shells=1 holes=0 total=1",
+    "Total topo segments (closed cuts + creases): 5",
+    "buildTopology: 5 input segments",
+    "After splitting: 7 segments (3 iterations)",
+    "Graph: 6 vertices, 6 adj entries",
+    "Faces traced: 3",
+    "  Face 0: area=1600.0 verts=4 hole=false",
+    "  Face 1: area=-3200.0 verts=6 hole=true",
+    "  Face 2: area=1600.0 verts=4 hole=false",
+    "Panels after shell filter: 3",
+    "Connectivity filter: keeping 2 of 3 panels from largest crease-connected component"
+   ],
+   "buildAdjacency": [
+    "Adjacency edges: 1 (strict)"
+   ],
+   "getDefaultBaseIndex": [],
+   "buildFoldTree": {
+    "base0": [
+     "Fold tree edges: 1 (base=P0)"
+    ],
+    "base1": [
+     "Fold tree edges: 1 (base=P1)"
+    ]
+   },
+   "validate": []
+  },
+  "crease-corta-0.3": {
+   "buildPanels": [
+    "=== buildPanels ===",
+    "Closed cut contours reclassified · shells=1 holes=0 total=1",
+    "Total topo segments (closed cuts + creases): 5",
+    "buildTopology: 5 input segments",
+    "After splitting: 7 segments (3 iterations)",
+    "Graph: 6 vertices, 6 adj entries",
+    "Faces traced: 3",
+    "  Face 0: area=1588.0 verts=4 hole=false",
+    "  Face 1: area=-3176.0 verts=6 hole=true",
+    "  Face 2: area=1588.0 verts=4 hole=false",
+    "Panels after shell filter: 3",
+    "Connectivity filter: keeping 2 of 3 panels from largest crease-connected component"
+   ],
+   "buildAdjacency": [
+    "Adjacency edges: 1 (strict)"
+   ],
+   "getDefaultBaseIndex": [],
+   "buildFoldTree": {
+    "base0": [
+     "Fold tree edges: 1 (base=P0)"
+    ],
+    "base1": [
+     "Fold tree edges: 1 (base=P1)"
+    ]
+   },
+   "validate": []
+  },
+  "crease-corta-0.6": {
+   "buildPanels": [
+    "=== buildPanels ===",
+    "Closed cut contours reclassified · shells=1 holes=0 total=1",
+    "Total topo segments (closed cuts + creases): 5",
+    "buildTopology: 5 input segments",
+    "After splitting: 7 segments (3 iterations)",
+    "Graph: 6 vertices, 6 adj entries",
+    "Faces traced: 3",
+    "  Face 0: area=1576.0 verts=4 hole=false",
+    "  Face 1: area=-3152.0 verts=6 hole=true",
+    "  Face 2: area=1576.0 verts=4 hole=false",
+    "Panels after shell filter: 3",
+    "Connectivity filter: keeping 2 of 3 panels from largest crease-connected component"
+   ],
+   "buildAdjacency": [
+    "Adjacency edges: 1 (strict)"
+   ],
+   "getDefaultBaseIndex": [],
+   "buildFoldTree": {
+    "base0": [
+     "Fold tree edges: 1 (base=P0)"
+    ],
+    "base1": [
+     "Fold tree edges: 1 (base=P1)"
+    ]
+   },
+   "validate": []
+  },
+  "crease-sobresale-0.3": {
+   "buildPanels": [
+    "=== buildPanels ===",
+    "Closed cut contours reclassified · shells=1 holes=0 total=1",
+    "Total topo segments (closed cuts + creases): 5",
+    "buildTopology: 5 input segments",
+    "After splitting: 9 segments (3 iterations)",
+    "Graph: 6 vertices, 6 adj entries",
+    "Faces traced: 3",
+    "  Face 0: area=1600.0 verts=4 hole=false",
+    "  Face 1: area=-3200.0 verts=6 hole=true",
+    "  Face 2: area=1600.0 verts=4 hole=false",
+    "Panels after shell filter: 3",
+    "Connectivity filter: keeping 2 of 3 panels from largest crease-connected component"
+   ],
+   "buildAdjacency": [
+    "Adjacency edges: 1 (strict)"
+   ],
+   "getDefaultBaseIndex": [],
+   "buildFoldTree": {
+    "base0": [
+     "Fold tree edges: 1 (base=P0)"
+    ],
+    "base1": [
+     "Fold tree edges: 1 (base=P1)"
+    ]
+   },
+   "validate": []
+  },
+  "crease-sobresale-0.6": {
+   "buildPanels": [
+    "=== buildPanels ===",
+    "Closed cut contours reclassified · shells=1 holes=0 total=1",
+    "Total topo segments (closed cuts + creases): 5",
+    "buildTopology: 5 input segments",
+    "After splitting: 9 segments (3 iterations)",
+    "Graph: 8 vertices, 8 adj entries",
+    "Faces traced: 3",
+    "  Face 0: area=1600.0 verts=4 hole=false",
+    "  Face 1: area=-3200.0 verts=10 hole=true",
+    "  Face 2: area=1600.0 verts=4 hole=false",
+    "Panels after shell filter: 3",
+    "Connectivity filter: no crease-connected components found, keeping shell-filtered panels"
+   ],
+   "buildAdjacency": [
+    "Adjacency edges: 1 (raw-panel overlap)"
+   ],
+   "getDefaultBaseIndex": [],
+   "buildFoldTree": {
+    "base0": [
+     "Fold tree edges: 1 (base=P0)"
+    ],
+    "base1": [
+     "Fold tree edges: 0 (base=P1)"
+    ],
+    "base2": [
+     "Fold tree edges: 1 (base=P2)"
+    ]
+   },
+   "validate": []
+  },
+  "t-exacta": {
+   "buildPanels": [
+    "=== buildPanels ===",
+    "Closed cut contours reclassified · shells=1 holes=0 total=1",
+    "Total topo segments (closed cuts + creases): 6",
+    "buildTopology: 6 input segments",
+    "After splitting: 10 segments (5 iterations)",
+    "Graph: 8 vertices, 8 adj entries",
+    "Faces traced: 4",
+    "  Face 0: area=1600.0 verts=5 hole=false",
+    "  Face 1: area=-3200.0 verts=7 hole=true",
+    "  Face 2: area=800.0 verts=4 hole=false",
+    "  Face 3: area=800.0 verts=4 hole=false",
+    "Panels after shell filter: 4",
+    "Connectivity filter: keeping 2 of 4 panels from largest crease-connected component"
+   ],
+   "buildAdjacency": [
+    "Adjacency edges: 1 (strict)"
+   ],
+   "getDefaultBaseIndex": [],
+   "buildFoldTree": {
+    "base0": [
+     "Fold tree edges: 1 (base=P0)"
+    ],
+    "base1": [
+     "Fold tree edges: 1 (base=P1)"
+    ]
+   },
+   "validate": []
+  },
+  "t-desalineada-0.375": {
+   "buildPanels": [
+    "=== buildPanels ===",
+    "Closed cut contours reclassified · shells=1 holes=0 total=1",
+    "Total topo segments (closed cuts + creases): 6",
+    "buildTopology: 6 input segments",
+    "After splitting: 10 segments (5 iterations)",
+    "Graph: 8 vertices, 8 adj entries",
+    "Faces traced: 4",
+    "  Face 0: area=1607.5 verts=5 hole=false",
+    "  Face 1: area=-3200.0 verts=7 hole=true",
+    "  Face 2: area=796.3 verts=4 hole=false",
+    "  Face 3: area=796.3 verts=4 hole=false",
+    "Panels after shell filter: 4",
+    "Connectivity filter: keeping 2 of 4 panels from largest crease-connected component"
+   ],
+   "buildAdjacency": [
+    "Adjacency edges: 1 (strict)"
+   ],
+   "getDefaultBaseIndex": [],
+   "buildFoldTree": {
+    "base0": [
+     "Fold tree edges: 1 (base=P0)"
+    ],
+    "base1": [
+     "Fold tree edges: 1 (base=P1)"
+    ]
+   },
+   "validate": []
+  },
+  "t-desalineada-0.6": {
+   "buildPanels": [
+    "=== buildPanels ===",
+    "Closed cut contours reclassified · shells=1 holes=0 total=1",
+    "Total topo segments (closed cuts + creases): 6",
+    "buildTopology: 6 input segments",
+    "After splitting: 10 segments (5 iterations)",
+    "Graph: 8 vertices, 8 adj entries",
+    "Faces traced: 4",
+    "  Face 0: area=1612.0 verts=5 hole=false",
+    "  Face 1: area=-3200.0 verts=7 hole=true",
+    "  Face 2: area=794.0 verts=4 hole=false",
+    "  Face 3: area=794.0 verts=4 hole=false",
+    "Panels after shell filter: 4",
+    "Connectivity filter: keeping 2 of 4 panels from largest crease-connected component"
+   ],
+   "buildAdjacency": [
+    "Adjacency edges: 1 (strict)"
+   ],
+   "getDefaultBaseIndex": [],
+   "buildFoldTree": {
+    "base0": [
+     "Fold tree edges: 1 (base=P0)"
+    ],
+    "base1": [
+     "Fold tree edges: 1 (base=P1)"
+    ]
+   },
+   "validate": []
+  },
+  "t-desalineada-1.0": {
+   "buildPanels": [
+    "=== buildPanels ===",
+    "Closed cut contours reclassified · shells=1 holes=0 total=1",
+    "Total topo segments (closed cuts + creases): 6",
+    "buildTopology: 6 input segments",
+    "After splitting: 10 segments (5 iterations)",
+    "Graph: 8 vertices, 8 adj entries",
+    "Faces traced: 4",
+    "  Face 0: area=1620.0 verts=5 hole=false",
+    "  Face 1: area=-3200.0 verts=7 hole=true",
+    "  Face 2: area=790.0 verts=4 hole=false",
+    "  Face 3: area=790.0 verts=4 hole=false",
+    "Panels after shell filter: 4",
+    "Connectivity filter: keeping 2 of 4 panels from largest crease-connected component"
+   ],
+   "buildAdjacency": [
+    "Adjacency edges: 1 (strict)"
+   ],
+   "getDefaultBaseIndex": [],
+   "buildFoldTree": {
+    "base0": [
+     "Fold tree edges: 1 (base=P0)"
+    ],
+    "base1": [
+     "Fold tree edges: 1 (base=P1)"
+    ]
+   },
+   "validate": []
+  },
+  "t-desalineada-2.5": {
+   "buildPanels": [
+    "=== buildPanels ===",
+    "Closed cut contours reclassified · shells=1 holes=0 total=1",
+    "Total topo segments (closed cuts + creases): 6",
+    "buildTopology: 6 input segments",
+    "After splitting: 10 segments (5 iterations)",
+    "Graph: 8 vertices, 8 adj entries",
+    "Faces traced: 4",
+    "  Face 0: area=1650.0 verts=5 hole=false",
+    "  Face 1: area=-3200.0 verts=7 hole=true",
+    "  Face 2: area=775.0 verts=4 hole=false",
+    "  Face 3: area=775.0 verts=4 hole=false",
+    "Panels after shell filter: 4",
+    "Connectivity filter: keeping 2 of 4 panels from largest crease-connected component"
+   ],
+   "buildAdjacency": [
+    "Adjacency edges: 1 (strict)"
+   ],
+   "getDefaultBaseIndex": [],
+   "buildFoldTree": {
+    "base0": [
+     "Fold tree edges: 1 (base=P0)"
+    ],
+    "base1": [
+     "Fold tree edges: 1 (base=P1)"
+    ]
+   },
+   "validate": []
+  },
+  "t-desalineada-5": {
+   "buildPanels": [
+    "=== buildPanels ===",
+    "Closed cut contours reclassified · shells=1 holes=0 total=1",
+    "Total topo segments (closed cuts + creases): 6",
+    "buildTopology: 6 input segments",
+    "After splitting: 9 segments (4 iterations)",
+    "Graph: 8 vertices, 8 adj entries",
+    "Faces traced: 3",
+    "  Face 0: area=1600.0 verts=4 hole=false",
+    "  Face 1: area=-3200.0 verts=7 hole=true",
+    "  Face 2: area=1600.0 verts=7 hole=false",
+    "Panels after shell filter: 3",
+    "Connectivity filter: keeping 2 of 3 panels from largest crease-connected component"
+   ],
+   "buildAdjacency": [
+    "Adjacency edges: 1 (strict)"
+   ],
+   "getDefaultBaseIndex": [],
+   "buildFoldTree": {
+    "base0": [
+     "Fold tree edges: 1 (base=P0)"
+    ],
+    "base1": [
+     "Fold tree edges: 1 (base=P1)"
+    ]
+   },
+   "validate": []
+  },
+  "hueco-descentrado": {
+   "buildPanels": [
+    "=== buildPanels ===",
+    "Closed cut contours reclassified · shells=1 holes=1 total=2",
+    "Total topo segments (closed cuts + creases): 9",
+    "buildTopology: 9 input segments",
+    "After splitting: 11 segments (3 iterations)",
+    "Graph: 10 vertices, 10 adj entries",
+    "Faces traced: 5",
+    "  Face 0: area=3200.0 verts=4 hole=false",
+    "  Face 1: area=-6400.0 verts=6 hole=true",
+    "  Face 2: area=3200.0 verts=4 hole=false",
+    "  Face 3: area=200.0 verts=4 hole=false",
+    "  Face 4: area=-200.0 verts=4 hole=true",
+    "Panels after shell filter: 3",
+    "Connectivity filter: keeping 2 of 3 panels from largest crease-connected component"
+   ],
+   "buildAdjacency": [
+    "Adjacency edges: 1 (strict)"
+   ],
+   "getDefaultBaseIndex": [],
+   "buildFoldTree": {
+    "base0": [
+     "Fold tree edges: 1 (base=P0)"
+    ],
+    "base1": [
+     "Fold tree edges: 1 (base=P1)"
+    ]
+   },
+   "validate": []
+  },
+  "hueco-centrado": {
+   "buildPanels": [
+    "=== buildPanels ===",
+    "Closed cut contours reclassified · shells=1 holes=1 total=2",
+    "Total topo segments (closed cuts + creases): 9",
+    "buildTopology: 9 input segments",
+    "After splitting: 11 segments (3 iterations)",
+    "Graph: 10 vertices, 10 adj entries",
+    "Faces traced: 5",
+    "  Face 0: area=3200.0 verts=4 hole=false",
+    "  Face 1: area=-6400.0 verts=6 hole=true",
+    "  Face 2: area=3200.0 verts=4 hole=false",
+    "  Face 3: area=800.0 verts=4 hole=false",
+    "  Face 4: area=-800.0 verts=4 hole=true",
+    "Panels after shell filter: 2",
+    "Connectivity filter: no crease-connected components found, keeping shell-filtered panels"
+   ],
+   "buildAdjacency": [
+    "Adjacency edges: 0 (panel-panel fallback)"
+   ],
+   "getDefaultBaseIndex": [],
+   "buildFoldTree": {
+    "base0": [
+     "Fold tree edges: 0 (base=P0)"
+    ],
+    "base1": [
+     "Fold tree edges: 0 (base=P1)"
+    ]
+   },
+   "validate": []
+  },
+  "panel-pequeno-4.5mm2": {
+   "buildPanels": [
+    "=== buildPanels ===",
+    "Closed cut contours reclassified · shells=1 holes=0 total=1",
+    "Total topo segments (closed cuts + creases): 5",
+    "buildTopology: 5 input segments",
+    "After splitting: 7 segments (3 iterations)",
+    "Graph: 6 vertices, 6 adj entries",
+    "Faces traced: 3",
+    "  Face 0: area=4.5 verts=4 hole=false",
+    "  Face 1: area=-94.5 verts=6 hole=true",
+    "  Face 2: area=90.0 verts=4 hole=false",
+    "Panels after shell filter: 3",
+    "Connectivity filter: keeping 2 of 3 panels from largest crease-connected component"
+   ],
+   "buildAdjacency": [
+    "Adjacency edges: 1 (strict)"
+   ],
+   "getDefaultBaseIndex": [],
+   "buildFoldTree": {
+    "base0": [
+     "Fold tree edges: 1 (base=P0)"
+    ],
+    "base1": [
+     "Fold tree edges: 1 (base=P1)"
+    ]
+   },
+   "validate": []
+  },
+  "panel-muy-pequeno-1.5mm2": {
+   "buildPanels": [
+    "=== buildPanels ===",
+    "Closed cut contours reclassified · shells=1 holes=0 total=1",
+    "Total topo segments (closed cuts + creases): 5",
+    "buildTopology: 5 input segments",
+    "After splitting: 7 segments (3 iterations)",
+    "Graph: 6 vertices, 6 adj entries",
+    "Faces traced: 3",
+    "  Face 0: area=1.5 verts=4 hole=false",
+    "  Face 1: area=-46.5 verts=6 hole=true",
+    "  Face 2: area=45.0 verts=4 hole=false",
+    "Panels after shell filter: 2",
+    "Connectivity filter: no crease-connected components found, keeping shell-filtered panels"
+   ],
+   "buildAdjacency": [
+    "Adjacency edges: 0 (panel-panel fallback)"
+   ],
+   "getDefaultBaseIndex": [],
+   "buildFoldTree": {
+    "base0": [
+     "Fold tree edges: 0 (base=P0)"
+    ],
+    "base1": [
+     "Fold tree edges: 0 (base=P1)"
+    ]
+   },
+   "validate": []
+  },
+  "panel-delgado-40x1": {
+   "buildPanels": [
+    "=== buildPanels ===",
+    "Closed cut contours reclassified · shells=1 holes=0 total=1",
+    "Total topo segments (closed cuts + creases): 5",
+    "buildTopology: 5 input segments",
+    "After splitting: 7 segments (3 iterations)",
+    "Graph: 6 vertices, 6 adj entries",
+    "Faces traced: 3",
+    "  Face 0: area=40.0 verts=4 hole=false",
+    "  Face 1: area=-440.0 verts=6 hole=true",
+    "  Face 2: area=400.0 verts=4 hole=false",
+    "Panels after shell filter: 2",
+    "Connectivity filter: no crease-connected components found, keeping shell-filtered panels"
+   ],
+   "buildAdjacency": [
+    "Adjacency edges: 0 (panel-panel fallback)"
+   ],
+   "getDefaultBaseIndex": [],
+   "buildFoldTree": {
+    "base0": [
+     "Fold tree edges: 0 (base=P0)"
+    ],
+    "base1": [
+     "Fold tree edges: 0 (base=P1)"
+    ]
+   },
+   "validate": []
+  },
+  "esquinas-redondeadas": {
+   "buildPanels": [
+    "=== buildPanels ===",
+    "Closed cut contours reclassified · shells=1 holes=0 total=1",
+    "Total topo segments (closed cuts + creases): 9",
+    "buildTopology: 9 input segments",
+    "After splitting: 11 segments (3 iterations)",
+    "Graph: 10 vertices, 10 adj entries",
+    "Faces traced: 3",
+    "  Face 0: area=3500.0 verts=6 hole=false",
+    "  Face 1: area=-7000.0 verts=10 hole=true",
+    "  Face 2: area=3500.0 verts=6 hole=false",
+    "Panels after shell filter: 3",
+    "Connectivity filter: keeping 2 of 3 panels from largest crease-connected component"
+   ],
+   "buildAdjacency": [
+    "Adjacency edges: 1 (strict)"
+   ],
+   "getDefaultBaseIndex": [],
+   "buildFoldTree": {
+    "base0": [
+     "Fold tree edges: 1 (base=P0)"
+    ],
+    "base1": [
+     "Fold tree edges: 1 (base=P1)"
+    ]
+   },
+   "validate": []
+  },
+  "rejilla-2x2": {
+   "buildPanels": [
+    "=== buildPanels ===",
+    "Closed cut contours reclassified · shells=1 holes=0 total=1",
+    "Total topo segments (closed cuts + creases): 8",
+    "buildTopology: 8 input segments",
+    "After splitting: 12 segments (5 iterations)",
+    "Graph: 9 vertices, 9 adj entries",
+    "Faces traced: 5",
+    "  Face 0: area=1600.0 verts=4 hole=false",
+    "  Face 1: area=1600.0 verts=4 hole=false",
+    "  Face 2: area=-6400.0 verts=8 hole=true",
+    "  Face 3: area=1600.0 verts=4 hole=false",
+    "  Face 4: area=1600.0 verts=4 hole=false",
+    "Panels after shell filter: 5",
+    "Connectivity filter: keeping 4 of 5 panels from largest crease-connected component"
+   ],
+   "buildAdjacency": [
+    "Adjacency edges: 4 (strict)"
+   ],
+   "getDefaultBaseIndex": [],
+   "buildFoldTree": {
+    "base0": [
+     "Fold tree edges: 3 (base=P0)"
+    ],
+    "base1": [
+     "Fold tree edges: 3 (base=P1)"
+    ],
+    "base2": [
+     "Fold tree edges: 3 (base=P2)"
+    ],
+    "base3": [
+     "Fold tree edges: 3 (base=P3)"
+    ]
+   },
+   "validate": []
+  },
+  "rejilla-4x4": {
+   "buildPanels": [
+    "=== buildPanels ===",
+    "Closed cut contours reclassified · shells=1 holes=0 total=1",
+    "Total topo segments (closed cuts + creases): 28",
+    "buildTopology: 28 input segments",
+    "After splitting: 40 segments (13 iterations)",
+    "Graph: 25 vertices, 25 adj entries",
+    "Faces traced: 17",
+    "  Face 0: area=1600.0 verts=4 hole=false",
+    "  Face 1: area=1600.0 verts=4 hole=false",
+    "  Face 2: area=-25600.0 verts=16 hole=true",
+    "  Face 3: area=1600.0 verts=4 hole=false",
+    "  Face 4: area=1600.0 verts=4 hole=false",
+    "  Face 5: area=1600.0 verts=4 hole=false",
+    "  Face 6: area=1600.0 verts=4 hole=false",
+    "  Face 7: area=1600.0 verts=4 hole=false",
+    "  Face 8: area=1600.0 verts=4 hole=false",
+    "  Face 9: area=1600.0 verts=4 hole=false",
+    "  Face 10: area=1600.0 verts=4 hole=false",
+    "  Face 11: area=1600.0 verts=4 hole=false",
+    "  Face 12: area=1600.0 verts=4 hole=false",
+    "  Face 13: area=1600.0 verts=4 hole=false",
+    "  Face 14: area=1600.0 verts=4 hole=false",
+    "  Face 15: area=1600.0 verts=4 hole=false",
+    "  Face 16: area=1600.0 verts=4 hole=false",
+    "Panels after shell filter: 17",
+    "Connectivity filter: keeping 16 of 17 panels from largest crease-connected component"
+   ],
+   "buildAdjacency": [
+    "Adjacency edges: 24 (strict)"
+   ],
+   "getDefaultBaseIndex": [],
+   "buildFoldTree": {
+    "base0": [
+     "Fold tree edges: 15 (base=P0)"
+    ],
+    "base15": [
+     "Fold tree edges: 15 (base=P15)"
+    ]
+   },
+   "validate": []
+  },
+  "rejilla-6x6": {
+   "buildPanels": [
+    "=== buildPanels ===",
+    "Closed cut contours reclassified · shells=1 holes=0 total=1",
+    "Total topo segments (closed cuts + creases): 64",
+    "buildTopology: 64 input segments",
+    "After splitting: 84 segments (21 iterations)",
+    "Graph: 49 vertices, 49 adj entries",
+    "Faces traced: 37",
+    "  Face 0: area=1600.0 verts=4 hole=false",
+    "  Face 1: area=1600.0 verts=4 hole=false",
+    "  Face 2: area=-57600.0 verts=24 hole=true",
+    "  Face 3: area=1600.0 verts=4 hole=false",
+    "  Face 4: area=1600.0 verts=4 hole=false",
+    "  Face 5: area=1600.0 verts=4 hole=false",
+    "  Face 6: area=1600.0 verts=4 hole=false",
+    "  Face 7: area=1600.0 verts=4 hole=false",
+    "  Face 8: area=1600.0 verts=4 hole=false",
+    "  Face 9: area=1600.0 verts=4 hole=false",
+    "  Face 10: area=1600.0 verts=4 hole=false",
+    "  Face 11: area=1600.0 verts=4 hole=false",
+    "  Face 12: area=1600.0 verts=4 hole=false",
+    "  Face 13: area=1600.0 verts=4 hole=false",
+    "  Face 14: area=1600.0 verts=4 hole=false",
+    "  Face 15: area=1600.0 verts=4 hole=false",
+    "  Face 16: area=1600.0 verts=4 hole=false",
+    "  Face 17: area=1600.0 verts=4 hole=false",
+    "  Face 18: area=1600.0 verts=4 hole=false",
+    "  Face 19: area=1600.0 verts=4 hole=false",
+    "  Face 20: area=1600.0 verts=4 hole=false",
+    "  Face 21: area=1600.0 verts=4 hole=false",
+    "  Face 22: area=1600.0 verts=4 hole=false",
+    "  Face 23: area=1600.0 verts=4 hole=false",
+    "  Face 24: area=1600.0 verts=4 hole=false",
+    "  Face 25: area=1600.0 verts=4 hole=false",
+    "  Face 26: area=1600.0 verts=4 hole=false",
+    "  Face 27: area=1600.0 verts=4 hole=false",
+    "  Face 28: area=1600.0 verts=4 hole=false",
+    "  Face 29: area=1600.0 verts=4 hole=false",
+    "  Face 30: area=1600.0 verts=4 hole=false",
+    "  Face 31: area=1600.0 verts=4 hole=false",
+    "  Face 32: area=1600.0 verts=4 hole=false",
+    "  Face 33: area=1600.0 verts=4 hole=false",
+    "  Face 34: area=1600.0 verts=4 hole=false",
+    "  Face 35: area=1600.0 verts=4 hole=false",
+    "  Face 36: area=1600.0 verts=4 hole=false",
+    "Panels after shell filter: 37",
+    "Connectivity filter: keeping 36 of 37 panels from largest crease-connected component"
+   ],
+   "buildAdjacency": [
+    "Adjacency edges: 60 (strict)"
+   ],
+   "getDefaultBaseIndex": [],
+   "buildFoldTree": {
+    "base0": [
+     "Fold tree edges: 35 (base=P0)"
+    ],
+    "base35": [
+     "Fold tree edges: 35 (base=P35)"
+    ]
+   },
+   "validate": []
+  },
+  "rejilla-8x8": {
+   "buildPanels": [
+    "=== buildPanels ===",
+    "Closed cut contours reclassified · shells=1 holes=0 total=1",
+    "Total topo segments (closed cuts + creases): 116",
+    "buildTopology: 116 input segments",
+    "After splitting: 144 segments (29 iterations)",
+    "Graph: 81 vertices, 81 adj entries",
+    "Faces traced: 65",
+    "  Face 0: area=1600.0 verts=4 hole=false",
+    "  Face 1: area=1600.0 verts=4 hole=false",
+    "  Face 2: area=-102400.0 verts=32 hole=true",
+    "  Face 3: area=1600.0 verts=4 hole=false",
+    "  Face 4: area=1600.0 verts=4 hole=false",
+    "  Face 5: area=1600.0 verts=4 hole=false",
+    "  Face 6: area=1600.0 verts=4 hole=false",
+    "  Face 7: area=1600.0 verts=4 hole=false",
+    "  Face 8: area=1600.0 verts=4 hole=false",
+    "  Face 9: area=1600.0 verts=4 hole=false",
+    "  Face 10: area=1600.0 verts=4 hole=false",
+    "  Face 11: area=1600.0 verts=4 hole=false",
+    "  Face 12: area=1600.0 verts=4 hole=false",
+    "  Face 13: area=1600.0 verts=4 hole=false",
+    "  Face 14: area=1600.0 verts=4 hole=false",
+    "  Face 15: area=1600.0 verts=4 hole=false",
+    "  Face 16: area=1600.0 verts=4 hole=false",
+    "  Face 17: area=1600.0 verts=4 hole=false",
+    "  Face 18: area=1600.0 verts=4 hole=false",
+    "  Face 19: area=1600.0 verts=4 hole=false",
+    "  Face 20: area=1600.0 verts=4 hole=false",
+    "  Face 21: area=1600.0 verts=4 hole=false",
+    "  Face 22: area=1600.0 verts=4 hole=false",
+    "  Face 23: area=1600.0 verts=4 hole=false",
+    "  Face 24: area=1600.0 verts=4 hole=false",
+    "  Face 25: area=1600.0 verts=4 hole=false",
+    "  Face 26: area=1600.0 verts=4 hole=false",
+    "  Face 27: area=1600.0 verts=4 hole=false",
+    "  Face 28: area=1600.0 verts=4 hole=false",
+    "  Face 29: area=1600.0 verts=4 hole=false",
+    "  Face 30: area=1600.0 verts=4 hole=false",
+    "  Face 31: area=1600.0 verts=4 hole=false",
+    "  Face 32: area=1600.0 verts=4 hole=false",
+    "  Face 33: area=1600.0 verts=4 hole=false",
+    "  Face 34: area=1600.0 verts=4 hole=false",
+    "  Face 35: area=1600.0 verts=4 hole=false",
+    "  Face 36: area=1600.0 verts=4 hole=false",
+    "  Face 37: area=1600.0 verts=4 hole=false",
+    "  Face 38: area=1600.0 verts=4 hole=false",
+    "  Face 39: area=1600.0 verts=4 hole=false",
+    "  Face 40: area=1600.0 verts=4 hole=false",
+    "  Face 41: area=1600.0 verts=4 hole=false",
+    "  Face 42: area=1600.0 verts=4 hole=false",
+    "  Face 43: area=1600.0 verts=4 hole=false",
+    "  Face 44: area=1600.0 verts=4 hole=false",
+    "  Face 45: area=1600.0 verts=4 hole=false",
+    "  Face 46: area=1600.0 verts=4 hole=false",
+    "  Face 47: area=1600.0 verts=4 hole=false",
+    "  Face 48: area=1600.0 verts=4 hole=false",
+    "  Face 49: area=1600.0 verts=4 hole=false",
+    "  Face 50: area=1600.0 verts=4 hole=false",
+    "  Face 51: area=1600.0 verts=4 hole=false",
+    "  Face 52: area=1600.0 verts=4 hole=false",
+    "  Face 53: area=1600.0 verts=4 hole=false",
+    "  Face 54: area=1600.0 verts=4 hole=false",
+    "  Face 55: area=1600.0 verts=4 hole=false",
+    "  Face 56: area=1600.0 verts=4 hole=false",
+    "  Face 57: area=1600.0 verts=4 hole=false",
+    "  Face 58: area=1600.0 verts=4 hole=false",
+    "  Face 59: area=1600.0 verts=4 hole=false",
+    "  Face 60: area=1600.0 verts=4 hole=false",
+    "  Face 61: area=1600.0 verts=4 hole=false",
+    "  Face 62: area=1600.0 verts=4 hole=false",
+    "  Face 63: area=1600.0 verts=4 hole=false",
+    "  Face 64: area=1600.0 verts=4 hole=false",
+    "Panels after shell filter: 65",
+    "Connectivity filter: keeping 64 of 65 panels from largest crease-connected component"
+   ],
+   "buildAdjacency": [
+    "Adjacency edges: 112 (strict)"
+   ],
+   "getDefaultBaseIndex": [],
+   "buildFoldTree": {
+    "base0": [
+     "Fold tree edges: 63 (base=P0)"
+    ],
+    "base63": [
+     "Fold tree edges: 63 (base=P63)"
+    ]
+   },
+   "validate": []
+  },
+  "rejilla-lineas-completas-3x3": {
+   "buildPanels": [
+    "=== buildPanels ===",
+    "Closed cut contours reclassified · shells=1 holes=0 total=1",
+    "Total topo segments (closed cuts + creases): 8",
+    "buildTopology: 8 input segments",
+    "After splitting: 24 segments (13 iterations)",
+    "Graph: 16 vertices, 16 adj entries",
+    "Faces traced: 10",
+    "  Face 0: area=1600.0 verts=4 hole=false",
+    "  Face 1: area=-14400.0 verts=12 hole=true",
+    "  Face 2: area=1600.0 verts=4 hole=false",
+    "  Face 3: area=1600.0 verts=4 hole=false",
+    "  Face 4: area=1600.0 verts=4 hole=false",
+    "  Face 5: area=1600.0 verts=4 hole=false",
+    "  Face 6: area=1600.0 verts=4 hole=false",
+    "  Face 7: area=1600.0 verts=4 hole=false",
+    "  Face 8: area=1600.0 verts=4 hole=false",
+    "  Face 9: area=1600.0 verts=4 hole=false",
+    "Panels after shell filter: 10",
+    "Connectivity filter: no crease-connected components found, keeping shell-filtered panels"
+   ],
+   "buildAdjacency": [
+    "Adjacency edges: 60 (raw-panel overlap)"
+   ],
+   "getDefaultBaseIndex": [],
+   "buildFoldTree": {
+    "base0": [
+     "Fold tree edges: 8 (base=P0)"
+    ],
+    "base1": [
+     "Fold tree edges: 0 (base=P1)"
+    ],
+    "base2": [
+     "Fold tree edges: 8 (base=P2)"
+    ],
+    "base3": [
+     "Fold tree edges: 8 (base=P3)"
+    ],
+    "base4": [
+     "Fold tree edges: 8 (base=P4)"
+    ],
+    "base5": [
+     "Fold tree edges: 8 (base=P5)"
+    ],
+    "base6": [
+     "Fold tree edges: 8 (base=P6)"
+    ],
+    "base7": [
+     "Fold tree edges: 8 (base=P7)"
+    ],
+    "base8": [
+     "Fold tree edges: 8 (base=P8)"
+    ],
+    "base9": [
+     "Fold tree edges: 8 (base=P9)"
+    ]
+   },
+   "validate": []
+  },
+  "rejilla-4x4-densa-25": {
+   "buildPanels": [
+    "=== buildPanels ===",
+    "Closed cut contours reclassified · shells=1 holes=0 total=1",
+    "Total topo segments (closed cuts + creases): 128",
+    "buildTopology: 128 input segments",
+    "After splitting: 136 segments (9 iterations)",
+    "Graph: 121 vertices, 121 adj entries",
+    "Faces traced: 17",
+    "  Face 0: area=1600.0 verts=16 hole=false",
+    "  Face 1: area=-25600.0 verts=112 hole=true",
+    "  Face 2: area=1600.0 verts=10 hole=false",
+    "  Face 3: area=1600.0 verts=10 hole=false",
+    "  Face 4: area=1600.0 verts=16 hole=false",
+    "  Face 5: area=1600.0 verts=10 hole=false",
+    "  Face 6: area=1600.0 verts=10 hole=false",
+    "  Face 7: area=1600.0 verts=16 hole=false",
+    "  Face 8: area=1600.0 verts=10 hole=false",
+    "  Face 9: area=1600.0 verts=10 hole=false",
+    "  Face 10: area=1600.0 verts=16 hole=false",
+    "  Face 11: area=1600.0 verts=10 hole=false",
+    "  Face 12: area=1600.0 verts=10 hole=false",
+    "  Face 13: area=1600.0 verts=4 hole=false",
+    "  Face 14: area=1600.0 verts=4 hole=false",
+    "  Face 15: area=1600.0 verts=4 hole=false",
+    "  Face 16: area=1600.0 verts=4 hole=false",
+    "Panels after shell filter: 17",
+    "Connectivity filter: keeping 16 of 17 panels from largest crease-connected component"
+   ],
+   "buildAdjacency": [
+    "Adjacency edges: 24 (strict)"
+   ],
+   "getDefaultBaseIndex": [],
+   "buildFoldTree": {
+    "base0": [
+     "Fold tree edges: 15 (base=P0)"
+    ],
+    "base15": [
+     "Fold tree edges: 15 (base=P15)"
+    ]
+   },
+   "validate": []
+  }
+ },
+ "illustratorReal": {
+  "ill-real-caja-botanica": {
+   "buildPanels": [
+    "=== buildPanels ===",
+    "Closed cut contours reclassified · shells=1 holes=0 total=1",
+    "Total topo segments (closed cuts + creases): 68",
+    "buildTopology: 68 input segments",
+    "After splitting: 78 segments (9 iterations)",
+    "Graph: 52 vertices, 52 adj entries",
+    "Faces traced: 13",
+    "  Face 0: area=-27434.7 verts=49 hole=true",
+    "  Face 1: area=1580.1 verts=4 hole=false",
+    "  Face 2: area=316.2 verts=4 hole=false",
+    "  Face 3: area=666.5 verts=8 hole=false",
+    "  Face 4: area=4770.6 verts=5 hole=false",
+    "  Face 5: area=4829.9 verts=4 hole=false",
+    "  Face 6: area=1760.3 verts=4 hole=false",
+    "  Face 7: area=1919.0 verts=9 hole=false",
+    "  Face 8: area=665.6 verts=7 hole=false",
+    "  Face 9: area=4794.4 verts=11 hole=false",
+    "  Face 10: area=665.6 verts=7 hole=false",
+    "  Face 11: area=4800.2 verts=6 hole=false",
+    "  Face 12: area=666.4 verts=8 hole=false",
+    "Panels after shell filter: 13",
+    "Connectivity filter: keeping 11 of 13 panels from largest crease-connected component"
+   ],
+   "buildAdjacency": [
+    "Adjacency edges: 10 (strict)"
+   ],
+   "getDefaultBaseIndex": [],
+   "buildFoldTree": {
+    "base0": [
+     "Fold tree edges: 10 (base=P0)"
+    ],
+    "base1": [
+     "Fold tree edges: 10 (base=P1)"
+    ],
+    "base2": [
+     "Fold tree edges: 10 (base=P2)"
+    ],
+    "base3": [
+     "Fold tree edges: 10 (base=P3)"
+    ],
+    "base4": [
+     "Fold tree edges: 10 (base=P4)"
+    ],
+    "base5": [
+     "Fold tree edges: 10 (base=P5)"
+    ],
+    "base6": [
+     "Fold tree edges: 10 (base=P6)"
+    ],
+    "base7": [
+     "Fold tree edges: 10 (base=P7)"
+    ],
+    "base8": [
+     "Fold tree edges: 10 (base=P8)"
+    ],
+    "base9": [
+     "Fold tree edges: 10 (base=P9)"
+    ],
+    "base10": [
+     "Fold tree edges: 10 (base=P10)"
+    ]
+   },
+   "validate": []
+  },
+  "ill-real-caja-simple": {
+   "buildPanels": [
+    "=== buildPanels ===",
+    "Closed cut contours reclassified · shells=1 holes=1 total=2",
+    "Total topo segments (closed cuts + creases): 9",
+    "buildTopology: 9 input segments",
+    "After splitting: 11 segments (3 iterations)",
+    "Graph: 10 vertices, 10 adj entries",
+    "Faces traced: 5",
+    "  Face 0: area=-6000.0 verts=6 hole=true",
+    "  Face 1: area=3000.0 verts=4 hole=false",
+    "  Face 2: area=3000.0 verts=4 hole=false",
+    "  Face 3: area=100.0 verts=4 hole=false",
+    "  Face 4: area=-100.0 verts=4 hole=true",
+    "Panels after shell filter: 3",
+    "Connectivity filter: keeping 2 of 3 panels from largest crease-connected component"
+   ],
+   "buildAdjacency": [
+    "Adjacency edges: 1 (strict)"
+   ],
+   "getDefaultBaseIndex": [],
+   "buildFoldTree": {
+    "base0": [
+     "Fold tree edges: 1 (base=P0)"
+    ],
+    "base1": [
+     "Fold tree edges: 1 (base=P1)"
+    ]
+   },
+   "validate": []
+  },
+  "ill-real-compuesto": {
+   "buildPanels": [
+    "=== buildPanels ===",
+    "Closed cut contours reclassified · shells=1 holes=1 total=2",
+    "Total topo segments (closed cuts + creases): 9",
+    "buildTopology: 9 input segments",
+    "After splitting: 11 segments (3 iterations)",
+    "Graph: 10 vertices, 10 adj entries",
+    "Faces traced: 5",
+    "  Face 0: area=-6000.0 verts=6 hole=true",
+    "  Face 1: area=3000.0 verts=4 hole=false",
+    "  Face 2: area=3000.0 verts=4 hole=false",
+    "  Face 3: area=100.0 verts=4 hole=false",
+    "  Face 4: area=-100.0 verts=4 hole=true",
+    "Panels after shell filter: 3",
+    "Connectivity filter: keeping 2 of 3 panels from largest crease-connected component"
+   ],
+   "buildAdjacency": [
+    "Adjacency edges: 1 (strict)"
+   ],
+   "getDefaultBaseIndex": [],
+   "buildFoldTree": {
+    "base0": [
+     "Fold tree edges: 1 (base=P0)"
+    ],
+    "base1": [
+     "Fold tree edges: 1 (base=P1)"
+    ]
+   },
+   "validate": []
+  },
+  "ill-real-curvas": {
+   "buildPanels": [
+    "=== buildPanels ===",
+    "Closed cut contours reclassified · shells=1 holes=0 total=1",
+    "Total topo segments (closed cuts + creases): 9",
+    "buildTopology: 9 input segments",
+    "After splitting: 11 segments (3 iterations)",
+    "Graph: 10 vertices, 10 adj entries",
+    "Faces traced: 3",
+    "  Face 0: area=-7000.0 verts=10 hole=true",
+    "  Face 1: area=3500.0 verts=6 hole=false",
+    "  Face 2: area=3500.0 verts=6 hole=false",
+    "Panels after shell filter: 3",
+    "Connectivity filter: keeping 2 of 3 panels from largest crease-connected component"
+   ],
+   "buildAdjacency": [
+    "Adjacency edges: 1 (strict)"
+   ],
+   "getDefaultBaseIndex": [],
+   "buildFoldTree": {
+    "base0": [
+     "Fold tree edges: 1 (base=P0)"
+    ],
+    "base1": [
+     "Fold tree edges: 1 (base=P1)"
+    ]
+   },
+   "validate": []
+  }
+ }
+}

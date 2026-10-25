@@ -1,0 +1,6 @@
+{
+ "_nota": "A6 (D-A6-6): huella del golden de logs del motor, generado SOLO desde el baseline congelado con tests/tools/make-logs-golden.mjs. Un cambio exige una decisión explícita del usuario.",
+ "archivos": {
+  "tests/golden/geometry-logs.golden.json": "5199f64da7ffddbf5d1ffd9630e6b36d479011545904d80e523332d455e711f7"
+ }
+}
