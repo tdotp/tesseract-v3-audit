@@ -9,8 +9,14 @@ test('el build se ejecuta dos veces y produce EXACTAMENTE los mismos bytes (repr
   const t = tmp(); dirs.push(t); A = await build({ out: path.join(t, 'a') }); B = await build({ out: path.join(t, 'b') }); assert.equal(A.sums, B.sums);
   for (const f of walk(path.join(t, 'a'))) if (f !== 'BUILD_INFO.json') assert.equal(sha(path.join(t, 'a', f)), sha(path.join(t, 'b', f)), f);
 });
-test('HUELLAS FIJADAS: SHA256SUMS del build = tests/golden/dist-a5.SHA256SUMS (huella vigente; detecta cambios en src/, en los estáticos de panel/ o en la versión de esbuild)', () => {
-  assert.equal(A.sums, fs.readFileSync(DIST_PIN, 'utf8'), 'si el cambio es intencional (paso aprobado de A5), regenera la huella vigente con: node tools/build/build.mjs && cp dist/SHA256SUMS tests/golden/dist-a5.SHA256SUMS');
+test('HUELLAS FIJADAS: SHA256SUMS del build = tests/golden/dist-a6.SHA256SUMS (huella vigente; detecta cambios en src/, en los estáticos de panel/ o en la versión de esbuild)', () => {
+  assert.equal(A.sums, fs.readFileSync(DIST_PIN, 'utf8'), 'si el cambio es intencional (paso aprobado de A6), regenera la huella vigente con: node tools/build/build.mjs && cp dist/SHA256SUMS tests/golden/dist-a6.SHA256SUMS');
+});
+test('HISTÓRICO A5 (T7): el src/ del commit 31459fc (bundle validado en el CEP real) sigue reproduciendo EXACTAMENTE tests/golden/dist-a5.SHA256SUMS', () => {
+  const t = tmp(); dirs.push(t); execFileSync('/bin/sh', ['-c', `git -C "${ROOT}" archive 31459fc src | tar -x -C "${t}"`]);
+  const r = spawnSync('node', [ROOT + '/tools/build/build.mjs', '--entry', 'src/main.js', '--assets', ROOT + '/panel', '--out', path.join(t, 'out')], { cwd: t, encoding: 'utf8' }); assert.equal(r.status, 0, r.stderr);
+  assert.equal(fs.readFileSync(path.join(t, 'out', 'SHA256SUMS'), 'utf8'), fs.readFileSync(ROOT + '/tests/golden/dist-a5.SHA256SUMS', 'utf8'));
+  assert.match(fs.readFileSync(ROOT + '/tests/golden/dist-a5.SHA256SUMS', 'utf8'), /^70de82a82f90c91b3f794bc62fa02f34d86d06d11dfe0c77af4ed8d660e70701  \.\/main\.js$/m);
 });
 test('HISTÓRICO A3/A4: construir desde la carpeta de plugin panel/ (referencia A1 congelada) reproduce EXACTAMENTE tests/golden/dist.SHA256SUMS (bundle validado en el CEP real)', async () => {
   const t = tmp(); dirs.push(t); const h = await build({ src: ROOT + '/panel', out: path.join(t, 'h') }); assert.equal(h.sums, fs.readFileSync(ROOT + '/tests/golden/dist.SHA256SUMS', 'utf8'));

@@ -10,10 +10,10 @@ const imports = (f) => [...fs.readFileSync(path.join(SRC, f), 'utf8').matchAll(/
 const fnBody = (f, name) => { const s = fs.readFileSync(path.join(SRC, f), 'utf8'); const i = s.indexOf('function ' + name + '('); return s.slice(i, s.indexOf('\n}\n', i)); };
 
 test('inventario de src/ al cierre de A5 (los módulos aprobados y nada más)', () => {
-  assert.deepEqual(files, ['bridge/cep.js', 'bridge/fs.js', 'config/look.js', 'host/art.js', 'host/extract.js', 'host/save-dialog.js', 'host/test-connection.js', 'main.js']);
+  assert.deepEqual(files.filter((f) => !f.startsWith('core/')), ['bridge/cep.js', 'bridge/fs.js', 'config/look.js', 'host/art.js', 'host/extract.js', 'host/save-dialog.js', 'host/test-connection.js', 'main.js']); // core/ (A6): inventario exacto en a6-limites
 });
 test('main.js solo importa config/, host/ y bridge/; ningún módulo se importa a sí mismo ni hay ciclos', () => {
-  assert.deepEqual(imports('main.js').sort(), ['./bridge/cep.js', './bridge/fs.js', './config/look.js', './host/art.js', './host/extract.js', './host/test-connection.js']);
+  assert.deepEqual(imports('main.js').filter((i) => !i.startsWith('./core/')).sort(), ['./bridge/cep.js', './bridge/fs.js', './config/look.js', './host/art.js', './host/extract.js', './host/test-connection.js']);
   for (const f of files.filter((f) => f !== 'main.js')) for (const i of imports(f)) assert.notEqual(path.join(path.dirname(f), i), 'main.js', f);
 });
 test('config/ y host/ no importan nada; bridge/cep no importa nada; bridge/fs solo importa host/save-dialog', () => {

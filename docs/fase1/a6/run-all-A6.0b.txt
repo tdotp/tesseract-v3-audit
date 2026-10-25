@@ -1,0 +1,88 @@
+== 1/4 aislamiento
+== 1) baseline congelado vs manifiesto
+OK
+== 2) extensión instalada vs baseline
+OK (archivos del baseline idénticos)
+== 3) panel/ vs baseline (diferencias esperadas)
+Files /Users/gerardocalambasposada/Documents/Antigravity/Tesseract/Tesseract v3/reference/legacy-baseline/main.js and /Users/gerardocalambasposada/Documents/Antigravity/Tesseract/Tesseract v3/panel/main.js differ
+Only in /Users/gerardocalambasposada/Documents/Antigravity/Tesseract/Tesseract v3/reference/legacy-baseline: main.js.bak
+== 4) no hay rutas instaladas del bundle V3 en el CEP del usuario (no autorizado)
+OK (no instalado)
+== 2/4 build del bundle (IIFE, chrome99) y verificación
+Build OK → dist  (13 archivos, main.js 125741 B, esbuild 0.28.2, target chrome99)
+No se instaló nada.
+OK: dist/ íntegro y reproducible
+DRY-RUN CORRECTO: todas las comprobaciones pasan. No se escribió nada. La instalación real sigue sin autorización.
+== 3/4 Node (geometría, defectos, extracción, arte, GLB, .jsx, aislamiento, build, Chromium 99, instalador dry-run)
+ℹ tests 391
+ℹ pass 391
+ℹ fail 0
+ℹ skipped 0
+== 4/4 navegador (Chrome headless: baseline · panel · bundle; y con APIs reducidas a Chromium 99)
+ℹ tests 52
+ℹ pass 52
+ℹ fail 0
+ℹ skipped 0
+ℹ tests 4
+ℹ pass 4
+ℹ fail 0
+ℹ skipped 0
+ℹ tests 6
+ℹ pass 6
+ℹ fail 0
+ℹ skipped 0
+ℹ tests 3
+ℹ pass 3
+ℹ fail 0
+ℹ skipped 0
+ℹ tests 7
+ℹ pass 7
+ℹ fail 0
+ℹ skipped 0
+== controles negativos
+detectada     GRAPH_EPS 0.5→0.6
+detectada     TOLERANCE_MM 0.5→0.4
+detectada     color del preset kraft
+detectada     espesor por defecto 0.25→0.30
+detectada     umbral de panel pequeño (absArea < 4 → < 5)
+detectada     filtro de panel delgado (aspect > 30 → > 41)
+detectada     tolerancia de punto-sobre-segmento (GRAPH_EPS → 0.2)
+detectada     búsqueda de vértice (ptEq: < GRAPH_EPS → < 0.2)
+detectada     factor pt→mm del extractor
+detectada     tope de escala del PNG de arte (800→700)
+detectada     offset del arte (ART_TOP_OFFSET 0.08→0.09)
+detectada     puente: pathToFileURL sin encodeURI (bridge/cep.js)
+detectada     guardado: cancelar deja de marcar cancelled (bridge/fs.js)
+detectada     límites: bridge/cep toca document (a5-limites)
+detectada     A6 · log del motor: texto de la adyacencia estricta
+detectada     A6 · alias: la adyacencia estricta copia el creaseEdge
+mutaciones detectadas: 16 · no detectadas: 0
+precondición OK (7 patrones pasan sin mutar)
+detectada     se revierte el parche A1 (fuga vuelve)
+detectada     etiquetas: la caché deja de reutilizar
+detectada     color del preset white (shell)
+detectada     luz direccional 0.8 → 0.9
+detectada     desplazamiento del arte frontal
+detectada     UV del arte (se invierte v)
+detectada     generador del GLB
+detectada     rugosidad del GLB (1 → 0.5)
+detectada     zoom de la rueda (1.08 → 1.10)
+detectada     Shift+clic ya no cambia la base
+detectada     puente: evalScriptJSON deja de tratar «EvalScript error.»
+detectada     puente: mensaje de escritura de GLB
+detectada     puente: codificación por defecto Base64 → base64
+detectada     puente: ensureCep ya no deshabilita «Back»
+detectada     KI-25 corregido sin tarea (mensaje final del GLB)
+detectada     KI-24 corregido sin tarea (buildChildrenOfMap)
+detectada     A6 · log: setBasePanel ya no llama a buildFoldTree
+mutaciones detectadas: 17 · no detectadas: 0
+precondición OK
+detectada     bundle construido SIN el parche A1 (baseline como fuente)
+detectada     bundle: offset del arte frontal
+detectada     bundle: Shift+clic ya no cambia la base
+detectada     bundle: tolerancia del grafo (GRAPH_EPS 0.5→0.6)
+detectada     bundle: puente CEP, mensaje de escritura de GLB
+detectada     huellas del bundle: cambio mínimo en la fuente
+mutaciones detectadas (bundle): 6 · no detectadas: 0
+TODO EN VERDE
+EXIT=0

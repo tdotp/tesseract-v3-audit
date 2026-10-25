@@ -9,8 +9,8 @@ for pat in "GPU · bundle \(caja, sin arte\)" "Escena/materiales · bundle" "Art
 done
 node --test --test-name-pattern="Puente CEP · (baseline|bundle)" tests/browser/bridge.test.mjs >/dev/null 2>&1 || { echo "ERROR: la prueba del puente falla sin mutaciones"; exit 2; }
 echo "precondición OK (7 patrones pasan sin mutar)"
-mutsrc() { # aplica la mutación sed a TODOS los .js de una COPIA de src/ (nunca al original); falla si no cambió nada
-  rm -rf "$TMP/src" "$TMP/src.orig"; cp -R src "$TMP/src"; cp -R src "$TMP/src.orig"; find "$TMP/src" -name '*.js' -exec sed -i '' "$1" {} +; ! diff -rq "$TMP/src.orig" "$TMP/src" >/dev/null; }
+mutsrc() { # aplica la mutación sed a TODOS los .js de una COPIA de src/ (nunca al original); falla («NO APLICÓ») si no cambió EXACTAMENTE una línea (A6: una copia duplicada no puede esconder la mutación)
+  rm -rf "$TMP/src" "$TMP/src.orig"; cp -R src "$TMP/src"; cp -R src "$TMP/src.orig"; find "$TMP/src" -name '*.js' -exec sed -i '' "$1" {} +; [ "$(diff -r "$TMP/src.orig" "$TMP/src" | grep -c '^<')" = 1 ]; }
 run() { # nombre, patrón de prueba, mutación sed (sobre una copia de src/) o REVERT (bundle construido desde el baseline, sin el parche A1), [archivo de prueba]
   if [ "$3" = "REVERT" ]; then var=TESS_DIST_FROM; val="$PWD/reference/legacy-baseline"; else mutsrc "$3" || { echo "NO APLICÓ  $1"; bad=$((bad+1)); return; }; var=TESS_DIST_ENTRY; val="$TMP/src/main.js"; fi
   if env "$var=$val" node --test --test-name-pattern="$2" "${4:-tests/browser/browser.test.mjs}" >/dev/null 2>&1; then echo "NO DETECTADA  $1"; bad=$((bad+1)); else echo "detectada     $1"; ok=$((ok+1)); fi

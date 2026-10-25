@@ -2,8 +2,8 @@
 # Control negativo del BUNDLE (A3; fuente src/ desde A5): muta una COPIA de src/, reconstruye el bundle desde ella (TESS_DIST_ENTRY / TESS_BUILD_ENTRY) y exige que las pruebas del bundle fallen.
 cd "$(dirname "$0")/../.." || exit 2
 TMP=$(mktemp -d); trap 'rm -rf "$TMP"' EXIT; ok=0; bad=0
-mutsrc() { # aplica la mutación sed a TODOS los .js de una COPIA de src/ (nunca al original); falla si no cambió nada
-  rm -rf "$TMP/src" "$TMP/src.orig"; cp -R src "$TMP/src"; cp -R src "$TMP/src.orig"; find "$TMP/src" -name '*.js' -exec sed -i '' "$1" {} +; ! diff -rq "$TMP/src.orig" "$TMP/src" >/dev/null; }
+mutsrc() { # aplica la mutación sed a TODOS los .js de una COPIA de src/ (nunca al original); falla («NO APLICÓ») si no cambió EXACTAMENTE una línea (A6: una copia duplicada no puede esconder la mutación)
+  rm -rf "$TMP/src" "$TMP/src.orig"; cp -R src "$TMP/src"; cp -R src "$TMP/src.orig"; find "$TMP/src" -name '*.js' -exec sed -i '' "$1" {} +; [ "$(diff -r "$TMP/src.orig" "$TMP/src" | grep -c '^<')" = 1 ]; }
 browser() { # nombre, patrón, origen (src = copia mutada de src/ · otra carpeta = carpeta de plugin sin mutar), sed, [archivo de prueba]
   if [ "$3" = "src" ]; then mutsrc "$4" || { echo "NO APLICÓ  $1"; bad=$((bad+1)); return; }; var=TESS_DIST_ENTRY; val="$TMP/src/main.js"; else var=TESS_DIST_FROM; val="$PWD/$3"; fi
   if env "$var=$val" node --test --test-name-pattern="$2" "${5:-tests/browser/browser.test.mjs}" >/dev/null 2>&1; then echo "NO DETECTADA  $1"; bad=$((bad+1)); else echo "detectada     $1"; ok=$((ok+1)); fi; }

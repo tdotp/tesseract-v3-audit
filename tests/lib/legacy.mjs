@@ -34,13 +34,16 @@ export function extractConstants(src) {
   consts.MATERIAL_PRESETS = JSON.parse(JSON.stringify(vm.runInNewContext('(' + mp[1] + ')')));
   return consts;
 }
-const GEOMETRY_FUNCTIONS = ['distPtSeg', 'segsFromPath', 'buildAllSegs', 'validateGeometry', 'dist2d', 'ptEq', 'segSegIntersect', 'pointOnSeg', 'buildTopology',
+export const GEOMETRY_FUNCTIONS = ['distPtSeg', 'segsFromPath', 'buildAllSegs', 'validateGeometry', 'dist2d', 'ptEq', 'segSegIntersect', 'pointOnSeg', 'buildTopology',
   'polygonSignedArea', 'polygonCentroid', 'pointOnSegment2D', 'pointInPolygonInclusive', 'contourContainsContour', 'classifyClosedCutContours', 'faceBounds', 'buildPanels',
   'getPolyCentroid', 'edgeMatch', 'buildAdjacencyStrict', 'buildAdjacency', 'buildFoldTree', 'computeFoldSign', 'getDefaultBaseIndex'];
 
 export function loadGeometry(file) {
   const src = sourceText(file), fns = extractFunctions(src), consts = extractConstants(src);
   const missing = GEOMETRY_FUNCTIONS.filter((n) => !fns.has(n)); if (missing.length) throw new Error('funciones no encontradas: ' + missing.join(', '));
+  const count = (re) => (src.match(re) || []).length; // A6: definición única (si quedara una copia vieja, extractFunctions se quedaría con la última sin avisar)
+  for (const n of GEOMETRY_FUNCTIONS) { const k = count(new RegExp('^(?: {4}|)(?:export )?function ' + n + '\\(', 'gm')); if (k !== 1) throw new Error(`función ${n} definida ${k} veces`); }
+  for (const n of ['TOLERANCE_MM', 'GRAPH_EPS']) { const k = count(new RegExp('^(?:    var|export const) ' + n + '\\s*=', 'gm')); if (k !== 1) throw new Error(`constante ${n} definida ${k} veces`); }
   const code = `(function(){
     var TOLERANCE_MM=${consts.TOLERANCE_MM}, GRAPH_EPS=${consts.GRAPH_EPS};
     var logs=[]; function log(m){ logs.push(String(m)); }
