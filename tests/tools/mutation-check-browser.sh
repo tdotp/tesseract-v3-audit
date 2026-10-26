@@ -47,4 +47,6 @@ run "A7 · estado inicial: espesor 0.30 en createAppState"              "Regresi
 run "A7 · clearAllMeshes libera la textura de arte compartida (rompe L1)" "A7 · ciclo de vida"  's/disposeLabelCache();      \/\* A1 \*\//disposeLabelCache();      \/\* A1 \*\/ if(S.currentArtState \&\& S.currentArtState.front) S.currentArtState.front.texture.dispose();/'  tests/browser/a7.test.mjs  # A7.4: patrón sin la sangría (clearAllMeshes pasó a scene/panel-meshes.js)
 # A7.4 — el arte trabaja sobre una COPIA del estado tomada al crear la fábrica (estado obsoleto en vez de compartido)
 run "A7 · artwork: copia obsoleta de S al crear la fábrica"  "Arte · bundle"  's/^export function createArtwork(S, deps){$/export function createArtwork(S, deps){ S = Object.assign({}, S);/'
+# A7.5 — el plegado trabaja sobre una COPIA del estado tomada al crear la fábrica
+run "A7 · folding: copia obsoleta de S al crear la fábrica"  "Interacciones · bundle"  's/^export function createFolding(S, deps){$/export function createFolding(S, deps){ S = Object.assign({}, S);/'
 echo "mutaciones detectadas: $ok · no detectadas: $bad"; [ "$bad" = 0 ]

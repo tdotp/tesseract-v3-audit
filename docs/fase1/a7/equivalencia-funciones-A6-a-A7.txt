@@ -1,0 +1,20 @@
+{
+ "funcionesAnteriores": 131,
+ "funcionesNuevas": 141,
+ "identicas": 131,
+ "distintas": [],
+ "duplicadas": [],
+ "soloEnAnterior": [],
+ "soloEnNuevo": [
+  "createAppState",
+  "createLabels",
+  "createMaterials",
+  "createFoldAngles",
+  "createViewport",
+  "createArtwork",
+  "createPanelMeshes",
+  "createCreaseVisuals",
+  "createFolding",
+  "__tessDebugView"
+ ]
+}

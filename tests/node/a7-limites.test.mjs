@@ -5,7 +5,7 @@ import test from 'node:test'; import assert from 'node:assert/strict'; import fs
 import { SRC, srcFiles, STATE_FIELDS, codeOnly, functionsAnyIndent } from '../lib/a7.mjs';
 
 // Estado esperado en ESTE paso (se actualiza en cada paso aprobado; igualdad exacta).
-const INVENTORY = ['app/state.js', 'fold/angles.js', 'scene/artwork.js', 'scene/labels.js', 'scene/materials.js', 'scene/panel-meshes.js', 'scene/three-utils.js', 'scene/viewport.js']; // A7.4
+const INVENTORY = ['app/state.js', 'fold/angles.js', 'fold/folding.js', 'scene/artwork.js', 'scene/crease-visuals.js', 'scene/labels.js', 'scene/materials.js', 'scene/panel-meshes.js', 'scene/three-utils.js', 'scene/viewport.js']; // A7.5
 const S_APPLIED = true; // desde A7.1 main.js y los módulos usan S.<campo> para los 26 campos (regla 8)
 const DOC_ALLOWED = { 'scene/labels.js': ['makeLabelCanvas'], 'scene/viewport.js': ['init3D'] }; // document solo dentro de estas funciones
 const WIN_ALLOWED = { 'scene/viewport.js': ['init3D'] }; // window solo dentro de estas funciones

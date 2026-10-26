@@ -1,0 +1,12 @@
+{
+ "funcionesAnteriores": 139,
+ "funcionesNuevas": 141,
+ "identicas": 139,
+ "distintas": [],
+ "duplicadas": [],
+ "soloEnAnterior": [],
+ "soloEnNuevo": [
+  "createCreaseVisuals",
+  "createFolding"
+ ]
+}
