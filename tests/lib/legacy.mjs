@@ -53,6 +53,7 @@ export function loadGeometry(file) {
     var logs=[]; function log(m){ logs.push(String(m)); }
     var problems=[]; var problemsList={innerHTML:'',appendChild:function(){}}; var validationStatus={textContent:'',className:''}; var continueBtn={disabled:true};
     var document={createElement:function(){return {textContent:'',onclick:null};}}; var lastData=null; function render2D(){}
+    ${isSrc ? 'var geometryEngine={validate:validateDieline}; /* A6.6: la presentación usa el motor; el adaptador real lo prueba a6-engine con el módulo ES */' : ''}
     ${[...GEOMETRY_FUNCTIONS, ...extra].map((n) => fns.get(n)).join('\n')}
     return { ${GEOMETRY_FUNCTIONS.join(', ')}, logs:logs, getProblems:function(){return problems;}, resetLogs:function(){logs.length=0;}, problemsList:problemsList, validationStatus:validationStatus, continueBtn:continueBtn };
   })()`;

@@ -35,4 +35,8 @@ mut "A6 · adyacencia robusta: eps 1.0 → 0.1 (pierde adyacencias en los respal
 mut "A6 · signo de pliegue invertido (montaña/valle)"  's/  var cross = vx \* (cc.y - ay) - vy \* (cc.x - ax);/  var cross = vy * (cc.x - ax) - vx * (cc.y - ay);/'
 # A6.5 — validación separada: numeración de problemas (el golden no incluye el id; lo fija a6-validacion)
 mut "A6 · validación: los id de problema empiezan en P0"  "s/id:'P'+(problems.length+1)/id:'P'+problems.length/"
+# A6.6 — contrato GeometryEngine (adaptador sin envoltorios) y límites de core/
+mut "A6 · adaptador: el motor ignora la base elegida (siempre 0)"  's/    buildFoldTree: buildFoldTree,/    buildFoldTree: function(p, a, b){ return buildFoldTree(p, a, 0); },/'
+mut "A6 · adaptador: buildPanels clona la entrada (rompe los alias I4)"  's/    buildPanels: buildPanels,/    buildPanels: function(d){ return buildPanels(JSON.parse(JSON.stringify(d))); },/'
+mut "A6 · límites: core/legacy/log.js toca document"  's/export function log(m){ if(sink) sink(m); }/export function log(m){ if(sink \&\& document) sink(m); }/'
 echo "mutaciones detectadas: $ok · no detectadas: $bad"; [ "$bad" = 0 ]

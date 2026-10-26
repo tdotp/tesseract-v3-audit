@@ -3,39 +3,7 @@
 // determinismo en todos los troqueles · la entrada no se muta en ninguna etapa · objetos COMPARTIDOS entre entrada y salida (alias) · excepciones.
 import test from 'node:test'; import assert from 'node:assert/strict';
 import { FIXTURES, clone } from '../lib/fixtures.mjs'; import { TARGETS, loadGeometry } from '../lib/legacy.mjs'; import { analyze } from '../lib/analyze.mjs'; import { trace } from '../lib/engine-trace.mjs';
-
-// Huella de alias: qué objetos de la salida SON (identidad) objetos de la entrada o de una etapa anterior.
-function aliasPrint(L, dieline) {
-  const { api } = L; const d = clone(dieline); const anchors = new Set();
-  for (const p of [d.outerBoundary, ...(d.holes || []), ...(d.cutLines || []).map((c) => c.geom), ...(d.creases || [])]) for (const q of (p && p.points) || []) anchors.add(q.anchor);
-  const pd = api.buildPanels(d); const ces = new Set(pd.creaseEdges);
-  const adj = api.buildAdjacency(pd.panels, pd.creaseEdges); const adjCreases = new Set(adj.map((a) => a.crease));
-  const tree = pd.panels.length ? api.buildFoldTree(pd.panels, adj, 0) : [];
-  api.validateGeometry(d); const problems = api.getProblems();
-  return {
-    creasesEsLaEntrada: pd.creases === (d.creases || null),
-    creaseEdges: pd.creaseEdges.length,
-    creaseEdgesConExtremosDeLaEntrada: pd.creaseEdges.filter((ce) => { const pts = d.creases[ce.creaseIdx].points; return ce.a === pts[ce.segIdx].anchor && ce.b === pts[ce.segIdx + 1].anchor; }).length,
-    verticesDePanelQueSonDeLaEntrada: pd.panels.reduce((s, p) => s + p.vertices.filter((v) => anchors.has(v)).length, 0),
-    adyacencias: adj.length,
-    adyacenciasQueGuardanElCreaseEdge: adj.filter((a) => ces.has(a.crease)).length,
-    adyacenciasConExtremosDeLaEntrada: adj.filter((a) => a.crease && anchors.has(a.crease.a) && anchors.has(a.crease.b)).length,
-    aristasDeArbol: tree.length,
-    aristasDeArbolQueGuardanElCreaseDeLaAdyacencia: tree.filter((e) => adjCreases.has(e.crease)).length,
-    problemas: problems.length,
-    problemasConPuntoDeLaEntrada: problems.filter((p) => anchors.has(p.point)).length,
-  };
-}
-const MALOS = {
-  'buildPanels(null)': (api) => api.buildPanels(null),
-  'buildPanels(contorno sin anclas)': (api) => api.buildPanels({ outerBoundary: { closed: true, points: [{}, {}, {}] }, creases: [] }),
-  'buildAdjacency(null, creaseEdges)': (api) => api.buildAdjacency(null, [{ a: { x: 0, y: 0 }, b: { x: 1, y: 0 }, creaseIdx: 0, segIdx: 0 }]),
-  'buildFoldTree(null, adyacencia, 0)': (api) => api.buildFoldTree(null, [{ panelA: 0, panelB: 1, crease: { a: { x: 0, y: 0 }, b: { x: 1, y: 0 } }, creaseIdx: 0 }], 0),
-  'getDefaultBaseIndex(null)': (api) => api.getDefaultBaseIndex(null),
-  'validateGeometry(crease sin anclas)': (api) => api.validateGeometry({ outerBoundary: { closed: true, points: [{ anchor: { x: 0, y: 0 } }, { anchor: { x: 10, y: 0 } }, { anchor: { x: 10, y: 10 } }] }, creases: [{ closed: false, points: [{}, {}] }] }),
-  'buildFoldTree([], [], 0) (sin error)': (api) => api.buildFoldTree([], [], 0),
-};
-const errorOf = (fn) => { try { fn(); return 'sin excepción'; } catch (e) { return `${e.name}: ${e.message}`; } };
+import { aliasPrint, MALOS, errorOf } from '../lib/contracts.mjs';
 
 const REF = loadGeometry(TARGETS.baseline);
 const refAlias = Object.fromEntries(Object.entries(FIXTURES).map(([id, f]) => [id, aliasPrint(REF, f.build())]));

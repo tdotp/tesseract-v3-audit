@@ -4,12 +4,9 @@ import { buildArtworkExportScript } from './host/art.js';
 import { TEST_CONNECTION_SCRIPT } from './host/test-connection.js';
 import { hasCep, evalScript, evalScriptJSON, pathToFileURL } from './bridge/cep.js';
 import { saveBlobWithDialog } from './bridge/fs.js';
-import { buildAdjacency } from './core/legacy/adjacency.js';
-import { buildFoldTree, getDefaultBaseIndex } from './core/legacy/fold-tree.js';
+import { createLegacyEngine } from './core/engine.js';
+// D-A6-7: la escena (build3DFromPanels) usa este helper puro del motor hasta A7; el resto del motor solo se usa a través de GeometryEngine.
 import { getPolyCentroid } from './core/legacy/geom2d.js';
-import { setLogSink } from './core/legacy/log.js';
-import { buildPanels } from './core/legacy/panels.js';
-import { validateDieline } from './core/legacy/validate.js';
 
 (function () {
   'use strict';
@@ -85,7 +82,7 @@ import { validateDieline } from './core/legacy/validate.js';
       if(logArea){ logArea.textContent += String(m)+"\n"; logArea.scrollTop=logArea.scrollHeight; }
     }
     function clearLog(){ if(logArea){ logArea.textContent=''; } if(debugDetails) debugDetails.open=false; }
-    setLogSink(log); /* A6.2: el motor (core/legacy) escribe en este mismo log() */
+    var geometryEngine = createLegacyEngine({ log: log }); /* A6.6: GeometryEngine v1, única implementación 'legacy' (sin selector); su log escribe en este log() */
 
     function hasArtworkLoaded(){
       return !!(currentArtState && ((currentArtState.front && currentArtState.front.texture) || (currentArtState.back && currentArtState.back.texture)));
@@ -384,7 +381,7 @@ import { validateDieline } from './core/legacy/validate.js';
     function validateGeometry(data){
       problems=[]; problemsList.innerHTML='';
       if(!data||data.error){ validationStatus.textContent='Waiting...'; validationStatus.className='check-status'; continueBtn.disabled=true; return; }
-      problems=validateDieline(data).problems; /* A6.5: cálculo puro en core/legacy/validate.js; aquí solo la presentación */
+      problems=geometryEngine.validate(data).problems; /* A6.5/A6.6: cálculo puro del motor (core/legacy/validate.js); aquí solo la presentación */
       if(problems.length===0){
         validationStatus.textContent='\u2705 No problems found';
         validationStatus.className='check-status status-ok';
@@ -1190,7 +1187,7 @@ import { validateDieline } from './core/legacy/validate.js';
       if(!currentPanelData || !currentAdjEdges) return;
       currentBasePanelIndex = Math.max(0, Math.min(newBase, currentPanelData.panels.length-1));
       if(userSelected) baseSelectionConfirmed = true;
-      foldTree = buildFoldTree(currentPanelData.panels, currentAdjEdges, currentBasePanelIndex);
+      foldTree = geometryEngine.buildFoldTree(currentPanelData.panels, currentAdjEdges, currentBasePanelIndex);
       foldSigns = foldTree.map(function(edge){ return edge.sign || 1; });
       foldAngles = foldTree.map(function(){ return 0; });
       foldCenter = foldData ? foldData.center : {x:0,y:0};
@@ -1203,11 +1200,11 @@ import { validateDieline } from './core/legacy/validate.js';
 
     function buildFoldUI(panelData){
       currentPanelData = panelData;
-      currentAdjEdges = buildAdjacency(panelData.panels,panelData.creaseEdges);
+      currentAdjEdges = geometryEngine.buildAdjacency(panelData.panels,panelData.creaseEdges);
       if(currentBasePanelIndex<0 || currentBasePanelIndex>=panelData.panels.length){
-        currentBasePanelIndex = getDefaultBaseIndex(panelData);
+        currentBasePanelIndex = geometryEngine.defaultBaseIndex(panelData);
       }
-      foldTree = buildFoldTree(panelData.panels,currentAdjEdges,currentBasePanelIndex);
+      foldTree = geometryEngine.buildFoldTree(panelData.panels,currentAdjEdges,currentBasePanelIndex);
       foldSigns = foldTree.map(function(edge){ return edge.sign || 1; });
       foldAngles = foldTree.map(function(){return 0;});
       foldCenter = foldData?foldData.center:{x:0,y:0};
@@ -1741,14 +1738,14 @@ import { validateDieline } from './core/legacy/validate.js';
       }
 
       try{
-        var panelData = buildPanels(lastData);
+        var panelData = geometryEngine.buildPanels(lastData);
         if(!panelData || !panelData.panels || panelData.panels.length===0){
           setStatus('No 3D panels could be generated from the dieline');
           return;
         }
         currentPanelData = panelData;
         if(currentBasePanelIndex<0 || currentBasePanelIndex>=panelData.panels.length){
-          currentBasePanelIndex = getDefaultBaseIndex(panelData);
+          currentBasePanelIndex = geometryEngine.defaultBaseIndex(panelData);
         }
         var built = build3DFromPanels(panelData, lastData);
         if(!built){

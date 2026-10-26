@@ -32,5 +32,7 @@ run "puente: ensureCep ya no deshabilita «Back»"     "Puente CEP · (baseline|
 run "KI-25 corregido sin tarea (mensaje final del GLB)" "Puente CEP · (baseline|bundle)" "s/setStatus('GLB exported from current 3D pose');//" tests/browser/bridge.test.mjs
 run "KI-24 corregido sin tarea (buildChildrenOfMap)" "Puente CEP · (baseline|bundle)" 's/rebuildCreaseVisuals(buildChildrenOfMap());/rebuildCreaseVisuals([]);/' tests/browser/bridge.test.mjs
 # A6.0a — número y orden de llamadas al motor (solo lo ve el log de depuración, T1): setBasePanel deja de recalcular el árbol (buildFoldUI lo recalcula igual)
-run "A6 · log: setBasePanel ya no llama a buildFoldTree"      "Log de depuración \(A6\)"      's/foldTree = buildFoldTree(currentPanelData.panels, currentAdjEdges, currentBasePanelIndex);/foldTree = foldTree;/'
+run "A6 · log: setBasePanel ya no llama a buildFoldTree"      "Log de depuración \(A6\)"      's/foldTree = geometryEngine.buildFoldTree(currentPanelData.panels, currentAdjEdges, currentBasePanelIndex);/foldTree = foldTree;/'  # A6.6: la llamada pasa por geometryEngine
+# A6.6 — el adaptador del motor en el bundle real: si ignora la base elegida, el log y la interacción Shift+clic lo delatan
+run "A6 · adaptador: el motor ignora la base elegida (bundle)"  "Log de depuración \(A6\)"  's/    buildFoldTree: buildFoldTree,/    buildFoldTree: function(p, a, b){ return buildFoldTree(p, a, 0); },/'
 echo "mutaciones detectadas: $ok · no detectadas: $bad"; [ "$bad" = 0 ]

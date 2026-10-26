@@ -6,7 +6,7 @@ import test from 'node:test'; import assert from 'node:assert/strict'; import fs
 import { FIXTURES, clone } from '../lib/fixtures.mjs'; import { TARGETS, sourceText, extractFunctions, loadGeometry } from '../lib/legacy.mjs';
 import { FAMILY } from '../tools/make-illustrator-real-fixtures.mjs'; import { ROOT } from '../lib/fixtures.mjs';
 
-const CALL = 'problems=validateDieline(data).problems; /* A6.5: cálculo puro en core/legacy/validate.js; aquí solo la presentación */';
+const CALL = 'problems=geometryEngine.validate(data).problems; /* A6.5/A6.6: cálculo puro del motor (core/legacy/validate.js); aquí solo la presentación */';
 const orig = extractFunctions(fs.readFileSync(TARGETS.panel, 'utf8')).get('validateGeometry').split('\n');
 const src = extractFunctions(sourceText(TARGETS.src));
 const a = orig.indexOf('      var allS=buildAllSegs(data);'); let b = a + 1; while (orig[b] !== '      });') b++;

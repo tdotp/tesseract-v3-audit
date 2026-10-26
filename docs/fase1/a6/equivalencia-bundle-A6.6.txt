@@ -1,0 +1,259 @@
+# A6.6 — equivalencia del bundle A6.5 → A6.6 (normalización log2/log( → LOG; node tests/tools/bundle-eq.mjs).
+# Esperado y obtenido: nuevo createLegacyEngine + constante de contrato; las 7 llamadas y la validación pasan por geometryEngine (validateGeometry, setBasePanel, buildFoldUI y el handler de Continue);
+# setLogSink(log) se sustituye por createLegacyEngine({log}). Ninguna función del motor cambia.
+{
+ "soloEnA": [
+  "LOG#991"
+ ],
+ "soloEnB": [
+  "createLegacyEngine",
+  "LOG#1006"
+ ],
+ "distintas": [
+  "validateGeometry",
+  "setBasePanel",
+  "buildFoldUI"
+ ],
+ "lineasQuitadas": [
+  "1× setLogSink(LOG);",
+  "1× var panelData = buildPanels(lastData);",
+  "1× currentBasePanelIndex = getDefaultBaseIndex(panelData);"
+ ],
+ "lineasAnadidas": [
+  "1× var GEOMETRY_ENGINE_CONTRACT = 1;",
+  "1× var geometryEngine = createLegacyEngine({ log: LOG });",
+  "1× var panelData = geometryEngine.buildPanels(lastData);",
+  "1× currentBasePanelIndex = geometryEngine.defaultBaseIndex(panelData);"
+ ]
+}
+
+# diff -u de las líneas afectadas
+--- .scratch/bundle-A6.5.js	2026-10-25 20:01:50
++++ .scratch/bundle-A6.6.js	2026-10-25 20:29:16
+@@ -1,4 +1,4 @@
+-/* Tesseract V3 · bundle IIFE · fuente main.js sha256:ed09ff5df21b277a · esbuild 0.28.2 · target chrome99 · NO editar a mano (tools/build/build.mjs) */
++/* Tesseract V3 · bundle IIFE · fuente main.js sha256:6a17c1e86f150e73 · esbuild 0.28.2 · target chrome99 · NO editar a mano (tools/build/build.mjs) */
+@@ -281,6 +281,15 @@
++  // src/core/legacy/log.js
++  var sink = null;
++  function setLogSink(fn) {
++    sink = typeof fn === "function" ? fn : null;
++  }
++  function log(m) {
++    if (sink) sink(m);
++  }
++
+@@ -380,14 +389,50 @@
+-  // src/core/legacy/log.js
+-  var sink = null;
+-  function setLogSink(fn) {
+-    sink = typeof fn === "function" ? fn : null;
++  // src/core/legacy/validate.js
++  function segsFromPath(pathObj, closed, type, meta) {
++    var s = [];
++    if (!pathObj || !pathObj.points || pathObj.points.length < 2) return s;
++    var pts = pathObj.points.map(function(p) {
++      return p.anchor;
++    });
++    for (var i = 0; i < pts.length - 1; i++) s.push({ a: pts[i], b: pts[i + 1], type, meta });
++    if (closed) s.push({ a: pts[pts.length - 1], b: pts[0], type, meta });
++    return s;
+-  function log(m) {
+-    if (sink) sink(m);
++  function buildAllSegs(data) {
++    var s = [];
++    s.push.apply(s, segsFromPath(data.outerBoundary, true, "outer", null));
++    (data.holes || []).forEach(function(h, i) {
++      s.push.apply(s, segsFromPath(h, true, "hole", { i }));
++    });
++    (data.cutLines || []).forEach(function(cl, i) {
++      s.push.apply(s, segsFromPath(cl.geom, false, "cutLine", { i }));
++    });
++    (data.creases || []).forEach(function(cr, i) {
++      s.push.apply(s, segsFromPath(cr, false, "crease", { i }));
++    });
++    return s;
++  function validateDieline(data) {
++    var problems = [];
++    if (!data || data.error) return { problems };
++    var allS = buildAllSegs(data);
++    (data.creases || []).forEach(function(cr, ci) {
++      if (!cr.points || cr.points.length < 2) return;
++      [cr.points[0].anchor, cr.points[cr.points.length - 1].anchor].forEach(function(ep) {
++        var best = Infinity;
++        for (var i = 0; i < allS.length; i++) {
++          var sg = allS[i];
++          if (sg.type === "crease" && sg.meta && sg.meta.i === ci) continue;
++          var d = distPtSeg(ep, sg.a, sg.b);
++          if (d < best) best = d;
++        }
++        if (best > TOLERANCE_MM) problems.push({ id: "P" + (problems.length + 1), type: "Crease endpoint unconnected", dist: Number(best.toFixed(2)), point: ep });
++      });
++    });
++    return { problems };
++  }
+@@ -521,52 +566,6 @@
+-  // src/core/legacy/fold-tree.js
+-  function buildFoldTree(panels, adjEdges, baseIdx) {
+-    var visited = {};
+-    visited[baseIdx] = true;
+-    var tree = [];
+-    var queue = [baseIdx];
+-    while (queue.length > 0) {
+-      var curr = queue.shift();
+-      adjEdges.forEach(function(ae) {
+-        var neighbor = -1;
+-        if (ae.panelA === curr && !visited[ae.panelB]) neighbor = ae.panelB;
+-        if (ae.panelB === curr && !visited[ae.panelA]) neighbor = ae.panelA;
+-        if (neighbor >= 0) {
+-          visited[neighbor] = true;
+-          tree.push({ parent: curr, child: neighbor, crease: ae.crease, sign: computeFoldSign(panels[curr], panels[neighbor], ae.crease) });
+-          queue.push(neighbor);
+-        }
+-      });
+-    }
+-    log("Fold tree edges: " + tree.length + " (base=P" + baseIdx + ")");
+-    return tree;
+-  }
+-  function computeFoldSign(parentPanel, childPanel, crease) {
+-    if (!parentPanel || !childPanel || !crease) return 1;
+-    var ax = crease.a.x, ay = crease.a.y, bx = crease.b.x, by = crease.b.y;
+-    var vx = bx - ax, vy = by - ay;
+-    var cc = childPanel.centroid || getPolyCentroid(childPanel.vertices || []);
+-    var cross = vx * (cc.y - ay) - vy * (cc.x - ax);
+-    if (Math.abs(cross) < 1e-3) {
+-      var pc = parentPanel.centroid || getPolyCentroid(parentPanel.vertices || []);
+-      cross = vx * (pc.y - ay) - vy * (pc.x - ax);
+-      cross *= -1;
+-    }
+-    return cross >= 0 ? 1 : -1;
+-  }
+-  function getDefaultBaseIndex(panelData) {
+-    var bestBase = 0, bestArea = 0;
+-    panelData.panels.forEach(function(p, i) {
+-      if (Math.abs(p.area) > bestArea) {
+-        bestArea = Math.abs(p.area);
+-        bestBase = i;
+-      }
+-    });
+-    return bestBase;
+-  }
+-
+@@ -875,49 +874,65 @@
+-  // src/core/legacy/validate.js
+-  function segsFromPath(pathObj, closed, type, meta) {
+-    var s = [];
+-    if (!pathObj || !pathObj.points || pathObj.points.length < 2) return s;
+-    var pts = pathObj.points.map(function(p) {
+-      return p.anchor;
+-    });
+-    for (var i = 0; i < pts.length - 1; i++) s.push({ a: pts[i], b: pts[i + 1], type, meta });
+-    if (closed) s.push({ a: pts[pts.length - 1], b: pts[0], type, meta });
+-    return s;
+-  }
+-  function buildAllSegs(data) {
+-    var s = [];
+-    s.push.apply(s, segsFromPath(data.outerBoundary, true, "outer", null));
+-    (data.holes || []).forEach(function(h, i) {
+-      s.push.apply(s, segsFromPath(h, true, "hole", { i }));
+-    });
+-    (data.cutLines || []).forEach(function(cl, i) {
+-      s.push.apply(s, segsFromPath(cl.geom, false, "cutLine", { i }));
+-    });
+-    (data.creases || []).forEach(function(cr, i) {
+-      s.push.apply(s, segsFromPath(cr, false, "crease", { i }));
+-    });
+-    return s;
+-  }
+-  function validateDieline(data) {
+-    var problems = [];
+-    if (!data || data.error) return { problems };
+-    var allS = buildAllSegs(data);
+-    (data.creases || []).forEach(function(cr, ci) {
+-      if (!cr.points || cr.points.length < 2) return;
+-      [cr.points[0].anchor, cr.points[cr.points.length - 1].anchor].forEach(function(ep) {
+-        var best = Infinity;
+-        for (var i = 0; i < allS.length; i++) {
+-          var sg = allS[i];
+-          if (sg.type === "crease" && sg.meta && sg.meta.i === ci) continue;
+-          var d = distPtSeg(ep, sg.a, sg.b);
+-          if (d < best) best = d;
++  // src/core/legacy/fold-tree.js
++  function buildFoldTree(panels, adjEdges, baseIdx) {
++    var visited = {};
++    visited[baseIdx] = true;
++    var tree = [];
++    var queue = [baseIdx];
++    while (queue.length > 0) {
++      var curr = queue.shift();
++      adjEdges.forEach(function(ae) {
++        var neighbor = -1;
++        if (ae.panelA === curr && !visited[ae.panelB]) neighbor = ae.panelB;
++        if (ae.panelB === curr && !visited[ae.panelA]) neighbor = ae.panelA;
++        if (neighbor >= 0) {
++          visited[neighbor] = true;
++          tree.push({ parent: curr, child: neighbor, crease: ae.crease, sign: computeFoldSign(panels[curr], panels[neighbor], ae.crease) });
++          queue.push(neighbor);
+-        if (best > TOLERANCE_MM) problems.push({ id: "P" + (problems.length + 1), type: "Crease endpoint unconnected", dist: Number(best.toFixed(2)), point: ep });
++    }
++    log("Fold tree edges: " + tree.length + " (base=P" + baseIdx + ")");
++    return tree;
++  }
++  function computeFoldSign(parentPanel, childPanel, crease) {
++    if (!parentPanel || !childPanel || !crease) return 1;
++    var ax = crease.a.x, ay = crease.a.y, bx = crease.b.x, by = crease.b.y;
++    var vx = bx - ax, vy = by - ay;
++    var cc = childPanel.centroid || getPolyCentroid(childPanel.vertices || []);
++    var cross = vx * (cc.y - ay) - vy * (cc.x - ax);
++    if (Math.abs(cross) < 1e-3) {
++      var pc = parentPanel.centroid || getPolyCentroid(parentPanel.vertices || []);
++      cross = vx * (pc.y - ay) - vy * (pc.x - ax);
++      cross *= -1;
++    }
++    return cross >= 0 ? 1 : -1;
++  }
++  function getDefaultBaseIndex(panelData) {
++    var bestBase = 0, bestArea = 0;
++    panelData.panels.forEach(function(p, i) {
++      if (Math.abs(p.area) > bestArea) {
++        bestArea = Math.abs(p.area);
++        bestBase = i;
++      }
+-    return { problems };
++    return bestBase;
++  }
++
++  // src/core/engine.js
++  var GEOMETRY_ENGINE_CONTRACT = 1;
++  function createLegacyEngine(options) {
++    setLogSink(options && options.log);
++    return Object.freeze({
++      id: "legacy",
++      contract: GEOMETRY_ENGINE_CONTRACT,
++      validate: validateDieline,
++      buildPanels,
++      buildAdjacency,
++      buildFoldTree,
++      defaultBaseIndex: getDefaultBaseIndex
++    });
+@@ -1006,7 +1021,7 @@
+-      setLogSink(log2);
++      var geometryEngine = createLegacyEngine({ log: log2 });
+@@ -1306,7 +1321,7 @@
+-        problems = validateDieline(data).problems;
++        problems = geometryEngine.validate(data).problems;
+@@ -2124,7 +2139,7 @@
+-        foldTree = buildFoldTree(currentPanelData.panels, currentAdjEdges, currentBasePanelIndex);
++        foldTree = geometryEngine.buildFoldTree(currentPanelData.panels, currentAdjEdges, currentBasePanelIndex);
+@@ -2140,11 +2155,11 @@
+-        currentAdjEdges = buildAdjacency(panelData.panels, panelData.creaseEdges);
++        currentAdjEdges = geometryEngine.buildAdjacency(panelData.panels, panelData.creaseEdges);
+-          currentBasePanelIndex = getDefaultBaseIndex(panelData);
++          currentBasePanelIndex = geometryEngine.defaultBaseIndex(panelData);
+-        foldTree = buildFoldTree(panelData.panels, currentAdjEdges, currentBasePanelIndex);
++        foldTree = geometryEngine.buildFoldTree(panelData.panels, currentAdjEdges, currentBasePanelIndex);
+@@ -2674,14 +2689,14 @@
+-          var panelData = buildPanels(lastData);
++          var panelData = geometryEngine.buildPanels(lastData);
+-            currentBasePanelIndex = getDefaultBaseIndex(panelData);
++            currentBasePanelIndex = geometryEngine.defaultBaseIndex(panelData);
