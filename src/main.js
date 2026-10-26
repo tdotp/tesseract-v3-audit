@@ -5,6 +5,7 @@ import { TEST_CONNECTION_SCRIPT } from './host/test-connection.js';
 import { hasCep, evalScript, evalScriptJSON, pathToFileURL } from './bridge/cep.js';
 import { saveBlobWithDialog } from './bridge/fs.js';
 import { createLegacyEngine } from './core/engine.js';
+import { createAppState } from './app/state.js';
 // D-A6-7: la escena (build3DFromPanels) usa este helper puro del motor hasta A7; el resto del motor solo se usa a través de GeometryEngine.
 import { getPolyCentroid } from './core/legacy/geom2d.js';
 
@@ -53,28 +54,16 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
     if(modeFoldBtn) modeFoldBtn.style.display='none';
     if(modeBaseBtn) modeBaseBtn.style.display='none';
 
-    var currentThicknessMm = DEFAULT_THICKNESS_MM;
-    var currentMaterialPreset = 'white';
+    var S = createAppState(); /* A7.1: estado de dominio compartido (26 campos; docs/fase1/A7_PROPUESTA.md §4.1). Aquí quedan lastData, problems y los widgets del DOM */
     var lastData   = null;
     var problems   = [];
-    var currentPanelData = null;
-    var currentAdjEdges = null;
-    var currentBasePanelIndex = 0;
     var currentBaseSelect = null;
-    var currentArtState = null;
-    var creasePickables = [];
-    var creaseVisuals = [];
-    var panelGroupMap = [];
-    var selectedFoldEdgeIdx = -1;
     var currentCreaseRows = [];
     var currentCreaseSliders = [];
     var selectedCreaseLabelEl = null;
     var selectedCreaseSliderEl = null;
     var selectedCreaseNumberEl = null;
     var interactionMode = 'fold';
-    var panelLabelSprites = [];
-    var foldSigns = [];
-    var baseSelectionConfirmed = false;
 
     function setStatus(m){ statusArea.textContent = m; }
     function log(m){
@@ -83,13 +72,15 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
     }
     function clearLog(){ if(logArea){ logArea.textContent=''; } if(debugDetails) debugDetails.open=false; }
     var geometryEngine = createLegacyEngine({ log: log }); /* A6.6: GeometryEngine v1, única implementación 'legacy' (sin selector); su log escribe en este log() */
+    /* A7.1: vista de SOLO LECTURA del estado para el arnés de pruebas (tools/baseline/setup_harness.py la usa si existe). El producto no la llama ni la publica en window. */
+    function __tessDebugView(){ return {get renderer(){return S.renderer3d},get scene(){return S.scene3d},get camera(){return S.camera3d},get orbit(){return S.orbitState},get nFold(){return S.foldTree.length},get panels(){return S.panelMeshes.length},get foldData(){return S.foldData},get art(){return S.currentArtState},get panelData(){return S.currentPanelData},get thickness(){return S.currentThicknessMm},get preset(){return S.currentMaterialPreset},get baseIndex(){return S.currentBasePanelIndex},get angles(){return S.foldAngles},get tree(){return S.foldTree},get bridges(){return S.foldBridgeGroup},get selectedEdge(){return S.selectedFoldEdgeIdx},get creaseVisuals(){return S.creaseVisuals},get adj(){return S.currentAdjEdges}}; }
 
     function hasArtworkLoaded(){
-      return !!(currentArtState && ((currentArtState.front && currentArtState.front.texture) || (currentArtState.back && currentArtState.back.texture)));
+      return !!(S.currentArtState && ((S.currentArtState.front && S.currentArtState.front.texture) || (S.currentArtState.back && S.currentArtState.back.texture)));
     }
 
     function getMaterialPreset(){
-      return MATERIAL_PRESETS[currentMaterialPreset] || MATERIAL_PRESETS.white;
+      return MATERIAL_PRESETS[S.currentMaterialPreset] || MATERIAL_PRESETS.white;
     }
 
     function syncMaterialPresetUI(){
@@ -112,7 +103,7 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
     }
 
     function getFoldHingeRadius(){
-      return Math.max(CREASE_HINGE_MIN_RADIUS, currentThicknessMm * CREASE_HINGE_RADIUS_FACTOR);
+      return Math.max(CREASE_HINGE_MIN_RADIUS, S.currentThicknessMm * CREASE_HINGE_RADIUS_FACTOR);
     }
 
     function setInteractionMode(mode, announce){
@@ -222,16 +213,16 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
         panel.classList.toggle('active', panel.id === 'tab-' + key);
       });
     }
-    function syncMaterialInputs(){ if(thicknessInput) thicknessInput.value=String(currentThicknessMm.toFixed(2)); syncMaterialPresetUI(); }
+    function syncMaterialInputs(){ if(thicknessInput) thicknessInput.value=String(S.currentThicknessMm.toFixed(2)); syncMaterialPresetUI(); }
     function applyMaterialPreset(presetKey, rebuild){
       if(!MATERIAL_PRESETS[presetKey]) presetKey = 'white';
-      currentMaterialPreset = presetKey;
+      S.currentMaterialPreset = presetKey;
       syncMaterialPresetUI();
-      if(rebuild && currentPanelData){
+      if(rebuild && S.currentPanelData){
         try{
-          var built = build3DFromPanels(currentPanelData, lastData);
+          var built = build3DFromPanels(S.currentPanelData, lastData);
           if(built){
-            buildFoldUI(currentPanelData);
+            buildFoldUI(S.currentPanelData);
             fitCamera3D();
             setStatus('Material preset applied: '+getMaterialPreset().label);
           }
@@ -267,7 +258,7 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
           if(THREE.LinearMipMapLinearFilter) tex.minFilter = THREE.LinearMipMapLinearFilter;
           if(THREE.LinearFilter) tex.magFilter = THREE.LinearFilter;
           tex.generateMipmaps = true;
-          try{ if(renderer3d && renderer3d.capabilities && renderer3d.capabilities.getMaxAnisotropy) tex.anisotropy = renderer3d.capabilities.getMaxAnisotropy(); }catch(_anis){}
+          try{ if(S.renderer3d && S.renderer3d.capabilities && S.renderer3d.capabilities.getMaxAnisotropy) tex.anisotropy = S.renderer3d.capabilities.getMaxAnisotropy(); }catch(_anis){}
           tex.needsUpdate = true;
           resolve(tex);
         }, undefined, function(err){
@@ -306,7 +297,7 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
       var shape = shapeFromVerts(verts);
       if(!shape) return;
       var geom = new THREE.ShapeGeometry(shape);
-      applyArtUVs(geom, artRect, foldData ? foldData.center : {x:0,y:0});
+      applyArtUVs(geom, artRect, S.foldData ? S.foldData.center : {x:0,y:0});
       var mat = new THREE.MeshBasicMaterial({
         map:texture, transparent:true, side:THREE.DoubleSide,
         depthWrite:false, depthTest:true
@@ -320,31 +311,31 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
     }
 
     function applyArtworkToScene(){
-      panelMeshes.forEach(function(mesh){
+      S.panelMeshes.forEach(function(mesh){
         disposeArtOverlays(mesh);
-        if(!currentArtState) return;
-        if(currentArtState.front && currentArtState.front.texture && currentArtState.front.rect){
-          addArtworkOverlay(mesh, mesh.userData.originalVertices, currentArtState.front.texture, currentArtState.front.rect, currentThicknessMm + ART_TOP_OFFSET);
+        if(!S.currentArtState) return;
+        if(S.currentArtState.front && S.currentArtState.front.texture && S.currentArtState.front.rect){
+          addArtworkOverlay(mesh, mesh.userData.originalVertices, S.currentArtState.front.texture, S.currentArtState.front.rect, S.currentThicknessMm + ART_TOP_OFFSET);
         }
-        if(currentArtState.back && currentArtState.back.texture && currentArtState.back.rect){
-          addArtworkOverlay(mesh, mesh.userData.originalVertices, currentArtState.back.texture, currentArtState.back.rect, -ART_BOTTOM_OFFSET);
+        if(S.currentArtState.back && S.currentArtState.back.texture && S.currentArtState.back.rect){
+          addArtworkOverlay(mesh, mesh.userData.originalVertices, S.currentArtState.back.texture, S.currentArtState.back.rect, -ART_BOTTOM_OFFSET);
         }
       });
       refreshPanelMaterials();
     }
 
     function disposeCurrentArtTextures(){
-      if(!currentArtState) return;
+      if(!S.currentArtState) return;
       ['front','back'].forEach(function(side){
-        if(currentArtState[side] && currentArtState[side].texture){
-          try{ currentArtState[side].texture.dispose(); }catch(ex){}
+        if(S.currentArtState[side] && S.currentArtState[side].texture){
+          try{ S.currentArtState[side].texture.dispose(); }catch(ex){}
         }
       });
     }
 
     async function refreshArtwork(){
       if(!ensureCep()) return;
-      if(!panelMeshes.length){
+      if(!S.panelMeshes.length){
         setArtStatus('Build 3D first, then refresh art.','No art');
         return;
       }
@@ -353,7 +344,7 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
         var exported = await evalScriptJSON(buildArtworkExportScript());
         if(!exported || exported.mode==='none' || (!exported.front && !exported.back)){
           disposeCurrentArtTextures();
-          currentArtState = null;
+          S.currentArtState = null;
           applyArtworkToScene();
           setArtStatus('No Front/Back or Tiro/Retiro art detected.','No art');
           return;
@@ -366,7 +357,7 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
           nextState.back = { rect: exported.back.rect, texture: await loadTextureFromPath(exported.back.path), path: exported.back.path };
         }
         disposeCurrentArtTextures();
-        currentArtState = nextState;
+        S.currentArtState = nextState;
         applyArtworkToScene();
         setArtStatus('Artwork loaded from '+exported.mode+'. Mapping uses full artboard coordinates.', exported.mode==='artboards' ? 'Artboards' : 'Layers');
       }catch(err){
@@ -441,72 +432,62 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
     /* ================================================================
        3D ENGINE
        ================================================================ */
-    var renderer3d=null, scene3d=null, camera3d=null;
-    var orbitState=null;
-    var panelMeshes=[];
+    /* A7.1: renderer3d, scene3d, camera3d, orbitState, panelMeshes, foldBridgeGroup, foldData, foldRoot, foldAngles, foldTree, foldCenter, raycaster3d y pointer3d viven en S (src/app/state.js) */
     var creaseLinesGroup=null;
-    var foldBridgeGroup=null;
-    var foldData=null;
-    var foldRoot=null;
-    var foldAngles=[];
-    var foldTree=[];
-    var foldCenter={x:0,y:0};
-    var raycaster3d = null;
-    var pointer3d = null;
 
     function resize3D(){
-      if(!renderer3d||!camera3d) return;
+      if(!S.renderer3d||!S.camera3d) return;
       var w=canvas3d.clientWidth||canvas3d.width;
       var h=canvas3d.clientHeight||canvas3d.height;
       var iw=Math.max(1,Math.floor(w));
       var ih=Math.max(1,Math.floor(h));
       if(canvas3d.width!==iw||canvas3d.height!==ih){
         canvas3d.width=iw; canvas3d.height=ih;
-        renderer3d.setSize(iw,ih,false);
-        camera3d.aspect=iw/ih;
-        camera3d.updateProjectionMatrix();
+        S.renderer3d.setSize(iw,ih,false);
+        S.camera3d.aspect=iw/ih;
+        S.camera3d.updateProjectionMatrix();
       }
     }
 
     function updateCameraFromOrbit(){
-      if(!orbitState) return;
-      orbitState.spherical.makeSafe();
-      var pos=new THREE.Vector3().setFromSpherical(orbitState.spherical).add(orbitState.target);
-      camera3d.position.copy(pos);
-      camera3d.lookAt(orbitState.target);
+      if(!S.orbitState) return;
+      S.orbitState.spherical.makeSafe();
+      var pos=new THREE.Vector3().setFromSpherical(S.orbitState.spherical).add(S.orbitState.target);
+      S.camera3d.position.copy(pos);
+      S.camera3d.lookAt(S.orbitState.target);
     }
 
     function init3D(){
-      if(renderer3d) return true;
+      if(S.renderer3d) return true;
       if(!window.THREE||!THREE.WebGLRenderer){
         setStatus('Error: Three.js not loaded'); return false;
       }
 
-      renderer3d=new THREE.WebGLRenderer({canvas:canvas3d,antialias:true,alpha:false,preserveDrawingBuffer:true});
-      renderer3d.setClearColor(0xffffff,1);
-      renderer3d.setPixelRatio(window.devicePixelRatio||1);
+      S.renderer3d=new THREE.WebGLRenderer({canvas:canvas3d,antialias:true,alpha:false,preserveDrawingBuffer:true});
+      S.renderer3d.setClearColor(0xffffff,1);
+      S.renderer3d.setPixelRatio(window.devicePixelRatio||1);
       log('Renderer created OK');
 
-      scene3d=new THREE.Scene();
-      camera3d=new THREE.PerspectiveCamera(45,1,0.01,100000);
-      raycaster3d = new THREE.Raycaster();
-      pointer3d = new THREE.Vector2();
+      S.scene3d=new THREE.Scene();
+      S.camera3d=new THREE.PerspectiveCamera(45,1,0.01,100000);
+      S.raycaster3d = new THREE.Raycaster();
+      S.pointer3d = new THREE.Vector2();
 
       /* Lighting */
-      scene3d.add(new THREE.AmbientLight(0xffffff,0.6));
+      S.scene3d.add(new THREE.AmbientLight(0xffffff,0.6));
       var dir=new THREE.DirectionalLight(0xffffff,0.8);
-      dir.position.set(400,300,700); scene3d.add(dir);
-      scene3d.add(new THREE.HemisphereLight(0xffffff,0xf3f4f6,0.65));
+      dir.position.set(400,300,700); S.scene3d.add(dir);
+      S.scene3d.add(new THREE.HemisphereLight(0xffffff,0xf3f4f6,0.65));
 
       /* Grid — light gray on dark bg */
       var grid=new THREE.GridHelper(1200,60,0xd1d5db,0xe5e7eb);
       grid.material.opacity=0.4; grid.material.transparent=true;
-      scene3d.add(grid);
+      S.scene3d.add(grid);
 
       /* Small axes in corner */
       var axes=new THREE.AxesHelper(80);
       axes.position.set(-550,0,-550);
-      scene3d.add(axes);
+      S.scene3d.add(axes);
 
       /* ── Transparent overlay for orbit/pan/zoom (CEP-safe) ── */
       var ov=document.createElement('div');
@@ -542,30 +523,30 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
       }
       function onMove(e){
         e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();
-        if(!drag.active||!orbitState) return;
+        if(!drag.active||!S.orbitState) return;
         var dx=e.clientX-drag.x, dy=e.clientY-drag.y;
         if(Math.abs(dx)>5||Math.abs(dy)>5) drag.moved=true;
         drag.x=e.clientX; drag.y=e.clientY;
         if(drag.btn===2||(drag.btn===0&&e.shiftKey)){
           /* Pan */
-          var te=camera3d.matrix.elements;
+          var te=S.camera3d.matrix.elements;
           var right=new THREE.Vector3(te[0],te[1],te[2]).normalize();
           var up=new THREE.Vector3(te[4],te[5],te[6]).normalize();
-          var pan=right.multiplyScalar(-dx*orbitState.panSpeed).add(up.multiplyScalar(dy*orbitState.panSpeed));
-          orbitState.target.add(pan);
+          var pan=right.multiplyScalar(-dx*S.orbitState.panSpeed).add(up.multiplyScalar(dy*S.orbitState.panSpeed));
+          S.orbitState.target.add(pan);
         } else if(drag.btn===0){
           /* Orbit */
-          orbitState.spherical.theta-=dx*orbitState.rotateSpeed;
-          orbitState.spherical.phi-=dy*orbitState.rotateSpeed;
+          S.orbitState.spherical.theta-=dx*S.orbitState.rotateSpeed;
+          S.orbitState.spherical.phi-=dy*S.orbitState.rotateSpeed;
         }
         updateCameraFromOrbit();
       }
       function onWheel(e){
         e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();
-        if(!orbitState) return;
+        if(!S.orbitState) return;
         var delta=(e.deltaY>0)?1.08:0.92;
-        orbitState.spherical.radius*=delta;
-        orbitState.spherical.radius=Math.max(20,Math.min(orbitState.spherical.radius,50000));
+        S.orbitState.spherical.radius*=delta;
+        S.orbitState.spherical.radius=Math.max(20,Math.min(S.orbitState.spherical.radius,50000));
         updateCameraFromOrbit();
       }
 
@@ -587,8 +568,8 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
       function loop(){
         requestAnimationFrame(loop);
         resize3D();
-        if(orbitState) camera3d.lookAt(orbitState.target);
-        renderer3d.render(scene3d,camera3d);
+        if(S.orbitState) S.camera3d.lookAt(S.orbitState.target);
+        S.renderer3d.render(S.scene3d,S.camera3d);
         if(!firstFrame){firstFrame=true;log('First frame rendered');}
       }
       loop();
@@ -598,33 +579,33 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
     }
 
     function clearAllMeshes(){
-      panelMeshes.forEach(function(m){
+      S.panelMeshes.forEach(function(m){
         if(m.parent) m.parent.remove(m);
-        else if(scene3d) scene3d.remove(m);
+        else if(S.scene3d) S.scene3d.remove(m);
         /* A1 (fuga GPU): también libera los hijos (aristas EdgesGeometry y overlays de arte); antes solo geometría/material del panel.
            Las texturas de arte son compartidas y las libera disposeCurrentArtTextures(), no esto. */
         disposeObject3D(m);
       });
-      panelMeshes=[];
+      S.panelMeshes=[];
       disposeCreaseVisuals();   /* A1 */
       disposeLabelCache();      /* A1 */
       if(creaseLinesGroup){
         if(creaseLinesGroup.parent) creaseLinesGroup.parent.remove(creaseLinesGroup);
-        else if(scene3d) scene3d.remove(creaseLinesGroup);
+        else if(S.scene3d) S.scene3d.remove(creaseLinesGroup);
         creaseLinesGroup=null;
       }
-      if(foldBridgeGroup){
-        if(foldBridgeGroup.parent) foldBridgeGroup.parent.remove(foldBridgeGroup);
-        disposeObject3D(foldBridgeGroup);
-        foldBridgeGroup=null;
+      if(S.foldBridgeGroup){
+        if(S.foldBridgeGroup.parent) S.foldBridgeGroup.parent.remove(S.foldBridgeGroup);
+        disposeObject3D(S.foldBridgeGroup);
+        S.foldBridgeGroup=null;
       }
-      creasePickables = [];
-      creaseVisuals = [];
-      panelGroupMap = [];
-      panelLabelSprites = [];
-      if(foldRoot){
-        if(foldRoot.parent) foldRoot.parent.remove(foldRoot);
-        foldRoot=null;
+      S.creasePickables = [];
+      S.creaseVisuals = [];
+      S.panelGroupMap = [];
+      S.panelLabelSprites = [];
+      if(S.foldRoot){
+        if(S.foldRoot.parent) S.foldRoot.parent.remove(S.foldRoot);
+        S.foldRoot=null;
       }
     }
 
@@ -657,11 +638,11 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
         var centered=panel.vertices.map(function(v){return{x:v.x-cx,y:v.y-cy};});
         var shape=shapeFromVerts(centered);
         if(!shape) return;
-        var geom=new THREE.ExtrudeGeometry(shape,{depth:currentThicknessMm,bevelEnabled:false,curveSegments:1,steps:1});
+        var geom=new THREE.ExtrudeGeometry(shape,{depth:S.currentThicknessMm,bevelEnabled:false,curveSegments:1,steps:1});
         geom.computeVertexNormals();
 
         var shellMat=new THREE.MeshPhongMaterial({
-          color:new THREE.Color(getPanelShellHex(pi===currentBasePanelIndex)), specular:0x1b1b1b, shininess:10,
+          color:new THREE.Color(getPanelShellHex(pi===S.currentBasePanelIndex)), specular:0x1b1b1b, shininess:10,
           side:THREE.DoubleSide
         });
         var mesh=new THREE.Mesh(geom,shellMat);
@@ -684,14 +665,14 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
           edgeLines:edgeLines
         };
 
-        scene3d.add(mesh);
-        panelMeshes.push(mesh);
+        S.scene3d.add(mesh);
+        S.panelMeshes.push(mesh);
       });
 
       /* Fold line visuals are built after the fold tree is established. */
 
       /* Store fold data */
-      foldData={
+      S.foldData={
         panels:panels,
         creaseEdges:creaseEdges,
         creases:panelData.creases,
@@ -699,14 +680,14 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
       };
 
       applyArtworkToScene();
-      log('Built '+panelMeshes.length+' panel meshes, '+creaseEdges.length+' crease edge segments');
-      return panelMeshes.length;
+      log('Built '+S.panelMeshes.length+' panel meshes, '+creaseEdges.length+' crease edge segments');
+      return S.panelMeshes.length;
     }
 
     function refreshPanelMaterials(){
-      panelMeshes.forEach(function(mesh){
+      S.panelMeshes.forEach(function(mesh){
         if(!mesh || !mesh.material) return;
-        var isBase = mesh.userData && mesh.userData.panelIndex===currentBasePanelIndex;
+        var isBase = mesh.userData && mesh.userData.panelIndex===S.currentBasePanelIndex;
         mesh.material.color.set(getPanelShellHex(isBase));
         mesh.material.needsUpdate = true;
         if(mesh.userData && mesh.userData.edgeLines && mesh.userData.edgeLines.material){
@@ -717,13 +698,13 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
     }
 
     function pickPanelFromEvent(e){
-      if(!renderer3d || !camera3d || !raycaster3d || !pointer3d || !panelMeshes.length) return false;
+      if(!S.renderer3d || !S.camera3d || !S.raycaster3d || !S.pointer3d || !S.panelMeshes.length) return false;
       var rect = canvas3d.getBoundingClientRect();
       if(!rect.width || !rect.height) return false;
-      pointer3d.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-      pointer3d.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
-      raycaster3d.setFromCamera(pointer3d, camera3d);
-      var hits = raycaster3d.intersectObjects(panelMeshes, false);
+      S.pointer3d.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      S.pointer3d.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+      S.raycaster3d.setFromCamera(S.pointer3d, S.camera3d);
+      var hits = S.raycaster3d.intersectObjects(S.panelMeshes, false);
       if(!hits || !hits.length) return false;
       var panelIdx = hits[0].object && hits[0].object.userData ? hits[0].object.userData.panelIndex : null;
       if(panelIdx===null || panelIdx===undefined) return false;
@@ -735,47 +716,47 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
     }
 
     function fitCamera3D(){
-      if(panelMeshes.length===0) return;
-      if(scene3d) scene3d.updateMatrixWorld(true);
+      if(S.panelMeshes.length===0) return;
+      if(S.scene3d) S.scene3d.updateMatrixWorld(true);
       var box=new THREE.Box3();
-      if(foldRoot) box.expandByObject(foldRoot);
-      else panelMeshes.forEach(function(m){box.expandByObject(m);});
+      if(S.foldRoot) box.expandByObject(S.foldRoot);
+      else S.panelMeshes.forEach(function(m){box.expandByObject(m);});
       var size=new THREE.Vector3(); box.getSize(size);
       var center=new THREE.Vector3(); box.getCenter(center);
       var maxDim=Math.max(size.x,size.y,size.z)||1;
       var dist=Math.max(maxDim*1.8,180);
 
-      orbitState={
+      S.orbitState={
         target:center.clone(),
         spherical:new THREE.Spherical(dist,Math.PI/3,Math.PI/4),
         panSpeed:maxDim/600,
         rotateSpeed:0.006
       };
       updateCameraFromOrbit();
-      camera3d.near=Math.max(0.01,dist/2000);
-      camera3d.far=dist*200;
-      camera3d.updateProjectionMatrix();
+      S.camera3d.near=Math.max(0.01,dist/2000);
+      S.camera3d.far=dist*200;
+      S.camera3d.updateProjectionMatrix();
     }
 
     /* ADJACENCY + FOLD TREE → src/core/legacy/adjacency.js y src/core/legacy/fold-tree.js (A6.3). Aquí quedan los signos de presentación de la UI. */
 
     function signedDisplayAngle(edgeIdx, internalAngle){
-      var sign = (foldSigns && typeof foldSigns[edgeIdx]==='number' && foldSigns[edgeIdx]!==0) ? foldSigns[edgeIdx] : 1;
+      var sign = (S.foldSigns && typeof S.foldSigns[edgeIdx]==='number' && S.foldSigns[edgeIdx]!==0) ? S.foldSigns[edgeIdx] : 1;
       return Math.round((internalAngle || 0) * sign);
     }
 
     function internalAngleFromDisplay(edgeIdx, displayAngle){
-      var sign = (foldSigns && typeof foldSigns[edgeIdx]==='number' && foldSigns[edgeIdx]!==0) ? foldSigns[edgeIdx] : 1;
+      var sign = (S.foldSigns && typeof S.foldSigns[edgeIdx]==='number' && S.foldSigns[edgeIdx]!==0) ? S.foldSigns[edgeIdx] : 1;
       return (displayAngle || 0) * sign;
     }
 
     function updatePerCreaseRow(edgeIdx){
       var cs = currentCreaseSliders[edgeIdx];
       if(!cs) return;
-      var display = signedDisplayAngle(edgeIdx, foldAngles[edgeIdx] || 0);
+      var display = signedDisplayAngle(edgeIdx, S.foldAngles[edgeIdx] || 0);
       cs.slider.value = String(display);
       cs.val.textContent = (display>0?'+':'') + String(display) + '°';
-      if(cs.label) cs.label.textContent = 'C'+edgeIdx+'  P'+foldTree[edgeIdx].parent+'→P'+foldTree[edgeIdx].child+'  ' + (display>=0 ? '+' : '−');
+      if(cs.label) cs.label.textContent = 'C'+edgeIdx+'  P'+S.foldTree[edgeIdx].parent+'→P'+S.foldTree[edgeIdx].child+'  ' + (display>=0 ? '+' : '−');
     }
 
     function disposeObject3D(obj){
@@ -796,7 +777,7 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
 
     /* A1 (fuga GPU): libera geometría y material de las líneas visibles y cajas de selección de crease. */
     function disposeCreaseVisuals(){
-      (creaseVisuals || []).forEach(function(entry){
+      (S.creaseVisuals || []).forEach(function(entry){
         [entry.visible, entry.pick].forEach(function(o){
           if(!o) return;
           if(o.parent) o.parent.remove(o);
@@ -834,8 +815,8 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
           positions.push(wp.x, wp.y, wp.z);
           if(artRect && flatRows && flatRows[r] && flatRows[r][c]){
             var fp = flatRows[r][c];
-            var gx = fp.x + foldCenter.x;
-            var gy = fp.y + foldCenter.y;
+            var gx = fp.x + S.foldCenter.x;
+            var gy = fp.y + S.foldCenter.y;
             var u = (gx - artRect.left) / artRect.width;
             var v = (artRect.top - gy) / artRect.height;
             uvs.push(u, v);
@@ -863,9 +844,9 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
     }
 
     function makeBridgeRowsForEdge(parentGroup, childGroup, p1, p2, parentIdx, childIdx, zLocal){
-      if(!parentGroup || !childGroup || !currentPanelData) return null;
-      var parentPanel = currentPanelData.panels[parentIdx];
-      var childPanel = currentPanelData.panels[childIdx];
+      if(!parentGroup || !childGroup || !S.currentPanelData) return null;
+      var parentPanel = S.currentPanelData.panels[parentIdx];
+      var childPanel = S.currentPanelData.panels[childIdx];
       if(!parentPanel || !childPanel) return null;
       var mx = (p1.x + p2.x) * 0.5;
       var my = (p1.y + p2.y) * 0.5;
@@ -873,11 +854,11 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
       if(segLen < 1) return null;
       var tx = (p2.x - p1.x) / segLen;
       var ty = (p2.y - p1.y) / segLen;
-      var parentCent = { x: parentPanel.centroid.x - foldCenter.x, y: parentPanel.centroid.y - foldCenter.y };
-      var childCent = { x: childPanel.centroid.x - foldCenter.x, y: childPanel.centroid.y - foldCenter.y };
+      var parentCent = { x: parentPanel.centroid.x - S.foldCenter.x, y: parentPanel.centroid.y - S.foldCenter.y };
+      var childCent = { x: childPanel.centroid.x - S.foldCenter.x, y: childPanel.centroid.y - S.foldCenter.y };
       var parentDir = projectInsetDir({x:mx,y:my}, parentCent, tx, ty, 1);
       var childDir = projectInsetDir({x:mx,y:my}, childCent, tx, ty, -1);
-      var inset = Math.max(0.04, Math.min(0.35, currentThicknessMm * 0.35));
+      var inset = Math.max(0.04, Math.min(0.35, S.currentThicknessMm * 0.35));
       var parent2 = [
         { x: p1.x + parentDir.x * inset, y: p1.y + parentDir.y * inset },
         { x: p2.x + parentDir.x * inset, y: p2.y + parentDir.y * inset }
@@ -900,73 +881,73 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
     }
 
     function addFoldBridgeVisual(parentGroup, childGroup, edgeIdx, p1, p2, parentIdx, childIdx){
-      if(!scene3d || !parentGroup || !childGroup) return;
-      var displayAngle = signedDisplayAngle(edgeIdx, foldAngles[edgeIdx] || 0);
+      if(!S.scene3d || !parentGroup || !childGroup) return;
+      var displayAngle = signedDisplayAngle(edgeIdx, S.foldAngles[edgeIdx] || 0);
       if(Math.abs(displayAngle) < CREASE_HINGE_SHOW_THRESHOLD_DEG) return;
-      if(!foldBridgeGroup){
-        foldBridgeGroup = new THREE.Group();
-        foldBridgeGroup.name = 'fold-bridges';
-        scene3d.add(foldBridgeGroup);
+      if(!S.foldBridgeGroup){
+        S.foldBridgeGroup = new THREE.Group();
+        S.foldBridgeGroup.name = 'fold-bridges';
+        S.scene3d.add(S.foldBridgeGroup);
       }
 
-      var topRows = makeBridgeRowsForEdge(parentGroup, childGroup, p1, p2, parentIdx, childIdx, currentThicknessMm + FOLD_BRIDGE_TOP_Z);
+      var topRows = makeBridgeRowsForEdge(parentGroup, childGroup, p1, p2, parentIdx, childIdx, S.currentThicknessMm + FOLD_BRIDGE_TOP_Z);
       if(topRows){
-        var topGeom = buildRibbonStripGeometry(topRows.worldRows, topRows.flatRows, currentArtState && currentArtState.front ? currentArtState.front.rect : null);
+        var topGeom = buildRibbonStripGeometry(topRows.worldRows, topRows.flatRows, S.currentArtState && S.currentArtState.front ? S.currentArtState.front.rect : null);
         if(topGeom){
           var topMat;
-          if(currentArtState && currentArtState.front && currentArtState.front.texture){
-            topMat = new THREE.MeshBasicMaterial({ map: currentArtState.front.texture, transparent:true, side:THREE.DoubleSide, depthWrite:true, depthTest:true });
+          if(S.currentArtState && S.currentArtState.front && S.currentArtState.front.texture){
+            topMat = new THREE.MeshBasicMaterial({ map: S.currentArtState.front.texture, transparent:true, side:THREE.DoubleSide, depthWrite:true, depthTest:true });
           } else {
             topMat = new THREE.MeshPhongMaterial({ color:new THREE.Color(getFoldHingeHex()), specular:0x1b1b1b, shininess:6, side:THREE.DoubleSide });
           }
           var topMesh = new THREE.Mesh(topGeom, topMat);
           topMesh.renderOrder = 33;
           topMesh.userData = { role:'foldBridgeTop', edgeIdx:edgeIdx };
-          foldBridgeGroup.add(topMesh);
+          S.foldBridgeGroup.add(topMesh);
         }
       }
 
       var bottomRows = makeBridgeRowsForEdge(parentGroup, childGroup, p1, p2, parentIdx, childIdx, -FOLD_BRIDGE_BOTTOM_Z);
       if(bottomRows){
-        var bottomGeom = buildRibbonStripGeometry(bottomRows.worldRows, bottomRows.flatRows, currentArtState && currentArtState.back ? currentArtState.back.rect : null);
+        var bottomGeom = buildRibbonStripGeometry(bottomRows.worldRows, bottomRows.flatRows, S.currentArtState && S.currentArtState.back ? S.currentArtState.back.rect : null);
         if(bottomGeom){
           var bottomMat;
-          if(currentArtState && currentArtState.back && currentArtState.back.texture){
-            bottomMat = new THREE.MeshBasicMaterial({ map: currentArtState.back.texture, transparent:true, side:THREE.DoubleSide, depthWrite:true, depthTest:true });
+          if(S.currentArtState && S.currentArtState.back && S.currentArtState.back.texture){
+            bottomMat = new THREE.MeshBasicMaterial({ map: S.currentArtState.back.texture, transparent:true, side:THREE.DoubleSide, depthWrite:true, depthTest:true });
           } else {
             bottomMat = new THREE.MeshPhongMaterial({ color:new THREE.Color(getFoldHingeHex()), specular:0x1b1b1b, shininess:6, side:THREE.DoubleSide });
           }
           var bottomMesh = new THREE.Mesh(bottomGeom, bottomMat);
           bottomMesh.renderOrder = 32;
           bottomMesh.userData = { role:'foldBridgeBottom', edgeIdx:edgeIdx };
-          foldBridgeGroup.add(bottomMesh);
+          S.foldBridgeGroup.add(bottomMesh);
         }
       }
     }
 
     function rebuildCreaseVisuals(childrenOf){
-      if(foldBridgeGroup){
-        if(foldBridgeGroup.parent) foldBridgeGroup.parent.remove(foldBridgeGroup);
-        disposeObject3D(foldBridgeGroup);
-        foldBridgeGroup=null;
+      if(S.foldBridgeGroup){
+        if(S.foldBridgeGroup.parent) S.foldBridgeGroup.parent.remove(S.foldBridgeGroup);
+        disposeObject3D(S.foldBridgeGroup);
+        S.foldBridgeGroup=null;
       }
-      if(scene3d) scene3d.updateMatrixWorld(true);
+      if(S.scene3d) S.scene3d.updateMatrixWorld(true);
       disposeCreaseVisuals();   /* A1 (fuga GPU): líneas y cajas de selección anteriores se liberaban nunca */
-      creasePickables = [];
-      creaseVisuals = [];
-      if(!panelGroupMap.length || !foldTree.length) return;
+      S.creasePickables = [];
+      S.creaseVisuals = [];
+      if(!S.panelGroupMap.length || !S.foldTree.length) return;
       Object.keys(childrenOf || {}).forEach(function(parentKey){
         var parentIdx = parseInt(parentKey,10);
-        var parentGroup = panelGroupMap[parentIdx];
+        var parentGroup = S.panelGroupMap[parentIdx];
         if(!parentGroup) return;
         (childrenOf[parentKey] || []).forEach(function(ch){
           var edgeIdx = ch.edgeIdx;
           var ca = ch.crease.a, cb = ch.crease.b;
-          var p1 = {x:ca.x-foldCenter.x, y:ca.y-foldCenter.y};
-          var p2 = {x:cb.x-foldCenter.x, y:cb.y-foldCenter.y};
-          var z = currentThicknessMm + CREASE_LINE_Z_OFFSET;
+          var p1 = {x:ca.x-S.foldCenter.x, y:ca.y-S.foldCenter.y};
+          var p2 = {x:cb.x-S.foldCenter.x, y:cb.y-S.foldCenter.y};
+          var z = S.currentThicknessMm + CREASE_LINE_Z_OFFSET;
 
-          addFoldBridgeVisual(parentGroup, panelGroupMap[ch.child], edgeIdx, p1, p2, parentIdx, ch.child);
+          addFoldBridgeVisual(parentGroup, S.panelGroupMap[ch.child], edgeIdx, p1, p2, parentIdx, ch.child);
 
           var visibleGeom = new THREE.BufferGeometry();
           visibleGeom.setAttribute('position', new THREE.BufferAttribute(new Float32Array([
@@ -987,7 +968,7 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
           var segMidX = (p1.x+p2.x)/2;
           var segMidY = (p1.y+p2.y)/2;
           var segAngle = Math.atan2(p2.y-p1.y, p2.x-p1.x);
-          var pickGeom = new THREE.BoxGeometry(Math.max(segLen + 6, 8), Math.max(26, currentThicknessMm*9), Math.max(5.0, currentThicknessMm*3.2));
+          var pickGeom = new THREE.BoxGeometry(Math.max(segLen + 6, 8), Math.max(26, S.currentThicknessMm*9), Math.max(5.0, S.currentThicknessMm*3.2));
           var pickMat = new THREE.MeshBasicMaterial({
             color:0xffffff, transparent:true, opacity:0.001,
             depthTest:false, depthWrite:false
@@ -999,25 +980,25 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
           pickLine.userData = { edgeIdx: edgeIdx, role: 'pickCrease' };
           parentGroup.add(pickLine);
 
-          creasePickables.push(pickLine);
-          creasePickables.push(visibleLine);
-          creaseVisuals.push({edgeIdx:edgeIdx, visible:visibleLine, pick:pickLine});
+          S.creasePickables.push(pickLine);
+          S.creasePickables.push(visibleLine);
+          S.creaseVisuals.push({edgeIdx:edgeIdx, visible:visibleLine, pick:pickLine});
         });
       });
       updateSelectedCreaseVisuals();
     }
 
     function updateSelectedCreaseVisuals(){
-      creaseVisuals.forEach(function(entry){
+      S.creaseVisuals.forEach(function(entry){
         if(!entry.visible || !entry.visible.material) return;
-        var active = entry.edgeIdx===selectedFoldEdgeIdx;
+        var active = entry.edgeIdx===S.selectedFoldEdgeIdx;
         entry.visible.material.color.set(active ? '#ffd166' : '#ff4444');
         entry.visible.material.opacity = active ? 1 : 0.98;
         entry.visible.material.needsUpdate = true;
       });
       currentCreaseRows.forEach(function(row, idx){
         if(!row) return;
-        row.style.background = idx===selectedFoldEdgeIdx ? 'rgba(255,209,102,0.10)' : 'transparent';
+        row.style.background = idx===S.selectedFoldEdgeIdx ? 'rgba(255,209,102,0.10)' : 'transparent';
         row.style.borderRadius = '8px';
         row.style.padding = '2px 4px';
       });
@@ -1025,7 +1006,7 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
 
     function syncSelectedCreaseUI(){
       if(!selectedCreaseLabelEl || !selectedCreaseSliderEl || !selectedCreaseNumberEl) return;
-      if(selectedFoldEdgeIdx<0 || !foldTree[selectedFoldEdgeIdx]){
+      if(S.selectedFoldEdgeIdx<0 || !S.foldTree[S.selectedFoldEdgeIdx]){
         selectedCreaseLabelEl.textContent = 'Selected crease: none';
         selectedCreaseSliderEl.disabled = true;
         selectedCreaseNumberEl.disabled = true;
@@ -1034,9 +1015,9 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
         updateSelectedCreaseVisuals();
         return;
       }
-      var edge = foldTree[selectedFoldEdgeIdx];
-      var displayAngle = signedDisplayAngle(selectedFoldEdgeIdx, foldAngles[selectedFoldEdgeIdx] || 0);
-      selectedCreaseLabelEl.textContent = 'Selected crease: C'+selectedFoldEdgeIdx+' · P'+edge.parent+' → P'+edge.child+' · '+(displayAngle>0?'+':'')+displayAngle+'°';
+      var edge = S.foldTree[S.selectedFoldEdgeIdx];
+      var displayAngle = signedDisplayAngle(S.selectedFoldEdgeIdx, S.foldAngles[S.selectedFoldEdgeIdx] || 0);
+      selectedCreaseLabelEl.textContent = 'Selected crease: C'+S.selectedFoldEdgeIdx+' · P'+edge.parent+' → P'+edge.child+' · '+(displayAngle>0?'+':'')+displayAngle+'°';
       selectedCreaseSliderEl.disabled = false;
       selectedCreaseNumberEl.disabled = false;
       selectedCreaseSliderEl.value = String(displayAngle);
@@ -1045,36 +1026,36 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
     }
 
     function selectFoldEdge(edgeIdx, applyNow){
-      if(edgeIdx===null || edgeIdx===undefined || !foldTree.length){
-        selectedFoldEdgeIdx = -1;
+      if(edgeIdx===null || edgeIdx===undefined || !S.foldTree.length){
+        S.selectedFoldEdgeIdx = -1;
         syncSelectedCreaseUI();
         return;
       }
-      selectedFoldEdgeIdx = Math.max(0, Math.min(edgeIdx, foldTree.length-1));
+      S.selectedFoldEdgeIdx = Math.max(0, Math.min(edgeIdx, S.foldTree.length-1));
       setInteractionMode('fold', false);
       syncSelectedCreaseUI();
       if(applyNow) applyFolding();
     }
 
     function applySelectedCreaseAngle(angle){
-      if(selectedFoldEdgeIdx<0 || selectedFoldEdgeIdx>=foldAngles.length) return;
+      if(S.selectedFoldEdgeIdx<0 || S.selectedFoldEdgeIdx>=S.foldAngles.length) return;
       var clamped = Math.max(-180, Math.min(180, angle));
-      foldAngles[selectedFoldEdgeIdx] = internalAngleFromDisplay(selectedFoldEdgeIdx, clamped);
-      if(currentCreaseSliders[selectedFoldEdgeIdx]) updatePerCreaseRow(selectedFoldEdgeIdx);
+      S.foldAngles[S.selectedFoldEdgeIdx] = internalAngleFromDisplay(S.selectedFoldEdgeIdx, clamped);
+      if(currentCreaseSliders[S.selectedFoldEdgeIdx]) updatePerCreaseRow(S.selectedFoldEdgeIdx);
       syncSelectedCreaseUI();
       applyFolding();
     }
 
     function pickCreaseFromEvent(e){
-      if(!renderer3d || !camera3d || !raycaster3d || !pointer3d || !creasePickables.length) return false;
+      if(!S.renderer3d || !S.camera3d || !S.raycaster3d || !S.pointer3d || !S.creasePickables.length) return false;
       var rect = canvas3d.getBoundingClientRect();
       if(!rect.width || !rect.height) return false;
-      pointer3d.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-      pointer3d.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
-      raycaster3d.params.Line = raycaster3d.params.Line || {};
-      raycaster3d.params.Line.threshold = 40;
-      raycaster3d.setFromCamera(pointer3d, camera3d);
-      var hits = raycaster3d.intersectObjects(creasePickables, true).sort(function(a,b){ return a.distance-b.distance; });
+      S.pointer3d.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      S.pointer3d.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+      S.raycaster3d.params.Line = S.raycaster3d.params.Line || {};
+      S.raycaster3d.params.Line.threshold = 40;
+      S.raycaster3d.setFromCamera(S.pointer3d, S.camera3d);
+      var hits = S.raycaster3d.intersectObjects(S.creasePickables, true).sort(function(a,b){ return a.distance-b.distance; });
       if(!hits || !hits.length) return false;
       var edgeIdx = hits[0].object && hits[0].object.userData ? hits[0].object.userData.edgeIdx : null;
       if(edgeIdx===null || edgeIdx===undefined) return false;
@@ -1088,40 +1069,40 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
        APPLY FOLDING — hierarchical pivot rotation
        ================================================================ */
     function applyFolding(){
-      if(!scene3d || !panelMeshes.length) return;
+      if(!S.scene3d || !S.panelMeshes.length) return;
 
-      if(foldRoot && foldRoot.parent) foldRoot.parent.remove(foldRoot);
-      foldRoot=new THREE.Group();
-      foldRoot.rotation.x=-Math.PI/2;
-      scene3d.add(foldRoot);
+      if(S.foldRoot && S.foldRoot.parent) S.foldRoot.parent.remove(S.foldRoot);
+      S.foldRoot=new THREE.Group();
+      S.foldRoot.rotation.x=-Math.PI/2;
+      S.scene3d.add(S.foldRoot);
 
       var panelGroups=[];
-      panelGroupMap = panelGroups;
-      panelLabelSprites = [];
-      panelMeshes.forEach(function(mesh){
+      S.panelGroupMap = panelGroups;
+      S.panelLabelSprites = [];
+      S.panelMeshes.forEach(function(mesh){
         if(mesh.parent) mesh.parent.remove(mesh);
-        else scene3d.remove(mesh);
+        else S.scene3d.remove(mesh);
         mesh.rotation.set(0,0,0);
         mesh.position.set(0,0,0);
         var g=new THREE.Group();
         g.add(mesh);
         var pIdx = mesh.userData.panelIndex;
-        if(currentPanelData && currentPanelData.panels && currentPanelData.panels[pIdx]){
-          var pData = currentPanelData.panels[pIdx];
-          var showLabel = !baseSelectionConfirmed || pIdx===currentBasePanelIndex;
+        if(S.currentPanelData && S.currentPanelData.panels && S.currentPanelData.panels[pIdx]){
+          var pData = S.currentPanelData.panels[pIdx];
+          var showLabel = !S.baseSelectionConfirmed || pIdx===S.currentBasePanelIndex;
           if(showLabel){
-            var sp = makePanelLabelSprite('P'+pIdx, pIdx===currentBasePanelIndex);
-            sp.position.set((pData.centroid.x - foldCenter.x), (pData.centroid.y - foldCenter.y), currentThicknessMm + 5.0);
+            var sp = makePanelLabelSprite('P'+pIdx, pIdx===S.currentBasePanelIndex);
+            sp.position.set((pData.centroid.x - S.foldCenter.x), (pData.centroid.y - S.foldCenter.y), S.currentThicknessMm + 5.0);
             sp.userData = { panelIndex:pIdx, role:'panelLabel' };
             g.add(sp);
-            panelLabelSprites[pIdx] = sp;
+            S.panelLabelSprites[pIdx] = sp;
           }
         }
         panelGroups[pIdx]=g;
       });
 
       var childrenOf={};
-      foldTree.forEach(function(edge,ei){
+      S.foldTree.forEach(function(edge,ei){
         if(!childrenOf[edge.parent]) childrenOf[edge.parent]=[];
         childrenOf[edge.parent].push({child:edge.child,crease:edge.crease,edgeIdx:ei});
       });
@@ -1131,10 +1112,10 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
         attached[parentIdx]=true;
         var children=childrenOf[parentIdx]||[];
         children.forEach(function(ch){
-          var angle=(foldAngles[ch.edgeIdx]||0)*Math.PI/180;
+          var angle=(S.foldAngles[ch.edgeIdx]||0)*Math.PI/180;
           var ca=ch.crease.a, cb=ch.crease.b;
-          var p1={x:ca.x-foldCenter.x, y:ca.y-foldCenter.y};
-          var p2={x:cb.x-foldCenter.x, y:cb.y-foldCenter.y};
+          var p1={x:ca.x-S.foldCenter.x, y:ca.y-S.foldCenter.y};
+          var p2={x:cb.x-S.foldCenter.x, y:cb.y-S.foldCenter.y};
 
           var pivot=new THREE.Group();
           pivot.position.set(p1.x,p1.y,0);
@@ -1168,46 +1149,46 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
         });
       }
 
-      var baseIdx=Math.max(0, Math.min(currentBasePanelIndex, panelMeshes.length-1));
+      var baseIdx=Math.max(0, Math.min(S.currentBasePanelIndex, S.panelMeshes.length-1));
       if(panelGroups[baseIdx]){
-        foldRoot.add(panelGroups[baseIdx]);
+        S.foldRoot.add(panelGroups[baseIdx]);
         attachChildren(baseIdx,panelGroups[baseIdx]);
       }
 
       panelGroups.forEach(function(g,idx){
-        if(g && !attached[idx] && idx!==baseIdx) foldRoot.add(g);
+        if(g && !attached[idx] && idx!==baseIdx) S.foldRoot.add(g);
       });
 
       rebuildCreaseVisuals(childrenOf);
       refreshPanelMaterials();
-      if(scene3d) scene3d.updateMatrixWorld(true);
+      if(S.scene3d) S.scene3d.updateMatrixWorld(true);
     }
 
     function setBasePanel(newBase, rebuildUI, userSelected){
-      if(!currentPanelData || !currentAdjEdges) return;
-      currentBasePanelIndex = Math.max(0, Math.min(newBase, currentPanelData.panels.length-1));
-      if(userSelected) baseSelectionConfirmed = true;
-      foldTree = geometryEngine.buildFoldTree(currentPanelData.panels, currentAdjEdges, currentBasePanelIndex);
-      foldSigns = foldTree.map(function(edge){ return edge.sign || 1; });
-      foldAngles = foldTree.map(function(){ return 0; });
-      foldCenter = foldData ? foldData.center : {x:0,y:0};
-      selectedFoldEdgeIdx = foldTree.length ? 0 : -1;
-      if(rebuildUI) buildFoldUI(currentPanelData);
+      if(!S.currentPanelData || !S.currentAdjEdges) return;
+      S.currentBasePanelIndex = Math.max(0, Math.min(newBase, S.currentPanelData.panels.length-1));
+      if(userSelected) S.baseSelectionConfirmed = true;
+      S.foldTree = geometryEngine.buildFoldTree(S.currentPanelData.panels, S.currentAdjEdges, S.currentBasePanelIndex);
+      S.foldSigns = S.foldTree.map(function(edge){ return edge.sign || 1; });
+      S.foldAngles = S.foldTree.map(function(){ return 0; });
+      S.foldCenter = S.foldData ? S.foldData.center : {x:0,y:0};
+      S.selectedFoldEdgeIdx = S.foldTree.length ? 0 : -1;
+      if(rebuildUI) buildFoldUI(S.currentPanelData);
       applyFolding();
       fitCamera3D();
-      setStatus('3D ready · base=P'+currentBasePanelIndex+' · thickness='+currentThicknessMm.toFixed(1)+'mm');
+      setStatus('3D ready · base=P'+S.currentBasePanelIndex+' · thickness='+S.currentThicknessMm.toFixed(1)+'mm');
     }
 
     function buildFoldUI(panelData){
-      currentPanelData = panelData;
-      currentAdjEdges = geometryEngine.buildAdjacency(panelData.panels,panelData.creaseEdges);
-      if(currentBasePanelIndex<0 || currentBasePanelIndex>=panelData.panels.length){
-        currentBasePanelIndex = geometryEngine.defaultBaseIndex(panelData);
+      S.currentPanelData = panelData;
+      S.currentAdjEdges = geometryEngine.buildAdjacency(panelData.panels,panelData.creaseEdges);
+      if(S.currentBasePanelIndex<0 || S.currentBasePanelIndex>=panelData.panels.length){
+        S.currentBasePanelIndex = geometryEngine.defaultBaseIndex(panelData);
       }
-      foldTree = geometryEngine.buildFoldTree(panelData.panels,currentAdjEdges,currentBasePanelIndex);
-      foldSigns = foldTree.map(function(edge){ return edge.sign || 1; });
-      foldAngles = foldTree.map(function(){return 0;});
-      foldCenter = foldData?foldData.center:{x:0,y:0};
+      S.foldTree = geometryEngine.buildFoldTree(panelData.panels,S.currentAdjEdges,S.currentBasePanelIndex);
+      S.foldSigns = S.foldTree.map(function(edge){ return edge.sign || 1; });
+      S.foldAngles = S.foldTree.map(function(){return 0;});
+      S.foldCenter = S.foldData?S.foldData.center:{x:0,y:0};
 
       var existing=byId('fold-panel');
       if(existing) existing.remove();
@@ -1226,7 +1207,7 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
 
       var info=document.createElement('div');
       info.style.cssText='font-size:11px;opacity:0.78;margin-bottom:8px;line-height:1.35;';
-      info.textContent=nPanels+' panels, '+currentAdjEdges.length+' fold edges, base=P'+currentBasePanelIndex+(currentAdjEdges.length ? '. Alt/Option + click a red fold line in 3D. Shift + click any panel to change the base.' : '. No fold edges detected yet.');
+      info.textContent=nPanels+' panels, '+S.currentAdjEdges.length+' fold edges, base=P'+S.currentBasePanelIndex+(S.currentAdjEdges.length ? '. Alt/Option + click a red fold line in 3D. Shift + click any panel to change the base.' : '. No fold edges detected yet.');
       panel.appendChild(info);
 
       var selectedRow=document.createElement('div');
@@ -1256,7 +1237,7 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
         var opt=document.createElement('option');
         opt.value=i;
         opt.textContent='P'+i+' ('+Math.abs(p.area).toFixed(0)+' mm²)';
-        if(i===currentBasePanelIndex) opt.selected=true;
+        if(i===S.currentBasePanelIndex) opt.selected=true;
         baseSelect.appendChild(opt);
       });
       currentBaseSelect = baseSelect;
@@ -1294,11 +1275,11 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
       var creaseSliders=[];
       currentCreaseRows = [];
       currentCreaseSliders = creaseSliders;
-      foldTree.forEach(function(edge,ei){
+      S.foldTree.forEach(function(edge,ei){
         var row=document.createElement('div');
         row.style.cssText='display:flex;align-items:center;gap:8px;margin-bottom:4px;cursor:pointer;';
         var label=document.createElement('span');
-        label.textContent='C'+ei+'  P'+edge.parent+'→P'+edge.child+'  '+((foldSigns[ei]||1)>=0?'+':'−');
+        label.textContent='C'+ei+'  P'+edge.parent+'→P'+edge.child+'  '+((S.foldSigns[ei]||1)>=0?'+':'−');
         label.style.cssText='font-size:10px;font-weight:600;color:#66bbff;min-width:30px;';
         var slider=document.createElement('input');
         slider.type='range'; slider.min='-180'; slider.max='180'; slider.value='0';
@@ -1321,9 +1302,9 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
         slider.addEventListener('input',function(){
           var idx=parseInt(this.dataset.idx,10);
           var displayVal=parseFloat(this.value);
-          foldAngles[idx]=internalAngleFromDisplay(idx, displayVal);
+          S.foldAngles[idx]=internalAngleFromDisplay(idx, displayVal);
           val.textContent=(displayVal>0?'+':'')+displayVal+'°';
-          if(selectedFoldEdgeIdx===idx) syncSelectedCreaseUI();
+          if(S.selectedFoldEdgeIdx===idx) syncSelectedCreaseUI();
           applyFolding();
         });
       });
@@ -1338,7 +1319,7 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
       allSlider.addEventListener('input',function(){
         var v=parseFloat(allSlider.value);
         allVal.textContent=(v>0?'+':'')+v+'°';
-        foldAngles=foldAngles.map(function(){return v;});
+        S.foldAngles=S.foldAngles.map(function(){return v;});
         creaseSliders.forEach(function(cs,idx){ updatePerCreaseRow(idx); });
         syncSelectedCreaseUI();
         applyFolding();
@@ -1350,7 +1331,7 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
       resetBtn.style.marginTop='6px';
       resetBtn.addEventListener('click',function(){
         allSlider.value='0'; allVal.textContent='0°';
-        foldAngles=foldAngles.map(function(){return 0;});
+        S.foldAngles=S.foldAngles.map(function(){return 0;});
         creaseSliders.forEach(function(cs,idx){ updatePerCreaseRow(idx); });
         syncSelectedCreaseUI();
         applyFolding();
@@ -1374,17 +1355,17 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
       }else{
         threeView.appendChild(panel);
       }
-      if(!foldTree.length) selectedFoldEdgeIdx = -1;
-      else if(selectedFoldEdgeIdx<0 || selectedFoldEdgeIdx>=foldTree.length) selectedFoldEdgeIdx = 0;
+      if(!S.foldTree.length) S.selectedFoldEdgeIdx = -1;
+      else if(S.selectedFoldEdgeIdx<0 || S.selectedFoldEdgeIdx>=S.foldTree.length) S.selectedFoldEdgeIdx = 0;
       syncSelectedCreaseUI();
       applyFolding();
       refreshPanelMaterials();
-      setStatus(currentAdjEdges.length ? ('3D model ready - '+nPanels+' panels, '+currentAdjEdges.length+' fold edges') : ('3D model ready - '+nPanels+' panels, no fold edges detected'));
+      setStatus(S.currentAdjEdges.length ? ('3D model ready - '+nPanels+' panels, '+S.currentAdjEdges.length+' fold edges') : ('3D model ready - '+nPanels+' panels, no fold edges detected'));
     }
 
     function exportPNG(){
-      if(!renderer3d) return;
-      var url=renderer3d.domElement.toDataURL('image/png');
+      if(!S.renderer3d) return;
+      var url=S.renderer3d.domElement.toDataURL('image/png');
       var a=document.createElement('a');
       a.href=url; a.download='tesseract_3d.png'; a.click();
     }
@@ -1444,10 +1425,10 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
     }
 
     function buildExportSceneMeshes(){
-      if(!scene3d) return [];
-      scene3d.updateMatrixWorld(true);
+      if(!S.scene3d) return [];
+      S.scene3d.updateMatrixWorld(true);
       var out = [];
-      scene3d.traverse(function(obj){
+      S.scene3d.traverse(function(obj){
         if(!obj || !obj.isMesh) return;
         if(obj.userData && (obj.userData.role==='pickCrease' || obj.userData.role==='panelLabel')) return;
         if(obj.material && obj.material.opacity!==undefined && obj.material.transparent && obj.material.opacity < 0.01) return;
@@ -1644,8 +1625,8 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
     }
 
     async function exportGLB(){
-      if(!scene3d || !foldRoot) throw new Error('Build 3D first');
-      scene3d.updateMatrixWorld(true);
+      if(!S.scene3d || !S.foldRoot) throw new Error('Build 3D first');
+      S.scene3d.updateMatrixWorld(true);
       var blob = buildGLBBlobFromCurrentView();
       var out = await saveBlobWithDialog(blob, 'tesseract_model.glb');
       if(out && out.cancelled){
@@ -1743,9 +1724,9 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
           setStatus('No 3D panels could be generated from the dieline');
           return;
         }
-        currentPanelData = panelData;
-        if(currentBasePanelIndex<0 || currentBasePanelIndex>=panelData.panels.length){
-          currentBasePanelIndex = geometryEngine.defaultBaseIndex(panelData);
+        S.currentPanelData = panelData;
+        if(S.currentBasePanelIndex<0 || S.currentBasePanelIndex>=panelData.panels.length){
+          S.currentBasePanelIndex = geometryEngine.defaultBaseIndex(panelData);
         }
         var built = build3DFromPanels(panelData, lastData);
         if(!built){
@@ -1754,7 +1735,7 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
         }
         buildFoldUI(panelData);
         fitCamera3D();
-        setStatus('3D ready · thickness='+currentThicknessMm.toFixed(1)+'mm');
+        setStatus('3D ready · thickness='+S.currentThicknessMm.toFixed(1)+'mm');
         refreshArtwork();
       }catch(err){
         log('3D error: ' + err.message);
@@ -1769,21 +1750,21 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
         syncMaterialInputs();
         return;
       }
-      currentThicknessMm = Math.max(0.1, Math.min(parsed, 20));
+      S.currentThicknessMm = Math.max(0.1, Math.min(parsed, 20));
       syncMaterialInputs();
-      if(!currentPanelData){
+      if(!S.currentPanelData){
         setStatus('Thickness updated. Build 3D to apply it.');
         return;
       }
       try{
-        var built = build3DFromPanels(currentPanelData, lastData);
+        var built = build3DFromPanels(S.currentPanelData, lastData);
         if(!built){
           setStatus('3D rebuild failed');
           return;
         }
-        buildFoldUI(currentPanelData);
+        buildFoldUI(S.currentPanelData);
         fitCamera3D();
-        setStatus('Thickness applied: '+currentThicknessMm.toFixed(1)+'mm');
+        setStatus('Thickness applied: '+S.currentThicknessMm.toFixed(1)+'mm');
         applyArtworkToScene();
       }catch(err){
         log('Rebuild error: '+err.message);

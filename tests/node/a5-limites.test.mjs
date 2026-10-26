@@ -10,10 +10,10 @@ const imports = (f) => [...fs.readFileSync(path.join(SRC, f), 'utf8').matchAll(/
 const fnBody = (f, name) => { const s = fs.readFileSync(path.join(SRC, f), 'utf8'); const i = s.indexOf('function ' + name + '('); return s.slice(i, s.indexOf('\n}\n', i)); };
 
 test('inventario de src/ al cierre de A5 (los módulos aprobados y nada más)', () => {
-  assert.deepEqual(files.filter((f) => !f.startsWith('core/')), ['bridge/cep.js', 'bridge/fs.js', 'config/look.js', 'host/art.js', 'host/extract.js', 'host/save-dialog.js', 'host/test-connection.js', 'main.js']); // core/ (A6): inventario exacto en a6-limites
+  assert.deepEqual(files.filter((f) => !/^(core|app|scene|fold)\//.test(f)), ['bridge/cep.js', 'bridge/fs.js', 'config/look.js', 'host/art.js', 'host/extract.js', 'host/save-dialog.js', 'host/test-connection.js', 'main.js']); // core/ (A6): inventario exacto en a6-limites · app/, scene/, fold/ (A7): en a7-limites
 });
 test('main.js solo importa config/, host/ y bridge/; ningún módulo se importa a sí mismo ni hay ciclos', () => {
-  assert.deepEqual(imports('main.js').filter((i) => !i.startsWith('./core/')).sort(), ['./bridge/cep.js', './bridge/fs.js', './config/look.js', './host/art.js', './host/extract.js', './host/test-connection.js']);
+  assert.deepEqual(imports('main.js').filter((i) => !/^\.\/(core|app|scene|fold)\//.test(i)).sort(), ['./bridge/cep.js', './bridge/fs.js', './config/look.js', './host/art.js', './host/extract.js', './host/test-connection.js']);
   for (const f of files.filter((f) => f !== 'main.js')) for (const i of imports(f)) assert.notEqual(path.join(path.dirname(f), i), 'main.js', f);
 });
 test('config/ y host/ no importan nada; bridge/cep no importa nada; bridge/fs solo importa host/save-dialog', () => {
@@ -21,7 +21,7 @@ test('config/ y host/ no importan nada; bridge/cep no importa nada; bridge/fs so
   assert.deepEqual(imports('bridge/fs.js'), ['../host/save-dialog.js']);
 });
 test('THREE solo en main.js; document solo en main.js y en triggerDownload (bridge/fs); window.cep solo en saveBlobWithDialog', () => {
-  for (const f of files.filter((f) => f !== 'main.js')) {
+  for (const f of files.filter((f) => f !== 'main.js' && !/^(scene|fold)\//.test(f))) { // A7: THREE, document y window en scene/ y fold/ los regula a7-limites
     assert.doesNotMatch(code(f), /\bTHREE\b/, f);
     const doc = code(f).match(/\bdocument\b/g) || []; if (f === 'bridge/fs.js') assert.equal(doc.length, (fnBody(f, 'triggerDownload').match(/\bdocument\b/g) || []).length, 'document fuera de triggerDownload'); else assert.equal(doc.length, 0, f);
     if (/^(config|host)\//.test(f)) assert.doesNotMatch(code(f), /\bwindow\b/, f);

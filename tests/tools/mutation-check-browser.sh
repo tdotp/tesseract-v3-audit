@@ -33,11 +33,16 @@ run "puente: ensureCep ya no deshabilita «Back»"     "Puente CEP · (baseline|
 run "KI-25 corregido sin tarea (mensaje final del GLB)" "Puente CEP · (baseline|bundle)" "s/setStatus('GLB exported from current 3D pose');//" tests/browser/bridge.test.mjs
 run "KI-24 corregido sin tarea (buildChildrenOfMap)" "Puente CEP · (baseline|bundle)" 's/rebuildCreaseVisuals(buildChildrenOfMap());/rebuildCreaseVisuals([]);/' tests/browser/bridge.test.mjs
 # A6.0a — número y orden de llamadas al motor (solo lo ve el log de depuración, T1): setBasePanel deja de recalcular el árbol (buildFoldUI lo recalcula igual)
-run "A6 · log: setBasePanel ya no llama a buildFoldTree"      "Log de depuración \(A6\)"      's/foldTree = geometryEngine.buildFoldTree(currentPanelData.panels, currentAdjEdges, currentBasePanelIndex);/foldTree = foldTree;/'  # A6.6: la llamada pasa por geometryEngine
+run "A6 · log: setBasePanel ya no llama a buildFoldTree"      "Log de depuración \(A6\)"      's/S.foldTree = geometryEngine.buildFoldTree(S.currentPanelData.panels, S.currentAdjEdges, S.currentBasePanelIndex);/S.foldTree = S.foldTree;/'  # A6.6: la llamada pasa por geometryEngine · A7.1: mismo efecto con el prefijo S.
 # A6.6 — el adaptador del motor en el bundle real: si ignora la base elegida, el log y la interacción Shift+clic lo delatan
 run "A6 · adaptador: el motor ignora la base elegida (bundle)"  "Log de depuración \(A6\)"  's/    buildFoldTree: buildFoldTree,/    buildFoldTree: function(p, a, b){ return buildFoldTree(p, a, 0); },/'
 # A7.0a — ciclo de vida de los recursos (A1) y datos de escena que antes no observaba ninguna prueba (docs/fase1/A7_PROPUESTA.md §9.4)
 run "A7 · clearAllMeshes deja de liberar los visuales de pliegue"  "A7 · ciclo de vida"  's/      disposeCreaseVisuals();   \/\* A1 \*\//      \/\* A7-mut \*\//'  tests/browser/a7.test.mjs
 run "A7 · disposeObject3D deja de recorrer los hijos"             "A7 · ciclo de vida"  's/obj.children.slice().forEach(function(ch){ disposeObject3D(ch); });/void 0;/'  tests/browser/a7.test.mjs
 run "A7 · centro del panel (userData.center) calculado distinto"  "A7 · inventario de escena"  's/center:getPolyCentroid(centered),/center:getPolyCentroid(centered.slice(1)),/'  tests/browser/a7.test.mjs
+# A7.1 — estado compartido S y vista de depuración
+run "A7 · orden de inserción: fold-bridges pasa delante en la escena (G1)"  "A7 · inventario de escena"  's/S.scene3d.add(S.foldBridgeGroup);/S.scene3d.add(S.foldBridgeGroup); S.scene3d.children.unshift(S.scene3d.children.pop());/'  tests/browser/a7.test.mjs
+run "A7 · vista de depuración: baseIndex devuelve otro campo"           "Interacciones · bundle"     's/get baseIndex(){return S.currentBasePanelIndex}/get baseIndex(){return S.selectedFoldEdgeIdx}/'
+run "A7 · estado inicial: espesor 0.30 en createAppState"              "Regresión · baseline vs bundle \(caja\)"  's/currentThicknessMm: DEFAULT_THICKNESS_MM,/currentThicknessMm: 0.30,/'
+run "A7 · clearAllMeshes libera la textura de arte compartida (rompe L1)" "A7 · ciclo de vida"  's/      disposeLabelCache();      \/\* A1 \*\//      disposeLabelCache();      \/\* A1 \*\/ if(S.currentArtState \&\& S.currentArtState.front) S.currentArtState.front.texture.dispose();/'  tests/browser/a7.test.mjs
 echo "mutaciones detectadas: $ok · no detectadas: $bad"; [ "$bad" = 0 ]

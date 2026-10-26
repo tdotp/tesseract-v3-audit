@@ -1,0 +1,37 @@
+{
+ "soloEnA": [],
+ "soloEnB": [
+  "createAppState",
+  "__tessDebugView"
+ ],
+ "distintas": [],
+ "lineasQuitadas": [
+  "1× var currentThicknessMm = DEFAULT_THICKNESS_MM;",
+  "1× var currentMaterialPreset = \"white\";",
+  "1× var currentPanelData = null;",
+  "1× var currentAdjEdges = null;",
+  "1× var currentBasePanelIndex = 0;",
+  "1× var currentArtState = null;",
+  "1× var creasePickables = [];",
+  "1× var creaseVisuals = [];",
+  "1× var panelGroupMap = [];",
+  "1× var selectedFoldEdgeIdx = -1;",
+  "1× var panelLabelSprites = [];",
+  "1× var foldSigns = [];",
+  "1× var baseSelectionConfirmed = false;",
+  "1× var renderer3d = null, scene3d = null, camera3d = null;",
+  "1× var orbitState = null;",
+  "1× var panelMeshes = [];",
+  "1× var foldBridgeGroup = null;",
+  "1× var foldData = null;",
+  "1× var foldRoot = null;",
+  "1× var foldAngles = [];",
+  "1× var foldTree = [];",
+  "1× var foldCenter = { x: 0, y: 0 };",
+  "1× var raycaster3d = null;",
+  "1× var pointer3d = null;"
+ ],
+ "lineasAnadidas": [
+  "1× var S = createAppState();"
+ ]
+}
