@@ -1,0 +1,12 @@
+# A6.4 — equivalencia del bundle A6.3 → A6.4 (normalización log2/log( → LOG; node tests/tools/bundle-eq.mjs). Resultado: relocalización pura.
+{
+ "soloEnA": [
+  "LOG#778"
+ ],
+ "soloEnB": [
+  "LOG#946"
+ ],
+ "distintas": [],
+ "lineasQuitadas": [],
+ "lineasAnadidas": []
+}

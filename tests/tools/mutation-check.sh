@@ -30,4 +30,7 @@ mut "límites: bridge/cep toca document (a5-limites)"  's/return !!window.__adob
 # A6.0a — contratos del motor que los goldens de geometría NO ven (log, alias): los detectan a6-logs-golden y a6-contratos
 mut "A6 · log del motor: texto de la adyacencia estricta"   "s/' (strict)');/' (estricta)');/"
 mut "A6 · alias: la adyacencia estricta copia el creaseEdge" 's/adj.push({panelA:sharing\[0\],panelB:sharing\[1\],crease:ce,creaseIdx:ce.creaseIdx});/adj.push({panelA:sharing[0],panelB:sharing[1],crease:{a:ce.a,b:ce.b,creaseIdx:ce.creaseIdx,segIdx:ce.segIdx},creaseIdx:ce.creaseIdx});/'
+# A6.4 — motor ya en core/legacy/ (cada patrón cambia exactamente 1 línea); fallos reales que ven las pruebas de comportamiento:
+mut "A6 · adyacencia robusta: eps 1.0 → 0.1 (pierde adyacencias en los respaldos)" 's/  var eps = Math.max(GRAPH_EPS, 1.0);/  var eps = Math.max(GRAPH_EPS, 0.1);/'
+mut "A6 · signo de pliegue invertido (montaña/valle)"  's/  var cross = vx \* (cc.y - ay) - vy \* (cc.x - ax);/  var cross = vy * (cc.x - ax) - vx * (cc.y - ay);/'
 echo "mutaciones detectadas: $ok · no detectadas: $bad"; [ "$bad" = 0 ]
