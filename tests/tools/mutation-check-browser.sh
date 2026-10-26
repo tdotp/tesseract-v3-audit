@@ -64,9 +64,11 @@ run "A8 · GLB: el fallo de la textura ya no se registra"         "A8 · E4 · .
 run "A8 · GLB: la exportación marca la textura como sucia (muta la escena)" "A8 · E1/E2"  "s/var cvs = document.createElement('canvas');/var cvs = document.createElement('canvas'); texture.needsUpdate = true;/" $A8
 run "A8 · exportGLB: el diálogo se abre ANTES de construir el Blob" "A8 · E4/E5"        "s/var blob = buildGLBBlobFromCurrentView();/var blob = (await saveBlobWithDialog(new Blob([], { type:'model\/gltf-binary' }), 'x'), buildGLBBlobFromCurrentView());/" $A8
 # A8.1 — glb-bytes: cableado de main.js y contenido de los ayudantes
-run "A8.1 · cableado: main.js no importa typedArrayFromList"      "A8 · N1"             's/import { padBytes, toUint8View, typedArrayFromList } from/import { padBytes, toUint8View } from/' $A8
+run "A8.1 · cableado: main.js no importa toUint8View"             "A8 · N1"             's/import { padBytes, toUint8View } from/import { padBytes } from/' $A8   # A8.3: typedArrayFromList ya no se usa en main.js
 run "A8.1 · toUint8View corta 4 bytes"                            "A8 · N1"             's/typed.byteOffset||0, typed.byteLength)/typed.byteOffset||0, typed.byteLength-4)/' $A8
 # A8.2 — glb-image: cableado del log (try/catch silencioso) y contenido de las imágenes
 run "A8.2 · cableado: main.js no pasa log a createGlbImage"       "A8 · E4 · .*textura"  's/createGlbImage({ log })/createGlbImage({})/' $A8
 run "A8.2 · bytesFromDataURL pierde el último byte (PNG truncado)" "A8 · N2"             's/    for(var i=0;i<bin.length;i++) out\[i\] = bin.charCodeAt(i);/    for(var i=0;i<bin.length-1;i++) out[i] = bin.charCodeAt(i);/' $A8
+# A8.3 — glb-scene: cableado de S (copia obsoleta, patrón de A7)
+run "A8.3 · glb-scene: copia obsoleta de S al crear la fábrica"  "A8 · N1"             's/^export function createGlbScene(S){$/export function createGlbScene(S){ S = Object.assign({}, S);/' $A8
 echo "mutaciones detectadas: $ok · no detectadas: $bad"; [ "$bad" = 0 ]

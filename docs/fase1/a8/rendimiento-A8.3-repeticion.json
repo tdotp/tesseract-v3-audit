@@ -1,0 +1,657 @@
+{
+ "fecha": "2026-10-26T20:21:16.341Z",
+ "referencia": "a322d7a",
+ "actual": "src/ (árbol de trabajo)",
+ "corridas_por_bundle": 20,
+ "entorno": "Chrome headless (cdp.mjs), Caja Botánica real; piso optimista, no CEP",
+ "resumen": {
+  "construir_ms": {
+   "ref": 38.8,
+   "act": 38.45,
+   "degradacion_pct": -0.9,
+   "veredicto": "OK"
+  },
+  "reconstruir_ms": {
+   "ref": 1.533,
+   "act": 1.558,
+   "degradacion_pct": 1.6,
+   "veredicto": "OK"
+  },
+  "plegado_tick_ms": {
+   "ref": 0.354,
+   "act": 0.355,
+   "degradacion_pct": 0.3,
+   "veredicto": "OK"
+  },
+  "glb_export_ms": {
+   "ref": 5.9,
+   "act": 5.9,
+   "degradacion_pct": 0,
+   "veredicto": "OK"
+  },
+  "glb_export_arte_ms": {
+   "ref": 391.75,
+   "act": 392.4,
+   "degradacion_pct": 0.2,
+   "veredicto": "OK"
+  },
+  "fps_reposo": {
+   "ref": 61.1,
+   "act": 61,
+   "degradacion_pct": 0.2,
+   "veredicto": "OK"
+  },
+  "fps_orbita": {
+   "ref": 60.8,
+   "act": 60.8,
+   "degradacion_pct": 0,
+   "veredicto": "OK"
+  }
+ },
+ "crudo": {
+  "ref": [
+   {
+    "construir_ms": 46.3,
+    "reconstruir_ms": 1.8700000002980233,
+    "plegado_tick_ms": 0.3546666666616996,
+    "glb_export_ms": 6.100000001490116,
+    "glb_export_arte_ms": 388.29999999701977,
+    "fps_reposo": 60.8,
+    "fps_orbita": 60.7,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -0.2
+    }
+   },
+   {
+    "construir_ms": 37.5,
+    "reconstruir_ms": 1.55,
+    "plegado_tick_ms": 0.33800000001986824,
+    "glb_export_ms": 5.899999998509884,
+    "glb_export_arte_ms": 387.70000000298023,
+    "fps_reposo": 61.3,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -72.9
+    }
+   },
+   {
+    "construir_ms": 39,
+    "reconstruir_ms": 1.8049999997019768,
+    "plegado_tick_ms": 0.33666666666666667,
+    "glb_export_ms": 5.799999997019768,
+    "glb_export_arte_ms": 392.30000000447035,
+    "fps_reposo": 61,
+    "fps_orbita": 60.7,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -11.1
+    }
+   },
+   {
+    "construir_ms": 35.4,
+    "reconstruir_ms": 1.625,
+    "plegado_tick_ms": 0.31333333333333335,
+    "glb_export_ms": 5.699999995529652,
+    "glb_export_arte_ms": 393.19999999552965,
+    "fps_reposo": 61,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.6
+    }
+   },
+   {
+    "construir_ms": 39.4,
+    "reconstruir_ms": 1.5200000002980232,
+    "plegado_tick_ms": 0.3440000000099341,
+    "glb_export_ms": 5.800000004470348,
+    "glb_export_arte_ms": 388.09999999403954,
+    "fps_reposo": 61.4,
+    "fps_orbita": 60.7,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.6
+    }
+   },
+   {
+    "construir_ms": 39,
+    "reconstruir_ms": 1.3899999998509884,
+    "plegado_tick_ms": 0.34766666665673257,
+    "glb_export_ms": 5.800000004470348,
+    "glb_export_arte_ms": 391.6000000014901,
+    "fps_reposo": 60.9,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.6
+    }
+   },
+   {
+    "construir_ms": 38.5,
+    "reconstruir_ms": 1.475,
+    "plegado_tick_ms": 0.3490000000099341,
+    "glb_export_ms": 5.899999998509884,
+    "glb_export_arte_ms": 390.79999999701977,
+    "fps_reposo": 60.8,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -11.1
+    }
+   },
+   {
+    "construir_ms": 24.7,
+    "reconstruir_ms": 1.4199999999254942,
+    "plegado_tick_ms": 0.35733333331843214,
+    "glb_export_ms": 6,
+    "glb_export_arte_ms": 395.30000000447035,
+    "fps_reposo": 61.1,
+    "fps_orbita": 60.7,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.5
+    }
+   },
+   {
+    "construir_ms": 43.5,
+    "reconstruir_ms": 1.4,
+    "plegado_tick_ms": 0.35699999998013177,
+    "glb_export_ms": 6,
+    "glb_export_arte_ms": 389.5,
+    "fps_reposo": 61.2,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -11.2
+    }
+   },
+   {
+    "construir_ms": 41.1,
+    "reconstruir_ms": 1.4199999999254942,
+    "plegado_tick_ms": 0.3540000000099341,
+    "glb_export_ms": 6.100000001490116,
+    "glb_export_arte_ms": 391.8999999985099,
+    "fps_reposo": 61.4,
+    "fps_orbita": 60.7,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.7
+    }
+   },
+   {
+    "construir_ms": 22.3,
+    "reconstruir_ms": 1.6799999997019768,
+    "plegado_tick_ms": 0.3546666666616996,
+    "glb_export_ms": 6,
+    "glb_export_arte_ms": 385.70000000298023,
+    "fps_reposo": 61.4,
+    "fps_orbita": 60.7,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.9
+    }
+   },
+   {
+    "construir_ms": 42.4,
+    "reconstruir_ms": 1.5449999999254942,
+    "plegado_tick_ms": 0.35299999999503295,
+    "glb_export_ms": 6,
+    "glb_export_arte_ms": 392.90000000596046,
+    "fps_reposo": 61.2,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.9
+    }
+   },
+   {
+    "construir_ms": 38,
+    "reconstruir_ms": 1.5449999999254942,
+    "plegado_tick_ms": 0.35200000000496706,
+    "glb_export_ms": 5.899999998509884,
+    "glb_export_arte_ms": 386,
+    "fps_reposo": 61,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.7
+    }
+   },
+   {
+    "construir_ms": 39.8,
+    "reconstruir_ms": 1.5199999999254943,
+    "plegado_tick_ms": 0.3413333333283663,
+    "glb_export_ms": 5.5,
+    "glb_export_arte_ms": 392,
+    "fps_reposo": 60.9,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.6
+    }
+   },
+   {
+    "construir_ms": 38.8,
+    "reconstruir_ms": 1.5350000001490116,
+    "plegado_tick_ms": 0.3536666666716337,
+    "glb_export_ms": 5.899999998509884,
+    "glb_export_arte_ms": 389,
+    "fps_reposo": 61.2,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.6
+    }
+   },
+   {
+    "construir_ms": 37.1,
+    "reconstruir_ms": 1.5350000001490116,
+    "plegado_tick_ms": 0.3590000000099341,
+    "glb_export_ms": 5.899999998509884,
+    "glb_export_arte_ms": 392.80000000447035,
+    "fps_reposo": 61.4,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -11.1
+    }
+   },
+   {
+    "construir_ms": 37.4,
+    "reconstruir_ms": 1.5300000000745058,
+    "plegado_tick_ms": 0.35833333333333334,
+    "glb_export_ms": 5.9000000059604645,
+    "glb_export_arte_ms": 389.70000000298023,
+    "fps_reposo": 61.5,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.5
+    }
+   },
+   {
+    "construir_ms": 37.4,
+    "reconstruir_ms": 1.4649999998509884,
+    "plegado_tick_ms": 0.35399999998509885,
+    "glb_export_ms": 5.799999997019768,
+    "glb_export_arte_ms": 405.30000000447035,
+    "fps_reposo": 61.1,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.7
+    }
+   },
+   {
+    "construir_ms": 38.8,
+    "reconstruir_ms": 1.5399999998509883,
+    "plegado_tick_ms": 0.36633333335320156,
+    "glb_export_ms": 5.899999998509884,
+    "glb_export_arte_ms": 393.09999999403954,
+    "fps_reposo": 61,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.6
+    }
+   },
+   {
+    "construir_ms": 40.4,
+    "reconstruir_ms": 1.3949999999254943,
+    "plegado_tick_ms": 0.3576666666567326,
+    "glb_export_ms": 5.600000001490116,
+    "glb_export_arte_ms": 392,
+    "fps_reposo": 61.1,
+    "fps_orbita": 60.9,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.6
+    }
+   }
+  ],
+  "act": [
+   {
+    "construir_ms": 45.3,
+    "reconstruir_ms": 1.825,
+    "plegado_tick_ms": 0.3779999999950329,
+    "glb_export_ms": 5.200000002980232,
+    "glb_export_arte_ms": 389.3999999985099,
+    "fps_reposo": 61.4,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -29.9
+    }
+   },
+   {
+    "construir_ms": 29.9,
+    "reconstruir_ms": 1.555000000074506,
+    "plegado_tick_ms": 0.3383333333333333,
+    "glb_export_ms": 5.699999995529652,
+    "glb_export_arte_ms": 387.79999999701977,
+    "fps_reposo": 60.9,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -75.3
+    }
+   },
+   {
+    "construir_ms": 36.7,
+    "reconstruir_ms": 1.5400000002235175,
+    "plegado_tick_ms": 0.3416666666666667,
+    "glb_export_ms": 5.399999998509884,
+    "glb_export_arte_ms": 392.20000000298023,
+    "fps_reposo": 61,
+    "fps_orbita": 60.7,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.6
+    }
+   },
+   {
+    "construir_ms": 35.4,
+    "reconstruir_ms": 1.569999999925494,
+    "plegado_tick_ms": 0.345,
+    "glb_export_ms": 5.799999997019768,
+    "glb_export_arte_ms": 388.5,
+    "fps_reposo": 61,
+    "fps_orbita": 60.7,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.6
+    }
+   },
+   {
+    "construir_ms": 36.8,
+    "reconstruir_ms": 1.525,
+    "plegado_tick_ms": 0.34799999999503295,
+    "glb_export_ms": 5.699999995529652,
+    "glb_export_arte_ms": 395.09999999403954,
+    "fps_reposo": 61.2,
+    "fps_orbita": 60.9,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.6
+    }
+   },
+   {
+    "construir_ms": 38.5,
+    "reconstruir_ms": 1.5149999998509884,
+    "plegado_tick_ms": 0.3526666666567326,
+    "glb_export_ms": 5.699999995529652,
+    "glb_export_arte_ms": 392.8999999985099,
+    "fps_reposo": 60.9,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.6
+    }
+   },
+   {
+    "construir_ms": 41.5,
+    "reconstruir_ms": 1.6100000001490116,
+    "plegado_tick_ms": 0.34633333335320154,
+    "glb_export_ms": 6,
+    "glb_export_arte_ms": 391.8999999985099,
+    "fps_reposo": 61.1,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.7
+    }
+   },
+   {
+    "construir_ms": 39.2,
+    "reconstruir_ms": 1.4399999998509885,
+    "plegado_tick_ms": 0.34733333334326744,
+    "glb_export_ms": 5.899999998509884,
+    "glb_export_arte_ms": 392.69999999552965,
+    "fps_reposo": 61,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -11
+    }
+   },
+   {
+    "construir_ms": 38.6,
+    "reconstruir_ms": 1.5600000001490115,
+    "plegado_tick_ms": 0.35533333333830036,
+    "glb_export_ms": 5.9000000059604645,
+    "glb_export_arte_ms": 393.6000000014901,
+    "fps_reposo": 61.5,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.7
+    }
+   },
+   {
+    "construir_ms": 38.4,
+    "reconstruir_ms": 1.4100000001490116,
+    "plegado_tick_ms": 0.3566666666666667,
+    "glb_export_ms": 5.899999998509884,
+    "glb_export_arte_ms": 390,
+    "fps_reposo": 60.9,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -11.2
+    }
+   },
+   {
+    "construir_ms": 27.5,
+    "reconstruir_ms": 1.6300000000745059,
+    "plegado_tick_ms": 0.3636666666716337,
+    "glb_export_ms": 5.600000001490116,
+    "glb_export_arte_ms": 393,
+    "fps_reposo": 61,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.9
+    }
+   },
+   {
+    "construir_ms": 37.4,
+    "reconstruir_ms": 1.5850000001490117,
+    "plegado_tick_ms": 0.3536666666716337,
+    "glb_export_ms": 6,
+    "glb_export_arte_ms": 393.19999999552965,
+    "fps_reposo": 60.9,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.5
+    }
+   },
+   {
+    "construir_ms": 37.6,
+    "reconstruir_ms": 1.4,
+    "plegado_tick_ms": 0.35700000000496707,
+    "glb_export_ms": 5.899999998509884,
+    "glb_export_arte_ms": 391.79999999701977,
+    "fps_reposo": 60.9,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.6
+    }
+   },
+   {
+    "construir_ms": 39,
+    "reconstruir_ms": 1.5800000000745058,
+    "plegado_tick_ms": 0.3590000000099341,
+    "glb_export_ms": 5.899999998509884,
+    "glb_export_arte_ms": 389.90000000596046,
+    "fps_reposo": 60.9,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.6
+    }
+   },
+   {
+    "construir_ms": 37.3,
+    "reconstruir_ms": 1.5199999999254943,
+    "plegado_tick_ms": 0.3543333333233992,
+    "glb_export_ms": 5.899999998509884,
+    "glb_export_arte_ms": 388.70000000298023,
+    "fps_reposo": 61,
+    "fps_orbita": 60.9,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -11.1
+    }
+   },
+   {
+    "construir_ms": 38.8,
+    "reconstruir_ms": 1.555000000074506,
+    "plegado_tick_ms": 0.3516666666666667,
+    "glb_export_ms": 5.700000002980232,
+    "glb_export_arte_ms": 392.09999999403954,
+    "fps_reposo": 60.9,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.6
+    }
+   },
+   {
+    "construir_ms": 41.8,
+    "reconstruir_ms": 1.6050000000745057,
+    "plegado_tick_ms": 0.35933333332339923,
+    "glb_export_ms": 5.799999997019768,
+    "glb_export_arte_ms": 402.5,
+    "fps_reposo": 61.2,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.6
+    }
+   },
+   {
+    "construir_ms": 41.1,
+    "reconstruir_ms": 1.5800000000745058,
+    "plegado_tick_ms": 0.36299999999503296,
+    "glb_export_ms": 5.9000000059604645,
+    "glb_export_arte_ms": 394.29999999701977,
+    "fps_reposo": 61.3,
+    "fps_orbita": 60.7,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.6
+    }
+   },
+   {
+    "construir_ms": 38.1,
+    "reconstruir_ms": 1.6,
+    "plegado_tick_ms": 0.36200000000496707,
+    "glb_export_ms": 6,
+    "glb_export_arte_ms": 398.3999999985099,
+    "fps_reposo": 61.2,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.8
+    }
+   },
+   {
+    "construir_ms": 44,
+    "reconstruir_ms": 1.4,
+    "plegado_tick_ms": 0.35633333332836625,
+    "glb_export_ms": 5.9000000059604645,
+    "glb_export_arte_ms": 392.6000000014901,
+    "fps_reposo": 61.4,
+    "fps_orbita": 60.7,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.6
+    }
+   }
+  ]
+ }
+}

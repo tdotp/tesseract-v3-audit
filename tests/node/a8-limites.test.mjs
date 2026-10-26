@@ -5,11 +5,11 @@ import test from 'node:test'; import assert from 'node:assert/strict'; import fs
 import { SRC, srcFiles, codeOnly, functionsAnyIndent } from '../lib/a7.mjs'; import { freeIdentifiers, KNOWN_GLOBALS } from '../lib/a8.mjs';
 
 // Estado esperado en ESTE paso (se actualiza en cada paso aprobado; igualdad exacta).
-const INVENTORY = ['export/glb-bytes.js', 'export/glb-image.js']; // A8.2
+const INVENTORY = ['export/glb-bytes.js', 'export/glb-image.js', 'export/glb-scene.js']; // A8.3
 const RULES = { // por módulo: lo que exporta y dónde se permiten THREE / document (y HTMLCanvasElement) / S.scene3d / imports
   'export/glb-bytes.js': { exports: ['padBytes', 'toUint8View', 'typedArrayFromList'], three: [], doc: [], S: false, imports: [] },
   'export/glb-image.js': { exports: ['createGlbImage'], three: [], doc: ['textureToImageBytes'], S: false, imports: [] },
-  'export/glb-scene.js': { exports: ['createGlbScene'], three: ['buildExportSceneMeshes'], doc: [], S: true, imports: [] },
+  'export/glb-scene.js': { exports: ['createGlbScene'], three: ['buildExportSceneMeshes'], doc: [], S: true, imports: ['./glb-bytes.js'] },
   'export/glb-builder.js': { exports: ['createGlbBuilder'], three: ['materialKey', 'buildGLBBlobFromCurrentView'], doc: [], S: false, imports: ['./glb-bytes.js'] } };
 
 const files = srcFiles().filter((f) => /^export\//.test(f)); const raw = (f) => fs.readFileSync(path.join(SRC, f), 'utf8');
@@ -29,7 +29,7 @@ test('THREE solo dentro de las funciones previstas; document y HTMLCanvasElement
     assert.equal(countIn(raw(f), 'window'), 0, `${f}: window`); }
 });
 test('S: solo glb-scene.js lo usa, y únicamente como S.scene3d', () => {
-  for (const f of files) { const c = codeOnly(raw(f)); const usos = c.match(/(?<![\w.$])S\b(?!\s*:)/g) || [];
+  for (const f of files) { const c = codeOnly(raw(f)).replace(/function createGlbScene\(S\)/, 'function createGlbScene()'); const usos = c.match(/(?<![\w.$])S\b(?!\s*:)/g) || [];
     if (!RULES[f].S) { assert.equal(usos.length, 0, `${f}: S`); continue; }
     const bien = c.match(/(?<![\w.$])S\.scene3d\b/g) || []; assert.equal(usos.length, bien.length, `${f}: S solo como S.scene3d`); }
 });

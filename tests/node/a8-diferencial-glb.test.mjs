@@ -57,7 +57,21 @@ test('N4 · las escenas aleatorias producen GLB válidos (al menos 8 de 16 no va
 });
 
 // Qué parte de la exportación sale ya de los módulos de src/export/ en este paso (se actualiza en cada paso aprobado; igualdad exacta).
-const ORIGEN_ESPERADO = { bytesFromDataURL: 'export/glb-image.js', textureToImageBytes: 'export/glb-image.js', padBytes: 'export/glb-bytes.js', toUint8View: 'export/glb-bytes.js', typedArrayFromList: 'export/glb-bytes.js', buildExportSceneMeshes: 'main.js', materialKey: 'main.js', buildGLBBlobFromCurrentView: 'main.js' }; // A8.2
+const ORIGEN_ESPERADO = { bytesFromDataURL: 'export/glb-image.js', textureToImageBytes: 'export/glb-image.js', padBytes: 'export/glb-bytes.js', toUint8View: 'export/glb-bytes.js', typedArrayFromList: 'export/glb-bytes.js', buildExportSceneMeshes: 'export/glb-scene.js', materialKey: 'main.js', buildGLBBlobFromCurrentView: 'main.js' }; // A8.3
 test('N4 · el objetivo src toma de los módulos reales de export/ exactamente lo ya movido (el resto, del texto de main.js)', async () => {
   const ex = await loadExporter('src', null, () => {}); assert.deepEqual(ex.__origen, ORIGEN_ESPERADO);
+});
+
+// I-E3 (contrato de buildExportSceneMeshes): exportar no modifica geometrías, materiales ni la jerarquía de la escena (solo la caché matrixWorld). Se compara una instantánea antes y después.
+function snapshot(scene) {
+  const rows = []; const sum = (a) => { let s = 0; for (let i = 0; i < a.length; i++) s += a[i] * ((i % 7) + 1); return s; };
+  scene.traverse((o) => { const g = o.geometry, m = o.material && !Array.isArray(o.material) ? o.material : null;
+    rows.push([o.type, o.name, o.uuid, o.children.length, o.visible, o.userData && o.userData.role || '', o.position.toArray(), o.scale.toArray(),
+      g ? [g.uuid, Object.keys(g.attributes).sort(), g.attributes.position ? sum(g.attributes.position.array) : 0, g.index ? sum(g.index.array) : -1] : null, m ? [m.uuid, m.type, m.color ? m.color.getHexString() : null, m.opacity, m.transparent, m.side, m.map ? [m.map.uuid, m.map.version] : null] : null]); });
+  return JSON.stringify(rows);
+}
+test('N4 · I-E3: exportar no modifica geometrías, materiales ni jerarquía (baseline, panel y src)', async () => {
+  for (const [name, make] of Object.entries(CASES)) { if (name.startsWith('KI-28') || name === 'sin escena (null)') continue;
+    for (const t of TARGETS) { const { scene } = make(); if (!scene) continue; const antes = snapshot(scene); const ex = await loadExporter(t, scene, () => {}); try { ex.buildGLBBlobFromCurrentView(); } catch (e) { /* escena vacía: no hay nada que comparar */ }
+      assert.equal(snapshot(scene), antes, `${name} (${t}): la exportación modificó la escena`); } }
 });

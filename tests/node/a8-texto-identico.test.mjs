@@ -7,9 +7,9 @@ import test from 'node:test'; import assert from 'node:assert/strict'; import fs
 import { SRC, srcFiles, functionsAnyIndent, norm, residual, multisetDiff } from '../lib/a7.mjs'; import { EXPORT_FUNCTIONS, refTree, refMain } from '../lib/a8.mjs';
 
 // Estado esperado en ESTE paso (se actualiza en cada paso aprobado; igualdad exacta).
-const NEW_FUNCTIONS = ['createGlbImage']; // A8.2: fábrica nueva; bytesFromDataURL y textureToImageBytes cambian de archivo (ahora dentro de ella), no son nuevas
-const EXPECTED_RESIDUAL = { quitadas: [], anadidas: ["import { padBytes, toUint8View, typedArrayFromList } from './export/glb-bytes.js';", "import { createGlbImage } from './export/glb-image.js';",
-  "var { textureToImageBytes } = createGlbImage({ log }); /* A8.2: codificación de texturas para el GLB (bytesFromDataURL queda interna) */"] };
+const NEW_FUNCTIONS = ['createGlbImage', 'createGlbScene']; // A8.3: fábricas nuevas; las 5 funciones movidas cambian de archivo, no son nuevas
+const EXPECTED_RESIDUAL = { quitadas: [], anadidas: ["import { padBytes, toUint8View } from './export/glb-bytes.js';", "import { createGlbImage } from './export/glb-image.js';", "import { createGlbScene } from './export/glb-scene.js';",
+  "var { textureToImageBytes } = createGlbImage({ log }); /* A8.2: codificación de texturas para el GLB (bytesFromDataURL queda interna) */", "var { buildExportSceneMeshes } = createGlbScene(S); /* A8.3: recorrido de la escena para el GLB */"] };
 
 const ref = refTree(); const refMainText = refMain();
 const key = (f) => f.name + '\n' + norm(f.text);
