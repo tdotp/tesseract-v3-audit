@@ -1,0 +1,191 @@
+{
+ "fecha": "2026-10-26T07:55:17.992Z",
+ "referencia": "2939dbc",
+ "actual": "src/ (árbol de trabajo)",
+ "corridas_por_bundle": 5,
+ "entorno": "Chrome headless (cdp.mjs), Caja Botánica real; piso optimista, no CEP",
+ "resumen": {
+  "construir_ms": {
+   "ref": 36.9,
+   "act": 38.5,
+   "degradacion_pct": 4.3,
+   "veredicto": "OK"
+  },
+  "reconstruir_ms": {
+   "ref": 1.685,
+   "act": 1.675,
+   "degradacion_pct": -0.6,
+   "veredicto": "OK"
+  },
+  "plegado_tick_ms": {
+   "ref": 0.346,
+   "act": 0.352,
+   "degradacion_pct": 1.7,
+   "veredicto": "OK"
+  },
+  "glb_export_ms": {
+   "ref": 2.4,
+   "act": 3,
+   "degradacion_pct": 25,
+   "veredicto": "DETENER (> 25 %)"
+  },
+  "fps_reposo": {
+   "ref": 60.8,
+   "act": 61.1,
+   "degradacion_pct": -0.5,
+   "veredicto": "OK"
+  },
+  "fps_orbita": {
+   "ref": 60.8,
+   "act": 60.8,
+   "degradacion_pct": 0,
+   "veredicto": "OK"
+  }
+ },
+ "crudo": {
+  "ref": [
+   {
+    "construir_ms": 51,
+    "reconstruir_ms": 1.8699999999254941,
+    "plegado_tick_ms": 0.36333333333333334,
+    "glb_export_ms": 2.399999998509884,
+    "fps_reposo": 60.8,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -0.1
+    }
+   },
+   {
+    "construir_ms": 36.1,
+    "reconstruir_ms": 1.6850000001490115,
+    "plegado_tick_ms": 0.3383333333333333,
+    "glb_export_ms": 2.5,
+    "fps_reposo": 61.2,
+    "fps_orbita": 60.7,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.8
+    }
+   },
+   {
+    "construir_ms": 36.6,
+    "reconstruir_ms": 1.6050000000745057,
+    "plegado_tick_ms": 0.34599999999006587,
+    "glb_export_ms": 3.100000001490116,
+    "fps_reposo": 60.9,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.6
+    }
+   },
+   {
+    "construir_ms": 36.9,
+    "reconstruir_ms": 1.5900000002235175,
+    "plegado_tick_ms": 0.3426666666815678,
+    "glb_export_ms": 2.2999999970197678,
+    "fps_reposo": 60.8,
+    "fps_orbita": 60.9,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.8
+    }
+   },
+   {
+    "construir_ms": 40.6,
+    "reconstruir_ms": 2.030000000074506,
+    "plegado_tick_ms": 0.3640000000099341,
+    "glb_export_ms": 2.100000001490116,
+    "fps_reposo": 60.8,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": 13.5
+    }
+   }
+  ],
+  "act": [
+   {
+    "construir_ms": 52,
+    "reconstruir_ms": 1.930000000074506,
+    "plegado_tick_ms": 0.405,
+    "glb_export_ms": 3,
+    "fps_reposo": 60.9,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": 1.5
+    }
+   },
+   {
+    "construir_ms": 37.8,
+    "reconstruir_ms": 1.675,
+    "plegado_tick_ms": 0.35200000000496706,
+    "glb_export_ms": 3,
+    "fps_reposo": 60.8,
+    "fps_orbita": 60.7,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.8
+    }
+   },
+   {
+    "construir_ms": 38.5,
+    "reconstruir_ms": 1.6050000000745057,
+    "plegado_tick_ms": 0.34100000001490116,
+    "glb_export_ms": 2.7000000029802322,
+    "fps_reposo": 61.1,
+    "fps_orbita": 60.7,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -11.1
+    }
+   },
+   {
+    "construir_ms": 42.3,
+    "reconstruir_ms": 1.65,
+    "plegado_tick_ms": 0.3196666666616996,
+    "glb_export_ms": 2.7999999970197678,
+    "fps_reposo": 61.3,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -17.5
+    }
+   },
+   {
+    "construir_ms": 36.2,
+    "reconstruir_ms": 1.85,
+    "plegado_tick_ms": 0.35533333333830036,
+    "glb_export_ms": 4.5,
+    "fps_reposo": 61.3,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": 13.6
+    }
+   }
+  ]
+ }
+}

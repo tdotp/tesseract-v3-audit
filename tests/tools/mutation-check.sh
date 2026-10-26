@@ -41,4 +41,6 @@ mut "A6 · adaptador: buildPanels clona la entrada (rompe los alias I4)"  's/   
 mut "A6 · límites: core/legacy/log.js toca document"  's/export function log(m){ if(sink) sink(m); }/export function log(m){ if(sink \&\& document) sink(m); }/'
 # A7.2 — regla 8 de a7-limites: un campo de S usado sin «S.» en un módulo (sería un ReferenceError diferido)
 mut "A7 · materials: campo de S sin prefijo (referencia suelta)"  's/return MATERIAL_PRESETS\[S.currentMaterialPreset\] || MATERIAL_PRESETS.white;/return MATERIAL_PRESETS[currentMaterialPreset] || MATERIAL_PRESETS.white;/'
+# A7.3 — a7-limites: document fuera de init3D en el visor
+mut "A7 · viewport: resize3D toca document"  's/if(!S.renderer3d||!S.camera3d) return;/if(!S.renderer3d||!S.camera3d||!document) return;/'
 echo "mutaciones detectadas: $ok · no detectadas: $bad"; [ "$bad" = 0 ]

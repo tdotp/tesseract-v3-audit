@@ -1,0 +1,11 @@
+{
+ "funcionesAnteriores": 136,
+ "funcionesNuevas": 137,
+ "identicas": 136,
+ "distintas": [],
+ "duplicadas": [],
+ "soloEnAnterior": [],
+ "soloEnNuevo": [
+  "createViewport"
+ ]
+}
