@@ -55,3 +55,9 @@ test('N4 · las escenas aleatorias producen GLB válidos (al menos 8 de 16 no va
   const rs = Object.entries(results).filter(([n]) => n.startsWith('aleatoria ')).map(([, v]) => v.baseline); assert.equal(rs.length, 16);
   assert.ok(rs.filter((r) => r.ok).length >= 8, 'demasiadas escenas vacías'); assert.ok(new Set(rs.filter((r) => r.ok).map((r) => r.sha)).size >= 8);
 });
+
+// Qué parte de la exportación sale ya de los módulos de src/export/ en este paso (se actualiza en cada paso aprobado; igualdad exacta).
+const ORIGEN_ESPERADO = { bytesFromDataURL: 'main.js', textureToImageBytes: 'main.js', padBytes: 'export/glb-bytes.js', toUint8View: 'export/glb-bytes.js', typedArrayFromList: 'export/glb-bytes.js', buildExportSceneMeshes: 'main.js', materialKey: 'main.js', buildGLBBlobFromCurrentView: 'main.js' }; // A8.1
+test('N4 · el objetivo src toma de los módulos reales de export/ exactamente lo ya movido (el resto, del texto de main.js)', async () => {
+  const ex = await loadExporter('src', null, () => {}); assert.deepEqual(ex.__origen, ORIGEN_ESPERADO);
+});

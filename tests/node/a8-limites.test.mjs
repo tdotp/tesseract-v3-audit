@@ -5,7 +5,7 @@ import test from 'node:test'; import assert from 'node:assert/strict'; import fs
 import { SRC, srcFiles, codeOnly, functionsAnyIndent } from '../lib/a7.mjs'; import { freeIdentifiers, KNOWN_GLOBALS } from '../lib/a8.mjs';
 
 // Estado esperado en ESTE paso (se actualiza en cada paso aprobado; igualdad exacta).
-const INVENTORY = []; // A8.0b: sin src/export/ todavía
+const INVENTORY = ['export/glb-bytes.js']; // A8.1
 const RULES = { // por módulo: lo que exporta y dónde se permiten THREE / document (y HTMLCanvasElement) / S.scene3d / imports
   'export/glb-bytes.js': { exports: ['padBytes', 'toUint8View', 'typedArrayFromList'], three: [], doc: [], S: false, imports: [] },
   'export/glb-image.js': { exports: ['createGlbImage'], three: [], doc: ['textureToImageBytes'], S: false, imports: [] },

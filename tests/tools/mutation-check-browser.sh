@@ -63,4 +63,7 @@ run "A8 · GLB: magFilter del sampler 9729 → 9728"                "A8 · (N3|E
 run "A8 · GLB: el fallo de la textura ya no se registra"         "A8 · E4 · .*textura"  "s/try{ log('Texture image encode failed: '+ex1.message); }catch(exlog){}//" $A8
 run "A8 · GLB: la exportación marca la textura como sucia (muta la escena)" "A8 · E1/E2"  "s/var cvs = document.createElement('canvas');/var cvs = document.createElement('canvas'); texture.needsUpdate = true;/" $A8
 run "A8 · exportGLB: el diálogo se abre ANTES de construir el Blob" "A8 · E4/E5"        "s/var blob = buildGLBBlobFromCurrentView();/var blob = (await saveBlobWithDialog(new Blob([], { type:'model\/gltf-binary' }), 'x'), buildGLBBlobFromCurrentView());/" $A8
+# A8.1 — glb-bytes: cableado de main.js y contenido de los ayudantes
+run "A8.1 · cableado: main.js no importa typedArrayFromList"      "A8 · N1"             's/import { padBytes, toUint8View, typedArrayFromList } from/import { padBytes, toUint8View } from/' $A8
+run "A8.1 · toUint8View corta 4 bytes"                            "A8 · N1"             's/typed.byteOffset||0, typed.byteLength)/typed.byteOffset||0, typed.byteLength-4)/' $A8
 echo "mutaciones detectadas: $ok · no detectadas: $bad"; [ "$bad" = 0 ]

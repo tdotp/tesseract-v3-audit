@@ -7,8 +7,8 @@ import test from 'node:test'; import assert from 'node:assert/strict'; import fs
 import { SRC, srcFiles, functionsAnyIndent, norm, residual, multisetDiff } from '../lib/a7.mjs'; import { EXPORT_FUNCTIONS, refTree, refMain } from '../lib/a8.mjs';
 
 // Estado esperado en ESTE paso (se actualiza en cada paso aprobado; igualdad exacta).
-const NEW_FUNCTIONS = []; // A8.0b: nada movido todavía
-const EXPECTED_RESIDUAL = { quitadas: [], anadidas: [] };
+const NEW_FUNCTIONS = []; // A8.1: padBytes, toUint8View y typedArrayFromList cambian de archivo, no son nuevas
+const EXPECTED_RESIDUAL = { quitadas: [], anadidas: ["import { padBytes, toUint8View, typedArrayFromList } from './export/glb-bytes.js';"] };
 
 const ref = refTree(); const refMainText = refMain();
 const key = (f) => f.name + '\n' + norm(f.text);

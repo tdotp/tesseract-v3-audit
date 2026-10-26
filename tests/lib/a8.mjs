@@ -88,7 +88,8 @@ export async function loadExporter(target, scene, log) {
   const rest = EXPORT_FUNCTIONS.filter((n) => !(n in got)); const mainFns = functionsAnyIndent(fs.readFileSync(path.join(SRC, 'main.js'), 'utf8')).filter((f) => f.indent === 4);
   const body = rest.map((n) => { const f = mainFns.find((x) => x.name === n); if (!f) throw new Error('src/main.js: falta ' + n); return f.text; }).join('\n');
   const names = Object.keys(got); const fn = new Function('S', 'log', ...names, `${body}\nreturn { ${rest.join(', ')} };`); const loc = fn(S, log, ...names.map((k) => got[k]));
-  return { ...got, ...loc };
+  const origen = Object.fromEntries(EXPORT_FUNCTIONS.map((n) => [n, where[n] || 'main.js']));
+  return { ...got, ...loc, __origen: origen };
 }
 
 // ───────────────────────── Escenas sintéticas ─────────────────────────

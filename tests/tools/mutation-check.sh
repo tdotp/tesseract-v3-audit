@@ -64,4 +64,10 @@ mutN4 "A8 · GLB: alphaMode ya no depende de transparent"         "s/if(alpha < 
 mutN4 "A8 · GLB: el fallo de la textura ya no se registra en el log" "s/try{ log('Texture image encode failed: '+ex1.message); }catch(exlog){}//"
 mutN4 "A8 · GLB: posiciones sin matrixWorld"                     's/.applyMatrix4(obj.matrixWorld);/;/'
 mutN4 "A8 · GLB: magFilter del sampler 9729 → 9728"              's/magFilter:9729/magFilter:9728/'
+# A8.1 — src/export/glb-bytes.js (N4 sobre los módulos reales; límites de a8-limites)
+mutN4 "A8.1 · glb-bytes: padBytes copia desde el byte 1"        's/  out.set(u8,0);/  out.set(u8,1);/'
+mutN4 "A8.1 · glb-bytes: padBytes ignora el valor de relleno"   's/out\[i\] = padVal || 0;/out[i] = 0;/'
+mutN4 "A8.1 · glb-bytes: toUint8View corta 4 bytes"             's/typed.byteOffset||0, typed.byteLength)/typed.byteOffset||0, typed.byteLength-4)/'
+mutN4 "A8.1 · glb-bytes: typedArrayFromList omite el último"    's/for(var i=0;i<list.length;i++) arr\[i\] = list\[i\];/for(var i=0;i<list.length-1;i++) arr[i] = list[i];/'
+mut   "A8.1 · límites: glb-bytes.js toca document (a8-limites)"  's/export function padBytes(u8, padVal){/export function padBytes(u8, padVal){ if(document){}/'
 echo "mutaciones detectadas: $ok · no detectadas: $bad"; [ "$bad" = 0 ]

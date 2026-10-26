@@ -14,6 +14,7 @@ import { createArtwork } from './scene/artwork.js';
 import { createPanelMeshes } from './scene/panel-meshes.js';
 import { createCreaseVisuals } from './scene/crease-visuals.js';
 import { createFolding } from './fold/folding.js';
+import { padBytes, toUint8View, typedArrayFromList } from './export/glb-bytes.js';
 
 (function () {
   'use strict';
@@ -643,25 +644,6 @@ import { createFolding } from './fold/folding.js';
         try{ log('Texture image encode failed: '+ex1.message); }catch(exlog){}
         return null;
       }
-    }
-
-    function padBytes(u8, padVal){
-      var pad = (4 - (u8.length % 4)) % 4;
-      if(!pad) return u8;
-      var out = new Uint8Array(u8.length + pad);
-      out.set(u8,0);
-      for(var i=u8.length;i<out.length;i++) out[i] = padVal || 0;
-      return out;
-    }
-
-    function toUint8View(typed){
-      return new Uint8Array(typed.buffer, typed.byteOffset||0, typed.byteLength);
-    }
-
-    function typedArrayFromList(list, ctor){
-      var arr = new ctor(list.length);
-      for(var i=0;i<list.length;i++) arr[i] = list[i];
-      return arr;
     }
 
     function buildExportSceneMeshes(){
