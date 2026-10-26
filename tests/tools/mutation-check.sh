@@ -33,4 +33,6 @@ mut "A6 · alias: la adyacencia estricta copia el creaseEdge" 's/adj.push({panel
 # A6.4 — motor ya en core/legacy/ (cada patrón cambia exactamente 1 línea); fallos reales que ven las pruebas de comportamiento:
 mut "A6 · adyacencia robusta: eps 1.0 → 0.1 (pierde adyacencias en los respaldos)" 's/  var eps = Math.max(GRAPH_EPS, 1.0);/  var eps = Math.max(GRAPH_EPS, 0.1);/'
 mut "A6 · signo de pliegue invertido (montaña/valle)"  's/  var cross = vx \* (cc.y - ay) - vy \* (cc.x - ax);/  var cross = vy * (cc.x - ax) - vx * (cc.y - ay);/'
+# A6.5 — validación separada: numeración de problemas (el golden no incluye el id; lo fija a6-validacion)
+mut "A6 · validación: los id de problema empiezan en P0"  "s/id:'P'+(problems.length+1)/id:'P'+problems.length/"
 echo "mutaciones detectadas: $ok · no detectadas: $bad"; [ "$bad" = 0 ]

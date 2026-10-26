@@ -38,18 +38,22 @@ export const GEOMETRY_FUNCTIONS = ['distPtSeg', 'segsFromPath', 'buildAllSegs', 
   'polygonSignedArea', 'polygonCentroid', 'pointOnSegment2D', 'pointInPolygonInclusive', 'contourContainsContour', 'classifyClosedCutContours', 'faceBounds', 'buildPanels',
   'getPolyCentroid', 'edgeMatch', 'buildAdjacencyStrict', 'buildAdjacency', 'buildFoldTree', 'computeFoldSign', 'getDefaultBaseIndex'];
 
+// A6.5 (D-A6-3): el cálculo de la validación vive en validateDieline (core/legacy/validate.js) solo en src/; la validateGeometry de main.js queda como presentación.
+const SRC_ONLY_FUNCTIONS = ['validateDieline'];
 export function loadGeometry(file) {
   const src = sourceText(file), fns = extractFunctions(src), consts = extractConstants(src);
+  const isSrc = path.resolve(file) === path.resolve(TARGETS.src); const extra = isSrc ? SRC_ONLY_FUNCTIONS : [];
+  for (const n of SRC_ONLY_FUNCTIONS) if (fns.has(n) !== isSrc) throw new Error(`${n}: ${isSrc ? 'falta en src/' : 'no debe existir en ' + file}`);
   const missing = GEOMETRY_FUNCTIONS.filter((n) => !fns.has(n)); if (missing.length) throw new Error('funciones no encontradas: ' + missing.join(', '));
   const count = (re) => (src.match(re) || []).length; // A6: definición única (si quedara una copia vieja, extractFunctions se quedaría con la última sin avisar)
-  for (const n of GEOMETRY_FUNCTIONS) { const k = count(new RegExp('^(?: {4}|)(?:export )?function ' + n + '\\(', 'gm')); if (k !== 1) throw new Error(`función ${n} definida ${k} veces`); }
+  for (const n of [...GEOMETRY_FUNCTIONS, ...extra]) { const k = count(new RegExp('^(?: {4}|)(?:export )?function ' + n + '\\(', 'gm')); if (k !== 1) throw new Error(`función ${n} definida ${k} veces`); }
   for (const n of ['TOLERANCE_MM', 'GRAPH_EPS']) { const k = count(new RegExp('^(?:    var|export const) ' + n + '\\s*=', 'gm')); if (k !== 1) throw new Error(`constante ${n} definida ${k} veces`); }
   const code = `(function(){
     var TOLERANCE_MM=${consts.TOLERANCE_MM}, GRAPH_EPS=${consts.GRAPH_EPS};
     var logs=[]; function log(m){ logs.push(String(m)); }
     var problems=[]; var problemsList={innerHTML:'',appendChild:function(){}}; var validationStatus={textContent:'',className:''}; var continueBtn={disabled:true};
     var document={createElement:function(){return {textContent:'',onclick:null};}}; var lastData=null; function render2D(){}
-    ${GEOMETRY_FUNCTIONS.map((n) => fns.get(n)).join('\n')}
+    ${[...GEOMETRY_FUNCTIONS, ...extra].map((n) => fns.get(n)).join('\n')}
     return { ${GEOMETRY_FUNCTIONS.join(', ')}, logs:logs, getProblems:function(){return problems;}, resetLogs:function(){logs.length=0;}, problemsList:problemsList, validationStatus:validationStatus, continueBtn:continueBtn };
   })()`;
   const api = vm.runInNewContext(code, {}, { filename: file });

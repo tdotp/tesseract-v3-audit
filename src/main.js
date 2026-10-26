@@ -5,11 +5,11 @@ import { TEST_CONNECTION_SCRIPT } from './host/test-connection.js';
 import { hasCep, evalScript, evalScriptJSON, pathToFileURL } from './bridge/cep.js';
 import { saveBlobWithDialog } from './bridge/fs.js';
 import { buildAdjacency } from './core/legacy/adjacency.js';
-import { TOLERANCE_MM } from './core/legacy/constants.js';
 import { buildFoldTree, getDefaultBaseIndex } from './core/legacy/fold-tree.js';
-import { distPtSeg, getPolyCentroid } from './core/legacy/geom2d.js';
+import { getPolyCentroid } from './core/legacy/geom2d.js';
 import { setLogSink } from './core/legacy/log.js';
 import { buildPanels } from './core/legacy/panels.js';
+import { validateDieline } from './core/legacy/validate.js';
 
 (function () {
   'use strict';
@@ -379,41 +379,12 @@ import { buildPanels } from './core/legacy/panels.js';
     }
 
     /* ================================================================
-       GEOMETRY UTILS
+       VALIDATION (presentación). Cálculo: src/core/legacy/validate.js (A6.5); utilidades 2D: src/core/legacy/geom2d.js
        ================================================================ */
-    function segsFromPath(pathObj,closed,type,meta){
-      var s=[];
-      if(!pathObj||!pathObj.points||pathObj.points.length<2) return s;
-      var pts=pathObj.points.map(function(p){return p.anchor;});
-      for(var i=0;i<pts.length-1;i++) s.push({a:pts[i],b:pts[i+1],type:type,meta:meta});
-      if(closed) s.push({a:pts[pts.length-1],b:pts[0],type:type,meta:meta});
-      return s;
-    }
-
-    function buildAllSegs(data){
-      var s=[];
-      s.push.apply(s, segsFromPath(data.outerBoundary,true,'outer',null));
-      (data.holes||[]).forEach(function(h,i){ s.push.apply(s, segsFromPath(h,true,'hole',{i:i})); });
-      (data.cutLines||[]).forEach(function(cl,i){ s.push.apply(s, segsFromPath(cl.geom,false,'cutLine',{i:i})); });
-      (data.creases||[]).forEach(function(cr,i){ s.push.apply(s, segsFromPath(cr,false,'crease',{i:i})); });
-      return s;
-    }
-
     function validateGeometry(data){
       problems=[]; problemsList.innerHTML='';
       if(!data||data.error){ validationStatus.textContent='Waiting...'; validationStatus.className='check-status'; continueBtn.disabled=true; return; }
-      var allS=buildAllSegs(data);
-      (data.creases||[]).forEach(function(cr,ci){
-        if(!cr.points||cr.points.length<2) return;
-        [cr.points[0].anchor, cr.points[cr.points.length-1].anchor].forEach(function(ep){
-          var best=Infinity;
-          for(var i=0;i<allS.length;i++){
-            var sg=allS[i]; if(sg.type==='crease'&&sg.meta&&sg.meta.i===ci) continue;
-            var d=distPtSeg(ep,sg.a,sg.b); if(d<best) best=d;
-          }
-          if(best>TOLERANCE_MM) problems.push({id:'P'+(problems.length+1),type:'Crease endpoint unconnected',dist:Number(best.toFixed(2)),point:ep});
-        });
-      });
+      problems=validateDieline(data).problems; /* A6.5: cálculo puro en core/legacy/validate.js; aquí solo la presentación */
       if(problems.length===0){
         validationStatus.textContent='\u2705 No problems found';
         validationStatus.className='check-status status-ok';

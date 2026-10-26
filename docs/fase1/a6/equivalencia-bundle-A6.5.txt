@@ -1,0 +1,98 @@
+# A6.5 — equivalencia del bundle A6.4 → A6.5 (normalización log2/log( → LOG; node tests/tools/bundle-eq.mjs).
+# Resultado esperado y obtenido: única función distinta = validateGeometry (presentación); nueva = validateDieline (cálculo). El resto, relocalización.
+{
+ "soloEnA": [
+  "LOG#946"
+ ],
+ "soloEnB": [
+  "validateDieline",
+  "LOG#991"
+ ],
+ "distintas": [
+  "validateGeometry"
+ ],
+ "lineasQuitadas": [],
+ "lineasAnadidas": []
+}
+
+# diff -u de las líneas afectadas del bundle
+--- .scratch/bundle-A6.4.js	2026-10-25 19:34:44
++++ .scratch/bundle-A6.5.js	2026-10-25 20:01:50
+@@ -1,4 +1,4 @@
+-/* Tesseract V3 · bundle IIFE · fuente main.js sha256:b5eb3a77b909efcf · esbuild 0.28.2 · target chrome99 · NO editar a mano (tools/build/build.mjs) */
++/* Tesseract V3 · bundle IIFE · fuente main.js sha256:ed09ff5df21b277a · esbuild 0.28.2 · target chrome99 · NO editar a mano (tools/build/build.mjs) */
+@@ -873,6 +873,51 @@
++  }
++
++  // src/core/legacy/validate.js
++  function segsFromPath(pathObj, closed, type, meta) {
++    var s = [];
++    if (!pathObj || !pathObj.points || pathObj.points.length < 2) return s;
++    var pts = pathObj.points.map(function(p) {
++      return p.anchor;
++    });
++    for (var i = 0; i < pts.length - 1; i++) s.push({ a: pts[i], b: pts[i + 1], type, meta });
++    if (closed) s.push({ a: pts[pts.length - 1], b: pts[0], type, meta });
++    return s;
++  }
++  function buildAllSegs(data) {
++    var s = [];
++    s.push.apply(s, segsFromPath(data.outerBoundary, true, "outer", null));
++    (data.holes || []).forEach(function(h, i) {
++      s.push.apply(s, segsFromPath(h, true, "hole", { i }));
++    });
++    (data.cutLines || []).forEach(function(cl, i) {
++      s.push.apply(s, segsFromPath(cl.geom, false, "cutLine", { i }));
++    });
++    (data.creases || []).forEach(function(cr, i) {
++      s.push.apply(s, segsFromPath(cr, false, "crease", { i }));
++    });
++    return s;
++  }
++  function validateDieline(data) {
++    var problems = [];
++    if (!data || data.error) return { problems };
++    var allS = buildAllSegs(data);
++    (data.creases || []).forEach(function(cr, ci) {
++      if (!cr.points || cr.points.length < 2) return;
++      [cr.points[0].anchor, cr.points[cr.points.length - 1].anchor].forEach(function(ep) {
++        var best = Infinity;
++        for (var i = 0; i < allS.length; i++) {
++          var sg = allS[i];
++          if (sg.type === "crease" && sg.meta && sg.meta.i === ci) continue;
++          var d = distPtSeg(ep, sg.a, sg.b);
++          if (d < best) best = d;
++        }
++        if (best > TOLERANCE_MM) problems.push({ id: "P" + (problems.length + 1), type: "Crease endpoint unconnected", dist: Number(best.toFixed(2)), point: ep });
++      });
++    });
++    return { problems };
+@@ -1251,30 +1296,6 @@
+-      }
+-      function segsFromPath(pathObj, closed, type, meta) {
+-        var s = [];
+-        if (!pathObj || !pathObj.points || pathObj.points.length < 2) return s;
+-        var pts = pathObj.points.map(function(p) {
+-          return p.anchor;
+-        });
+-        for (var i = 0; i < pts.length - 1; i++) s.push({ a: pts[i], b: pts[i + 1], type, meta });
+-        if (closed) s.push({ a: pts[pts.length - 1], b: pts[0], type, meta });
+-        return s;
+-      }
+-      function buildAllSegs(data) {
+-        var s = [];
+-        s.push.apply(s, segsFromPath(data.outerBoundary, true, "outer", null));
+-        (data.holes || []).forEach(function(h, i) {
+-          s.push.apply(s, segsFromPath(h, true, "hole", { i }));
+-        });
+-        (data.cutLines || []).forEach(function(cl, i) {
+-          s.push.apply(s, segsFromPath(cl.geom, false, "cutLine", { i }));
+-        });
+-        (data.creases || []).forEach(function(cr, i) {
+-          s.push.apply(s, segsFromPath(cr, false, "crease", { i }));
+-        });
+-        return s;
+@@ -1285,20 +1306,7 @@
+-        var allS = buildAllSegs(data);
+-        (data.creases || []).forEach(function(cr, ci) {
+-          if (!cr.points || cr.points.length < 2) return;
