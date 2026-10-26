@@ -5,6 +5,9 @@ import { TEST_CONNECTION_SCRIPT } from './host/test-connection.js';
 import { hasCep, evalScript, evalScriptJSON, pathToFileURL } from './bridge/cep.js';
 import { saveBlobWithDialog } from './bridge/fs.js';
 import { TOLERANCE_MM, GRAPH_EPS } from './core/legacy/constants.js';
+import { distPtSeg, polygonSignedArea, polygonCentroid, pointInPolygonInclusive, faceBounds, getPolyCentroid, edgeMatch } from './core/legacy/geom2d.js';
+import { setLogSink } from './core/legacy/log.js';
+import { buildTopology } from './core/legacy/topology.js';
 
 (function () {
   'use strict';
@@ -80,6 +83,7 @@ import { TOLERANCE_MM, GRAPH_EPS } from './core/legacy/constants.js';
       if(logArea){ logArea.textContent += String(m)+"\n"; logArea.scrollTop=logArea.scrollHeight; }
     }
     function clearLog(){ if(logArea){ logArea.textContent=''; } if(debugDetails) debugDetails.open=false; }
+    setLogSink(log); /* A6.2: el motor (core/legacy) escribe en este mismo log() */
 
     function hasArtworkLoaded(){
       return !!(currentArtState && ((currentArtState.front && currentArtState.front.texture) || (currentArtState.back && currentArtState.back.texture)));
@@ -375,14 +379,6 @@ import { TOLERANCE_MM, GRAPH_EPS } from './core/legacy/constants.js';
     /* ================================================================
        GEOMETRY UTILS
        ================================================================ */
-    function distPtSeg(p,a,b){
-      var l2=(b.x-a.x)*(b.x-a.x)+(b.y-a.y)*(b.y-a.y);
-      if(l2===0) return Math.hypot(p.x-a.x,p.y-a.y);
-      var t=((p.x-a.x)*(b.x-a.x)+(p.y-a.y)*(b.y-a.y))/l2;
-      t=Math.max(0,Math.min(1,t));
-      return Math.hypot(p.x-(a.x+t*(b.x-a.x)), p.y-(a.y+t*(b.y-a.y)));
-    }
-
     function segsFromPath(pathObj,closed,type,meta){
       var s=[];
       if(!pathObj||!pathObj.points||pathObj.points.length<2) return s;
@@ -470,138 +466,7 @@ import { TOLERANCE_MM, GRAPH_EPS } from './core/legacy/constants.js';
       });
     }
 
-    /* ================================================================
-       PLANAR GRAPH TOPOLOGY ENGINE
-       ================================================================ */
-    function dist2d(a,b){ return Math.hypot(a.x-b.x, a.y-b.y); }
-    function ptEq(a,b){ return dist2d(a,b) < GRAPH_EPS; }
-
-    function segSegIntersect(a1,a2,b1,b2){
-      var det=(a2.x-a1.x)*(b2.y-b1.y)-(b2.x-b1.x)*(a2.y-a1.y);
-      if(Math.abs(det)<1e-9) return null;
-      var lam=((b2.y-b1.y)*(b2.x-a1.x)+(b1.x-b2.x)*(b2.y-a1.y))/det;
-      var gam=((a1.y-a2.y)*(b2.x-a1.x)+(a2.x-a1.x)*(b2.y-a1.y))/det;
-      if(lam>1e-6 && lam<1-1e-6 && gam>1e-6 && gam<1-1e-6){
-        return {x:a1.x+lam*(a2.x-a1.x), y:a1.y+lam*(a2.y-a1.y)};
-      }
-      return null;
-    }
-
-    function pointOnSeg(pt,a,b){
-      var d1=dist2d(pt,a), d2=dist2d(pt,b), len=dist2d(a,b);
-      return d1>GRAPH_EPS && d2>GRAPH_EPS && Math.abs(d1+d2-len)<GRAPH_EPS;
-    }
-
-    function buildTopology(segments){
-      log('buildTopology: '+segments.length+' input segments');
-      /* Split segments at intersections */
-      var dirty=true, iter=0, maxIter=segments.length*segments.length+500;
-      while(dirty && iter<maxIter){
-        dirty=false; iter++;
-        for(var i=0;i<segments.length&&!dirty;i++){
-          for(var j=i+1;j<segments.length&&!dirty;j++){
-            var s1=segments[i], s2=segments[j];
-            var inter=segSegIntersect(s1.p1,s1.p2,s2.p1,s2.p2);
-            if(inter){
-              segments.splice(j,1); segments.splice(i,1);
-              segments.push({p1:s1.p1,p2:inter,type:s1.type},{p1:inter,p2:s1.p2,type:s1.type},
-                            {p1:s2.p1,p2:inter,type:s2.type},{p1:inter,p2:s2.p2,type:s2.type});
-              dirty=true;
-            }
-            if(!dirty && pointOnSeg(s2.p1,s1.p1,s1.p2)){
-              segments.splice(i,1);
-              segments.push({p1:s1.p1,p2:s2.p1,type:s1.type},{p1:s2.p1,p2:s1.p2,type:s1.type});
-              dirty=true;
-            }
-            if(!dirty && pointOnSeg(s2.p2,s1.p1,s1.p2)){
-              segments.splice(i,1);
-              segments.push({p1:s1.p1,p2:s2.p2,type:s1.type},{p1:s2.p2,p2:s1.p2,type:s1.type});
-              dirty=true;
-            }
-            if(!dirty && pointOnSeg(s1.p1,s2.p1,s2.p2)){
-              segments.splice(j,1);
-              segments.push({p1:s2.p1,p2:s1.p1,type:s2.type},{p1:s1.p1,p2:s2.p2,type:s2.type});
-              dirty=true;
-            }
-            if(!dirty && pointOnSeg(s1.p2,s2.p1,s2.p2)){
-              segments.splice(j,1);
-              segments.push({p1:s2.p1,p2:s1.p2,type:s2.type},{p1:s1.p2,p2:s2.p2,type:s2.type});
-              dirty=true;
-            }
-          }
-        }
-      }
-      log('After splitting: '+segments.length+' segments ('+iter+' iterations)');
-
-      /* Build adjacency graph */
-      var verts=[];
-      function getVid(p){
-        for(var i=0;i<verts.length;i++){ if(ptEq(verts[i],p)) return i; }
-        verts.push({x:p.x,y:p.y}); return verts.length-1;
-      }
-
-      var adj={};
-      segments.forEach(function(seg){
-        if(ptEq(seg.p1,seg.p2)) return;
-        var u=getVid(seg.p1), v=getVid(seg.p2);
-        if(u===v) return;
-        if(!adj[u]) adj[u]=[];
-        if(!adj[v]) adj[v]=[];
-        var angUV=Math.atan2(verts[v].y-verts[u].y, verts[v].x-verts[u].x);
-        var angVU=Math.atan2(verts[u].y-verts[v].y, verts[u].x-verts[v].x);
-        if(!adj[u].find(function(e){return e.to===v;}))
-          adj[u].push({to:v, type:seg.type, angle:angUV, visited:false});
-        if(!adj[v].find(function(e){return e.to===u;}))
-          adj[v].push({to:u, type:seg.type, angle:angVU, visited:false});
-      });
-
-      Object.keys(adj).forEach(function(k){
-        adj[k].sort(function(a,b){return a.angle-b.angle;});
-      });
-
-      log('Graph: '+verts.length+' vertices, '+Object.keys(adj).length+' adj entries');
-
-      /* Trace minimal faces using planar face traversal */
-      var faces=[];
-      Object.keys(adj).forEach(function(uStr){
-        var u=parseInt(uStr);
-        adj[u].forEach(function(startEdge){
-          if(startEdge.visited) return;
-          var path=[], curr=startEdge, currU=u, cycleFound=false;
-          var safety=0, maxSafety=verts.length*4+100;
-          while(!curr.visited && safety<maxSafety){
-            safety++; curr.visited=true;
-            path.push({u:currU, v:curr.to, type:curr.type});
-            var vId=curr.to, outgoing=adj[vId];
-            if(!outgoing||outgoing.length===0) break;
-            var backIdx=-1;
-            for(var bi=0;bi<outgoing.length;bi++){ if(outgoing[bi].to===currU){backIdx=bi;break;} }
-            if(backIdx===-1) break;
-            var nextIdx=(backIdx-1+outgoing.length)%outgoing.length;
-            currU=vId; curr=outgoing[nextIdx];
-            if(currU===u && curr===startEdge){ cycleFound=true; break; }
-          }
-          if(cycleFound && path.length>=3){
-            var area=0, polyPts=path.map(function(e){return verts[e.u];});
-            for(var i=0;i<polyPts.length;i++){
-              var p1=polyPts[i], p2=polyPts[(i+1)%polyPts.length];
-              area+=(p1.x*p2.y - p2.x*p1.y);
-            }
-            area/=2;
-            var hasCrease=path.some(function(e){return e.type==='crease';});
-            faces.push({
-              vertices: polyPts.map(function(v){return{x:v.x,y:v.y};}),
-              edges: path.map(function(e){ return {u:{x:verts[e.u].x,y:verts[e.u].y}, v:{x:verts[e.v].x,y:verts[e.v].y}, type:e.type}; }),
-              area: area, isHole: area<0, hasCreaseEdge: hasCrease
-            });
-          }
-        });
-      });
-
-      log('Faces traced: '+faces.length);
-      faces.forEach(function(f,i){ log('  Face '+i+': area='+f.area.toFixed(1)+' verts='+f.vertices.length+' hole='+f.isHole); });
-      return {faces:faces, verts:verts, adj:adj};
-    }
+    /* PLANAR GRAPH TOPOLOGY ENGINE → src/core/legacy/topology.js (A6.2); utilidades 2D → src/core/legacy/geom2d.js */
 
     /* ================================================================
        3D ENGINE
@@ -805,52 +670,6 @@ import { TOLERANCE_MM, GRAPH_EPS } from './core/legacy/constants.js';
       return s;
     }
 
-    function polygonSignedArea(verts){
-      var area=0;
-      for(var i=0;i<verts.length;i++){
-        var a=verts[i], b=verts[(i+1)%verts.length];
-        area += a.x*b.y - b.x*a.y;
-      }
-      return area/2;
-    }
-
-    function polygonCentroid(verts){
-      var a = polygonSignedArea(verts);
-      if(Math.abs(a) < 1e-9){
-        var cx=0, cy=0;
-        verts.forEach(function(v){ cx+=v.x; cy+=v.y; });
-        return {x:cx/verts.length, y:cy/verts.length};
-      }
-      var cx2=0, cy2=0;
-      for(var i=0;i<verts.length;i++){
-        var p=verts[i], q=verts[(i+1)%verts.length];
-        var cross = p.x*q.y - q.x*p.y;
-        cx2 += (p.x + q.x) * cross;
-        cy2 += (p.y + q.y) * cross;
-      }
-      return {x:cx2/(6*a), y:cy2/(6*a)};
-    }
-
-    function pointOnSegment2D(pt,a,b){
-      return distPtSeg(pt,a,b) <= GRAPH_EPS;
-    }
-
-    function pointInPolygonInclusive(pt, verts){
-      if(!verts || verts.length < 3) return false;
-      for(var i=0;i<verts.length;i++){
-        if(pointOnSegment2D(pt, verts[i], verts[(i+1)%verts.length])) return true;
-      }
-      var inside=false;
-      for(var j=0,k=verts.length-1;j<verts.length;k=j++){
-        var xi=verts[j].x, yi=verts[j].y;
-        var xk=verts[k].x, yk=verts[k].y;
-        var intersect=((yi>pt.y)!=(yk>pt.y)) &&
-          (pt.x < (xk-xi)*(pt.y-yi)/((yk-yi)||1e-9) + xi);
-        if(intersect) inside=!inside;
-      }
-      return inside;
-    }
-
     function contourContainsContour(outer, inner){
       if(!outer || !inner || !outer.points || !inner.points) return false;
       for(var i=0;i<inner.points.length;i++){
@@ -888,15 +707,6 @@ import { TOLERANCE_MM, GRAPH_EPS } from './core/legacy/constants.js';
       var holes = contours.filter(function(c){ return c.parentCount % 2 === 1; });
       log('Closed cut contours reclassified · shells='+shells.length+' holes='+holes.length+' total='+contours.length);
       return {all:contours, shells:shells, holes:holes};
-    }
-
-    function faceBounds(verts){
-      var minX=Infinity,minY=Infinity,maxX=-Infinity,maxY=-Infinity;
-      verts.forEach(function(v){
-        minX=Math.min(minX,v.x); minY=Math.min(minY,v.y);
-        maxX=Math.max(maxX,v.x); maxY=Math.max(maxY,v.y);
-      });
-      return {minX:minX,minY:minY,maxX:maxX,maxY:maxY,w:maxX-minX,h:maxY-minY};
     }
 
     function buildPanels(data){
@@ -1144,17 +954,6 @@ import { TOLERANCE_MM, GRAPH_EPS } from './core/legacy/constants.js';
     /* ================================================================
        ADJACENCY + FOLD TREE
        ================================================================ */
-    function getPolyCentroid(verts){
-      var cx=0,cy=0;
-      verts.forEach(function(v){cx+=v.x;cy+=v.y;});
-      return {x:cx/verts.length, y:cy/verts.length};
-    }
-
-    function edgeMatch(a1,a2,b1,b2){
-      var eps=GRAPH_EPS;
-      return (dist2d(a1,b1)<eps&&dist2d(a2,b2)<eps)||(dist2d(a1,b2)<eps&&dist2d(a2,b1)<eps);
-    }
-
     function buildAdjacencyStrict(panels,creaseEdges){
       /* Strict adjacency used only for topology cleanup.
          This avoids over-connecting tiny false panels during connectivity filtering. */

@@ -1,0 +1,729 @@
+# Diff del bundle dist/main.js: A6.1 → A6.2 (diff -u; la línea 1 es el banner con la huella de src/main.js)
+--- .scratch/bundle-A6.1.js	2026-10-25 18:13:18
++++ dist/main.js	2026-10-25 18:39:51
+@@ -1,4 +1,4 @@
+-/* Tesseract V3 · bundle IIFE · fuente main.js sha256:daf89989ce44f0fc · esbuild 0.28.2 · target chrome99 · NO editar a mano (tools/build/build.mjs) */
++/* Tesseract V3 · bundle IIFE · fuente main.js sha256:755bed316adfd632 · esbuild 0.28.2 · target chrome99 · NO editar a mano (tools/build/build.mjs) */
+ (() => {
+   // src/config/look.js
+   var DEFAULT_THICKNESS_MM = 0.25;
+@@ -285,6 +285,250 @@
+   var TOLERANCE_MM = 0.5;
+   var GRAPH_EPS = 0.5;
+ 
++  // src/core/legacy/geom2d.js
++  function distPtSeg(p, a, b) {
++    var l2 = (b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y);
++    if (l2 === 0) return Math.hypot(p.x - a.x, p.y - a.y);
++    var t = ((p.x - a.x) * (b.x - a.x) + (p.y - a.y) * (b.y - a.y)) / l2;
++    t = Math.max(0, Math.min(1, t));
++    return Math.hypot(p.x - (a.x + t * (b.x - a.x)), p.y - (a.y + t * (b.y - a.y)));
++  }
++  function dist2d(a, b) {
++    return Math.hypot(a.x - b.x, a.y - b.y);
++  }
++  function ptEq(a, b) {
++    return dist2d(a, b) < GRAPH_EPS;
++  }
++  function segSegIntersect(a1, a2, b1, b2) {
++    var det = (a2.x - a1.x) * (b2.y - b1.y) - (b2.x - b1.x) * (a2.y - a1.y);
++    if (Math.abs(det) < 1e-9) return null;
++    var lam = ((b2.y - b1.y) * (b2.x - a1.x) + (b1.x - b2.x) * (b2.y - a1.y)) / det;
++    var gam = ((a1.y - a2.y) * (b2.x - a1.x) + (a2.x - a1.x) * (b2.y - a1.y)) / det;
++    if (lam > 1e-6 && lam < 1 - 1e-6 && gam > 1e-6 && gam < 1 - 1e-6) {
++      return { x: a1.x + lam * (a2.x - a1.x), y: a1.y + lam * (a2.y - a1.y) };
++    }
++    return null;
++  }
++  function pointOnSeg(pt, a, b) {
++    var d1 = dist2d(pt, a), d2 = dist2d(pt, b), len = dist2d(a, b);
++    return d1 > GRAPH_EPS && d2 > GRAPH_EPS && Math.abs(d1 + d2 - len) < GRAPH_EPS;
++  }
++  function polygonSignedArea(verts) {
++    var area = 0;
++    for (var i = 0; i < verts.length; i++) {
++      var a = verts[i], b = verts[(i + 1) % verts.length];
++      area += a.x * b.y - b.x * a.y;
++    }
++    return area / 2;
++  }
++  function polygonCentroid(verts) {
++    var a = polygonSignedArea(verts);
++    if (Math.abs(a) < 1e-9) {
++      var cx = 0, cy = 0;
++      verts.forEach(function(v) {
++        cx += v.x;
++        cy += v.y;
++      });
++      return { x: cx / verts.length, y: cy / verts.length };
++    }
++    var cx2 = 0, cy2 = 0;
++    for (var i = 0; i < verts.length; i++) {
++      var p = verts[i], q = verts[(i + 1) % verts.length];
++      var cross = p.x * q.y - q.x * p.y;
++      cx2 += (p.x + q.x) * cross;
++      cy2 += (p.y + q.y) * cross;
++    }
++    return { x: cx2 / (6 * a), y: cy2 / (6 * a) };
++  }
++  function pointOnSegment2D(pt, a, b) {
++    return distPtSeg(pt, a, b) <= GRAPH_EPS;
++  }
++  function pointInPolygonInclusive(pt, verts) {
++    if (!verts || verts.length < 3) return false;
++    for (var i = 0; i < verts.length; i++) {
++      if (pointOnSegment2D(pt, verts[i], verts[(i + 1) % verts.length])) return true;
++    }
++    var inside = false;
++    for (var j = 0, k = verts.length - 1; j < verts.length; k = j++) {
++      var xi = verts[j].x, yi = verts[j].y;
++      var xk = verts[k].x, yk = verts[k].y;
++      var intersect = yi > pt.y != yk > pt.y && pt.x < (xk - xi) * (pt.y - yi) / (yk - yi || 1e-9) + xi;
++      if (intersect) inside = !inside;
++    }
++    return inside;
++  }
++  function faceBounds(verts) {
++    var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
++    verts.forEach(function(v) {
++      minX = Math.min(minX, v.x);
++      minY = Math.min(minY, v.y);
++      maxX = Math.max(maxX, v.x);
++      maxY = Math.max(maxY, v.y);
++    });
++    return { minX, minY, maxX, maxY, w: maxX - minX, h: maxY - minY };
++  }
++  function getPolyCentroid(verts) {
++    var cx = 0, cy = 0;
++    verts.forEach(function(v) {
++      cx += v.x;
++      cy += v.y;
++    });
++    return { x: cx / verts.length, y: cy / verts.length };
++  }
++  function edgeMatch(a1, a2, b1, b2) {
++    var eps = GRAPH_EPS;
++    return dist2d(a1, b1) < eps && dist2d(a2, b2) < eps || dist2d(a1, b2) < eps && dist2d(a2, b1) < eps;
++  }
++
++  // src/core/legacy/log.js
++  var sink = null;
++  function setLogSink(fn) {
++    sink = typeof fn === "function" ? fn : null;
++  }
++  function log(m) {
++    if (sink) sink(m);
++  }
++
++  // src/core/legacy/topology.js
++  function buildTopology(segments) {
++    log("buildTopology: " + segments.length + " input segments");
++    var dirty = true, iter = 0, maxIter = segments.length * segments.length + 500;
++    while (dirty && iter < maxIter) {
++      dirty = false;
++      iter++;
++      for (var i = 0; i < segments.length && !dirty; i++) {
++        for (var j = i + 1; j < segments.length && !dirty; j++) {
++          var s1 = segments[i], s2 = segments[j];
++          var inter = segSegIntersect(s1.p1, s1.p2, s2.p1, s2.p2);
++          if (inter) {
++            segments.splice(j, 1);
++            segments.splice(i, 1);
++            segments.push(
++              { p1: s1.p1, p2: inter, type: s1.type },
++              { p1: inter, p2: s1.p2, type: s1.type },
++              { p1: s2.p1, p2: inter, type: s2.type },
++              { p1: inter, p2: s2.p2, type: s2.type }
++            );
++            dirty = true;
++          }
++          if (!dirty && pointOnSeg(s2.p1, s1.p1, s1.p2)) {
++            segments.splice(i, 1);
++            segments.push({ p1: s1.p1, p2: s2.p1, type: s1.type }, { p1: s2.p1, p2: s1.p2, type: s1.type });
++            dirty = true;
++          }
++          if (!dirty && pointOnSeg(s2.p2, s1.p1, s1.p2)) {
++            segments.splice(i, 1);
++            segments.push({ p1: s1.p1, p2: s2.p2, type: s1.type }, { p1: s2.p2, p2: s1.p2, type: s1.type });
++            dirty = true;
++          }
++          if (!dirty && pointOnSeg(s1.p1, s2.p1, s2.p2)) {
++            segments.splice(j, 1);
++            segments.push({ p1: s2.p1, p2: s1.p1, type: s2.type }, { p1: s1.p1, p2: s2.p2, type: s2.type });
++            dirty = true;
++          }
++          if (!dirty && pointOnSeg(s1.p2, s2.p1, s2.p2)) {
++            segments.splice(j, 1);
++            segments.push({ p1: s2.p1, p2: s1.p2, type: s2.type }, { p1: s1.p2, p2: s2.p2, type: s2.type });
++            dirty = true;
++          }
++        }
++      }
++    }
++    log("After splitting: " + segments.length + " segments (" + iter + " iterations)");
++    var verts = [];
++    function getVid(p) {
++      for (var i2 = 0; i2 < verts.length; i2++) {
++        if (ptEq(verts[i2], p)) return i2;
++      }
++      verts.push({ x: p.x, y: p.y });
++      return verts.length - 1;
++    }
++    var adj = {};
++    segments.forEach(function(seg) {
++      if (ptEq(seg.p1, seg.p2)) return;
++      var u = getVid(seg.p1), v = getVid(seg.p2);
++      if (u === v) return;
++      if (!adj[u]) adj[u] = [];
++      if (!adj[v]) adj[v] = [];
++      var angUV = Math.atan2(verts[v].y - verts[u].y, verts[v].x - verts[u].x);
++      var angVU = Math.atan2(verts[u].y - verts[v].y, verts[u].x - verts[v].x);
++      if (!adj[u].find(function(e) {
++        return e.to === v;
++      }))
++        adj[u].push({ to: v, type: seg.type, angle: angUV, visited: false });
++      if (!adj[v].find(function(e) {
++        return e.to === u;
++      }))
++        adj[v].push({ to: u, type: seg.type, angle: angVU, visited: false });
++    });
++    Object.keys(adj).forEach(function(k) {
++      adj[k].sort(function(a, b) {
++        return a.angle - b.angle;
++      });
++    });
++    log("Graph: " + verts.length + " vertices, " + Object.keys(adj).length + " adj entries");
++    var faces = [];
++    Object.keys(adj).forEach(function(uStr) {
++      var u = parseInt(uStr);
++      adj[u].forEach(function(startEdge) {
++        if (startEdge.visited) return;
++        var path = [], curr = startEdge, currU = u, cycleFound = false;
++        var safety = 0, maxSafety = verts.length * 4 + 100;
++        while (!curr.visited && safety < maxSafety) {
++          safety++;
++          curr.visited = true;
++          path.push({ u: currU, v: curr.to, type: curr.type });
++          var vId = curr.to, outgoing = adj[vId];
++          if (!outgoing || outgoing.length === 0) break;
++          var backIdx = -1;
++          for (var bi = 0; bi < outgoing.length; bi++) {
++            if (outgoing[bi].to === currU) {
++              backIdx = bi;
++              break;
++            }
++          }
++          if (backIdx === -1) break;
++          var nextIdx = (backIdx - 1 + outgoing.length) % outgoing.length;
++          currU = vId;
++          curr = outgoing[nextIdx];
++          if (currU === u && curr === startEdge) {
++            cycleFound = true;
++            break;
++          }
++        }
++        if (cycleFound && path.length >= 3) {
++          var area = 0, polyPts = path.map(function(e) {
++            return verts[e.u];
++          });
++          for (var i2 = 0; i2 < polyPts.length; i2++) {
++            var p1 = polyPts[i2], p2 = polyPts[(i2 + 1) % polyPts.length];
++            area += p1.x * p2.y - p2.x * p1.y;
++          }
++          area /= 2;
++          var hasCrease = path.some(function(e) {
++            return e.type === "crease";
++          });
++          faces.push({
++            vertices: polyPts.map(function(v) {
++              return { x: v.x, y: v.y };
++            }),
++            edges: path.map(function(e) {
++              return { u: { x: verts[e.u].x, y: verts[e.u].y }, v: { x: verts[e.v].x, y: verts[e.v].y }, type: e.type };
++            }),
++            area,
++            isHole: area < 0,
++            hasCreaseEdge: hasCrease
++          });
++        }
++      });
++    });
++    log("Faces traced: " + faces.length);
++    faces.forEach(function(f, i2) {
++      log("  Face " + i2 + ": area=" + f.area.toFixed(1) + " verts=" + f.vertices.length + " hole=" + f.isHole);
++    });
++    return { faces, verts, adj };
++  }
++
+   // src/main.js
+   (function() {
+     "use strict";
+@@ -355,7 +599,7 @@
+       function setStatus(m) {
+         statusArea.textContent = m;
+       }
+-      function log(m) {
++      function log2(m) {
+         try {
+           console.log("[Tesseract]", m);
+         } catch (e) {
+@@ -371,6 +615,7 @@
+         }
+         if (debugDetails) debugDetails.open = false;
+       }
++      setLogSink(log2);
+       function hasArtworkLoaded() {
+         return !!(currentArtState && (currentArtState.front && currentArtState.front.texture || currentArtState.back && currentArtState.back.texture));
+       }
+@@ -522,7 +767,7 @@
+               setStatus("Material preset applied: " + getMaterialPreset().label);
+             }
+           } catch (err) {
+-            log("Material preset rebuild error: " + err.message);
++            log2("Material preset rebuild error: " + err.message);
+             setStatus("Material preset error: " + err.message);
+           }
+         } else {
+@@ -658,16 +903,9 @@
+           setArtStatus("Artwork loaded from " + exported.mode + ". Mapping uses full artboard coordinates.", exported.mode === "artboards" ? "Artboards" : "Layers");
+         } catch (err) {
+           setArtStatus("Artwork load failed: " + err.message, "Art error");
+-          log("Artwork load failed: " + err.message);
++          log2("Artwork load failed: " + err.message);
+         }
+       }
+-      function distPtSeg(p, a, b) {
+-        var l2 = (b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y);
+-        if (l2 === 0) return Math.hypot(p.x - a.x, p.y - a.y);
+-        var t = ((p.x - a.x) * (b.x - a.x) + (p.y - a.y) * (b.y - a.y)) / l2;
+-        t = Math.max(0, Math.min(1, t));
+-        return Math.hypot(p.x - (a.x + t * (b.x - a.x)), p.y - (a.y + t * (b.y - a.y)));
+-      }
+       function segsFromPath(pathObj, closed, type, meta) {
+         var s = [];
+         if (!pathObj || !pathObj.points || pathObj.points.length < 2) return s;
+@@ -799,165 +1037,7 @@
+           ctx2d.fillStyle = "#f0a000";
+           ctx2d.font = "10px sans-serif";
+           ctx2d.fillText(p.id, pt.x + 8, pt.y - 8);
+-        });
+-      }
+-      function dist2d(a, b) {
+-        return Math.hypot(a.x - b.x, a.y - b.y);
+-      }
+-      function ptEq(a, b) {
+-        return dist2d(a, b) < GRAPH_EPS;
+-      }
+-      function segSegIntersect(a1, a2, b1, b2) {
+-        var det = (a2.x - a1.x) * (b2.y - b1.y) - (b2.x - b1.x) * (a2.y - a1.y);
+-        if (Math.abs(det) < 1e-9) return null;
+-        var lam = ((b2.y - b1.y) * (b2.x - a1.x) + (b1.x - b2.x) * (b2.y - a1.y)) / det;
+-        var gam = ((a1.y - a2.y) * (b2.x - a1.x) + (a2.x - a1.x) * (b2.y - a1.y)) / det;
+-        if (lam > 1e-6 && lam < 1 - 1e-6 && gam > 1e-6 && gam < 1 - 1e-6) {
+-          return { x: a1.x + lam * (a2.x - a1.x), y: a1.y + lam * (a2.y - a1.y) };
+-        }
+-        return null;
+-      }
+-      function pointOnSeg(pt, a, b) {
+-        var d1 = dist2d(pt, a), d2 = dist2d(pt, b), len = dist2d(a, b);
+-        return d1 > GRAPH_EPS && d2 > GRAPH_EPS && Math.abs(d1 + d2 - len) < GRAPH_EPS;
+-      }
+-      function buildTopology(segments) {
+-        log("buildTopology: " + segments.length + " input segments");
+-        var dirty = true, iter = 0, maxIter = segments.length * segments.length + 500;
+-        while (dirty && iter < maxIter) {
+-          dirty = false;
+-          iter++;
+-          for (var i = 0; i < segments.length && !dirty; i++) {
+-            for (var j = i + 1; j < segments.length && !dirty; j++) {
+-              var s1 = segments[i], s2 = segments[j];
+-              var inter = segSegIntersect(s1.p1, s1.p2, s2.p1, s2.p2);
+-              if (inter) {
+-                segments.splice(j, 1);
+-                segments.splice(i, 1);
+-                segments.push(
+-                  { p1: s1.p1, p2: inter, type: s1.type },
+-                  { p1: inter, p2: s1.p2, type: s1.type },
+-                  { p1: s2.p1, p2: inter, type: s2.type },
+-                  { p1: inter, p2: s2.p2, type: s2.type }
+-                );
+-                dirty = true;
+-              }
+-              if (!dirty && pointOnSeg(s2.p1, s1.p1, s1.p2)) {
+-                segments.splice(i, 1);
+-                segments.push({ p1: s1.p1, p2: s2.p1, type: s1.type }, { p1: s2.p1, p2: s1.p2, type: s1.type });
+-                dirty = true;
+-              }
+-              if (!dirty && pointOnSeg(s2.p2, s1.p1, s1.p2)) {
+-                segments.splice(i, 1);
+-                segments.push({ p1: s1.p1, p2: s2.p2, type: s1.type }, { p1: s2.p2, p2: s1.p2, type: s1.type });
+-                dirty = true;
+-              }
+-              if (!dirty && pointOnSeg(s1.p1, s2.p1, s2.p2)) {
+-                segments.splice(j, 1);
+-                segments.push({ p1: s2.p1, p2: s1.p1, type: s2.type }, { p1: s1.p1, p2: s2.p2, type: s2.type });
+-                dirty = true;
+-              }
+-              if (!dirty && pointOnSeg(s1.p2, s2.p1, s2.p2)) {
+-                segments.splice(j, 1);
+-                segments.push({ p1: s2.p1, p2: s1.p2, type: s2.type }, { p1: s1.p2, p2: s2.p2, type: s2.type });
+-                dirty = true;
+-              }
+-            }
+-          }
+-        }
+-        log("After splitting: " + segments.length + " segments (" + iter + " iterations)");
+-        var verts = [];
+-        function getVid(p) {
+-          for (var i2 = 0; i2 < verts.length; i2++) {
+-            if (ptEq(verts[i2], p)) return i2;
+-          }
+-          verts.push({ x: p.x, y: p.y });
+-          return verts.length - 1;
+-        }
+-        var adj = {};
+-        segments.forEach(function(seg) {
+-          if (ptEq(seg.p1, seg.p2)) return;
+-          var u = getVid(seg.p1), v = getVid(seg.p2);
+-          if (u === v) return;
+-          if (!adj[u]) adj[u] = [];
+-          if (!adj[v]) adj[v] = [];
+-          var angUV = Math.atan2(verts[v].y - verts[u].y, verts[v].x - verts[u].x);
+-          var angVU = Math.atan2(verts[u].y - verts[v].y, verts[u].x - verts[v].x);
+-          if (!adj[u].find(function(e) {
+-            return e.to === v;
+-          }))
+-            adj[u].push({ to: v, type: seg.type, angle: angUV, visited: false });
+-          if (!adj[v].find(function(e) {
+-            return e.to === u;
+-          }))
+-            adj[v].push({ to: u, type: seg.type, angle: angVU, visited: false });
+-        });
+-        Object.keys(adj).forEach(function(k) {
+-          adj[k].sort(function(a, b) {
+-            return a.angle - b.angle;
+-          });
+-        });
+-        log("Graph: " + verts.length + " vertices, " + Object.keys(adj).length + " adj entries");
+-        var faces = [];
+-        Object.keys(adj).forEach(function(uStr) {
+-          var u = parseInt(uStr);
+-          adj[u].forEach(function(startEdge) {
+-            if (startEdge.visited) return;
+-            var path = [], curr = startEdge, currU = u, cycleFound = false;
+-            var safety = 0, maxSafety = verts.length * 4 + 100;
+-            while (!curr.visited && safety < maxSafety) {
+-              safety++;
+-              curr.visited = true;
+-              path.push({ u: currU, v: curr.to, type: curr.type });
+-              var vId = curr.to, outgoing = adj[vId];
+-              if (!outgoing || outgoing.length === 0) break;
+-              var backIdx = -1;
+-              for (var bi = 0; bi < outgoing.length; bi++) {
+-                if (outgoing[bi].to === currU) {
+-                  backIdx = bi;
+-                  break;
+-                }
+-              }
+-              if (backIdx === -1) break;
+-              var nextIdx = (backIdx - 1 + outgoing.length) % outgoing.length;
+-              currU = vId;
+-              curr = outgoing[nextIdx];
+-              if (currU === u && curr === startEdge) {
+-                cycleFound = true;
+-                break;
+-              }
+-            }
+-            if (cycleFound && path.length >= 3) {
+-              var area = 0, polyPts = path.map(function(e) {
+-                return verts[e.u];
+-              });
+-              for (var i2 = 0; i2 < polyPts.length; i2++) {
+-                var p1 = polyPts[i2], p2 = polyPts[(i2 + 1) % polyPts.length];
+-                area += p1.x * p2.y - p2.x * p1.y;
+-              }
+-              area /= 2;
+-              var hasCrease = path.some(function(e) {
+-                return e.type === "crease";
+-              });
+-              faces.push({
+-                vertices: polyPts.map(function(v) {
+-                  return { x: v.x, y: v.y };
+-                }),
+-                edges: path.map(function(e) {
+-                  return { u: { x: verts[e.u].x, y: verts[e.u].y }, v: { x: verts[e.v].x, y: verts[e.v].y }, type: e.type };
+-                }),
+-                area,
+-                isHole: area < 0,
+-                hasCreaseEdge: hasCrease
+-              });
+-            }
+-          });
+         });
+-        log("Faces traced: " + faces.length);
+-        faces.forEach(function(f, i2) {
+-          log("  Face " + i2 + ": area=" + f.area.toFixed(1) + " verts=" + f.vertices.length + " hole=" + f.isHole);
+-        });
+-        return { faces, verts, adj };
+       }
+       var renderer3d = null, scene3d = null, camera3d = null;
+       var orbitState = null;
+@@ -1001,7 +1081,7 @@
+         renderer3d = new THREE.WebGLRenderer({ canvas: canvas3d, antialias: true, alpha: false, preserveDrawingBuffer: true });
+         renderer3d.setClearColor(16777215, 1);
+         renderer3d.setPixelRatio(window.devicePixelRatio || 1);
+-        log("Renderer created OK");
++        log2("Renderer created OK");
+         scene3d = new THREE.Scene();
+         camera3d = new THREE.PerspectiveCamera(45, 1, 0.01, 1e5);
+         raycaster3d = new THREE.Raycaster();
+@@ -1061,7 +1141,7 @@
+                 if (pickCreaseFromEvent(e)) return;
+               }
+             } catch (ex) {
+-              log("Pick error: " + ex.message);
++              log2("Pick error: " + ex.message);
+             }
+           }
+         }
+@@ -1108,7 +1188,7 @@
+           e.stopPropagation();
+         }, { capture: true });
+         viewport3d._overlay = ov;
+-        log("Overlay controls attached");
++        log2("Overlay controls attached");
+         var firstFrame = false;
+         function loop() {
+           requestAnimationFrame(loop);
+@@ -1117,7 +1197,7 @@
+           renderer3d.render(scene3d, camera3d);
+           if (!firstFrame) {
+             firstFrame = true;
+-            log("First frame rendered");
++            log2("First frame rendered");
+           }
+         }
+         loop();
+@@ -1160,50 +1240,6 @@
+         for (var i = 1; i < verts2d.length; i++) s.lineTo(verts2d[i].x, verts2d[i].y);
+         s.closePath();
+         return s;
+-      }
+-      function polygonSignedArea(verts) {
+-        var area = 0;
+-        for (var i = 0; i < verts.length; i++) {
+-          var a = verts[i], b = verts[(i + 1) % verts.length];
+-          area += a.x * b.y - b.x * a.y;
+-        }
+-        return area / 2;
+-      }
+-      function polygonCentroid(verts) {
+-        var a = polygonSignedArea(verts);
+-        if (Math.abs(a) < 1e-9) {
+-          var cx = 0, cy = 0;
+-          verts.forEach(function(v) {
+-            cx += v.x;
+-            cy += v.y;
+-          });
+-          return { x: cx / verts.length, y: cy / verts.length };
+-        }
+-        var cx2 = 0, cy2 = 0;
+-        for (var i = 0; i < verts.length; i++) {
+-          var p = verts[i], q = verts[(i + 1) % verts.length];
+-          var cross = p.x * q.y - q.x * p.y;
+-          cx2 += (p.x + q.x) * cross;
+-          cy2 += (p.y + q.y) * cross;
+-        }
+-        return { x: cx2 / (6 * a), y: cy2 / (6 * a) };
+-      }
+-      function pointOnSegment2D(pt, a, b) {
+-        return distPtSeg(pt, a, b) <= GRAPH_EPS;
+-      }
+-      function pointInPolygonInclusive(pt, verts) {
+-        if (!verts || verts.length < 3) return false;
+-        for (var i = 0; i < verts.length; i++) {
+-          if (pointOnSegment2D(pt, verts[i], verts[(i + 1) % verts.length])) return true;
+-        }
+-        var inside = false;
+-        for (var j = 0, k = verts.length - 1; j < verts.length; k = j++) {
+-          var xi = verts[j].x, yi = verts[j].y;
+-          var xk = verts[k].x, yk = verts[k].y;
+-          var intersect = yi > pt.y != yk > pt.y && pt.x < (xk - xi) * (pt.y - yi) / (yk - yi || 1e-9) + xi;
+-          if (intersect) inside = !inside;
+-        }
+-        return inside;
+       }
+       function contourContainsContour(outer, inner) {
+         if (!outer || !inner || !outer.points || !inner.points) return false;
+@@ -1244,21 +1280,11 @@
+         var holes = contours.filter(function(c) {
+           return c.parentCount % 2 === 1;
+         });
+-        log("Closed cut contours reclassified · shells=" + shells.length + " holes=" + holes.length + " total=" + contours.length);
++        log2("Closed cut contours reclassified · shells=" + shells.length + " holes=" + holes.length + " total=" + contours.length);
+         return { all: contours, shells, holes };
+       }
+-      function faceBounds(verts) {
+-        var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+-        verts.forEach(function(v) {
+-          minX = Math.min(minX, v.x);
+-          minY = Math.min(minY, v.y);
+-          maxX = Math.max(maxX, v.x);
+-          maxY = Math.max(maxY, v.y);
+-        });
+-        return { minX, minY, maxX, maxY, w: maxX - minX, h: maxY - minY };
+-      }
+       function buildPanels(data) {
+-        log("=== buildPanels ===");
++        log2("=== buildPanels ===");
+         var contourInfo = classifyClosedCutContours(data);
+         var topoSegs = [];
+         function addPath(pathObj, closed, type) {
+@@ -1279,7 +1305,7 @@
+         (data.creases || []).forEach(function(cr) {
+           addPath(cr, false, "crease");
+         });
+-        log("Total topo segments (closed cuts + creases): " + topoSegs.length);
++        log2("Total topo segments (closed cuts + creases): " + topoSegs.length);
+         var topo = buildTopology(topoSegs);
+         var faces = topo.faces;
+         var seenKeys = {};
+@@ -1314,7 +1340,7 @@
+             centroid
+           });
+         });
+-        log("Panels after shell filter: " + panels.length);
++        log2("Panels after shell filter: " + panels.length);
+         var creaseEdges = [];
+         (data.creases || []).forEach(function(cr, ci) {
+           if (!cr || !cr.points || cr.points.length < 2) return;
+@@ -1373,10 +1399,10 @@
+             panels.forEach(function(panel, idx) {
+               if (keepMap[idx]) kept.push(panel);
+             });
+-            log("Connectivity filter: keeping " + kept.length + " of " + panels.length + " panels from largest crease-connected component");
++            log2("Connectivity filter: keeping " + kept.length + " of " + panels.length + " panels from largest crease-connected component");
+             panels = kept;
+           } else {
+-            log("Connectivity filter: no crease-connected components found, keeping shell-filtered panels");
++            log2("Connectivity filter: no crease-connected components found, keeping shell-filtered panels");
+           }
+         }
+         return { panels, creaseEdges, creases: data.creases || [] };
+@@ -1437,7 +1463,7 @@
+           center: { x: cx, y: cy }
+         };
+         applyArtworkToScene();
+-        log("Built " + panelMeshes.length + " panel meshes, " + creaseEdges.length + " crease edge segments");
++        log2("Built " + panelMeshes.length + " panel meshes, " + creaseEdges.length + " crease edge segments");
+         return panelMeshes.length;
+       }
+       function refreshPanelMaterials() {
+@@ -1494,18 +1520,6 @@
+         camera3d.far = dist * 200;
+         camera3d.updateProjectionMatrix();
+       }
+-      function getPolyCentroid(verts) {
+-        var cx = 0, cy = 0;
+-        verts.forEach(function(v) {
+-          cx += v.x;
+-          cy += v.y;
+-        });
+-        return { x: cx / verts.length, y: cy / verts.length };
+-      }
+-      function edgeMatch(a1, a2, b1, b2) {
+-        var eps = GRAPH_EPS;
+-        return dist2d(a1, b1) < eps && dist2d(a2, b2) < eps || dist2d(a1, b2) < eps && dist2d(a2, b1) < eps;
+-      }
+       function buildAdjacencyStrict(panels, creaseEdges) {
+         var adj = [];
+         if (!creaseEdges || !creaseEdges.length) return adj;
+@@ -1530,14 +1544,14 @@
+       function buildAdjacency(panels, creaseEdges) {
+         var strictAdj = buildAdjacencyStrict(panels, creaseEdges);
+         if (strictAdj.length) {
+-          log("Adjacency edges: " + strictAdj.length + " (strict)");
++          log2("Adjacency edges: " + strictAdj.length + " (strict)");
+           return strictAdj;
+         }
+         var adj = [];
+         var seen = {};
+         var eps = Math.max(GRAPH_EPS, 1);
+         if (!creaseEdges || !creaseEdges.length) {
+-          log("Adjacency edges: 0 (no explicit crease segments available)");
++          log2("Adjacency edges: 0 (no explicit crease segments available)");
+           return adj;
+         }
+         function edgeKey(a, b) {
+@@ -1610,7 +1624,7 @@
+           });
+         }
+         if (adj.length) {
+-          log("Adjacency edges: " + adj.length + " (raw-panel overlap)");
++          log2("Adjacency edges: " + adj.length + " (raw-panel overlap)");
+           return adj;
+         }
+         for (var i = 0; i < panels.length; i++) {
+@@ -1633,7 +1647,7 @@
+             }
+           }
+         }
+-        log("Adjacency edges: " + adj.length + " (panel-panel fallback)");
++        log2("Adjacency edges: " + adj.length + " (panel-panel fallback)");
+         return adj;
+       }
+       function buildFoldTree(panels, adjEdges, baseIdx) {
+@@ -1654,7 +1668,7 @@
+             }
+           });
+         }
+-        log("Fold tree edges: " + tree.length + " (base=P" + baseIdx + ")");
++        log2("Fold tree edges: " + tree.length + " (base=P" + baseIdx + ")");
+         return tree;
+       }
+       function signedDisplayAngle(edgeIdx, internalAngle) {
+@@ -2343,7 +2357,7 @@
+           return bytesFromDataURL(cvs.toDataURL("image/png"));
+         } catch (ex1) {
+           try {
+-            log("Texture image encode failed: " + ex1.message);
++            log2("Texture image encode failed: " + ex1.message);
+           } catch (exlog) {
+           }
+           return null;
+@@ -2621,7 +2635,7 @@
+             outputArea.value = String(result || "");
+             if (debugToggle.checked) setDebugVisible(true);
+             setStatus("Parse error: " + err.message);
+-            log("Parse error: " + err.message);
++            log2("Parse error: " + err.message);
+           }
+         });
+       });
+@@ -2665,7 +2679,7 @@
+           setStatus("3D ready · thickness=" + currentThicknessMm.toFixed(1) + "mm");
+           refreshArtwork();
+         } catch (err) {
+-          log("3D error: " + err.message);
++          log2("3D error: " + err.message);
+           setStatus("3D error: " + err.message);
+         }
+       });
+@@ -2693,7 +2707,7 @@
+           setStatus("Thickness applied: " + currentThicknessMm.toFixed(1) + "mm");
+           applyArtworkToScene();
+         } catch (err) {
+-          log("Rebuild error: " + err.message);
++          log2("Rebuild error: " + err.message);
+           setStatus("Rebuild error: " + err.message);
+         }
+       });
+@@ -2711,7 +2725,7 @@
+           await exportGLB();
+           setStatus("GLB exported from current 3D pose");
+         } catch (err) {
+-          log("GLB export failed: " + err.message);
++          log2("GLB export failed: " + err.message);
+           if (debugDetails) debugDetails.open = true;
+           setStatus("GLB export failed: " + err.message);
+         }

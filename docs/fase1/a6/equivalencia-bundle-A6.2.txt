@@ -1,0 +1,18 @@
+# A6.2 — equivalencia del bundle A6.1 → A6.2 (esbuild renombra el log() de la clausura a log2 porque ahora existe el log() del motor)
+# Normalización: log2 y log( → LOG en ambos; comparación: node tests/tools/bundle-eq.mjs
+# Resultado: todas las funciones idénticas; solo se añaden el sink (setLogSink, var sink, log del motor) y la llamada setLogSink(log)
+{
+ "soloEnA": [],
+ "soloEnB": [
+  "setLogSink",
+  "LOG#600"
+ ],
+ "distintas": [
+  "LOG"
+ ],
+ "lineasQuitadas": [],
+ "lineasAnadidas": [
+  "1× var sink = null;",
+  "1× setLogSink(LOG);"
+ ]
+}
