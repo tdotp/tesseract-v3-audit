@@ -75,7 +75,12 @@ const MODULE_LAYOUT = { // archivo → cómo se obtiene lo que exporta
   'export/glb-bytes.js': async (m) => ({ padBytes: m.padBytes, toUint8View: m.toUint8View, typedArrayFromList: m.typedArrayFromList }),
   'export/glb-image.js': async (m, ctx) => m.createGlbImage({ log: ctx.log }),
   'export/glb-scene.js': async (m, ctx) => m.createGlbScene(ctx.S),
-  'export/glb-builder.js': async (m, ctx, got) => m.createGlbBuilder({ buildExportSceneMeshes: got.buildExportSceneMeshes, textureToImageBytes: got.textureToImageBytes }) };
+  'export/glb-builder.js': async (m, ctx, got) => { for (const d of ['buildExportSceneMeshes', 'textureToImageBytes']) if (typeof got[d] !== 'function') throw new Error('glb-builder.js: la dependencia ' + d + ' no está cargada (orden de MODULE_ORDER)');
+    return m.createGlbBuilder({ buildExportSceneMeshes: got.buildExportSceneMeshes, textureToImageBytes: got.textureToImageBytes }); } };
+// A8.4: orden de carga EXPLÍCITO (orden de composición de main.js), no alfabético: glb-builder.js recibe lo que exportan glb-image.js y glb-scene.js, así que va el último.
+export const MODULE_ORDER = ['export/glb-bytes.js', 'export/glb-image.js', 'export/glb-scene.js', 'export/glb-builder.js'];
+export function orderExportFiles(files) { const out = files.filter((f) => /^export\//.test(f)); for (const f of out) if (!MODULE_ORDER.includes(f)) throw new Error('módulo de export/ sin lugar en MODULE_ORDER: ' + f);
+  return out.sort((a, b) => MODULE_ORDER.indexOf(a) - MODULE_ORDER.indexOf(b)); }
 export async function loadExporter(target, scene, log) {
   setupEnv(); const S = { scene3d: scene }; const ctx = { S, log }; const got = {};
   if (target === 'baseline' || target === 'panel') {
@@ -84,7 +89,7 @@ export async function loadExporter(target, scene, log) {
   }
   if (target !== 'src') throw new Error('objetivo desconocido: ' + target);
   const files = srcFiles(); const where = {};
-  for (const f of files) if (/^export\//.test(f)) { const mod = await import(pathToFileURL(path.join(SRC, f)).href); if (!MODULE_LAYOUT[f]) throw new Error('módulo de export/ sin adaptador N4: ' + f); const antes = new Set(Object.keys(got)); Object.assign(got, await MODULE_LAYOUT[f](mod, ctx, got)); for (const n of Object.keys(got)) if (!antes.has(n)) where[n] = f; }
+  for (const f of orderExportFiles(files)) { const mod = await import(pathToFileURL(path.join(SRC, f)).href); if (!MODULE_LAYOUT[f]) throw new Error('módulo de export/ sin adaptador N4: ' + f); const antes = new Set(Object.keys(got)); Object.assign(got, await MODULE_LAYOUT[f](mod, ctx, got)); for (const n of Object.keys(got)) if (!antes.has(n)) where[n] = f; }
   const rest = EXPORT_FUNCTIONS.filter((n) => !(n in got)); const mainFns = functionsAnyIndent(fs.readFileSync(path.join(SRC, 'main.js'), 'utf8')).filter((f) => f.indent === 4);
   const body = rest.map((n) => { const f = mainFns.find((x) => x.name === n); if (!f) throw new Error('src/main.js: falta ' + n); return f.text; }).join('\n');
   const names = Object.keys(got); const fn = new Function('S', 'log', ...names, `${body}\nreturn { ${rest.join(', ')} };`); const loc = fn(S, log, ...names.map((k) => got[k]));

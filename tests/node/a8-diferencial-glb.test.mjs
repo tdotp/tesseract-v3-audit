@@ -3,7 +3,7 @@
 // el Blob resultante, el error o el log deben ser IDÉNTICOS al del baseline. También cubre ramas que los troqueles actuales no alcanzan (Uint32, sin normales, opacidad < 0.01…) y KI-28.
 // Límites: lienzo y documento simulados (el «PNG» es una cadena determinista), así que NO prueba el codificador PNG de Chrome (eso lo ve la batería de navegador).
 import test from 'node:test'; import assert from 'node:assert/strict';
-import { sceneCases, loadExporter, sha256, setupEnv, alignmentOf } from '../lib/a8.mjs'; import { parseGLB } from '../lib/glb.mjs';
+import { sceneCases, loadExporter, sha256, setupEnv, alignmentOf, MODULE_ORDER, orderExportFiles } from '../lib/a8.mjs'; import fs from 'node:fs'; import path from 'node:path'; import { SRC, srcFiles } from '../lib/a7.mjs'; import { parseGLB } from '../lib/glb.mjs';
 
 setupEnv(); const CASES = sceneCases(); const TARGETS = ['baseline', 'panel', 'src'];
 async function run(target, make) {
@@ -57,9 +57,18 @@ test('N4 · las escenas aleatorias producen GLB válidos (al menos 8 de 16 no va
 });
 
 // Qué parte de la exportación sale ya de los módulos de src/export/ en este paso (se actualiza en cada paso aprobado; igualdad exacta).
-const ORIGEN_ESPERADO = { bytesFromDataURL: 'export/glb-image.js', textureToImageBytes: 'export/glb-image.js', padBytes: 'export/glb-bytes.js', toUint8View: 'export/glb-bytes.js', typedArrayFromList: 'export/glb-bytes.js', buildExportSceneMeshes: 'export/glb-scene.js', materialKey: 'main.js', buildGLBBlobFromCurrentView: 'main.js' }; // A8.3
+const ORIGEN_ESPERADO = { bytesFromDataURL: 'export/glb-image.js', textureToImageBytes: 'export/glb-image.js', padBytes: 'export/glb-bytes.js', toUint8View: 'export/glb-bytes.js', typedArrayFromList: 'export/glb-bytes.js', buildExportSceneMeshes: 'export/glb-scene.js', materialKey: 'export/glb-builder.js', buildGLBBlobFromCurrentView: 'export/glb-builder.js' }; // A8.4
 test('N4 · el objetivo src toma de los módulos reales de export/ exactamente lo ya movido (el resto, del texto de main.js)', async () => {
   const ex = await loadExporter('src', null, () => {}); assert.deepEqual(ex.__origen, ORIGEN_ESPERADO);
+});
+// A8.4 — Orden de carga de src/export/ en N4: explícito y igual al de composición de main.js (glb-builder.js recibe lo que exportan glb-image.js y glb-scene.js).
+// Con el orden alfabético, glb-builder.js se cargaría primero con dependencias undefined (medido al aplicar A8.4: «buildExportSceneMeshes is not a function» en todos los casos).
+test('N4 · loadExporter carga src/export/ en el orden de composición de main.js, no en el alfabético', () => {
+  const exp = srcFiles().filter((f) => /^export\//.test(f)); assert.deepEqual([...exp].sort(), [...MODULE_ORDER].sort(), 'MODULE_ORDER = inventario de export/');
+  assert.deepEqual(orderExportFiles([...exp].sort()), MODULE_ORDER); assert.deepEqual(orderExportFiles([...exp].sort().reverse()), MODULE_ORDER);
+  assert.throws(() => orderExportFiles(['export/glb-nuevo.js']), /sin lugar en MODULE_ORDER/);
+  const main = fs.readFileSync(path.join(SRC, 'main.js'), 'utf8'); const at = (s) => { const i = main.indexOf(s); assert.ok(i >= 0, s); return i; };
+  assert.ok(at('= createGlbImage(') < at('= createGlbScene(') && at('= createGlbScene(') < at('= createGlbBuilder('), 'main.js: createGlbImage → createGlbScene → createGlbBuilder');
 });
 
 // I-E3 (contrato de buildExportSceneMeshes): exportar no modifica geometrías, materiales ni la jerarquía de la escena (solo la caché matrixWorld). Se compara una instantánea antes y después.

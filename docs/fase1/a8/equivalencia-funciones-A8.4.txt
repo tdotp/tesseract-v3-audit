@@ -1,0 +1,13 @@
+{
+ "funcionesAnteriores": 141,
+ "funcionesNuevas": 144,
+ "identicas": 141,
+ "distintas": [],
+ "duplicadas": [],
+ "soloEnAnterior": [],
+ "soloEnNuevo": [
+  "createGlbBuilder",
+  "createGlbImage",
+  "createGlbScene"
+ ]
+}

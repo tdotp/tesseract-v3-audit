@@ -81,4 +81,8 @@ mutN4 "A8.3 · glb-scene: no refresca matrixWorld"                          's/^
 mutN4 "A8.3 · glb-scene: exporta la geometría original, sin clonar (I-E3)" 's/var geom = obj.geometry.clone();/var geom = obj.geometry;/'
 mut   "A8.3 · límites: glb-scene.js lee otro campo de S (a8-limites)"      's/    if(!S.scene3d) return \[\];/    if(!S.scene3d || !S.foldRoot) return [];/'
 mut   "A8.3 · límites: glb-scene.js usa document (a8-limites)"             's/^    var out = \[\];$/    var out = []; document;/'
+# A8.4 — src/export/glb-builder.js: cableado de las dependencias inyectadas (un nombre mal cableado fallaría solo en esa ruta: KI-24) y límites
+mutN4 "A8.4 · glb-builder: createGlbBuilder ignora textureToImageBytes inyectada"   's/^  var { buildExportSceneMeshes, textureToImageBytes } = deps;$/  var { buildExportSceneMeshes } = deps; var textureToImageBytes;/'
+mutN4 "A8.4 · glb-builder: createGlbBuilder ignora buildExportSceneMeshes inyectada" 's/^  var { buildExportSceneMeshes, textureToImageBytes } = deps;$/  var { textureToImageBytes } = deps; var buildExportSceneMeshes = function(){ return []; };/'
+mut   "A8.4 · límites: glb-builder.js usa document (a8-limites)"                    's/^  var { buildExportSceneMeshes, textureToImageBytes } = deps;$/  var { buildExportSceneMeshes, textureToImageBytes } = deps; document;/'
 echo "mutaciones detectadas: $ok · no detectadas: $bad"; [ "$bad" = 0 ]
