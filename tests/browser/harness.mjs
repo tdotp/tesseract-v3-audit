@@ -4,15 +4,15 @@ import fs from 'node:fs'; import os from 'node:os'; import path from 'node:path'
 import { ROOT } from '../lib/fixtures.mjs'; import { serveDir, launchChrome } from './cdp.mjs'; import { build } from '../../tools/build/build.mjs';
 
 export const FIXTURE_FILES = { caja: 'tests/fixtures/real/caja-botanica-real.dieline.json', ill: 'tests/fixtures/real/caja-botanica-illustrator-export.dieline.json' };
-export async function prepare({ gpu = 'default', initScript = null } = {}) {
+export async function prepare({ gpu = 'default', initScript = null, fixtures = FIXTURE_FILES } = {}) { // A8.0a: `fixtures` opcional (por defecto, los de siempre)
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'tess-harness-')); const dirs = {};
   const distSrc = path.join(dir, '_dist'); await build({ src: process.env.TESS_DIST_FROM ? path.resolve(ROOT, process.env.TESS_DIST_FROM) : undefined, entry: process.env.TESS_DIST_ENTRY || undefined, out: distSrc }); // bundle IIFE construido desde src/ (controles negativos: TESS_DIST_ENTRY = copia mutada de src/, TESS_DIST_FROM = carpeta de plugin, p. ej. el baseline)
-  for (const [fx, file] of Object.entries(FIXTURE_FILES)) for (const [t, src] of [['base', 'reference/legacy-baseline'], ['fix', process.env.TESS_PANEL_DIR || 'panel'], ['dist', distSrc]]) { // TESS_PANEL_DIR: solo controles negativos
+  for (const [fx, file] of Object.entries(fixtures)) for (const [t, src] of [['base', 'reference/legacy-baseline'], ['fix', process.env.TESS_PANEL_DIR || 'panel'], ['dist', distSrc]]) { // TESS_PANEL_DIR: solo controles negativos
     const dest = path.join(dir, `${t}-${fx}`); execFileSync('python3', [ROOT + '/tools/baseline/setup_harness.py', path.resolve(ROOT, src), path.join(ROOT, file), dest], { stdio: 'pipe' }); dirs[`${t}-${fx}`] = dest;
   }
   for (const f of ['harness_art.js', 'measure_ui.js', 'leak_cycles.js']) fs.copyFileSync(path.join(ROOT, 'tools/baseline', f), path.join(dir, f));
   fs.copyFileSync(path.join(ROOT, 'tools/baseline/regression/compare_frames.js'), path.join(dir, 'compare_frames.js'));
-  for (const fx of Object.keys(FIXTURE_FILES)) for (const [pre, tgt] of [['compare', 'fix'], ['compare-dist', 'dist']]) fs.writeFileSync(path.join(dir, `${pre}-${fx}.html`),
+  for (const fx of Object.keys(fixtures)) for (const [pre, tgt] of [['compare', 'fix'], ['compare-dist', 'dist']]) fs.writeFileSync(path.join(dir, `${pre}-${fx}.html`),
     `<!doctype html><meta charset="utf-8"><style>body{margin:0;display:flex}iframe{width:900px;height:1100px;border:0}</style><iframe id="A" src="base-${fx}/index.html"></iframe><iframe id="B" src="${tgt}-${fx}/index.html"></iframe><script src="compare_frames.js"></script>`);
   const server = await serveDir(dir); const browser = await launchChrome({ gpu }); if (initScript) await browser.addInitScript(initScript);
   return { dir, server, browser, url: server.url,

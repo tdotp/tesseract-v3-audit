@@ -9,7 +9,8 @@ for pat in "GPU · bundle \(caja, sin arte\)" "Escena/materiales · bundle" "Art
 done
 node --test --test-name-pattern="Puente CEP · (baseline|bundle)" tests/browser/bridge.test.mjs >/dev/null 2>&1 || { echo "ERROR: la prueba del puente falla sin mutaciones"; exit 2; }
 for pat in "A7 · inventario de escena" "A7 · ciclo de vida"; do node --test --test-name-pattern="$pat" tests/browser/a7.test.mjs >/dev/null 2>&1 || { echo "ERROR: la prueba '$pat' (A7) falla sin mutaciones"; exit 2; }; done
-echo "precondición OK (9 patrones pasan sin mutar)"
+node --test tests/browser/a8.test.mjs >/dev/null 2>&1 || { echo "ERROR: la batería A8 (exportación GLB) falla sin mutaciones"; exit 2; }
+echo "precondición OK (9 patrones + batería A8 pasan sin mutar)"
 mutsrc() { # aplica la mutación sed a TODOS los .js de una COPIA de src/ (nunca al original); falla («NO APLICÓ») si no cambió EXACTAMENTE una línea (A6: una copia duplicada no puede esconder la mutación)
   rm -rf "$TMP/src" "$TMP/src.orig"; cp -R src "$TMP/src"; cp -R src "$TMP/src.orig"; find "$TMP/src" -name '*.js' -exec sed -i '' "$1" {} +; [ "$(diff -r "$TMP/src.orig" "$TMP/src" | grep -c '^<')" = 1 ]; }
 run() { # nombre, patrón de prueba, mutación sed (sobre una copia de src/) o REVERT (bundle construido desde el baseline, sin el parche A1), [archivo de prueba]
@@ -49,4 +50,17 @@ run "A7 · clearAllMeshes libera la textura de arte compartida (rompe L1)" "A7 �
 run "A7 · artwork: copia obsoleta de S al crear la fábrica"  "Arte · bundle"  's/^export function createArtwork(S, deps){$/export function createArtwork(S, deps){ S = Object.assign({}, S);/'
 # A7.5 — el plegado trabaja sobre una COPIA del estado tomada al crear la fábrica
 run "A7 · folding: copia obsoleta de S al crear la fábrica"  "Interacciones · bundle"  's/^export function createFolding(S, deps){$/export function createFolding(S, deps){ S = Object.assign({}, S);/'
+# A8.0a — exportación GLB en el navegador (N1/N3/E1–E6 sobre el bundle construido desde la copia mutada). Cada patrón cambia exactamente 1 línea.
+A8=tests/browser/a8.test.mjs
+run "A8 · GLB: claves del JSON (samplers antes de textures)"     "A8 · (N3|E6)"        's/gltf.images = \[\];/gltf.images = []; ensureSampler();/' $A8
+run "A8 · GLB: la imagen se añade ANTES de los accesores"         "A8 · (N3|E6)"        's/attr.POSITION = addAccessorFromTyped(/ensureMaterial(meshInfo.material); attr.POSITION = addAccessorFromTyped(/' $A8
+run "A8 · GLB: sin relleno de alineación entre vistas"           "A8 · (N3|E6)"        's/var pad = (4 - (byteOffset % 4)) % 4;/var pad = 0;/' $A8
+run "A8 · GLB: normales sin normalMatrix"                        "A8 · N1"             's/.applyMatrix3(nMat).normalize()/.normalize()/' $A8
+run "A8 · GLB: nombre mesh_<índice+1>"                           "A8 · N1"             "s/'mesh_'+out.length/'mesh_'+(out.length+1)/" $A8
+run "A8 · GLB: posiciones sin matrixWorld"                       "A8 · N1"             's/.applyMatrix4(obj.matrixWorld);/;/' $A8
+run "A8 · GLB: alphaMode ya no depende de transparent"           "A8 · (N3|E6)"        "s/if(alpha < 0.999 || (mat \&\& mat.transparent)) out.alphaMode = 'BLEND';/if(alpha < 0.999) out.alphaMode = 'BLEND';/" $A8
+run "A8 · GLB: magFilter del sampler 9729 → 9728"                "A8 · (N3|E6)"        's/magFilter:9729/magFilter:9728/' $A8
+run "A8 · GLB: el fallo de la textura ya no se registra"         "A8 · E4 · .*textura"  "s/try{ log('Texture image encode failed: '+ex1.message); }catch(exlog){}//" $A8
+run "A8 · GLB: la exportación marca la textura como sucia (muta la escena)" "A8 · E1/E2"  "s/var cvs = document.createElement('canvas');/var cvs = document.createElement('canvas'); texture.needsUpdate = true;/" $A8
+run "A8 · exportGLB: el diálogo se abre ANTES de construir el Blob" "A8 · E4/E5"        "s/var blob = buildGLBBlobFromCurrentView();/var blob = (await saveBlobWithDialog(new Blob([], { type:'model\/gltf-binary' }), 'x'), buildGLBBlobFromCurrentView());/" $A8
 echo "mutaciones detectadas: $ok · no detectadas: $bad"; [ "$bad" = 0 ]

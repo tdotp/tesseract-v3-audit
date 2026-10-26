@@ -43,4 +43,25 @@ mut "A6 · límites: core/legacy/log.js toca document"  's/export function log(m
 mut "A7 · materials: campo de S sin prefijo (referencia suelta)"  's/return MATERIAL_PRESETS\[S.currentMaterialPreset\] || MATERIAL_PRESETS.white;/return MATERIAL_PRESETS[currentMaterialPreset] || MATERIAL_PRESETS.white;/'
 # A7.3 — a7-limites: document fuera de init3D en el visor
 mut "A7 · viewport: resize3D toca document"  's/if(!S.renderer3d||!S.camera3d) return;/if(!S.renderer3d||!S.camera3d||!document) return;/'
+# A8.0a — exportación GLB. Se ejecuta SOLO la prueba diferencial N4 (a8-diferencial-glb): con la batería completa cualquier cambio de texto lo vería a7-texto-identico y no probaría nada sobre N4.
+mutN4() { # nombre, patrón sed
+  mutsrc "$2" || { echo "NO APLICÓ  $1"; bad=$((bad+1)); return; }
+  if TESS_SRC_DIR="$TMP/src" node --test tests/node/a8-diferencial-glb.test.mjs >/dev/null 2>&1; then echo "NO DETECTADA POR N4  $1"; bad=$((bad+1)); else echo "detectada por N4     $1"; ok=$((ok+1)); fi
+}
+mutN4 "A8 · GLB: claves del JSON (samplers antes de textures)"   's/gltf.images = \[\];/gltf.images = []; ensureSampler();/'
+mutN4 "A8 · GLB: la imagen se añade ANTES de los accesores de la malla" 's/attr.POSITION = addAccessorFromTyped(/ensureMaterial(meshInfo.material); attr.POSITION = addAccessorFromTyped(/'
+mutN4 "A8 · GLB: sin relleno de alineación entre vistas"         's/var pad = (4 - (byteOffset % 4)) % 4;/var pad = 0;/'
+mutN4 "A8 · GLB: relleno del JSON 0x20 → 0x00"                   's/padBytes(enc.encode(JSON.stringify(gltf)), 0x20)/padBytes(enc.encode(JSON.stringify(gltf)), 0x00)/'
+mutN4 "A8 · GLB: umbral Uint16 65535 → 65534"                    's/Math.max.apply(null, idxOut) < 65535/Math.max.apply(null, idxOut) < 65534/'
+mutN4 "A8 · GLB: umbral de opacidad 0.01 → 0.02"                 's/obj.material.opacity < 0.01/obj.material.opacity < 0.02/'
+mutN4 "A8 · GLB: pickCrease deja de filtrarse"                   "s/obj.userData.role==='pickCrease' || //"
+mutN4 "A8 · GLB: panelLabel deja de filtrarse"                   "s/obj.userData.role==='panelLabel'/obj.userData.role==='panelLabel2'/"
+mutN4 "A8 · GLB: normales sin normalMatrix"                      's/.applyMatrix3(nMat).normalize()/.normalize()/'
+mutN4 "A8 · GLB: nombre mesh_<índice+1>"                         "s/'mesh_'+out.length/'mesh_'+(out.length+1)/"
+mutN4 "A8 · GLB: deduplicación de texturas desactivada"          's/if(textureMap\[key\]!==undefined) return textureMap\[key\];/if(false) return textureMap[key];/'
+mutN4 "A8 · GLB: materialKey sin el lado"                        "s/var ds = (mat.side===THREE.DoubleSide) ? 'd' : 's';/var ds = 'd';/"
+mutN4 "A8 · GLB: alphaMode ya no depende de transparent"         "s/if(alpha < 0.999 || (mat \&\& mat.transparent)) out.alphaMode = 'BLEND';/if(alpha < 0.999) out.alphaMode = 'BLEND';/"
+mutN4 "A8 · GLB: el fallo de la textura ya no se registra en el log" "s/try{ log('Texture image encode failed: '+ex1.message); }catch(exlog){}//"
+mutN4 "A8 · GLB: posiciones sin matrixWorld"                     's/.applyMatrix4(obj.matrixWorld);/;/'
+mutN4 "A8 · GLB: magFilter del sampler 9729 → 9728"              's/magFilter:9729/magFilter:9728/'
 echo "mutaciones detectadas: $ok · no detectadas: $bad"; [ "$bad" = 0 ]

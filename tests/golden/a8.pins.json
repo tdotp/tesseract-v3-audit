@@ -1,0 +1,6 @@
+{
+ "_nota": "Huellas SHA-256 de los goldens de A8 (solo se regeneran desde el baseline y con aprobación; UPDATE_GOLDEN_A8=1).",
+ "archivos": {
+  "tests/golden/glb-structure.golden.json": "064040555553b85fe976919b187c655848adb4ddb1052c94831b9e8fd3a9c9fc"
+ }
+}
