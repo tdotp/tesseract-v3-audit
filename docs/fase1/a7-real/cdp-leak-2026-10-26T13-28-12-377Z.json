@@ -1,0 +1,87 @@
+{
+ "fecha": "2026-10-26T13:28:12.373Z",
+ "orden": "leak",
+ "resultado": {
+  "fecha": "2026-10-26T13:28:12.370Z",
+  "ciclos": 3,
+  "conArte": false,
+  "duracion_s": 12.7,
+  "filas": [
+   {
+    "ciclo": 0,
+    "tex": 0,
+    "buf": 0,
+    "vao": 0,
+    "prog": 0,
+    "heapMB": 12.1,
+    "eventos_slider": 0
+   },
+   {
+    "ciclo": 1,
+    "tex": 0,
+    "buf": -80,
+    "vao": -20,
+    "prog": 0,
+    "heapMB": 12.1,
+    "eventos_slider": 94
+   },
+   {
+    "ciclo": 2,
+    "tex": 0,
+    "buf": -80,
+    "vao": -20,
+    "prog": 0,
+    "heapMB": 12.1,
+    "eventos_slider": 94
+   },
+   {
+    "ciclo": 3,
+    "tex": 0,
+    "buf": -80,
+    "vao": -20,
+    "prog": 0,
+    "heapMB": 12.1,
+    "eventos_slider": 94
+   }
+  ],
+  "deltas_por_ciclo": [
+   {
+    "ciclo": 1,
+    "dTex": 0,
+    "dBuf": -80,
+    "dVao": -20,
+    "dProg": 0,
+    "dHeapMB": 0
+   },
+   {
+    "ciclo": 2,
+    "dTex": 0,
+    "dBuf": 0,
+    "dVao": 0,
+    "dProg": 0,
+    "dHeapMB": 0
+   },
+   {
+    "ciclo": 3,
+    "dTex": 0,
+    "dBuf": 0,
+    "dVao": 0,
+    "dProg": 0,
+    "dHeapMB": 0
+   }
+  ],
+  "peor_delta_ciclos_2_en_adelante": {
+   "tex": 0,
+   "buf": 0,
+   "vao": 0,
+   "prog": 0
+  },
+  "tolerancia": {
+   "tex": 0,
+   "buf": 0,
+   "vao": 0,
+   "prog": 0
+  },
+  "veredicto": "SIN CRECIMIENTO ACUMULATIVO"
+ }
+}
