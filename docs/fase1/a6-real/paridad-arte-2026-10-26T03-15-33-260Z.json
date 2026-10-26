@@ -1,0 +1,60 @@
+{
+ "fecha": "2026-10-26T03:15:33.261Z",
+ "tag": "N0-B",
+ "profile": "arte",
+ "pasos": {
+  "P-1 extracción y validación": {
+   "status": "Extraction complete",
+   "validacion": "✅ No problems found",
+   "avisos": [],
+   "continuarHabilitado": true,
+   "jsonBytes": 3668,
+   "jsonSha256": "a6deb473c26be88e3c8c949033118b80c3a4e5d0c6dff64d77a788c401d715ff"
+  },
+  "P-2 paso a 3D": {
+   "status": "3D ready · thickness=0.3mm",
+   "ms": 3873,
+   "logPaneles": [
+    "Faces traced: 5",
+    "Panels after shell filter: 3",
+    "Connectivity filter: keeping 2 of 3 panels from largest crease-connected component"
+   ],
+   "paneles3D": "3"
+  },
+  "P-7b exportar GLB con arte": {
+   "ruta": "/private/tmp/tesseract_a4/arte.glb",
+   "err": 0,
+   "bytes": 295440,
+   "sha256": "b4973a54840cd0c1a58e6018fd4927369dd5df5a72d23c3465ed25059dcdd1f6",
+   "status": "GLB exported from current 3D pose",
+   "archivo": {
+    "bytes": 295440,
+    "sha256": "b4973a54840cd0c1a58e6018fd4927369dd5df5a72d23c3465ed25059dcdd1f6"
+   }
+  },
+  "P-7 arte Front/Back": {
+   "antes": {
+    "pill": "Layers",
+    "st": "Artwork loaded from layers. Mapping uses full artboard coordinates."
+   },
+   "pill": "Layers",
+   "artStatus": "Artwork loaded from layers. Mapping uses full artboard coordinates.",
+   "status": "GLB exported from current 3D pose",
+   "ms": 2190,
+   "logArte": []
+  }
+ },
+ "consolaPanel": {
+  "errores": 0
+ },
+ "consola": {
+  "eventos": 76,
+  "errores": [],
+  "avisos": [
+   {
+    "tipo": "log-warning",
+    "texto": "The specified value \"abc\" cannot be parsed, or is out of range."
+   }
+  ]
+ }
+}

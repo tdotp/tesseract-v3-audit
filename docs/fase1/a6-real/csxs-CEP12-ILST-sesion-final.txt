@@ -1,0 +1,5 @@
+﻿2026-10-25 22:05:02:160 : INFO  PlugPlug version : 12.1.1.3
+2026-10-25 22:05:02:160 : INFO  LogLevel : 1
+2026-10-25 22:05:02:160 : ERROR Headlights service fails to log extension data.
+2026-10-25 22:14:27:364 : ERROR Headlights service fails to log extension data.
+2026-10-25 22:14:27:404 : ERROR Headlights service fails to log extension data.
