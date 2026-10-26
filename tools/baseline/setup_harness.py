@@ -44,7 +44,11 @@ m = (dest / "main.js").read_text()
 DBG = ("window.__dbg={get renderer(){return renderer3d},get scene(){return scene3d},get camera(){return camera3d},get orbit(){return orbitState},upd:function(){updateCameraFromOrbit()},fold:function(i,a){foldAngles[i]=a;applyFolding();},get nFold(){return foldTree.length},get panels(){return panelMeshes.length},get foldData(){return foldData},get art(){return currentArtState},get panelData(){return currentPanelData},get thickness(){return currentThicknessMm},get preset(){return currentMaterialPreset},get baseIndex(){return currentBasePanelIndex},get angles(){return foldAngles},get tree(){return foldTree},get bridges(){return foldBridgeGroup},get selectedEdge(){return selectedFoldEdgeIdx},get creaseVisuals(){return creaseVisuals},get adj(){return currentAdjEdges}};")
 pat1 = re.compile(r"function setStatus\(m\)\s*\{\s*statusArea\.textContent\s*=\s*m;\s*\}")
 assert len(pat1.findall(m)) == 1, "no se encontró setStatus"
-m = pat1.sub(lambda mo: "/* HARNESS */ " + DBG + "\n" + mo.group(0), m, count=1)
+# A7.0b: inyección UNIFORME. Si el objetivo trae la vista de solo lectura de A7 (__tessDebugView), se usa; si no (baseline, panel/, bundles anteriores a A7),
+# el objeto heredado DBG sin cambios. (docs/fase1/A7_PROPUESTA.md §7.2)
+DBG_INJECT = DBG.replace("window.__dbg={", "window.__dbg=(typeof __tessDebugView==='function')?__tessDebugView():{", 1)
+assert DBG_INJECT != DBG
+m = pat1.sub(lambda mo: "/* HARNESS */ " + DBG_INJECT + "\n" + mo.group(0), m, count=1)
 # Parche 2: pathToFileURL acepta blob:/http: (para simular arte)
 pat2 = re.compile(r"(var path = String\(fsPath \|\| (['\"])\2\);\s*if\s*\(\s*!path\s*\)\s*return (['\"])\3;)")
 assert len(pat2.findall(m)) == 1, "no se encontró pathToFileURL"
