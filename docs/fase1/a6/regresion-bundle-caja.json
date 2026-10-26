@@ -1,0 +1,175 @@
+{
+ "poses": {
+  "1_plano": {
+   "px": 165184,
+   "distintos": 0,
+   "maxCanal": 0,
+   "tam": "464x356"
+  },
+  "2_plegado_ALL_90": {
+   "px": 165184,
+   "distintos": 0,
+   "maxCanal": 0,
+   "tam": "464x356"
+  },
+  "3_otra_base": {
+   "px": 165184,
+   "distintos": 0,
+   "maxCanal": 0,
+   "tam": "464x356"
+  },
+  "4_con_arte": {
+   "px": 165184,
+   "distintos": 0,
+   "maxCanal": 0,
+   "tam": "464x356"
+  }
+ },
+ "escena": {
+  "1_plano": {
+   "A": {
+    "Mesh": 21,
+    "Line": 10,
+    "LineSegments": 13,
+    "Sprite": 11,
+    "Group": 62,
+    "otros": 4,
+    "drawCalls": 55,
+    "triangulos": 350,
+    "paneles": 11,
+    "aristasPliegue": 10
+   },
+   "B": {
+    "Mesh": 21,
+    "Line": 10,
+    "LineSegments": 13,
+    "Sprite": 11,
+    "Group": 62,
+    "otros": 4,
+    "drawCalls": 55,
+    "triangulos": 350,
+    "paneles": 11,
+    "aristasPliegue": 10
+   },
+   "iguales": true
+  },
+  "2_plegado_ALL_90": {
+   "A": {
+    "Mesh": 41,
+    "Line": 10,
+    "LineSegments": 13,
+    "Sprite": 11,
+    "Group": 63,
+    "otros": 4,
+    "drawCalls": 75,
+    "triangulos": 430,
+    "paneles": 11,
+    "aristasPliegue": 10
+   },
+   "B": {
+    "Mesh": 41,
+    "Line": 10,
+    "LineSegments": 13,
+    "Sprite": 11,
+    "Group": 63,
+    "otros": 4,
+    "drawCalls": 75,
+    "triangulos": 430,
+    "paneles": 11,
+    "aristasPliegue": 10
+   },
+   "iguales": true
+  },
+  "3_otra_base": {
+   "A": {
+    "Mesh": 21,
+    "Line": 10,
+    "LineSegments": 13,
+    "Sprite": 1,
+    "Group": 62,
+    "otros": 4,
+    "drawCalls": 45,
+    "triangulos": 330,
+    "paneles": 11,
+    "aristasPliegue": 10
+   },
+   "B": {
+    "Mesh": 21,
+    "Line": 10,
+    "LineSegments": 13,
+    "Sprite": 1,
+    "Group": 62,
+    "otros": 4,
+    "drawCalls": 45,
+    "triangulos": 330,
+    "paneles": 11,
+    "aristasPliegue": 10
+   },
+   "iguales": true
+  },
+  "4_con_arte": {
+   "A": {
+    "Mesh": 43,
+    "Line": 10,
+    "LineSegments": 13,
+    "Sprite": 1,
+    "Group": 62,
+    "otros": 4,
+    "drawCalls": 89,
+    "triangulos": 494,
+    "paneles": 11,
+    "aristasPliegue": 10
+   },
+   "B": {
+    "Mesh": 43,
+    "Line": 10,
+    "LineSegments": 13,
+    "Sprite": 1,
+    "Group": 62,
+    "otros": 4,
+    "drawCalls": 89,
+    "triangulos": 494,
+    "paneles": 11,
+    "aristasPliegue": 10
+   },
+   "iguales": true
+  }
+ },
+ "glb": {
+  "sin_arte_pose3": {
+   "A": {
+    "bytes": 30592,
+    "sha256": "7750a221cc0f2aaa",
+    "ms": 58
+   },
+   "B": {
+    "bytes": 30592,
+    "sha256": "7750a221cc0f2aaa",
+    "ms": 58
+   },
+   "identicos": true
+  },
+  "con_arte_pose3": {
+   "A": {
+    "bytes": 16505116,
+    "sha256": "10366eee1f07e640",
+    "ms": 1329
+   },
+   "B": {
+    "bytes": 16505116,
+    "sha256": "10366eee1f07e640",
+    "ms": 1281
+   },
+   "identicos": true
+  }
+ },
+ "paneles": {
+  "A": 11,
+  "B": 11
+ },
+ "resumen": {
+  "poses_identicas": true,
+  "escena_identica": true,
+  "glb_identico": true
+ }
+}

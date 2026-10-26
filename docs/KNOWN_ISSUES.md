@@ -1,5 +1,7 @@
 # Registro de defectos conocidos (referencia funcional)
 
+Cierre de A6 (2026-10-25, `docs/fase1/A6_INFORME.md`): el motor geométrico vigente pasa a `src/core/legacy/` detrás de `GeometryEngine` (solo `legacy`) **con su texto idéntico** y **ningún defecto cambia**: KI-04/KI-22 (11 de 13 en la Caja Botánica real, 13 a ×0.75), KI-05…KI-09, KI-17…KI-20 y los demás, preservados y verificados por tres caminos (cargador por texto, módulo ES real y bundle en navegador). Nuevas lagunas de **cobertura** medidas (no son defectos del producto): ver «Lagunas de cobertura (A6)» al final.
+
 Validación real del bundle A5 en CEP (2026-10-24, `docs/fase1/A5_VALIDACION_CEP_INFORME.md`): **KI-25 reproducido en Illustrator real** (diálogo «Save GLB» real, guardar y cancelar); KI-04/KI-22 (11 de 13) y KI-03 (mm) también, sin cambios; ningún defecto nuevo.
 
 Cierre de A5 (2026-10-24): la refactorización A5.1–A5.4 (constantes, textos ExtendScript, puente CEP, guardado) **no cambió ningún defecto**; KI-01 sigue corregido (Δ=0 en el bundle desde `src/`) y KI-02…KI-26 preservados.
@@ -61,3 +63,17 @@ Evidencia: `docs/fase0/00_INFORME_AUDITORIA.md`, `tools/baseline/results/`. Etiq
 | KI-04, KI-10, KI-22, KI-23 (Illustrator real) | `nivel0-evidencia.test.mjs` (evidencia de `docs/fase1/nivel0-real/`): KI-10 error/subcadena/ocultas; N0-A 11 de 13; barrido de escala 13↔11; PNG 3176×2264 |
 | KI-17, 18, 19, 20 | `known-issues`: casos `crease-*`, `t-desalineada-*`, `panel-*`; `geometry-golden` |
 | KI-24, KI-25, KI-26 y puente CEP (A5.0a) | `bridge.test.mjs`: 30 casos × baseline/panel/bundle (errores de `evalScript`, extracción, arte, guardado, CEP ausente); 6 mutaciones del puente en `mutation-check-browser.sh` y 1 en `mutation-check-dist.sh` |
+| KI-01…KI-26 tras A6 (motor en `core/`) | `a6-engine.test.mjs` (módulo ES real = goldens de geometría, Illustrator real y logs), `a6-texto-identico` (23 funciones con el mismo texto), `a6-contratos` (no mutación, alias, excepciones), `a6-logs-golden`, `a6-validacion`; navegador: log de depuración idéntico en 5 flujos (baseline · panel · bundle) |
+
+## Lagunas de cobertura (A6)
+
+Medidas con controles negativos al mover el código (A6.4). **No son defectos del producto**: son cambios del motor que **ninguna prueba de comportamiento** detecta con los fixtures actuales. Durante A6 solo los protege `a6-texto-identico` (texto idéntico). Conviene cubrirlas con fixtures en F2 antes de tocar esa lógica.
+
+| Laguna | Detalle | Detectado por |
+|---|---|---|
+| `eps` de la adyacencia robusta al **subir** | `Math.max(GRAPH_EPS, 1.0)` → 2.0 o 5.0 no cambia ningún resultado (bajarlo a 0.1 sí, y es un control) | Solo T2 |
+| Fracción mínima de solape 0.20 de `lineOverlapSegment` | 0.20 → 0.60 no cambia ningún resultado | Solo T2 |
+| `creaseIdx` del segundo respaldo (`panel-panel`) | −1 → −2 no cambia nada: ningún fixture produce adyacencias por ese respaldo | Solo T2 |
+| Desempate del filtro de conectividad (nº de paneles) | Invertirlo no cambia ningún resultado [MEDIDO]: ningún fixture tiene dos componentes con la misma área | Solo T2 |
+| `id` de los problemas de validación | El golden de geometría no lo incluía; desde A6.5 lo fija `a6-validacion` | `a6-validacion` (cubierto) |
+
