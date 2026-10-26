@@ -1,0 +1,13 @@
+{
+ "funcionesAnteriores": 133,
+ "funcionesNuevas": 136,
+ "identicas": 133,
+ "distintas": [],
+ "duplicadas": [],
+ "soloEnAnterior": [],
+ "soloEnNuevo": [
+  "createLabels",
+  "createMaterials",
+  "createFoldAngles"
+ ]
+}

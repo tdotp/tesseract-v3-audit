@@ -1,0 +1,12 @@
+{
+ "funcionesAnteriores": 131,
+ "funcionesNuevas": 133,
+ "identicas": 131,
+ "distintas": [],
+ "duplicadas": [],
+ "soloEnAnterior": [],
+ "soloEnNuevo": [
+  "createAppState",
+  "__tessDebugView"
+ ]
+}

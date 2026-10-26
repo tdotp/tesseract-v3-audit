@@ -39,4 +39,6 @@ mut "A6 · validación: los id de problema empiezan en P0"  "s/id:'P'+(problems.
 mut "A6 · adaptador: el motor ignora la base elegida (siempre 0)"  's/    buildFoldTree: buildFoldTree,/    buildFoldTree: function(p, a, b){ return buildFoldTree(p, a, 0); },/'
 mut "A6 · adaptador: buildPanels clona la entrada (rompe los alias I4)"  's/    buildPanels: buildPanels,/    buildPanels: function(d){ return buildPanels(JSON.parse(JSON.stringify(d))); },/'
 mut "A6 · límites: core/legacy/log.js toca document"  's/export function log(m){ if(sink) sink(m); }/export function log(m){ if(sink \&\& document) sink(m); }/'
+# A7.2 — regla 8 de a7-limites: un campo de S usado sin «S.» en un módulo (sería un ReferenceError diferido)
+mut "A7 · materials: campo de S sin prefijo (referencia suelta)"  's/return MATERIAL_PRESETS\[S.currentMaterialPreset\] || MATERIAL_PRESETS.white;/return MATERIAL_PRESETS[currentMaterialPreset] || MATERIAL_PRESETS.white;/'
 echo "mutaciones detectadas: $ok · no detectadas: $bad"; [ "$bad" = 0 ]

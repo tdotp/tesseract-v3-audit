@@ -1,0 +1,31 @@
+{
+ "soloEnA": [
+  "getMaterialPreset",
+  "getPanelShellHex",
+  "getEdgeLineHex",
+  "getFoldHingeHex",
+  "getFoldHingeRadius",
+  "makeLabelCanvas",
+  "roundRect",
+  "getLabelResources",
+  "disposeLabelCache",
+  "makePanelLabelSprite",
+  "refreshPanelMaterials",
+  "signedDisplayAngle",
+  "internalAngleFromDisplay"
+ ],
+ "soloEnB": [
+  "createLabels",
+  "createMaterials",
+  "createFoldAngles"
+ ],
+ "distintas": [],
+ "lineasQuitadas": [
+  "1× var labelCache = {};"
+ ],
+ "lineasAnadidas": [
+  "1× var { getMaterialPreset, getPanelShellHex, getEdgeLineHex, getFoldHingeHex, getFoldHingeRadius, refreshPanelMaterials } = createMaterials(S);",
+  "1× var { makeLabelCanvas, roundRect, getLabelResources, disposeLabelCache, makePanelLabelSprite } = createLabels();",
+  "1× var { signedDisplayAngle, internalAngleFromDisplay } = createFoldAngles(S);"
+ ]
+}

@@ -9,7 +9,7 @@ export const STATE_FIELDS = ['currentThicknessMm', 'currentMaterialPreset', 'cur
   'foldTree', 'foldSigns', 'foldAngles', 'foldCenter', 'selectedFoldEdgeIdx', 'foldRoot', 'panelGroupMap', 'panelLabelSprites',
   'renderer3d', 'scene3d', 'camera3d', 'raycaster3d', 'pointer3d', 'orbitState', 'panelMeshes', 'foldData', 'creasePickables', 'creaseVisuals', 'foldBridgeGroup', 'currentArtState'];
 export const refMain = () => execFileSync('git', ['-C', ROOT, 'show', `${A7_REF}:src/main.js`], { encoding: 'utf8' });
-export const SRC = path.join(ROOT, 'src');
+export const SRC = process.env.TESS_SRC_DIR || path.join(ROOT, 'src'); // TESS_SRC_DIR: copia mutada de src/ (controles negativos de Node)
 export function srcFiles(dir = SRC) { const out = []; (function walk(d) { for (const e of fs.readdirSync(d, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) { const p = path.join(d, e.name); if (e.isDirectory()) walk(p); else if (e.name.endsWith('.js')) out.push(path.relative(dir, p)); } })(dir); return out; }
 
 // Funciones declaradas a cualquier sangría (con o sin export/async). Devuelve [{name, indent, start, end, text}] en orden de aparición.

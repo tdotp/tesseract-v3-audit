@@ -6,6 +6,10 @@ import { hasCep, evalScript, evalScriptJSON, pathToFileURL } from './bridge/cep.
 import { saveBlobWithDialog } from './bridge/fs.js';
 import { createLegacyEngine } from './core/engine.js';
 import { createAppState } from './app/state.js';
+import { shapeFromVerts, disposeObject3D } from './scene/three-utils.js';
+import { createLabels } from './scene/labels.js';
+import { createMaterials } from './scene/materials.js';
+import { createFoldAngles } from './fold/angles.js';
 // D-A6-7: la escena (build3DFromPanels) usa este helper puro del motor hasta A7; el resto del motor solo se usa a través de GeometryEngine.
 import { getPolyCentroid } from './core/legacy/geom2d.js';
 
@@ -74,36 +78,19 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
     var geometryEngine = createLegacyEngine({ log: log }); /* A6.6: GeometryEngine v1, única implementación 'legacy' (sin selector); su log escribe en este log() */
     /* A7.1: vista de SOLO LECTURA del estado para el arnés de pruebas (tools/baseline/setup_harness.py la usa si existe). El producto no la llama ni la publica en window. */
     function __tessDebugView(){ return {get renderer(){return S.renderer3d},get scene(){return S.scene3d},get camera(){return S.camera3d},get orbit(){return S.orbitState},get nFold(){return S.foldTree.length},get panels(){return S.panelMeshes.length},get foldData(){return S.foldData},get art(){return S.currentArtState},get panelData(){return S.currentPanelData},get thickness(){return S.currentThicknessMm},get preset(){return S.currentMaterialPreset},get baseIndex(){return S.currentBasePanelIndex},get angles(){return S.foldAngles},get tree(){return S.foldTree},get bridges(){return S.foldBridgeGroup},get selectedEdge(){return S.selectedFoldEdgeIdx},get creaseVisuals(){return S.creaseVisuals},get adj(){return S.currentAdjEdges}}; }
+    /* A7: raíz de composición (docs/fase1/A7_PROPUESTA.md §5.1): fábricas en orden topológico; sus funciones conservan los nombres y el texto de siempre */
+    var { getMaterialPreset, getPanelShellHex, getEdgeLineHex, getFoldHingeHex, getFoldHingeRadius, refreshPanelMaterials } = createMaterials(S);
+    var { makeLabelCanvas, roundRect, getLabelResources, disposeLabelCache, makePanelLabelSprite } = createLabels();
+    var { signedDisplayAngle, internalAngleFromDisplay } = createFoldAngles(S);
 
     function hasArtworkLoaded(){
       return !!(S.currentArtState && ((S.currentArtState.front && S.currentArtState.front.texture) || (S.currentArtState.back && S.currentArtState.back.texture)));
-    }
-
-    function getMaterialPreset(){
-      return MATERIAL_PRESETS[S.currentMaterialPreset] || MATERIAL_PRESETS.white;
     }
 
     function syncMaterialPresetUI(){
       var preset = getMaterialPreset();
       if(materialPresetSelect) materialPresetSelect.value = preset.key;
       if(materialPill) materialPill.textContent = preset.label;
-    }
-
-    function getPanelShellHex(isBase){
-      var preset = getMaterialPreset();
-      return isBase ? preset.shellBase : preset.shell;
-    }
-
-    function getEdgeLineHex(){
-      return getMaterialPreset().line;
-    }
-
-    function getFoldHingeHex(){
-      return getMaterialPreset().hinge;
-    }
-
-    function getFoldHingeRadius(){
-      return Math.max(CREASE_HINGE_MIN_RADIUS, S.currentThicknessMm * CREASE_HINGE_RADIUS_FACTOR);
     }
 
     function setInteractionMode(mode, announce){
@@ -121,58 +108,6 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
       if(announce) setStatus(interactionMode==='base' ? 'Base selection mode enabled' : 'Crease selection mode enabled');
     }
 
-    function makeLabelCanvas(text, bg, fg){
-      var c=document.createElement('canvas'); c.width=256; c.height=96;
-      var x=c.getContext('2d');
-      x.clearRect(0,0,c.width,c.height);
-      x.fillStyle=bg;
-      roundRect(x, 4, 10, c.width-8, c.height-20, 20);
-      x.fill();
-      x.lineWidth=2; x.strokeStyle='rgba(255,255,255,0.14)'; x.stroke();
-      x.fillStyle=fg; x.font='700 38px -apple-system,BlinkMacSystemFont,Segoe UI,Tahoma,sans-serif';
-      x.textAlign='center'; x.textBaseline='middle'; x.fillText(text, c.width/2, c.height/2+2);
-      return c;
-    }
-
-    function roundRect(ctx,x,y,w,h,r){
-      ctx.beginPath();
-      ctx.moveTo(x+r,y);
-      ctx.arcTo(x+w,y,x+w,y+h,r);
-      ctx.arcTo(x+w,y+h,x,y+h,r);
-      ctx.arcTo(x,y+h,x,y,r);
-      ctx.arcTo(x,y,x+w,y,r);
-      ctx.closePath();
-    }
-
-    /* A1 (fuga GPU): textura y material de cada etiqueta se crean UNA vez por (texto, base) y se reutilizan;
-       antes se creaban nuevos en cada applyFolding (11 texturas por evento de slider) y nunca se liberaban. */
-    var labelCache = {};
-    function getLabelResources(text,isBase){
-      var key = text + '|' + (isBase ? 1 : 0);
-      var r = labelCache[key];
-      if(!r){
-        var canvas=makeLabelCanvas(text, isBase ? 'rgba(37,99,235,0.96)' : 'rgba(15,23,42,0.90)', '#ffffff');
-        var tex=new THREE.CanvasTexture(canvas);
-        tex.minFilter=THREE.LinearFilter; tex.needsUpdate=true;
-        var mat=new THREE.SpriteMaterial({map:tex, transparent:true, depthTest:false, depthWrite:false});
-        r = labelCache[key] = {tex:tex, mat:mat};
-      }
-      return r;
-    }
-    function disposeLabelCache(){
-      Object.keys(labelCache).forEach(function(k){
-        try{ labelCache[k].mat.dispose(); }catch(ex){}
-        try{ labelCache[k].tex.dispose(); }catch(ex){}
-      });
-      labelCache = {};
-    }
-
-    function makePanelLabelSprite(text,isBase){
-      var sp=new THREE.Sprite(getLabelResources(text,isBase).mat);
-      sp.scale.set(34,12.75,1);
-      sp.renderOrder = 120;
-      return sp;
-    }
 
     if(!importView||!threeView||!statusArea||!errorMsg||!testBtn||!extractBtn||
        !previewBtn||!continueBtn||!debugToggle||!outputArea||!validationStatus||
@@ -612,14 +547,6 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
     /* ================================================================
        BUILD 3D PANELS (escena). Los paneles 2D salen de src/core/legacy/panels.js (A6.4).
        ================================================================ */
-    function shapeFromVerts(verts2d){
-      if(verts2d.length<3) return null;
-      var s=new THREE.Shape();
-      s.moveTo(verts2d[0].x,verts2d[0].y);
-      for(var i=1;i<verts2d.length;i++) s.lineTo(verts2d[i].x,verts2d[i].y);
-      s.closePath();
-      return s;
-    }
 
     function build3DFromPanels(panelData,data){
       clearAllMeshes();
@@ -684,19 +611,6 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
       return S.panelMeshes.length;
     }
 
-    function refreshPanelMaterials(){
-      S.panelMeshes.forEach(function(mesh){
-        if(!mesh || !mesh.material) return;
-        var isBase = mesh.userData && mesh.userData.panelIndex===S.currentBasePanelIndex;
-        mesh.material.color.set(getPanelShellHex(isBase));
-        mesh.material.needsUpdate = true;
-        if(mesh.userData && mesh.userData.edgeLines && mesh.userData.edgeLines.material){
-          mesh.userData.edgeLines.material.color.set(getEdgeLineHex());
-          mesh.userData.edgeLines.material.needsUpdate = true;
-        }
-      });
-    }
-
     function pickPanelFromEvent(e){
       if(!S.renderer3d || !S.camera3d || !S.raycaster3d || !S.pointer3d || !S.panelMeshes.length) return false;
       var rect = canvas3d.getBoundingClientRect();
@@ -740,16 +654,6 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
 
     /* ADJACENCY + FOLD TREE → src/core/legacy/adjacency.js y src/core/legacy/fold-tree.js (A6.3). Aquí quedan los signos de presentación de la UI. */
 
-    function signedDisplayAngle(edgeIdx, internalAngle){
-      var sign = (S.foldSigns && typeof S.foldSigns[edgeIdx]==='number' && S.foldSigns[edgeIdx]!==0) ? S.foldSigns[edgeIdx] : 1;
-      return Math.round((internalAngle || 0) * sign);
-    }
-
-    function internalAngleFromDisplay(edgeIdx, displayAngle){
-      var sign = (S.foldSigns && typeof S.foldSigns[edgeIdx]==='number' && S.foldSigns[edgeIdx]!==0) ? S.foldSigns[edgeIdx] : 1;
-      return (displayAngle || 0) * sign;
-    }
-
     function updatePerCreaseRow(edgeIdx){
       var cs = currentCreaseSliders[edgeIdx];
       if(!cs) return;
@@ -757,21 +661,6 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
       cs.slider.value = String(display);
       cs.val.textContent = (display>0?'+':'') + String(display) + '°';
       if(cs.label) cs.label.textContent = 'C'+edgeIdx+'  P'+S.foldTree[edgeIdx].parent+'→P'+S.foldTree[edgeIdx].child+'  ' + (display>=0 ? '+' : '−');
-    }
-
-    function disposeObject3D(obj){
-      if(!obj) return;
-      if(obj.geometry) try{ obj.geometry.dispose(); }catch(ex){}
-      if(obj.material){
-        if(obj.material instanceof Array){
-          obj.material.forEach(function(m){ try{ m.dispose(); }catch(ex){}; });
-        } else {
-          try{ obj.material.dispose(); }catch(ex){}
-        }
-      }
-      if(obj.children && obj.children.length){
-        obj.children.slice().forEach(function(ch){ disposeObject3D(ch); });
-      }
     }
 
 

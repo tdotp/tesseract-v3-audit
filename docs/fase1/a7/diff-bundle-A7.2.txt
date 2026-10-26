@@ -1,0 +1,352 @@
+# Diff del bundle dist/main.js: A7.1 → A7.2 (diff -u)
+--- .scratch/bundle-A7.1.js	2026-10-26 01:43:11
++++ dist/main.js	2026-10-26 01:44:30
+@@ -1,4 +1,4 @@
+-/* Tesseract V3 · bundle IIFE · fuente main.js sha256:0d0c0cd04fcffc24 · esbuild 0.28.2 · target chrome99 · NO editar a mano (tools/build/build.mjs) */
++/* Tesseract V3 · bundle IIFE · fuente main.js sha256:959a0e332158df04 · esbuild 0.28.2 · target chrome99 · NO editar a mano (tools/build/build.mjs) */
+ (() => {
+   // src/config/look.js
+   var DEFAULT_THICKNESS_MM = 0.25;
+@@ -973,6 +973,156 @@
+       /* arte */
+       currentArtState: null
+     });
++  }
++
++  // src/scene/three-utils.js
++  function shapeFromVerts(verts2d) {
++    if (verts2d.length < 3) return null;
++    var s = new THREE.Shape();
++    s.moveTo(verts2d[0].x, verts2d[0].y);
++    for (var i = 1; i < verts2d.length; i++) s.lineTo(verts2d[i].x, verts2d[i].y);
++    s.closePath();
++    return s;
++  }
++  function disposeObject3D(obj) {
++    if (!obj) return;
++    if (obj.geometry) try {
++      obj.geometry.dispose();
++    } catch (ex) {
++    }
++    if (obj.material) {
++      if (obj.material instanceof Array) {
++        obj.material.forEach(function(m) {
++          try {
++            m.dispose();
++          } catch (ex) {
++          }
++          ;
++        });
++      } else {
++        try {
++          obj.material.dispose();
++        } catch (ex) {
++        }
++      }
++    }
++    if (obj.children && obj.children.length) {
++      obj.children.slice().forEach(function(ch) {
++        disposeObject3D(ch);
++      });
++    }
++  }
++
++  // src/scene/labels.js
++  function createLabels() {
++    function makeLabelCanvas(text, bg, fg) {
++      var c = document.createElement("canvas");
++      c.width = 256;
++      c.height = 96;
++      var x = c.getContext("2d");
++      x.clearRect(0, 0, c.width, c.height);
++      x.fillStyle = bg;
++      roundRect(x, 4, 10, c.width - 8, c.height - 20, 20);
++      x.fill();
++      x.lineWidth = 2;
++      x.strokeStyle = "rgba(255,255,255,0.14)";
++      x.stroke();
++      x.fillStyle = fg;
++      x.font = "700 38px -apple-system,BlinkMacSystemFont,Segoe UI,Tahoma,sans-serif";
++      x.textAlign = "center";
++      x.textBaseline = "middle";
++      x.fillText(text, c.width / 2, c.height / 2 + 2);
++      return c;
++    }
++    function roundRect(ctx, x, y, w, h, r) {
++      ctx.beginPath();
++      ctx.moveTo(x + r, y);
++      ctx.arcTo(x + w, y, x + w, y + h, r);
++      ctx.arcTo(x + w, y + h, x, y + h, r);
++      ctx.arcTo(x, y + h, x, y, r);
++      ctx.arcTo(x, y, x + w, y, r);
++      ctx.closePath();
++    }
++    var labelCache = {};
++    function getLabelResources(text, isBase) {
++      var key = text + "|" + (isBase ? 1 : 0);
++      var r = labelCache[key];
++      if (!r) {
++        var canvas = makeLabelCanvas(text, isBase ? "rgba(37,99,235,0.96)" : "rgba(15,23,42,0.90)", "#ffffff");
++        var tex = new THREE.CanvasTexture(canvas);
++        tex.minFilter = THREE.LinearFilter;
++        tex.needsUpdate = true;
++        var mat = new THREE.SpriteMaterial({ map: tex, transparent: true, depthTest: false, depthWrite: false });
++        r = labelCache[key] = { tex, mat };
++      }
++      return r;
++    }
++    function disposeLabelCache() {
++      Object.keys(labelCache).forEach(function(k) {
++        try {
++          labelCache[k].mat.dispose();
++        } catch (ex) {
++        }
++        try {
++          labelCache[k].tex.dispose();
++        } catch (ex) {
++        }
++      });
++      labelCache = {};
++    }
++    function makePanelLabelSprite(text, isBase) {
++      var sp = new THREE.Sprite(getLabelResources(text, isBase).mat);
++      sp.scale.set(34, 12.75, 1);
++      sp.renderOrder = 120;
++      return sp;
++    }
++    return { makeLabelCanvas, roundRect, getLabelResources, disposeLabelCache, makePanelLabelSprite };
++  }
++
++  // src/scene/materials.js
++  function createMaterials(S) {
++    function getMaterialPreset() {
++      return MATERIAL_PRESETS[S.currentMaterialPreset] || MATERIAL_PRESETS.white;
++    }
++    function getPanelShellHex(isBase) {
++      var preset = getMaterialPreset();
++      return isBase ? preset.shellBase : preset.shell;
++    }
++    function getEdgeLineHex() {
++      return getMaterialPreset().line;
++    }
++    function getFoldHingeHex() {
++      return getMaterialPreset().hinge;
++    }
++    function getFoldHingeRadius() {
++      return Math.max(CREASE_HINGE_MIN_RADIUS, S.currentThicknessMm * CREASE_HINGE_RADIUS_FACTOR);
++    }
++    function refreshPanelMaterials() {
++      S.panelMeshes.forEach(function(mesh) {
++        if (!mesh || !mesh.material) return;
++        var isBase = mesh.userData && mesh.userData.panelIndex === S.currentBasePanelIndex;
++        mesh.material.color.set(getPanelShellHex(isBase));
++        mesh.material.needsUpdate = true;
++        if (mesh.userData && mesh.userData.edgeLines && mesh.userData.edgeLines.material) {
++          mesh.userData.edgeLines.material.color.set(getEdgeLineHex());
++          mesh.userData.edgeLines.material.needsUpdate = true;
++        }
++      });
++    }
++    return { getMaterialPreset, getPanelShellHex, getEdgeLineHex, getFoldHingeHex, getFoldHingeRadius, refreshPanelMaterials };
++  }
++
++  // src/fold/angles.js
++  function createFoldAngles(S) {
++    function signedDisplayAngle(edgeIdx, internalAngle) {
++      var sign = S.foldSigns && typeof S.foldSigns[edgeIdx] === "number" && S.foldSigns[edgeIdx] !== 0 ? S.foldSigns[edgeIdx] : 1;
++      return Math.round((internalAngle || 0) * sign);
++    }
++    function internalAngleFromDisplay(edgeIdx, displayAngle) {
++      var sign = S.foldSigns && typeof S.foldSigns[edgeIdx] === "number" && S.foldSigns[edgeIdx] !== 0 ? S.foldSigns[edgeIdx] : 1;
++      return (displayAngle || 0) * sign;
++    }
++    return { signedDisplayAngle, internalAngleFromDisplay };
+   }
+ 
+   // src/main.js
+@@ -1089,30 +1239,17 @@
+           return S.currentAdjEdges;
+         } };
+       }
++      var { getMaterialPreset, getPanelShellHex, getEdgeLineHex, getFoldHingeHex, getFoldHingeRadius, refreshPanelMaterials } = createMaterials(S);
++      var { makeLabelCanvas, roundRect, getLabelResources, disposeLabelCache, makePanelLabelSprite } = createLabels();
++      var { signedDisplayAngle, internalAngleFromDisplay } = createFoldAngles(S);
+       function hasArtworkLoaded() {
+         return !!(S.currentArtState && (S.currentArtState.front && S.currentArtState.front.texture || S.currentArtState.back && S.currentArtState.back.texture));
+       }
+-      function getMaterialPreset() {
+-        return MATERIAL_PRESETS[S.currentMaterialPreset] || MATERIAL_PRESETS.white;
+-      }
+       function syncMaterialPresetUI() {
+         var preset = getMaterialPreset();
+         if (materialPresetSelect) materialPresetSelect.value = preset.key;
+         if (materialPill) materialPill.textContent = preset.label;
+       }
+-      function getPanelShellHex(isBase) {
+-        var preset = getMaterialPreset();
+-        return isBase ? preset.shellBase : preset.shell;
+-      }
+-      function getEdgeLineHex() {
+-        return getMaterialPreset().line;
+-      }
+-      function getFoldHingeHex() {
+-        return getMaterialPreset().hinge;
+-      }
+-      function getFoldHingeRadius() {
+-        return Math.max(CREASE_HINGE_MIN_RADIUS, S.currentThicknessMm * CREASE_HINGE_RADIUS_FACTOR);
+-      }
+       function setInteractionMode(mode, announce) {
+         interactionMode = mode === "base" ? "base" : "fold";
+         if (modeFoldBtn) modeFoldBtn.classList.toggle("active", interactionMode === "fold");
+@@ -1125,67 +1262,6 @@
+         }
+         if (announce) setStatus(interactionMode === "base" ? "Base selection mode enabled" : "Crease selection mode enabled");
+       }
+-      function makeLabelCanvas(text, bg, fg) {
+-        var c = document.createElement("canvas");
+-        c.width = 256;
+-        c.height = 96;
+-        var x = c.getContext("2d");
+-        x.clearRect(0, 0, c.width, c.height);
+-        x.fillStyle = bg;
+-        roundRect(x, 4, 10, c.width - 8, c.height - 20, 20);
+-        x.fill();
+-        x.lineWidth = 2;
+-        x.strokeStyle = "rgba(255,255,255,0.14)";
+-        x.stroke();
+-        x.fillStyle = fg;
+-        x.font = "700 38px -apple-system,BlinkMacSystemFont,Segoe UI,Tahoma,sans-serif";
+-        x.textAlign = "center";
+-        x.textBaseline = "middle";
+-        x.fillText(text, c.width / 2, c.height / 2 + 2);
+-        return c;
+-      }
+-      function roundRect(ctx, x, y, w, h, r) {
+-        ctx.beginPath();
+-        ctx.moveTo(x + r, y);
+-        ctx.arcTo(x + w, y, x + w, y + h, r);
+-        ctx.arcTo(x + w, y + h, x, y + h, r);
+-        ctx.arcTo(x, y + h, x, y, r);
+-        ctx.arcTo(x, y, x + w, y, r);
+-        ctx.closePath();
+-      }
+-      var labelCache = {};
+-      function getLabelResources(text, isBase) {
+-        var key = text + "|" + (isBase ? 1 : 0);
+-        var r = labelCache[key];
+-        if (!r) {
+-          var canvas = makeLabelCanvas(text, isBase ? "rgba(37,99,235,0.96)" : "rgba(15,23,42,0.90)", "#ffffff");
+-          var tex = new THREE.CanvasTexture(canvas);
+-          tex.minFilter = THREE.LinearFilter;
+-          tex.needsUpdate = true;
+-          var mat = new THREE.SpriteMaterial({ map: tex, transparent: true, depthTest: false, depthWrite: false });
+-          r = labelCache[key] = { tex, mat };
+-        }
+-        return r;
+-      }
+-      function disposeLabelCache() {
+-        Object.keys(labelCache).forEach(function(k) {
+-          try {
+-            labelCache[k].mat.dispose();
+-          } catch (ex) {
+-          }
+-          try {
+-            labelCache[k].tex.dispose();
+-          } catch (ex) {
+-          }
+-        });
+-        labelCache = {};
+-      }
+-      function makePanelLabelSprite(text, isBase) {
+-        var sp = new THREE.Sprite(getLabelResources(text, isBase).mat);
+-        sp.scale.set(34, 12.75, 1);
+-        sp.renderOrder = 120;
+-        return sp;
+-      }
+       if (!importView || !threeView || !statusArea || !errorMsg || !testBtn || !extractBtn || !previewBtn || !continueBtn || !debugToggle || !outputArea || !validationStatus || !problemsList || !canvas2d || !ctx2d || !backBtn || !export3dBtn || !exportGlbBtn || !viewport3d || !canvas3d || !thicknessInput || !applyThicknessBtn) {
+         setStatus("UI mismatch - missing elements");
+         return;
+@@ -1658,14 +1734,6 @@
+           S.foldRoot = null;
+         }
+       }
+-      function shapeFromVerts(verts2d) {
+-        if (verts2d.length < 3) return null;
+-        var s = new THREE.Shape();
+-        s.moveTo(verts2d[0].x, verts2d[0].y);
+-        for (var i = 1; i < verts2d.length; i++) s.lineTo(verts2d[i].x, verts2d[i].y);
+-        s.closePath();
+-        return s;
+-      }
+       function build3DFromPanels(panelData, data) {
+         clearAllMeshes();
+         var panels = panelData.panels;
+@@ -1725,18 +1793,6 @@
+         log2("Built " + S.panelMeshes.length + " panel meshes, " + creaseEdges.length + " crease edge segments");
+         return S.panelMeshes.length;
+       }
+-      function refreshPanelMaterials() {
+-        S.panelMeshes.forEach(function(mesh) {
+-          if (!mesh || !mesh.material) return;
+-          var isBase = mesh.userData && mesh.userData.panelIndex === S.currentBasePanelIndex;
+-          mesh.material.color.set(getPanelShellHex(isBase));
+-          mesh.material.needsUpdate = true;
+-          if (mesh.userData && mesh.userData.edgeLines && mesh.userData.edgeLines.material) {
+-            mesh.userData.edgeLines.material.color.set(getEdgeLineHex());
+-            mesh.userData.edgeLines.material.needsUpdate = true;
+-          }
+-        });
+-      }
+       function pickPanelFromEvent(e) {
+         if (!S.renderer3d || !S.camera3d || !S.raycaster3d || !S.pointer3d || !S.panelMeshes.length) return false;
+         var rect = canvas3d.getBoundingClientRect();
+@@ -1779,14 +1835,6 @@
+         S.camera3d.far = dist * 200;
+         S.camera3d.updateProjectionMatrix();
+       }
+-      function signedDisplayAngle(edgeIdx, internalAngle) {
+-        var sign = S.foldSigns && typeof S.foldSigns[edgeIdx] === "number" && S.foldSigns[edgeIdx] !== 0 ? S.foldSigns[edgeIdx] : 1;
+-        return Math.round((internalAngle || 0) * sign);
+-      }
+-      function internalAngleFromDisplay(edgeIdx, displayAngle) {
+-        var sign = S.foldSigns && typeof S.foldSigns[edgeIdx] === "number" && S.foldSigns[edgeIdx] !== 0 ? S.foldSigns[edgeIdx] : 1;
+-        return (displayAngle || 0) * sign;
+-      }
+       function updatePerCreaseRow(edgeIdx) {
+         var cs = currentCreaseSliders[edgeIdx];
+         if (!cs) return;
+@@ -1795,34 +1843,6 @@
+         cs.val.textContent = (display > 0 ? "+" : "") + String(display) + "°";
+         if (cs.label) cs.label.textContent = "C" + edgeIdx + "  P" + S.foldTree[edgeIdx].parent + "→P" + S.foldTree[edgeIdx].child + "  " + (display >= 0 ? "+" : "−");
+       }
+-      function disposeObject3D(obj) {
+-        if (!obj) return;
+-        if (obj.geometry) try {
+-          obj.geometry.dispose();
+-        } catch (ex) {
+-        }
+-        if (obj.material) {
+-          if (obj.material instanceof Array) {
+-            obj.material.forEach(function(m) {
+-              try {
+-                m.dispose();
+-              } catch (ex) {
+-              }
+-              ;
+-            });
+-          } else {
+-            try {
+-              obj.material.dispose();
+-            } catch (ex) {
+-            }
+-          }
+-        }
+-        if (obj.children && obj.children.length) {
+-          obj.children.slice().forEach(function(ch) {
+-            disposeObject3D(ch);
+-          });
+-        }
+-      }
+       function disposeCreaseVisuals() {
+         (S.creaseVisuals || []).forEach(function(entry) {
+           [entry.visible, entry.pick].forEach(function(o) {
