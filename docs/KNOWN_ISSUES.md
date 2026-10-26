@@ -1,5 +1,7 @@
 # Registro de defectos conocidos (referencia funcional)
 
+Cierre de A7 (2026-10-26, `docs/fase1/A7_INFORME.md`): el estado de dominio pasa a `src/app/state.js` (objeto `S`, 26 campos) y la escena y el plegado a `src/scene/` y `src/fold/` (35 funciones con **texto idéntico** salvo sangría y prefijo `S.`). **Ningún defecto cambia**: KI-01 sigue corregido (Δ=0, soak de 25 ciclos y L1–L3), KI-04/KI-22 (11 de 13), KI-06, KI-11 (bucle continuo), KI-14, KI-24 (mismo `ReferenceError`, mismo orden), KI-25 y KI-26, preservados. Nuevo **KI-27** (hallazgo de la propuesta A7, **pendiente de confirmación**, sin corregir). La laguna de `userData.center` queda cubierta (inventario de escena de A7.0a); nuevas lagunas en «Lagunas de cobertura (A7)».
+
 Cierre de A6 (2026-10-25, `docs/fase1/A6_INFORME.md`): el motor geométrico vigente pasa a `src/core/legacy/` detrás de `GeometryEngine` (solo `legacy`) **con su texto idéntico** y **ningún defecto cambia**: KI-04/KI-22 (11 de 13 en la Caja Botánica real, 13 a ×0.75), KI-05…KI-09, KI-17…KI-20 y los demás, preservados y verificados por tres caminos (cargador por texto, módulo ES real y bundle en navegador). Nuevas lagunas de **cobertura** medidas (no son defectos del producto): ver «Lagunas de cobertura (A6)» al final.
 
 Validación real del bundle A5 en CEP (2026-10-24, `docs/fase1/A5_VALIDACION_CEP_INFORME.md`): **KI-25 reproducido en Illustrator real** (diálogo «Save GLB» real, guardar y cancelar); KI-04/KI-22 (11 de 13) y KI-03 (mm) también, sin cambios; ningún defecto nuevo.
@@ -38,6 +40,7 @@ Evidencia: `docs/fase0/00_INFORME_AUDITORIA.md`, `tools/baseline/results/`. Etiq
 | **KI-24** | **Cambiar el stock (White/Kraft/Gray) ANTES de pasar a 3D lanza `ReferenceError: buildChildrenOfMap is not defined`**: `applyMaterialPreset` llama a una función que no existe (baseline y `panel/`). El preset y la etiqueta sí se actualizan antes del error; con un modelo 3D construido no ocurre (va por la rama de reconstrucción) | Baja–Media | Detectado por inspección estática (propuesta A5) y **[MEDIDO] reproducido** en A5.0a en baseline, `panel/` y bundle (`tests/browser/bridge.test.mjs`, caso `ki24-stock-antes-de-3d`) | 7/9 (UI) | Abierto (preservado; una corrección no autorizada se detecta por mutación) |
 | **KI-25** | **El mensaje final de la exportación GLB sobrescribe el resultado real**: `exportGLB` muestra «GLB export cancelled» / «GLB saved: …» / «…download fallback» y el manejador del botón lo reemplaza enseguida por «GLB exported from current 3D pose», **también al cancelar** | Baja (UX engañosa) | [MEDIDO] A5.0a (historial de estados de `guardar-cancelado`, `guardar-ok`, `guardar-respaldo-sin-cep-fs`) | 7/9 (UI) | Abierto (preservado) |
 | **KI-26** | Si la textura de arte no carga, el estado muestra **«Artwork load failed: undefined»** (`TextureLoader` rechaza con un `Event`, que no tiene `message`) | Baja | [MEDIDO] A5.0a (`arte-textura-inexistente`) | 4/5 (arte) | Abierto (preservado) |
+| **KI-27** | **Pendiente de confirmación.** Si en «Refresh Artwork» la textura **frontal** carga y la **trasera** falla, la frontal ya creada no se libera (`refreshArtwork` sale por el `catch` sin `dispose`). Nunca se asigna a un material, así que no debería llegar a la GPU: el efecto sería memoria JS hasta el GC [INFERENCIA]. No reproducido | Baja | Hallazgo por lectura en `A7_PROPUESTA.md` §6.3 (O3) [NO VERIFICADO] | 4/5 (arte) | Abierto — **pendiente de confirmación** (registrado en A7 por decisión D-A7-9; **no se corrige**) |
 
 ## Cobertura de pruebas (A2)
 
@@ -64,6 +67,7 @@ Evidencia: `docs/fase0/00_INFORME_AUDITORIA.md`, `tools/baseline/results/`. Etiq
 | KI-17, 18, 19, 20 | `known-issues`: casos `crease-*`, `t-desalineada-*`, `panel-*`; `geometry-golden` |
 | KI-24, KI-25, KI-26 y puente CEP (A5.0a) | `bridge.test.mjs`: 30 casos × baseline/panel/bundle (errores de `evalScript`, extracción, arte, guardado, CEP ausente); 6 mutaciones del puente en `mutation-check-browser.sh` y 1 en `mutation-check-dist.sh` |
 | KI-01…KI-26 tras A6 (motor en `core/`) | `a6-engine.test.mjs` (módulo ES real = goldens de geometría, Illustrator real y logs), `a6-texto-identico` (23 funciones con el mismo texto), `a6-contratos` (no mutación, alias, excepciones), `a6-logs-golden`, `a6-validacion`; navegador: log de depuración idéntico en 5 flujos (baseline · panel · bundle) |
+| KI-01 (ciclo de vida, A7) | `tests/browser/a7.test.mjs`: invariantes L1 (las texturas de arte solo las libera `disposeCurrentArtTextures`), L2 (cada `applyFolding` libera los visuales del tick anterior) y L3 (una reconstrucción libera y desengancha la malla anterior); el baseline es el control positivo (no libera). Inventario ordenado de la escena en 7 flujos (golden solo desde el baseline) |
 
 ## Lagunas de cobertura (A6)
 
@@ -77,3 +81,13 @@ Medidas con controles negativos al mover el código (A6.4). **No son defectos de
 | Desempate del filtro de conectividad (nº de paneles) | Invertirlo no cambia ningún resultado [MEDIDO]: ningún fixture tiene dos componentes con la misma área | Solo T2 |
 | `id` de los problemas de validación | El golden de geometría no lo incluía; desde A6.5 lo fija `a6-validacion` | `a6-validacion` (cubierto) |
 
+## Lagunas de cobertura (A7)
+
+Medidas al separar el estado, la escena y el plegado. **No son defectos del producto.**
+
+| Laguna | Detalle | Detectado por |
+|---|---|---|
+| `userData.center` de los paneles | Antes ninguna prueba lo veía (A7_PROPUESTA §3.3); desde A7.0a lo fija el inventario de escena | Inventario A7 (**cubierta**) |
+| Código muerto conservado (`hasArtworkLoaded`, `getFoldHingeRadius`, `creaseLinesGroup`, `currentBaseSelect`, import de `CREASE_HINGE_SEGMENTS`) | Sin efecto observable: un cambio ahí no lo ve ninguna prueba de comportamiento. Se conserva tal cual (D-A7-8) | Solo `a7-texto-identico` |
+| Espesor inicial y texto de estado | Con espesor inicial 0.30 en vez de 0.25 el estado dice igualmente «thickness=0.3mm» (KI-14, `toFixed(1)`): el log de depuración no lo distingue | Regresión de píxeles y GLB (control A7) |
+| Orden interno de `updateSelectedCreaseVisuals` | Primero los materiales de la escena y luego las filas del DOM; invertirlo no tendría efecto observable [INFERENCIA]. No se tocó (sigue en `main.js`) | — |
