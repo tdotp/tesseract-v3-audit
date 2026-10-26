@@ -11,8 +11,8 @@ import { createLabels } from './scene/labels.js';
 import { createMaterials } from './scene/materials.js';
 import { createFoldAngles } from './fold/angles.js';
 import { createViewport } from './scene/viewport.js';
-// D-A6-7: la escena (build3DFromPanels) usa este helper puro del motor hasta A7; el resto del motor solo se usa a través de GeometryEngine.
-import { getPolyCentroid } from './core/legacy/geom2d.js';
+import { createArtwork } from './scene/artwork.js';
+import { createPanelMeshes } from './scene/panel-meshes.js';
 
 (function () {
   'use strict';
@@ -84,10 +84,8 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
     var { makeLabelCanvas, roundRect, getLabelResources, disposeLabelCache, makePanelLabelSprite } = createLabels();
     var { signedDisplayAngle, internalAngleFromDisplay } = createFoldAngles(S);
     var { resize3D, updateCameraFromOrbit, init3D, fitCamera3D } = createViewport(S, { canvas3d, viewport3d, log, setStatus, pickPanelFromEvent, pickCreaseFromEvent });
-
-    function hasArtworkLoaded(){
-      return !!(S.currentArtState && ((S.currentArtState.front && S.currentArtState.front.texture) || (S.currentArtState.back && S.currentArtState.back.texture)));
-    }
+    var { hasArtworkLoaded, loadTextureFromPath, disposeArtOverlays, applyArtUVs, addArtworkOverlay, applyArtworkToScene, disposeCurrentArtTextures } = createArtwork(S, { refreshPanelMaterials });
+    var { clearAllMeshes, build3DFromPanels } = createPanelMeshes(S, { log, getPanelShellHex, getEdgeLineHex, applyArtworkToScene, disposeLabelCache, disposeCreaseVisuals });
 
     function syncMaterialPresetUI(){
       var preset = getMaterialPreset();
@@ -183,91 +181,6 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
       validationStatus.textContent='Waiting for extraction...';
       validationStatus.className='check-status';
       continueBtn.disabled=true;
-    }
-
-    function loadTextureFromPath(fsPath){
-      return new Promise(function(resolve,reject){
-        var loader = new THREE.TextureLoader();
-        loader.load(pathToFileURL(fsPath), function(tex){
-          tex.flipY = false;
-          if('colorSpace' in tex && THREE.SRGBColorSpace) tex.colorSpace = THREE.SRGBColorSpace;
-          else if('encoding' in tex && THREE.sRGBEncoding) tex.encoding = THREE.sRGBEncoding;
-          if(THREE.LinearMipMapLinearFilter) tex.minFilter = THREE.LinearMipMapLinearFilter;
-          if(THREE.LinearFilter) tex.magFilter = THREE.LinearFilter;
-          tex.generateMipmaps = true;
-          try{ if(S.renderer3d && S.renderer3d.capabilities && S.renderer3d.capabilities.getMaxAnisotropy) tex.anisotropy = S.renderer3d.capabilities.getMaxAnisotropy(); }catch(_anis){}
-          tex.needsUpdate = true;
-          resolve(tex);
-        }, undefined, function(err){
-          reject(err || new Error('Texture load failed'));
-        });
-      });
-    }
-
-    function disposeArtOverlays(mesh){
-      if(!mesh || !mesh.userData || !mesh.userData.artOverlays) return;
-      mesh.userData.artOverlays.forEach(function(ov){
-        mesh.remove(ov);
-        if(ov.geometry) ov.geometry.dispose();
-        if(ov.material) ov.material.dispose();
-      });
-      mesh.userData.artOverlays = [];
-    }
-
-    function applyArtUVs(geometry, artRect, center){
-      if(!geometry || !artRect || !artRect.width || !artRect.height) return;
-      var pos = geometry.attributes.position;
-      var uv = geometry.attributes.uv;
-      if(!pos || !uv) return;
-      for(var i=0;i<pos.count;i++){
-        var x = pos.getX(i) + center.x;
-        var y = pos.getY(i) + center.y;
-        var u = (x - artRect.left) / artRect.width;
-        var v = (artRect.top - y) / artRect.height;
-        uv.setXY(i,u,v);
-      }
-      uv.needsUpdate = true;
-    }
-
-    function addArtworkOverlay(mesh, verts, texture, artRect, zOffset){
-      if(!mesh || !texture || !artRect) return;
-      var shape = shapeFromVerts(verts);
-      if(!shape) return;
-      var geom = new THREE.ShapeGeometry(shape);
-      applyArtUVs(geom, artRect, S.foldData ? S.foldData.center : {x:0,y:0});
-      var mat = new THREE.MeshBasicMaterial({
-        map:texture, transparent:true, side:THREE.DoubleSide,
-        depthWrite:false, depthTest:true
-      });
-      var overlay = new THREE.Mesh(geom, mat);
-      overlay.position.z = zOffset;
-      overlay.renderOrder = 60;
-      mesh.add(overlay);
-      if(!mesh.userData.artOverlays) mesh.userData.artOverlays = [];
-      mesh.userData.artOverlays.push(overlay);
-    }
-
-    function applyArtworkToScene(){
-      S.panelMeshes.forEach(function(mesh){
-        disposeArtOverlays(mesh);
-        if(!S.currentArtState) return;
-        if(S.currentArtState.front && S.currentArtState.front.texture && S.currentArtState.front.rect){
-          addArtworkOverlay(mesh, mesh.userData.originalVertices, S.currentArtState.front.texture, S.currentArtState.front.rect, S.currentThicknessMm + ART_TOP_OFFSET);
-        }
-        if(S.currentArtState.back && S.currentArtState.back.texture && S.currentArtState.back.rect){
-          addArtworkOverlay(mesh, mesh.userData.originalVertices, S.currentArtState.back.texture, S.currentArtState.back.rect, -ART_BOTTOM_OFFSET);
-        }
-      });
-      refreshPanelMaterials();
-    }
-
-    function disposeCurrentArtTextures(){
-      if(!S.currentArtState) return;
-      ['front','back'].forEach(function(side){
-        if(S.currentArtState[side] && S.currentArtState[side].texture){
-          try{ S.currentArtState[side].texture.dispose(); }catch(ex){}
-        }
-      });
     }
 
     async function refreshArtwork(){
@@ -370,105 +283,10 @@ import { getPolyCentroid } from './core/legacy/geom2d.js';
        3D ENGINE
        ================================================================ */
     /* A7.1: renderer3d, scene3d, camera3d, orbitState, panelMeshes, foldBridgeGroup, foldData, foldRoot, foldAngles, foldTree, foldCenter, raycaster3d y pointer3d viven en S (src/app/state.js) */
-    var creaseLinesGroup=null;
-
-    function clearAllMeshes(){
-      S.panelMeshes.forEach(function(m){
-        if(m.parent) m.parent.remove(m);
-        else if(S.scene3d) S.scene3d.remove(m);
-        /* A1 (fuga GPU): también libera los hijos (aristas EdgesGeometry y overlays de arte); antes solo geometría/material del panel.
-           Las texturas de arte son compartidas y las libera disposeCurrentArtTextures(), no esto. */
-        disposeObject3D(m);
-      });
-      S.panelMeshes=[];
-      disposeCreaseVisuals();   /* A1 */
-      disposeLabelCache();      /* A1 */
-      if(creaseLinesGroup){
-        if(creaseLinesGroup.parent) creaseLinesGroup.parent.remove(creaseLinesGroup);
-        else if(S.scene3d) S.scene3d.remove(creaseLinesGroup);
-        creaseLinesGroup=null;
-      }
-      if(S.foldBridgeGroup){
-        if(S.foldBridgeGroup.parent) S.foldBridgeGroup.parent.remove(S.foldBridgeGroup);
-        disposeObject3D(S.foldBridgeGroup);
-        S.foldBridgeGroup=null;
-      }
-      S.creasePickables = [];
-      S.creaseVisuals = [];
-      S.panelGroupMap = [];
-      S.panelLabelSprites = [];
-      if(S.foldRoot){
-        if(S.foldRoot.parent) S.foldRoot.parent.remove(S.foldRoot);
-        S.foldRoot=null;
-      }
-    }
 
     /* ================================================================
        BUILD 3D PANELS (escena). Los paneles 2D salen de src/core/legacy/panels.js (A6.4).
        ================================================================ */
-
-    function build3DFromPanels(panelData,data){
-      clearAllMeshes();
-      var panels=panelData.panels;
-      var creaseEdges=panelData.creaseEdges;
-
-      /* Compute global center */
-      var allPts=[];
-      panels.forEach(function(p){p.vertices.forEach(function(v){allPts.push(v);});});
-      var cx=0,cy=0;
-      allPts.forEach(function(p){cx+=p.x;cy+=p.y;});
-      if(allPts.length>0){cx/=allPts.length;cy/=allPts.length;}
-
-      /* Create mesh for each panel */
-      panels.forEach(function(panel,pi){
-        var centered=panel.vertices.map(function(v){return{x:v.x-cx,y:v.y-cy};});
-        var shape=shapeFromVerts(centered);
-        if(!shape) return;
-        var geom=new THREE.ExtrudeGeometry(shape,{depth:S.currentThicknessMm,bevelEnabled:false,curveSegments:1,steps:1});
-        geom.computeVertexNormals();
-
-        var shellMat=new THREE.MeshPhongMaterial({
-          color:new THREE.Color(getPanelShellHex(pi===S.currentBasePanelIndex)), specular:0x1b1b1b, shininess:10,
-          side:THREE.DoubleSide
-        });
-        var mesh=new THREE.Mesh(geom,shellMat);
-
-        /* Add board edges */
-        var edges=new THREE.EdgesGeometry(geom,1);
-        var lineMat=new THREE.LineBasicMaterial({color:new THREE.Color(getEdgeLineHex()),transparent:true,opacity:0.72});
-        var edgeLines = new THREE.LineSegments(edges,lineMat);
-        mesh.add(edgeLines);
-
-        /* rotation handled by foldRoot group */
-        mesh.position.z=0;
-
-        /* Store panel data for folding */
-        mesh.userData={
-          panelIndex:pi,
-          originalVertices:centered,
-          center:getPolyCentroid(centered),
-          creaseEdges:[],
-          edgeLines:edgeLines
-        };
-
-        S.scene3d.add(mesh);
-        S.panelMeshes.push(mesh);
-      });
-
-      /* Fold line visuals are built after the fold tree is established. */
-
-      /* Store fold data */
-      S.foldData={
-        panels:panels,
-        creaseEdges:creaseEdges,
-        creases:panelData.creases,
-        center:{x:cx,y:cy}
-      };
-
-      applyArtworkToScene();
-      log('Built '+S.panelMeshes.length+' panel meshes, '+creaseEdges.length+' crease edge segments');
-      return S.panelMeshes.length;
-    }
 
     function pickPanelFromEvent(e){
       if(!S.renderer3d || !S.camera3d || !S.raycaster3d || !S.pointer3d || !S.panelMeshes.length) return false;

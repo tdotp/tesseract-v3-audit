@@ -1,0 +1,12 @@
+{
+ "funcionesAnteriores": 137,
+ "funcionesNuevas": 139,
+ "identicas": 137,
+ "distintas": [],
+ "duplicadas": [],
+ "soloEnAnterior": [],
+ "soloEnNuevo": [
+  "createArtwork",
+  "createPanelMeshes"
+ ]
+}

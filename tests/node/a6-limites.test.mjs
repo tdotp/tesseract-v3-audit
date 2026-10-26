@@ -7,7 +7,7 @@ const SRC = path.dirname(TARGETS.src); const CORE = path.join(SRC, 'core');
 
 // Estado esperado en ESTE paso de A6 (se actualiza en cada paso aprobado; igualdad exacta, no «contiene»).
 const CORE_INVENTORY = ['core/engine.js', 'core/legacy/adjacency.js', 'core/legacy/constants.js', 'core/legacy/fold-tree.js', 'core/legacy/geom2d.js', 'core/legacy/log.js', 'core/legacy/panels.js', 'core/legacy/topology.js', 'core/legacy/validate.js'];
-const MAIN_CORE_IMPORTS = { './core/engine.js': ['createLegacyEngine'], './core/legacy/geom2d.js': ['getPolyCentroid'] }; // estado FINAL de A6 (D-A6-7: getPolyCentroid, excepción temporal hasta A7) // especificador → nombres importados
+const MAIN_CORE_IMPORTS = { './core/engine.js': ['createLegacyEngine'] }; // A7.4: D-A6-7 cerrada — getPolyCentroid lo importa scene/panel-meshes.js (lista blanca de a7-limites) // especificador → nombres importados
 
 const files = []; if (fs.existsSync(CORE)) (function walk(d) { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const p = path.join(d, e.name); if (e.isDirectory()) walk(p); else if (e.name.endsWith('.js')) files.push(path.relative(SRC, p)); } })(CORE); files.sort();
 const raw = (f) => fs.readFileSync(path.join(SRC, f), 'utf8');
