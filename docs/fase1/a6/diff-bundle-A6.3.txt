@@ -1,0 +1,390 @@
+# Diff del bundle dist/main.js: A6.2 → A6.3 (diff -u; la línea 1 es el banner con la huella de src/main.js)
+--- .scratch/bundle-A6.2.js	2026-10-25 18:39:51
++++ dist/main.js	2026-10-25 19:06:43
+@@ -1,4 +1,4 @@
+-/* Tesseract V3 · bundle IIFE · fuente main.js sha256:755bed316adfd632 · esbuild 0.28.2 · target chrome99 · NO editar a mano (tools/build/build.mjs) */
++/* Tesseract V3 · bundle IIFE · fuente main.js sha256:1e0fb8a172f4e9db · esbuild 0.28.2 · target chrome99 · NO editar a mano (tools/build/build.mjs) */
+ (() => {
+   // src/config/look.js
+   var DEFAULT_THICKNESS_MM = 0.25;
+@@ -387,6 +387,184 @@
+   }
+   function log(m) {
+     if (sink) sink(m);
++  }
++
++  // src/core/legacy/adjacency.js
++  function buildAdjacencyStrict(panels, creaseEdges) {
++    var adj = [];
++    if (!creaseEdges || !creaseEdges.length) return adj;
++    creaseEdges.forEach(function(ce) {
++      var sharing = [];
++      panels.forEach(function(panel, pi) {
++        var verts = panel.vertices;
++        for (var i = 0; i < verts.length; i++) {
++          var j = (i + 1) % verts.length;
++          if (edgeMatch(verts[i], verts[j], ce.a, ce.b)) {
++            sharing.push(pi);
++            break;
++          }
++        }
++      });
++      if (sharing.length === 2) {
++        adj.push({ panelA: sharing[0], panelB: sharing[1], crease: ce, creaseIdx: ce.creaseIdx });
++      }
++    });
++    return adj;
++  }
++  function buildAdjacency(panels, creaseEdges) {
++    var strictAdj = buildAdjacencyStrict(panels, creaseEdges);
++    if (strictAdj.length) {
++      log("Adjacency edges: " + strictAdj.length + " (strict)");
++      return strictAdj;
++    }
++    var adj = [];
++    var seen = {};
++    var eps = Math.max(GRAPH_EPS, 1);
++    if (!creaseEdges || !creaseEdges.length) {
++      log("Adjacency edges: 0 (no explicit crease segments available)");
++      return adj;
++    }
++    function edgeKey(a, b) {
++      var p1 = { x: a.x, y: a.y }, p2 = { x: b.x, y: b.y };
++      var swap = p1.x > p2.x || Math.abs(p1.x - p2.x) < eps && p1.y > p2.y;
++      if (swap) {
++        var t = p1;
++        p1 = p2;
++        p2 = t;
++      }
++      return p1.x.toFixed(2) + "|" + p1.y.toFixed(2) + "|" + p2.x.toFixed(2) + "|" + p2.y.toFixed(2);
++    }
++    function lineOverlapSegment(a1, a2, b1, b2) {
++      var va = { x: a2.x - a1.x, y: a2.y - a1.y };
++      var la = Math.hypot(va.x, va.y);
++      if (la < eps) return null;
++      var cross1 = Math.abs(va.x * (b1.y - a1.y) - va.y * (b1.x - a1.x));
++      var cross2 = Math.abs(va.x * (b2.y - a1.y) - va.y * (b2.x - a1.x));
++      if (cross1 / la > eps || cross2 / la > eps) return null;
++      var axis = Math.abs(va.x) >= Math.abs(va.y) ? "x" : "y";
++      var aStart = a1[axis], aEnd = a2[axis];
++      var bStart = b1[axis], bEnd = b2[axis];
++      var aMin = Math.min(aStart, aEnd), aMax = Math.max(aStart, aEnd);
++      var bMin = Math.min(bStart, bEnd), bMax = Math.max(bStart, bEnd);
++      var oMin = Math.max(aMin, bMin), oMax = Math.min(aMax, bMax);
++      if (oMax - oMin <= Math.max(eps * 1.2, Math.min(Math.abs(aMax - aMin), Math.abs(bMax - bMin)) * 0.2)) return null;
++      var useX = axis === "x";
++      function pointAt(val) {
++        var t = useX ? Math.abs(a2.x - a1.x) < eps ? 0 : (val - a1.x) / (a2.x - a1.x) : Math.abs(a2.y - a1.y) < eps ? 0 : (val - a1.y) / (a2.y - a1.y);
++        return { x: a1.x + t * (a2.x - a1.x), y: a1.y + t * (a2.y - a1.y) };
++      }
++      var pStart = pointAt(oMin), pEnd = pointAt(oMax);
++      return { a: pStart, b: pEnd };
++    }
++    function pushAdj(panelA, panelB, seg2, creaseIdx, mode) {
++      if (panelA === panelB || !seg2) return;
++      var key = edgeKey(seg2.a, seg2.b) + "|" + Math.min(panelA, panelB) + "|" + Math.max(panelA, panelB);
++      if (seen[key]) return;
++      seen[key] = true;
++      adj.push({
++        panelA: Math.min(panelA, panelB),
++        panelB: Math.max(panelA, panelB),
++        crease: { a: { x: seg2.a.x, y: seg2.a.y }, b: { x: seg2.b.x, y: seg2.b.y } },
++        creaseIdx
++      });
++    }
++    if (creaseEdges && creaseEdges.length) {
++      creaseEdges.forEach(function(ce) {
++        var sharing = [];
++        panels.forEach(function(panel, pi) {
++          var pedges = (panel.edges || []).filter(function(e) {
++            return e.type === "crease";
++          });
++          for (var ei = 0; ei < pedges.length; ei++) {
++            var pe = pedges[ei];
++            var overlap = lineOverlapSegment(pe.u, pe.v, ce.a, ce.b);
++            if (edgeMatch(pe.u, pe.v, ce.a, ce.b) || overlap) {
++              sharing.push({ idx: pi, edge: pe, seg: overlap || { a: pe.u, b: pe.v } });
++            }
++          }
++        });
++        if (sharing.length >= 2) {
++          for (var si = 0; si < sharing.length - 1; si++) {
++            for (var sj = si + 1; sj < sharing.length; sj++) {
++              var seg2 = lineOverlapSegment(sharing[si].edge.u, sharing[si].edge.v, sharing[sj].edge.u, sharing[sj].edge.v) || sharing[si].seg || sharing[sj].seg;
++              pushAdj(sharing[si].idx, sharing[sj].idx, seg2, ce.creaseIdx, "raw-vs-panel");
++            }
++          }
++        }
++      });
++    }
++    if (adj.length) {
++      log("Adjacency edges: " + adj.length + " (raw-panel overlap)");
++      return adj;
++    }
++    for (var i = 0; i < panels.length; i++) {
++      var edgesA = (panels[i].edges || []).filter(function(e) {
++        return e.type === "crease";
++      });
++      if (!edgesA.length) continue;
++      for (var j = i + 1; j < panels.length; j++) {
++        var edgesB = (panels[j].edges || []).filter(function(e) {
++          return e.type === "crease";
++        });
++        if (!edgesB.length) continue;
++        for (var ai = 0; ai < edgesA.length; ai++) {
++          for (var bi = 0; bi < edgesB.length; bi++) {
++            var seg = lineOverlapSegment(edgesA[ai].u, edgesA[ai].v, edgesB[bi].u, edgesB[bi].v);
++            if (seg) {
++              pushAdj(i, j, seg, -1, "panel-panel");
++            }
++          }
++        }
++      }
++    }
++    log("Adjacency edges: " + adj.length + " (panel-panel fallback)");
++    return adj;
++  }
++
++  // src/core/legacy/fold-tree.js
++  function buildFoldTree(panels, adjEdges, baseIdx) {
++    var visited = {};
++    visited[baseIdx] = true;
++    var tree = [];
++    var queue = [baseIdx];
++    while (queue.length > 0) {
++      var curr = queue.shift();
++      adjEdges.forEach(function(ae) {
++        var neighbor = -1;
++        if (ae.panelA === curr && !visited[ae.panelB]) neighbor = ae.panelB;
++        if (ae.panelB === curr && !visited[ae.panelA]) neighbor = ae.panelA;
++        if (neighbor >= 0) {
++          visited[neighbor] = true;
++          tree.push({ parent: curr, child: neighbor, crease: ae.crease, sign: computeFoldSign(panels[curr], panels[neighbor], ae.crease) });
++          queue.push(neighbor);
++        }
++      });
++    }
++    log("Fold tree edges: " + tree.length + " (base=P" + baseIdx + ")");
++    return tree;
++  }
++  function computeFoldSign(parentPanel, childPanel, crease) {
++    if (!parentPanel || !childPanel || !crease) return 1;
++    var ax = crease.a.x, ay = crease.a.y, bx = crease.b.x, by = crease.b.y;
++    var vx = bx - ax, vy = by - ay;
++    var cc = childPanel.centroid || getPolyCentroid(childPanel.vertices || []);
++    var cross = vx * (cc.y - ay) - vy * (cc.x - ax);
++    if (Math.abs(cross) < 1e-3) {
++      var pc = parentPanel.centroid || getPolyCentroid(parentPanel.vertices || []);
++      cross = vx * (pc.y - ay) - vy * (pc.x - ax);
++      cross *= -1;
++    }
++    return cross >= 0 ? 1 : -1;
++  }
++  function getDefaultBaseIndex(panelData) {
++    var bestBase = 0, bestArea = 0;
++    panelData.panels.forEach(function(p, i) {
++      if (Math.abs(p.area) > bestArea) {
++        bestArea = Math.abs(p.area);
++        bestBase = i;
++      }
++    });
++    return bestBase;
+   }
+ 
+   // src/core/legacy/topology.js
+@@ -1519,158 +1697,7 @@
+         camera3d.near = Math.max(0.01, dist / 2e3);
+         camera3d.far = dist * 200;
+         camera3d.updateProjectionMatrix();
+-      }
+-      function buildAdjacencyStrict(panels, creaseEdges) {
+-        var adj = [];
+-        if (!creaseEdges || !creaseEdges.length) return adj;
+-        creaseEdges.forEach(function(ce) {
+-          var sharing = [];
+-          panels.forEach(function(panel, pi) {
+-            var verts = panel.vertices;
+-            for (var i = 0; i < verts.length; i++) {
+-              var j = (i + 1) % verts.length;
+-              if (edgeMatch(verts[i], verts[j], ce.a, ce.b)) {
+-                sharing.push(pi);
+-                break;
+-              }
+-            }
+-          });
+-          if (sharing.length === 2) {
+-            adj.push({ panelA: sharing[0], panelB: sharing[1], crease: ce, creaseIdx: ce.creaseIdx });
+-          }
+-        });
+-        return adj;
+-      }
+-      function buildAdjacency(panels, creaseEdges) {
+-        var strictAdj = buildAdjacencyStrict(panels, creaseEdges);
+-        if (strictAdj.length) {
+-          log2("Adjacency edges: " + strictAdj.length + " (strict)");
+-          return strictAdj;
+-        }
+-        var adj = [];
+-        var seen = {};
+-        var eps = Math.max(GRAPH_EPS, 1);
+-        if (!creaseEdges || !creaseEdges.length) {
+-          log2("Adjacency edges: 0 (no explicit crease segments available)");
+-          return adj;
+-        }
+-        function edgeKey(a, b) {
+-          var p1 = { x: a.x, y: a.y }, p2 = { x: b.x, y: b.y };
+-          var swap = p1.x > p2.x || Math.abs(p1.x - p2.x) < eps && p1.y > p2.y;
+-          if (swap) {
+-            var t = p1;
+-            p1 = p2;
+-            p2 = t;
+-          }
+-          return p1.x.toFixed(2) + "|" + p1.y.toFixed(2) + "|" + p2.x.toFixed(2) + "|" + p2.y.toFixed(2);
+-        }
+-        function lineOverlapSegment(a1, a2, b1, b2) {
+-          var va = { x: a2.x - a1.x, y: a2.y - a1.y };
+-          var la = Math.hypot(va.x, va.y);
+-          if (la < eps) return null;
+-          var cross1 = Math.abs(va.x * (b1.y - a1.y) - va.y * (b1.x - a1.x));
+-          var cross2 = Math.abs(va.x * (b2.y - a1.y) - va.y * (b2.x - a1.x));
+-          if (cross1 / la > eps || cross2 / la > eps) return null;
+-          var axis = Math.abs(va.x) >= Math.abs(va.y) ? "x" : "y";
+-          var aStart = a1[axis], aEnd = a2[axis];
+-          var bStart = b1[axis], bEnd = b2[axis];
+-          var aMin = Math.min(aStart, aEnd), aMax = Math.max(aStart, aEnd);
+-          var bMin = Math.min(bStart, bEnd), bMax = Math.max(bStart, bEnd);
+-          var oMin = Math.max(aMin, bMin), oMax = Math.min(aMax, bMax);
+-          if (oMax - oMin <= Math.max(eps * 1.2, Math.min(Math.abs(aMax - aMin), Math.abs(bMax - bMin)) * 0.2)) return null;
+-          var useX = axis === "x";
+-          function pointAt(val) {
+-            var t = useX ? Math.abs(a2.x - a1.x) < eps ? 0 : (val - a1.x) / (a2.x - a1.x) : Math.abs(a2.y - a1.y) < eps ? 0 : (val - a1.y) / (a2.y - a1.y);
+-            return { x: a1.x + t * (a2.x - a1.x), y: a1.y + t * (a2.y - a1.y) };
+-          }
+-          var pStart = pointAt(oMin), pEnd = pointAt(oMax);
+-          return { a: pStart, b: pEnd };
+-        }
+-        function pushAdj(panelA, panelB, seg2, creaseIdx, mode) {
+-          if (panelA === panelB || !seg2) return;
+-          var key = edgeKey(seg2.a, seg2.b) + "|" + Math.min(panelA, panelB) + "|" + Math.max(panelA, panelB);
+-          if (seen[key]) return;
+-          seen[key] = true;
+-          adj.push({
+-            panelA: Math.min(panelA, panelB),
+-            panelB: Math.max(panelA, panelB),
+-            crease: { a: { x: seg2.a.x, y: seg2.a.y }, b: { x: seg2.b.x, y: seg2.b.y } },
+-            creaseIdx
+-          });
+-        }
+-        if (creaseEdges && creaseEdges.length) {
+-          creaseEdges.forEach(function(ce) {
+-            var sharing = [];
+-            panels.forEach(function(panel, pi) {
+-              var pedges = (panel.edges || []).filter(function(e) {
+-                return e.type === "crease";
+-              });
+-              for (var ei = 0; ei < pedges.length; ei++) {
+-                var pe = pedges[ei];
+-                var overlap = lineOverlapSegment(pe.u, pe.v, ce.a, ce.b);
+-                if (edgeMatch(pe.u, pe.v, ce.a, ce.b) || overlap) {
+-                  sharing.push({ idx: pi, edge: pe, seg: overlap || { a: pe.u, b: pe.v } });
+-                }
+-              }
+-            });
+-            if (sharing.length >= 2) {
+-              for (var si = 0; si < sharing.length - 1; si++) {
+-                for (var sj = si + 1; sj < sharing.length; sj++) {
+-                  var seg2 = lineOverlapSegment(sharing[si].edge.u, sharing[si].edge.v, sharing[sj].edge.u, sharing[sj].edge.v) || sharing[si].seg || sharing[sj].seg;
+-                  pushAdj(sharing[si].idx, sharing[sj].idx, seg2, ce.creaseIdx, "raw-vs-panel");
+-                }
+-              }
+-            }
+-          });
+-        }
+-        if (adj.length) {
+-          log2("Adjacency edges: " + adj.length + " (raw-panel overlap)");
+-          return adj;
+-        }
+-        for (var i = 0; i < panels.length; i++) {
+-          var edgesA = (panels[i].edges || []).filter(function(e) {
+-            return e.type === "crease";
+-          });
+-          if (!edgesA.length) continue;
+-          for (var j = i + 1; j < panels.length; j++) {
+-            var edgesB = (panels[j].edges || []).filter(function(e) {
+-              return e.type === "crease";
+-            });
+-            if (!edgesB.length) continue;
+-            for (var ai = 0; ai < edgesA.length; ai++) {
+-              for (var bi = 0; bi < edgesB.length; bi++) {
+-                var seg = lineOverlapSegment(edgesA[ai].u, edgesA[ai].v, edgesB[bi].u, edgesB[bi].v);
+-                if (seg) {
+-                  pushAdj(i, j, seg, -1, "panel-panel");
+-                }
+-              }
+-            }
+-          }
+-        }
+-        log2("Adjacency edges: " + adj.length + " (panel-panel fallback)");
+-        return adj;
+       }
+-      function buildFoldTree(panels, adjEdges, baseIdx) {
+-        var visited = {};
+-        visited[baseIdx] = true;
+-        var tree = [];
+-        var queue = [baseIdx];
+-        while (queue.length > 0) {
+-          var curr = queue.shift();
+-          adjEdges.forEach(function(ae) {
+-            var neighbor = -1;
+-            if (ae.panelA === curr && !visited[ae.panelB]) neighbor = ae.panelB;
+-            if (ae.panelB === curr && !visited[ae.panelA]) neighbor = ae.panelA;
+-            if (neighbor >= 0) {
+-              visited[neighbor] = true;
+-              tree.push({ parent: curr, child: neighbor, crease: ae.crease, sign: computeFoldSign(panels[curr], panels[neighbor], ae.crease) });
+-              queue.push(neighbor);
+-            }
+-          });
+-        }
+-        log2("Fold tree edges: " + tree.length + " (base=P" + baseIdx + ")");
+-        return tree;
+-      }
+       function signedDisplayAngle(edgeIdx, internalAngle) {
+         var sign = foldSigns && typeof foldSigns[edgeIdx] === "number" && foldSigns[edgeIdx] !== 0 ? foldSigns[edgeIdx] : 1;
+         return Math.round((internalAngle || 0) * sign);
+@@ -1687,19 +1714,6 @@
+         cs.val.textContent = (display > 0 ? "+" : "") + String(display) + "°";
+         if (cs.label) cs.label.textContent = "C" + edgeIdx + "  P" + foldTree[edgeIdx].parent + "→P" + foldTree[edgeIdx].child + "  " + (display >= 0 ? "+" : "−");
+       }
+-      function computeFoldSign(parentPanel, childPanel, crease) {
+-        if (!parentPanel || !childPanel || !crease) return 1;
+-        var ax = crease.a.x, ay = crease.a.y, bx = crease.b.x, by = crease.b.y;
+-        var vx = bx - ax, vy = by - ay;
+-        var cc = childPanel.centroid || getPolyCentroid(childPanel.vertices || []);
+-        var cross = vx * (cc.y - ay) - vy * (cc.x - ax);
+-        if (Math.abs(cross) < 1e-3) {
+-          var pc = parentPanel.centroid || getPolyCentroid(parentPanel.vertices || []);
+-          cross = vx * (pc.y - ay) - vy * (pc.x - ax);
+-          cross *= -1;
+-        }
+-        return cross >= 0 ? 1 : -1;
+-      }
+       function disposeObject3D(obj) {
+         if (!obj) return;
+         if (obj.geometry) try {
+@@ -2096,16 +2110,6 @@
+         refreshPanelMaterials();
+         if (scene3d) scene3d.updateMatrixWorld(true);
+       }
+-      function getDefaultBaseIndex(panelData) {
+-        var bestBase = 0, bestArea = 0;
+-        panelData.panels.forEach(function(p, i) {
+-          if (Math.abs(p.area) > bestArea) {
+-            bestArea = Math.abs(p.area);
+-            bestBase = i;
+-          }
+-        });
+-        return bestBase;
+-      }
+       function setBasePanel(newBase, rebuildUI, userSelected) {
+         if (!currentPanelData || !currentAdjEdges) return;
+         currentBasePanelIndex = Math.max(0, Math.min(newBase, currentPanelData.panels.length - 1));

@@ -1,0 +1,13 @@
+# A6.3 — equivalencia del bundle A6.2 → A6.3 (normalización log2/log( → LOG; node tests/tools/bundle-eq.mjs). Resultado: relocalización pura.
+# (LOG#n = la segunda función LOG, la del log() de la clausura, identificada por su posición: solo cambia de línea)
+{
+ "soloEnA": [
+  "LOG#600"
+ ],
+ "soloEnB": [
+  "LOG#778"
+ ],
+ "distintas": [],
+ "lineasQuitadas": [],
+ "lineasAnadidas": []
+}
