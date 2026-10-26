@@ -70,4 +70,9 @@ mutN4 "A8.1 · glb-bytes: padBytes ignora el valor de relleno"   's/out\[i\] = p
 mutN4 "A8.1 · glb-bytes: toUint8View corta 4 bytes"             's/typed.byteOffset||0, typed.byteLength)/typed.byteOffset||0, typed.byteLength-4)/'
 mutN4 "A8.1 · glb-bytes: typedArrayFromList omite el último"    's/for(var i=0;i<list.length;i++) arr\[i\] = list\[i\];/for(var i=0;i<list.length-1;i++) arr[i] = list[i];/'
 mut   "A8.1 · límites: glb-bytes.js toca document (a8-limites)"  's/export function padBytes(u8, padVal){/export function padBytes(u8, padVal){ if(document){}/'
+# A8.2 — src/export/glb-image.js
+mutN4 "A8.2 · glb-image: textureToImageBytes ya no descarta texturas sin tamaño" 's/      if(!w || !h) return null;/      if(false) return null;/'
+mutN4 "A8.2 · glb-image: createGlbImage ignora el log recibido"  's/  var { log } = deps;/  var { log } = {};/'
+mutN4 "A8.2 · glb-image: bytesFromDataURL pierde el último byte" 's/    for(var i=0;i<bin.length;i++) out\[i\] = bin.charCodeAt(i);/    for(var i=0;i<bin.length-1;i++) out[i] = bin.charCodeAt(i);/'
+mut   "A8.2 · límites: glb-image.js usa document fuera de textureToImageBytes (a8-limites)" 's/    var bin = atob(base64);/    var bin = atob(base64); document;/'
 echo "mutaciones detectadas: $ok · no detectadas: $bad"; [ "$bad" = 0 ]

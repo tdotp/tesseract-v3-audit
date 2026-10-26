@@ -15,6 +15,7 @@ import { createPanelMeshes } from './scene/panel-meshes.js';
 import { createCreaseVisuals } from './scene/crease-visuals.js';
 import { createFolding } from './fold/folding.js';
 import { padBytes, toUint8View, typedArrayFromList } from './export/glb-bytes.js';
+import { createGlbImage } from './export/glb-image.js';
 
 (function () {
   'use strict';
@@ -90,6 +91,7 @@ import { padBytes, toUint8View, typedArrayFromList } from './export/glb-bytes.js
     var { disposeCreaseVisuals, projectInsetDir, buildRibbonStripGeometry, makeBridgeRowsForEdge, addFoldBridgeVisual, rebuildCreaseVisuals } = createCreaseVisuals(S, { getFoldHingeHex, signedDisplayAngle, updateSelectedCreaseVisuals });
     var { clearAllMeshes, build3DFromPanels } = createPanelMeshes(S, { log, getPanelShellHex, getEdgeLineHex, applyArtworkToScene, disposeLabelCache, disposeCreaseVisuals });
     var { applyFolding } = createFolding(S, { makePanelLabelSprite, refreshPanelMaterials, rebuildCreaseVisuals });
+    var { textureToImageBytes } = createGlbImage({ log }); /* A8.2: codificación de texturas para el GLB (bytesFromDataURL queda interna) */
 
     function syncMaterialPresetUI(){
       var preset = getMaterialPreset();
@@ -609,41 +611,6 @@ import { padBytes, toUint8View, typedArrayFromList } from './export/glb-bytes.js
       var url=S.renderer3d.domElement.toDataURL('image/png');
       var a=document.createElement('a');
       a.href=url; a.download='tesseract_3d.png'; a.click();
-    }
-
-    function bytesFromDataURL(dataURL){
-      var parts = String(dataURL||'').split(',');
-      var meta = parts[0] || '';
-      var base64 = parts[1] || '';
-      var mimeMatch = meta.match(/data:([^;]+)/i);
-      var mime = mimeMatch ? mimeMatch[1] : 'application/octet-stream';
-      var bin = atob(base64);
-      var out = new Uint8Array(bin.length);
-      for(var i=0;i<bin.length;i++) out[i] = bin.charCodeAt(i);
-      return { mime:mime, bytes:out };
-    }
-
-    function textureToImageBytes(texture){
-      if(!texture || !texture.image) return null;
-      var img = texture.image;
-      try{
-        if(typeof HTMLCanvasElement !== 'undefined' && img instanceof HTMLCanvasElement){
-          return bytesFromDataURL(img.toDataURL('image/png'));
-        }
-      }catch(ex0){}
-      try{
-        var w = img.naturalWidth || img.videoWidth || img.width;
-        var h = img.naturalHeight || img.videoHeight || img.height;
-        if(!w || !h) return null;
-        var cvs = document.createElement('canvas');
-        cvs.width = w; cvs.height = h;
-        var ictx = cvs.getContext('2d');
-        ictx.drawImage(img,0,0,w,h);
-        return bytesFromDataURL(cvs.toDataURL('image/png'));
-      }catch(ex1){
-        try{ log('Texture image encode failed: '+ex1.message); }catch(exlog){}
-        return null;
-      }
     }
 
     function buildExportSceneMeshes(){

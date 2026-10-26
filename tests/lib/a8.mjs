@@ -84,7 +84,7 @@ export async function loadExporter(target, scene, log) {
   }
   if (target !== 'src') throw new Error('objetivo desconocido: ' + target);
   const files = srcFiles(); const where = {};
-  for (const f of files) if (/^export\//.test(f)) { const mod = await import(pathToFileURL(path.join(SRC, f)).href); if (!MODULE_LAYOUT[f]) throw new Error('módulo de export/ sin adaptador N4: ' + f); Object.assign(got, await MODULE_LAYOUT[f](mod, ctx, got)); for (const n of Object.keys(got)) where[n] = f; }
+  for (const f of files) if (/^export\//.test(f)) { const mod = await import(pathToFileURL(path.join(SRC, f)).href); if (!MODULE_LAYOUT[f]) throw new Error('módulo de export/ sin adaptador N4: ' + f); const antes = new Set(Object.keys(got)); Object.assign(got, await MODULE_LAYOUT[f](mod, ctx, got)); for (const n of Object.keys(got)) if (!antes.has(n)) where[n] = f; }
   const rest = EXPORT_FUNCTIONS.filter((n) => !(n in got)); const mainFns = functionsAnyIndent(fs.readFileSync(path.join(SRC, 'main.js'), 'utf8')).filter((f) => f.indent === 4);
   const body = rest.map((n) => { const f = mainFns.find((x) => x.name === n); if (!f) throw new Error('src/main.js: falta ' + n); return f.text; }).join('\n');
   const names = Object.keys(got); const fn = new Function('S', 'log', ...names, `${body}\nreturn { ${rest.join(', ')} };`); const loc = fn(S, log, ...names.map((k) => got[k]));
