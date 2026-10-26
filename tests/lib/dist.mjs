@@ -4,7 +4,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms)); const sha = (f) => 
 // Huella VIGENTE del bundle (desde A7). Históricas que NO se modifican: tests/golden/dist.SHA256SUMS (A3/A4), tests/golden/dist-a5.SHA256SUMS
 // (A5, validada en el CEP real; build.test la reproduce desde el src/ de 31459fc) y tests/golden/dist-a6.SHA256SUMS (A6, validada en el CEP real; la lee
 // a6-cep-evidencia y build.test la reproduce desde el src/ de 2939dbc).
-export const DIST_PIN = path.join(ROOT, 'tests/golden/dist-a7.SHA256SUMS');
+export const DIST_PIN = path.join(ROOT, 'tests/golden/dist-a8.SHA256SUMS');
 function distOk() { const d = path.join(ROOT, 'dist'), sums = path.join(d, 'SHA256SUMS'); try { if (fs.readFileSync(sums, 'utf8') !== fs.readFileSync(DIST_PIN, 'utf8')) return false;
   return fs.readFileSync(sums, 'utf8').split('\n').filter(Boolean).every((l) => { const [h, f] = l.split(/\s+/); return fs.existsSync(path.join(d, f)) && sha(path.join(d, f)) === h; }) && fs.existsSync(path.join(d, 'BUILD_INFO.json')); } catch { return false; } }
 export async function ensureDist() { const lock = path.join(ROOT, '.dist.lock');

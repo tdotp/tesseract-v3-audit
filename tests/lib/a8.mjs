@@ -153,3 +153,35 @@ export function sceneCases() { // nombre → () => { scene, meta } ; cada llamad
     return { scene: s, cubre: 'mezcla aleatoria (semilla ' + seed + ')' }; };
   return C;
 }
+
+// ───────────────────────── Identificadores libres (regla 8 de A8; lección de KI-24) ─────────────────────────
+// Un nombre mal cableado dentro de una clausura solo falla AL EJECUTAR esa ruta (así nació KI-24). Esta comprobación estática y deliberadamente tosca (el código es ES5 con
+// un estilo regular) lista los identificadores que una función usa sin declarar, para exigir que sean globales esperados o dependencias inyectadas.
+const KEYWORDS = new Set('var let const function return if else for while do break continue new typeof instanceof in of this null true false undefined try catch finally throw switch case default void delete async await class extends super import export from yield NaN Infinity'.split(' '));
+export const KNOWN_GLOBALS = new Set(['THREE', 'document', 'window', 'HTMLCanvasElement', 'atob', 'btoa', 'TextEncoder', 'Blob', 'DataView', 'Uint8Array', 'Uint16Array', 'Uint32Array', 'Float32Array', 'ArrayBuffer', 'Array', 'Object', 'Math', 'JSON', 'Error', 'String', 'Number', 'isFinite', 'parseFloat', 'parseInt']);
+export function freeIdentifiers(fnText) {
+  const code0 = fnText.replace(/^\s*\/\/.*$/gm, '').replace(/\/\/[^\n]*$/gm, '').replace(/\/\*[\s\S]*?\*\//g, '').replace(/'(?:[^'\\\n]|\\.)*'|"(?:[^"\\\n]|\\.)*"/g, "''");
+  const code = code0.replace(/([=(,:!&|]\s*)\/(?![*\/])(?:[^\/\n\\]|\\.)+\/[gimsuy]*/g, '$1'); // literales de expresión regular
+  const declared = new Set(); let m;
+  // function nombre(a, b) / function(a, b): nombre y parámetros
+  const reFn = /function\s*([A-Za-z_$][\w$]*)?\s*\(([^)]*)\)/g; while ((m = reFn.exec(code))) { if (m[1]) declared.add(m[1]); for (const p of m[2].split(',')) { const n = p.trim().replace(/=.*$/, '').trim(); if (n) declared.add(n); } }
+  const reImp = /\bimport\s*\{([^}]*)\}\s*from/g; while ((m = reImp.exec(code))) for (const x of m[1].split(',')) { const n = x.split(' as ').pop().trim(); if (n) declared.add(n); }
+  const reCatch = /catch\s*\(\s*([A-Za-z_$][\w$]*)\s*\)/g; while ((m = reCatch.exec(code))) declared.add(m[1]);
+  // var a = 1, b = [x, y], { c, d } = z; → recorre la lista de declaradores respetando la profundidad de ()[]{}
+  const reVar = /\b(?:var|let|const)\s+/g; while ((m = reVar.exec(code))) { let i = m.index + m[0].length, depth = 0, start = true;
+    for (; i < code.length; i++) { const c = code[i];
+      if (start && /\s/.test(c)) continue;
+      if (start) { const mm = /^(?:\{([^}]*)\}|([A-Za-z_$][\w$]*))/.exec(code.slice(i)); if (mm) { if (mm[1] !== undefined) mm[1].split(',').forEach((x) => { const n = x.split(':').pop().trim(); if (n) declared.add(n); }); else declared.add(mm[2]); i += mm[0].length - 1; } start = false; continue; }
+      if ('([{'.includes(c)) depth++; else if (')]}'.includes(c)) { if (depth === 0) break; depth--; } else if (c === ';' && depth === 0) break; else if (c === ',' && depth === 0) start = true; else if (c === '\n' && depth === 0 && /^\s*(\}|var\b|if\b|for\b|return\b)/.test(code.slice(i + 1, i + 12)) && !/[,=]\s*$/.test(code.slice(0, i))) break; } }
+  const used = new Set(); const reId = /(^|[^\w$.])([A-Za-z_$][\w$]*)/g;
+  while ((m = reId.exec(code))) { const id = m[2]; if (KEYWORDS.has(id)) continue; const before = code.slice(0, m.index + m[1].length); const after = code.slice(m.index + m[0].length);
+    if (/^\s*:(?!:)/.test(after) && /[{,]\s*$/.test(before)) continue; // clave de objeto literal ({ a: 1, b: 2 })
+    used.add(id); }
+  return [...used].filter((n) => !declared.has(n)).sort();
+}
+
+// Árbol src/ (sin core/) del commit de referencia: [{file, text}]
+export function refTree() {
+  const names = execFileSync('git', ['-C', ROOT, 'ls-tree', '-r', '--name-only', A8_REF, 'src'], { encoding: 'utf8' }).split('\n').filter((f) => f.endsWith('.js') && !f.startsWith('src/core/'));
+  return names.map((n) => ({ file: n.slice(4), text: execFileSync('git', ['-C', ROOT, 'show', `${A8_REF}:${n}`], { encoding: 'utf8' }) }));
+}
