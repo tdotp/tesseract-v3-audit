@@ -213,3 +213,7 @@ El usuario aprobó conceptualmente la arquitectura de este documento y autorizó
 
 ## 17. Estado tras A8.3 (2026-10-26)
 Ejecutados A8.0a (`c7dee4b`), A8.0b (`5509e84`), A8.1 (`bf5360f`), A8.2 (`6494f94`) y A8.3 (`6e316d2`), cada uno con `run-all.sh --mutations --soak` en verde. Detenido antes de A8.4. Resultados, desviaciones (glb-scene importa glb-bytes; `main.js` desestructura solo `textureToImageBytes`; I-E3 añadido a N4) y el diff previsto del constructor: `docs/fase1/A8_PUNTO_DE_CONTROL.md`.
+
+## 18. Estado final: A8.4 y A8.5 (2026-10-26)
+A8.4 y A8.5 ejecutadas en un chat nuevo de Opus High dentro de los límites aprobados, sin ampliar alcance. **A8.4** (`7c95b0b`): `materialKey` y `buildGLBBlobFromCurrentView` a `src/export/glb-builder.js` (`createGlbBuilder({ buildExportSceneMeshes, textureToImageBytes })`) con texto idéntico salvo la sangría; `main.js` 973 → 830 líneas; cargador de N4 con orden explícito; 5 controles nuevos (108/108); `dist-a8` regenerada (`main.js` `4addceb7…`); batería completa en verde; rendimiento dentro del ruido. **A8.5**: informe PC9 (`A8_INFORME.md`), procedimiento de validación en CEP real **preparado y no ejecutado** (`A8_VALIDACION_CEP_PROCEDIMIENTO.md`) y su prueba. Pendiente del usuario: PC9 y, aparte, la autorización expresa y fechada de A8-CEP.
+

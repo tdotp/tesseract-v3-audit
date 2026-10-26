@@ -1,0 +1,229 @@
+{
+ "fecha": "2026-10-26",
+ "commit": "7c95b0b (A8.4)",
+ "bundle_main_js_sha256": "4addceb7fb8c6dd662a460fb4c8e9c25ad9d715ad1e883e10a66acc858a552bd",
+ "entorno": "Chrome headless (tests/browser/a8.test.mjs, patrón «A8 · N(1|3)»), ejecutado tras el commit de A8.4 y fuera de los controles negativos",
+ "nota": "N1 = igualdad BINARIA exigida (sin arte). N3 = ESTRUCTURAL + píxeles exigidos; la BINARIA con el archivo real solo se informa: Chrome headless codifica los PNG con otro compresor que el Chromium 99 de CEP.",
+ "N1_baseline": {
+  "plano": "737bcd2312da1191a57f5b6530749ffd6bf20b6dd1737c454a62d7f38d8e40b4",
+  "todas60": "87aa2e4c5cc39092e4b040b77f713bc371f6e7c8b47cc56b8711cb5167275017",
+  "bytes": [
+   33436,
+   54224
+  ]
+ },
+ "N3_baseline": {
+  "binario": {
+   "identicoAlReal": false,
+   "sha256": "b3f56d4c8dc9888b9dd4ccdf7b79078ca72a2c6968ac042de61aa38fa72d88a2",
+   "shaReal": "b4973a54840cd0c1a58e6018fd4927369dd5df5a72d23c3465ed25059dcdd1f6",
+   "bytes": 299720,
+   "bytesReal": 295440
+  },
+  "estructural": {
+   "esqueletoJson": true,
+   "ordenClaves": true,
+   "nVistas": [
+    26,
+    26
+   ],
+   "vistasNoImagenDistintas": [],
+   "imagenes": [
+    {
+     "bytesA": 144353,
+     "bytesB": 145407,
+     "binarioIdentico": false,
+     "dims": [
+      [
+       3176,
+       2264
+      ],
+      [
+       3176,
+       2264
+      ]
+     ]
+    },
+    {
+     "bytesA": 142172,
+     "bytesB": 145400,
+     "binarioIdentico": false,
+     "dims": [
+      [
+       3176,
+       2264
+      ],
+      [
+       3176,
+       2264
+      ]
+     ]
+    }
+   ],
+   "pixeles": [
+    {
+     "dims": true,
+     "w": 3176,
+     "h": 2264,
+     "pixelesDistintos": 0,
+     "maxDiferenciaCanal": 0
+    },
+    {
+     "dims": true,
+     "w": 3176,
+     "h": 2264,
+     "pixelesDistintos": 0,
+     "maxDiferenciaCanal": 0
+    }
+   ]
+  }
+ },
+ "N1_panel": {
+  "plano": "737bcd2312da1191a57f5b6530749ffd6bf20b6dd1737c454a62d7f38d8e40b4",
+  "todas60": "87aa2e4c5cc39092e4b040b77f713bc371f6e7c8b47cc56b8711cb5167275017",
+  "bytes": [
+   33436,
+   54224
+  ]
+ },
+ "N3_panel": {
+  "binario": {
+   "identicoAlReal": false,
+   "sha256": "b3f56d4c8dc9888b9dd4ccdf7b79078ca72a2c6968ac042de61aa38fa72d88a2",
+   "shaReal": "b4973a54840cd0c1a58e6018fd4927369dd5df5a72d23c3465ed25059dcdd1f6",
+   "bytes": 299720,
+   "bytesReal": 295440
+  },
+  "estructural": {
+   "esqueletoJson": true,
+   "ordenClaves": true,
+   "nVistas": [
+    26,
+    26
+   ],
+   "vistasNoImagenDistintas": [],
+   "imagenes": [
+    {
+     "bytesA": 144353,
+     "bytesB": 145407,
+     "binarioIdentico": false,
+     "dims": [
+      [
+       3176,
+       2264
+      ],
+      [
+       3176,
+       2264
+      ]
+     ]
+    },
+    {
+     "bytesA": 142172,
+     "bytesB": 145400,
+     "binarioIdentico": false,
+     "dims": [
+      [
+       3176,
+       2264
+      ],
+      [
+       3176,
+       2264
+      ]
+     ]
+    }
+   ],
+   "pixeles": [
+    {
+     "dims": true,
+     "w": 3176,
+     "h": 2264,
+     "pixelesDistintos": 0,
+     "maxDiferenciaCanal": 0
+    },
+    {
+     "dims": true,
+     "w": 3176,
+     "h": 2264,
+     "pixelesDistintos": 0,
+     "maxDiferenciaCanal": 0
+    }
+   ]
+  }
+ },
+ "N1_bundle": {
+  "plano": "737bcd2312da1191a57f5b6530749ffd6bf20b6dd1737c454a62d7f38d8e40b4",
+  "todas60": "87aa2e4c5cc39092e4b040b77f713bc371f6e7c8b47cc56b8711cb5167275017",
+  "bytes": [
+   33436,
+   54224
+  ]
+ },
+ "N3_bundle": {
+  "binario": {
+   "identicoAlReal": false,
+   "sha256": "b3f56d4c8dc9888b9dd4ccdf7b79078ca72a2c6968ac042de61aa38fa72d88a2",
+   "shaReal": "b4973a54840cd0c1a58e6018fd4927369dd5df5a72d23c3465ed25059dcdd1f6",
+   "bytes": 299720,
+   "bytesReal": 295440
+  },
+  "estructural": {
+   "esqueletoJson": true,
+   "ordenClaves": true,
+   "nVistas": [
+    26,
+    26
+   ],
+   "vistasNoImagenDistintas": [],
+   "imagenes": [
+    {
+     "bytesA": 144353,
+     "bytesB": 145407,
+     "binarioIdentico": false,
+     "dims": [
+      [
+       3176,
+       2264
+      ],
+      [
+       3176,
+       2264
+      ]
+     ]
+    },
+    {
+     "bytesA": 142172,
+     "bytesB": 145400,
+     "binarioIdentico": false,
+     "dims": [
+      [
+       3176,
+       2264
+      ],
+      [
+       3176,
+       2264
+      ]
+     ]
+    }
+   ],
+   "pixeles": [
+    {
+     "dims": true,
+     "w": 3176,
+     "h": 2264,
+     "pixelesDistintos": 0,
+     "maxDiferenciaCanal": 0
+    },
+    {
+     "dims": true,
+     "w": 3176,
+     "h": 2264,
+     "pixelesDistintos": 0,
+     "maxDiferenciaCanal": 0
+    }
+   ]
+  }
+ }
+}

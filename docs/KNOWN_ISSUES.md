@@ -1,5 +1,7 @@
 # Registro de defectos conocidos (referencia funcional)
 
+Cierre de A8 (2026-10-26, `docs/fase1/A8_INFORME.md`, PC9): la exportación GLB pasa a `src/export/` (4 módulos: `glb-bytes`, `glb-image`, `glb-scene`, `glb-builder`) con **texto idéntico** salvo sangría y `export`. **Ningún defecto cambia**: KI-01 (Δ=0), KI-02 (no reproducido en la batería), KI-03 (mm, `roughness 1`, generador `Tesseract Phase 7B`), KI-04/KI-22 (11 de 13), KI-06, KI-11, KI-13, KI-14, KI-24, KI-25 (también al cancelar), KI-26, KI-27 y **KI-28** (sigue pendiente de confirmación en Chromium 99; caracterizado en N4, no corregido). GLB sin arte = Illustrator real byte a byte; con arte, estructural y píxeles idénticos y binario **pendiente de A8-CEP** (Chrome headless usa otro codificador PNG). Lagunas de cobertura medidas: ver «Lagunas de cobertura (A8)».
+
 Caracterización A8.0a (2026-10-26, `docs/fase1/A8_PROPUESTA.md`): **KI-28 registrado** (pendiente de confirmación, sin corregir); la exportación GLB queda caracterizada antes de moverla (N1 contra los archivos reales de Illustrator, N2, N3 binario/estructural, N4 diferencial en Node, E1–E6). Ningún defecto cambia.
 
 Validación real del bundle A7 en CEP (2026-10-26, `docs/fase1/A7_VALIDACION_CEP_INFORME.md`): paridad idéntica con A6 y GLB byte a byte; **KI-01 sigue corregido en real tras mover las rutas de liberación** (Δ=0 desde el ciclo 2, sin arte); **KI-06 vuelve a observarse a simple vista** (el hueco de N0-B no se recorta; no es regresión); KI-04/KI-22 (11 de 13) y KI-03 (mm) sin cambios; ningún defecto nuevo.
@@ -97,3 +99,15 @@ Medidas al separar el estado, la escena y el plegado. **No son defectos del prod
 | Código muerto conservado (`hasArtworkLoaded`, `getFoldHingeRadius`, `creaseLinesGroup`, `currentBaseSelect`, import de `CREASE_HINGE_SEGMENTS`) | Sin efecto observable: un cambio ahí no lo ve ninguna prueba de comportamiento. Se conserva tal cual (D-A7-8) | Solo `a7-texto-identico` |
 | Espesor inicial y texto de estado | Con espesor inicial 0.30 en vez de 0.25 el estado dice igualmente «thickness=0.3mm» (KI-14, `toFixed(1)`): el log de depuración no lo distingue | Regresión de píxeles y GLB (control A7) |
 | Orden interno de `updateSelectedCreaseVisuals` | Primero los materiales de la escena y luego las filas del DOM; invertirlo no tendría efecto observable [INFERENCIA]. No se tocó (sigue en `main.js`) | — |
+
+## Lagunas de cobertura (A8)
+
+Medidas al caracterizar y mover la exportación GLB. **No son defectos del producto.**
+
+| Laguna | Detalle | Detectado por |
+|---|---|---|
+| `material.version` durante la exportación | Crece sin exportar (2 374 → 9 934 en 1.5 s) por el bucle de render continuo (KI-11), así que E1 no puede usarla para ver si exportar marca materiales como sucios. Lo de las texturas sí se ve (control «la exportación marca la textura como sucia») | E1/E2 (sin `material.version`); I-E3 en N4 compara color, opacidad, `transparent`, lado, mapa y `map.version` (no `material.version`) |
+| Codificador PNG real | N4 corre en Node con lienzo y documento simulados (el «PNG» es una cadena determinista): no prueba el codificador. En Chrome headless los píxeles coinciden pero los bytes PNG no (otro compresor que Chromium 99) | N3 (estructural y píxeles); **binario solo en CEP real** (A8-CEP) |
+| Límite de `Math.max.apply` (KI-28) en Chromium 99 | Medido en Node/V8 (≥ 125 000 índices); en Chromium 99 [NO VERIFICADO]; inalcanzable con los troqueles reales (máx. 120 índices) | N4 (caracterización, idéntica en los tres objetivos) |
+| Cableado de las dependencias del constructor (`createGlbBuilder`) | Una dependencia mal inyectada fallaría solo al exportar (lección de KI-24). Desde A8.4 lo vigilan 4 controles (dos en N4, import de `padBytes` en N1, `textureToImageBytes` en N3) y el cargador de N4 exige el orden de composición | N1, N3, N4 (**cubierta**) |
+
