@@ -36,7 +36,7 @@ Git limpio en `962b381`. `dist/` reconstruido = `tests/golden/dist-a7.SHA256SUMS
 
 ## 6. Estado final del entorno [MEDIDO]
 V3 **no instalada** (CEP de usuario: solo `TesserArt_Validator`). Plugin «Tesseract» instalado idéntico al baseline. Baseline 15/15. `dist/` = `dist-a7`. `src/`, `panel/`, goldens, fixtures, `reference/` y todas las huellas históricas sin cambios. Temporal `/private/tmp/tesseract_a4/` eliminado (archivado antes en `a7-real/glb/` y comprobado con `cmp`). **Residuos declarados:** entrada de caché de CEP `~/Library/Caches/CSXS/cep_cache/ILST_30.8.2_com.tato.tesseract.v3.panel` (viene de A4; no se borra por estar fuera de lo autorizado); staging del orquestador en `/tmp/Tesseract_Nivel0_run`; registros de A6 en `tests/results/a4-ejecucion-2026-10-25/` (no versionados).
-**Pendiente del usuario:** reabrir Illustrator y comprobar que «Tesseract V3» ya no aparece y que «Tesseract» (instalado) abre con normalidad. Hasta que lo confirme, este punto es [NO VERIFICADO] por el usuario; el sistema de archivos lo confirma (snapshot e aislamiento).
+**Reapertura de Illustrator por el usuario** [CONFIRMADO]: «Tesseract V3» ya no aparece y el «Tesseract» original funciona. Coincide con el snapshot y el aislamiento.
 
 ## 7. Qué no se verificó [NO VERIFICADO]
 Fuga GPU **con arte** en real (la herramienta `leak` no expone esa opción sin modificarla; `conArte: false`, igual que A4) · rendimiento y FPS en CEP · diálogo «Save GLB» real y textos ExtendScript (validados en A5; A7 no los tocó) · Shift+clic · validador Khronos o visor externo · KI-24/KI-26/KI-27 en real · Windows · troqueles distintos de N0-A/N0-B · causa de las incidencias de carga de A5/A6.
