@@ -9,6 +9,7 @@ echo "== 3/4 Node (geometría, defectos, extracción, arte, GLB, .jsx, aislamien
 echo "== 4/4 navegador (Chrome headless: baseline · panel · bundle; y con APIs reducidas a Chromium 99)"
 if [[ " $* " == *" --soak "* ]]; then export SOAK=1; fi
 node --test tests/browser/browser.test.mjs 2>&1 | grep -E "^(✖|ℹ (tests|pass|fail|skipped))"; [ "${PIPESTATUS[0]}" = 0 ] || fail=1
+node --test tests/browser/a7.test.mjs 2>&1 | grep -E "^(✖|ℹ (tests|pass|fail|skipped))"; [ "${PIPESTATUS[0]}" = 0 ] || fail=1
 node --test tests/browser/chromium99.test.mjs 2>&1 | grep -E "^(✖|ℹ (tests|pass|fail|skipped))"; [ "${PIPESTATUS[0]}" = 0 ] || fail=1
 node --test tests/browser/bridge.test.mjs 2>&1 | grep -E "^(✖|ℹ (tests|pass|fail|skipped))"; [ "${PIPESTATUS[0]}" = 0 ] || fail=1
 node --test tests/browser/a5-observar.test.mjs 2>&1 | grep -E "^(✖|ℹ (tests|pass|fail|skipped))"; [ "${PIPESTATUS[0]}" = 0 ] || fail=1

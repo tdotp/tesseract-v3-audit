@@ -5,7 +5,7 @@
 cd "$(dirname "$0")/../.." || exit 2
 TMP=$(mktemp -d); trap 'rm -rf "$TMP"' EXIT; ok=0; bad=0
 # precondición: sin mutar, la batería debe pasar (si no, 'detectada' no significaría nada)
-node --test 'tests/node/*.test.mjs' >/dev/null 2>&1 || { echo 'ERROR: la batería falla sin mutaciones'; exit 2; }
+node --test 'tests/node/*.test.mjs' > "$TMP/pre.txt" 2>&1 || { echo 'ERROR: la batería falla sin mutaciones'; grep -E '^(✖|  AssertionError|  Error)' "$TMP/pre.txt" | head -20; exit 2; } # A7.0a: muestra qué falló (solo diagnóstico)
 mutsrc() { # aplica la mutación sed a TODOS los .js de una COPIA de src/ (nunca al original); falla («NO APLICÓ») si no cambió EXACTAMENTE una línea (A6: una copia duplicada no puede esconder la mutación)
   rm -rf "$TMP/src" "$TMP/src.orig"; cp -R src "$TMP/src"; cp -R src "$TMP/src.orig"; find "$TMP/src" -name '*.js' -exec sed -i '' "$1" {} +; [ "$(diff -r "$TMP/src.orig" "$TMP/src" | grep -c '^<')" = 1 ]; }
 mut() { # nombre, patrón sed

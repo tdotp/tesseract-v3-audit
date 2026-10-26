@@ -1,0 +1,3771 @@
+{
+ "_fuente": "reference/legacy-baseline vía Chrome headless (A7.0a)",
+ "caja": {
+  "extraer": {
+   "estados": [
+    "Extracting...",
+    "Extraction complete"
+   ]
+  },
+  "construir": {
+   "top": [
+    "AmbientLight:",
+    "DirectionalLight:",
+    "HemisphereLight:",
+    "GridHelper:",
+    "AxesHelper:",
+    "Group:"
+   ],
+   "nodes": [
+    "Scene|||0|6",
+    "AmbientLight|||0|0",
+    "DirectionalLight|||0|0",
+    "HemisphereLight|||0|0",
+    "GridHelper|||0|0",
+    "AxesHelper|||0|0",
+    "Group|||0|1",
+    "Group|||0|8",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|6",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|6",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Group|||0|4",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|6",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Group|||0|4",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0"
+   ],
+   "byType": {
+    "Scene": 1,
+    "AmbientLight": 1,
+    "DirectionalLight": 1,
+    "HemisphereLight": 1,
+    "GridHelper": 1,
+    "AxesHelper": 1,
+    "Group": 62,
+    "Mesh": 21,
+    "LineSegments": 11,
+    "Sprite": 11,
+    "Line": 10
+   },
+   "byRole": {
+    "panelLabel": 11,
+    "visibleCrease": 10,
+    "pickCrease": 10
+   },
+   "distintos": {
+    "geometrias": 45,
+    "materiales": 55,
+    "texturas": 11
+   },
+   "panels": [
+    {
+     "idx": 0,
+     "center": [
+      13.8252,
+      -83.7866
+     ],
+     "nVert": 4,
+     "sumVert": -252.1954,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 1,
+     "center": [
+      13.8252,
+      -109.5357
+     ],
+     "nVert": 4,
+     "sumVert": -355.1919,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 2,
+     "center": [
+      -26.1743,
+      -3.2849
+     ],
+     "nVert": 6,
+     "sumVert": -255.2784,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 3,
+     "center": [
+      -66.1738,
+      -3.2849
+     ],
+     "nVert": 4,
+     "sumVert": -410.1826,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 4,
+     "center": [
+      -93.6727,
+      -3.2849
+     ],
+     "nVert": 4,
+     "sumVert": -575.1759,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 5,
+     "center": [
+      -62.2742,
+      80.7139
+     ],
+     "nVert": 5,
+     "sumVert": -63.4875,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 6,
+     "center": [
+      -66.2991,
+      102.4632
+     ],
+     "nVert": 4,
+     "sumVert": 12.0585,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 7,
+     "center": [
+      13.8252,
+      12.3052
+     ],
+     "nVert": 11,
+     "sumVert": 363.4729,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 8,
+     "center": [
+      53.8247,
+      -3.2849
+     ],
+     "nVert": 6,
+     "sumVert": 464.7127,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 9,
+     "center": [
+      51.2915,
+      64.2853
+     ],
+     "nVert": 7,
+     "sumVert": 988.5578,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 10,
+     "center": [
+      53.5416,
+      -69.9737
+     ],
+     "nVert": 8,
+     "sumVert": 82.7096,
+     "overlays": 0,
+     "parentType": "Group"
+    }
+   ],
+   "listas": {
+    "creaseVisuals": 10,
+    "arbol": 10,
+    "paneles": 11
+   },
+   "estados": [
+    "Preparing 3D...",
+    "3D model ready - 11 panels, 10 fold edges",
+    "3D ready · thickness=0.3mm"
+   ]
+  },
+  "base": {
+   "top": [
+    "AmbientLight:",
+    "DirectionalLight:",
+    "HemisphereLight:",
+    "GridHelper:",
+    "AxesHelper:",
+    "Group:"
+   ],
+   "nodes": [
+    "Scene|||0|6",
+    "AmbientLight|||0|0",
+    "DirectionalLight|||0|0",
+    "HemisphereLight|||0|0",
+    "GridHelper|||0|0",
+    "AxesHelper|||0|0",
+    "Group|||0|1",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Group|||0|3",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Group|||0|3",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Group|||0|3",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0"
+   ],
+   "byType": {
+    "Scene": 1,
+    "AmbientLight": 1,
+    "DirectionalLight": 1,
+    "HemisphereLight": 1,
+    "GridHelper": 1,
+    "AxesHelper": 1,
+    "Group": 62,
+    "Mesh": 21,
+    "LineSegments": 11,
+    "Sprite": 1,
+    "Line": 10
+   },
+   "byRole": {
+    "panelLabel": 1,
+    "visibleCrease": 10,
+    "pickCrease": 10
+   },
+   "distintos": {
+    "geometrias": 45,
+    "materiales": 45,
+    "texturas": 1
+   },
+   "panels": [
+    {
+     "idx": 0,
+     "center": [
+      13.8252,
+      -83.7866
+     ],
+     "nVert": 4,
+     "sumVert": -252.1954,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 1,
+     "center": [
+      13.8252,
+      -109.5357
+     ],
+     "nVert": 4,
+     "sumVert": -355.1919,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 2,
+     "center": [
+      -26.1743,
+      -3.2849
+     ],
+     "nVert": 6,
+     "sumVert": -255.2784,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 3,
+     "center": [
+      -66.1738,
+      -3.2849
+     ],
+     "nVert": 4,
+     "sumVert": -410.1826,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 4,
+     "center": [
+      -93.6727,
+      -3.2849
+     ],
+     "nVert": 4,
+     "sumVert": -575.1759,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 5,
+     "center": [
+      -62.2742,
+      80.7139
+     ],
+     "nVert": 5,
+     "sumVert": -63.4875,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 6,
+     "center": [
+      -66.2991,
+      102.4632
+     ],
+     "nVert": 4,
+     "sumVert": 12.0585,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 7,
+     "center": [
+      13.8252,
+      12.3052
+     ],
+     "nVert": 11,
+     "sumVert": 363.4729,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 8,
+     "center": [
+      53.8247,
+      -3.2849
+     ],
+     "nVert": 6,
+     "sumVert": 464.7127,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 9,
+     "center": [
+      51.2915,
+      64.2853
+     ],
+     "nVert": 7,
+     "sumVert": 988.5578,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 10,
+     "center": [
+      53.5416,
+      -69.9737
+     ],
+     "nVert": 8,
+     "sumVert": 82.7096,
+     "overlays": 0,
+     "parentType": "Group"
+    }
+   ],
+   "listas": {
+    "creaseVisuals": 10,
+    "arbol": 10,
+    "paneles": 11
+   },
+   "estados": [
+    "3D model ready - 11 panels, 10 fold edges",
+    "3D ready · base=P10 · thickness=0.3mm"
+   ]
+  },
+  "espesor": {
+   "top": [
+    "AmbientLight:",
+    "DirectionalLight:",
+    "HemisphereLight:",
+    "GridHelper:",
+    "AxesHelper:",
+    "Group:"
+   ],
+   "nodes": [
+    "Scene|||0|6",
+    "AmbientLight|||0|0",
+    "DirectionalLight|||0|0",
+    "HemisphereLight|||0|0",
+    "GridHelper|||0|0",
+    "AxesHelper|||0|0",
+    "Group|||0|1",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Group|||0|3",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Group|||0|3",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Group|||0|3",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0"
+   ],
+   "byType": {
+    "Scene": 1,
+    "AmbientLight": 1,
+    "DirectionalLight": 1,
+    "HemisphereLight": 1,
+    "GridHelper": 1,
+    "AxesHelper": 1,
+    "Group": 62,
+    "Mesh": 21,
+    "LineSegments": 11,
+    "Sprite": 1,
+    "Line": 10
+   },
+   "byRole": {
+    "panelLabel": 1,
+    "visibleCrease": 10,
+    "pickCrease": 10
+   },
+   "distintos": {
+    "geometrias": 45,
+    "materiales": 45,
+    "texturas": 1
+   },
+   "panels": [
+    {
+     "idx": 0,
+     "center": [
+      13.8252,
+      -83.7866
+     ],
+     "nVert": 4,
+     "sumVert": -252.1954,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 1,
+     "center": [
+      13.8252,
+      -109.5357
+     ],
+     "nVert": 4,
+     "sumVert": -355.1919,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 2,
+     "center": [
+      -26.1743,
+      -3.2849
+     ],
+     "nVert": 6,
+     "sumVert": -255.2784,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 3,
+     "center": [
+      -66.1738,
+      -3.2849
+     ],
+     "nVert": 4,
+     "sumVert": -410.1826,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 4,
+     "center": [
+      -93.6727,
+      -3.2849
+     ],
+     "nVert": 4,
+     "sumVert": -575.1759,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 5,
+     "center": [
+      -62.2742,
+      80.7139
+     ],
+     "nVert": 5,
+     "sumVert": -63.4875,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 6,
+     "center": [
+      -66.2991,
+      102.4632
+     ],
+     "nVert": 4,
+     "sumVert": 12.0585,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 7,
+     "center": [
+      13.8252,
+      12.3052
+     ],
+     "nVert": 11,
+     "sumVert": 363.4729,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 8,
+     "center": [
+      53.8247,
+      -3.2849
+     ],
+     "nVert": 6,
+     "sumVert": 464.7127,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 9,
+     "center": [
+      51.2915,
+      64.2853
+     ],
+     "nVert": 7,
+     "sumVert": 988.5578,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 10,
+     "center": [
+      53.5416,
+      -69.9737
+     ],
+     "nVert": 8,
+     "sumVert": 82.7096,
+     "overlays": 0,
+     "parentType": "Group"
+    }
+   ],
+   "listas": {
+    "creaseVisuals": 10,
+    "arbol": 10,
+    "paneles": 11
+   },
+   "estados": [
+    "3D model ready - 11 panels, 10 fold edges",
+    "Thickness applied: 0.8mm"
+   ]
+  },
+  "preset": {
+   "top": [
+    "AmbientLight:",
+    "DirectionalLight:",
+    "HemisphereLight:",
+    "GridHelper:",
+    "AxesHelper:",
+    "Group:"
+   ],
+   "nodes": [
+    "Scene|||0|6",
+    "AmbientLight|||0|0",
+    "DirectionalLight|||0|0",
+    "HemisphereLight|||0|0",
+    "GridHelper|||0|0",
+    "AxesHelper|||0|0",
+    "Group|||0|1",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Group|||0|3",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Group|||0|3",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Group|||0|3",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0"
+   ],
+   "byType": {
+    "Scene": 1,
+    "AmbientLight": 1,
+    "DirectionalLight": 1,
+    "HemisphereLight": 1,
+    "GridHelper": 1,
+    "AxesHelper": 1,
+    "Group": 62,
+    "Mesh": 21,
+    "LineSegments": 11,
+    "Sprite": 1,
+    "Line": 10
+   },
+   "byRole": {
+    "panelLabel": 1,
+    "visibleCrease": 10,
+    "pickCrease": 10
+   },
+   "distintos": {
+    "geometrias": 45,
+    "materiales": 45,
+    "texturas": 1
+   },
+   "panels": [
+    {
+     "idx": 0,
+     "center": [
+      13.8252,
+      -83.7866
+     ],
+     "nVert": 4,
+     "sumVert": -252.1954,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 1,
+     "center": [
+      13.8252,
+      -109.5357
+     ],
+     "nVert": 4,
+     "sumVert": -355.1919,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 2,
+     "center": [
+      -26.1743,
+      -3.2849
+     ],
+     "nVert": 6,
+     "sumVert": -255.2784,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 3,
+     "center": [
+      -66.1738,
+      -3.2849
+     ],
+     "nVert": 4,
+     "sumVert": -410.1826,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 4,
+     "center": [
+      -93.6727,
+      -3.2849
+     ],
+     "nVert": 4,
+     "sumVert": -575.1759,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 5,
+     "center": [
+      -62.2742,
+      80.7139
+     ],
+     "nVert": 5,
+     "sumVert": -63.4875,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 6,
+     "center": [
+      -66.2991,
+      102.4632
+     ],
+     "nVert": 4,
+     "sumVert": 12.0585,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 7,
+     "center": [
+      13.8252,
+      12.3052
+     ],
+     "nVert": 11,
+     "sumVert": 363.4729,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 8,
+     "center": [
+      53.8247,
+      -3.2849
+     ],
+     "nVert": 6,
+     "sumVert": 464.7127,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 9,
+     "center": [
+      51.2915,
+      64.2853
+     ],
+     "nVert": 7,
+     "sumVert": 988.5578,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 10,
+     "center": [
+      53.5416,
+      -69.9737
+     ],
+     "nVert": 8,
+     "sumVert": 82.7096,
+     "overlays": 0,
+     "parentType": "Group"
+    }
+   ],
+   "listas": {
+    "creaseVisuals": 10,
+    "arbol": 10,
+    "paneles": 11
+   },
+   "estados": [
+    "3D model ready - 11 panels, 10 fold edges",
+    "Material preset applied: Kraft board"
+   ]
+  },
+  "plegado": {
+   "top": [
+    "AmbientLight:",
+    "DirectionalLight:",
+    "HemisphereLight:",
+    "GridHelper:",
+    "AxesHelper:",
+    "Group:",
+    "Group:fold-bridges"
+   ],
+   "nodes": [
+    "Scene|||0|7",
+    "AmbientLight|||0|0",
+    "DirectionalLight|||0|0",
+    "HemisphereLight|||0|0",
+    "GridHelper|||0|0",
+    "AxesHelper|||0|0",
+    "Group|||0|1",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Group|||0|3",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Group|||0|3",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Group|||0|3",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|fold-bridges||0|20",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0"
+   ],
+   "byType": {
+    "Scene": 1,
+    "AmbientLight": 1,
+    "DirectionalLight": 1,
+    "HemisphereLight": 1,
+    "GridHelper": 1,
+    "AxesHelper": 1,
+    "Group": 63,
+    "Mesh": 41,
+    "LineSegments": 11,
+    "Sprite": 1,
+    "Line": 10
+   },
+   "byRole": {
+    "panelLabel": 1,
+    "visibleCrease": 10,
+    "pickCrease": 10,
+    "foldBridgeTop": 10,
+    "foldBridgeBottom": 10
+   },
+   "distintos": {
+    "geometrias": 65,
+    "materiales": 65,
+    "texturas": 1
+   },
+   "panels": [
+    {
+     "idx": 0,
+     "center": [
+      13.8252,
+      -83.7866
+     ],
+     "nVert": 4,
+     "sumVert": -252.1954,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 1,
+     "center": [
+      13.8252,
+      -109.5357
+     ],
+     "nVert": 4,
+     "sumVert": -355.1919,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 2,
+     "center": [
+      -26.1743,
+      -3.2849
+     ],
+     "nVert": 6,
+     "sumVert": -255.2784,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 3,
+     "center": [
+      -66.1738,
+      -3.2849
+     ],
+     "nVert": 4,
+     "sumVert": -410.1826,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 4,
+     "center": [
+      -93.6727,
+      -3.2849
+     ],
+     "nVert": 4,
+     "sumVert": -575.1759,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 5,
+     "center": [
+      -62.2742,
+      80.7139
+     ],
+     "nVert": 5,
+     "sumVert": -63.4875,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 6,
+     "center": [
+      -66.2991,
+      102.4632
+     ],
+     "nVert": 4,
+     "sumVert": 12.0585,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 7,
+     "center": [
+      13.8252,
+      12.3052
+     ],
+     "nVert": 11,
+     "sumVert": 363.4729,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 8,
+     "center": [
+      53.8247,
+      -3.2849
+     ],
+     "nVert": 6,
+     "sumVert": 464.7127,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 9,
+     "center": [
+      51.2915,
+      64.2853
+     ],
+     "nVert": 7,
+     "sumVert": 988.5578,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 10,
+     "center": [
+      53.5416,
+      -69.9737
+     ],
+     "nVert": 8,
+     "sumVert": 82.7096,
+     "overlays": 0,
+     "parentType": "Group"
+    }
+   ],
+   "listas": {
+    "creaseVisuals": 10,
+    "arbol": 10,
+    "paneles": 11
+   },
+   "estados": []
+  },
+  "arte": {
+   "top": [
+    "AmbientLight:",
+    "DirectionalLight:",
+    "HemisphereLight:",
+    "GridHelper:",
+    "AxesHelper:",
+    "Group:",
+    "Group:fold-bridges"
+   ],
+   "nodes": [
+    "Scene|||0|7",
+    "AmbientLight|||0|0",
+    "DirectionalLight|||0|0",
+    "HemisphereLight|||0|0",
+    "GridHelper|||0|0",
+    "AxesHelper|||0|0",
+    "Group|||0|1",
+    "Group|||0|5",
+    "Mesh|||0|3",
+    "LineSegments|||0|0",
+    "Mesh|||60|0",
+    "Mesh|||60|0",
+    "Sprite||panelLabel|120|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|5",
+    "Mesh|||0|3",
+    "LineSegments|||0|0",
+    "Mesh|||60|0",
+    "Mesh|||60|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|3",
+    "LineSegments|||0|0",
+    "Mesh|||60|0",
+    "Mesh|||60|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|5",
+    "Mesh|||0|3",
+    "LineSegments|||0|0",
+    "Mesh|||60|0",
+    "Mesh|||60|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Group|||0|3",
+    "Mesh|||0|3",
+    "LineSegments|||0|0",
+    "Mesh|||60|0",
+    "Mesh|||60|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|5",
+    "Mesh|||0|3",
+    "LineSegments|||0|0",
+    "Mesh|||60|0",
+    "Mesh|||60|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|3",
+    "LineSegments|||0|0",
+    "Mesh|||60|0",
+    "Mesh|||60|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Group|||0|3",
+    "Mesh|||0|3",
+    "LineSegments|||0|0",
+    "Mesh|||60|0",
+    "Mesh|||60|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|3",
+    "LineSegments|||0|0",
+    "Mesh|||60|0",
+    "Mesh|||60|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Group|||0|3",
+    "Mesh|||0|3",
+    "LineSegments|||0|0",
+    "Mesh|||60|0",
+    "Mesh|||60|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|3",
+    "LineSegments|||0|0",
+    "Mesh|||60|0",
+    "Mesh|||60|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|fold-bridges||0|20",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0"
+   ],
+   "byType": {
+    "Scene": 1,
+    "AmbientLight": 1,
+    "DirectionalLight": 1,
+    "HemisphereLight": 1,
+    "GridHelper": 1,
+    "AxesHelper": 1,
+    "Group": 63,
+    "Mesh": 63,
+    "LineSegments": 11,
+    "Sprite": 1,
+    "Line": 10
+   },
+   "byRole": {
+    "panelLabel": 1,
+    "visibleCrease": 10,
+    "pickCrease": 10,
+    "foldBridgeTop": 10,
+    "foldBridgeBottom": 10
+   },
+   "distintos": {
+    "geometrias": 87,
+    "materiales": 87,
+    "texturas": 3
+   },
+   "panels": [
+    {
+     "idx": 0,
+     "center": [
+      13.8252,
+      -83.7866
+     ],
+     "nVert": 4,
+     "sumVert": -252.1954,
+     "overlays": 2,
+     "parentType": "Group"
+    },
+    {
+     "idx": 1,
+     "center": [
+      13.8252,
+      -109.5357
+     ],
+     "nVert": 4,
+     "sumVert": -355.1919,
+     "overlays": 2,
+     "parentType": "Group"
+    },
+    {
+     "idx": 2,
+     "center": [
+      -26.1743,
+      -3.2849
+     ],
+     "nVert": 6,
+     "sumVert": -255.2784,
+     "overlays": 2,
+     "parentType": "Group"
+    },
+    {
+     "idx": 3,
+     "center": [
+      -66.1738,
+      -3.2849
+     ],
+     "nVert": 4,
+     "sumVert": -410.1826,
+     "overlays": 2,
+     "parentType": "Group"
+    },
+    {
+     "idx": 4,
+     "center": [
+      -93.6727,
+      -3.2849
+     ],
+     "nVert": 4,
+     "sumVert": -575.1759,
+     "overlays": 2,
+     "parentType": "Group"
+    },
+    {
+     "idx": 5,
+     "center": [
+      -62.2742,
+      80.7139
+     ],
+     "nVert": 5,
+     "sumVert": -63.4875,
+     "overlays": 2,
+     "parentType": "Group"
+    },
+    {
+     "idx": 6,
+     "center": [
+      -66.2991,
+      102.4632
+     ],
+     "nVert": 4,
+     "sumVert": 12.0585,
+     "overlays": 2,
+     "parentType": "Group"
+    },
+    {
+     "idx": 7,
+     "center": [
+      13.8252,
+      12.3052
+     ],
+     "nVert": 11,
+     "sumVert": 363.4729,
+     "overlays": 2,
+     "parentType": "Group"
+    },
+    {
+     "idx": 8,
+     "center": [
+      53.8247,
+      -3.2849
+     ],
+     "nVert": 6,
+     "sumVert": 464.7127,
+     "overlays": 2,
+     "parentType": "Group"
+    },
+    {
+     "idx": 9,
+     "center": [
+      51.2915,
+      64.2853
+     ],
+     "nVert": 7,
+     "sumVert": 988.5578,
+     "overlays": 2,
+     "parentType": "Group"
+    },
+    {
+     "idx": 10,
+     "center": [
+      53.5416,
+      -69.9737
+     ],
+     "nVert": 8,
+     "sumVert": 82.7096,
+     "overlays": 2,
+     "parentType": "Group"
+    }
+   ],
+   "listas": {
+    "creaseVisuals": 10,
+    "arbol": 10,
+    "paneles": 11
+   },
+   "estados": []
+  }
+ },
+ "ill": {
+  "extraer": {
+   "estados": [
+    "Extracting...",
+    "Extraction complete"
+   ]
+  },
+  "construir": {
+   "top": [
+    "AmbientLight:",
+    "DirectionalLight:",
+    "HemisphereLight:",
+    "GridHelper:",
+    "AxesHelper:",
+    "Group:"
+   ],
+   "nodes": [
+    "Scene|||0|6",
+    "AmbientLight|||0|0",
+    "DirectionalLight|||0|0",
+    "HemisphereLight|||0|0",
+    "GridHelper|||0|0",
+    "AxesHelper|||0|0",
+    "Group|||0|1",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Group|||0|4",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|6",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|4",
+    "Group|||0|8",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|6",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Group|||0|4",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|6",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0"
+   ],
+   "byType": {
+    "Scene": 1,
+    "AmbientLight": 1,
+    "DirectionalLight": 1,
+    "HemisphereLight": 1,
+    "GridHelper": 1,
+    "AxesHelper": 1,
+    "Group": 74,
+    "Mesh": 25,
+    "LineSegments": 13,
+    "Sprite": 13,
+    "Line": 12
+   },
+   "byRole": {
+    "panelLabel": 13,
+    "visibleCrease": 12,
+    "pickCrease": 12
+   },
+   "distintos": {
+    "geometrias": 53,
+    "materiales": 65,
+    "texturas": 13
+   },
+   "panels": [
+    {
+     "idx": 0,
+     "center": [
+      15.1031,
+      82.8346
+     ],
+     "nVert": 4,
+     "sumVert": 421.9569,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 1,
+     "center": [
+      15.1031,
+      63.3348
+     ],
+     "nVert": 4,
+     "sumVert": 343.9577,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 2,
+     "center": [
+      15.1031,
+      -21.2285
+     ],
+     "nVert": 9,
+     "sumVert": 12.8349,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 3,
+     "center": [
+      -16.7966,
+      53.8259
+     ],
+     "nVert": 7,
+     "sumVert": 200.4168,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 4,
+     "center": [
+      -14.8967,
+      3.1461
+     ],
+     "nVert": 4,
+     "sumVert": -76.7959,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 5,
+     "center": [
+      -44.8026,
+      3.1461
+     ],
+     "nVert": 4,
+     "sumVert": -256.2311,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 6,
+     "center": [
+      -65.5208,
+      3.1461
+     ],
+     "nVert": 4,
+     "sumVert": -380.5402,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 7,
+     "center": [
+      -44.9904,
+      -56.8535
+     ],
+     "nVert": 4,
+     "sumVert": -497.3564,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 8,
+     "center": [
+      -44.9904,
+      -76.1654
+     ],
+     "nVert": 4,
+     "sumVert": -574.6042,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 9,
+     "center": [
+      -12.9968,
+      -47.5318
+     ],
+     "nVert": 7,
+     "sumVert": -469.1893,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 10,
+     "center": [
+      43.203,
+      -47.5318
+     ],
+     "nVert": 7,
+     "sumVert": 120.9082,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 11,
+     "center": [
+      45.1968,
+      3.1461
+     ],
+     "nVert": 4,
+     "sumVert": 283.765,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 12,
+     "center": [
+      47.0568,
+      53.8259
+     ],
+     "nVert": 7,
+     "sumVert": 870.8776,
+     "overlays": 0,
+     "parentType": "Group"
+    }
+   ],
+   "listas": {
+    "creaseVisuals": 12,
+    "arbol": 12,
+    "paneles": 13
+   },
+   "estados": [
+    "Preparing 3D...",
+    "3D model ready - 13 panels, 12 fold edges",
+    "3D ready · thickness=0.3mm"
+   ]
+  },
+  "base": {
+   "top": [
+    "AmbientLight:",
+    "DirectionalLight:",
+    "HemisphereLight:",
+    "GridHelper:",
+    "AxesHelper:",
+    "Group:"
+   ],
+   "nodes": [
+    "Scene|||0|6",
+    "AmbientLight|||0|0",
+    "DirectionalLight|||0|0",
+    "HemisphereLight|||0|0",
+    "GridHelper|||0|0",
+    "AxesHelper|||0|0",
+    "Group|||0|1",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Group|||0|3",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|4",
+    "Group|||0|7",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Group|||0|3",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0"
+   ],
+   "byType": {
+    "Scene": 1,
+    "AmbientLight": 1,
+    "DirectionalLight": 1,
+    "HemisphereLight": 1,
+    "GridHelper": 1,
+    "AxesHelper": 1,
+    "Group": 74,
+    "Mesh": 25,
+    "LineSegments": 13,
+    "Sprite": 1,
+    "Line": 12
+   },
+   "byRole": {
+    "panelLabel": 1,
+    "visibleCrease": 12,
+    "pickCrease": 12
+   },
+   "distintos": {
+    "geometrias": 53,
+    "materiales": 53,
+    "texturas": 1
+   },
+   "panels": [
+    {
+     "idx": 0,
+     "center": [
+      15.1031,
+      82.8346
+     ],
+     "nVert": 4,
+     "sumVert": 421.9569,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 1,
+     "center": [
+      15.1031,
+      63.3348
+     ],
+     "nVert": 4,
+     "sumVert": 343.9577,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 2,
+     "center": [
+      15.1031,
+      -21.2285
+     ],
+     "nVert": 9,
+     "sumVert": 12.8349,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 3,
+     "center": [
+      -16.7966,
+      53.8259
+     ],
+     "nVert": 7,
+     "sumVert": 200.4168,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 4,
+     "center": [
+      -14.8967,
+      3.1461
+     ],
+     "nVert": 4,
+     "sumVert": -76.7959,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 5,
+     "center": [
+      -44.8026,
+      3.1461
+     ],
+     "nVert": 4,
+     "sumVert": -256.2311,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 6,
+     "center": [
+      -65.5208,
+      3.1461
+     ],
+     "nVert": 4,
+     "sumVert": -380.5402,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 7,
+     "center": [
+      -44.9904,
+      -56.8535
+     ],
+     "nVert": 4,
+     "sumVert": -497.3564,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 8,
+     "center": [
+      -44.9904,
+      -76.1654
+     ],
+     "nVert": 4,
+     "sumVert": -574.6042,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 9,
+     "center": [
+      -12.9968,
+      -47.5318
+     ],
+     "nVert": 7,
+     "sumVert": -469.1893,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 10,
+     "center": [
+      43.203,
+      -47.5318
+     ],
+     "nVert": 7,
+     "sumVert": 120.9082,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 11,
+     "center": [
+      45.1968,
+      3.1461
+     ],
+     "nVert": 4,
+     "sumVert": 283.765,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 12,
+     "center": [
+      47.0568,
+      53.8259
+     ],
+     "nVert": 7,
+     "sumVert": 870.8776,
+     "overlays": 0,
+     "parentType": "Group"
+    }
+   ],
+   "listas": {
+    "creaseVisuals": 12,
+    "arbol": 12,
+    "paneles": 13
+   },
+   "estados": [
+    "3D model ready - 13 panels, 12 fold edges",
+    "3D ready · base=P12 · thickness=0.3mm"
+   ]
+  },
+  "espesor": {
+   "top": [
+    "AmbientLight:",
+    "DirectionalLight:",
+    "HemisphereLight:",
+    "GridHelper:",
+    "AxesHelper:",
+    "Group:"
+   ],
+   "nodes": [
+    "Scene|||0|6",
+    "AmbientLight|||0|0",
+    "DirectionalLight|||0|0",
+    "HemisphereLight|||0|0",
+    "GridHelper|||0|0",
+    "AxesHelper|||0|0",
+    "Group|||0|1",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Group|||0|3",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|4",
+    "Group|||0|7",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Group|||0|3",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0"
+   ],
+   "byType": {
+    "Scene": 1,
+    "AmbientLight": 1,
+    "DirectionalLight": 1,
+    "HemisphereLight": 1,
+    "GridHelper": 1,
+    "AxesHelper": 1,
+    "Group": 74,
+    "Mesh": 25,
+    "LineSegments": 13,
+    "Sprite": 1,
+    "Line": 12
+   },
+   "byRole": {
+    "panelLabel": 1,
+    "visibleCrease": 12,
+    "pickCrease": 12
+   },
+   "distintos": {
+    "geometrias": 53,
+    "materiales": 53,
+    "texturas": 1
+   },
+   "panels": [
+    {
+     "idx": 0,
+     "center": [
+      15.1031,
+      82.8346
+     ],
+     "nVert": 4,
+     "sumVert": 421.9569,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 1,
+     "center": [
+      15.1031,
+      63.3348
+     ],
+     "nVert": 4,
+     "sumVert": 343.9577,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 2,
+     "center": [
+      15.1031,
+      -21.2285
+     ],
+     "nVert": 9,
+     "sumVert": 12.8349,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 3,
+     "center": [
+      -16.7966,
+      53.8259
+     ],
+     "nVert": 7,
+     "sumVert": 200.4168,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 4,
+     "center": [
+      -14.8967,
+      3.1461
+     ],
+     "nVert": 4,
+     "sumVert": -76.7959,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 5,
+     "center": [
+      -44.8026,
+      3.1461
+     ],
+     "nVert": 4,
+     "sumVert": -256.2311,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 6,
+     "center": [
+      -65.5208,
+      3.1461
+     ],
+     "nVert": 4,
+     "sumVert": -380.5402,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 7,
+     "center": [
+      -44.9904,
+      -56.8535
+     ],
+     "nVert": 4,
+     "sumVert": -497.3564,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 8,
+     "center": [
+      -44.9904,
+      -76.1654
+     ],
+     "nVert": 4,
+     "sumVert": -574.6042,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 9,
+     "center": [
+      -12.9968,
+      -47.5318
+     ],
+     "nVert": 7,
+     "sumVert": -469.1893,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 10,
+     "center": [
+      43.203,
+      -47.5318
+     ],
+     "nVert": 7,
+     "sumVert": 120.9082,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 11,
+     "center": [
+      45.1968,
+      3.1461
+     ],
+     "nVert": 4,
+     "sumVert": 283.765,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 12,
+     "center": [
+      47.0568,
+      53.8259
+     ],
+     "nVert": 7,
+     "sumVert": 870.8776,
+     "overlays": 0,
+     "parentType": "Group"
+    }
+   ],
+   "listas": {
+    "creaseVisuals": 12,
+    "arbol": 12,
+    "paneles": 13
+   },
+   "estados": [
+    "3D model ready - 13 panels, 12 fold edges",
+    "Thickness applied: 0.8mm"
+   ]
+  },
+  "preset": {
+   "top": [
+    "AmbientLight:",
+    "DirectionalLight:",
+    "HemisphereLight:",
+    "GridHelper:",
+    "AxesHelper:",
+    "Group:"
+   ],
+   "nodes": [
+    "Scene|||0|6",
+    "AmbientLight|||0|0",
+    "DirectionalLight|||0|0",
+    "HemisphereLight|||0|0",
+    "GridHelper|||0|0",
+    "AxesHelper|||0|0",
+    "Group|||0|1",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Group|||0|3",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|4",
+    "Group|||0|7",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Group|||0|3",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0"
+   ],
+   "byType": {
+    "Scene": 1,
+    "AmbientLight": 1,
+    "DirectionalLight": 1,
+    "HemisphereLight": 1,
+    "GridHelper": 1,
+    "AxesHelper": 1,
+    "Group": 74,
+    "Mesh": 25,
+    "LineSegments": 13,
+    "Sprite": 1,
+    "Line": 12
+   },
+   "byRole": {
+    "panelLabel": 1,
+    "visibleCrease": 12,
+    "pickCrease": 12
+   },
+   "distintos": {
+    "geometrias": 53,
+    "materiales": 53,
+    "texturas": 1
+   },
+   "panels": [
+    {
+     "idx": 0,
+     "center": [
+      15.1031,
+      82.8346
+     ],
+     "nVert": 4,
+     "sumVert": 421.9569,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 1,
+     "center": [
+      15.1031,
+      63.3348
+     ],
+     "nVert": 4,
+     "sumVert": 343.9577,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 2,
+     "center": [
+      15.1031,
+      -21.2285
+     ],
+     "nVert": 9,
+     "sumVert": 12.8349,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 3,
+     "center": [
+      -16.7966,
+      53.8259
+     ],
+     "nVert": 7,
+     "sumVert": 200.4168,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 4,
+     "center": [
+      -14.8967,
+      3.1461
+     ],
+     "nVert": 4,
+     "sumVert": -76.7959,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 5,
+     "center": [
+      -44.8026,
+      3.1461
+     ],
+     "nVert": 4,
+     "sumVert": -256.2311,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 6,
+     "center": [
+      -65.5208,
+      3.1461
+     ],
+     "nVert": 4,
+     "sumVert": -380.5402,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 7,
+     "center": [
+      -44.9904,
+      -56.8535
+     ],
+     "nVert": 4,
+     "sumVert": -497.3564,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 8,
+     "center": [
+      -44.9904,
+      -76.1654
+     ],
+     "nVert": 4,
+     "sumVert": -574.6042,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 9,
+     "center": [
+      -12.9968,
+      -47.5318
+     ],
+     "nVert": 7,
+     "sumVert": -469.1893,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 10,
+     "center": [
+      43.203,
+      -47.5318
+     ],
+     "nVert": 7,
+     "sumVert": 120.9082,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 11,
+     "center": [
+      45.1968,
+      3.1461
+     ],
+     "nVert": 4,
+     "sumVert": 283.765,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 12,
+     "center": [
+      47.0568,
+      53.8259
+     ],
+     "nVert": 7,
+     "sumVert": 870.8776,
+     "overlays": 0,
+     "parentType": "Group"
+    }
+   ],
+   "listas": {
+    "creaseVisuals": 12,
+    "arbol": 12,
+    "paneles": 13
+   },
+   "estados": [
+    "3D model ready - 13 panels, 12 fold edges",
+    "Material preset applied: Kraft board"
+   ]
+  },
+  "plegado": {
+   "top": [
+    "AmbientLight:",
+    "DirectionalLight:",
+    "HemisphereLight:",
+    "GridHelper:",
+    "AxesHelper:",
+    "Group:",
+    "Group:fold-bridges"
+   ],
+   "nodes": [
+    "Scene|||0|7",
+    "AmbientLight|||0|0",
+    "DirectionalLight|||0|0",
+    "HemisphereLight|||0|0",
+    "GridHelper|||0|0",
+    "AxesHelper|||0|0",
+    "Group|||0|1",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Sprite||panelLabel|120|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Group|||0|3",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|4",
+    "Group|||0|7",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|5",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Group|||0|3",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|1",
+    "LineSegments|||0|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|fold-bridges||0|24",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0"
+   ],
+   "byType": {
+    "Scene": 1,
+    "AmbientLight": 1,
+    "DirectionalLight": 1,
+    "HemisphereLight": 1,
+    "GridHelper": 1,
+    "AxesHelper": 1,
+    "Group": 75,
+    "Mesh": 49,
+    "LineSegments": 13,
+    "Sprite": 1,
+    "Line": 12
+   },
+   "byRole": {
+    "panelLabel": 1,
+    "visibleCrease": 12,
+    "pickCrease": 12,
+    "foldBridgeTop": 12,
+    "foldBridgeBottom": 12
+   },
+   "distintos": {
+    "geometrias": 77,
+    "materiales": 77,
+    "texturas": 1
+   },
+   "panels": [
+    {
+     "idx": 0,
+     "center": [
+      15.1031,
+      82.8346
+     ],
+     "nVert": 4,
+     "sumVert": 421.9569,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 1,
+     "center": [
+      15.1031,
+      63.3348
+     ],
+     "nVert": 4,
+     "sumVert": 343.9577,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 2,
+     "center": [
+      15.1031,
+      -21.2285
+     ],
+     "nVert": 9,
+     "sumVert": 12.8349,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 3,
+     "center": [
+      -16.7966,
+      53.8259
+     ],
+     "nVert": 7,
+     "sumVert": 200.4168,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 4,
+     "center": [
+      -14.8967,
+      3.1461
+     ],
+     "nVert": 4,
+     "sumVert": -76.7959,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 5,
+     "center": [
+      -44.8026,
+      3.1461
+     ],
+     "nVert": 4,
+     "sumVert": -256.2311,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 6,
+     "center": [
+      -65.5208,
+      3.1461
+     ],
+     "nVert": 4,
+     "sumVert": -380.5402,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 7,
+     "center": [
+      -44.9904,
+      -56.8535
+     ],
+     "nVert": 4,
+     "sumVert": -497.3564,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 8,
+     "center": [
+      -44.9904,
+      -76.1654
+     ],
+     "nVert": 4,
+     "sumVert": -574.6042,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 9,
+     "center": [
+      -12.9968,
+      -47.5318
+     ],
+     "nVert": 7,
+     "sumVert": -469.1893,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 10,
+     "center": [
+      43.203,
+      -47.5318
+     ],
+     "nVert": 7,
+     "sumVert": 120.9082,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 11,
+     "center": [
+      45.1968,
+      3.1461
+     ],
+     "nVert": 4,
+     "sumVert": 283.765,
+     "overlays": 0,
+     "parentType": "Group"
+    },
+    {
+     "idx": 12,
+     "center": [
+      47.0568,
+      53.8259
+     ],
+     "nVert": 7,
+     "sumVert": 870.8776,
+     "overlays": 0,
+     "parentType": "Group"
+    }
+   ],
+   "listas": {
+    "creaseVisuals": 12,
+    "arbol": 12,
+    "paneles": 13
+   },
+   "estados": []
+  },
+  "arte": {
+   "top": [
+    "AmbientLight:",
+    "DirectionalLight:",
+    "HemisphereLight:",
+    "GridHelper:",
+    "AxesHelper:",
+    "Group:",
+    "Group:fold-bridges"
+   ],
+   "nodes": [
+    "Scene|||0|7",
+    "AmbientLight|||0|0",
+    "DirectionalLight|||0|0",
+    "HemisphereLight|||0|0",
+    "GridHelper|||0|0",
+    "AxesHelper|||0|0",
+    "Group|||0|1",
+    "Group|||0|5",
+    "Mesh|||0|3",
+    "LineSegments|||0|0",
+    "Mesh|||60|0",
+    "Mesh|||60|0",
+    "Sprite||panelLabel|120|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|5",
+    "Mesh|||0|3",
+    "LineSegments|||0|0",
+    "Mesh|||60|0",
+    "Mesh|||60|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|5",
+    "Mesh|||0|3",
+    "LineSegments|||0|0",
+    "Mesh|||60|0",
+    "Mesh|||60|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Group|||0|3",
+    "Mesh|||0|3",
+    "LineSegments|||0|0",
+    "Mesh|||60|0",
+    "Mesh|||60|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|3",
+    "LineSegments|||0|0",
+    "Mesh|||60|0",
+    "Mesh|||60|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|4",
+    "Group|||0|7",
+    "Mesh|||0|3",
+    "LineSegments|||0|0",
+    "Mesh|||60|0",
+    "Mesh|||60|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|3",
+    "LineSegments|||0|0",
+    "Mesh|||60|0",
+    "Mesh|||60|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|3",
+    "Group|||0|5",
+    "Mesh|||0|3",
+    "LineSegments|||0|0",
+    "Mesh|||60|0",
+    "Mesh|||60|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|2",
+    "Group|||0|3",
+    "Mesh|||0|3",
+    "LineSegments|||0|0",
+    "Mesh|||60|0",
+    "Mesh|||60|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|3",
+    "LineSegments|||0|0",
+    "Mesh|||60|0",
+    "Mesh|||60|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|3",
+    "LineSegments|||0|0",
+    "Mesh|||60|0",
+    "Mesh|||60|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|3",
+    "LineSegments|||0|0",
+    "Mesh|||60|0",
+    "Mesh|||60|0",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Group|||0|1",
+    "Mesh|||0|3",
+    "LineSegments|||0|0",
+    "Mesh|||60|0",
+    "Mesh|||60|0",
+    "Line||visibleCrease|90|0",
+    "Mesh||pickCrease|95|0",
+    "Group|fold-bridges||0|24",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0",
+    "Mesh||foldBridgeTop|33|0",
+    "Mesh||foldBridgeBottom|32|0"
+   ],
+   "byType": {
+    "Scene": 1,
+    "AmbientLight": 1,
+    "DirectionalLight": 1,
+    "HemisphereLight": 1,
+    "GridHelper": 1,
+    "AxesHelper": 1,
+    "Group": 75,
+    "Mesh": 75,
+    "LineSegments": 13,
+    "Sprite": 1,
+    "Line": 12
+   },
+   "byRole": {
+    "panelLabel": 1,
+    "visibleCrease": 12,
+    "pickCrease": 12,
+    "foldBridgeTop": 12,
+    "foldBridgeBottom": 12
+   },
+   "distintos": {
+    "geometrias": 103,
+    "materiales": 103,
+    "texturas": 3
+   },
+   "panels": [
+    {
+     "idx": 0,
+     "center": [
+      15.1031,
+      82.8346
+     ],
+     "nVert": 4,
+     "sumVert": 421.9569,
+     "overlays": 2,
+     "parentType": "Group"
+    },
+    {
+     "idx": 1,
+     "center": [
+      15.1031,
+      63.3348
+     ],
+     "nVert": 4,
+     "sumVert": 343.9577,
+     "overlays": 2,
+     "parentType": "Group"
+    },
+    {
+     "idx": 2,
+     "center": [
+      15.1031,
+      -21.2285
+     ],
+     "nVert": 9,
+     "sumVert": 12.8349,
+     "overlays": 2,
+     "parentType": "Group"
+    },
+    {
+     "idx": 3,
+     "center": [
+      -16.7966,
+      53.8259
+     ],
+     "nVert": 7,
+     "sumVert": 200.4168,
+     "overlays": 2,
+     "parentType": "Group"
+    },
+    {
+     "idx": 4,
+     "center": [
+      -14.8967,
+      3.1461
+     ],
+     "nVert": 4,
+     "sumVert": -76.7959,
+     "overlays": 2,
+     "parentType": "Group"
+    },
+    {
+     "idx": 5,
+     "center": [
+      -44.8026,
+      3.1461
+     ],
+     "nVert": 4,
+     "sumVert": -256.2311,
+     "overlays": 2,
+     "parentType": "Group"
+    },
+    {
+     "idx": 6,
+     "center": [
+      -65.5208,
+      3.1461
+     ],
+     "nVert": 4,
+     "sumVert": -380.5402,
+     "overlays": 2,
+     "parentType": "Group"
+    },
+    {
+     "idx": 7,
+     "center": [
+      -44.9904,
+      -56.8535
+     ],
+     "nVert": 4,
+     "sumVert": -497.3564,
+     "overlays": 2,
+     "parentType": "Group"
+    },
+    {
+     "idx": 8,
+     "center": [
+      -44.9904,
+      -76.1654
+     ],
+     "nVert": 4,
+     "sumVert": -574.6042,
+     "overlays": 2,
+     "parentType": "Group"
+    },
+    {
+     "idx": 9,
+     "center": [
+      -12.9968,
+      -47.5318
+     ],
+     "nVert": 7,
+     "sumVert": -469.1893,
+     "overlays": 2,
+     "parentType": "Group"
+    },
+    {
+     "idx": 10,
+     "center": [
+      43.203,
+      -47.5318
+     ],
+     "nVert": 7,
+     "sumVert": 120.9082,
+     "overlays": 2,
+     "parentType": "Group"
+    },
+    {
+     "idx": 11,
+     "center": [
+      45.1968,
+      3.1461
+     ],
+     "nVert": 4,
+     "sumVert": 283.765,
+     "overlays": 2,
+     "parentType": "Group"
+    },
+    {
+     "idx": 12,
+     "center": [
+      47.0568,
+      53.8259
+     ],
+     "nVert": 7,
+     "sumVert": 870.8776,
+     "overlays": 2,
+     "parentType": "Group"
+    }
+   ],
+   "listas": {
+    "creaseVisuals": 12,
+    "arbol": 12,
+    "paneles": 13
+   },
+   "estados": []
+  }
+ }
+}

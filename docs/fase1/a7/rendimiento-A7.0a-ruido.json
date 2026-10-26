@@ -1,0 +1,191 @@
+{
+ "fecha": "2026-10-26T04:24:24.675Z",
+ "referencia": "2939dbc",
+ "actual": "src/ (árbol de trabajo)",
+ "corridas_por_bundle": 5,
+ "entorno": "Chrome headless (cdp.mjs), Caja Botánica real; piso optimista, no CEP",
+ "resumen": {
+  "construir_ms": {
+   "ref": 39.7,
+   "act": 37.1,
+   "degradacion_pct": -6.5,
+   "veredicto": "OK"
+  },
+  "reconstruir_ms": {
+   "ref": 1.82,
+   "act": 1.695,
+   "degradacion_pct": -6.9,
+   "veredicto": "OK"
+  },
+  "plegado_tick_ms": {
+   "ref": 0.362,
+   "act": 0.358,
+   "degradacion_pct": -0.9,
+   "veredicto": "OK"
+  },
+  "glb_export_ms": {
+   "ref": 2.4,
+   "act": 2.2,
+   "degradacion_pct": -8.3,
+   "veredicto": "OK"
+  },
+  "fps_reposo": {
+   "ref": 61.1,
+   "act": 61.1,
+   "degradacion_pct": 0,
+   "veredicto": "OK"
+  },
+  "fps_orbita": {
+   "ref": 60.8,
+   "act": 60.8,
+   "degradacion_pct": 0,
+   "veredicto": "OK"
+  }
+ },
+ "crudo": {
+  "ref": [
+   {
+    "construir_ms": 42.3,
+    "reconstruir_ms": 1.8200000001117587,
+    "plegado_tick_ms": 0.36733333333084983,
+    "glb_export_ms": 2.399999998509884,
+    "fps_reposo": 61,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": 0.8
+    }
+   },
+   {
+    "construir_ms": 36.9,
+    "reconstruir_ms": 1.5200000001117586,
+    "plegado_tick_ms": 0.34733333334326744,
+    "glb_export_ms": 2.2000000029802322,
+    "fps_reposo": 61.3,
+    "fps_orbita": 60.7,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": 12.9
+    }
+   },
+   {
+    "construir_ms": 39.7,
+    "reconstruir_ms": 2.084999999962747,
+    "plegado_tick_ms": 0.3616666666666667,
+    "glb_export_ms": 2.800000000745058,
+    "fps_reposo": 61,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": 13.1
+    }
+   },
+   {
+    "construir_ms": 36,
+    "reconstruir_ms": 2.155000000074506,
+    "plegado_tick_ms": 0.35933333332339923,
+    "glb_export_ms": 2.2000000029802322,
+    "fps_reposo": 61.1,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": 13.4
+    }
+   },
+   {
+    "construir_ms": 41.9,
+    "reconstruir_ms": 1.659999999962747,
+    "plegado_tick_ms": 0.37,
+    "glb_export_ms": 4.400000002235174,
+    "fps_reposo": 61.2,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": 13.6
+    }
+   }
+  ],
+  "act": [
+   {
+    "construir_ms": 45.8,
+    "reconstruir_ms": 1.85,
+    "plegado_tick_ms": 0.3646666666616996,
+    "glb_export_ms": 2.800000000745058,
+    "fps_reposo": 61.2,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -4.4
+    }
+   },
+   {
+    "construir_ms": 38.4,
+    "reconstruir_ms": 1.6900000000372528,
+    "plegado_tick_ms": 0.37666666666666665,
+    "glb_export_ms": 2.100000001490116,
+    "fps_reposo": 60.9,
+    "fps_orbita": 60.7,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": 2
+    }
+   },
+   {
+    "construir_ms": 35.2,
+    "reconstruir_ms": 1.915000000037253,
+    "plegado_tick_ms": 0.35833333333333334,
+    "glb_export_ms": 2.199999999254942,
+    "fps_reposo": 60.8,
+    "fps_orbita": 60.9,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": 13.6
+    }
+   },
+   {
+    "construir_ms": 37.1,
+    "reconstruir_ms": 1.694999999925494,
+    "plegado_tick_ms": 0.3536666666592161,
+    "glb_export_ms": 2.100000001490116,
+    "fps_reposo": 61.2,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.9
+    }
+   },
+   {
+    "construir_ms": 36.9,
+    "reconstruir_ms": 1.65,
+    "plegado_tick_ms": 0.3526666666691502,
+    "glb_export_ms": 2.199999999254942,
+    "fps_reposo": 61.1,
+    "fps_orbita": 60.8,
+    "crec100": {
+     "texturas": 0,
+     "buffers": 0,
+     "vaos": 0,
+     "heap_MB": -10.8
+    }
+   }
+  ]
+ }
+}

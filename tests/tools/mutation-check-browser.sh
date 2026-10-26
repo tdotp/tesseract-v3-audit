@@ -8,7 +8,8 @@ for pat in "GPU · bundle \(caja, sin arte\)" "Escena/materiales · bundle" "Art
   node --test --test-name-pattern="$pat" tests/browser/browser.test.mjs >/dev/null 2>&1 || { echo "ERROR: la prueba '$pat' falla sin mutaciones"; exit 2; }
 done
 node --test --test-name-pattern="Puente CEP · (baseline|bundle)" tests/browser/bridge.test.mjs >/dev/null 2>&1 || { echo "ERROR: la prueba del puente falla sin mutaciones"; exit 2; }
-echo "precondición OK (7 patrones pasan sin mutar)"
+for pat in "A7 · inventario de escena" "A7 · ciclo de vida"; do node --test --test-name-pattern="$pat" tests/browser/a7.test.mjs >/dev/null 2>&1 || { echo "ERROR: la prueba '$pat' (A7) falla sin mutaciones"; exit 2; }; done
+echo "precondición OK (9 patrones pasan sin mutar)"
 mutsrc() { # aplica la mutación sed a TODOS los .js de una COPIA de src/ (nunca al original); falla («NO APLICÓ») si no cambió EXACTAMENTE una línea (A6: una copia duplicada no puede esconder la mutación)
   rm -rf "$TMP/src" "$TMP/src.orig"; cp -R src "$TMP/src"; cp -R src "$TMP/src.orig"; find "$TMP/src" -name '*.js' -exec sed -i '' "$1" {} +; [ "$(diff -r "$TMP/src.orig" "$TMP/src" | grep -c '^<')" = 1 ]; }
 run() { # nombre, patrón de prueba, mutación sed (sobre una copia de src/) o REVERT (bundle construido desde el baseline, sin el parche A1), [archivo de prueba]
@@ -35,4 +36,8 @@ run "KI-24 corregido sin tarea (buildChildrenOfMap)" "Puente CEP · (baseline|bu
 run "A6 · log: setBasePanel ya no llama a buildFoldTree"      "Log de depuración \(A6\)"      's/foldTree = geometryEngine.buildFoldTree(currentPanelData.panels, currentAdjEdges, currentBasePanelIndex);/foldTree = foldTree;/'  # A6.6: la llamada pasa por geometryEngine
 # A6.6 — el adaptador del motor en el bundle real: si ignora la base elegida, el log y la interacción Shift+clic lo delatan
 run "A6 · adaptador: el motor ignora la base elegida (bundle)"  "Log de depuración \(A6\)"  's/    buildFoldTree: buildFoldTree,/    buildFoldTree: function(p, a, b){ return buildFoldTree(p, a, 0); },/'
+# A7.0a — ciclo de vida de los recursos (A1) y datos de escena que antes no observaba ninguna prueba (docs/fase1/A7_PROPUESTA.md §9.4)
+run "A7 · clearAllMeshes deja de liberar los visuales de pliegue"  "A7 · ciclo de vida"  's/      disposeCreaseVisuals();   \/\* A1 \*\//      \/\* A7-mut \*\//'  tests/browser/a7.test.mjs
+run "A7 · disposeObject3D deja de recorrer los hijos"             "A7 · ciclo de vida"  's/obj.children.slice().forEach(function(ch){ disposeObject3D(ch); });/void 0;/'  tests/browser/a7.test.mjs
+run "A7 · centro del panel (userData.center) calculado distinto"  "A7 · inventario de escena"  's/center:getPolyCentroid(centered),/center:getPolyCentroid(centered.slice(1)),/'  tests/browser/a7.test.mjs
 echo "mutaciones detectadas: $ok · no detectadas: $bad"; [ "$bad" = 0 ]

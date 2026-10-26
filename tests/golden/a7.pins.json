@@ -1,0 +1,6 @@
+{
+ "_nota": "A7.0a: huella del golden de inventario de escena, generado SOLO desde el baseline congelado (tests/browser/a7.test.mjs con UPDATE_GOLDEN_A7=1). Un cambio exige una decisión explícita del usuario.",
+ "archivos": {
+  "tests/golden/scene-inventory.golden.json": "7f1f046cdb6e3ccf1eea9c5d3beee2ecc3239adb747e8f4e5dfb41dfa1893cee"
+ }
+}
