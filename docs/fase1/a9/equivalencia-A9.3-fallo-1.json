@@ -1,0 +1,15 @@
+{
+ "funcionesAnteriores": 144,
+ "funcionesNuevas": 147,
+ "identicas": 143,
+ "distintas": [
+  "buildFoldUI"
+ ],
+ "duplicadas": [],
+ "soloEnAnterior": [],
+ "soloEnNuevo": [
+  "createViews",
+  "createFoldControls",
+  "createActions"
+ ]
+}

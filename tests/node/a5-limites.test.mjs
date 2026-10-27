@@ -21,7 +21,7 @@ test('config/ y host/ no importan nada; bridge/cep no importa nada; bridge/fs so
   assert.deepEqual(imports('bridge/fs.js'), ['../host/save-dialog.js']);
 });
 test('THREE solo en main.js; document solo en main.js y en triggerDownload (bridge/fs); window.cep solo en saveBlobWithDialog', () => {
-  for (const f of files.filter((f) => f !== 'main.js' && f !== 'app/actions.js' && !/^(scene|fold|export)\//.test(f))) { // A9.2: app/actions.js (document solo en exportPNG) lo rige a9-limites · A7: THREE, document y window en scene/ y fold/ los regula a7-limites; A8: en export/, a8-limites
+  for (const f of files.filter((f) => f !== 'main.js' && f !== 'app/actions.js' && f !== 'ui/fold-controls.js' && !/^(scene|fold|export)\//.test(f))) { // A9.2: app/actions.js (document solo en exportPNG) y A9.3: ui/fold-controls.js (document solo en buildFoldUI) los rige a9-limites · A7: THREE, document y window en scene/ y fold/ los regula a7-limites; A8: en export/, a8-limites
     assert.doesNotMatch(code(f), /\bTHREE\b/, f);
     const doc = code(f).match(/\bdocument\b/g) || []; if (f === 'bridge/fs.js') assert.equal(doc.length, (fnBody(f, 'triggerDownload').match(/\bdocument\b/g) || []).length, 'document fuera de triggerDownload'); else assert.equal(doc.length, 0, f);
     if (/^(config|host)\//.test(f)) assert.doesNotMatch(code(f), /\bwindow\b/, f);

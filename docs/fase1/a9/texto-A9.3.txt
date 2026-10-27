@@ -1,0 +1,8 @@
+IDÉNTICA updatePerCreaseRow (8 líneas; 3ea0d8a sangría 4 → ui/fold-controls.js sangría 2)
+IDÉNTICA updateSelectedCreaseVisuals (15 líneas; 3ea0d8a sangría 4 → ui/fold-controls.js sangría 2)
+IDÉNTICA syncSelectedCreaseUI (20 líneas; 3ea0d8a sangría 4 → ui/fold-controls.js sangría 2)
+IDÉNTICA selectFoldEdge (11 líneas; 3ea0d8a sangría 4 → ui/fold-controls.js sangría 2)
+IDÉNTICA applySelectedCreaseAngle (8 líneas; 3ea0d8a sangría 4 → ui/fold-controls.js sangría 2)
+IDÉNTICA setBasePanel (14 líneas; 3ea0d8a sangría 4 → ui/fold-controls.js sangría 2)
+IDÉNTICA buildFoldUI (183 líneas; 3ea0d8a sangría 4 → ui/fold-controls.js sangría 2)
+7/7 idénticas byte a byte salvo −2 espacios por línea

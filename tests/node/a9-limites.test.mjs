@@ -8,14 +8,17 @@ import test from 'node:test'; import assert from 'node:assert/strict'; import fs
 import { SRC, srcFiles, codeOnly, functionsAnyIndent } from '../lib/a7.mjs'; import { freeIdentifiers, KNOWN_GLOBALS } from '../lib/a8.mjs'; import { CLOSURE_3EA0D8A } from '../lib/a9.mjs';
 
 // Estado esperado en ESTE paso (se actualiza en cada paso aprobado; igualdad exacta).
-const INVENTORY = ['app/actions.js', 'ui/views.js']; // A9.2 (app/state.js queda fuera de este inventario: lo rige a7-limites)
+const INVENTORY = ['app/actions.js', 'ui/fold-controls.js', 'ui/views.js']; // A9.3 (app/state.js queda fuera de este inventario: lo rige a7-limites)
 const RULES = { // por módulo: { exports, imports, doc: funciones donde se permite document, free: identificadores libres admitidos además de KNOWN_GLOBALS }
   'ui/views.js': { exports: ['createViews'], imports: ['../bridge/cep.js'], doc: [], free: [] }, // A9.1
-  'app/actions.js': { exports: ['createActions'], imports: ['../host/art.js', '../bridge/cep.js', '../bridge/fs.js'], doc: ['exportPNG'], free: [] } }; // A9.2: document SOLO en exportPNG (ajuste A)
+  'app/actions.js': { exports: ['createActions'], imports: ['../host/art.js', '../bridge/cep.js', '../bridge/fs.js'], doc: ['exportPNG'], free: [] }, // A9.2: document SOLO en exportPNG (ajuste A)
+  'ui/fold-controls.js': { exports: ['createFoldControls'], imports: [], doc: ['buildFoldUI'], free: [] } }; // A9.3: document solo en buildFoldUI
 const VIEWS = ['syncMaterialPresetUI', 'setInteractionMode', 'ensureCep', 'showImport', 'show3D', 'setDebugVisible', 'setActiveTab', 'syncMaterialInputs', 'setArtStatus']; // A9.1
 const ACTIONS = ['refreshArtwork', 'exportPNG', 'exportGLB']; // A9.2
-const MAIN_FUNCTIONS = CLOSURE_3EA0D8A.filter((n) => !VIEWS.includes(n) && !ACTIONS.includes(n)); // funciones de la clausura de main.js en este paso
-const WRAPPERS = 0; // regla 8: envoltorios de enlace tardío en main.js (3 en el Bloque 2; ninguno en el Bloque 1)
+const FOLD_CONTROLS = ['updatePerCreaseRow', 'updateSelectedCreaseVisuals', 'syncSelectedCreaseUI', 'selectFoldEdge', 'applySelectedCreaseAngle', 'setBasePanel', 'buildFoldUI']; // A9.3
+const MAIN_FUNCTIONS = CLOSURE_3EA0D8A.filter((n) => !VIEWS.includes(n) && !ACTIONS.includes(n) && !FOLD_CONTROLS.includes(n)); // funciones de la clausura de main.js en este paso
+const WRAPPERS = { // regla 8: envoltorios de enlace tardío en main.js (forma fija de A9_PROPUESTA §5.3) → línea de composición donde deben estar
+  'updateSelectedCreaseVisuals: function(){ return updateSelectedCreaseVisuals(); }': 'createCreaseVisuals(S, {' }; // A9.3
 const FOLD_WIDGETS = ['currentBaseSelect', 'currentCreaseRows', 'currentCreaseSliders', 'selectedCreaseLabelEl', 'selectedCreaseSliderEl', 'selectedCreaseNumberEl'];
 
 const all = srcFiles().filter((f) => !f.startsWith('core/')); /* core/ tiene su propio problems (validateDieline) y lo rige a6-limites */ const files = all.filter((f) => /^(ui|app)\//.test(f) && f !== 'app/state.js'); const raw = (f) => fs.readFileSync(path.join(SRC, f), 'utf8');
@@ -38,8 +41,10 @@ test('regla 4 · imports solo los previstos, solo con nombre; ninguno hacia scen
 });
 test('regla 5 · sin estado de módulo; el cuerpo de cada fábrica solo desestructura deps, declara variables privadas con valor literal y funciones, y devuelve', () => {
   for (const f of files) { assert.deepEqual(codeOnly(raw(f)).split('\n').filter((l) => /^(var|let|const)\s/.test(l)), [], `${f}: estado de módulo`);
-    const L = codeOnly(raw(f)).split('\n'); let inF = false;
-    for (const l of L) { if (/^export function create\w+\(S, deps\)\{$/.test(l)) { inF = true; continue; } if (l === '}') { inF = false; continue; } if (!inF || !/^ {2}\S/.test(l)) continue;
+    const L = codeOnly(raw(f)).split('\n'); let inF = false, inFn = false; // A9.3: se saltan los cuerpos de las funciones (una línea mal sangrada dentro de una función no es una sentencia de la fábrica)
+    for (const l of L) { if (/^export function create\w+\(S, deps\)\{$/.test(l)) { inF = true; continue; } if (l === '}') { inF = false; continue; } if (!inF) continue;
+      if (inFn) { if (l === '  }') inFn = false; continue; } if (!/^ {2}\S/.test(l)) continue;
+      if (/^ {2}(async )?function \w+\(/.test(l) && (l.match(/\{/g) || []).length > (l.match(/\}/g) || []).length) { inFn = true; continue; }
       assert.match(l, /^ {2}(var \{[\w, ]+\} = deps;|var \w+ = (''|-?\d+(\.\d+)?|null|true|false|\[\]);|(async )?function \w+\(|return \{[\w, ]+\};|\})/, `${f}: sentencia con posible efecto al crear la fábrica: ${l.trim()}`); } }
 });
 test('regla 6 · lastData y problems: una sola declaración y todos sus usos en el mismo archivo; los 6 widgets privados de plegado, también', () => {
@@ -52,7 +57,8 @@ test('regla 7 · identificadores libres: solo globales esperados y las excepcion
   for (const f of files) { const libres = freeIdentifiers(raw(f)).filter((n) => !KNOWN_GLOBALS.has(n) && !(RULES[f].free || []).includes(n)); assert.deepEqual(libres, [], `${f}: ${libres.join(', ')}`); }
 });
 test('regla 8 · envoltorios de enlace tardío en main.js: exactamente los previstos en este paso', () => {
-  const w = codeOnly(mainText).match(/function\s*\((e)?\)\s*\{\s*return (pickPanelFromEvent|pickCreaseFromEvent|updateSelectedCreaseVisuals)\(\1?\);\s*\}/g) || []; assert.equal(w.length, WRAPPERS, w.join(' | '));
+  const w = codeOnly(mainText).match(/function\s*\((e)?\)\s*\{\s*return (pickPanelFromEvent|pickCreaseFromEvent|updateSelectedCreaseVisuals)\(\1?\);\s*\}/g) || []; assert.equal(w.length, Object.keys(WRAPPERS).length, w.join(' | '));
+  for (const [form, line] of Object.entries(WRAPPERS)) { const ls = mainText.split('\n').filter((l) => l.includes(form)); assert.equal(ls.length, 1, `envoltorio ausente o repetido: ${form}`); assert.ok(ls[0].includes(line), `${form} debe ir en la línea de ${line}`); }
 });
 test('regla 9 · main.js conserva el ancla del arnés y __tessDebugView con su texto, y solo las funciones previstas', () => {
   assert.equal((mainText.match(/^ {4}function setStatus\(m\)\{ statusArea\.textContent = m; \}$/gm) || []).length, 1, 'ancla de setup_harness.py');

@@ -1,0 +1,18 @@
+# A9.3 — control de a9-bundle-eq: misma función con el renombrado de esbuild Y un cambio real (byId('debug-details') → byId('log-area') en buildFoldUI) ⇒ debe quedar en «distintas» y salir con 1
+{
+ "funcionesAnteriores": 144,
+ "funcionesNuevas": 147,
+ "identicas": 143,
+ "renombradosEsbuild": [],
+ "distintas": [
+  "buildFoldUI"
+ ],
+ "duplicadas": [],
+ "soloEnAnterior": [],
+ "soloEnNuevo": [
+  "createViews",
+  "createFoldControls",
+  "createActions"
+ ]
+}
+RC=1
