@@ -1,5 +1,7 @@
 # Registro de defectos conocidos (referencia funcional)
 
+A9.3–A9.4 (2026-10-27, `docs/fase1/A9_PUNTO_DE_CONTROL_A9.4.md`): controles de plegado a `src/ui/fold-controls.js` y picking a `src/ui/picking.js` con texto idéntico y 3 envoltorios de enlace tardío; **ningún defecto cambia, KI-29 se conserva tal cual** (Alt+clic sobre C6 ⇒ C1, sobre C8 ⇒ C5, igual que el baseline).
+
 A9 Bloque 1 (2026-10-27, `docs/fase1/A9_PUNTO_DE_CONTROL.md`): la presentación pasa a `src/ui/views.js` y las acciones (arte, PNG, GLB) a `src/app/actions.js` con **texto idéntico** salvo sangría. **Ningún defecto cambia** (KI-01 Δ=0, KI-14, KI-24, KI-25, KI-26, KI-27 y KI-28 tal cual; GLB sin arte byte a byte). **KI-29 registrado** (pendiente de confirmación, sin corregir): Alt+clic elige la crease más cercana a la cámara dentro de un umbral de 40, no necesariamente la clicada.
 
 Validación real del bundle A8 en CEP (2026-10-26, `docs/fase1/A8_VALIDACION_CEP_INFORME.md`): paridad idéntica con A7 y los tres GLB byte a byte, **incluido el GLB con arte `b4973a54…`**; **KI-25 reproducido en el diálogo «Save GLB» real** (guardar y cancelar); KI-06 (hueco de N0-B), KI-04/KI-22 (11 de 13) y KI-03 (mm) sin cambios; KI-01 sigue corregido en real (Δ=0); ningún defecto nuevo. La laguna «codificador PNG real» de A8 queda cubierta en real para N0-B.
@@ -127,5 +129,7 @@ Medidas al caracterizar la interfaz (A9.0a) y al mover presentación y acciones 
 | `THREE` en `ui/views.js` (control n.º 14) | `THREE` existe en el navegador: usarlo no cambia el comportamiento | Solo `a9-limites` (regla 2) |
 | Texto del manejador de `DOMContentLoaded` | Es toda la clausura de `main.js` (la raíz de composición, que A9 cambia en cada paso): H1 lo excluye de la comparación de texto con el bundle de 3ea0d8a | `a9-texto-identico` (funciones, 15 manejadores, líneas sueltas) y H1–H6 |
 | Lectura de píxeles del lienzo 2D | Leer el lienzo del producto con `getImageData` hace que Chrome deje de acelerarlo y cambia el rasterizado de los dibujos siguientes (artefacto de medición): H4 lee una copia | — (arnés) |
+| Valor devuelto por los envoltorios de pick (control n.º 20, A9.4) | `onUp` no ejecuta nada después del `return`: que el envoltorio no devuelva el resultado no cambia nada observable (H5 e «Interacciones» pasan con la mutación) [MEDIDO] | Solo `a9-limites` (regla 8: forma exacta del envoltorio) |
+| Renombrados de esbuild al mover código (A9.3) | Al pasar `buildFoldUI` a una fábrica, esbuild deja de renombrar su `var debugDetails` local (antes `debugDetails2`, porque ocultaba al widget de la clausura). Mismo texto fuente, mismo comportamiento | `a9-bundle-eq` los acepta solo si son `x ↔ xN` biyectivos y los declara; cualquier otra diferencia falla (control en `a9/equivalencia-A9.3-control.txt`) |
 | `tests/tools/bundle-eq.mjs` y `async function` | La comparación de primer nivel no reconoce funciones `async` (`refreshArtwork`, `exportGLB` salen como líneas sueltas) | `a9-equivalencia` (`a7-bundle-eq`, a cualquier sangría y con `async`) |
 
