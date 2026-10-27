@@ -1,5 +1,7 @@
 # Registro de defectos conocidos (referencia funcional)
 
+Cierre de A9 (2026-10-27, `docs/fase1/A9_INFORME.md`, PC10): la interfaz y la orquestación quedan en `src/ui/{views,fold-controls,picking,controller}.js` y `src/app/actions.js` con **texto idéntico** (25 funciones y los 15 manejadores, ahora en un único `bindEvents`); `main.js` es un shell de 156 líneas. **Ningún defecto cambia**: KI-24 sigue lanzando `ReferenceError` (`buildChildrenOfMap` sigue sin declararse), KI-25 sigue sobrescribiendo el mensaje del GLB, KI-29 tal cual. Validación en CEP real preparada y no ejecutada (`A9_VALIDACION_CEP_PROCEDIMIENTO.md`).
+
 A9.3–A9.4 (2026-10-27, `docs/fase1/A9_PUNTO_DE_CONTROL_A9.4.md`): controles de plegado a `src/ui/fold-controls.js` y picking a `src/ui/picking.js` con texto idéntico y 3 envoltorios de enlace tardío; **ningún defecto cambia, KI-29 se conserva tal cual** (Alt+clic sobre C6 ⇒ C1, sobre C8 ⇒ C5, igual que el baseline).
 
 A9 Bloque 1 (2026-10-27, `docs/fase1/A9_PUNTO_DE_CONTROL.md`): la presentación pasa a `src/ui/views.js` y las acciones (arte, PNG, GLB) a `src/app/actions.js` con **texto idéntico** salvo sangría. **Ningún defecto cambia** (KI-01 Δ=0, KI-14, KI-24, KI-25, KI-26, KI-27 y KI-28 tal cual; GLB sin arte byte a byte). **KI-29 registrado** (pendiente de confirmación, sin corregir): Alt+clic elige la crease más cercana a la cámara dentro de un umbral de 40, no necesariamente la clicada.

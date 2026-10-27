@@ -1,0 +1,40 @@
+# A9.6 — Evidencia final de equivalencia de TEXTO: las 25 funciones que A9 movió de la clausura de src/main.js de 3ea0d8a, comparadas byte a byte tras quitar 2 espacios por línea, y los 15 manejadores (bindEvents, con su sangría).
+## ui/views.js
+IDÉNTICA syncMaterialPresetUI (5 líneas; 3ea0d8a sangría 4 → ui/views.js sangría 2)
+IDÉNTICA setInteractionMode (14 líneas; 3ea0d8a sangría 4 → ui/views.js sangría 2)
+IDÉNTICA ensureCep (8 líneas; 3ea0d8a sangría 4 → ui/views.js sangría 2)
+IDÉNTICA showImport (1 líneas; 3ea0d8a sangría 4 → ui/views.js sangría 2)
+IDÉNTICA show3D (1 líneas; 3ea0d8a sangría 4 → ui/views.js sangría 2)
+IDÉNTICA setDebugVisible (1 líneas; 3ea0d8a sangría 4 → ui/views.js sangría 2)
+IDÉNTICA setActiveTab (11 líneas; 3ea0d8a sangría 4 → ui/views.js sangría 2)
+IDÉNTICA syncMaterialInputs (1 líneas; 3ea0d8a sangría 4 → ui/views.js sangría 2)
+IDÉNTICA setArtStatus (4 líneas; 3ea0d8a sangría 4 → ui/views.js sangría 2)
+9/9 idénticas byte a byte salvo −2 espacios por línea
+## app/actions.js
+IDÉNTICA refreshArtwork (32 líneas; 3ea0d8a sangría 4 → app/actions.js sangría 2)
+IDÉNTICA exportPNG (6 líneas; 3ea0d8a sangría 4 → app/actions.js sangría 2)
+IDÉNTICA exportGLB (16 líneas; 3ea0d8a sangría 4 → app/actions.js sangría 2)
+3/3 idénticas byte a byte salvo −2 espacios por línea
+## ui/fold-controls.js
+IDÉNTICA updatePerCreaseRow (8 líneas; 3ea0d8a sangría 4 → ui/fold-controls.js sangría 2)
+IDÉNTICA updateSelectedCreaseVisuals (15 líneas; 3ea0d8a sangría 4 → ui/fold-controls.js sangría 2)
+IDÉNTICA syncSelectedCreaseUI (20 líneas; 3ea0d8a sangría 4 → ui/fold-controls.js sangría 2)
+IDÉNTICA selectFoldEdge (11 líneas; 3ea0d8a sangría 4 → ui/fold-controls.js sangría 2)
+IDÉNTICA applySelectedCreaseAngle (8 líneas; 3ea0d8a sangría 4 → ui/fold-controls.js sangría 2)
+IDÉNTICA setBasePanel (14 líneas; 3ea0d8a sangría 4 → ui/fold-controls.js sangría 2)
+IDÉNTICA buildFoldUI (183 líneas; 3ea0d8a sangría 4 → ui/fold-controls.js sangría 2)
+7/7 idénticas byte a byte salvo −2 espacios por línea
+## ui/picking.js
+IDÉNTICA pickPanelFromEvent (17 líneas; 3ea0d8a sangría 4 → ui/picking.js sangría 2)
+IDÉNTICA pickCreaseFromEvent (18 líneas; 3ea0d8a sangría 4 → ui/picking.js sangría 2)
+2/2 idénticas byte a byte salvo −2 espacios por línea
+## ui/controller.js
+IDÉNTICA applyMaterialPreset (21 líneas; 3ea0d8a sangría 4 → ui/controller.js sangría 2)
+IDÉNTICA resetValidationUI (6 líneas; 3ea0d8a sangría 4 → ui/controller.js sangría 2)
+IDÉNTICA validateGeometry (20 líneas; 3ea0d8a sangría 4 → ui/controller.js sangría 2)
+IDÉNTICA render2D (33 líneas; 3ea0d8a sangría 4 → ui/controller.js sangría 2)
+4/4 idénticas byte a byte salvo −2 espacios por línea
+## manejadores
+bloques 15 15 idénticos con su sangría: true
+## funciones que quedan en la clausura de main.js
+setStatus log clearLog __tessDebugView
