@@ -10,12 +10,17 @@ done
 node --test --test-name-pattern="Puente CEP · (baseline|bundle)" tests/browser/bridge.test.mjs >/dev/null 2>&1 || { echo "ERROR: la prueba del puente falla sin mutaciones"; exit 2; }
 for pat in "A7 · inventario de escena" "A7 · ciclo de vida"; do node --test --test-name-pattern="$pat" tests/browser/a7.test.mjs >/dev/null 2>&1 || { echo "ERROR: la prueba '$pat' (A7) falla sin mutaciones"; exit 2; }; done
 node --test tests/browser/a8.test.mjs >/dev/null 2>&1 || { echo "ERROR: la batería A8 (exportación GLB) falla sin mutaciones"; exit 2; }
-echo "precondición OK (9 patrones + batería A8 pasan sin mutar)"
+SOAK=1 node --test tests/browser/a9.test.mjs >/dev/null 2>&1 || { echo "ERROR: la batería A9 (interfaz, con soak de UI) falla sin mutaciones"; exit 2; }
+echo "precondición OK (9 patrones + baterías A8 y A9 pasan sin mutar)"
 mutsrc() { # aplica la mutación sed a TODOS los .js de una COPIA de src/ (nunca al original); falla («NO APLICÓ») si no cambió EXACTAMENTE una línea (A6: una copia duplicada no puede esconder la mutación)
   rm -rf "$TMP/src" "$TMP/src.orig"; cp -R src "$TMP/src"; cp -R src "$TMP/src.orig"; find "$TMP/src" -name '*.js' -exec sed -i '' "$1" {} +; [ "$(diff -r "$TMP/src.orig" "$TMP/src" | grep -c '^<')" = 1 ]; }
 run() { # nombre, patrón de prueba, mutación sed (sobre una copia de src/) o REVERT (bundle construido desde el baseline, sin el parche A1), [archivo de prueba]
   if [ "$3" = "REVERT" ]; then var=TESS_DIST_FROM; val="$PWD/reference/legacy-baseline"; else mutsrc "$3" || { echo "NO APLICÓ  $1"; bad=$((bad+1)); return; }; var=TESS_DIST_ENTRY; val="$TMP/src/main.js"; fi
   if env "$var=$val" node --test --test-name-pattern="$2" "${4:-tests/browser/browser.test.mjs}" >/dev/null 2>&1; then echo "NO DETECTADA  $1"; bad=$((bad+1)); else echo "detectada     $1"; ok=$((ok+1)); fi
+}
+run_soak() { # como run, con SOAK=1 (el soak de UI de A9 solo existe con SOAK): nombre, patrón, mutación sed, archivo de prueba
+  mutsrc "$3" || { echo "NO APLICÓ  $1"; bad=$((bad+1)); return; }
+  if env SOAK=1 TESS_DIST_ENTRY="$TMP/src/main.js" node --test --test-name-pattern="$2" "$4" >/dev/null 2>&1; then echo "NO DETECTADA  $1"; bad=$((bad+1)); else echo "detectada     $1"; ok=$((ok+1)); fi
 }
 run "se revierte el parche A1 (fuga vuelve)"        "GPU · bundle \(caja, sin arte\)"  REVERT
 run "etiquetas: la caché deja de reutilizar"        "GPU · bundle \(caja, sin arte\)"  's/var r = labelCache\[key\];/var r = null;/'
@@ -74,4 +79,20 @@ run "A8.3 · glb-scene: copia obsoleta de S al crear la fábrica"  "A8 · N1"   
 # A8.4 — glb-builder: cableado del import de glb-bytes y de las dependencias que main.js inyecta en el constructor
 run "A8.4 · cableado: glb-builder.js no importa padBytes"         "A8 · N1"             's/^import { padBytes, toUint8View } from /import { toUint8View } from /' $A8
 run "A8.4 · cableado: main.js inyecta otra textureToImageBytes"   "A8 · N3"             's/createGlbBuilder({ buildExportSceneMeshes, textureToImageBytes })/createGlbBuilder({ buildExportSceneMeshes, textureToImageBytes: function(){ return null; } })/' $A8
+# A9.0a — caracterización de interfaz y orquestación (H1–H6 y soak de UI sobre el bundle construido desde la copia mutada). Cada patrón cambia exactamente 1 línea.
+A9=tests/browser/a9.test.mjs
+run "A9 · H1: la escucha de Extract se registra dos veces (n.º 4)"            "A9 · H1"   "s/^    extractBtn.addEventListener('click',function(){\$/    var __a9dup=extractBtn.addEventListener; extractBtn.addEventListener=function(t,f,o){ __a9dup.call(this,t,f,o); __a9dup.call(this,t,function(e){ return f.call(this,e); },o); }; extractBtn.addEventListener('click',function(){/" $A9
+run "A9 · H1: se omite la escucha de debug-toggle (n.º 5)"                   "A9 · H1"   "s/^    debugToggle.addEventListener('change', function(){\$/    void('change', function(){/" $A9
+run "A9 · H1: keydown en window en lugar de document (n.º 6)"                "A9 · H1"   "s/^    document.addEventListener('keydown', function(ev){\$/    window.addEventListener('keydown', function(ev){/" $A9
+run "A9 · H1: sin CEP el arranque ya no corta (registra escuchas) (n.º 11)"   "A9 · H1"   's/^    if(!ensureCep()) return;$/    ensureCep();/' $A9
+run "A9 · H2: copia sombra de lastData en el manejador Preview (n.º 9)"       "A9 · H2"   "s/^    previewBtn.addEventListener('click', function(){\$/    previewBtn.addEventListener('click', function(){ var lastData;/" $A9
+run "A9 · H2: Continue espera a refreshArtwork antes de su mensaje (n.º 16)"  "A9 · H2"   "s/setStatus('3D ready · thickness='+S.currentThicknessMm.toFixed(1)+'mm');/return refreshArtwork().then(function(){ setStatus('3D ready · thickness='+S.currentThicknessMm.toFixed(1)+'mm'); });/" $A9
+run "A9 · H3: ensureCep deja de mostrar #error-msg (n.º 12)"                  "A9 · H3"   "s/errorMsg.style.display='block';/void 0;/" $A9
+run "A9 · H3: la guarda «UI mismatch» pierde !thicknessInput (n.º 17)"        "A9 · H3"   's/^       !thicknessInput||!applyThicknessBtn){$/       !applyThicknessBtn){/' $A9
+run "A9 · H4: buildFoldUI deja de reiniciar currentCreaseRows (n.º 8)"        "A9 · H4"   's/^      currentCreaseRows = \[\];$/      void 0;/' $A9
+run "A9 · H4: el onclick de un problema llama a render2D(null, …) (n.º 10)"   "A9 · H4"   's/li.onclick=function(){render2D(lastData,p.id);};/li.onclick=function(){render2D(null,p.id);};/' $A9
+run "A9 · H5: error tragado por el try/catch del visor tras un Alt+clic correcto" "A9 · H5" "s/setStatus('Crease C'+edgeIdx+' selected · Alt\/Option + click another red line to retarget');/setStatus('Crease C'+edgeIdx+' selected · Alt\/Option + click another red line to retarget'); null.x;/" $A9
+run "A9 · H5: createViewport recibe pickPanelFromEvent = undefined (cableado roto)" "A9 · H5" 's/pickPanelFromEvent, pickCreaseFromEvent });/pickPanelFromEvent: undefined, pickCreaseFromEvent });/' $A9
+run "A9 · H5: rebuildCreaseVisuals deja de actualizar el resaltado tras plegar" "A9 · H5"  's/^    updateSelectedCreaseVisuals();$/    void 0;/' $A9
+run_soak "A9 · soak de UI: cada reconstrucción deja una escucha de Reset en #three-view (fuga en un elemento persistente)" "A9 · soak" "s/^      resetBtn.addEventListener('click',function(){\$/      threeView.addEventListener('click',function(){/" $A9
 echo "mutaciones detectadas: $ok · no detectadas: $bad"; [ "$bad" = 0 ]

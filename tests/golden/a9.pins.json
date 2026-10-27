@@ -1,0 +1,6 @@
+{
+ "_nota": "A9.0a: golden de la caracterización de interfaz (H1–H6), generado SOLO desde el baseline con UPDATE_GOLDEN_A9=1; no se regenera sin aprobación",
+ "archivos": {
+  "tests/golden/ui-a9.golden.json": "478af1ca0d60d8c053b99d28ab6248a81f7d69d8dc2d194c513b5155508d044e"
+ }
+}

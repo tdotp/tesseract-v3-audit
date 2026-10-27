@@ -11,6 +11,7 @@ if [[ " $* " == *" --soak "* ]]; then export SOAK=1; fi
 node --test tests/browser/browser.test.mjs 2>&1 | grep -E "^(✖|ℹ (tests|pass|fail|skipped))"; [ "${PIPESTATUS[0]}" = 0 ] || fail=1
 node --test tests/browser/a7.test.mjs 2>&1 | grep -E "^(✖|ℹ (tests|pass|fail|skipped))"; [ "${PIPESTATUS[0]}" = 0 ] || fail=1
 node --test tests/browser/a8.test.mjs 2>&1 | grep -E "^(✖|ℹ (tests|pass|fail|skipped))"; [ "${PIPESTATUS[0]}" = 0 ] || fail=1
+node --test tests/browser/a9.test.mjs 2>&1 | grep -E "^(✖|ℹ (tests|pass|fail|skipped))"; [ "${PIPESTATUS[0]}" = 0 ] || fail=1
 node --test tests/browser/chromium99.test.mjs 2>&1 | grep -E "^(✖|ℹ (tests|pass|fail|skipped))"; [ "${PIPESTATUS[0]}" = 0 ] || fail=1
 node --test tests/browser/bridge.test.mjs 2>&1 | grep -E "^(✖|ℹ (tests|pass|fail|skipped))"; [ "${PIPESTATUS[0]}" = 0 ] || fail=1
 node --test tests/browser/a5-observar.test.mjs 2>&1 | grep -E "^(✖|ℹ (tests|pass|fail|skipped))"; [ "${PIPESTATUS[0]}" = 0 ] || fail=1

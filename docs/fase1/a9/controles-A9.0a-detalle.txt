@@ -1,0 +1,79 @@
+# A9.0a — ensayo de los 14 controles nuevos con la causa de cada detección (ejecutor de ensayo .scratch/a9-mut-runner.sh, mismas mutaciones que tests/tools/mutation-check-browser.sh).
+# El control del soak se ensayó primero con baseSelect→threeView (detectado solo por timeout de 600 s: descartado) y se sustituyó por resetBtn→threeView (detectado por «escuchas en elementos persistentes»).
+# Laguna n.º 7 (setActiveTab con clave por defecto 'artwork'): con la mutación aplicada, a9 36/36 y browser «Interacciones|Escena/materiales» 8/8 pasan: la rama por defecto no es alcanzable (setActiveTab siempre recibe 'material', 'creases' o btn.dataset.tab).
+detectada     A9 · H1: la escucha de Extract se registra dos veces (n.º 4)
+      ✖ A9 · H1 · baseline, panel, bundle y referencia: mismo inventario (elemento, tipo, opciones, número y orden) (2.496666ms)
+      ✖ A9 · H1 · las 15 escuchas de main.js se registran UNA vez y en el orden de hoy; sin CEP y con «UI mismatch», ninguna (0.183834ms)
+      ✖ A9 · H1 · texto de cada manejador: bundle actual = bundle de 3ea0d8a (mismo orden) (0.137875ms)
+      ✖ failing tests:
+        AssertionError [ERR_ASSERTION]: H1: bundle ≠ baseline
+        AssertionError [ERR_ASSERTION]: arranque: escuchas de UI
+detectada     A9 · H1: se omite la escucha de debug-toggle (n.º 5)
+      ✖ A9 · H1 · baseline, panel, bundle y referencia: mismo inventario (elemento, tipo, opciones, número y orden) (2.424542ms)
+      ✖ A9 · H1 · las 15 escuchas de main.js se registran UNA vez y en el orden de hoy; sin CEP y con «UI mismatch», ninguna (0.191833ms)
+      ✖ A9 · H1 · texto de cada manejador: bundle actual = bundle de 3ea0d8a (mismo orden) (0.127375ms)
+      ✖ failing tests:
+        AssertionError [ERR_ASSERTION]: H1: bundle ≠ baseline
+        AssertionError [ERR_ASSERTION]: arranque: escuchas de UI
+detectada     A9 · H1: keydown en window en lugar de document (n.º 6)
+      ✖ A9 · H1 · baseline, panel, bundle y referencia: mismo inventario (elemento, tipo, opciones, número y orden) (5.4005ms)
+      ✖ A9 · H1 · las 15 escuchas de main.js se registran UNA vez y en el orden de hoy; sin CEP y con «UI mismatch», ninguna (0.390583ms)
+      ✖ A9 · H1 · texto de cada manejador: bundle actual = bundle de 3ea0d8a (mismo orden) (0.267542ms)
+      ✖ failing tests:
+        AssertionError [ERR_ASSERTION]: H1: bundle ≠ baseline
+        AssertionError [ERR_ASSERTION]: arranque: escuchas de UI
+detectada     A9 · H1: sin CEP el arranque ya no corta (registra escuchas) (n.º 11)
+      ✖ A9 · H1 · baseline, panel, bundle y referencia: mismo inventario (elemento, tipo, opciones, número y orden) (2.534291ms)
+      ✖ A9 · H1 · las 15 escuchas de main.js se registran UNA vez y en el orden de hoy; sin CEP y con «UI mismatch», ninguna (0.272333ms)
+      ✖ A9 · H1 · texto de cada manejador: bundle actual = bundle de 3ea0d8a (mismo orden) (0.134625ms)
+      ✖ failing tests:
+        AssertionError [ERR_ASSERTION]: H1: bundle ≠ baseline
+        AssertionError [ERR_ASSERTION]: sinCep: no debe registrar escuchas de UI
+detectada     A9 · H2: copia sombra de lastData en el manejador Preview (n.º 9)
+      ✖ A9 · H2 · baseline, panel y bundle: mismo historial en todos los flujos (5.585125ms)
+      ✖ failing tests:
+        AssertionError [ERR_ASSERTION]: H2: bundle ≠ baseline
+                'ReferenceError: buildChildrenOfMap is not defined'
+detectada     A9 · H2: Continue espera a refreshArtwork antes de su mensaje (n.º 16)
+      ✖ A9 · H2 · baseline, panel y bundle: mismo historial en todos los flujos (3.122791ms)
+      ✖ failing tests:
+        AssertionError [ERR_ASSERTION]: H2: bundle ≠ baseline
+                'ReferenceError: buildChildrenOfMap is not defined'
+detectada     A9 · H3: ensureCep deja de mostrar #error-msg (n.º 12)
+      ✖ A9 · H3 · baseline, panel y bundle: mismo estado en los 4 arranques (4.676291ms)
+      ✖ failing tests:
+        AssertionError [ERR_ASSERTION]: H3: bundle ≠ baseline
+detectada     A9 · H3: la guarda «UI mismatch» pierde !thicknessInput (n.º 17)
+      ✖ A9 · H3 · baseline, panel y bundle: mismo estado en los 4 arranques (3.111708ms)
+      ✖ failing tests:
+        AssertionError [ERR_ASSERTION]: H3: bundle ≠ baseline
+detectada     A9 · H4: buildFoldUI deja de reiniciar currentCreaseRows (n.º 8)
+      ✖ A9 · H4 · baseline, panel y bundle: mismo DOM dinámico y mismos píxeles 2D (4.579292ms)
+      ✖ failing tests:
+        AssertionError [ERR_ASSERTION]: H4: bundle ≠ baseline
+detectada     A9 · H4: el onclick de un problema llama a render2D(null, …) (n.º 10)
+      ✖ A9 · H4 · baseline, panel y bundle: mismo DOM dinámico y mismos píxeles 2D (4.673459ms)
+      ✖ failing tests:
+        AssertionError [ERR_ASSERTION]: H4: bundle ≠ baseline
+detectada     A9 · H5: error tragado por el try/catch del visor tras un Alt+clic correcto
+      ✖ A9 · H5 · baseline, panel y bundle: mismos efectos y mismo historial (2.954958ms)
+      ✖ A9 · H5 · efectos observables: un solo cambio de estado por clic, resaltado #ffd166 tras plegar y NINGÚN «Pick error» en ningún objetivo (0.624708ms)
+      ✖ failing tests:
+        AssertionError [ERR_ASSERTION]: H5: bundle ≠ baseline
+        AssertionError [ERR_ASSERTION]: dist: un fallo de selección quedó tragado por el try/catch del visor
+detectada     A9 · H5: createViewport recibe pickPanelFromEvent = undefined (cableado roto)
+      ✖ A9 · H5 · baseline, panel y bundle: mismos efectos y mismo historial (2.530458ms)
+      ✖ A9 · H5 · efectos observables: un solo cambio de estado por clic, resaltado #ffd166 tras plegar y NINGÚN «Pick error» en ningún objetivo (0.5625ms)
+      ✖ failing tests:
+        AssertionError [ERR_ASSERTION]: H5: bundle ≠ baseline
+        AssertionError [ERR_ASSERTION]: dist: un fallo de selección quedó tragado por el try/catch del visor
+detectada     A9 · H5: rebuildCreaseVisuals deja de actualizar el resaltado tras plegar
+      ✖ A9 · H5 · baseline, panel y bundle: mismos efectos y mismo historial (2.28925ms)
+      ✖ A9 · H5 · efectos observables: un solo cambio de estado por clic, resaltado #ffd166 tras plegar y NINGÚN «Pick error» en ningún objetivo (0.595083ms)
+      ✖ failing tests:
+        AssertionError [ERR_ASSERTION]: H5: bundle ≠ baseline
+        AssertionError [ERR_ASSERTION]: dist/plegado: resaltado de C1
+      ✖ failing tests:
+        Error: timeout evaluando en el navegador
+        AssertionError [ERR_ASSERTION]: soak: faltan baseline o bundle
+mutaciones detectadas: 14 · no detectadas: 0
