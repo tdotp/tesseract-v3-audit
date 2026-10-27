@@ -110,3 +110,26 @@ export const PAGE = `(() => {
   window.A9 = { sleep, raf2, $, fire, waitFor, settle, extract, cont, build: async () => { await extract(); await cont(); }, take, listeners, handlerTexts, ser, canvasHash, shiftPanel, altCrease, panelTarget, creaseTarget,
     clickAt, crease, logText, state, ART_FINAL };
 })()`;
+
+// ───────────────────────── A9.0b: referencia de texto y bloques de manejadores ─────────────────────────
+// Árbol src/ (sin core/) del commit de referencia de A9: [{file, text}]
+export function refTree() {
+  const names = execFileSync('git', ['-C', ROOT, 'ls-tree', '-r', '--name-only', A9_REF, 'src'], { encoding: 'utf8' }).split('\n').filter((f) => f.endsWith('.js') && !f.startsWith('src/core/'));
+  return names.map((n) => ({ file: n.slice(4), text: execFileSync('git', ['-C', ROOT, 'show', `${A9_REF}:${n}`], { encoding: 'utf8' }) }));
+}
+// Las 29 funciones de primer nivel de la clausura de src/main.js en 3ea0d8a (mapa de A9_PROPUESTA §3.1), en orden de aparición.
+export const CLOSURE_3EA0D8A = ['setStatus', 'log', 'clearLog', '__tessDebugView', 'syncMaterialPresetUI', 'setInteractionMode', 'ensureCep', 'showImport', 'show3D', 'setDebugVisible', 'setActiveTab',
+  'syncMaterialInputs', 'applyMaterialPreset', 'setArtStatus', 'resetValidationUI', 'refreshArtwork', 'validateGeometry', 'render2D', 'pickPanelFromEvent', 'updatePerCreaseRow', 'updateSelectedCreaseVisuals',
+  'syncSelectedCreaseUI', 'selectFoldEdge', 'applySelectedCreaseAngle', 'pickCreaseFromEvent', 'setBasePanel', 'buildFoldUI', 'exportPNG', 'exportGLB'];
+// Los 15 manejadores de primer nivel (D-A9-6): sentencias a la sangría `indent` que registran escuchas y no son declaraciones de función. Devuelve [{start, text}] en orden.
+// Una sentencia empieza en una línea con exactamente esa sangría que no cierra un bloque, y sigue mientras las líneas estén más sangradas o cierren a esa sangría.
+export function handlerBlocks(src, indent = 4) {
+  const L = src.split('\n'), pad = ' '.repeat(indent), out = []; let cur = null;
+  const isStart = (l) => l.startsWith(pad) && l.length > indent && l[indent] !== ' ' && !/^[})\]]/.test(l.slice(indent));
+  for (let i = 0; i < L.length; i++) { const l = L[i];
+    if (isStart(l)) { if (cur) out.push(cur); cur = { start: i, lines: [l] }; continue; }
+    if (cur && (l.trim() === '' || l.startsWith(pad + ' ') || (l.startsWith(pad) && /^[})\]]/.test(l.slice(indent))))) { cur.lines.push(l); continue; }
+    if (cur) { out.push(cur); cur = null; } }
+  if (cur) out.push(cur);
+  return out.map((b) => ({ start: b.start, text: b.lines.join('\n').replace(/\s+$/, '') })).filter((b) => /\.addEventListener\(/.test(b.text) && !/^\s*(async )?function /.test(b.text));
+}

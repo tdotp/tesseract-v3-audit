@@ -1,0 +1,36 @@
+# A9.0b — Inventario de patrones de mutación afectados por A9
+
+Generado el 2026-10-26 sobre el árbol de A9.0b (src/ = 3ea0d8a): cada patrón de `tests/tools/mutation-check*.sh` (incluidos los nuevos de A9.0a y A9.0b) se aplicó a una copia de `src/` sin ejecutar pruebas, y se anotó el archivo, la línea, la función que lo contiene y el paso de A9 que moverá ese texto. Datos completos: `inventario-patrones-mutacion-A9.0b.json`.
+
+**Resumen [MEDIDO]:** 127 patrones; 125 mutan una copia de src/ y hoy cambian exactamente 1 línea; 2 no mutan src/ (bundle desde el baseline). 99 apuntan a módulos que A9 no toca (scene/, fold/, export/, core/, host/, bridge/, config/, app/state.js). 26 apuntan a main.js:
+
+| Paso que mueve el texto | Patrón | Script | Línea (3ea0d8a) | Ámbito | Anclado a la sangría | Acción prevista |
+|---|---|---|---|---|---|---|
+| A9.1 (ui/views.js) | A9 · H3: ensureCep deja de mostrar #error-msg (n.º 12) | mutation-check-browser.sh | 138 | ensureCep | no | ninguna: el patrón no fija la sangría y el texto es idéntico; debe seguir «detectada» |
+| A9.1 (ui/views.js) | puente: ensureCep ya no deshabilita «Back» | mutation-check-browser.sh | 139 | ensureCep | no | ninguna: el patrón no fija la sangría y el texto es idéntico; debe seguir «detectada» |
+| A9.2 (app/actions.js) | A8 · exportGLB: el diálogo se abre ANTES de construir el Blob | mutation-check-browser.sh | 622 | exportGLB | no | ninguna: el patrón no fija la sangría y el texto es idéntico; debe seguir «detectada» |
+| A9.3 (Bloque 2: ui/fold-controls.js) | A6 · log: setBasePanel ya no llama a buildFoldTree | mutation-check-browser.sh | 417 | setBasePanel | no | Bloque 2 (no autorizado): revisar al mover (sangría −2) |
+| A9.3 (Bloque 2: ui/fold-controls.js) | A9 · H4: buildFoldUI deja de reiniciar currentCreaseRows (n.º 8) | mutation-check-browser.sh | 522 | buildFoldUI | sí | Bloque 2 (no autorizado): revisar al mover (sangría −2) |
+| A9.3 (Bloque 2: ui/fold-controls.js) | A9 · soak de UI: cada reconstrucción deja una escucha de Reset en #three-view (fuga en un elemento persistente) | mutation-check-browser.sh | 578 | buildFoldUI | sí | Bloque 2 (no autorizado): revisar al mover (sangría −2) |
+| A9.3/A9.4 (Bloque 2: envoltorios en la composición) | A9.0b · a9-limites: envoltorio de enlace tardío no previsto (regla 8) | mutation-check.sh | 90 | línea suelta: var { resize3D, updateCameraFromOrbit, init3D, fitCamera3D } | no | Bloque 2 (no autorizado): revisar al mover (sangría −2) |
+| A9.3/A9.4 (Bloque 2: envoltorios en la composición) | A9 · H5: createViewport recibe pickPanelFromEvent = undefined (cableado roto) | mutation-check-browser.sh | 90 | línea suelta: var { resize3D, updateCameraFromOrbit, init3D, fitCamera3D } | no | Bloque 2 (no autorizado): revisar al mover (sangría −2) |
+| A9.4 (Bloque 2: ui/picking.js) | A9 · H5: error tragado por el try/catch del visor tras un Alt+clic correcto | mutation-check-browser.sh | 405 | pickCreaseFromEvent | no | Bloque 2 (no autorizado): revisar al mover (sangría −2) |
+| A9.5 (Bloque 2: bindEvents) | A9 · H1: la escucha de Extract se registra dos veces (n.º 4) | mutation-check-browser.sh | 656 | manejador: extractBtn.addEventListener('click',function(){ | sí | Bloque 2 (no autorizado): revisar al mover (sangría −2) |
+| A9.5 (Bloque 2: bindEvents) | A9 · H2: copia sombra de lastData en el manejador Preview (n.º 9) | mutation-check-browser.sh | 690 | manejador: previewBtn.addEventListener('click', function(){ | sí | Bloque 2 (no autorizado): revisar al mover (sangría −2) |
+| A9.5 (Bloque 2: bindEvents) | A9 · H2: Continue espera a refreshArtwork antes de su mensaje (n.º 16) | mutation-check-browser.sh | 730 | manejador: continueBtn.addEventListener('click', function(){ | no | Bloque 2 (no autorizado): revisar al mover (sangría −2) |
+| A9.5 (Bloque 2: bindEvents) | A9.0b · a9-texto-identico: cambia el texto de un manejador (Back) | mutation-check.sh | 769 | manejador: backBtn.addEventListener('click', function(){ | no | Bloque 2 (no autorizado): revisar al mover (sangría −2) |
+| A9.5 (Bloque 2: bindEvents) | KI-25 corregido sin tarea (mensaje final del GLB) | mutation-check-browser.sh | 781 | manejador: exportGlbBtn.addEventListener('click', async function(){ | no | Bloque 2 (no autorizado): revisar al mover (sangría −2) |
+| A9.5 (Bloque 2: bindEvents) | A9 · H1: keydown en window en lugar de document (n.º 6) | mutation-check-browser.sh | 817 | manejador: document.addEventListener('keydown', function(ev){ | sí | Bloque 2 (no autorizado): revisar al mover (sangría −2) |
+| A9.5 (Bloque 2: bindEvents) | A9 · H1: se omite la escucha de debug-toggle (n.º 5) | mutation-check-browser.sh | 825 | manejador: debugToggle.addEventListener('change', function(){ | sí | Bloque 2 (no autorizado): revisar al mover (sangría −2) |
+| A9.5 (Bloque 2: ui/controller.js) | KI-24 corregido sin tarea (buildChildrenOfMap) | mutation-check-browser.sh | 179 | applyMaterialPreset | no | Bloque 2 (no autorizado): revisar al mover (sangría −2) |
+| A9.5 (Bloque 2: ui/controller.js) | A9 · H4: el onclick de un problema llama a render2D(null, …) (n.º 10) | mutation-check-browser.sh | 246 | validateGeometry | no | Bloque 2 (no autorizado): revisar al mover (sangría −2) |
+| se queda en main.js | A9.0b · a9-texto-identico: cambia una línea suelta de main.js | mutation-check.sh | 63 | línea suelta: if(modeFoldBtn) modeFoldBtn.style.display='none'; | sí | ninguna |
+| se queda en main.js | A9.0b · a9-limites: segunda declaración de lastData (regla 6) | mutation-check.sh | 68 | línea suelta: var problems   = []; | sí | A9.5 (Bloque 2): la declaración pasa a ui/controller.js |
+| se queda en main.js | A9.0b · a9-limites: el ancla del arnés cambia de texto (regla 9) | mutation-check.sh | 77 | setStatus | sí | ninguna |
+| se queda en main.js | A7 · vista de depuración: baseIndex devuelve otro campo | mutation-check-browser.sh | 85 | __tessDebugView | no | ninguna |
+| se queda en main.js | A8.2 · cableado: main.js no pasa log a createGlbImage | mutation-check-browser.sh | 95 | línea suelta: var { textureToImageBytes } = createGlbImage({ log }); /* A8 | no | ninguna |
+| se queda en main.js | A8.4 · cableado: main.js inyecta otra textureToImageBytes | mutation-check-browser.sh | 97 | línea suelta: var { buildGLBBlobFromCurrentView } = createGlbBuilder({ bui | no | ninguna |
+| se queda en main.js | A9 · H3: la guarda «UI mismatch» pierde !thicknessInput (n.º 17) | mutation-check-browser.sh | 124 | línea suelta: !thicknessInput//!applyThicknessBtn){ | sí | ninguna |
+| se queda en main.js | A9 · H1: sin CEP el arranque ya no corta (registra escuchas) (n.º 11) | mutation-check-browser.sh | 639 | línea suelta: if(!ensureCep()) return; | sí | A9.2: la misma línea aparece en refreshArtwork (app/actions.js) a 4 espacios ⇒ re-anclar con la línea siguiente (sed N; ensayado con BSD sed) |
+
+Patrones citados en la propuesta (C3, A9_PROPUESTA §4): «ensureCep ya no deshabilita Back» (A9.1, sin ancla: sigue aplicando), KI-24 (A9.5), KI-25 (manejador, A9.5), «setBasePanel ya no llama a buildFoldTree» (A9.3), «A8.2/A8.4 cableado» (líneas de composición que se quedan en main.js). En el Bloque 1 solo hay que re-anclar uno (n.º 11, en A9.2); ninguno se debilita.

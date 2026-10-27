@@ -85,4 +85,15 @@ mut   "A8.3 · límites: glb-scene.js usa document (a8-limites)"             's/
 mutN4 "A8.4 · glb-builder: createGlbBuilder ignora textureToImageBytes inyectada"   's/^  var { buildExportSceneMeshes, textureToImageBytes } = deps;$/  var { buildExportSceneMeshes } = deps; var textureToImageBytes;/'
 mutN4 "A8.4 · glb-builder: createGlbBuilder ignora buildExportSceneMeshes inyectada" 's/^  var { buildExportSceneMeshes, textureToImageBytes } = deps;$/  var { textureToImageBytes } = deps; var buildExportSceneMeshes = function(){ return []; };/'
 mut   "A8.4 · límites: glb-builder.js usa document (a8-limites)"                    's/^  var { buildExportSceneMeshes, textureToImageBytes } = deps;$/  var { buildExportSceneMeshes, textureToImageBytes } = deps; document;/'
+# A9.0b — pruebas de texto y de límites de A9. Se ejecuta SOLO la prueba indicada (con la batería completa, a7/a8-texto-identico verían cualquier cambio de texto y no probarían nada sobre la nueva).
+mutT() { # nombre, patrón sed, archivo de prueba
+  mutsrc "$2" || { echo "NO APLICÓ  $1"; bad=$((bad+1)); return; }
+  if TESS_SRC_DIR="$TMP/src" node --test "$3" >/dev/null 2>&1; then echo "NO DETECTADA POR $(basename "$3" .test.mjs)  $1"; bad=$((bad+1)); else echo "detectada por $(basename "$3" .test.mjs)     $1"; ok=$((ok+1)); fi
+}
+A9T=tests/node/a9-texto-identico.test.mjs; A9L=tests/node/a9-limites.test.mjs
+mutT "A9.0b · a9-texto-identico: cambia el texto de un manejador (Back)"        "s/setStatus('Back to import');/setStatus('Back to import.');/" $A9T
+mutT "A9.0b · a9-texto-identico: cambia una línea suelta de main.js"           "s/^    if(modeFoldBtn) modeFoldBtn.style.display='none';\$/    if(modeFoldBtn) modeFoldBtn.style.display='hidden';/" $A9T
+mutT "A9.0b · a9-limites: segunda declaración de lastData (regla 6)"           's/^    var problems   = \[\];$/    var problems   = []; var lastData = null;/' $A9L
+mutT "A9.0b · a9-limites: envoltorio de enlace tardío no previsto (regla 8)"   's/pickPanelFromEvent, pickCreaseFromEvent });/pickPanelFromEvent: function(e){ return pickPanelFromEvent(e); }, pickCreaseFromEvent });/' $A9L
+mutT "A9.0b · a9-limites: el ancla del arnés cambia de texto (regla 9)"        's/^    function setStatus(m){ statusArea.textContent = m; }$/    function setStatus(m){ statusArea.textContent = m;  }/' $A9L
 echo "mutaciones detectadas: $ok · no detectadas: $bad"; [ "$bad" = 0 ]

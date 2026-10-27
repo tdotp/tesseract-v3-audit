@@ -1,0 +1,1143 @@
+[
+ {
+  "script": "mutation-check.sh",
+  "name": "GRAPH_EPS 0.5→0.6",
+  "archivo": "core/legacy/constants.js",
+  "linea": 4,
+  "ambito": "(línea suelta)",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "TOLERANCE_MM 0.5→0.4",
+  "archivo": "core/legacy/constants.js",
+  "linea": 3,
+  "ambito": "(línea suelta)",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "color del preset kraft",
+  "archivo": "config/look.js",
+  "linea": 6,
+  "ambito": "(línea suelta)",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "espesor por defecto 0.25→0.30",
+  "archivo": "config/look.js",
+  "linea": 3,
+  "ambito": "(línea suelta)",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "umbral de panel pequeño (absArea < 4 → < 5)",
+  "archivo": "core/legacy/panels.js",
+  "linea": 88,
+  "ambito": "buildPanels",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "filtro de panel delgado (aspect > 30 → > 41)",
+  "archivo": "core/legacy/panels.js",
+  "linea": 89,
+  "ambito": "buildPanels",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "tolerancia de punto-sobre-segmento (GRAPH_EPS → 0.2)",
+  "archivo": "core/legacy/geom2d.js",
+  "linea": 29,
+  "ambito": "pointOnSeg",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "búsqueda de vértice (ptEq: < GRAPH_EPS → < 0.2)",
+  "archivo": "core/legacy/geom2d.js",
+  "linea": 14,
+  "ambito": "ptEq",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "factor pt→mm del extractor",
+  "archivo": "host/extract.js",
+  "linea": 25,
+  "ambito": "(línea suelta)",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "tope de escala del PNG de arte (800→700)",
+  "archivo": "host/art.js",
+  "linea": 33,
+  "ambito": "buildArtworkExportScript",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "offset del arte (ART_TOP_OFFSET 0.08→0.09)",
+  "archivo": "config/look.js",
+  "linea": 16,
+  "ambito": "(línea suelta)",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "puente: pathToFileURL sin encodeURI (bridge/cep.js)",
+  "archivo": "bridge/cep.js",
+  "linea": 14,
+  "ambito": "pathToFileURL",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "guardado: cancelar deja de marcar cancelled (bridge/fs.js)",
+  "archivo": "bridge/fs.js",
+  "linea": 47,
+  "ambito": "saveBlobWithDialog",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "límites: bridge/cep toca document (a5-limites)",
+  "archivo": "bridge/cep.js",
+  "linea": 3,
+  "ambito": "hasCep",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A6 · log del motor: texto de la adyacencia estricta",
+  "archivo": "core/legacy/adjacency.js",
+  "linea": 38,
+  "ambito": "buildAdjacency",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A6 · alias: la adyacencia estricta copia el creaseEdge",
+  "archivo": "core/legacy/adjacency.js",
+  "linea": 23,
+  "ambito": "buildAdjacencyStrict",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A6 · adyacencia robusta: eps 1.0 → 0.1 (pierde adyacencias en los respaldos)",
+  "archivo": "core/legacy/adjacency.js",
+  "linea": 44,
+  "ambito": "buildAdjacency",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A6 · signo de pliegue invertido (montaña/valle)",
+  "archivo": "core/legacy/fold-tree.js",
+  "linea": 32,
+  "ambito": "computeFoldSign",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A6 · validación: los id de problema empiezan en P0",
+  "archivo": "core/legacy/validate.js",
+  "linea": 37,
+  "ambito": "validateDieline",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A6 · adaptador: el motor ignora la base elegida (siempre 0)",
+  "archivo": "core/engine.js",
+  "linea": 45,
+  "ambito": "createLegacyEngine",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A6 · adaptador: buildPanels clona la entrada (rompe los alias I4)",
+  "archivo": "core/engine.js",
+  "linea": 43,
+  "ambito": "createLegacyEngine",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A6 · límites: core/legacy/log.js toca document",
+  "archivo": "core/legacy/log.js",
+  "linea": 5,
+  "ambito": "log",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A7 · materials: campo de S sin prefijo (referencia suelta)",
+  "archivo": "scene/materials.js",
+  "linea": 7,
+  "ambito": "getMaterialPreset",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A7 · viewport: resize3D toca document",
+  "archivo": "scene/viewport.js",
+  "linea": 9,
+  "ambito": "resize3D",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8 · GLB: claves del JSON (samplers antes de textures)",
+  "archivo": "export/glb-builder.js",
+  "linea": 72,
+  "ambito": "ensureTexture",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8 · GLB: la imagen se añade ANTES de los accesores de la malla",
+  "archivo": "export/glb-builder.js",
+  "linea": 109,
+  "ambito": "buildGLBBlobFromCurrentView",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8 · GLB: sin relleno de alineación entre vistas",
+  "archivo": "export/glb-builder.js",
+  "linea": 37,
+  "ambito": "appendBytes",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8 · GLB: relleno del JSON 0x20 → 0x00",
+  "archivo": "export/glb-builder.js",
+  "linea": 127,
+  "ambito": "buildGLBBlobFromCurrentView",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8 · GLB: umbral Uint16 65535 → 65534",
+  "archivo": "export/glb-scene.js",
+  "linea": 56,
+  "ambito": "buildExportSceneMeshes",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8 · GLB: umbral de opacidad 0.01 → 0.02",
+  "archivo": "export/glb-scene.js",
+  "linea": 16,
+  "ambito": "buildExportSceneMeshes",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8 · GLB: pickCrease deja de filtrarse",
+  "archivo": "export/glb-scene.js",
+  "linea": 15,
+  "ambito": "buildExportSceneMeshes",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8 · GLB: panelLabel deja de filtrarse",
+  "archivo": "export/glb-scene.js",
+  "linea": 15,
+  "ambito": "buildExportSceneMeshes",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8 · GLB: normales sin normalMatrix",
+  "archivo": "export/glb-scene.js",
+  "linea": 35,
+  "ambito": "buildExportSceneMeshes",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8 · GLB: nombre mesh_<índice+1>",
+  "archivo": "export/glb-scene.js",
+  "linea": 52,
+  "ambito": "buildExportSceneMeshes",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8 · GLB: deduplicación de texturas desactivada",
+  "archivo": "export/glb-builder.js",
+  "linea": 68,
+  "ambito": "ensureTexture",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8 · GLB: materialKey sin el lado",
+  "archivo": "export/glb-builder.js",
+  "linea": 13,
+  "ambito": "materialKey",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8 · GLB: alphaMode ya no depende de transparent",
+  "archivo": "export/glb-builder.js",
+  "linea": 100,
+  "ambito": "ensureMaterial",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8 · GLB: el fallo de la textura ya no se registra en el log",
+  "archivo": "export/glb-image.js",
+  "linea": 38,
+  "ambito": "textureToImageBytes",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8 · GLB: posiciones sin matrixWorld",
+  "archivo": "export/glb-scene.js",
+  "linea": 25,
+  "ambito": "buildExportSceneMeshes",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8 · GLB: magFilter del sampler 9729 → 9728",
+  "archivo": "export/glb-builder.js",
+  "linea": 61,
+  "ambito": "ensureSampler",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8.1 · glb-bytes: padBytes copia desde el byte 1",
+  "archivo": "export/glb-bytes.js",
+  "linea": 8,
+  "ambito": "padBytes",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8.1 · glb-bytes: padBytes ignora el valor de relleno",
+  "archivo": "export/glb-bytes.js",
+  "linea": 9,
+  "ambito": "padBytes",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8.1 · glb-bytes: toUint8View corta 4 bytes",
+  "archivo": "export/glb-bytes.js",
+  "linea": 14,
+  "ambito": "toUint8View",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8.1 · glb-bytes: typedArrayFromList omite el último",
+  "archivo": "export/glb-bytes.js",
+  "linea": 19,
+  "ambito": "typedArrayFromList",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8.1 · límites: glb-bytes.js toca document (a8-limites)",
+  "archivo": "export/glb-bytes.js",
+  "linea": 4,
+  "ambito": "padBytes",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8.2 · glb-image: textureToImageBytes ya no descarta texturas sin tamaño",
+  "archivo": "export/glb-image.js",
+  "linea": 31,
+  "ambito": "textureToImageBytes",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8.2 · glb-image: createGlbImage ignora el log recibido",
+  "archivo": "export/glb-image.js",
+  "linea": 6,
+  "ambito": "createGlbImage",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8.2 · glb-image: bytesFromDataURL pierde el último byte",
+  "archivo": "export/glb-image.js",
+  "linea": 16,
+  "ambito": "bytesFromDataURL",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8.2 · límites: glb-image.js usa document fuera de textureToImageBytes (a8-limites)",
+  "archivo": "export/glb-image.js",
+  "linea": 14,
+  "ambito": "bytesFromDataURL",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8.3 · glb-scene: recorre solo lo visible (traverseVisible)",
+  "archivo": "export/glb-scene.js",
+  "linea": 13,
+  "ambito": "buildExportSceneMeshes",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8.3 · glb-scene: no refresca matrixWorld",
+  "archivo": "export/glb-scene.js",
+  "linea": 11,
+  "ambito": "buildExportSceneMeshes",
+  "paso": "no se mueve",
+  "anclado": "sí"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8.3 · glb-scene: exporta la geometría original, sin clonar (I-E3)",
+  "archivo": "export/glb-scene.js",
+  "linea": 18,
+  "ambito": "buildExportSceneMeshes",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8.3 · límites: glb-scene.js lee otro campo de S (a8-limites)",
+  "archivo": "export/glb-scene.js",
+  "linea": 10,
+  "ambito": "buildExportSceneMeshes",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8.3 · límites: glb-scene.js usa document (a8-limites)",
+  "archivo": "export/glb-scene.js",
+  "linea": 12,
+  "ambito": "buildExportSceneMeshes",
+  "paso": "no se mueve",
+  "anclado": "sí"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8.4 · glb-builder: createGlbBuilder ignora textureToImageBytes inyectada",
+  "archivo": "export/glb-builder.js",
+  "linea": 7,
+  "ambito": "createGlbBuilder",
+  "paso": "no se mueve",
+  "anclado": "sí"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8.4 · glb-builder: createGlbBuilder ignora buildExportSceneMeshes inyectada",
+  "archivo": "export/glb-builder.js",
+  "linea": 7,
+  "ambito": "createGlbBuilder",
+  "paso": "no se mueve",
+  "anclado": "sí"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A8.4 · límites: glb-builder.js usa document (a8-limites)",
+  "archivo": "export/glb-builder.js",
+  "linea": 7,
+  "ambito": "createGlbBuilder",
+  "paso": "no se mueve",
+  "anclado": "sí"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A9.0b · a9-texto-identico: cambia el texto de un manejador (Back)",
+  "archivo": "main.js",
+  "linea": 769,
+  "ambito": "manejador: backBtn.addEventListener('click', function(){",
+  "paso": "A9.5 (Bloque 2: bindEvents)",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A9.0b · a9-texto-identico: cambia una línea suelta de main.js",
+  "archivo": "main.js",
+  "linea": 63,
+  "ambito": "línea suelta: if(modeFoldBtn) modeFoldBtn.style.display='none';",
+  "paso": "se queda en main.js",
+  "anclado": "sí"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A9.0b · a9-limites: segunda declaración de lastData (regla 6)",
+  "archivo": "main.js",
+  "linea": 68,
+  "ambito": "línea suelta: var problems   = [];",
+  "paso": "se queda en main.js",
+  "anclado": "sí"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A9.0b · a9-limites: envoltorio de enlace tardío no previsto (regla 8)",
+  "archivo": "main.js",
+  "linea": 90,
+  "ambito": "línea suelta: var { resize3D, updateCameraFromOrbit, init3D, fitCamera3D }",
+  "paso": "A9.3/A9.4 (Bloque 2: envoltorios en la composición)",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check.sh",
+  "name": "A9.0b · a9-limites: el ancla del arnés cambia de texto (regla 9)",
+  "archivo": "main.js",
+  "linea": 77,
+  "ambito": "setStatus",
+  "paso": "se queda en main.js",
+  "anclado": "sí"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "se revierte el parche A1 (fuga vuelve)",
+  "archivo": "—",
+  "linea": "—",
+  "ambito": "REVERT",
+  "paso": "no se mueve"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "etiquetas: la caché deja de reutilizar",
+  "archivo": "scene/labels.js",
+  "linea": 34,
+  "ambito": "getLabelResources",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "color del preset white (shell)",
+  "archivo": "config/look.js",
+  "linea": 5,
+  "ambito": "(línea suelta)",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "luz direccional 0.8 → 0.9",
+  "archivo": "scene/viewport.js",
+  "linea": 48,
+  "ambito": "init3D",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "desplazamiento del arte frontal",
+  "archivo": "config/look.js",
+  "linea": 16,
+  "ambito": "(línea suelta)",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "UV del arte (se invierte v)",
+  "archivo": "scene/artwork.js",
+  "linea": 53,
+  "ambito": "applyArtUVs",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "generador del GLB",
+  "archivo": "export/glb-builder.js",
+  "linea": 23,
+  "ambito": "buildGLBBlobFromCurrentView",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "rugosidad del GLB (1 → 0.5)",
+  "archivo": "export/glb-builder.js",
+  "linea": 92,
+  "ambito": "ensureMaterial",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "zoom de la rueda (1.08 → 1.10)",
+  "archivo": "scene/viewport.js",
+  "linea": 117,
+  "ambito": "onWheel",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "Shift+clic ya no cambia la base",
+  "archivo": "scene/viewport.js",
+  "linea": 87,
+  "ambito": "onUp",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "puente: evalScriptJSON deja de tratar «EvalScript error.»",
+  "archivo": "bridge/cep.js",
+  "linea": 21,
+  "ambito": "evalScriptJSON",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "puente: mensaje de escritura de GLB",
+  "archivo": "bridge/fs.js",
+  "linea": 56,
+  "ambito": "saveBlobWithDialog",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "puente: codificación por defecto Base64 → base64",
+  "archivo": "bridge/fs.js",
+  "linea": 53,
+  "ambito": "saveBlobWithDialog",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "puente: ensureCep ya no deshabilita «Back»",
+  "archivo": "main.js",
+  "linea": 139,
+  "ambito": "ensureCep",
+  "paso": "A9.1 (ui/views.js)",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "KI-25 corregido sin tarea (mensaje final del GLB)",
+  "archivo": "main.js",
+  "linea": 781,
+  "ambito": "manejador: exportGlbBtn.addEventListener('click', async function(){",
+  "paso": "A9.5 (Bloque 2: bindEvents)",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "KI-24 corregido sin tarea (buildChildrenOfMap)",
+  "archivo": "main.js",
+  "linea": 179,
+  "ambito": "applyMaterialPreset",
+  "paso": "A9.5 (Bloque 2: ui/controller.js)",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A6 · log: setBasePanel ya no llama a buildFoldTree",
+  "archivo": "main.js",
+  "linea": 417,
+  "ambito": "setBasePanel",
+  "paso": "A9.3 (Bloque 2: ui/fold-controls.js)",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A6 · adaptador: el motor ignora la base elegida (bundle)",
+  "archivo": "core/engine.js",
+  "linea": 45,
+  "ambito": "createLegacyEngine",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A7 · clearAllMeshes deja de liberar los visuales de pliegue",
+  "archivo": "scene/panel-meshes.js",
+  "linea": 21,
+  "ambito": "clearAllMeshes",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A7 · disposeObject3D deja de recorrer los hijos",
+  "archivo": "scene/three-utils.js",
+  "linea": 24,
+  "ambito": "disposeObject3D",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A7 · centro del panel (userData.center) calculado distinto",
+  "archivo": "scene/panel-meshes.js",
+  "linea": 82,
+  "ambito": "build3DFromPanels",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A7 · orden de inserción: fold-bridges pasa delante en la escena (G1)",
+  "archivo": "scene/crease-visuals.js",
+  "linea": 121,
+  "ambito": "addFoldBridgeVisual",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A7 · vista de depuración: baseIndex devuelve otro campo",
+  "archivo": "main.js",
+  "linea": 85,
+  "ambito": "__tessDebugView",
+  "paso": "se queda en main.js",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A7 · estado inicial: espesor 0.30 en createAppState",
+  "archivo": "app/state.js",
+  "linea": 10,
+  "ambito": "createAppState",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A7 · clearAllMeshes libera la textura de arte compartida (rompe L1)",
+  "archivo": "scene/panel-meshes.js",
+  "linea": 22,
+  "ambito": "clearAllMeshes",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A7 · artwork: copia obsoleta de S al crear la fábrica",
+  "archivo": "scene/artwork.js",
+  "linea": 8,
+  "ambito": "createArtwork",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A7 · folding: copia obsoleta de S al crear la fábrica",
+  "archivo": "fold/folding.js",
+  "linea": 4,
+  "ambito": "createFolding",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A8 · GLB: claves del JSON (samplers antes de textures)",
+  "archivo": "export/glb-builder.js",
+  "linea": 72,
+  "ambito": "ensureTexture",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A8 · GLB: la imagen se añade ANTES de los accesores",
+  "archivo": "export/glb-builder.js",
+  "linea": 109,
+  "ambito": "buildGLBBlobFromCurrentView",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A8 · GLB: sin relleno de alineación entre vistas",
+  "archivo": "export/glb-builder.js",
+  "linea": 37,
+  "ambito": "appendBytes",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A8 · GLB: normales sin normalMatrix",
+  "archivo": "export/glb-scene.js",
+  "linea": 35,
+  "ambito": "buildExportSceneMeshes",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A8 · GLB: nombre mesh_<índice+1>",
+  "archivo": "export/glb-scene.js",
+  "linea": 52,
+  "ambito": "buildExportSceneMeshes",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A8 · GLB: posiciones sin matrixWorld",
+  "archivo": "export/glb-scene.js",
+  "linea": 25,
+  "ambito": "buildExportSceneMeshes",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A8 · GLB: alphaMode ya no depende de transparent",
+  "archivo": "export/glb-builder.js",
+  "linea": 100,
+  "ambito": "ensureMaterial",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A8 · GLB: magFilter del sampler 9729 → 9728",
+  "archivo": "export/glb-builder.js",
+  "linea": 61,
+  "ambito": "ensureSampler",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A8 · GLB: el fallo de la textura ya no se registra",
+  "archivo": "export/glb-image.js",
+  "linea": 38,
+  "ambito": "textureToImageBytes",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A8 · GLB: la exportación marca la textura como sucia (muta la escena)",
+  "archivo": "export/glb-image.js",
+  "linea": 32,
+  "ambito": "textureToImageBytes",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A8 · exportGLB: el diálogo se abre ANTES de construir el Blob",
+  "archivo": "main.js",
+  "linea": 622,
+  "ambito": "exportGLB",
+  "paso": "A9.2 (app/actions.js)",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A8.1 · cableado: glb-builder.js no importa toUint8View",
+  "archivo": "export/glb-builder.js",
+  "linea": 4,
+  "ambito": "(línea suelta)",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A8.1 · toUint8View corta 4 bytes",
+  "archivo": "export/glb-bytes.js",
+  "linea": 14,
+  "ambito": "toUint8View",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A8.2 · cableado: main.js no pasa log a createGlbImage",
+  "archivo": "main.js",
+  "linea": 95,
+  "ambito": "línea suelta: var { textureToImageBytes } = createGlbImage({ log }); /* A8",
+  "paso": "se queda en main.js",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A8.2 · bytesFromDataURL pierde el último byte (PNG truncado)",
+  "archivo": "export/glb-image.js",
+  "linea": 16,
+  "ambito": "bytesFromDataURL",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A8.3 · glb-scene: copia obsoleta de S al crear la fábrica",
+  "archivo": "export/glb-scene.js",
+  "linea": 7,
+  "ambito": "createGlbScene",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A8.4 · cableado: glb-builder.js no importa padBytes",
+  "archivo": "export/glb-builder.js",
+  "linea": 4,
+  "ambito": "(línea suelta)",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A8.4 · cableado: main.js inyecta otra textureToImageBytes",
+  "archivo": "main.js",
+  "linea": 97,
+  "ambito": "línea suelta: var { buildGLBBlobFromCurrentView } = createGlbBuilder({ bui",
+  "paso": "se queda en main.js",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A9 · H1: la escucha de Extract se registra dos veces (n.º 4)",
+  "archivo": "main.js",
+  "linea": 656,
+  "ambito": "manejador: extractBtn.addEventListener('click',function(){",
+  "paso": "A9.5 (Bloque 2: bindEvents)",
+  "anclado": "sí"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A9 · H1: se omite la escucha de debug-toggle (n.º 5)",
+  "archivo": "main.js",
+  "linea": 825,
+  "ambito": "manejador: debugToggle.addEventListener('change', function(){",
+  "paso": "A9.5 (Bloque 2: bindEvents)",
+  "anclado": "sí"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A9 · H1: keydown en window en lugar de document (n.º 6)",
+  "archivo": "main.js",
+  "linea": 817,
+  "ambito": "manejador: document.addEventListener('keydown', function(ev){",
+  "paso": "A9.5 (Bloque 2: bindEvents)",
+  "anclado": "sí"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A9 · H1: sin CEP el arranque ya no corta (registra escuchas) (n.º 11)",
+  "archivo": "main.js",
+  "linea": 639,
+  "ambito": "línea suelta: if(!ensureCep()) return;",
+  "paso": "se queda en main.js",
+  "anclado": "sí"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A9 · H2: copia sombra de lastData en el manejador Preview (n.º 9)",
+  "archivo": "main.js",
+  "linea": 690,
+  "ambito": "manejador: previewBtn.addEventListener('click', function(){",
+  "paso": "A9.5 (Bloque 2: bindEvents)",
+  "anclado": "sí"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A9 · H2: Continue espera a refreshArtwork antes de su mensaje (n.º 16)",
+  "archivo": "main.js",
+  "linea": 730,
+  "ambito": "manejador: continueBtn.addEventListener('click', function(){",
+  "paso": "A9.5 (Bloque 2: bindEvents)",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A9 · H3: ensureCep deja de mostrar #error-msg (n.º 12)",
+  "archivo": "main.js",
+  "linea": 138,
+  "ambito": "ensureCep",
+  "paso": "A9.1 (ui/views.js)",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A9 · H3: la guarda «UI mismatch» pierde !thicknessInput (n.º 17)",
+  "archivo": "main.js",
+  "linea": 124,
+  "ambito": "línea suelta: !thicknessInput||!applyThicknessBtn){",
+  "paso": "se queda en main.js",
+  "anclado": "sí"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A9 · H4: buildFoldUI deja de reiniciar currentCreaseRows (n.º 8)",
+  "archivo": "main.js",
+  "linea": 522,
+  "ambito": "buildFoldUI",
+  "paso": "A9.3 (Bloque 2: ui/fold-controls.js)",
+  "anclado": "sí"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A9 · H4: el onclick de un problema llama a render2D(null, …) (n.º 10)",
+  "archivo": "main.js",
+  "linea": 246,
+  "ambito": "validateGeometry",
+  "paso": "A9.5 (Bloque 2: ui/controller.js)",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A9 · H5: error tragado por el try/catch del visor tras un Alt+clic correcto",
+  "archivo": "main.js",
+  "linea": 405,
+  "ambito": "pickCreaseFromEvent",
+  "paso": "A9.4 (Bloque 2: ui/picking.js)",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A9 · H5: createViewport recibe pickPanelFromEvent = undefined (cableado roto)",
+  "archivo": "main.js",
+  "linea": 90,
+  "ambito": "línea suelta: var { resize3D, updateCameraFromOrbit, init3D, fitCamera3D }",
+  "paso": "A9.3/A9.4 (Bloque 2: envoltorios en la composición)",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A9 · H5: rebuildCreaseVisuals deja de actualizar el resaltado tras plegar",
+  "archivo": "scene/crease-visuals.js",
+  "linea": 219,
+  "ambito": "rebuildCreaseVisuals",
+  "paso": "no se mueve",
+  "anclado": "sí"
+ },
+ {
+  "script": "mutation-check-browser.sh",
+  "name": "A9 · soak de UI: cada reconstrucción deja una escucha de Reset en #three-view (fuga en un elemento persistente)",
+  "archivo": "main.js",
+  "linea": 578,
+  "ambito": "buildFoldUI",
+  "paso": "A9.3 (Bloque 2: ui/fold-controls.js)",
+  "anclado": "sí"
+ },
+ {
+  "script": "mutation-check-dist.sh",
+  "name": "bundle construido SIN el parche A1 (baseline como fuente)",
+  "archivo": "—",
+  "linea": "—",
+  "ambito": "FROM reference/legacy-baseline",
+  "paso": "no se mueve"
+ },
+ {
+  "script": "mutation-check-dist.sh",
+  "name": "bundle: offset del arte frontal",
+  "archivo": "config/look.js",
+  "linea": 16,
+  "ambito": "(línea suelta)",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-dist.sh",
+  "name": "bundle: Shift+clic ya no cambia la base",
+  "archivo": "scene/viewport.js",
+  "linea": 87,
+  "ambito": "onUp",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-dist.sh",
+  "name": "bundle: tolerancia del grafo (GRAPH_EPS 0.5→0.6)",
+  "archivo": "core/legacy/constants.js",
+  "linea": 4,
+  "ambito": "(línea suelta)",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-dist.sh",
+  "name": "bundle: puente CEP, mensaje de escritura de GLB",
+  "archivo": "bridge/fs.js",
+  "linea": 56,
+  "ambito": "saveBlobWithDialog",
+  "paso": "no se mueve",
+  "anclado": "no"
+ },
+ {
+  "script": "mutation-check-dist.sh",
+  "name": "huellas del bundle: cambio mínimo en la fuente",
+  "archivo": "config/look.js",
+  "linea": 3,
+  "ambito": "(línea suelta)",
+  "paso": "no se mueve",
+  "anclado": "no"
+ }
+]

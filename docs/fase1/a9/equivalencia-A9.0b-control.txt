@@ -1,0 +1,13 @@
+# A9.0b — control de a9-equivalencia: bundle de 3ea0d8a frente a un bundle con setActiveTab mutado (key || 'artwork'). Debe salir 1 con 'setActiveTab' en distintas.
+{
+ "funcionesAnteriores": 144,
+ "funcionesNuevas": 144,
+ "identicas": 143,
+ "distintas": [
+  "setActiveTab"
+ ],
+ "duplicadas": [],
+ "soloEnAnterior": [],
+ "soloEnNuevo": []
+}
+RC=1
