@@ -1,0 +1,828 @@
+{
+ "widgets": [
+  "importView",
+  "threeView",
+  "statusArea",
+  "errorMsg",
+  "testBtn",
+  "extractBtn",
+  "previewBtn",
+  "continueBtn",
+  "debugToggle",
+  "outputArea",
+  "validationStatus",
+  "problemsList",
+  "canvas2d",
+  "ctx2d",
+  "backBtn",
+  "export3dBtn",
+  "exportGlbBtn",
+  "viewport3d",
+  "canvas3d",
+  "logArea",
+  "debugDetails",
+  "thicknessInput",
+  "applyThicknessBtn",
+  "materialPresetSelect",
+  "materialPill",
+  "refreshArtBtn",
+  "artStatus",
+  "artSourcePill",
+  "modeFoldBtn",
+  "modeBaseBtn",
+  "interactionModePill",
+  "interactionStatus",
+  "viewportBadge",
+  "tabButtons",
+  "tabPanels",
+  "creaseControlsSlot"
+ ],
+ "uiVars": [
+  "lastData",
+  "problems",
+  "currentBaseSelect",
+  "currentCreaseRows",
+  "currentCreaseSliders",
+  "selectedCreaseLabelEl",
+  "selectedCreaseSliderEl",
+  "selectedCreaseNumberEl",
+  "interactionMode"
+ ],
+ "nFns": 29,
+ "fns": [
+  {
+   "fn": "setStatus",
+   "lines": "77-77",
+   "n": 1,
+   "async": false,
+   "widgets": [],
+   "uiVars": [],
+   "S": [],
+   "closure": [],
+   "factory": [],
+   "imported": [],
+   "engine": false,
+   "document": false,
+   "byId": false,
+   "listeners": 0,
+   "calledBy": [
+    "setInteractionMode",
+    "ensureCep",
+    "applyMaterialPreset",
+    "pickPanelFromEvent",
+    "pickCreaseFromEvent",
+    "setBasePanel",
+    "buildFoldUI",
+    "exportGLB"
+   ]
+  },
+  {
+   "fn": "log",
+   "lines": "78-81",
+   "n": 4,
+   "async": false,
+   "widgets": [
+    "logArea"
+   ],
+   "uiVars": [],
+   "S": [],
+   "closure": [],
+   "factory": [],
+   "imported": [],
+   "engine": false,
+   "document": false,
+   "byId": false,
+   "listeners": 0,
+   "calledBy": [
+    "applyMaterialPreset",
+    "refreshArtwork"
+   ]
+  },
+  {
+   "fn": "clearLog",
+   "lines": "82-82",
+   "n": 1,
+   "async": false,
+   "widgets": [],
+   "uiVars": [],
+   "S": [],
+   "closure": [],
+   "factory": [],
+   "imported": [],
+   "engine": false,
+   "document": false,
+   "byId": false,
+   "listeners": 0,
+   "calledBy": []
+  },
+  {
+   "fn": "__tessDebugView",
+   "lines": "85-85",
+   "n": 1,
+   "async": false,
+   "widgets": [],
+   "uiVars": [],
+   "S": [],
+   "closure": [],
+   "factory": [],
+   "imported": [],
+   "engine": false,
+   "document": false,
+   "byId": false,
+   "listeners": 0,
+   "calledBy": []
+  },
+  {
+   "fn": "syncMaterialPresetUI",
+   "lines": "99-103",
+   "n": 5,
+   "async": false,
+   "widgets": [
+    "materialPresetSelect",
+    "materialPill"
+   ],
+   "uiVars": [],
+   "S": [],
+   "closure": [],
+   "factory": [
+    "getMaterialPreset@createMaterials"
+   ],
+   "imported": [],
+   "engine": false,
+   "document": false,
+   "byId": false,
+   "listeners": 0,
+   "calledBy": [
+    "applyMaterialPreset"
+   ]
+  },
+  {
+   "fn": "setInteractionMode",
+   "lines": "105-118",
+   "n": 14,
+   "async": false,
+   "widgets": [
+    "viewport3d",
+    "modeFoldBtn",
+    "modeBaseBtn",
+    "interactionModePill",
+    "interactionStatus",
+    "viewportBadge"
+   ],
+   "uiVars": [
+    "interactionMode"
+   ],
+   "S": [],
+   "closure": [
+    "setStatus"
+   ],
+   "factory": [],
+   "imported": [],
+   "engine": false,
+   "document": false,
+   "byId": false,
+   "listeners": 0,
+   "calledBy": [
+    "pickPanelFromEvent",
+    "selectFoldEdge"
+   ]
+  },
+  {
+   "fn": "ensureCep",
+   "lines": "136-143",
+   "n": 8,
+   "async": false,
+   "widgets": [
+    "errorMsg",
+    "testBtn",
+    "extractBtn",
+    "previewBtn",
+    "continueBtn",
+    "backBtn",
+    "export3dBtn"
+   ],
+   "uiVars": [],
+   "S": [],
+   "closure": [
+    "setStatus"
+   ],
+   "factory": [],
+   "imported": [
+    "hasCep@./bridge/cep.js"
+   ],
+   "engine": false,
+   "document": false,
+   "byId": false,
+   "listeners": 0,
+   "calledBy": [
+    "refreshArtwork"
+   ]
+  },
+  {
+   "fn": "showImport",
+   "lines": "145-145",
+   "n": 1,
+   "async": false,
+   "widgets": [],
+   "uiVars": [],
+   "S": [],
+   "closure": [],
+   "factory": [],
+   "imported": [],
+   "engine": false,
+   "document": false,
+   "byId": false,
+   "listeners": 0,
+   "calledBy": []
+  },
+  {
+   "fn": "show3D",
+   "lines": "146-146",
+   "n": 1,
+   "async": false,
+   "widgets": [],
+   "uiVars": [],
+   "S": [],
+   "closure": [],
+   "factory": [],
+   "imported": [],
+   "engine": false,
+   "document": false,
+   "byId": false,
+   "listeners": 0,
+   "calledBy": []
+  },
+  {
+   "fn": "setDebugVisible",
+   "lines": "147-147",
+   "n": 1,
+   "async": false,
+   "widgets": [],
+   "uiVars": [],
+   "S": [],
+   "closure": [],
+   "factory": [],
+   "imported": [],
+   "engine": false,
+   "document": false,
+   "byId": false,
+   "listeners": 0,
+   "calledBy": []
+  },
+  {
+   "fn": "setActiveTab",
+   "lines": "149-159",
+   "n": 11,
+   "async": false,
+   "widgets": [
+    "tabButtons",
+    "tabPanels"
+   ],
+   "uiVars": [],
+   "S": [],
+   "closure": [],
+   "factory": [],
+   "imported": [],
+   "engine": false,
+   "document": false,
+   "byId": false,
+   "listeners": 0,
+   "calledBy": [
+    "pickPanelFromEvent",
+    "pickCreaseFromEvent"
+   ]
+  },
+  {
+   "fn": "syncMaterialInputs",
+   "lines": "160-160",
+   "n": 1,
+   "async": false,
+   "widgets": [],
+   "uiVars": [],
+   "S": [],
+   "closure": [],
+   "factory": [],
+   "imported": [],
+   "engine": false,
+   "document": false,
+   "byId": false,
+   "listeners": 0,
+   "calledBy": []
+  },
+  {
+   "fn": "applyMaterialPreset",
+   "lines": "161-181",
+   "n": 21,
+   "async": false,
+   "widgets": [],
+   "uiVars": [
+    "lastData"
+   ],
+   "S": [
+    "currentMaterialPreset",
+    "currentPanelData"
+   ],
+   "closure": [
+    "setStatus",
+    "log",
+    "syncMaterialPresetUI",
+    "buildFoldUI"
+   ],
+   "factory": [
+    "getMaterialPreset@createMaterials",
+    "refreshPanelMaterials@createMaterials",
+    "fitCamera3D@createViewport",
+    "rebuildCreaseVisuals@createCreaseVisuals",
+    "build3DFromPanels@createPanelMeshes"
+   ],
+   "imported": [
+    "MATERIAL_PRESETS@./config/look.js"
+   ],
+   "engine": false,
+   "document": false,
+   "byId": false,
+   "listeners": 0,
+   "calledBy": []
+  },
+  {
+   "fn": "setArtStatus",
+   "lines": "183-186",
+   "n": 4,
+   "async": false,
+   "widgets": [
+    "artStatus",
+    "artSourcePill"
+   ],
+   "uiVars": [],
+   "S": [],
+   "closure": [],
+   "factory": [],
+   "imported": [],
+   "engine": false,
+   "document": false,
+   "byId": false,
+   "listeners": 0,
+   "calledBy": [
+    "refreshArtwork"
+   ]
+  },
+  {
+   "fn": "resetValidationUI",
+   "lines": "188-193",
+   "n": 6,
+   "async": false,
+   "widgets": [
+    "continueBtn",
+    "validationStatus",
+    "problemsList"
+   ],
+   "uiVars": [
+    "problems"
+   ],
+   "S": [],
+   "closure": [],
+   "factory": [],
+   "imported": [],
+   "engine": false,
+   "document": false,
+   "byId": false,
+   "listeners": 0,
+   "calledBy": []
+  },
+  {
+   "fn": "refreshArtwork",
+   "lines": "195-226",
+   "n": 32,
+   "async": true,
+   "widgets": [],
+   "uiVars": [],
+   "S": [
+    "currentArtState",
+    "panelMeshes"
+   ],
+   "closure": [
+    "log",
+    "ensureCep",
+    "setArtStatus"
+   ],
+   "factory": [
+    "loadTextureFromPath@createArtwork",
+    "applyArtworkToScene@createArtwork",
+    "disposeCurrentArtTextures@createArtwork"
+   ],
+   "imported": [
+    "buildArtworkExportScript@./host/art.js",
+    "evalScriptJSON@./bridge/cep.js"
+   ],
+   "engine": false,
+   "document": false,
+   "byId": false,
+   "listeners": 0,
+   "calledBy": []
+  },
+  {
+   "fn": "validateGeometry",
+   "lines": "231-250",
+   "n": 20,
+   "async": false,
+   "widgets": [
+    "continueBtn",
+    "validationStatus",
+    "problemsList"
+   ],
+   "uiVars": [
+    "lastData",
+    "problems"
+   ],
+   "S": [],
+   "closure": [
+    "render2D"
+   ],
+   "factory": [],
+   "imported": [],
+   "engine": true,
+   "document": true,
+   "byId": false,
+   "listeners": 1,
+   "calledBy": []
+  },
+  {
+   "fn": "render2D",
+   "lines": "255-287",
+   "n": 33,
+   "async": false,
+   "widgets": [
+    "canvas2d",
+    "ctx2d"
+   ],
+   "uiVars": [
+    "problems"
+   ],
+   "S": [],
+   "closure": [],
+   "factory": [],
+   "imported": [],
+   "engine": false,
+   "document": false,
+   "byId": false,
+   "listeners": 0,
+   "calledBy": [
+    "validateGeometry"
+   ]
+  },
+  {
+   "fn": "pickPanelFromEvent",
+   "lines": "300-316",
+   "n": 17,
+   "async": false,
+   "widgets": [
+    "canvas3d"
+   ],
+   "uiVars": [],
+   "S": [
+    "camera3d",
+    "panelMeshes",
+    "pointer3d",
+    "raycaster3d",
+    "renderer3d"
+   ],
+   "closure": [
+    "setStatus",
+    "setInteractionMode",
+    "setActiveTab",
+    "setBasePanel"
+   ],
+   "factory": [],
+   "imported": [],
+   "engine": false,
+   "document": false,
+   "byId": false,
+   "listeners": 0,
+   "calledBy": []
+  },
+  {
+   "fn": "updatePerCreaseRow",
+   "lines": "320-327",
+   "n": 8,
+   "async": false,
+   "widgets": [],
+   "uiVars": [
+    "currentCreaseSliders"
+   ],
+   "S": [
+    "foldAngles",
+    "foldTree"
+   ],
+   "closure": [],
+   "factory": [
+    "signedDisplayAngle@createFoldAngles"
+   ],
+   "imported": [],
+   "engine": false,
+   "document": false,
+   "byId": false,
+   "listeners": 0,
+   "calledBy": [
+    "applySelectedCreaseAngle",
+    "buildFoldUI"
+   ]
+  },
+  {
+   "fn": "updateSelectedCreaseVisuals",
+   "lines": "332-346",
+   "n": 15,
+   "async": false,
+   "widgets": [],
+   "uiVars": [
+    "currentCreaseRows"
+   ],
+   "S": [
+    "creaseVisuals",
+    "selectedFoldEdgeIdx"
+   ],
+   "closure": [],
+   "factory": [],
+   "imported": [],
+   "engine": false,
+   "document": false,
+   "byId": false,
+   "listeners": 0,
+   "calledBy": [
+    "syncSelectedCreaseUI"
+   ]
+  },
+  {
+   "fn": "syncSelectedCreaseUI",
+   "lines": "348-367",
+   "n": 20,
+   "async": false,
+   "widgets": [],
+   "uiVars": [
+    "selectedCreaseLabelEl",
+    "selectedCreaseSliderEl",
+    "selectedCreaseNumberEl"
+   ],
+   "S": [
+    "foldAngles",
+    "foldTree",
+    "selectedFoldEdgeIdx"
+   ],
+   "closure": [
+    "updateSelectedCreaseVisuals"
+   ],
+   "factory": [
+    "signedDisplayAngle@createFoldAngles"
+   ],
+   "imported": [],
+   "engine": false,
+   "document": false,
+   "byId": false,
+   "listeners": 0,
+   "calledBy": [
+    "selectFoldEdge",
+    "applySelectedCreaseAngle",
+    "buildFoldUI"
+   ]
+  },
+  {
+   "fn": "selectFoldEdge",
+   "lines": "369-379",
+   "n": 11,
+   "async": false,
+   "widgets": [],
+   "uiVars": [],
+   "S": [
+    "foldTree",
+    "selectedFoldEdgeIdx"
+   ],
+   "closure": [
+    "setInteractionMode",
+    "syncSelectedCreaseUI"
+   ],
+   "factory": [
+    "applyFolding@createFolding"
+   ],
+   "imported": [],
+   "engine": false,
+   "document": false,
+   "byId": false,
+   "listeners": 0,
+   "calledBy": [
+    "pickCreaseFromEvent",
+    "buildFoldUI"
+   ]
+  },
+  {
+   "fn": "applySelectedCreaseAngle",
+   "lines": "381-388",
+   "n": 8,
+   "async": false,
+   "widgets": [],
+   "uiVars": [
+    "currentCreaseSliders"
+   ],
+   "S": [
+    "foldAngles",
+    "selectedFoldEdgeIdx"
+   ],
+   "closure": [
+    "updatePerCreaseRow",
+    "syncSelectedCreaseUI"
+   ],
+   "factory": [
+    "internalAngleFromDisplay@createFoldAngles",
+    "applyFolding@createFolding"
+   ],
+   "imported": [],
+   "engine": false,
+   "document": false,
+   "byId": false,
+   "listeners": 0,
+   "calledBy": [
+    "buildFoldUI"
+   ]
+  },
+  {
+   "fn": "pickCreaseFromEvent",
+   "lines": "390-407",
+   "n": 18,
+   "async": false,
+   "widgets": [
+    "canvas3d"
+   ],
+   "uiVars": [],
+   "S": [
+    "camera3d",
+    "creasePickables",
+    "pointer3d",
+    "raycaster3d",
+    "renderer3d"
+   ],
+   "closure": [
+    "setStatus",
+    "setActiveTab",
+    "selectFoldEdge"
+   ],
+   "factory": [],
+   "imported": [],
+   "engine": false,
+   "document": false,
+   "byId": false,
+   "listeners": 0,
+   "calledBy": []
+  },
+  {
+   "fn": "setBasePanel",
+   "lines": "413-426",
+   "n": 14,
+   "async": false,
+   "widgets": [],
+   "uiVars": [],
+   "S": [
+    "baseSelectionConfirmed",
+    "currentAdjEdges",
+    "currentBasePanelIndex",
+    "currentPanelData",
+    "currentThicknessMm",
+    "foldAngles",
+    "foldCenter",
+    "foldData",
+    "foldSigns",
+    "foldTree",
+    "selectedFoldEdgeIdx"
+   ],
+   "closure": [
+    "setStatus",
+    "buildFoldUI"
+   ],
+   "factory": [
+    "fitCamera3D@createViewport",
+    "applyFolding@createFolding"
+   ],
+   "imported": [],
+   "engine": true,
+   "document": false,
+   "byId": false,
+   "listeners": 0,
+   "calledBy": [
+    "pickPanelFromEvent",
+    "buildFoldUI"
+   ]
+  },
+  {
+   "fn": "buildFoldUI",
+   "lines": "428-610",
+   "n": 183,
+   "async": false,
+   "widgets": [
+    "threeView",
+    "debugDetails"
+   ],
+   "uiVars": [
+    "currentBaseSelect",
+    "currentCreaseRows",
+    "currentCreaseSliders",
+    "selectedCreaseLabelEl",
+    "selectedCreaseSliderEl",
+    "selectedCreaseNumberEl"
+   ],
+   "S": [
+    "currentAdjEdges",
+    "currentBasePanelIndex",
+    "currentPanelData",
+    "foldAngles",
+    "foldCenter",
+    "foldData",
+    "foldSigns",
+    "foldTree",
+    "selectedFoldEdgeIdx"
+   ],
+   "closure": [
+    "setStatus",
+    "updatePerCreaseRow",
+    "syncSelectedCreaseUI",
+    "selectFoldEdge",
+    "applySelectedCreaseAngle",
+    "setBasePanel"
+   ],
+   "factory": [
+    "refreshPanelMaterials@createMaterials",
+    "internalAngleFromDisplay@createFoldAngles",
+    "applyFolding@createFolding"
+   ],
+   "imported": [],
+   "engine": true,
+   "document": true,
+   "byId": true,
+   "listeners": 7,
+   "calledBy": [
+    "applyMaterialPreset",
+    "setBasePanel"
+   ]
+  },
+  {
+   "fn": "exportPNG",
+   "lines": "612-617",
+   "n": 6,
+   "async": false,
+   "widgets": [],
+   "uiVars": [],
+   "S": [
+    "renderer3d"
+   ],
+   "closure": [],
+   "factory": [],
+   "imported": [],
+   "engine": false,
+   "document": true,
+   "byId": false,
+   "listeners": 0,
+   "calledBy": []
+  },
+  {
+   "fn": "exportGLB",
+   "lines": "619-634",
+   "n": 16,
+   "async": true,
+   "widgets": [],
+   "uiVars": [],
+   "S": [
+    "foldRoot",
+    "scene3d"
+   ],
+   "closure": [
+    "setStatus"
+   ],
+   "factory": [
+    "buildGLBBlobFromCurrentView@createGlbBuilder"
+   ],
+   "imported": [
+    "saveBlobWithDialog@./bridge/fs.js"
+   ],
+   "engine": false,
+   "document": false,
+   "byId": false,
+   "listeners": 0,
+   "calledBy": []
+  }
+ ],
+ "listenersLoose": [
+  "26: document.addEventListener('DOMContentLoaded', function () {",
+  "648: testBtn.addEventListener('click',function(){",
+  "656: extractBtn.addEventListener('click',function(){",
+  "690: previewBtn.addEventListener('click', function(){",
+  "699: continueBtn.addEventListener('click', function(){",
+  "738: applyThicknessBtn.addEventListener('click', function(){",
+  "767: backBtn.addEventListener('click', function(){",
+  "772: export3dBtn.addEventListener('click', function(){",
+  "777: exportGlbBtn.addEventListener('click', async function(){",
+  "790: materialPresetSelect.addEventListener('change', function(){",
+  "796: refreshArtBtn.addEventListener('click', function(){",
+  "803: btn.addEventListener('click', function(){",
+  "810: modeFoldBtn.addEventListener('click', function(){ setInteractionMode('fold', true); });",
+  "814: modeBaseBtn.addEventListener('click', function(){ setInteractionMode('base', true); });",
+  "817: document.addEventListener('keydown', function(ev){",
+  "825: debugToggle.addEventListener('change', function(){"
+ ],
+ "factoryFns": 36
+}
