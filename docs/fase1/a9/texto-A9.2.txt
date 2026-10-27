@@ -1,0 +1,4 @@
+IDÉNTICA refreshArtwork (32 líneas; 3ea0d8a sangría 4 → app/actions.js sangría 2)
+IDÉNTICA exportPNG (6 líneas; 3ea0d8a sangría 4 → app/actions.js sangría 2)
+IDÉNTICA exportGLB (16 líneas; 3ea0d8a sangría 4 → app/actions.js sangría 2)
+3/3 idénticas byte a byte salvo −2 espacios por línea

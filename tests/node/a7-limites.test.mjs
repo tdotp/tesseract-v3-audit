@@ -1,5 +1,5 @@
 // A7 — Límites de src/app/, src/scene/ y src/fold/ (docs/fase1/A7_PROPUESTA.md §5.3), verificados sobre el texto y cargando cada módulo en Node:
-// inventario exacto · app/ sin THREE/window/document · scene/ y fold/ no importan main.js, host/ ni bridge/fs; solo scene/artwork.js importa bridge/cep ·
+// inventario exacto · app/state.js sin THREE/window/document (A9.2: app/actions.js lo rige a9-limites, más estricto) · scene/ y fold/ no importan main.js, host/ ni bridge/fs; solo scene/artwork.js importa bridge/cep ·
 // de core/ solo getPolyCentroid (geom2d) · document/window solo donde se prevé · sin estado de módulo · sin ciclos · ningún campo de S sin «S.» (regla 8).
 import test from 'node:test'; import assert from 'node:assert/strict'; import fs from 'node:fs'; import path from 'node:path'; import { pathToFileURL } from 'node:url';
 import { SRC, srcFiles, STATE_FIELDS, codeOnly, functionsAnyIndent } from '../lib/a7.mjs';
@@ -11,12 +11,13 @@ const DOC_ALLOWED = { 'scene/labels.js': ['makeLabelCanvas'], 'scene/viewport.js
 const WIN_ALLOWED = { 'scene/viewport.js': ['init3D'] }; // window solo dentro de estas funciones
 const CORE_ALLOWED = { './core/legacy/geom2d.js': ['getPolyCentroid'], '../core/legacy/geom2d.js': ['getPolyCentroid'] };
 
-const files = srcFiles().filter((f) => /^(app|scene|fold)\//.test(f)); const raw = (f) => fs.readFileSync(path.join(SRC, f), 'utf8');
+const A9_APP = ['app/actions.js']; // A9.2 (D-A9-9): fuera del inventario y de las reglas de app/ de este archivo; lo rige a9-limites (document solo en exportPNG). Aquí solo se le aplica la regla 8
+const files = srcFiles().filter((f) => /^(app|scene|fold)\//.test(f) && !A9_APP.includes(f)); const raw = (f) => fs.readFileSync(path.join(SRC, f), 'utf8');
 const importsOf = (f) => [...raw(f).matchAll(/^import \{([^}]*)\} from '([^']+)';$/gm)].map((m) => ({ names: m[1].split(',').map((s) => s.trim()).filter(Boolean), spec: m[2], to: path.normalize(path.join(path.dirname(f), m[2])) }));
 const countIn = (text, word) => (codeOnly(text).match(new RegExp('\\b' + word + '\\b', 'g')) || []).length;
 
 test('inventario exacto de app/, scene/ y fold/ en este paso', () => { assert.deepEqual(files, INVENTORY); });
-test('app/ no usa THREE, window ni document; state.js solo exporta createAppState', () => {
+test('app/state.js no usa THREE, window ni document; state.js solo exporta createAppState (app/actions.js: a9-limites)', () => {
   for (const f of files.filter((f) => f.startsWith('app/'))) for (const w of ['THREE', 'window', 'document']) assert.equal(countIn(raw(f), w), 0, `${f}: ${w}`);
   if (files.includes('app/state.js')) assert.deepEqual([...raw('app/state.js').matchAll(/^export (?:function|const|let|var) (\w+)/gm)].map((m) => m[1]), ['createAppState']);
 });
@@ -38,9 +39,9 @@ test('document y window solo dentro de las funciones previstas', () => {
 test('sin estado de módulo: ningún var/let de primer nivel en app/, scene/ ni fold/', () => {
   for (const f of files) assert.deepEqual(codeOnly(raw(f)).split('\n').filter((l) => /^(var|let)\s/.test(l)), [], f);
 });
-test('regla 8: ningún campo de S aparece suelto (sin «S.») en main.js, scene/, fold/ ni ui/ (salvo como clave o tras un punto)', () => {
+test('regla 8: ningún campo de S aparece suelto (sin «S.») en main.js, scene/, fold/, ui/ ni app/actions.js (salvo como clave o tras un punto)', () => {
   if (!S_APPLIED) return;
-  for (const f of ['main.js', ...files.filter((f) => !f.startsWith('app/')), ...srcFiles().filter((f) => /^ui\//.test(f))]) { /* A9.1: también ui/ (D-A9-9) */ const c = codeOnly(raw(f));
+  for (const f of ['main.js', ...files.filter((f) => !f.startsWith('app/')), ...srcFiles().filter((f) => /^ui\//.test(f) || A9_APP.includes(f))]) { /* A9.1: también ui/ (D-A9-9) */ const c = codeOnly(raw(f));
     for (const name of STATE_FIELDS) { const bad = c.split('\n').filter((l) => new RegExp('(?<![\\w.$])(?<!get )' + name + '\\b(?!\\s*:)').test(l)); assert.deepEqual(bad, [], `${f}: «${name}» sin S.`); } }
 });
 test('todos los módulos de app/, scene/ y fold/ se cargan en Node SIN window, document ni THREE', async () => {

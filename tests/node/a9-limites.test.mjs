@@ -8,11 +8,13 @@ import test from 'node:test'; import assert from 'node:assert/strict'; import fs
 import { SRC, srcFiles, codeOnly, functionsAnyIndent } from '../lib/a7.mjs'; import { freeIdentifiers, KNOWN_GLOBALS } from '../lib/a8.mjs'; import { CLOSURE_3EA0D8A } from '../lib/a9.mjs';
 
 // Estado esperado en ESTE paso (se actualiza en cada paso aprobado; igualdad exacta).
-const INVENTORY = ['ui/views.js']; // A9.1 (app/state.js queda fuera de este inventario: lo rige a7-limites)
+const INVENTORY = ['app/actions.js', 'ui/views.js']; // A9.2 (app/state.js queda fuera de este inventario: lo rige a7-limites)
 const RULES = { // por módulo: { exports, imports, doc: funciones donde se permite document, free: identificadores libres admitidos además de KNOWN_GLOBALS }
-  'ui/views.js': { exports: ['createViews'], imports: ['../bridge/cep.js'], doc: [], free: [] } }; // A9.1
+  'ui/views.js': { exports: ['createViews'], imports: ['../bridge/cep.js'], doc: [], free: [] }, // A9.1
+  'app/actions.js': { exports: ['createActions'], imports: ['../host/art.js', '../bridge/cep.js', '../bridge/fs.js'], doc: ['exportPNG'], free: [] } }; // A9.2: document SOLO en exportPNG (ajuste A)
 const VIEWS = ['syncMaterialPresetUI', 'setInteractionMode', 'ensureCep', 'showImport', 'show3D', 'setDebugVisible', 'setActiveTab', 'syncMaterialInputs', 'setArtStatus']; // A9.1
-const MAIN_FUNCTIONS = CLOSURE_3EA0D8A.filter((n) => !VIEWS.includes(n)); // funciones de la clausura de main.js en este paso
+const ACTIONS = ['refreshArtwork', 'exportPNG', 'exportGLB']; // A9.2
+const MAIN_FUNCTIONS = CLOSURE_3EA0D8A.filter((n) => !VIEWS.includes(n) && !ACTIONS.includes(n)); // funciones de la clausura de main.js en este paso
 const WRAPPERS = 0; // regla 8: envoltorios de enlace tardío en main.js (3 en el Bloque 2; ninguno en el Bloque 1)
 const FOLD_WIDGETS = ['currentBaseSelect', 'currentCreaseRows', 'currentCreaseSliders', 'selectedCreaseLabelEl', 'selectedCreaseSliderEl', 'selectedCreaseNumberEl'];
 

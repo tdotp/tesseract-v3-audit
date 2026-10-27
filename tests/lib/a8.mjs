@@ -7,7 +7,7 @@ import { ROOT } from './fixtures.mjs'; import { TARGETS, extractFunctions } from
 
 export const A8_REF = 'a322d7a';
 export const refMain = () => execFileSync('git', ['-C', ROOT, 'show', `${A8_REF}:src/main.js`], { encoding: 'utf8' });
-// Las 8 funciones que A8.1–A8.4 mueven (exportPNG, exportGLB y el manejador se quedan en main.js: D-A8-2).
+// Las 8 funciones que A8.1–A8.4 mueven (exportPNG y exportGLB se quedaron en main.js en A8 —D-A8-2— y pasan a app/actions.js en A9.2; el manejador sigue en main.js).
 export const EXPORT_FUNCTIONS = ['bytesFromDataURL', 'textureToImageBytes', 'padBytes', 'toUint8View', 'typedArrayFromList', 'buildExportSceneMeshes', 'materialKey', 'buildGLBBlobFromCurrentView'];
 export const sha256 = (b) => crypto.createHash('sha256').update(b).digest('hex');
 export const REAL_GLB_DIR = path.join(ROOT, 'docs/fase1/a7-real/glb');

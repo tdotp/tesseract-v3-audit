@@ -1,9 +1,7 @@
 import { DEFAULT_THICKNESS_MM, MATERIAL_PRESETS, CREASE_HINGE_RADIUS_FACTOR, CREASE_HINGE_MIN_RADIUS, CREASE_HINGE_SEGMENTS, CREASE_HINGE_SHOW_THRESHOLD_DEG, FOLD_BRIDGE_TOP_Z, FOLD_BRIDGE_BOTTOM_Z, CREASE_LINE_Z_OFFSET, ART_TOP_OFFSET, ART_BOTTOM_OFFSET } from './config/look.js';
 import { EXTRACT_SCRIPT } from './host/extract.js';
-import { buildArtworkExportScript } from './host/art.js';
 import { TEST_CONNECTION_SCRIPT } from './host/test-connection.js';
-import { evalScript, evalScriptJSON, pathToFileURL } from './bridge/cep.js';
-import { saveBlobWithDialog } from './bridge/fs.js';
+import { evalScript, pathToFileURL } from './bridge/cep.js';
 import { createLegacyEngine } from './core/engine.js';
 import { createAppState } from './app/state.js';
 import { createLabels } from './scene/labels.js';
@@ -18,6 +16,7 @@ import { createGlbBuilder } from './export/glb-builder.js';
 import { createGlbImage } from './export/glb-image.js';
 import { createGlbScene } from './export/glb-scene.js';
 import { createViews } from './ui/views.js';
+import { createActions } from './app/actions.js';
 
 (function () {
   'use strict';
@@ -96,6 +95,7 @@ import { createViews } from './ui/views.js';
     var { buildExportSceneMeshes } = createGlbScene(S); /* A8.3: recorrido de la escena para el GLB */
     var { buildGLBBlobFromCurrentView } = createGlbBuilder({ buildExportSceneMeshes, textureToImageBytes }); /* A8.4: constructor del GLB */
     var { syncMaterialPresetUI, setInteractionMode, ensureCep, showImport, show3D, setDebugVisible, setActiveTab, syncMaterialInputs, setArtStatus } = createViews(S, { importView, threeView, outputArea, tabButtons, tabPanels, thicknessInput, materialPresetSelect, materialPill, artStatus, artSourcePill, modeFoldBtn, modeBaseBtn, interactionModePill, interactionStatus, viewportBadge, viewport3d, errorMsg, testBtn, extractBtn, previewBtn, continueBtn, backBtn, export3dBtn, setStatus, getMaterialPreset }); /* A9.1: presentación (ui/views.js); interactionMode es privado de la fábrica */
+    var { refreshArtwork, exportPNG, exportGLB } = createActions(S, { log, setStatus, ensureCep, setArtStatus, loadTextureFromPath, applyArtworkToScene, disposeCurrentArtTextures, buildGLBBlobFromCurrentView }); /* A9.2: acciones (app/actions.js); el manejador de «Export GLB» sigue aquí */
 
 
     if(!importView||!threeView||!statusArea||!errorMsg||!testBtn||!extractBtn||
@@ -141,39 +141,6 @@ import { createViews } from './ui/views.js';
       validationStatus.textContent='Waiting for extraction...';
       validationStatus.className='check-status';
       continueBtn.disabled=true;
-    }
-
-    async function refreshArtwork(){
-      if(!ensureCep()) return;
-      if(!S.panelMeshes.length){
-        setArtStatus('Build 3D first, then refresh art.','No art');
-        return;
-      }
-      try{
-        setArtStatus('Searching Front/Back or Tiro/Retiro…','Scanning');
-        var exported = await evalScriptJSON(buildArtworkExportScript());
-        if(!exported || exported.mode==='none' || (!exported.front && !exported.back)){
-          disposeCurrentArtTextures();
-          S.currentArtState = null;
-          applyArtworkToScene();
-          setArtStatus('No Front/Back or Tiro/Retiro art detected.','No art');
-          return;
-        }
-        var nextState = { mode: exported.mode, front: null, back: null };
-        if(exported.front && exported.front.path){
-          nextState.front = { rect: exported.front.rect, texture: await loadTextureFromPath(exported.front.path), path: exported.front.path };
-        }
-        if(exported.back && exported.back.path){
-          nextState.back = { rect: exported.back.rect, texture: await loadTextureFromPath(exported.back.path), path: exported.back.path };
-        }
-        disposeCurrentArtTextures();
-        S.currentArtState = nextState;
-        applyArtworkToScene();
-        setArtStatus('Artwork loaded from '+exported.mode+'. Mapping uses full artboard coordinates.', exported.mode==='artboards' ? 'Artboards' : 'Layers');
-      }catch(err){
-        setArtStatus('Artwork load failed: '+err.message, 'Art error');
-        log('Artwork load failed: '+err.message);
-      }
     }
 
     /* ================================================================
@@ -558,30 +525,6 @@ import { createViews } from './ui/views.js';
       applyFolding();
       refreshPanelMaterials();
       setStatus(S.currentAdjEdges.length ? ('3D model ready - '+nPanels+' panels, '+S.currentAdjEdges.length+' fold edges') : ('3D model ready - '+nPanels+' panels, no fold edges detected'));
-    }
-
-    function exportPNG(){
-      if(!S.renderer3d) return;
-      var url=S.renderer3d.domElement.toDataURL('image/png');
-      var a=document.createElement('a');
-      a.href=url; a.download='tesseract_3d.png'; a.click();
-    }
-
-    async function exportGLB(){
-      if(!S.scene3d || !S.foldRoot) throw new Error('Build 3D first');
-      S.scene3d.updateMatrixWorld(true);
-      var blob = buildGLBBlobFromCurrentView();
-      var out = await saveBlobWithDialog(blob, 'tesseract_model.glb');
-      if(out && out.cancelled){
-        setStatus('GLB export cancelled');
-      }else if(out && out.fallback){
-        setStatus('GLB exported with browser download fallback');
-      }else if(out && out.path){
-        setStatus('GLB saved: ' + out.path);
-      }else{
-        setStatus('GLB exported');
-      }
-      return blob;
     }
 
     /* ================================================================

@@ -77,7 +77,7 @@ mutN4 "A8.2 · glb-image: bytesFromDataURL pierde el último byte" 's/    for(va
 mut   "A8.2 · límites: glb-image.js usa document fuera de textureToImageBytes (a8-limites)" 's/    var bin = atob(base64);/    var bin = atob(base64); document;/'
 # A8.3 — src/export/glb-scene.js
 mutN4 "A8.3 · glb-scene: recorre solo lo visible (traverseVisible)"        's/S.scene3d.traverse(function(obj){/S.scene3d.traverseVisible(function(obj){/'
-mutN4 "A8.3 · glb-scene: no refresca matrixWorld"                          's/^    S.scene3d.updateMatrixWorld(true);$/    /'
+mutN4 "A8.3 · glb-scene: no refresca matrixWorld"                          '/^    if(!S.scene3d) return \[\];$/{N;s/\(\n\)    S.scene3d.updateMatrixWorld(true);$/\1    /;}'  # A9.2: la misma línea está en exportGLB (app/actions.js) a 4 espacios; se ancla con la anterior de glb-scene.js (misma mutación)
 mutN4 "A8.3 · glb-scene: exporta la geometría original, sin clonar (I-E3)" 's/var geom = obj.geometry.clone();/var geom = obj.geometry;/'
 mut   "A8.3 · límites: glb-scene.js lee otro campo de S (a8-limites)"      's/    if(!S.scene3d) return \[\];/    if(!S.scene3d || !S.foldRoot) return [];/'
 mut   "A8.3 · límites: glb-scene.js usa document (a8-limites)"             's/^    var out = \[\];$/    var out = []; document;/'
@@ -98,4 +98,6 @@ mutT "A9.0b · a9-limites: envoltorio de enlace tardío no previsto (regla 8)"  
 mutT "A9.0b · a9-limites: el ancla del arnés cambia de texto (regla 9)"        's/^    function setStatus(m){ statusArea.textContent = m; }$/    function setStatus(m){ statusArea.textContent = m;  }/' $A9L
 # A9.1 — límites de src/ui/views.js (n.º 14: laguna de comportamiento declarada; THREE existe en el navegador, solo lo ven a9-limites y a5-limites)
 mutT  "A9.1 · a9-limites: ui/views.js usa THREE (n.º 14)"  's/^  function setDebugVisible(on){ if(outputArea)/  function setDebugVisible(on){ if(!THREE) return; if(outputArea)/' $A9L
+# A9.2 — límites de src/app/actions.js (ajuste A: document solo dentro de exportPNG)
+mutT  "A9.2 · a9-limites: app/actions.js usa document fuera de exportPNG"  's/^  async function exportGLB(){$/  async function exportGLB(){ void document;/' $A9L
 echo "mutaciones detectadas: $ok · no detectadas: $bad"; [ "$bad" = 0 ]

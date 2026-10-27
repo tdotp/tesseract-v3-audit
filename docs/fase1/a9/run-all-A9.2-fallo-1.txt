@@ -1,0 +1,196 @@
+== 1/4 aislamiento
+== 1) baseline congelado vs manifiesto
+OK
+== 2) extensión instalada vs baseline
+OK (archivos del baseline idénticos)
+== 3) panel/ vs baseline (diferencias esperadas)
+Files /Users/gerardocalambasposada/Documents/Antigravity/Tesseract/Tesseract v3/reference/legacy-baseline/main.js and /Users/gerardocalambasposada/Documents/Antigravity/Tesseract/Tesseract v3/panel/main.js differ
+Only in /Users/gerardocalambasposada/Documents/Antigravity/Tesseract/Tesseract v3/reference/legacy-baseline: main.js.bak
+== 4) no hay rutas instaladas del bundle V3 en el CEP del usuario (no autorizado)
+OK (no instalado)
+== 2/4 build del bundle (IIFE, chrome99) y verificación
+Build OK → dist  (13 archivos, main.js 129491 B, esbuild 0.28.2, target chrome99)
+No se instaló nada.
+OK: dist/ íntegro y reproducible
+DRY-RUN CORRECTO: todas las comprobaciones pasan. No se escribió nada. La instalación real sigue sin autorización.
+== 3/4 Node (geometría, defectos, extracción, arte, GLB, .jsx, aislamiento, build, Chromium 99, instalador dry-run)
+ℹ tests 549
+ℹ pass 548
+ℹ fail 0
+ℹ skipped 1
+== 4/4 navegador (Chrome headless: baseline · panel · bundle; y con APIs reducidas a Chromium 99)
+ℹ tests 56
+ℹ pass 56
+ℹ fail 0
+ℹ skipped 0
+ℹ tests 13
+ℹ pass 13
+ℹ fail 0
+ℹ skipped 0
+ℹ tests 31
+ℹ pass 31
+ℹ fail 0
+ℹ skipped 0
+ℹ tests 36
+ℹ pass 36
+ℹ fail 0
+ℹ skipped 0
+ℹ tests 4
+ℹ pass 4
+ℹ fail 0
+ℹ skipped 0
+ℹ tests 6
+ℹ pass 6
+ℹ fail 0
+ℹ skipped 0
+ℹ tests 3
+ℹ pass 3
+ℹ fail 0
+ℹ skipped 0
+ℹ tests 7
+ℹ pass 7
+ℹ fail 0
+ℹ skipped 0
+== controles negativos
+detectada     GRAPH_EPS 0.5→0.6
+detectada     TOLERANCE_MM 0.5→0.4
+detectada     color del preset kraft
+detectada     espesor por defecto 0.25→0.30
+detectada     umbral de panel pequeño (absArea < 4 → < 5)
+detectada     filtro de panel delgado (aspect > 30 → > 41)
+detectada     tolerancia de punto-sobre-segmento (GRAPH_EPS → 0.2)
+detectada     búsqueda de vértice (ptEq: < GRAPH_EPS → < 0.2)
+detectada     factor pt→mm del extractor
+detectada     tope de escala del PNG de arte (800→700)
+detectada     offset del arte (ART_TOP_OFFSET 0.08→0.09)
+detectada     puente: pathToFileURL sin encodeURI (bridge/cep.js)
+detectada     guardado: cancelar deja de marcar cancelled (bridge/fs.js)
+detectada     límites: bridge/cep toca document (a5-limites)
+detectada     A6 · log del motor: texto de la adyacencia estricta
+detectada     A6 · alias: la adyacencia estricta copia el creaseEdge
+detectada     A6 · adyacencia robusta: eps 1.0 → 0.1 (pierde adyacencias en los respaldos)
+detectada     A6 · signo de pliegue invertido (montaña/valle)
+detectada     A6 · validación: los id de problema empiezan en P0
+detectada     A6 · adaptador: el motor ignora la base elegida (siempre 0)
+detectada     A6 · adaptador: buildPanels clona la entrada (rompe los alias I4)
+detectada     A6 · límites: core/legacy/log.js toca document
+detectada     A7 · materials: campo de S sin prefijo (referencia suelta)
+detectada     A7 · viewport: resize3D toca document
+detectada por N4     A8 · GLB: claves del JSON (samplers antes de textures)
+detectada por N4     A8 · GLB: la imagen se añade ANTES de los accesores de la malla
+detectada por N4     A8 · GLB: sin relleno de alineación entre vistas
+detectada por N4     A8 · GLB: relleno del JSON 0x20 → 0x00
+detectada por N4     A8 · GLB: umbral Uint16 65535 → 65534
+detectada por N4     A8 · GLB: umbral de opacidad 0.01 → 0.02
+detectada por N4     A8 · GLB: pickCrease deja de filtrarse
+detectada por N4     A8 · GLB: panelLabel deja de filtrarse
+detectada por N4     A8 · GLB: normales sin normalMatrix
+detectada por N4     A8 · GLB: nombre mesh_<índice+1>
+detectada por N4     A8 · GLB: deduplicación de texturas desactivada
+detectada por N4     A8 · GLB: materialKey sin el lado
+detectada por N4     A8 · GLB: alphaMode ya no depende de transparent
+detectada por N4     A8 · GLB: el fallo de la textura ya no se registra en el log
+detectada por N4     A8 · GLB: posiciones sin matrixWorld
+detectada por N4     A8 · GLB: magFilter del sampler 9729 → 9728
+detectada por N4     A8.1 · glb-bytes: padBytes copia desde el byte 1
+detectada por N4     A8.1 · glb-bytes: padBytes ignora el valor de relleno
+detectada por N4     A8.1 · glb-bytes: toUint8View corta 4 bytes
+detectada por N4     A8.1 · glb-bytes: typedArrayFromList omite el último
+detectada     A8.1 · límites: glb-bytes.js toca document (a8-limites)
+detectada por N4     A8.2 · glb-image: textureToImageBytes ya no descarta texturas sin tamaño
+detectada por N4     A8.2 · glb-image: createGlbImage ignora el log recibido
+detectada por N4     A8.2 · glb-image: bytesFromDataURL pierde el último byte
+detectada     A8.2 · límites: glb-image.js usa document fuera de textureToImageBytes (a8-limites)
+detectada por N4     A8.3 · glb-scene: recorre solo lo visible (traverseVisible)
+NO APLICÓ  A8.3 · glb-scene: no refresca matrixWorld
+detectada por N4     A8.3 · glb-scene: exporta la geometría original, sin clonar (I-E3)
+detectada     A8.3 · límites: glb-scene.js lee otro campo de S (a8-limites)
+detectada     A8.3 · límites: glb-scene.js usa document (a8-limites)
+detectada por N4     A8.4 · glb-builder: createGlbBuilder ignora textureToImageBytes inyectada
+detectada por N4     A8.4 · glb-builder: createGlbBuilder ignora buildExportSceneMeshes inyectada
+detectada     A8.4 · límites: glb-builder.js usa document (a8-limites)
+detectada por a9-texto-identico     A9.0b · a9-texto-identico: cambia el texto de un manejador (Back)
+detectada por a9-texto-identico     A9.0b · a9-texto-identico: cambia una línea suelta de main.js
+detectada por a9-limites     A9.0b · a9-limites: segunda declaración de lastData (regla 6)
+detectada por a9-limites     A9.0b · a9-limites: envoltorio de enlace tardío no previsto (regla 8)
+detectada por a9-limites     A9.0b · a9-limites: el ancla del arnés cambia de texto (regla 9)
+detectada por a9-limites     A9.1 · a9-limites: ui/views.js usa THREE (n.º 14)
+detectada por a9-limites     A9.2 · a9-limites: app/actions.js usa document fuera de exportPNG
+mutaciones detectadas: 63 · no detectadas: 1
+precondición OK (9 patrones + baterías A8 y A9 pasan sin mutar)
+detectada     se revierte el parche A1 (fuga vuelve)
+detectada     etiquetas: la caché deja de reutilizar
+detectada     color del preset white (shell)
+detectada     luz direccional 0.8 → 0.9
+detectada     desplazamiento del arte frontal
+detectada     UV del arte (se invierte v)
+detectada     generador del GLB
+detectada     rugosidad del GLB (1 → 0.5)
+detectada     zoom de la rueda (1.08 → 1.10)
+detectada     Shift+clic ya no cambia la base
+detectada     puente: evalScriptJSON deja de tratar «EvalScript error.»
+detectada     puente: mensaje de escritura de GLB
+detectada     puente: codificación por defecto Base64 → base64
+detectada     puente: ensureCep ya no deshabilita «Back»
+detectada     KI-25 corregido sin tarea (mensaje final del GLB)
+detectada     KI-24 corregido sin tarea (buildChildrenOfMap)
+detectada     A6 · log: setBasePanel ya no llama a buildFoldTree
+detectada     A6 · adaptador: el motor ignora la base elegida (bundle)
+detectada     A7 · clearAllMeshes deja de liberar los visuales de pliegue
+detectada     A7 · disposeObject3D deja de recorrer los hijos
+detectada     A7 · centro del panel (userData.center) calculado distinto
+detectada     A7 · orden de inserción: fold-bridges pasa delante en la escena (G1)
+detectada     A7 · vista de depuración: baseIndex devuelve otro campo
+detectada     A7 · estado inicial: espesor 0.30 en createAppState
+detectada     A7 · clearAllMeshes libera la textura de arte compartida (rompe L1)
+detectada     A7 · artwork: copia obsoleta de S al crear la fábrica
+detectada     A7 · folding: copia obsoleta de S al crear la fábrica
+detectada     A8 · GLB: claves del JSON (samplers antes de textures)
+detectada     A8 · GLB: la imagen se añade ANTES de los accesores
+detectada     A8 · GLB: sin relleno de alineación entre vistas
+detectada     A8 · GLB: normales sin normalMatrix
+detectada     A8 · GLB: nombre mesh_<índice+1>
+detectada     A8 · GLB: posiciones sin matrixWorld
+detectada     A8 · GLB: alphaMode ya no depende de transparent
+detectada     A8 · GLB: magFilter del sampler 9729 → 9728
+detectada     A8 · GLB: el fallo de la textura ya no se registra
+detectada     A8 · GLB: la exportación marca la textura como sucia (muta la escena)
+detectada     A8 · exportGLB: el diálogo se abre ANTES de construir el Blob
+detectada     A8.1 · cableado: glb-builder.js no importa toUint8View
+detectada     A8.1 · toUint8View corta 4 bytes
+detectada     A8.2 · cableado: main.js no pasa log a createGlbImage
+detectada     A8.2 · bytesFromDataURL pierde el último byte (PNG truncado)
+detectada     A8.3 · glb-scene: copia obsoleta de S al crear la fábrica
+detectada     A8.4 · cableado: glb-builder.js no importa padBytes
+detectada     A8.4 · cableado: main.js inyecta otra textureToImageBytes
+detectada     A9 · H1: la escucha de Extract se registra dos veces (n.º 4)
+detectada     A9 · H1: se omite la escucha de debug-toggle (n.º 5)
+detectada     A9 · H1: keydown en window en lugar de document (n.º 6)
+detectada     A9 · H1: sin CEP el arranque ya no corta (registra escuchas) (n.º 11)
+detectada     A9 · H2: copia sombra de lastData en el manejador Preview (n.º 9)
+detectada     A9 · H2: Continue espera a refreshArtwork antes de su mensaje (n.º 16)
+detectada     A9 · H3: ensureCep deja de mostrar #error-msg (n.º 12)
+detectada     A9 · H3: la guarda «UI mismatch» pierde !thicknessInput (n.º 17)
+detectada     A9 · H4: buildFoldUI deja de reiniciar currentCreaseRows (n.º 8)
+detectada     A9 · H4: el onclick de un problema llama a render2D(null, …) (n.º 10)
+detectada     A9 · H5: error tragado por el try/catch del visor tras un Alt+clic correcto
+detectada     A9 · H5: createViewport recibe pickPanelFromEvent = undefined (cableado roto)
+detectada     A9 · H5: rebuildCreaseVisuals deja de actualizar el resaltado tras plegar
+detectada     A9 · soak de UI: cada reconstrucción deja una escucha de Reset en #three-view (fuga en un elemento persistente)
+detectada     A9.1 · createViews llama a setStatus al crearse (n.º 18)
+detectada     A9.1 · createViews trabaja sobre una copia de S (espesor obsoleto)
+detectada     A9.1 · la composición pasa materialPill como artSourcePill
+detectada     A9.2 · la composición pasa setStatus como setArtStatus a createActions
+detectada     A9.2 · refreshArtwork deja de liberar las texturas anteriores
+detectada     A9.2 · createActions trabaja sobre una copia de S
+mutaciones detectadas: 65 · no detectadas: 0
+precondición OK
+detectada     bundle construido SIN el parche A1 (baseline como fuente)
+detectada     bundle: offset del arte frontal
+detectada     bundle: Shift+clic ya no cambia la base
+detectada     bundle: tolerancia del grafo (GRAPH_EPS 0.5→0.6)
+detectada     bundle: puente CEP, mensaje de escritura de GLB
+detectada     huellas del bundle: cambio mínimo en la fuente
+mutaciones detectadas (bundle): 6 · no detectadas: 0
+HAY FALLOS
+EXIT=1
