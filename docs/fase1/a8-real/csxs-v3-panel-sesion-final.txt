@@ -1,0 +1,5 @@
+﻿
+DevTools listening on ws://127.0.0.1:8088/devtools/browser/bf21ed9a-ef0a-48fa-a955-7344f5adad2b
+2026-10-26 18:20:06:459 : ERROR ClientInitialized begin
+2026-10-26 18:20:06:460 : ERROR ClientInitialized end
+2026-10-26 18:26:52:179 : ERROR Render caught NSInvalidReceivePortException: connection went invalid while waiting for a reply because a mach port died

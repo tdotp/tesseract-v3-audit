@@ -1,0 +1,138 @@
+{
+ "fecha": "2026-10-26T23:20:13.081Z",
+ "simulated": false,
+ "identidad": {
+  "href": "file:///Users/gerardocalambasposada/Library/Application%20Support/Adobe/CEP/extensions/tesseract-v3/index.html",
+  "title": "Tesseract",
+  "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 AdobeCEP/12.1.1 Safari/537.36",
+  "dpr": 1.25,
+  "viewport": "601x701",
+  "hasCep": true,
+  "extensionId": "com.tato.tesseract.v3.panel",
+  "hostEnvironment": {
+   "appVersion": "30.8.2",
+   "appSkinInfo": {
+    "systemHighlightColor": {
+     "alpha": 255,
+     "green": 112,
+     "blue": 112,
+     "red": 112
+    },
+    "baseFontSize": 10,
+    "appBarBackgroundColorSRGB": {
+     "antialiasLevel": 1,
+     "type": 1,
+     "color": {
+      "alpha": 255,
+      "green": 50,
+      "blue": 50,
+      "red": 50
+     }
+    },
+    "appBarBackgroundColor": {
+     "antialiasLevel": 1,
+     "type": 1,
+     "color": {
+      "alpha": 255,
+      "green": 50,
+      "blue": 50,
+      "red": 50
+     }
+    },
+    "panelBackgroundColor": {
+     "antialiasLevel": 1,
+     "type": 1,
+     "color": {
+      "alpha": 255,
+      "green": 50,
+      "blue": 50,
+      "red": 50
+     }
+    },
+    "baseFontFamily": "LucidaGrande",
+    "panelBackgroundColorSRGB": {
+     "antialiasLevel": 1,
+     "type": 1,
+     "color": {
+      "alpha": 255,
+      "green": 50,
+      "blue": 50,
+      "red": 50
+     }
+    }
+   },
+   "appLocale": "en_US",
+   "isAppOnline": true,
+   "appUILocale": "en_US",
+   "appName": "ILST",
+   "appId": "ILST"
+  },
+  "apiVersion": "\"{\\\"minor\\\":\\\"1\\\",\\\"micro\\\":\\\"1\\\",\\\"major\\\":\\\"12\\\"}\"",
+  "three": "132",
+  "scripts": [
+   "libs/three.min.js",
+   "libs/OrbitControls.js",
+   "main.js"
+  ],
+  "mainJs": {
+   "src": "file:///Users/gerardocalambasposada/Library/Application%20Support/Adobe/CEP/extensions/tesseract-v3/main.js",
+   "bytes": 128140,
+   "sha256": "4addceb7fb8c6dd662a460fb4c8e9c25ad9d715ad1e883e10a66acc858a552bd"
+  },
+  "ui": {
+   "importView": true,
+   "extractBtn": true,
+   "preview3d": true
+  }
+ },
+ "veredicto": {
+  "ok": true,
+  "checks": [
+   {
+    "name": "panel V3 (URL con tesseract-v3 o harness)",
+    "ok": true,
+    "detail": "file:///Users/gerardocalambasposada/Library/Application%20Support/Adobe/CEP/extensions/tesseract-v3/index.html"
+   },
+   {
+    "name": "puente CEP presente",
+    "ok": true,
+    "detail": "true"
+   },
+   {
+    "name": "id de extensión = com.tato.tesseract.v3.panel",
+    "ok": true,
+    "detail": "com.tato.tesseract.v3.panel"
+   },
+   {
+    "name": "host = ILST (Illustrator)",
+    "ok": true,
+    "detail": "{\"appName\":\"ILST\",\"appVersion\":\"30.8.2\"}"
+   },
+   {
+    "name": "Chromium 99 (CEP 12)",
+    "ok": true,
+    "detail": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 AdobeCEP/12.1.1 Safari/537.36"
+   },
+   {
+    "name": "three.js r132",
+    "ok": true,
+    "detail": "132"
+   },
+   {
+    "name": "IIFE: un solo main.js cargado",
+    "ok": true,
+    "detail": "libs/three.min.js, libs/OrbitControls.js, main.js"
+   },
+   {
+    "name": "main.js cargado = bundle de dist/ (SHA-256)",
+    "ok": true,
+    "detail": "4addceb7fb8c6dd662a460fb4c8e9c25ad9d715ad1e883e10a66acc858a552bd (esperado 4addceb7fb8c6dd662a460fb4c8e9c25ad9d715ad1e883e10a66acc858a552bd)"
+   },
+   {
+    "name": "interfaz del panel presente",
+    "ok": true,
+    "detail": "{\"importView\":true,\"extractBtn\":true,\"preview3d\":true}"
+   }
+  ]
+ }
+}

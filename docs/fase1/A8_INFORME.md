@@ -144,6 +144,8 @@ El bundle de A8 **no se cargó en Illustrator/CEP real** (no autorizado): ni la 
 Después de la batería: `tools/verify-isolation.sh` verde; `dist/` = `dist-a8` (13/13); `dist-a7`, `dist-a6`, `dist-a5`, `dist`, `panel.pins.json`, goldens, fixtures y `reference/` sin diferencias con `a322d7a`; `glb-structure.golden.json` y `a8.pins.json` sin cambios desde A8.0a; `src/`, `tools/` y las huellas sin cambios desde `7c95b0b`; CEP del usuario: solo `TesserArt_Validator`.
 
 ## 14. Validación corta en Illustrator real (preparada, NO ejecutada)
+> **Actualización (2026-10-26): EJECUTADA y REVERTIDA con autorización expresa y fechada** — V-1…V-7 superados; GLB con arte `b4973a54…` = A7 real byte a byte; ver `A8_VALIDACION_CEP_INFORME.md`. Lo que sigue es el texto del cierre de A8.5.
+
 `docs/fase1/A8_VALIDACION_CEP_PROCEDIMIENTO.md`: V-1 identidad (`main.js` = `4addceb7…`), carga y consola en Chromium 99 · V-2 paridad de la caja N0-A (extracción, 11 de 13, plegado) contra la evidencia **real de A7** · V-3 GLB `737bcd23…`/`87aa2e4c…` · V-4 arte en N0-B y **GLB con arte = `b4973a54…` byte a byte** · V-5 diálogo «Save GLB» real (guardar y cancelar, KI-25) · V-6 integridad de N0-B, cierre, aislamiento y rollback · V-7 (complementario) GPU Δ=0. `tests/node/a8-cep-preparacion.test.mjs` comprueba las referencias reales de A7, el comparador (A6 real = A7 real), los hashes completos de los tres GLB reales y que el procedimiento cita `dist-a8` y su `main.js`. **Requiere autorización expresa y fechada.**
 
 ## 15. Punto de control PC9 — decisiones del usuario
