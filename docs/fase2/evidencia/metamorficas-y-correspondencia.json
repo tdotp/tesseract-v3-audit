@@ -1,0 +1,530 @@
+{
+ "metamorficas": [
+  {
+   "troquel": "ill-real-caja-botanica",
+   "transformacion": "identidad",
+   "paneles": 11,
+   "area": 26769.121,
+   "igualAIdentidad": true,
+   "segSplit": 78,
+   "V": 52,
+   "ady": 10
+  },
+  {
+   "troquel": "ill-real-caja-botanica",
+   "transformacion": "traslación +1000",
+   "paneles": 11,
+   "area": 26769.121,
+   "igualAIdentidad": true,
+   "segSplit": 78,
+   "V": 52,
+   "ady": 10
+  },
+  {
+   "troquel": "ill-real-caja-botanica",
+   "transformacion": "traslación −5000",
+   "paneles": 11,
+   "area": 26769.121,
+   "igualAIdentidad": true,
+   "segSplit": 78,
+   "V": 52,
+   "ady": 10
+  },
+  {
+   "troquel": "ill-real-caja-botanica",
+   "transformacion": "traslación +1e5",
+   "paneles": 11,
+   "area": 26769.121,
+   "igualAIdentidad": true,
+   "segSplit": 78,
+   "V": 52,
+   "ady": 10
+  },
+  {
+   "troquel": "ill-real-caja-botanica",
+   "transformacion": "traslación +1e7",
+   "paneles": 7,
+   "area": 22851.633,
+   "igualAIdentidad": false,
+   "segSplit": 78,
+   "V": 52,
+   "ady": 6
+  },
+  {
+   "troquel": "ill-real-caja-botanica",
+   "transformacion": "rotación 90°",
+   "paneles": 11,
+   "area": 26769.121,
+   "igualAIdentidad": true,
+   "segSplit": 78,
+   "V": 52,
+   "ady": 10
+  },
+  {
+   "troquel": "ill-real-caja-botanica",
+   "transformacion": "rotación 180°",
+   "paneles": 11,
+   "area": 26769.121,
+   "igualAIdentidad": true,
+   "segSplit": 78,
+   "V": 52,
+   "ady": 10
+  },
+  {
+   "troquel": "ill-real-caja-botanica",
+   "transformacion": "rotación 37°",
+   "paneles": 11,
+   "area": 26769.121,
+   "igualAIdentidad": true,
+   "segSplit": 78,
+   "V": 52,
+   "ady": 10
+  },
+  {
+   "troquel": "ill-real-caja-botanica",
+   "transformacion": "rotación 1°",
+   "paneles": 11,
+   "area": 26769.121,
+   "igualAIdentidad": true,
+   "segSplit": 78,
+   "V": 52,
+   "ady": 10
+  },
+  {
+   "troquel": "ill-real-caja-botanica",
+   "transformacion": "reflexión X",
+   "paneles": 11,
+   "area": 26769.121,
+   "igualAIdentidad": true,
+   "segSplit": 78,
+   "V": 52,
+   "ady": 10
+  },
+  {
+   "troquel": "caja-botanica-real",
+   "transformacion": "identidad",
+   "paneles": 11,
+   "area": 26102.352,
+   "igualAIdentidad": true,
+   "segSplit": 87,
+   "V": 52,
+   "ady": 10
+  },
+  {
+   "troquel": "caja-botanica-real",
+   "transformacion": "traslación +1000",
+   "paneles": 11,
+   "area": 26102.352,
+   "igualAIdentidad": true,
+   "segSplit": 87,
+   "V": 52,
+   "ady": 10
+  },
+  {
+   "troquel": "caja-botanica-real",
+   "transformacion": "traslación −5000",
+   "paneles": 11,
+   "area": 26102.352,
+   "igualAIdentidad": true,
+   "segSplit": 87,
+   "V": 52,
+   "ady": 10
+  },
+  {
+   "troquel": "caja-botanica-real",
+   "transformacion": "traslación +1e5",
+   "paneles": 11,
+   "area": 26102.352,
+   "igualAIdentidad": true,
+   "segSplit": 87,
+   "V": 52,
+   "ady": 10
+  },
+  {
+   "troquel": "caja-botanica-real",
+   "transformacion": "traslación +1e7",
+   "paneles": 10,
+   "area": 25435.938,
+   "igualAIdentidad": false,
+   "segSplit": 87,
+   "V": 52,
+   "ady": 9
+  },
+  {
+   "troquel": "caja-botanica-real",
+   "transformacion": "rotación 90°",
+   "paneles": 11,
+   "area": 26102.352,
+   "igualAIdentidad": true,
+   "segSplit": 87,
+   "V": 52,
+   "ady": 10
+  },
+  {
+   "troquel": "caja-botanica-real",
+   "transformacion": "rotación 180°",
+   "paneles": 11,
+   "area": 26102.352,
+   "igualAIdentidad": true,
+   "segSplit": 87,
+   "V": 52,
+   "ady": 10
+  },
+  {
+   "troquel": "caja-botanica-real",
+   "transformacion": "rotación 37°",
+   "paneles": 11,
+   "area": 26102.352,
+   "igualAIdentidad": true,
+   "segSplit": 87,
+   "V": 52,
+   "ady": 10
+  },
+  {
+   "troquel": "caja-botanica-real",
+   "transformacion": "rotación 1°",
+   "paneles": 11,
+   "area": 26102.352,
+   "igualAIdentidad": true,
+   "segSplit": 87,
+   "V": 52,
+   "ady": 10
+  },
+  {
+   "troquel": "caja-botanica-real",
+   "transformacion": "reflexión X",
+   "paneles": 11,
+   "area": 26102.352,
+   "igualAIdentidad": true,
+   "segSplit": 87,
+   "V": 52,
+   "ady": 10
+  },
+  {
+   "troquel": "ill-real-caja-simple",
+   "transformacion": "identidad",
+   "paneles": 2,
+   "area": 6000,
+   "igualAIdentidad": true,
+   "segSplit": 11,
+   "V": 10,
+   "ady": 1
+  },
+  {
+   "troquel": "ill-real-caja-simple",
+   "transformacion": "traslación +1000",
+   "paneles": 2,
+   "area": 6000,
+   "igualAIdentidad": true,
+   "segSplit": 11,
+   "V": 10,
+   "ady": 1
+  },
+  {
+   "troquel": "ill-real-caja-simple",
+   "transformacion": "traslación −5000",
+   "paneles": 2,
+   "area": 6000,
+   "igualAIdentidad": true,
+   "segSplit": 11,
+   "V": 10,
+   "ady": 1
+  },
+  {
+   "troquel": "ill-real-caja-simple",
+   "transformacion": "traslación +1e5",
+   "paneles": 2,
+   "area": 6000,
+   "igualAIdentidad": true,
+   "segSplit": 11,
+   "V": 10,
+   "ady": 1
+  },
+  {
+   "troquel": "ill-real-caja-simple",
+   "transformacion": "traslación +1e7",
+   "paneles": 2,
+   "area": 6000,
+   "igualAIdentidad": true,
+   "segSplit": 11,
+   "V": 10,
+   "ady": 1
+  },
+  {
+   "troquel": "ill-real-caja-simple",
+   "transformacion": "rotación 90°",
+   "paneles": 2,
+   "area": 6000,
+   "igualAIdentidad": true,
+   "segSplit": 11,
+   "V": 10,
+   "ady": 1
+  },
+  {
+   "troquel": "ill-real-caja-simple",
+   "transformacion": "rotación 180°",
+   "paneles": 2,
+   "area": 6000,
+   "igualAIdentidad": true,
+   "segSplit": 11,
+   "V": 10,
+   "ady": 1
+  },
+  {
+   "troquel": "ill-real-caja-simple",
+   "transformacion": "rotación 37°",
+   "paneles": 2,
+   "area": 6000,
+   "igualAIdentidad": true,
+   "segSplit": 11,
+   "V": 10,
+   "ady": 1
+  },
+  {
+   "troquel": "ill-real-caja-simple",
+   "transformacion": "rotación 1°",
+   "paneles": 2,
+   "area": 6000,
+   "igualAIdentidad": true,
+   "segSplit": 11,
+   "V": 10,
+   "ady": 1
+  },
+  {
+   "troquel": "ill-real-caja-simple",
+   "transformacion": "reflexión X",
+   "paneles": 2,
+   "area": 6000,
+   "igualAIdentidad": true,
+   "segSplit": 11,
+   "V": 10,
+   "ady": 1
+  },
+  {
+   "troquel": "ill-real-caja-botanica",
+   "transformacion": "creases en orden inverso",
+   "paneles": 11,
+   "area": 26769.121,
+   "igualAIdentidad": true,
+   "segSplit": 78,
+   "V": 52,
+   "ady": 10
+  },
+  {
+   "troquel": "ill-real-caja-botanica",
+   "transformacion": "cada crease invertida",
+   "paneles": 11,
+   "area": 26769.121,
+   "igualAIdentidad": true,
+   "segSplit": 78,
+   "V": 52,
+   "ady": 10
+  },
+  {
+   "troquel": "ill-real-caja-botanica",
+   "transformacion": "contorno en sentido contrario",
+   "paneles": 12,
+   "area": 26756.314,
+   "igualAIdentidad": false,
+   "segSplit": 78,
+   "V": 51,
+   "ady": 11
+  },
+  {
+   "troquel": "ill-real-caja-botanica",
+   "transformacion": "contorno con inicio desplazado 7",
+   "paneles": 11,
+   "area": 26769.121,
+   "igualAIdentidad": true,
+   "segSplit": 78,
+   "V": 52,
+   "ady": 10
+  },
+  {
+   "troquel": "caja-botanica-real",
+   "transformacion": "creases en orden inverso",
+   "paneles": 11,
+   "area": 26102.352,
+   "igualAIdentidad": true,
+   "segSplit": 87,
+   "V": 52,
+   "ady": 10
+  },
+  {
+   "troquel": "caja-botanica-real",
+   "transformacion": "cada crease invertida",
+   "paneles": 11,
+   "area": 26102.352,
+   "igualAIdentidad": true,
+   "segSplit": 87,
+   "V": 52,
+   "ady": 10
+  },
+  {
+   "troquel": "caja-botanica-real",
+   "transformacion": "contorno en sentido contrario",
+   "paneles": 11,
+   "area": 26089.555,
+   "igualAIdentidad": false,
+   "segSplit": 87,
+   "V": 52,
+   "ady": 10
+  },
+  {
+   "troquel": "caja-botanica-real",
+   "transformacion": "contorno con inicio desplazado 7",
+   "paneles": 11,
+   "area": 26102.352,
+   "igualAIdentidad": true,
+   "segSplit": 87,
+   "V": 52,
+   "ady": 10
+  },
+  {
+   "troquel": "ill-real-caja-simple",
+   "transformacion": "creases en orden inverso",
+   "paneles": 2,
+   "area": 6000,
+   "igualAIdentidad": true,
+   "segSplit": 11,
+   "V": 10,
+   "ady": 1
+  },
+  {
+   "troquel": "ill-real-caja-simple",
+   "transformacion": "cada crease invertida",
+   "paneles": 2,
+   "area": 6000,
+   "igualAIdentidad": true,
+   "segSplit": 11,
+   "V": 10,
+   "ady": 1
+  },
+  {
+   "troquel": "ill-real-caja-simple",
+   "transformacion": "contorno en sentido contrario",
+   "paneles": 2,
+   "area": 6000,
+   "igualAIdentidad": true,
+   "segSplit": 11,
+   "V": 10,
+   "ady": 1
+  },
+  {
+   "troquel": "ill-real-caja-simple",
+   "transformacion": "contorno con inicio desplazado 7",
+   "paneles": 2,
+   "area": 6000,
+   "igualAIdentidad": true,
+   "segSplit": 11,
+   "V": 10,
+   "ady": 1
+  }
+ ],
+ "correspondencia": [
+  {
+   "oraculo": "O0",
+   "area": 1599.96,
+   "centroide": "277.6,-331.6",
+   "creases": "3 11",
+   "legacy×1": "P0 ΔA=-19.90",
+   "legacy×0.75": "P0 ΔA=-0.11"
+  },
+  {
+   "oraculo": "O1",
+   "area": 391.37,
+   "centroide": "277.6,-356.9",
+   "creases": "3",
+   "legacy×1": "P1 ΔA=-75.18",
+   "legacy×0.75": "P1 ΔA=-75.18"
+  },
+  {
+   "oraculo": "O2",
+   "area": 4787.65,
+   "centroide": "277.6,-251.8",
+   "creases": "5 6 11",
+   "legacy×1": "P7 ΔA=7.11",
+   "legacy×0.75": "P2 ΔA=17.13"
+  },
+  {
+   "oraculo": "O3",
+   "area": 4800.16,
+   "centroide": "237.6,-251.1",
+   "creases": "6 7 9 10",
+   "legacy×1": "P2 ΔA=0.00",
+   "legacy×0.75": "P3 ΔA=-60.11"
+  },
+  {
+   "oraculo": "O4",
+   "area": 665.71,
+   "centroide": "237.5,-320.7",
+   "creases": "10",
+   "legacy×1": "— (perdido)",
+   "legacy×0.75": "P4 ΔA=-0.00"
+  },
+  {
+   "oraculo": "O5",
+   "area": 4819.64,
+   "centroide": "197.6,-250.9",
+   "creases": "4 8 9",
+   "legacy×1": "P3 ΔA=-19.90",
+   "legacy×0.75": "P5 ΔA=10.16"
+  },
+  {
+   "oraculo": "O6",
+   "area": 1760.32,
+   "centroide": "170.2,-251.1",
+   "creases": "4",
+   "legacy×1": "P4 ΔA=0.00",
+   "legacy×0.75": "P6 ΔA=-0.00"
+  },
+  {
+   "oraculo": "O7",
+   "area": 1579.92,
+   "centroide": "197.6,-170.9",
+   "creases": "0 8",
+   "legacy×1": "P5 ΔA=19.90",
+   "legacy×0.75": "P7 ΔA=9.88"
+  },
+  {
+   "oraculo": "O8",
+   "area": 391.47,
+   "centroide": "197.6,-145.9",
+   "creases": "0",
+   "legacy×1": "P6 ΔA=-72.34",
+   "legacy×0.75": "P8 ΔA=-72.34"
+  },
+  {
+   "oraculo": "O9",
+   "area": 665.57,
+   "centroide": "237.7,-181.6",
+   "creases": "7",
+   "legacy×1": "— (perdido)",
+   "legacy×0.75": "P9 ΔA=0.00"
+  },
+  {
+   "oraculo": "O10",
+   "area": 4800.16,
+   "centroide": "317.6,-251.1",
+   "creases": "1 2 5",
+   "legacy×1": "P8 ΔA=0.00",
+   "legacy×0.75": "P10 ΔA=0.00"
+  },
+  {
+   "oraculo": "O11",
+   "area": 665.57,
+   "centroide": "317.5,-181.6",
+   "creases": "1",
+   "legacy×1": "P9 ΔA=0.00",
+   "legacy×0.75": "P11 ΔA=1.00"
+  },
+  {
+   "oraculo": "O12",
+   "area": 665.67,
+   "centroide": "317.7,-320.7",
+   "creases": "2",
+   "legacy×1": "P10 ΔA=0.75",
+   "legacy×0.75": "P12 ΔA=1.00"
+  }
+ ]
+}

@@ -1,0 +1,855 @@
+{
+ "troquel": "tests/fixtures/illustrator-real/ill-real-caja-simple.dieline.json",
+ "referencia": 1,
+ "tabla": [
+  {
+   "escala": 0.25,
+   "replica": "OK",
+   "segIn": 9,
+   "segSplit": 14,
+   "iter": 5,
+   "V": 11,
+   "Earis": 13,
+   "caras": 4,
+   "panelesFiltro": 3,
+   "estricta2": 0,
+   "paneles": 3,
+   "ady": 1,
+   "avisos": 0,
+   "areaN": 11350,
+   "primeraDivergencia": "E3_troceado"
+  },
+  {
+   "escala": 0.5,
+   "replica": "OK",
+   "segIn": 9,
+   "segSplit": 14,
+   "iter": 5,
+   "V": 11,
+   "Earis": 13,
+   "caras": 4,
+   "panelesFiltro": 3,
+   "estricta2": 0,
+   "paneles": 3,
+   "ady": 3,
+   "avisos": 0,
+   "areaN": 11350,
+   "primeraDivergencia": "E3_troceado"
+  },
+  {
+   "escala": 0.6,
+   "replica": "OK",
+   "segIn": 9,
+   "segSplit": 14,
+   "iter": 5,
+   "V": 11,
+   "Earis": 13,
+   "caras": 4,
+   "panelesFiltro": 3,
+   "estricta2": 0,
+   "paneles": 3,
+   "ady": 3,
+   "avisos": 0,
+   "areaN": 11350,
+   "primeraDivergencia": "E3_troceado"
+  },
+  {
+   "escala": 0.7,
+   "replica": "OK",
+   "segIn": 9,
+   "segSplit": 11,
+   "iter": 3,
+   "V": 10,
+   "Earis": 11,
+   "caras": 5,
+   "panelesFiltro": 3,
+   "estricta2": 1,
+   "paneles": 2,
+   "ady": 1,
+   "avisos": 0,
+   "areaN": 6000,
+   "primeraDivergencia": null
+  },
+  {
+   "escala": 0.75,
+   "replica": "OK",
+   "segIn": 9,
+   "segSplit": 11,
+   "iter": 3,
+   "V": 10,
+   "Earis": 11,
+   "caras": 5,
+   "panelesFiltro": 3,
+   "estricta2": 1,
+   "paneles": 2,
+   "ady": 1,
+   "avisos": 0,
+   "areaN": 6000,
+   "primeraDivergencia": null
+  },
+  {
+   "escala": 1,
+   "replica": "OK",
+   "segIn": 9,
+   "segSplit": 11,
+   "iter": 3,
+   "V": 10,
+   "Earis": 11,
+   "caras": 5,
+   "panelesFiltro": 3,
+   "estricta2": 1,
+   "paneles": 2,
+   "ady": 1,
+   "avisos": 0,
+   "areaN": 6000,
+   "primeraDivergencia": null
+  },
+  {
+   "escala": 2,
+   "replica": "OK",
+   "segIn": 9,
+   "segSplit": 11,
+   "iter": 3,
+   "V": 10,
+   "Earis": 11,
+   "caras": 5,
+   "panelesFiltro": 3,
+   "estricta2": 1,
+   "paneles": 2,
+   "ady": 1,
+   "avisos": 0,
+   "areaN": 6000,
+   "primeraDivergencia": null
+  }
+ ],
+ "detalle": {
+  "0.25": {
+   "primeraEtapa": "E3_troceado",
+   "solo_x1": [
+    "20,79.999999,70.000003,79.999999",
+    "70.000003,19.999998,70.000003,79.999999",
+    "70.000003,79.999999,119.999997,79.999999"
+   ],
+   "solo_x0.25": [
+    "29.999999,74.999999,40.000001,74.999999",
+    "20,79.999999,29.999999,74.999999",
+    "40.000001,74.999999,70.000003,76.874999",
+    "70.000003,19.999998,70.000003,76.874999",
+    "70.000003,76.874999,119.999997,79.999999",
+    "70.000003,76.874999,70.000003,79.999999"
+   ]
+  },
+  "0.5": {
+   "primeraEtapa": "E3_troceado",
+   "solo_x1": [
+    "20,79.999999,70.000003,79.999999",
+    "70.000003,19.999998,70.000003,79.999999",
+    "70.000003,79.999999,119.999997,79.999999"
+   ],
+   "solo_x0.5": [
+    "29.999999,74.999999,40.000001,74.999999",
+    "20,79.999999,29.999999,74.999999",
+    "40.000001,74.999999,70.000003,76.874999",
+    "70.000003,19.999998,70.000003,76.874999",
+    "70.000003,76.874999,119.999997,79.999999",
+    "70.000003,76.874999,70.000003,79.999999"
+   ]
+  },
+  "0.6": {
+   "primeraEtapa": "E3_troceado",
+   "solo_x1": [
+    "20,79.999999,70.000003,79.999999",
+    "70.000003,19.999998,70.000003,79.999999",
+    "70.000003,79.999999,119.999997,79.999999"
+   ],
+   "solo_x0.6": [
+    "29.999999,74.999999,40.000001,74.999999",
+    "20,79.999999,29.999999,74.999999",
+    "40.000001,74.999999,70.000003,76.874999",
+    "70.000003,19.999998,70.000003,76.874999",
+    "70.000003,76.874999,119.999997,79.999999",
+    "70.000003,76.874999,70.000003,79.999999"
+   ]
+  }
+ },
+ "porEscala": {
+  "1": {
+   "replicaOK": true,
+   "e1": {
+    "total": 2,
+    "shells": 1,
+    "holes": 1,
+    "parentCount": [
+     0,
+     1
+    ]
+   },
+   "e3": {
+    "segmentos": 11,
+    "iteraciones": 3
+   },
+   "e4": {
+    "vertices": 10,
+    "aristas": 11,
+    "grados": {
+     "2": 8,
+     "3": 2
+    }
+   },
+   "e5": {
+    "total": 5,
+    "euler": {
+     "V": 10,
+     "E": 11,
+     "F": 5
+    }
+   },
+   "e6": {
+    "paneles": 3,
+    "descartes": [
+     {
+      "cara": 3,
+      "motivo": "en-hueco",
+      "area": 100.00003061676375,
+      "centroid": {
+       "x": 34.9999999749679,
+       "y": 69.99999860419456
+      }
+     },
+     {
+      "cara": 4,
+      "motivo": "en-hueco",
+      "area": -100.00003061676375,
+      "centroid": {
+       "x": 34.99999997496791,
+       "y": 69.99999860419454
+      }
+     }
+    ],
+    "porMotivo": {
+     "en-hueco": 2
+    }
+   },
+   "e7": {
+    "creaseEdges": 1,
+    "porCrease": [
+     {
+      "creaseIdx": 0,
+      "segIdx": 0,
+      "comparten": [
+       1,
+       2
+      ]
+     }
+    ],
+    "compartidasPor2": 1
+   },
+   "e8": {
+    "antes": 3,
+    "componentes": [
+     {
+      "nodes": [
+       1,
+       2
+      ],
+      "areaSum": 5999.999899138194
+     }
+    ],
+    "conservados": 2,
+    "aislados": [
+     0
+    ],
+    "descartados": [
+     {
+      "panel": 0,
+      "area": 5999.999899138195,
+      "centroid": {
+       "x": 69.99999860419477,
+       "y": 49.99999823400115
+      }
+     }
+    ]
+   },
+   "e9": {
+    "adyacencias": 1,
+    "modo": "Adjacency edges: 1 (strict)",
+    "base": 1,
+    "arbol": 1,
+    "noAlcanzados": 0
+   },
+   "e10": {
+    "problemas": 0
+   }
+  },
+  "2": {
+   "replicaOK": true,
+   "e1": {
+    "total": 2,
+    "shells": 1,
+    "holes": 1,
+    "parentCount": [
+     0,
+     1
+    ]
+   },
+   "e3": {
+    "segmentos": 11,
+    "iteraciones": 3
+   },
+   "e4": {
+    "vertices": 10,
+    "aristas": 11,
+    "grados": {
+     "2": 8,
+     "3": 2
+    }
+   },
+   "e5": {
+    "total": 5,
+    "euler": {
+     "V": 10,
+     "E": 11,
+     "F": 5
+    }
+   },
+   "e6": {
+    "paneles": 3,
+    "descartes": [
+     {
+      "cara": 3,
+      "motivo": "en-hueco",
+      "area": 400.000122467055,
+      "centroid": {
+       "x": 69.9999999499358,
+       "y": 139.99999720838912
+      }
+     },
+     {
+      "cara": 4,
+      "motivo": "en-hueco",
+      "area": -400.000122467055,
+      "centroid": {
+       "x": 69.99999994993583,
+       "y": 139.9999972083891
+      }
+     }
+    ],
+    "porMotivo": {
+     "en-hueco": 2
+    }
+   },
+   "e7": {
+    "creaseEdges": 1,
+    "porCrease": [
+     {
+      "creaseIdx": 0,
+      "segIdx": 0,
+      "comparten": [
+       1,
+       2
+      ]
+     }
+    ],
+    "compartidasPor2": 1
+   },
+   "e8": {
+    "antes": 3,
+    "componentes": [
+     {
+      "nodes": [
+       1,
+       2
+      ],
+      "areaSum": 23999.999596552778
+     }
+    ],
+    "conservados": 2,
+    "aislados": [
+     0
+    ],
+    "descartados": [
+     {
+      "panel": 0,
+      "area": 23999.99959655278,
+      "centroid": {
+       "x": 139.99999720838954,
+       "y": 99.9999964680023
+      }
+     }
+    ]
+   },
+   "e9": {
+    "adyacencias": 1,
+    "modo": "Adjacency edges: 1 (strict)",
+    "base": 1,
+    "arbol": 1,
+    "noAlcanzados": 0
+   },
+   "e10": {
+    "problemas": 0
+   }
+  },
+  "0.25": {
+   "replicaOK": true,
+   "e1": {
+    "total": 2,
+    "shells": 1,
+    "holes": 1,
+    "parentCount": [
+     0,
+     1
+    ]
+   },
+   "e3": {
+    "segmentos": 14,
+    "iteraciones": 5
+   },
+   "e4": {
+    "vertices": 11,
+    "aristas": 13,
+    "grados": {
+     "1": 1,
+     "2": 6,
+     "3": 3,
+     "4": 1
+    }
+   },
+   "e5": {
+    "total": 4,
+    "euler": {
+     "V": 11,
+     "E": 13,
+     "F": 4
+    }
+   },
+   "e6": {
+    "paneles": 3,
+    "descartes": [
+     {
+      "cara": 3,
+      "motivo": "en-hueco",
+      "area": 6.2500019135477345,
+      "centroid": {
+       "x": 8.749999993741975,
+       "y": 17.49999965104864
+      }
+     }
+    ],
+    "porMotivo": {
+     "en-hueco": 1
+    }
+   },
+   "e7": {
+    "creaseEdges": 1,
+    "porCrease": [
+     {
+      "creaseIdx": 0,
+      "segIdx": 0,
+      "comparten": []
+     }
+    ],
+    "compartidasPor2": 0
+   },
+   "e8": {
+    "antes": 3,
+    "componentes": [],
+    "conservados": 3,
+    "aislados": [
+     0,
+     1,
+     2
+    ]
+   },
+   "e9": {
+    "adyacencias": 1,
+    "modo": "Adjacency edges: 1 (raw-panel overlap)",
+    "base": 1,
+    "arbol": 0,
+    "noAlcanzados": 2
+   },
+   "e10": {
+    "problemas": 0
+   }
+  },
+  "0.5": {
+   "replicaOK": true,
+   "e1": {
+    "total": 2,
+    "shells": 1,
+    "holes": 1,
+    "parentCount": [
+     0,
+     1
+    ]
+   },
+   "e3": {
+    "segmentos": 14,
+    "iteraciones": 5
+   },
+   "e4": {
+    "vertices": 11,
+    "aristas": 13,
+    "grados": {
+     "1": 1,
+     "2": 6,
+     "3": 3,
+     "4": 1
+    }
+   },
+   "e5": {
+    "total": 4,
+    "euler": {
+     "V": 11,
+     "E": 13,
+     "F": 4
+    }
+   },
+   "e6": {
+    "paneles": 3,
+    "descartes": [
+     {
+      "cara": 3,
+      "motivo": "en-hueco",
+      "area": 25.000007654190938,
+      "centroid": {
+       "x": 17.49999998748395,
+       "y": 34.99999930209728
+      }
+     }
+    ],
+    "porMotivo": {
+     "en-hueco": 1
+    }
+   },
+   "e7": {
+    "creaseEdges": 1,
+    "porCrease": [
+     {
+      "creaseIdx": 0,
+      "segIdx": 0,
+      "comparten": []
+     }
+    ],
+    "compartidasPor2": 0
+   },
+   "e8": {
+    "antes": 3,
+    "componentes": [],
+    "conservados": 3,
+    "aislados": [
+     0,
+     1,
+     2
+    ]
+   },
+   "e9": {
+    "adyacencias": 3,
+    "modo": "Adjacency edges: 3 (raw-panel overlap)",
+    "base": 1,
+    "arbol": 2,
+    "noAlcanzados": 0
+   },
+   "e10": {
+    "problemas": 0
+   }
+  },
+  "0.6": {
+   "replicaOK": true,
+   "e1": {
+    "total": 2,
+    "shells": 1,
+    "holes": 1,
+    "parentCount": [
+     0,
+     1
+    ]
+   },
+   "e3": {
+    "segmentos": 14,
+    "iteraciones": 5
+   },
+   "e4": {
+    "vertices": 11,
+    "aristas": 13,
+    "grados": {
+     "1": 1,
+     "2": 6,
+     "3": 3,
+     "4": 1
+    }
+   },
+   "e5": {
+    "total": 4,
+    "euler": {
+     "V": 11,
+     "E": 13,
+     "F": 4
+    }
+   },
+   "e6": {
+    "paneles": 3,
+    "descartes": [
+     {
+      "cara": 3,
+      "motivo": "en-hueco",
+      "area": 36.00001102203464,
+      "centroid": {
+       "x": 20.9999999849808,
+       "y": 41.999999162516815
+      }
+     }
+    ],
+    "porMotivo": {
+     "en-hueco": 1
+    }
+   },
+   "e7": {
+    "creaseEdges": 1,
+    "porCrease": [
+     {
+      "creaseIdx": 0,
+      "segIdx": 0,
+      "comparten": []
+     }
+    ],
+    "compartidasPor2": 0
+   },
+   "e8": {
+    "antes": 3,
+    "componentes": [],
+    "conservados": 3,
+    "aislados": [
+     0,
+     1,
+     2
+    ]
+   },
+   "e9": {
+    "adyacencias": 3,
+    "modo": "Adjacency edges: 3 (raw-panel overlap)",
+    "base": 1,
+    "arbol": 2,
+    "noAlcanzados": 0
+   },
+   "e10": {
+    "problemas": 0
+   }
+  },
+  "0.7": {
+   "replicaOK": true,
+   "e1": {
+    "total": 2,
+    "shells": 1,
+    "holes": 1,
+    "parentCount": [
+     0,
+     1
+    ]
+   },
+   "e3": {
+    "segmentos": 11,
+    "iteraciones": 3
+   },
+   "e4": {
+    "vertices": 10,
+    "aristas": 11,
+    "grados": {
+     "2": 8,
+     "3": 2
+    }
+   },
+   "e5": {
+    "total": 5,
+    "euler": {
+     "V": 10,
+     "E": 11,
+     "F": 5
+    }
+   },
+   "e6": {
+    "paneles": 3,
+    "descartes": [
+     {
+      "cara": 3,
+      "motivo": "en-hueco",
+      "area": 49.00001500221401,
+      "centroid": {
+       "x": 24.49999998247756,
+       "y": 48.99999902293624
+      }
+     },
+     {
+      "cara": 4,
+      "motivo": "en-hueco",
+      "area": -49.00001500221401,
+      "centroid": {
+       "x": 24.499999982477565,
+       "y": 48.99999902293624
+      }
+     }
+    ],
+    "porMotivo": {
+     "en-hueco": 2
+    }
+   },
+   "e7": {
+    "creaseEdges": 1,
+    "porCrease": [
+     {
+      "creaseIdx": 0,
+      "segIdx": 0,
+      "comparten": [
+       1,
+       2
+      ]
+     }
+    ],
+    "compartidasPor2": 1
+   },
+   "e8": {
+    "antes": 3,
+    "componentes": [
+     {
+      "nodes": [
+       1,
+       2
+      ],
+      "areaSum": 2939.999950577716
+     }
+    ],
+    "conservados": 2,
+    "aislados": [
+     0
+    ],
+    "descartados": [
+     {
+      "panel": 0,
+      "area": 2939.999950577716,
+      "centroid": {
+       "x": 48.99999902293632,
+       "y": 34.999998763800804
+      }
+     }
+    ]
+   },
+   "e9": {
+    "adyacencias": 1,
+    "modo": "Adjacency edges: 1 (strict)",
+    "base": 1,
+    "arbol": 1,
+    "noAlcanzados": 0
+   },
+   "e10": {
+    "problemas": 0
+   }
+  },
+  "0.75": {
+   "replicaOK": true,
+   "e1": {
+    "total": 2,
+    "shells": 1,
+    "holes": 1,
+    "parentCount": [
+     0,
+     1
+    ]
+   },
+   "e3": {
+    "segmentos": 11,
+    "iteraciones": 3
+   },
+   "e4": {
+    "vertices": 10,
+    "aristas": 11,
+    "grados": {
+     "2": 8,
+     "3": 2
+    }
+   },
+   "e5": {
+    "total": 5,
+    "euler": {
+     "V": 10,
+     "E": 11,
+     "F": 5
+    }
+   },
+   "e6": {
+    "paneles": 3,
+    "descartes": [
+     {
+      "cara": 3,
+      "motivo": "en-hueco",
+      "area": 56.25001722192928,
+      "centroid": {
+       "x": 26.249999981225972,
+       "y": 52.499998953146
+      }
+     },
+     {
+      "cara": 4,
+      "motivo": "en-hueco",
+      "area": -56.25001722192928,
+      "centroid": {
+       "x": 26.24999998122598,
+       "y": 52.49999895314599
+      }
+     }
+    ],
+    "porMotivo": {
+     "en-hueco": 2
+    }
+   },
+   "e7": {
+    "creaseEdges": 1,
+    "porCrease": [
+     {
+      "creaseIdx": 0,
+      "segIdx": 0,
+      "comparten": [
+       1,
+       2
+      ]
+     }
+    ],
+    "compartidasPor2": 1
+   },
+   "e8": {
+    "antes": 3,
+    "componentes": [
+     {
+      "nodes": [
+       1,
+       2
+      ],
+      "areaSum": 3374.999943265235
+     }
+    ],
+    "conservados": 2,
+    "aislados": [
+     0
+    ],
+    "descartados": [
+     {
+      "panel": 0,
+      "area": 3374.999943265235,
+      "centroid": {
+       "x": 52.49999895314607,
+       "y": 37.49999867550086
+      }
+     }
+    ]
+   },
+   "e9": {
+    "adyacencias": 1,
+    "modo": "Adjacency edges: 1 (strict)",
+    "base": 1,
+    "arbol": 1,
+    "noAlcanzados": 0
+   },
+   "e10": {
+    "problemas": 0
+   }
+  }
+ }
+}

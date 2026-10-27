@@ -1,0 +1,68 @@
+{
+ "troquel": "tests/fixtures/illustrator-real/ill-real-caja-simple.dieline.json",
+ "GRAPH_EPS": 0.5,
+ "intervalo": [
+  0.2,
+  5
+ ],
+ "pasos": 600,
+ "criticos": [
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 0.3790401102930809,
+   "L": 1.3191216085637762,
+   "lateral": 4.999999419677792,
+   "entre": "extremo de hueco0.0@(30.000,75.000) sobre contorno0.0"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 0.3790401102930809,
+   "L": 1.3191216085637762,
+   "lateral": 4.999999419677792,
+   "entre": "extremo de hueco0.3@(30.000,75.000) sobre contorno0.0"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 0.6479826006351256,
+   "L": 0.7716256570931392,
+   "lateral": 4.999999419677792,
+   "entre": "extremo de hueco0.0@(40.000,75.000) sobre contorno0.0"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 0.6479826006351256,
+   "L": 0.7716256570931392,
+   "lateral": 4.999999419677792,
+   "entre": "extremo de hueco0.1@(40.000,75.000) sobre contorno0.0"
+  }
+ ],
+ "transiciones": [
+  {
+   "entre": "0.38278–0.38484",
+   "de": "3|11350|1|4|11|14",
+   "a": "3|11350|3|4|11|14",
+   "explicadaPor": []
+  },
+  {
+   "entre": "0.64756–0.65104",
+   "de": "3|11350|3|4|11|14",
+   "a": "2|6000|1|5|10|11",
+   "explicadaPor": [
+    "pointOnSeg (exceso d1+d2−len) L=0.7716 s*=0.64798",
+    "pointOnSeg (exceso d1+d2−len) L=0.7716 s*=0.64798"
+   ]
+  }
+ ],
+ "resultados": {
+  "3 paneles · área 11350": {
+   "desde": 0.2,
+   "hasta": 0.6475571437820813,
+   "n": 220
+  },
+  "2 paneles · área 6000": {
+   "desde": 0.6510404892001014,
+   "hasta": 5,
+   "n": 381
+  }
+ }
+}

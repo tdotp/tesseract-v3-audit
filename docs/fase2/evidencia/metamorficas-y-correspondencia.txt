@@ -1,0 +1,66 @@
+┌─────────┬──────────────────────────┬────────────────────────────────────┬─────────┬───────────┬─────────────────┬──────────┬────┬─────┐
+│ (index) │ troquel                  │ transformacion                     │ paneles │ area      │ igualAIdentidad │ segSplit │ V  │ ady │
+├─────────┼──────────────────────────┼────────────────────────────────────┼─────────┼───────────┼─────────────────┼──────────┼────┼─────┤
+│ 0       │ 'ill-real-caja-botanica' │ 'identidad'                        │ 11      │ 26769.121 │ true            │ 78       │ 52 │ 10  │
+│ 1       │ 'ill-real-caja-botanica' │ 'traslación +1000'                 │ 11      │ 26769.121 │ true            │ 78       │ 52 │ 10  │
+│ 2       │ 'ill-real-caja-botanica' │ 'traslación −5000'                 │ 11      │ 26769.121 │ true            │ 78       │ 52 │ 10  │
+│ 3       │ 'ill-real-caja-botanica' │ 'traslación +1e5'                  │ 11      │ 26769.121 │ true            │ 78       │ 52 │ 10  │
+│ 4       │ 'ill-real-caja-botanica' │ 'traslación +1e7'                  │ 7       │ 22851.633 │ false           │ 78       │ 52 │ 6   │
+│ 5       │ 'ill-real-caja-botanica' │ 'rotación 90°'                     │ 11      │ 26769.121 │ true            │ 78       │ 52 │ 10  │
+│ 6       │ 'ill-real-caja-botanica' │ 'rotación 180°'                    │ 11      │ 26769.121 │ true            │ 78       │ 52 │ 10  │
+│ 7       │ 'ill-real-caja-botanica' │ 'rotación 37°'                     │ 11      │ 26769.121 │ true            │ 78       │ 52 │ 10  │
+│ 8       │ 'ill-real-caja-botanica' │ 'rotación 1°'                      │ 11      │ 26769.121 │ true            │ 78       │ 52 │ 10  │
+│ 9       │ 'ill-real-caja-botanica' │ 'reflexión X'                      │ 11      │ 26769.121 │ true            │ 78       │ 52 │ 10  │
+│ 10      │ 'caja-botanica-real'     │ 'identidad'                        │ 11      │ 26102.352 │ true            │ 87       │ 52 │ 10  │
+│ 11      │ 'caja-botanica-real'     │ 'traslación +1000'                 │ 11      │ 26102.352 │ true            │ 87       │ 52 │ 10  │
+│ 12      │ 'caja-botanica-real'     │ 'traslación −5000'                 │ 11      │ 26102.352 │ true            │ 87       │ 52 │ 10  │
+│ 13      │ 'caja-botanica-real'     │ 'traslación +1e5'                  │ 11      │ 26102.352 │ true            │ 87       │ 52 │ 10  │
+│ 14      │ 'caja-botanica-real'     │ 'traslación +1e7'                  │ 10      │ 25435.938 │ false           │ 87       │ 52 │ 9   │
+│ 15      │ 'caja-botanica-real'     │ 'rotación 90°'                     │ 11      │ 26102.352 │ true            │ 87       │ 52 │ 10  │
+│ 16      │ 'caja-botanica-real'     │ 'rotación 180°'                    │ 11      │ 26102.352 │ true            │ 87       │ 52 │ 10  │
+│ 17      │ 'caja-botanica-real'     │ 'rotación 37°'                     │ 11      │ 26102.352 │ true            │ 87       │ 52 │ 10  │
+│ 18      │ 'caja-botanica-real'     │ 'rotación 1°'                      │ 11      │ 26102.352 │ true            │ 87       │ 52 │ 10  │
+│ 19      │ 'caja-botanica-real'     │ 'reflexión X'                      │ 11      │ 26102.352 │ true            │ 87       │ 52 │ 10  │
+│ 20      │ 'ill-real-caja-simple'   │ 'identidad'                        │ 2       │ 6000      │ true            │ 11       │ 10 │ 1   │
+│ 21      │ 'ill-real-caja-simple'   │ 'traslación +1000'                 │ 2       │ 6000      │ true            │ 11       │ 10 │ 1   │
+│ 22      │ 'ill-real-caja-simple'   │ 'traslación −5000'                 │ 2       │ 6000      │ true            │ 11       │ 10 │ 1   │
+│ 23      │ 'ill-real-caja-simple'   │ 'traslación +1e5'                  │ 2       │ 6000      │ true            │ 11       │ 10 │ 1   │
+│ 24      │ 'ill-real-caja-simple'   │ 'traslación +1e7'                  │ 2       │ 6000      │ true            │ 11       │ 10 │ 1   │
+│ 25      │ 'ill-real-caja-simple'   │ 'rotación 90°'                     │ 2       │ 6000      │ true            │ 11       │ 10 │ 1   │
+│ 26      │ 'ill-real-caja-simple'   │ 'rotación 180°'                    │ 2       │ 6000      │ true            │ 11       │ 10 │ 1   │
+│ 27      │ 'ill-real-caja-simple'   │ 'rotación 37°'                     │ 2       │ 6000      │ true            │ 11       │ 10 │ 1   │
+│ 28      │ 'ill-real-caja-simple'   │ 'rotación 1°'                      │ 2       │ 6000      │ true            │ 11       │ 10 │ 1   │
+│ 29      │ 'ill-real-caja-simple'   │ 'reflexión X'                      │ 2       │ 6000      │ true            │ 11       │ 10 │ 1   │
+│ 30      │ 'ill-real-caja-botanica' │ 'creases en orden inverso'         │ 11      │ 26769.121 │ true            │ 78       │ 52 │ 10  │
+│ 31      │ 'ill-real-caja-botanica' │ 'cada crease invertida'            │ 11      │ 26769.121 │ true            │ 78       │ 52 │ 10  │
+│ 32      │ 'ill-real-caja-botanica' │ 'contorno en sentido contrario'    │ 12      │ 26756.314 │ false           │ 78       │ 51 │ 11  │
+│ 33      │ 'ill-real-caja-botanica' │ 'contorno con inicio desplazado 7' │ 11      │ 26769.121 │ true            │ 78       │ 52 │ 10  │
+│ 34      │ 'caja-botanica-real'     │ 'creases en orden inverso'         │ 11      │ 26102.352 │ true            │ 87       │ 52 │ 10  │
+│ 35      │ 'caja-botanica-real'     │ 'cada crease invertida'            │ 11      │ 26102.352 │ true            │ 87       │ 52 │ 10  │
+│ 36      │ 'caja-botanica-real'     │ 'contorno en sentido contrario'    │ 11      │ 26089.555 │ false           │ 87       │ 52 │ 10  │
+│ 37      │ 'caja-botanica-real'     │ 'contorno con inicio desplazado 7' │ 11      │ 26102.352 │ true            │ 87       │ 52 │ 10  │
+│ 38      │ 'ill-real-caja-simple'   │ 'creases en orden inverso'         │ 2       │ 6000      │ true            │ 11       │ 10 │ 1   │
+│ 39      │ 'ill-real-caja-simple'   │ 'cada crease invertida'            │ 2       │ 6000      │ true            │ 11       │ 10 │ 1   │
+│ 40      │ 'ill-real-caja-simple'   │ 'contorno en sentido contrario'    │ 2       │ 6000      │ true            │ 11       │ 10 │ 1   │
+│ 41      │ 'ill-real-caja-simple'   │ 'contorno con inicio desplazado 7' │ 2       │ 6000      │ true            │ 11       │ 10 │ 1   │
+└─────────┴──────────────────────────┴────────────────────────────────────┴─────────┴───────────┴─────────────────┴──────────┴────┴─────┘
+
+Oráculo provisional: 13 paneles, Σ área = 27593.190 (contorno aplanado 27593.190)
+┌─────────┬─────────┬─────────┬────────────────┬────────────┬────────────────┬────────────────┐
+│ (index) │ oraculo │ area    │ centroide      │ creases    │ legacy×1       │ legacy×0.75    │
+├─────────┼─────────┼─────────┼────────────────┼────────────┼────────────────┼────────────────┤
+│ 0       │ 'O0'    │ 1599.96 │ '277.6,-331.6' │ '3 11'     │ 'P0 ΔA=-19.90' │ 'P0 ΔA=-0.11'  │
+│ 1       │ 'O1'    │ 391.37  │ '277.6,-356.9' │ '3'        │ 'P1 ΔA=-75.18' │ 'P1 ΔA=-75.18' │
+│ 2       │ 'O2'    │ 4787.65 │ '277.6,-251.8' │ '5 6 11'   │ 'P7 ΔA=7.11'   │ 'P2 ΔA=17.13'  │
+│ 3       │ 'O3'    │ 4800.16 │ '237.6,-251.1' │ '6 7 9 10' │ 'P2 ΔA=0.00'   │ 'P3 ΔA=-60.11' │
+│ 4       │ 'O4'    │ 665.71  │ '237.5,-320.7' │ '10'       │ '— (perdido)'  │ 'P4 ΔA=-0.00'  │
+│ 5       │ 'O5'    │ 4819.64 │ '197.6,-250.9' │ '4 8 9'    │ 'P3 ΔA=-19.90' │ 'P5 ΔA=10.16'  │
+│ 6       │ 'O6'    │ 1760.32 │ '170.2,-251.1' │ '4'        │ 'P4 ΔA=0.00'   │ 'P6 ΔA=-0.00'  │
+│ 7       │ 'O7'    │ 1579.92 │ '197.6,-170.9' │ '0 8'      │ 'P5 ΔA=19.90'  │ 'P7 ΔA=9.88'   │
+│ 8       │ 'O8'    │ 391.47  │ '197.6,-145.9' │ '0'        │ 'P6 ΔA=-72.34' │ 'P8 ΔA=-72.34' │
+│ 9       │ 'O9'    │ 665.57  │ '237.7,-181.6' │ '7'        │ '— (perdido)'  │ 'P9 ΔA=0.00'   │
+│ 10      │ 'O10'   │ 4800.16 │ '317.6,-251.1' │ '1 2 5'    │ 'P8 ΔA=0.00'   │ 'P10 ΔA=0.00'  │
+│ 11      │ 'O11'   │ 665.57  │ '317.5,-181.6' │ '1'        │ 'P9 ΔA=0.00'   │ 'P11 ΔA=1.00'  │
+│ 12      │ 'O12'   │ 665.67  │ '317.7,-320.7' │ '2'        │ 'P10 ΔA=0.75'  │ 'P12 ΔA=1.00'  │
+└─────────┴─────────┴─────────┴────────────────┴────────────┴────────────────┴────────────────┘
+→ docs/fase2/evidencia/metamorficas-y-correspondencia.json

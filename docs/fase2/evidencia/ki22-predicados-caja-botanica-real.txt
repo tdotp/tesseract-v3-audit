@@ -1,0 +1,108 @@
+Troquel: tests/fixtures/real/caja-botanica-real.dieline.json · GRAPH_EPS = 0.5 mm · escalas [0.2, 5] · 601 puntos
+
+Predicados con escala crítica en el intervalo: 83. Los más cercanos a ×1 (|s*−1| < 0.05):
+┌─────────┬─────────┬────────┬────────────┬─────────────────────────────┬─────────────────────────────────────────────────────────────────┐
+│ (index) │ s       │ L_mm   │ lateral_mm │ predicado                   │ entre                                                           │
+├─────────┼─────────┼────────┼────────────┼─────────────────────────────┼─────────────────────────────────────────────────────────────────┤
+│ 0       │ 0.99809 │ 0.501  │ ''         │ 'ptEq (fusión de vértices)' │ 'contorno0@(257.611,-311.144) ↔ crease11@(257.611,-311.645)'    │
+│ 1       │ 0.99809 │ 0.501  │ ''         │ 'ptEq (fusión de vértices)' │ 'contorno0@(297.609,-311.144) ↔ crease11@(297.609,-311.645)'    │
+│ 2       │ 0.99809 │ 0.501  │ ''         │ 'ptEq (fusión de vértices)' │ 'crease2@(297.609,-311.144) ↔ crease11@(297.609,-311.645)'      │
+│ 3       │ 0.99809 │ 0.501  │ ''         │ 'ptEq (fusión de vértices)' │ 'crease5@(297.609,-311.144) ↔ crease11@(297.609,-311.645)'      │
+│ 4       │ 0.99809 │ 0.501  │ ''         │ 'ptEq (fusión de vértices)' │ 'crease6@(257.611,-311.144) ↔ crease11@(257.611,-311.645)'      │
+│ 5       │ 0.99809 │ 0.501  │ ''         │ 'ptEq (fusión de vértices)' │ 'crease10@(257.611,-311.144) ↔ crease11@(257.611,-311.645)'     │
+│ 6       │ 0.99809 │ 0.501  │ 0          │ 'pointOnSeg (d2)'           │ 'extremo de crease11.0@(257.611,-311.645) sobre contorno0.6'    │
+│ 7       │ 0.99809 │ 0.501  │ 0.354      │ 'pointOnSeg (d1)'           │ 'extremo de crease11.0@(257.611,-311.645) sobre contorno0.7'    │
+│ 8       │ 0.99809 │ 0.501  │ 0.3542     │ 'pointOnSeg (d2)'           │ 'extremo de crease11.0@(297.609,-311.645) sobre contorno0.66'   │
+│ 9       │ 0.99809 │ 0.501  │ 0          │ 'pointOnSeg (d1)'           │ 'extremo de crease11.0@(297.609,-311.645) sobre contorno0.67'   │
+│ 10      │ 0.99811 │ 0.5009 │ ''         │ 'ptEq (fusión de vértices)' │ 'contorno0@(257.110,-191.144) ↔ contorno0@(257.611,-191.144)'   │
+│ 11      │ 0.99811 │ 0.5009 │ ''         │ 'ptEq (fusión de vértices)' │ 'contorno0@(257.110,-191.144) ↔ crease6@(257.611,-191.144)'     │
+│ 12      │ 0.99811 │ 0.5009 │ ''         │ 'ptEq (fusión de vértices)' │ 'contorno0@(257.110,-191.144) ↔ crease7@(257.611,-191.144)'     │
+│ 13      │ 0.99811 │ 0.5009 │ 0          │ 'pointOnSeg (d2)'           │ 'extremo de contorno0.33@(257.110,-191.144) sobre crease7.0'    │
+│ 14      │ 0.99811 │ 0.5009 │ 0          │ 'pointOnSeg (d2)'           │ 'extremo de contorno0.34@(257.110,-191.144) sobre crease7.0'    │
+│ 15      │ 0.99812 │ 0.5009 │ ''         │ 'ptEq (fusión de vértices)' │ 'contorno0@(218.111,-311.144) ↔ contorno0@(217.610,-311.144)'   │
+│ 16      │ 0.99812 │ 0.5009 │ ''         │ 'ptEq (fusión de vértices)' │ 'contorno0@(218.111,-311.144) ↔ crease9@(217.610,-311.144)'     │
+│ 17      │ 0.99812 │ 0.5009 │ ''         │ 'ptEq (fusión de vértices)' │ 'contorno0@(218.111,-311.144) ↔ crease10@(217.610,-311.144)'    │
+│ 18      │ 0.99812 │ 0.5009 │ 0          │ 'pointOnSeg (d2)'           │ 'extremo de contorno0.12@(218.111,-311.144) sobre crease10.0'   │
+│ 19      │ 0.99812 │ 0.5009 │ 0          │ 'pointOnSeg (d2)'           │ 'extremo de contorno0.13@(218.111,-311.144) sobre crease10.0'   │
+│ 20      │ 0.99812 │ 0.5009 │ ''         │ 'ptEq (fusión de vértices)' │ 'contorno0@(217.109,-151.146) ↔ contorno0@(217.610,-151.146)'   │
+│ 21      │ 0.99812 │ 0.5009 │ ''         │ 'ptEq (fusión de vértices)' │ 'contorno0@(217.610,-151.146) ↔ crease0@(217.109,-151.146)'     │
+│ 22      │ 0.99813 │ 0.5009 │ ''         │ 'ptEq (fusión de vértices)' │ 'contorno0@(297.609,-191.144) ↔ contorno0@(298.110,-191.144)'   │
+│ 23      │ 0.99813 │ 0.5009 │ ''         │ 'ptEq (fusión de vértices)' │ 'contorno0@(297.609,-191.144) ↔ crease1@(298.110,-191.144)'     │
+│ 24      │ 0.99813 │ 0.5009 │ ''         │ 'ptEq (fusión de vértices)' │ 'contorno0@(298.110,-191.144) ↔ crease5@(297.609,-191.144)'     │
+│ 25      │ 0.99813 │ 0.5009 │ ''         │ 'ptEq (fusión de vértices)' │ 'crease1@(298.110,-191.144) ↔ crease5@(297.609,-191.144)'       │
+│ 26      │ 0.99813 │ 0.5009 │ ''         │ 'ptEq (fusión de vértices)' │ 'contorno0@(337.610,-311.144) ↔ contorno0@(337.109,-311.144)'   │
+│ 27      │ 0.99813 │ 0.5009 │ ''         │ 'ptEq (fusión de vértices)' │ 'contorno0@(337.610,-311.144) ↔ crease2@(337.109,-311.144)'     │
+│ 28      │ 1.0052  │ 0.4974 │ ''         │ 'ptEq (fusión de vértices)' │ 'contorno0@(177.612,-151.146) ↔ contorno0@(178.109,-151.146)'   │
+│ 29      │ 1.0052  │ 0.4974 │ 0          │ 'pointOnSeg (d1)'           │ 'extremo de contorno0.21@(178.109,-151.146) sobre contorno0.19' │
+│ 30      │ 1.0052  │ 0.4974 │ 0          │ 'pointOnSeg (d1)'           │ 'extremo de contorno0.22@(178.109,-151.146) sobre contorno0.19' │
+│ 31      │ 1.0052  │ 0.4974 │ ''         │ 'ptEq (fusión de vértices)' │ 'contorno0@(177.612,-191.144) ↔ crease8@(177.612,-190.646)'     │
+│ 32      │ 1.0052  │ 0.4974 │ ''         │ 'ptEq (fusión de vértices)' │ 'contorno0@(217.610,-191.144) ↔ crease8@(217.610,-190.646)'     │
+│ 33      │ 1.0052  │ 0.4974 │ ''         │ 'ptEq (fusión de vértices)' │ 'crease4@(177.612,-191.144) ↔ crease8@(177.612,-190.646)'       │
+│ 34      │ 1.0052  │ 0.4974 │ ''         │ 'ptEq (fusión de vértices)' │ 'crease7@(217.610,-191.144) ↔ crease8@(217.610,-190.646)'       │
+│ 35      │ 1.0052  │ 0.4974 │ ''         │ 'ptEq (fusión de vértices)' │ 'crease8@(217.610,-190.646) ↔ crease9@(217.610,-191.144)'       │
+│ 36      │ 1.0052  │ 0.4974 │ 0          │ 'pointOnSeg (d1)'           │ 'extremo de crease8.0@(177.612,-190.646) sobre contorno0.18'    │
+│ 37      │ 1.0052  │ 0.4974 │ 0          │ 'pointOnSeg (d2)'           │ 'extremo de crease8.0@(217.610,-190.646) sobre contorno0.27'    │
+│ 38      │ 1.0052  │ 0.4974 │ 0.3517     │ 'pointOnSeg (d1)'           │ 'extremo de crease8.0@(217.610,-190.646) sobre contorno0.28'    │
+│ 39      │ 1.0052  │ 0.4974 │ ''         │ 'ptEq (fusión de vértices)' │ 'contorno0@(258.108,-351.646) ↔ contorno0@(257.611,-351.646)'   │
+│ 40      │ 1.0052  │ 0.4974 │ ''         │ 'ptEq (fusión de vértices)' │ 'contorno0@(257.611,-351.646) ↔ crease3@(258.108,-351.646)'     │
+│ 41      │ 1.0052  │ 0.4974 │ ''         │ 'ptEq (fusión de vértices)' │ 'contorno0@(297.111,-351.646) ↔ contorno0@(297.609,-351.646)'   │
+│ 42      │ 1.0052  │ 0.4974 │ ''         │ 'ptEq (fusión de vértices)' │ 'contorno0@(177.612,-151.146) ↔ contorno0@(178.109,-151.146)'   │
+│ 43      │ 1.0052  │ 0.4974 │ ''         │ 'ptEq (fusión de vértices)' │ 'contorno0@(177.612,-151.146) ↔ crease0@(178.109,-151.146)'     │
+│ 44      │ 1.0052  │ 0.4974 │ ''         │ 'ptEq (fusión de vértices)' │ 'contorno0@(297.609,-351.646) ↔ crease3@(297.111,-351.646)'     │
+└─────────┴─────────┴────────┴────────────┴─────────────────────────────┴─────────────────────────────────────────────────────────────────┘
+
+Transiciones observadas en el barrido: 9 (explicadas por un predicado de la entrada: 9)
+ 0.28193–0.28345: 9|25346.98|8|14|43|95 → 9|25356.37|8|14|45|95
+     ← ptEq (fusión de vértices) L=1.7686 s*=0.28271
+     ← ptEq (fusión de vértices) L=1.7686 s*=0.28271
+     ← pointOnSeg (d2) L=1.7686 s*=0.28271
+     ← pointOnSeg (d2) L=1.7686 s*=0.28271
+ 0.36474–0.36670: 9|25356.37|8|14|45|95 → 12|27175.26|11|14|45|90
+     ← pointOnSeg (exceso d1+d2−len) L=1.3668 s*=0.36582
+     ← pointOnSeg (exceso d1+d2−len) L=1.3668 s*=0.36582
+     ← pointOnSeg (exceso d1+d2−len) L=1.3661 s*=0.36599
+     ← pointOnSeg (exceso d1+d2−len) L=1.3661 s*=0.36599
+ 0.36670–0.36867: 12|27175.26|11|14|45|90 → 13|27780.86|12|14|45|87
+     ← pointOnSeg (exceso d1+d2−len) L=1.3635 s*=0.36671
+     ← pointOnSeg (exceso d1+d2−len) L=1.3635 s*=0.36671
+     ← pointOnSeg (exceso d1+d2−len) L=1.3634 s*=0.36674
+     ← pointOnSeg (exceso d1+d2−len) L=1.3634 s*=0.36674
+ 0.50054–0.50324: 13|27780.86|12|14|45|87 → 13|27662.86|12|14|45|85
+     ← pointOnSeg (exceso d1+d2−len) L=0.9945 s*=0.50277
+     ← pointOnSeg (exceso d1+d2−len) L=0.9945 s*=0.50277
+ 0.50867–0.51140: 13|27662.86|12|14|45|85 → 13|27424.62|12|14|45|81
+     ← pointOnSeg (exceso d1+d2−len) L=0.9825 s*=0.50889
+     ← pointOnSeg (exceso d1+d2−len) L=0.9825 s*=0.50889
+     ← pointOnSeg (exceso d1+d2−len) L=0.9825 s*=0.50889
+     ← pointOnSeg (exceso d1+d2−len) L=0.9825 s*=0.50889
+ 0.99465–1.00000: 13|27424.62|12|14|45|81 → 11|26102.35|10|14|52|87
+     ← ptEq (fusión de vértices) L=0.5010 s*=0.99809
+     ← ptEq (fusión de vértices) L=0.5010 s*=0.99809
+     ← ptEq (fusión de vértices) L=0.5010 s*=0.99809
+     ← ptEq (fusión de vértices) L=0.5010 s*=0.99809
+ 1.00000–1.00538: 11|26102.35|10|14|52|87 → 11|26119.39|10|14|57|90
+     ← ptEq (fusión de vértices) L=0.4974 s*=1.00520
+     ← pointOnSeg (d1) L=0.4974 s*=1.00520
+     ← pointOnSeg (d1) L=0.4974 s*=1.00520
+     ← ptEq (fusión de vértices) L=0.4974 s*=1.00520
+ 3.06866–3.08517: 11|26119.39|10|14|57|90 → 11|26118.64|10|14|57|88
+     ← pointOnSeg (exceso d1+d2−len) L=0.1628 s*=3.07096
+     ← pointOnSeg (exceso d1+d2−len) L=0.1626 s*=3.07503
+ 3.08517–3.10177: 11|26118.64|10|14|57|88 → 11|26118.64|10|14|57|87
+     ← pointOnSeg (exceso d1+d2−len) L=0.1616 s*=3.09477
+
+Resultados distintos (paneles · área normalizada a ×1) y rango de escalas donde aparecen:
+┌─────────┬──────────────────────────────┬────────┬────────┬──────────┐
+│ (index) │ resultado                    │ desde  │ hasta  │ muestras │
+├─────────┼──────────────────────────────┼────────┼────────┼──────────┤
+│ 0       │ '9 paneles · área 25346.98'  │ 0.2    │ 0.2819 │ 65       │
+│ 1       │ '9 paneles · área 25356.37'  │ 0.2834 │ 0.3647 │ 48       │
+│ 2       │ '12 paneles · área 27175.26' │ 0.3667 │ 0.3667 │ 1        │
+│ 3       │ '13 paneles · área 27780.86' │ 0.3687 │ 0.5005 │ 58       │
+│ 4       │ '13 paneles · área 27662.86' │ 0.5032 │ 0.5087 │ 3        │
+│ 5       │ '13 paneles · área 27424.62' │ 0.5114 │ 0.9946 │ 125      │
+│ 6       │ '11 paneles · área 26102.35' │ 1      │ 1      │ 1        │
+│ 7       │ '11 paneles · área 26119.39' │ 1.0054 │ 3.0687 │ 209      │
+│ 8       │ '11 paneles · área 26118.64' │ 3.0852 │ 5      │ 91       │
+└─────────┴──────────────────────────────┴────────┴────────┴──────────┘
+→ docs/fase2/evidencia/ki22-predicados-caja-botanica-real.json

@@ -1,0 +1,23 @@
+Troquel: tests/fixtures/illustrator-real/ill-real-caja-simple.dieline.json · GRAPH_EPS = 0.5 mm · escalas [0.2, 5] · 601 puntos
+
+Predicados con escala crítica en el intervalo: 4. Los más cercanos a ×1 (|s*−1| < 0.05):
+┌─────────┐
+│ (index) │
+├─────────┤
+└─────────┘
+
+Transiciones observadas en el barrido: 2 (explicadas por un predicado de la entrada: 1)
+ 0.38278–0.38484: 3|11350|1|4|11|14 → 3|11350|3|4|11|14
+     ← (sin predicado de la entrada en el intervalo: punto creado por el troceado)
+ 0.64756–0.65104: 3|11350|3|4|11|14 → 2|6000|1|5|10|11
+     ← pointOnSeg (exceso d1+d2−len) L=0.7716 s*=0.64798
+     ← pointOnSeg (exceso d1+d2−len) L=0.7716 s*=0.64798
+
+Resultados distintos (paneles · área normalizada a ×1) y rango de escalas donde aparecen:
+┌─────────┬──────────────────────────┬───────┬────────┬──────────┐
+│ (index) │ resultado                │ desde │ hasta  │ muestras │
+├─────────┼──────────────────────────┼───────┼────────┼──────────┤
+│ 0       │ '3 paneles · área 11350' │ 0.2   │ 0.6476 │ 220      │
+│ 1       │ '2 paneles · área 6000'  │ 0.651 │ 5      │ 381      │
+└─────────┴──────────────────────────┴───────┴────────┴──────────┘
+→ docs/fase2/evidencia/ki22-predicados-ill-real-caja-simple.json

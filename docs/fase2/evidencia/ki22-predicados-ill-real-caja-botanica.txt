@@ -1,0 +1,134 @@
+Troquel: tests/fixtures/illustrator-real/ill-real-caja-botanica.dieline.json · GRAPH_EPS = 0.5 mm · escalas [0.2, 5] · 601 puntos
+
+Predicados con escala crítica en el intervalo: 94. Los más cercanos a ×1 (|s*−1| < 0.05):
+┌─────────┬─────────┬────────┬────────────┬─────────────────────────────────┬────────────────────────────────────────────────────────────────┐
+│ (index) │ s       │ L_mm   │ lateral_mm │ predicado                       │ entre                                                          │
+├─────────┼─────────┼────────┼────────────┼─────────────────────────────────┼────────────────────────────────────────────────────────────────┤
+│ 0       │ 0.99122 │ 0.5044 │ ''         │ 'ptEq (fusión de vértices)'     │ 'contorno0@(257.108,308.857) ↔ crease6@(257.613,308.857)'      │
+│ 1       │ 0.99122 │ 0.5044 │ ''         │ 'ptEq (fusión de vértices)'     │ 'contorno0@(257.108,308.857) ↔ crease7@(257.613,308.857)'      │
+│ 2       │ 0.99122 │ 0.5044 │ 0          │ 'pointOnSeg (d1)'               │ 'extremo de crease6.0@(257.613,308.857) sobre contorno0.29'    │
+│ 3       │ 0.99122 │ 0.5044 │ 0          │ 'pointOnSeg (d1)'               │ 'extremo de crease7.0@(257.613,308.857) sobre contorno0.29'    │
+│ 4       │ 0.99122 │ 0.5044 │ 0          │ 'pointOnSeg (d2)'               │ 'extremo de contorno0.28@(257.108,308.857) sobre crease7.0'    │
+│ 5       │ 0.99122 │ 0.5044 │ 0          │ 'pointOnSeg (d2)'               │ 'extremo de contorno0.29@(257.108,308.857) sobre crease7.0'    │
+│ 6       │ 0.998   │ 0.501  │ ''         │ 'ptEq (fusión de vértices)'     │ 'contorno0@(298.108,308.857) ↔ crease5@(297.607,308.857)'      │
+│ 7       │ 0.998   │ 0.501  │ ''         │ 'ptEq (fusión de vértices)'     │ 'contorno0@(337.609,188.856) ↔ crease2@(337.108,188.856)'      │
+│ 8       │ 0.998   │ 0.501  │ 0          │ 'pointOnSeg (d2)'               │ 'extremo de crease5.0@(297.607,308.857) sobre contorno0.38'    │
+│ 9       │ 0.998   │ 0.501  │ 0.0001     │ 'pointOnSeg (d1)'               │ 'extremo de crease2.0@(337.108,188.856) sobre contorno0.46'    │
+│ 10      │ 0.99806 │ 0.501  │ ''         │ 'ptEq (fusión de vértices)'     │ 'crease6@(257.613,188.856) ↔ crease11@(257.609,188.355)'       │
+│ 11      │ 0.99806 │ 0.501  │ ''         │ 'ptEq (fusión de vértices)'     │ 'crease10@(257.613,188.856) ↔ crease11@(257.609,188.355)'      │
+│ 12      │ 0.99806 │ 0.501  │ 0.501      │ 'pointOnSeg (d1)'               │ 'extremo de crease11.0@(257.609,188.355) sobre crease10.0'     │
+│ 13      │ 0.99806 │ 0.501  │ 0.501      │ 'pointOnSeg (d2)'               │ 'extremo de crease6.0@(257.613,188.856) sobre crease11.0'      │
+│ 14      │ 0.99806 │ 0.501  │ 0.501      │ 'pointOnSeg (d2)'               │ 'extremo de crease10.0@(257.613,188.856) sobre crease11.0'     │
+│ 15      │ 0.99808 │ 0.501  │ ''         │ 'ptEq (fusión de vértices)'     │ 'contorno0@(257.609,188.856) ↔ crease11@(257.609,188.355)'     │
+│ 16      │ 0.99808 │ 0.501  │ ''         │ 'ptEq (fusión de vértices)'     │ 'contorno0@(297.607,188.856) ↔ crease11@(297.607,188.355)'     │
+│ 17      │ 0.99808 │ 0.501  │ 0          │ 'pointOnSeg (d2)'               │ 'extremo de crease11.0@(257.609,188.355) sobre contorno0.5'    │
+│ 18      │ 0.99808 │ 0.501  │ 0.354      │ 'pointOnSeg (d1)'               │ 'extremo de crease11.0@(257.609,188.355) sobre contorno0.6'    │
+│ 19      │ 0.99808 │ 0.501  │ 0.3543     │ 'pointOnSeg (d2)'               │ 'extremo de crease11.0@(297.607,188.355) sobre contorno0.52'   │
+│ 20      │ 0.99808 │ 0.501  │ 0          │ 'pointOnSeg (d1)'               │ 'extremo de crease11.0@(297.607,188.355) sobre contorno0.53'   │
+│ 21      │ 0.99808 │ 0.501  │ ''         │ 'ptEq (fusión de vértices)'     │ 'crease1@(298.108,308.857) ↔ crease5@(297.607,308.857)'        │
+│ 22      │ 0.99808 │ 0.501  │ ''         │ 'ptEq (fusión de vértices)'     │ 'crease2@(297.607,188.856) ↔ crease11@(297.607,188.355)'       │
+│ 23      │ 0.99808 │ 0.501  │ ''         │ 'ptEq (fusión de vértices)'     │ 'crease5@(297.607,188.856) ↔ crease11@(297.607,188.355)'       │
+│ 24      │ 0.99813 │ 0.5009 │ ''         │ 'ptEq (fusión de vértices)'     │ 'contorno0@(337.609,188.856) ↔ contorno0@(337.108,188.856)'    │
+│ 25      │ 0.99813 │ 0.5009 │ ''         │ 'ptEq (fusión de vértices)'     │ 'contorno0@(217.107,348.855) ↔ contorno0@(217.608,348.855)'    │
+│ 26      │ 0.99817 │ 0.5009 │ ''         │ 'ptEq (fusión de vértices)'     │ 'contorno0@(257.609,148.354) ↔ crease3@(258.110,148.354)'      │
+│ 27      │ 0.99817 │ 0.5009 │ 0.0035     │ 'pointOnSeg (d2)'               │ 'extremo de crease3.0@(258.110,148.354) sobre contorno0.4'     │
+│ 28      │ 0.99819 │ 0.5009 │ ''         │ 'ptEq (fusión de vértices)'     │ 'contorno0@(177.610,348.855) ↔ crease0@(178.111,348.852)'      │
+│ 29      │ 0.99819 │ 0.5009 │ 0.5009     │ 'pointOnSeg (d2)'               │ 'extremo de crease0.0@(178.111,348.852) sobre contorno0.16'    │
+│ 30      │ 0.99819 │ 0.5009 │ 0.005      │ 'pointOnSeg (d1)'               │ 'extremo de crease0.0@(178.111,348.852) sobre contorno0.17'    │
+│ 31      │ 0.99884 │ 0.5006 │ 0.501      │ 'pointOnSeg (exceso d1+d2−len)' │ 'extremo de crease6.0@(257.613,188.856) sobre crease11.0'      │
+│ 32      │ 0.99884 │ 0.5006 │ 0.501      │ 'pointOnSeg (exceso d1+d2−len)' │ 'extremo de crease10.0@(257.613,188.856) sobre crease11.0'     │
+│ 33      │ 0.99884 │ 0.5006 │ 0.501      │ 'pointOnSeg (exceso d1+d2−len)' │ 'extremo de crease11.0@(257.609,188.355) sobre crease10.0'     │
+│ 34      │ 0.99902 │ 0.5005 │ 0.5009     │ 'pointOnSeg (exceso d1+d2−len)' │ 'extremo de crease0.0@(178.111,348.852) sobre contorno0.16'    │
+│ 35      │ 1.00506 │ 0.4975 │ ''         │ 'ptEq (fusión de vértices)'     │ 'contorno0@(217.608,348.855) ↔ crease0@(217.110,348.852)'      │
+│ 36      │ 1.00506 │ 0.4975 │ 0.0036     │ 'pointOnSeg (d2)'               │ 'extremo de crease0.0@(217.110,348.852) sobre contorno0.21'    │
+│ 37      │ 1.00506 │ 0.4975 │ 0.4975     │ 'pointOnSeg (d1)'               │ 'extremo de crease0.0@(217.110,348.852) sobre contorno0.22'    │
+│ 38      │ 1.00508 │ 0.4975 │ ''         │ 'ptEq (fusión de vértices)'     │ 'contorno0@(218.109,188.856) ↔ crease9@(217.611,188.856)'      │
+│ 39      │ 1.00508 │ 0.4975 │ ''         │ 'ptEq (fusión de vértices)'     │ 'contorno0@(218.109,188.856) ↔ crease10@(217.611,188.856)'     │
+│ 40      │ 1.00508 │ 0.4975 │ 0          │ 'pointOnSeg (d1)'               │ 'extremo de crease9.0@(217.611,188.856) sobre contorno0.12'    │
+│ 41      │ 1.00508 │ 0.4975 │ 0          │ 'pointOnSeg (d1)'               │ 'extremo de crease10.0@(217.611,188.856) sobre contorno0.12'   │
+│ 42      │ 1.00508 │ 0.4975 │ 0          │ 'pointOnSeg (d2)'               │ 'extremo de contorno0.11@(218.109,188.856) sobre crease10.0'   │
+│ 43      │ 1.00508 │ 0.4975 │ 0          │ 'pointOnSeg (d2)'               │ 'extremo de contorno0.12@(218.109,188.856) sobre crease10.0'   │
+│ 44      │ 1.00512 │ 0.4975 │ ''         │ 'ptEq (fusión de vértices)'     │ 'contorno0@(297.110,148.354) ↔ contorno0@(297.607,148.354)'    │
+│ 45      │ 1.00512 │ 0.4975 │ 0          │ 'pointOnSeg (d1)'               │ 'extremo de contorno0.0@(297.110,148.354) sobre contorno0.54'  │
+│ 46      │ 1.00512 │ 0.4975 │ 0          │ 'pointOnSeg (d1)'               │ 'extremo de contorno0.1@(297.110,148.354) sobre contorno0.54'  │
+│ 47      │ 1.00512 │ 0.4975 │ 0          │ 'pointOnSeg (d1)'               │ 'extremo de contorno0.55@(297.110,148.354) sobre contorno0.54' │
+│ 48      │ 1.00517 │ 0.4974 │ ''         │ 'ptEq (fusión de vértices)'     │ 'crease4@(177.613,308.857) ↔ crease8@(177.613,309.355)'        │
+│ 49      │ 1.00517 │ 0.4974 │ ''         │ 'ptEq (fusión de vértices)'     │ 'crease7@(217.611,308.857) ↔ crease8@(217.611,309.355)'        │
+│ 50      │ 1.00519 │ 0.4974 │ ''         │ 'ptEq (fusión de vértices)'     │ 'contorno0@(177.610,308.857) ↔ crease8@(177.613,309.355)'      │
+│ 51      │ 1.00519 │ 0.4974 │ 0.0035     │ 'pointOnSeg (d1)'               │ 'extremo de crease8.0@(177.613,309.355) sobre contorno0.16'    │
+│ 52      │ 1.00519 │ 0.4974 │ ''         │ 'ptEq (fusión de vértices)'     │ 'contorno0@(217.608,308.857) ↔ crease8@(217.611,309.355)'      │
+│ 53      │ 1.00519 │ 0.4974 │ 0.0035     │ 'pointOnSeg (d2)'               │ 'extremo de crease8.0@(217.611,309.355) sobre contorno0.22'    │
+│ 54      │ 1.00519 │ 0.4974 │ 0.3493     │ 'pointOnSeg (d1)'               │ 'extremo de crease8.0@(217.611,309.355) sobre contorno0.23'    │
+│ 55      │ 1.00519 │ 0.4974 │ 0.4974     │ 'pointOnSeg (d2)'               │ 'extremo de contorno0.22@(217.608,308.857) sobre crease8.0'    │
+│ 56      │ 1.00519 │ 0.4974 │ 0.4974     │ 'pointOnSeg (d2)'               │ 'extremo de contorno0.23@(217.608,308.857) sobre crease8.0'    │
+│ 57      │ 1.00519 │ 0.4974 │ ''         │ 'ptEq (fusión de vértices)'     │ 'contorno0@(177.610,348.855) ↔ contorno0@(178.107,348.855)'    │
+│ 58      │ 1.00521 │ 0.4974 │ ''         │ 'ptEq (fusión de vértices)'     │ 'contorno0@(258.107,148.354) ↔ contorno0@(257.609,148.354)'    │
+│ 59      │ 1.00521 │ 0.4974 │ ''         │ 'ptEq (fusión de vértices)'     │ 'contorno0@(297.607,148.354) ↔ contorno0@(297.110,148.354)'    │
+│ 60      │ 1.00521 │ 0.4974 │ ''         │ 'ptEq (fusión de vértices)'     │ 'crease8@(217.611,309.355) ↔ crease9@(217.611,308.857)'        │
+│ 61      │ 1.00594 │ 0.497  │ 0.4974     │ 'pointOnSeg (exceso d1+d2−len)' │ 'extremo de contorno0.22@(217.608,308.857) sobre crease8.0'    │
+│ 62      │ 1.00594 │ 0.497  │ 0.4974     │ 'pointOnSeg (exceso d1+d2−len)' │ 'extremo de contorno0.23@(217.608,308.857) sobre crease8.0'    │
+│ 63      │ 1.00598 │ 0.497  │ 0.4975     │ 'pointOnSeg (exceso d1+d2−len)' │ 'extremo de crease0.0@(217.110,348.852) sobre contorno0.22'    │
+│ 64      │ 1.01231 │ 0.4939 │ ''         │ 'ptEq (fusión de vértices)'     │ 'contorno0@(297.607,148.354) ↔ crease3@(297.113,148.354)'      │
+│ 65      │ 1.01231 │ 0.4939 │ 0          │ 'pointOnSeg (d1)'               │ 'extremo de crease3.0@(297.113,148.354) sobre contorno0.54'    │
+└─────────┴─────────┴────────┴────────────┴─────────────────────────────────┴────────────────────────────────────────────────────────────────┘
+
+Transiciones observadas en el barrido: 10 (explicadas por un predicado de la entrada: 10)
+ 0.28193–0.28345: 9|25336.06|8|14|43|84 → 9|25355.16|8|14|45|84
+     ← ptEq (fusión de vértices) L=1.7686 s*=0.28271
+     ← pointOnSeg (d2) L=1.7686 s*=0.28271
+     ← pointOnSeg (d2) L=1.7686 s*=0.28271
+     ← ptEq (fusión de vértices) L=1.7686 s*=0.28271
+ 0.36474–0.36670: 9|25355.16|8|14|45|84 → 13|27780.18|12|14|45|74
+     ← pointOnSeg (exceso d1+d2−len) L=1.3668 s*=0.36582
+     ← pointOnSeg (exceso d1+d2−len) L=1.3668 s*=0.36582
+     ← pointOnSeg (exceso d1+d2−len) L=1.3651 s*=0.36626
+     ← pointOnSeg (exceso d1+d2−len) L=1.3651 s*=0.36626
+ 0.50054–0.50324: 13|27780.18|12|14|45|74 → 13|27662.17|12|14|45|74
+     ← pointOnSeg (exceso d1+d2−len) L=0.9945 s*=0.50277
+     ← pointOnSeg (exceso d1+d2−len) L=0.9945 s*=0.50277
+ 0.50867–0.51140: 13|27662.17|12|14|45|74 → 13|27423.93|12|14|45|72
+     ← pointOnSeg (exceso d1+d2−len) L=0.9825 s*=0.50888
+     ← pointOnSeg (exceso d1+d2−len) L=0.9825 s*=0.50888
+     ← pointOnSeg (exceso d1+d2−len) L=0.9825 s*=0.50888
+     ← pointOnSeg (exceso d1+d2−len) L=0.9825 s*=0.50888
+ 0.98933–0.99465: 13|27423.93|12|14|45|72 → 12|26758.35|11|14|46|74
+     ← ptEq (fusión de vértices) L=0.5044 s*=0.99122
+     ← ptEq (fusión de vértices) L=0.5044 s*=0.99122
+     ← pointOnSeg (d1) L=0.5044 s*=0.99122
+     ← pointOnSeg (d1) L=0.5044 s*=0.99122
+ 0.99465–1.00000: 12|26758.35|11|14|46|74 → 11|26769.12|10|13|52|78
+     ← ptEq (fusión de vértices) L=0.5010 s*=0.99800
+     ← ptEq (fusión de vértices) L=0.5010 s*=0.99800
+     ← pointOnSeg (d2) L=0.5010 s*=0.99800
+     ← pointOnSeg (d1) L=0.5010 s*=0.99800
+ 1.00000–1.00538: 11|26769.12|10|13|52|78 → 11|26109.8|10|14|57|83
+     ← ptEq (fusión de vértices) L=0.4975 s*=1.00506
+     ← pointOnSeg (d2) L=0.4975 s*=1.00506
+     ← pointOnSeg (d1) L=0.4975 s*=1.00506
+     ← ptEq (fusión de vértices) L=0.4975 s*=1.00508
+ 1.00538–1.01079: 11|26109.8|10|14|57|83 → 11|26119.62|10|14|57|82
+     ← pointOnSeg (exceso d1+d2−len) L=0.4970 s*=1.00594
+     ← pointOnSeg (exceso d1+d2−len) L=0.4970 s*=1.00594
+     ← pointOnSeg (exceso d1+d2−len) L=0.4970 s*=1.00598
+ 3.06866–3.08517: 11|26119.62|10|14|57|82 → 11|26118.87|10|14|57|80
+     ← pointOnSeg (exceso d1+d2−len) L=0.1629 s*=3.07030
+     ← pointOnSeg (exceso d1+d2−len) L=0.1626 s*=3.07564
+ 3.13522–3.15209: 11|26118.87|10|14|57|80 → 11|26118.87|10|14|57|79
+     ← pointOnSeg (exceso d1+d2−len) L=0.1589 s*=3.14643
+
+Resultados distintos (paneles · área normalizada a ×1) y rango de escalas donde aparecen:
+┌─────────┬──────────────────────────────┬────────┬────────┬──────────┐
+│ (index) │ resultado                    │ desde  │ hasta  │ muestras │
+├─────────┼──────────────────────────────┼────────┼────────┼──────────┤
+│ 0       │ '9 paneles · área 25336.06'  │ 0.2    │ 0.2819 │ 65       │
+│ 1       │ '9 paneles · área 25355.16'  │ 0.2834 │ 0.3647 │ 48       │
+│ 2       │ '13 paneles · área 27780.18' │ 0.3667 │ 0.5005 │ 59       │
+│ 3       │ '13 paneles · área 27662.17' │ 0.5032 │ 0.5087 │ 3        │
+│ 4       │ '13 paneles · área 27423.93' │ 0.5114 │ 0.9893 │ 124      │
+│ 5       │ '12 paneles · área 26758.35' │ 0.9946 │ 0.9946 │ 1        │
+│ 6       │ '11 paneles · área 26769.12' │ 1      │ 1      │ 1        │
+│ 7       │ '11 paneles · área 26109.8'  │ 1.0054 │ 1.0054 │ 1        │
+│ 8       │ '11 paneles · área 26119.62' │ 1.0108 │ 3.0687 │ 208      │
+│ 9       │ '11 paneles · área 26118.87' │ 3.0852 │ 5      │ 91       │
+└─────────┴──────────────────────────────┴────────┴────────┴──────────┘
+→ docs/fase2/evidencia/ki22-predicados-ill-real-caja-botanica.json

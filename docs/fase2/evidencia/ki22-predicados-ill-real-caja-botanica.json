@@ -1,0 +1,848 @@
+{
+ "troquel": "tests/fixtures/illustrator-real/ill-real-caja-botanica.dieline.json",
+ "GRAPH_EPS": 0.5,
+ "intervalo": [
+  0.2,
+  5
+ ],
+ "pasos": 600,
+ "criticos": [
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 0.2827061138087017,
+   "L": 1.7686211071414404,
+   "entre": "contorno0@(272.609,308.857) ↔ contorno0@(273.858,307.605)"
+  },
+  {
+   "predicado": "pointOnSeg (d2)",
+   "s": 0.2827061138087017,
+   "L": 1.7686211071414404,
+   "lateral": 0.0035312250969923298,
+   "entre": "extremo de contorno0.29@(272.609,308.857) sobre contorno0.31"
+  },
+  {
+   "predicado": "pointOnSeg (d2)",
+   "s": 0.2827061138087017,
+   "L": 1.7686211071414404,
+   "lateral": 0.0035312250969923298,
+   "entre": "extremo de contorno0.30@(272.609,308.857) sobre contorno0.31"
+  },
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 0.2827085441011918,
+   "L": 1.7686059032620947,
+   "entre": "contorno0@(281.358,307.605) ↔ contorno0@(282.607,308.857)"
+  },
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 0.28310495904846733,
+   "L": 1.7661294301609192,
+   "entre": "contorno0@(272.613,308.857) ↔ contorno0@(273.858,307.605)"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 0.3658239536683858,
+   "L": 1.3667776398623772,
+   "lateral": 3.0021442250969983,
+   "entre": "extremo de contorno0.51@(300.609,185.854) sobre crease2.0"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 0.3658239536683858,
+   "L": 1.3667776398623772,
+   "lateral": 3.0021442250969983,
+   "entre": "extremo de contorno0.52@(300.609,185.854) sobre crease2.0"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 0.36626302528375504,
+   "L": 1.365139163617826,
+   "lateral": 3.0021442250969983,
+   "entre": "extremo de contorno0.6@(254.611,185.854) sobre crease10.0"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 0.36626302528375504,
+   "L": 1.365139163617826,
+   "lateral": 3.0021442250969983,
+   "entre": "extremo de contorno0.7@(254.611,185.854) sobre crease10.0"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 0.36628541543871956,
+   "L": 1.3650557159124759,
+   "lateral": 2.9986345318599774,
+   "entre": "extremo de contorno0.43@(334.610,311.856) sobre crease1.0"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 0.36628541543871956,
+   "L": 1.3650557159124759,
+   "lateral": 2.9986345318599774,
+   "entre": "extremo de contorno0.44@(334.610,311.856) sobre crease1.0"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 0.36646446728654036,
+   "L": 1.364388759713087,
+   "lateral": 2.9986345318599774,
+   "entre": "extremo de contorno0.23@(220.606,311.856) sobre crease7.0"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 0.36646446728654036,
+   "L": 1.364388759713087,
+   "lateral": 2.9986345318599774,
+   "entre": "extremo de contorno0.24@(220.606,311.856) sobre crease7.0"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 0.36670130081564123,
+   "L": 1.36350757111542,
+   "lateral": 3.002144225097993,
+   "entre": "extremo de contorno0.51@(300.609,185.854) sobre contorno0.53"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 0.36670130081564123,
+   "L": 1.36350757111542,
+   "lateral": 3.002144225097993,
+   "entre": "extremo de contorno0.52@(300.609,185.854) sobre contorno0.53"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 0.36673599211640623,
+   "L": 1.363378590452868,
+   "lateral": 2.998613000000006,
+   "entre": "extremo de contorno0.23@(220.606,311.856) sobre contorno0.22"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 0.36673599211640623,
+   "L": 1.363378590452868,
+   "lateral": 2.998613000000006,
+   "entre": "extremo de contorno0.24@(220.606,311.856) sobre contorno0.22"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 0.3674499000242207,
+   "L": 1.3607297211593803,
+   "lateral": 2.9986129999999775,
+   "entre": "extremo de contorno0.6@(254.611,185.854) sobre contorno0.5"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 0.3674499000242207,
+   "L": 1.3607297211593803,
+   "lateral": 2.9986129999999775,
+   "entre": "extremo de contorno0.7@(254.611,185.854) sobre contorno0.5"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 0.5027690506780115,
+   "L": 0.9944924002894027,
+   "lateral": 4.487325824707,
+   "entre": "extremo de contorno0.24@(222.095,328.856) sobre contorno0.22"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 0.5027690506780115,
+   "L": 0.9944924002894027,
+   "lateral": 4.487325824707,
+   "entre": "extremo de contorno0.25@(222.095,328.856) sobre contorno0.22"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 0.5088801161819902,
+   "L": 0.9825496892104653,
+   "lateral": 4.487347356567966,
+   "entre": "extremo de contorno0.50@(302.094,168.854) sobre contorno0.53"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 0.5088801161819902,
+   "L": 0.9825496892104653,
+   "lateral": 4.487347356567966,
+   "entre": "extremo de contorno0.51@(302.094,168.854) sobre contorno0.53"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 0.5088849419211983,
+   "L": 0.9825403717239993,
+   "lateral": 4.487325824706971,
+   "entre": "extremo de contorno0.7@(253.122,168.854) sobre contorno0.5"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 0.5088849419211983,
+   "L": 0.9825403717239993,
+   "lateral": 4.487325824706971,
+   "entre": "extremo de contorno0.8@(253.122,168.854) sobre contorno0.5"
+  },
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 0.9912239157393273,
+   "L": 0.5044268929155764,
+   "entre": "contorno0@(257.108,308.857) ↔ crease6@(257.613,308.857)"
+  },
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 0.9912239157393273,
+   "L": 0.5044268929155764,
+   "entre": "contorno0@(257.108,308.857) ↔ crease7@(257.613,308.857)"
+  },
+  {
+   "predicado": "pointOnSeg (d1)",
+   "s": 0.9912239157393273,
+   "L": 0.5044268929155764,
+   "lateral": 0.000021531859999868175,
+   "entre": "extremo de crease6.0@(257.613,308.857) sobre contorno0.29"
+  },
+  {
+   "predicado": "pointOnSeg (d1)",
+   "s": 0.9912239157393273,
+   "L": 0.5044268929155764,
+   "lateral": 0.000021531859999868175,
+   "entre": "extremo de crease7.0@(257.613,308.857) sobre contorno0.29"
+  },
+  {
+   "predicado": "pointOnSeg (d2)",
+   "s": 0.9912239157393273,
+   "L": 0.5044268929155764,
+   "lateral": 0.000021531859999868175,
+   "entre": "extremo de contorno0.28@(257.108,308.857) sobre crease7.0"
+  },
+  {
+   "predicado": "pointOnSeg (d2)",
+   "s": 0.9912239157393273,
+   "L": 0.5044268929155764,
+   "lateral": 0.000021531859999868175,
+   "entre": "extremo de contorno0.29@(257.108,308.857) sobre crease7.0"
+  },
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 0.9979973652736273,
+   "L": 0.5010033266599976,
+   "entre": "contorno0@(298.108,308.857) ↔ crease5@(297.607,308.857)"
+  },
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 0.9979973652736273,
+   "L": 0.5010033266599976,
+   "entre": "contorno0@(337.609,188.856) ↔ crease2@(337.108,188.856)"
+  },
+  {
+   "predicado": "pointOnSeg (d2)",
+   "s": 0.9979973652736273,
+   "L": 0.5010033266599976,
+   "lateral": 0,
+   "entre": "extremo de crease5.0@(297.607,308.857) sobre contorno0.38"
+  },
+  {
+   "predicado": "pointOnSeg (d1)",
+   "s": 0.9979973652736273,
+   "L": 0.5010033266599976,
+   "lateral": 0.00006459558096594264,
+   "entre": "extremo de crease2.0@(337.108,188.856) sobre contorno0.46"
+  },
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 0.9980583604325506,
+   "L": 0.5009727084329056,
+   "entre": "crease6@(257.613,188.856) ↔ crease11@(257.609,188.355)"
+  },
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 0.9980583604325506,
+   "L": 0.5009727084329056,
+   "entre": "crease10@(257.613,188.856) ↔ crease11@(257.609,188.355)"
+  },
+  {
+   "predicado": "pointOnSeg (d1)",
+   "s": 0.9980583604325506,
+   "L": 0.5009727084329056,
+   "lateral": 0.5009602629390031,
+   "entre": "extremo de crease11.0@(257.609,188.355) sobre crease10.0"
+  },
+  {
+   "predicado": "pointOnSeg (d2)",
+   "s": 0.9980583604325506,
+   "L": 0.5009727084329056,
+   "lateral": 0.5009602629390031,
+   "entre": "extremo de crease6.0@(257.613,188.856) sobre crease11.0"
+  },
+  {
+   "predicado": "pointOnSeg (d2)",
+   "s": 0.9980583604325506,
+   "L": 0.5009727084329056,
+   "lateral": 0.5009602629390031,
+   "entre": "extremo de crease10.0@(257.613,188.856) sobre crease11.0"
+  },
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 0.9980831517838347,
+   "L": 0.5009602647899323,
+   "entre": "contorno0@(257.609,188.856) ↔ crease11@(257.609,188.355)"
+  },
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 0.9980831517838347,
+   "L": 0.5009602647899323,
+   "entre": "contorno0@(297.607,188.856) ↔ crease11@(297.607,188.355)"
+  },
+  {
+   "predicado": "pointOnSeg (d2)",
+   "s": 0.9980831517838347,
+   "L": 0.5009602647899323,
+   "lateral": 0.00004306371999973635,
+   "entre": "extremo de crease11.0@(257.609,188.355) sobre contorno0.5"
+  },
+  {
+   "predicado": "pointOnSeg (d1)",
+   "s": 0.9980831517838347,
+   "L": 0.5009602647899323,
+   "lateral": 0.3539934164209501,
+   "entre": "extremo de crease11.0@(257.609,188.355) sobre contorno0.6"
+  },
+  {
+   "predicado": "pointOnSeg (d2)",
+   "s": 0.9980831517838347,
+   "L": 0.5009602647899323,
+   "lateral": 0.3542628496776401,
+   "entre": "extremo de crease11.0@(297.607,188.355) sobre contorno0.52"
+  },
+  {
+   "predicado": "pointOnSeg (d1)",
+   "s": 0.9980831517838347,
+   "L": 0.5009602647899323,
+   "lateral": 0.00004306371999973635,
+   "entre": "extremo de crease11.0@(297.607,188.355) sobre contorno0.53"
+  },
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 0.9980831545496515,
+   "L": 0.500960263401707,
+   "entre": "crease1@(298.108,308.857) ↔ crease5@(297.607,308.857)"
+  },
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 0.9980831554715149,
+   "L": 0.5009602629390031,
+   "entre": "crease2@(297.607,188.856) ↔ crease11@(297.607,188.355)"
+  },
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 0.9980831554715149,
+   "L": 0.5009602629390031,
+   "entre": "crease5@(297.607,188.856) ↔ crease11@(297.607,188.355)"
+  },
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 0.998126056100694,
+   "L": 0.5009387310790316,
+   "entre": "contorno0@(337.609,188.856) ↔ contorno0@(337.108,188.856)"
+  },
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 0.9981260561007507,
+   "L": 0.5009387310790032,
+   "entre": "contorno0@(217.107,348.855) ↔ contorno0@(217.608,348.855)"
+  },
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 0.9981689604180856,
+   "L": 0.5009171992190318,
+   "entre": "contorno0@(257.609,148.354) ↔ crease3@(258.110,148.354)"
+  },
+  {
+   "predicado": "pointOnSeg (d2)",
+   "s": 0.9981689604180856,
+   "L": 0.5009171992190318,
+   "lateral": 0.0035096932369924616,
+   "entre": "extremo de crease3.0@(258.110,148.354) sobre contorno0.4"
+  },
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 0.9981867603851624,
+   "L": 0.5009082667126029,
+   "entre": "contorno0@(177.610,348.855) ↔ crease0@(178.111,348.852)"
+  },
+  {
+   "predicado": "pointOnSeg (d2)",
+   "s": 0.9981867603851624,
+   "L": 0.5009082667126029,
+   "lateral": 0.5008956673590035,
+   "entre": "extremo de crease0.0@(178.111,348.852) sobre contorno0.16"
+  },
+  {
+   "predicado": "pointOnSeg (d1)",
+   "s": 0.9981867603851624,
+   "L": 0.5009082667126029,
+   "lateral": 0.004971354050708114,
+   "entre": "extremo de crease0.0@(178.111,348.852) sobre contorno0.17"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 0.9988437161573082,
+   "L": 0.5005788111913745,
+   "lateral": 0.5009602629390031,
+   "entre": "extremo de crease6.0@(257.613,188.856) sobre crease11.0"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 0.9988437161573082,
+   "L": 0.5005788111913745,
+   "lateral": 0.5009602629390031,
+   "entre": "extremo de crease10.0@(257.613,188.856) sobre crease11.0"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 0.998844268792588,
+   "L": 0.5005785342337745,
+   "lateral": 0.5009602629390031,
+   "entre": "extremo de crease11.0@(257.609,188.355) sobre crease10.0"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 0.9990169068107622,
+   "L": 0.5004920303062619,
+   "lateral": 0.5008956673590035,
+   "entre": "extremo de crease0.0@(178.111,348.852) sobre contorno0.16"
+  },
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 1.0050558578701696,
+   "L": 0.4974847876212156,
+   "entre": "contorno0@(217.608,348.855) ↔ crease0@(217.110,348.852)"
+  },
+  {
+   "predicado": "pointOnSeg (d2)",
+   "s": 1.0050558578701696,
+   "L": 0.4974847876212156,
+   "lateral": 0.0035527569580153795,
+   "entre": "extremo de crease0.0@(217.110,348.852) sobre contorno0.21"
+  },
+  {
+   "predicado": "pointOnSeg (d1)",
+   "s": 1.0050558578701696,
+   "L": 0.4974847876212156,
+   "lateral": 0.4974721015620105,
+   "entre": "extremo de crease0.0@(217.110,348.852) sobre contorno0.22"
+  },
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 1.0050814878463579,
+   "L": 0.4974721015620105,
+   "entre": "contorno0@(218.109,188.856) ↔ crease9@(217.611,188.856)"
+  },
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 1.0050814878463579,
+   "L": 0.4974721015620105,
+   "entre": "contorno0@(218.109,188.856) ↔ crease10@(217.611,188.856)"
+  },
+  {
+   "predicado": "pointOnSeg (d1)",
+   "s": 1.0050814878463579,
+   "L": 0.4974721015620105,
+   "lateral": 0,
+   "entre": "extremo de crease9.0@(217.611,188.856) sobre contorno0.12"
+  },
+  {
+   "predicado": "pointOnSeg (d1)",
+   "s": 1.0050814878463579,
+   "L": 0.4974721015620105,
+   "lateral": 0,
+   "entre": "extremo de crease10.0@(217.611,188.856) sobre contorno0.12"
+  },
+  {
+   "predicado": "pointOnSeg (d2)",
+   "s": 1.0050814878463579,
+   "L": 0.4974721015620105,
+   "lateral": 0,
+   "entre": "extremo de contorno0.11@(218.109,188.856) sobre crease10.0"
+  },
+  {
+   "predicado": "pointOnSeg (d2)",
+   "s": 1.0050814878463579,
+   "L": 0.4974721015620105,
+   "lateral": 0,
+   "entre": "extremo de contorno0.12@(218.109,188.856) sobre crease10.0"
+  },
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 1.0051249922167904,
+   "L": 0.49745056970203905,
+   "entre": "contorno0@(297.110,148.354) ↔ contorno0@(297.607,148.354)"
+  },
+  {
+   "predicado": "pointOnSeg (d1)",
+   "s": 1.0051249922167904,
+   "L": 0.49745056970203905,
+   "lateral": 0.00004306372102291789,
+   "entre": "extremo de contorno0.0@(297.110,148.354) sobre contorno0.54"
+  },
+  {
+   "predicado": "pointOnSeg (d1)",
+   "s": 1.0051249922167904,
+   "L": 0.49745056970203905,
+   "lateral": 0.00004306372102291789,
+   "entre": "extremo de contorno0.1@(297.110,148.354) sobre contorno0.54"
+  },
+  {
+   "predicado": "pointOnSeg (d1)",
+   "s": 1.0051249922167904,
+   "L": 0.49745056970203905,
+   "lateral": 0.00004306372102291789,
+   "entre": "extremo de contorno0.55@(297.110,148.354) sobre contorno0.54"
+  },
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 1.005168500355749,
+   "L": 0.49742903784095915,
+   "entre": "crease4@(177.613,308.857) ↔ crease8@(177.613,309.355)"
+  },
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 1.005168500355749,
+   "L": 0.49742903784095915,
+   "entre": "crease7@(217.611,308.857) ↔ crease8@(217.611,309.355)"
+  },
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 1.0051874484765253,
+   "L": 0.49741966113664304,
+   "entre": "contorno0@(177.610,308.857) ↔ crease8@(177.613,309.355)"
+  },
+  {
+   "predicado": "pointOnSeg (d1)",
+   "s": 1.0051874484765253,
+   "L": 0.49741966113664304,
+   "lateral": 0.0034773954469926593,
+   "entre": "extremo de crease8.0@(177.613,309.355) sobre contorno0.16"
+  },
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 1.0051876003332716,
+   "L": 0.4974195859899428,
+   "entre": "contorno0@(217.608,308.857) ↔ crease8@(217.611,309.355)"
+  },
+  {
+   "predicado": "pointOnSeg (d2)",
+   "s": 1.0051876003332716,
+   "L": 0.4974195859899428,
+   "lateral": 0.0034666295169927253,
+   "entre": "extremo de crease8.0@(217.611,309.355) sobre contorno0.22"
+  },
+  {
+   "predicado": "pointOnSeg (d1)",
+   "s": 1.0051876003332716,
+   "L": 0.4974195859899428,
+   "lateral": 0.34926894325289753,
+   "entre": "extremo de crease8.0@(217.611,309.355) sobre contorno0.23"
+  },
+  {
+   "predicado": "pointOnSeg (d2)",
+   "s": 1.0051876003332716,
+   "L": 0.4974195859899428,
+   "lateral": 0.4974075059809593,
+   "entre": "extremo de contorno0.22@(217.608,308.857) sobre crease8.0"
+  },
+  {
+   "predicado": "pointOnSeg (d2)",
+   "s": 1.0051876003332716,
+   "L": 0.4974195859899428,
+   "lateral": 0.4974075059809593,
+   "entre": "extremo de contorno0.23@(217.608,308.857) sobre crease8.0"
+  },
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 1.005190255834522,
+   "L": 0.4974182719120108,
+   "entre": "contorno0@(177.610,348.855) ↔ contorno0@(178.107,348.855)"
+  },
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 1.0052120122571175,
+   "L": 0.4974075059820393,
+   "entre": "contorno0@(258.107,148.354) ↔ contorno0@(257.609,148.354)"
+  },
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 1.0052120122591854,
+   "L": 0.49740750598101613,
+   "entre": "contorno0@(297.607,148.354) ↔ contorno0@(297.110,148.354)"
+  },
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 1.0052120122593002,
+   "L": 0.4974075059809593,
+   "entre": "crease8@(217.611,309.355) ↔ crease9@(217.611,308.857)"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 1.0059432323633855,
+   "L": 0.49704594048044726,
+   "lateral": 0.4974075059809593,
+   "entre": "extremo de contorno0.22@(217.608,308.857) sobre crease8.0"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 1.0059432323633855,
+   "L": 0.49704594048044726,
+   "lateral": 0.4974075059809593,
+   "entre": "extremo de contorno0.23@(217.608,308.857) sobre crease8.0"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 1.0059839469069443,
+   "L": 0.4970258238586496,
+   "lateral": 0.4974721015620105,
+   "entre": "extremo de crease0.0@(217.110,348.852) sobre contorno0.22"
+  },
+  {
+   "predicado": "ptEq (fusión de vértices)",
+   "s": 1.0123110290423052,
+   "L": 0.49391934460402354,
+   "entre": "contorno0@(297.607,148.354) ↔ crease3@(297.113,148.354)"
+  },
+  {
+   "predicado": "pointOnSeg (d1)",
+   "s": 1.0123110290423052,
+   "L": 0.49391934460402354,
+   "lateral": 0,
+   "entre": "extremo de crease3.0@(297.113,148.354) sobre contorno0.54"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 3.070303876974372,
+   "L": 0.16285033014149874,
+   "lateral": 0.3542628496776401,
+   "entre": "extremo de crease11.0@(297.607,188.355) sobre contorno0.52"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 3.0756357167680846,
+   "L": 0.1625680171660271,
+   "lateral": 0.3539934164209501,
+   "entre": "extremo de crease11.0@(257.609,188.355) sobre contorno0.6"
+  },
+  {
+   "predicado": "pointOnSeg (exceso d1+d2−len)",
+   "s": 3.1464269226166452,
+   "L": 0.15891041244466209,
+   "lateral": 0.34926894325289753,
+   "entre": "extremo de crease8.0@(217.611,309.355) sobre contorno0.23"
+  }
+ ],
+ "transiciones": [
+  {
+   "entre": "0.28193–0.28345",
+   "de": "9|25336.06|8|14|43|84",
+   "a": "9|25355.16|8|14|45|84",
+   "explicadaPor": [
+    "ptEq (fusión de vértices) L=1.7686 s*=0.28271",
+    "pointOnSeg (d2) L=1.7686 s*=0.28271",
+    "pointOnSeg (d2) L=1.7686 s*=0.28271",
+    "ptEq (fusión de vértices) L=1.7686 s*=0.28271",
+    "ptEq (fusión de vértices) L=1.7661 s*=0.28310"
+   ]
+  },
+  {
+   "entre": "0.36474–0.36670",
+   "de": "9|25355.16|8|14|45|84",
+   "a": "13|27780.18|12|14|45|74",
+   "explicadaPor": [
+    "pointOnSeg (exceso d1+d2−len) L=1.3668 s*=0.36582",
+    "pointOnSeg (exceso d1+d2−len) L=1.3668 s*=0.36582",
+    "pointOnSeg (exceso d1+d2−len) L=1.3651 s*=0.36626",
+    "pointOnSeg (exceso d1+d2−len) L=1.3651 s*=0.36626",
+    "pointOnSeg (exceso d1+d2−len) L=1.3651 s*=0.36629",
+    "pointOnSeg (exceso d1+d2−len) L=1.3651 s*=0.36629",
+    "pointOnSeg (exceso d1+d2−len) L=1.3644 s*=0.36646",
+    "pointOnSeg (exceso d1+d2−len) L=1.3644 s*=0.36646"
+   ]
+  },
+  {
+   "entre": "0.50054–0.50324",
+   "de": "13|27780.18|12|14|45|74",
+   "a": "13|27662.17|12|14|45|74",
+   "explicadaPor": [
+    "pointOnSeg (exceso d1+d2−len) L=0.9945 s*=0.50277",
+    "pointOnSeg (exceso d1+d2−len) L=0.9945 s*=0.50277"
+   ]
+  },
+  {
+   "entre": "0.50867–0.51140",
+   "de": "13|27662.17|12|14|45|74",
+   "a": "13|27423.93|12|14|45|72",
+   "explicadaPor": [
+    "pointOnSeg (exceso d1+d2−len) L=0.9825 s*=0.50888",
+    "pointOnSeg (exceso d1+d2−len) L=0.9825 s*=0.50888",
+    "pointOnSeg (exceso d1+d2−len) L=0.9825 s*=0.50888",
+    "pointOnSeg (exceso d1+d2−len) L=0.9825 s*=0.50888"
+   ]
+  },
+  {
+   "entre": "0.98933–0.99465",
+   "de": "13|27423.93|12|14|45|72",
+   "a": "12|26758.35|11|14|46|74",
+   "explicadaPor": [
+    "ptEq (fusión de vértices) L=0.5044 s*=0.99122",
+    "ptEq (fusión de vértices) L=0.5044 s*=0.99122",
+    "pointOnSeg (d1) L=0.5044 s*=0.99122",
+    "pointOnSeg (d1) L=0.5044 s*=0.99122",
+    "pointOnSeg (d2) L=0.5044 s*=0.99122",
+    "pointOnSeg (d2) L=0.5044 s*=0.99122"
+   ]
+  },
+  {
+   "entre": "0.99465–1.00000",
+   "de": "12|26758.35|11|14|46|74",
+   "a": "11|26769.12|10|13|52|78",
+   "explicadaPor": [
+    "ptEq (fusión de vértices) L=0.5010 s*=0.99800",
+    "ptEq (fusión de vértices) L=0.5010 s*=0.99800",
+    "pointOnSeg (d2) L=0.5010 s*=0.99800",
+    "pointOnSeg (d1) L=0.5010 s*=0.99800",
+    "ptEq (fusión de vértices) L=0.5010 s*=0.99806",
+    "ptEq (fusión de vértices) L=0.5010 s*=0.99806",
+    "pointOnSeg (d1) L=0.5010 s*=0.99806",
+    "pointOnSeg (d2) L=0.5010 s*=0.99806",
+    "pointOnSeg (d2) L=0.5010 s*=0.99806",
+    "ptEq (fusión de vértices) L=0.5010 s*=0.99808",
+    "ptEq (fusión de vértices) L=0.5010 s*=0.99808",
+    "pointOnSeg (d2) L=0.5010 s*=0.99808",
+    "pointOnSeg (d1) L=0.5010 s*=0.99808",
+    "pointOnSeg (d2) L=0.5010 s*=0.99808",
+    "pointOnSeg (d1) L=0.5010 s*=0.99808",
+    "ptEq (fusión de vértices) L=0.5010 s*=0.99808",
+    "ptEq (fusión de vértices) L=0.5010 s*=0.99808",
+    "ptEq (fusión de vértices) L=0.5010 s*=0.99808",
+    "ptEq (fusión de vértices) L=0.5009 s*=0.99813",
+    "ptEq (fusión de vértices) L=0.5009 s*=0.99813",
+    "ptEq (fusión de vértices) L=0.5009 s*=0.99817",
+    "pointOnSeg (d2) L=0.5009 s*=0.99817",
+    "ptEq (fusión de vértices) L=0.5009 s*=0.99819",
+    "pointOnSeg (d2) L=0.5009 s*=0.99819",
+    "pointOnSeg (d1) L=0.5009 s*=0.99819",
+    "pointOnSeg (exceso d1+d2−len) L=0.5006 s*=0.99884",
+    "pointOnSeg (exceso d1+d2−len) L=0.5006 s*=0.99884",
+    "pointOnSeg (exceso d1+d2−len) L=0.5006 s*=0.99884",
+    "pointOnSeg (exceso d1+d2−len) L=0.5005 s*=0.99902"
+   ]
+  },
+  {
+   "entre": "1.00000–1.00538",
+   "de": "11|26769.12|10|13|52|78",
+   "a": "11|26109.8|10|14|57|83",
+   "explicadaPor": [
+    "ptEq (fusión de vértices) L=0.4975 s*=1.00506",
+    "pointOnSeg (d2) L=0.4975 s*=1.00506",
+    "pointOnSeg (d1) L=0.4975 s*=1.00506",
+    "ptEq (fusión de vértices) L=0.4975 s*=1.00508",
+    "ptEq (fusión de vértices) L=0.4975 s*=1.00508",
+    "pointOnSeg (d1) L=0.4975 s*=1.00508",
+    "pointOnSeg (d1) L=0.4975 s*=1.00508",
+    "pointOnSeg (d2) L=0.4975 s*=1.00508",
+    "pointOnSeg (d2) L=0.4975 s*=1.00508",
+    "ptEq (fusión de vértices) L=0.4975 s*=1.00512",
+    "pointOnSeg (d1) L=0.4975 s*=1.00512",
+    "pointOnSeg (d1) L=0.4975 s*=1.00512",
+    "pointOnSeg (d1) L=0.4975 s*=1.00512",
+    "ptEq (fusión de vértices) L=0.4974 s*=1.00517",
+    "ptEq (fusión de vértices) L=0.4974 s*=1.00517",
+    "ptEq (fusión de vértices) L=0.4974 s*=1.00519",
+    "pointOnSeg (d1) L=0.4974 s*=1.00519",
+    "ptEq (fusión de vértices) L=0.4974 s*=1.00519",
+    "pointOnSeg (d2) L=0.4974 s*=1.00519",
+    "pointOnSeg (d1) L=0.4974 s*=1.00519",
+    "pointOnSeg (d2) L=0.4974 s*=1.00519",
+    "pointOnSeg (d2) L=0.4974 s*=1.00519",
+    "ptEq (fusión de vértices) L=0.4974 s*=1.00519",
+    "ptEq (fusión de vértices) L=0.4974 s*=1.00521",
+    "ptEq (fusión de vértices) L=0.4974 s*=1.00521",
+    "ptEq (fusión de vértices) L=0.4974 s*=1.00521"
+   ]
+  },
+  {
+   "entre": "1.00538–1.01079",
+   "de": "11|26109.8|10|14|57|83",
+   "a": "11|26119.62|10|14|57|82",
+   "explicadaPor": [
+    "pointOnSeg (exceso d1+d2−len) L=0.4970 s*=1.00594",
+    "pointOnSeg (exceso d1+d2−len) L=0.4970 s*=1.00594",
+    "pointOnSeg (exceso d1+d2−len) L=0.4970 s*=1.00598"
+   ]
+  },
+  {
+   "entre": "3.06866–3.08517",
+   "de": "11|26119.62|10|14|57|82",
+   "a": "11|26118.87|10|14|57|80",
+   "explicadaPor": [
+    "pointOnSeg (exceso d1+d2−len) L=0.1629 s*=3.07030",
+    "pointOnSeg (exceso d1+d2−len) L=0.1626 s*=3.07564"
+   ]
+  },
+  {
+   "entre": "3.13522–3.15209",
+   "de": "11|26118.87|10|14|57|80",
+   "a": "11|26118.87|10|14|57|79",
+   "explicadaPor": [
+    "pointOnSeg (exceso d1+d2−len) L=0.1589 s*=3.14643"
+   ]
+  }
+ ],
+ "resultados": {
+  "9 paneles · área 25336.06": {
+   "desde": 0.2,
+   "hasta": 0.28193149649582494,
+   "n": 65
+  },
+  "9 paneles · área 25355.16": {
+   "desde": 0.2834480650271804,
+   "hasta": 0.3647361396857325,
+   "n": 48
+  },
+  "13 paneles · área 27780.18": {
+   "desde": 0.36669813172482923,
+   "hasta": 0.5005447356281975,
+   "n": 59
+  },
+  "13 paneles · área 27662.17": {
+   "desde": 0.503237270531266,
+   "hasta": 0.5086658693747765,
+   "n": 3
+  },
+  "13 paneles · área 27423.93": {
+   "desde": 0.5114020895561204,
+   "hasta": 0.9893277706047329,
+   "n": 124
+  },
+  "12 paneles · área 26758.35": {
+   "desde": 0.9946495717611973,
+   "hasta": 0.9946495717611973,
+   "n": 1
+  },
+  "11 paneles · área 26769.12": {
+   "desde": 1,
+   "hasta": 1,
+   "n": 1
+  },
+  "11 paneles · área 26109.8": {
+   "desde": 1.0053792093122096,
+   "hasta": 1.0053792093122096,
+   "n": 1
+  },
+  "11 paneles · área 26119.62": {
+   "desde": 1.010787354517243,
+   "hasta": 3.0686623365830754,
+   "n": 208
+  },
+  "11 paneles · área 26118.87": {
+   "desde": 3.085169313600048,
+   "hasta": 5,
+   "n": 91
+  }
+ }
+}
