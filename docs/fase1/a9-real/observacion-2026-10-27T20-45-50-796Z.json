@@ -1,0 +1,59 @@
+{
+ "inicio": "2026-10-27T20:22:45.629Z",
+ "sinCepFs": false,
+ "historialEstado": [
+  "Preparing 3D...",
+  "3D model ready - 11 panels, 10 fold edges",
+  "3D ready · thickness=0.3mm",
+  "3D model ready - 11 panels, 10 fold edges",
+  "Thickness applied: 0.8mm",
+  "3D model ready - 11 panels, 10 fold edges",
+  "Thickness applied: 1.1mm",
+  "3D model ready - 11 panels, 10 fold edges",
+  "Thickness applied: 2.1mm",
+  "3D model ready - 11 panels, 10 fold edges",
+  "Thickness applied: 0.8mm",
+  "3D model ready - 11 panels, 10 fold edges",
+  "Material preset applied: Kraft board",
+  "Back to import",
+  "Preparing 3D...",
+  "3D model ready - 11 panels, 10 fold edges",
+  "3D ready · thickness=0.8mm"
+ ],
+ "historialArte": [
+  "Searching Front/Back or Tiro/Retiro…",
+  "No Front/Back or Tiro/Retiro art detected.",
+  "Searching Front/Back or Tiro/Retiro…",
+  "No Front/Back or Tiro/Retiro art detected."
+ ],
+ "escrituras": [],
+ "scripts": [
+  {
+   "tipo": "arte",
+   "longitud": 5677,
+   "sha256_16": "ab1c20da805454b7"
+  },
+  {
+   "tipo": "arte",
+   "longitud": 5677,
+   "sha256_16": "ab1c20da805454b7"
+  }
+ ],
+ "restaurado": true,
+ "veredicto": {
+  "ok": true,
+  "checks": [
+   {
+    "name": "script arte = baseline (5677 B, ab1c20da805454b7)",
+    "ok": true
+   },
+   {
+    "name": "script arte = baseline (5677 B, ab1c20da805454b7)",
+    "ok": true
+   }
+  ],
+  "tiposDeScriptVistos": [
+   "arte"
+  ]
+ }
+}

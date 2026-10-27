@@ -1,0 +1,203 @@
+{
+ "inicio": "2026-10-27T20:06:37.004Z",
+ "sinCepFs": false,
+ "historialEstado": [
+  "Testing...",
+  "OK_FROM_ILLUSTRATOR",
+  "Extracting...",
+  "Extraction complete",
+  "Preparing 3D...",
+  "3D model ready - 11 panels, 10 fold edges",
+  "3D ready · thickness=0.3mm",
+  "3D model ready - 11 panels, 10 fold edges",
+  "3D ready · base=P1 · thickness=0.3mm",
+  "3D model ready - 11 panels, 10 fold edges",
+  "3D ready · base=P0 · thickness=0.3mm",
+  "3D model ready - 11 panels, 10 fold edges",
+  "Thickness applied: 0.5mm",
+  "3D model ready - 11 panels, 10 fold edges",
+  "Thickness applied: 0.3mm",
+  "3D model ready - 11 panels, 10 fold edges",
+  "Thickness applied: 0.1mm",
+  "3D model ready - 11 panels, 10 fold edges",
+  "Thickness applied: 20.0mm",
+  "Thickness must be greater than 0",
+  "Thickness must be greater than 0",
+  "3D model ready - 11 panels, 10 fold edges",
+  "Thickness applied: 0.3mm",
+  "3D model ready - 11 panels, 10 fold edges",
+  "Material preset applied: Kraft board",
+  "3D model ready - 11 panels, 10 fold edges",
+  "Material preset applied: Gray board",
+  "3D model ready - 11 panels, 10 fold edges",
+  "Material preset applied: White board",
+  "Exporting GLB…",
+  "GLB saved: /private/tmp/tesseract_a4/pose1.glb",
+  "GLB exported from current 3D pose",
+  "Exporting GLB…",
+  "GLB saved: /private/tmp/tesseract_a4/pose2.glb",
+  "GLB exported from current 3D pose",
+  "Back to import",
+  "Preparing 3D...",
+  "3D model ready - 11 panels, 10 fold edges",
+  "3D ready · thickness=0.3mm",
+  "Crease C1 selected · Alt/Option + click another red line to retarget",
+  "Exporting GLB…",
+  "GLB saved: /private/tmp/tesseract_a9/a9-plano.glb",
+  "GLB exported from current 3D pose",
+  "Exporting GLB…",
+  "GLB export cancelled",
+  "GLB exported from current 3D pose",
+  "Back to import",
+  "Preparing 3D...",
+  "3D model ready - 11 panels, 10 fold edges",
+  "3D ready · thickness=0.3mm",
+  "Crease C3 selected · Alt/Option + click another red line to retarget",
+  "3D model ready - 11 panels, 10 fold edges",
+  "3D ready · base=P3 · thickness=0.3mm",
+  "Base set to P3 · Shift + click another panel to change it",
+  "3D model ready - 11 panels, 10 fold edges",
+  "3D ready · base=P9 · thickness=0.3mm",
+  "Base set to P9 · Shift + click another panel to change it",
+  "3D model ready - 11 panels, 10 fold edges",
+  "3D ready · base=P9 · thickness=0.3mm",
+  "Base set to P9 · Shift + click another panel to change it",
+  "3D model ready - 11 panels, 10 fold edges",
+  "3D ready · base=P9 · thickness=0.3mm",
+  "Base set to P9 · Shift + click another panel to change it",
+  "3D model ready - 11 panels, 10 fold edges",
+  "3D ready · base=P7 · thickness=0.3mm",
+  "Base set to P7 · Shift + click another panel to change it",
+  "Crease C4 selected · Alt/Option + click another red line to retarget",
+  "Back to import"
+ ],
+ "historialArte": [
+  "Searching Front/Back or Tiro/Retiro…",
+  "No Front/Back or Tiro/Retiro art detected.",
+  "Searching Front/Back or Tiro/Retiro…",
+  "No Front/Back or Tiro/Retiro art detected.",
+  "Searching Front/Back or Tiro/Retiro…",
+  "No Front/Back or Tiro/Retiro art detected."
+ ],
+ "escrituras": [
+  {
+   "ruta": "/private/tmp/tesseract_a4/pose1.glb",
+   "enc": "Base64",
+   "longitudBase64": 44584,
+   "err": 0,
+   "archivo": {
+    "bytes": 33436,
+    "sha256": "737bcd2312da1191a57f5b6530749ffd6bf20b6dd1737c454a62d7f38d8e40b4"
+   }
+  },
+  {
+   "ruta": "/private/tmp/tesseract_a4/pose2.glb",
+   "enc": "Base64",
+   "longitudBase64": 72300,
+   "err": 0,
+   "archivo": {
+    "bytes": 54224,
+    "sha256": "87aa2e4c5cc39092e4b040b77f713bc371f6e7c8b47cc56b8711cb5167275017"
+   }
+  },
+  {
+   "ruta": "/private/tmp/tesseract_a9/a9-plano.glb",
+   "enc": "Base64",
+   "longitudBase64": 44584,
+   "err": 0,
+   "archivo": {
+    "bytes": 33436,
+    "sha256": "737bcd2312da1191a57f5b6530749ffd6bf20b6dd1737c454a62d7f38d8e40b4"
+   }
+  }
+ ],
+ "scripts": [
+  {
+   "tipo": "test",
+   "longitud": 48,
+   "sha256_16": "444efa9b8bdb7395"
+  },
+  {
+   "tipo": "extraer",
+   "longitud": 5536,
+   "sha256_16": "bd4c215d56fb4cdc"
+  },
+  {
+   "tipo": "arte",
+   "longitud": 5677,
+   "sha256_16": "ab1c20da805454b7"
+  },
+  {
+   "tipo": "arte",
+   "longitud": 5677,
+   "sha256_16": "ab1c20da805454b7"
+  },
+  {
+   "tipo": "guardar",
+   "longitud": 188,
+   "sha256_16": "be6c47e148487d9d"
+  },
+  {
+   "tipo": "guardar",
+   "longitud": 188,
+   "sha256_16": "be6c47e148487d9d"
+  },
+  {
+   "tipo": "arte",
+   "longitud": 5677,
+   "sha256_16": "ab1c20da805454b7"
+  }
+ ],
+ "restaurado": true,
+ "veredicto": {
+  "ok": true,
+  "checks": [
+   {
+    "name": "script test = baseline (48 B, 444efa9b8bdb7395)",
+    "ok": true
+   },
+   {
+    "name": "script extraer = baseline (5536 B, bd4c215d56fb4cdc)",
+    "ok": true
+   },
+   {
+    "name": "script arte = baseline (5677 B, ab1c20da805454b7)",
+    "ok": true
+   },
+   {
+    "name": "script arte = baseline (5677 B, ab1c20da805454b7)",
+    "ok": true
+   },
+   {
+    "name": "script guardar = baseline (188 B, be6c47e148487d9d)",
+    "ok": true
+   },
+   {
+    "name": "script guardar = baseline (188 B, be6c47e148487d9d)",
+    "ok": true
+   },
+   {
+    "name": "script arte = baseline (5677 B, ab1c20da805454b7)",
+    "ok": true
+   },
+   {
+    "name": "escritura /private/tmp/tesseract_a4/pose1.glb: err 0 y archivo en disco",
+    "ok": true
+   },
+   {
+    "name": "escritura /private/tmp/tesseract_a4/pose2.glb: err 0 y archivo en disco",
+    "ok": true
+   },
+   {
+    "name": "escritura /private/tmp/tesseract_a9/a9-plano.glb: err 0 y archivo en disco",
+    "ok": true
+   }
+  ],
+  "tiposDeScriptVistos": [
+   "arte",
+   "extraer",
+   "guardar",
+   "test"
+  ]
+ }
+}

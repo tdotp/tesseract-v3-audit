@@ -1,0 +1,127 @@
+{
+ "fecha": "2026-10-27T20:06:42.864Z",
+ "tag": "N0-A",
+ "profile": "caja",
+ "pasos": {
+  "P-0 test de conexión": {
+   "status": "OK_FROM_ILLUSTRATOR"
+  },
+  "P-1 extracción y validación": {
+   "status": "Extraction complete",
+   "validacion": "✅ No problems found",
+   "avisos": [],
+   "continuarHabilitado": true,
+   "jsonBytes": 25527,
+   "jsonSha256": "88595b62c65bd09f9f19c2fa2ee2dc881809a6391b5700c4ec03437dbcb86446"
+  },
+  "P-2 paso a 3D": {
+   "status": "3D ready · thickness=0.3mm",
+   "ms": 534,
+   "logPaneles": [
+    "Faces traced: 13",
+    "Panels after shell filter: 13",
+    "Connectivity filter: keeping 11 of 13 panels from largest crease-connected component"
+   ],
+   "paneles3D": "13"
+  },
+  "P-3 base": {
+   "baseInicial": "0",
+   "opciones": 11,
+   "cambiadaA": "1",
+   "statusTrasCambio": "3D ready · base=P1 · thickness=0.3mm",
+   "statusTrasVolver": "3D ready · base=P0 · thickness=0.3mm",
+   "baseFinal": "0"
+  },
+  "P-4 plegado": {
+   "sliders": 12,
+   "hashPlano": "83b9a8e93eaf7856",
+   "hashCreaseSeleccionada60": "d65e57f9e7eaa1d4",
+   "hashTodas60": "a1efb2d1f71c4ef3",
+   "hashTrasReset": "83b9a8e93eaf7856",
+   "plegadoCambiaLaImagen": true,
+   "resetVuelveAlPlano": true
+  },
+  "P-5 espesor": {
+   "25": {
+    "status": "Thickness applied: 20.0mm",
+    "valorTrasAplicar": "20.00"
+   },
+   "0.5": {
+    "status": "Thickness applied: 0.5mm",
+    "valorTrasAplicar": "0.50"
+   },
+   "0.25": {
+    "status": "Thickness applied: 0.3mm",
+    "valorTrasAplicar": "0.25"
+   },
+   "0.05": {
+    "status": "Thickness applied: 0.1mm",
+    "valorTrasAplicar": "0.10"
+   },
+   "abc": {
+    "status": "Thickness must be greater than 0",
+    "valorTrasAplicar": "20.00"
+   },
+   "(vacío)": {
+    "status": "Thickness must be greater than 0",
+    "valorTrasAplicar": "20.00"
+   },
+   "final": "Thickness applied: 0.3mm"
+  },
+  "P-6 presets de material": {
+   "kraft": {
+    "pill": "Kraft board",
+    "status": "Material preset applied: Kraft board"
+   },
+   "gray": {
+    "pill": "Gray board",
+    "status": "Material preset applied: Gray board"
+   },
+   "white": {
+    "pill": "White board",
+    "status": "Material preset applied: White board"
+   }
+  },
+  "P-8 exportar GLB (diálogo sustituido por ruta en /private/tmp/tesseract_a4/)": {
+   "plano": {
+    "ruta": "/private/tmp/tesseract_a4/pose1.glb",
+    "err": 0,
+    "bytes": 33436,
+    "sha256": "737bcd2312da1191a57f5b6530749ffd6bf20b6dd1737c454a62d7f38d8e40b4",
+    "status": "GLB exported from current 3D pose",
+    "archivo": {
+     "bytes": 33436,
+     "sha256": "737bcd2312da1191a57f5b6530749ffd6bf20b6dd1737c454a62d7f38d8e40b4"
+    }
+   },
+   "todas60": {
+    "ruta": "/private/tmp/tesseract_a4/pose2.glb",
+    "err": 0,
+    "bytes": 54224,
+    "sha256": "87aa2e4c5cc39092e4b040b77f713bc371f6e7c8b47cc56b8711cb5167275017",
+    "status": "GLB exported from current 3D pose",
+    "archivo": {
+     "bytes": 54224,
+     "sha256": "87aa2e4c5cc39092e4b040b77f713bc371f6e7c8b47cc56b8711cb5167275017"
+    }
+   }
+  },
+  "estado final del panel": {
+   "status": "GLB exported from current 3D pose",
+   "vista3D": true
+  }
+ },
+ "consolaPanel": {
+  "errores": 0
+ },
+ "consola": {
+  "eventos": 59,
+  "errores": [],
+  "avisos": [
+   {
+    "tipo": "log-warning",
+    "texto": "The specified value \"abc\" cannot be parsed, or is out of range."
+   }
+  ]
+ }
+}

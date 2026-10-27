@@ -1,0 +1,19 @@
+{
+ "entrada": "CDP Input en CEP real",
+ "modeBtn": "apply-thickness-btn",
+ "trasApplyEspesor": {
+  "estado": "Thickness applied: 0.8mm",
+  "foco": "apply-thickness-btn",
+  "modo": "Crease selection"
+ },
+ "escapeConFocoEnEspesor": {
+  "estado": "Thickness applied: 0.8mm",
+  "foco": "thickness-input",
+  "modo": "Crease selection"
+ },
+ "escapeSinFoco": {
+  "estado": "Crease selection mode enabled",
+  "foco": "",
+  "modo": "Crease selection"
+ }
+}

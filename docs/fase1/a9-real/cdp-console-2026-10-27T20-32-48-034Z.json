@@ -1,0 +1,503 @@
+{
+ "fecha": "2026-10-27T20:32:48.029Z",
+ "segundos": 600,
+ "eventos": [
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Renderer created OK"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Overlay controls attached"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] First frame rendered"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] === buildPanels ==="
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Closed cut contours reclassified · shells=1 holes=0 total=1"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Total topo segments (closed cuts + creases): 68"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] buildTopology: 68 input segments"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] After splitting: 78 segments (9 iterations)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Graph: 52 vertices, 52 adj entries"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Faces traced: 13"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 0: area=-27434.7 verts=49 hole=true"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 1: area=1580.1 verts=4 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 2: area=316.2 verts=4 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 3: area=666.5 verts=8 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 4: area=4770.6 verts=5 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 5: area=4829.9 verts=4 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 6: area=1760.3 verts=4 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 7: area=1919.0 verts=9 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 8: area=665.6 verts=7 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 9: area=4794.4 verts=11 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 10: area=665.6 verts=7 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 11: area=4800.2 verts=6 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 12: area=666.4 verts=8 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Panels after shell filter: 13"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Connectivity filter: keeping 11 of 13 panels from largest crease-connected component"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Built 11 panel meshes, 12 crease edge segments"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Adjacency edges: 10 (strict)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Fold tree edges: 10 (base=P0)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Fold tree edges: 10 (base=P1)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Adjacency edges: 10 (strict)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Fold tree edges: 10 (base=P1)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Fold tree edges: 10 (base=P0)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Adjacency edges: 10 (strict)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Fold tree edges: 10 (base=P0)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Built 11 panel meshes, 12 crease edge segments"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Adjacency edges: 10 (strict)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Fold tree edges: 10 (base=P0)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Built 11 panel meshes, 12 crease edge segments"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Adjacency edges: 10 (strict)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Fold tree edges: 10 (base=P0)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Built 11 panel meshes, 12 crease edge segments"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Adjacency edges: 10 (strict)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Fold tree edges: 10 (base=P0)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Built 11 panel meshes, 12 crease edge segments"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Adjacency edges: 10 (strict)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Fold tree edges: 10 (base=P0)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Built 11 panel meshes, 12 crease edge segments"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Adjacency edges: 10 (strict)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Fold tree edges: 10 (base=P0)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Built 11 panel meshes, 12 crease edge segments"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Adjacency edges: 10 (strict)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Fold tree edges: 10 (base=P0)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Built 11 panel meshes, 12 crease edge segments"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Adjacency edges: 10 (strict)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Fold tree edges: 10 (base=P0)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Built 11 panel meshes, 12 crease edge segments"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Adjacency edges: 10 (strict)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Fold tree edges: 10 (base=P0)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] === buildPanels ==="
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Closed cut contours reclassified · shells=1 holes=0 total=1"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Total topo segments (closed cuts + creases): 68"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] buildTopology: 68 input segments"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] After splitting: 78 segments (9 iterations)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Graph: 52 vertices, 52 adj entries"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Faces traced: 13"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 0: area=-27434.7 verts=49 hole=true"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 1: area=1580.1 verts=4 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 2: area=316.2 verts=4 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 3: area=666.5 verts=8 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 4: area=4770.6 verts=5 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 5: area=4829.9 verts=4 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 6: area=1760.3 verts=4 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 7: area=1919.0 verts=9 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 8: area=665.6 verts=7 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 9: area=4794.4 verts=11 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 10: area=665.6 verts=7 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 11: area=4800.2 verts=6 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 12: area=666.4 verts=8 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Panels after shell filter: 13"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Connectivity filter: keeping 11 of 13 panels from largest crease-connected component"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Built 11 panel meshes, 12 crease edge segments"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Adjacency edges: 10 (strict)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Fold tree edges: 10 (base=P0)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] === buildPanels ==="
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Closed cut contours reclassified · shells=1 holes=0 total=1"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Total topo segments (closed cuts + creases): 68"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] buildTopology: 68 input segments"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] After splitting: 78 segments (9 iterations)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Graph: 52 vertices, 52 adj entries"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Faces traced: 13"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 0: area=-27434.7 verts=49 hole=true"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 1: area=1580.1 verts=4 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 2: area=316.2 verts=4 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 3: area=666.5 verts=8 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 4: area=4770.6 verts=5 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 5: area=4829.9 verts=4 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 6: area=1760.3 verts=4 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 7: area=1919.0 verts=9 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 8: area=665.6 verts=7 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 9: area=4794.4 verts=11 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 10: area=665.6 verts=7 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 11: area=4800.2 verts=6 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract]   Face 12: area=666.4 verts=8 hole=false"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Panels after shell filter: 13"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Connectivity filter: keeping 11 of 13 panels from largest crease-connected component"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Built 11 panel meshes, 12 crease edge segments"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Adjacency edges: 10 (strict)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Fold tree edges: 10 (base=P0)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Fold tree edges: 10 (base=P3)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Adjacency edges: 10 (strict)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Fold tree edges: 10 (base=P3)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Fold tree edges: 10 (base=P9)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Adjacency edges: 10 (strict)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Fold tree edges: 10 (base=P9)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Fold tree edges: 10 (base=P9)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Adjacency edges: 10 (strict)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Fold tree edges: 10 (base=P9)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Fold tree edges: 10 (base=P9)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Adjacency edges: 10 (strict)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Fold tree edges: 10 (base=P9)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Fold tree edges: 10 (base=P7)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Adjacency edges: 10 (strict)"
+  },
+  {
+   "tipo": "log",
+   "texto": "[Tesseract] Fold tree edges: 10 (base=P7)"
+  },
+  {
+   "tipo": "log-warning",
+   "texto": "The specified value \"abc\" cannot be parsed, or is out of range."
+  }
+ ],
+ "errores": 0
+}

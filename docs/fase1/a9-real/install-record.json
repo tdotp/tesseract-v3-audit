@@ -1,0 +1,105 @@
+{
+ "instalado_utc": "2026-10-27T20:05:23.084796+00:00",
+ "autorizacion_usuario": "2026-10-27",
+ "destino": "/Users/gerardocalambasposada/Library/Application Support/Adobe/CEP/extensions/tesseract-v3",
+ "puerto_debug": 8088,
+ "huellas": {
+  "CSXS/manifest.xml": "fd8284639a0dddcaa0186f90af047a3cada12656401a0eced51c8aa423142085",
+  "icons/icon_dark.png": "919c909b22fe8ae0fdbfb49dfb8ae24c1780ce8d65fe7fa44aa9a6fa7ff85bc5",
+  "icons/icon_dark@2x.png": "1e40266507b818bcd6599082e684652d26d2ab5c6203b5b42ff4d0c2c444691d",
+  "icons/icon_normal.png": "133f931a936c63c250ddca7d6ba297a255b34a5fc944ce4b146ada41f95c5d5b",
+  "icons/icon_normal@2x.png": "43b390e081ac9fd12e9d0b560f86ec66c7550b6aaa265cb7685339847e312acf",
+  "index.html": "1850eefe3f4522f7dc85c555f1916ea505577f88fb156cf1aa871c2cf5c37a1a",
+  "libs/OrbitControls.js": "d4f83a29526ad5a805f1671a000b2a27b4564a7efde47226c8d28fc8e07ea4f4",
+  "libs/three.min.js": "434f6c554d856b46265626505ad48aabb52c8a9ab16aa45fd526b8f55ff2a7cf",
+  "linkedin_logo.svg": "83b4543f402a56258830c75221c7673e1540a4a451eac92c8ed3b566b2c3189f",
+  "main.js": "e5902a3cc3deccf19f07c236a8fd4d6b98834baae30c564dfc367350406f9d46",
+  "style.css": "23e5903a47dbf7e9500e237813a8c67eec2dad4168f17f4fa90dc0f316c88536",
+  "tesseract_icon.svg": "c15ab54245fbcd7be4adf99a7db03f7bcb180513a9b4de237c5873670e7a2595",
+  "tesseract_logo.svg": "85c15fad938ea69e22b1ec68a9a0059c14e0601a84647ad1802476e80feacdf6"
+ },
+ "build_info": {
+  "producto": "Tesseract V3 (bundle IIFE; fuente: entrada + módulos que importa)",
+  "herramientas": {
+   "node": "v24.12.0",
+   "esbuild": "0.28.2",
+   "target": "chrome99",
+   "formato": "iife",
+   "minify": false
+  },
+  "fuente": {
+   "entrada": "src/main.js",
+   "estaticos": "panel",
+   "main_js_sha256": "6b86fc464d01b7a9e506784fe2dbc33e6aae582bfb2be36d02fd09bd1197bca3",
+   "main_js_bytes": 12445
+  },
+  "identidad": {
+   "bundleId": "com.tato.tesseract.v3",
+   "extensionId": "com.tato.tesseract.v3.panel",
+   "version": "3.0.0",
+   "name": "Tesseract V3",
+   "menu": "Tesseract V3"
+  },
+  "depuracion": null,
+  "salida": {
+   "CSXS/manifest.xml": {
+    "sha256": "fd8284639a0dddcaa0186f90af047a3cada12656401a0eced51c8aa423142085",
+    "bytes": 1960
+   },
+   "icons/icon_dark.png": {
+    "sha256": "919c909b22fe8ae0fdbfb49dfb8ae24c1780ce8d65fe7fa44aa9a6fa7ff85bc5",
+    "bytes": 786
+   },
+   "icons/icon_dark@2x.png": {
+    "sha256": "1e40266507b818bcd6599082e684652d26d2ab5c6203b5b42ff4d0c2c444691d",
+    "bytes": 1301
+   },
+   "icons/icon_normal.png": {
+    "sha256": "133f931a936c63c250ddca7d6ba297a255b34a5fc944ce4b146ada41f95c5d5b",
+    "bytes": 786
+   },
+   "icons/icon_normal@2x.png": {
+    "sha256": "43b390e081ac9fd12e9d0b560f86ec66c7550b6aaa265cb7685339847e312acf",
+    "bytes": 1301
+   },
+   "index.html": {
+    "sha256": "1850eefe3f4522f7dc85c555f1916ea505577f88fb156cf1aa871c2cf5c37a1a",
+    "bytes": 7851
+   },
+   "libs/OrbitControls.js": {
+    "sha256": "d4f83a29526ad5a805f1671a000b2a27b4564a7efde47226c8d28fc8e07ea4f4",
+    "bytes": 26609
+   },
+   "libs/three.min.js": {
+    "sha256": "434f6c554d856b46265626505ad48aabb52c8a9ab16aa45fd526b8f55ff2a7cf",
+    "bytes": 612899
+   },
+   "linkedin_logo.svg": {
+    "sha256": "83b4543f402a56258830c75221c7673e1540a4a451eac92c8ed3b566b2c3189f",
+    "bytes": 1500
+   },
+   "main.js": {
+    "sha256": "e5902a3cc3deccf19f07c236a8fd4d6b98834baae30c564dfc367350406f9d46",
+    "bytes": 131546
+   },
+   "style.css": {
+    "sha256": "23e5903a47dbf7e9500e237813a8c67eec2dad4168f17f4fa90dc0f316c88536",
+    "bytes": 8604
+   },
+   "tesseract_icon.svg": {
+    "sha256": "c15ab54245fbcd7be4adf99a7db03f7bcb180513a9b4de237c5873670e7a2595",
+    "bytes": 2110
+   },
+   "tesseract_logo.svg": {
+    "sha256": "85c15fad938ea69e22b1ec68a9a0059c14e0601a84647ad1802476e80feacdf6",
+    "bytes": 2405
+   }
+  },
+  "repo": {
+   "commit": "d19cdbc",
+   "con_cambios_sin_confirmar": false
+  },
+  "instalado": false
+ },
+ "nota": "Illustrator NO fue reiniciado por esta herramienta; reinícialo para que cargue el bundle."
+}

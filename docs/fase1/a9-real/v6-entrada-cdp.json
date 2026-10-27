@@ -1,0 +1,93 @@
+{
+ "fecha": "2026-10-27T20:48:08.274Z",
+ "entrada": "CDP Input.dispatchMouseEvent/dispatchKeyEvent en el CEP real (no es entrada manual)",
+ "pasos": [
+  {
+   "nombre": "reconstruir 3D (escala dpr)",
+   "escala": 1.25,
+   "estado": "3D ready · thickness=0.8mm"
+  },
+  {
+   "nombre": "botones",
+   "back": "back-btn|Back",
+   "cont": "continue-3d-btn|Continue to 3D"
+  },
+  {
+   "nombre": "tras Continue to 3D",
+   "estado": "3D ready · thickness=0.8mm",
+   "selectBase": "7"
+  },
+  {
+   "nombre": "primer clic: Shift+clic centro del lienzo",
+   "estado": "Base set to P3 · Shift + click another panel to change it",
+   "selectBase": "3",
+   "pestanaMaterial": true
+  },
+  {
+   "nombre": "Escape en vista 3D",
+   "estado": "Crease selection mode enabled"
+  },
+  {
+   "nombre": "Escape con foco en espesor",
+   "campo": "thickness-input",
+   "estado": "Crease selection mode enabled",
+   "sinCambio": true
+  },
+  {
+   "nombre": "pestaña tab-btn-material",
+   "activos": [
+    "tab-btn-material"
+   ],
+   "panelesVisibles": [
+    "tab-material"
+   ]
+  },
+  {
+   "nombre": "pestaña tab-btn-artwork",
+   "activos": [
+    "tab-btn-artwork"
+   ],
+   "panelesVisibles": [
+    "tab-artwork"
+   ]
+  },
+  {
+   "nombre": "pestaña tab-btn-creases",
+   "activos": [
+    "tab-btn-creases"
+   ],
+   "panelesVisibles": [
+    "tab-creases"
+   ]
+  },
+  {
+   "nombre": "pestaña tab-btn-debug",
+   "activos": [
+    "tab-btn-debug"
+   ],
+   "panelesVisibles": [
+    "tab-debug"
+   ]
+  },
+  {
+   "nombre": "Debug",
+   "casilla": "debug-toggle",
+   "inicial": {
+    "id": "output-json",
+    "visible": false
+   },
+   "trasMarcar": {
+    "id": "output-json",
+    "visible": true
+   },
+   "trasDesmarcar": {
+    "id": "output-json",
+    "visible": false
+   }
+  },
+  {
+   "nombre": "vuelta a 3D",
+   "estado": "3D ready · thickness=0.8mm"
+  }
+ ]
+}
