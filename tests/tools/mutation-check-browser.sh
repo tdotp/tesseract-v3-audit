@@ -95,4 +95,8 @@ run "A9 · H5: error tragado por el try/catch del visor tras un Alt+clic correct
 run "A9 · H5: createViewport recibe pickPanelFromEvent = undefined (cableado roto)" "A9 · H5" 's/pickPanelFromEvent, pickCreaseFromEvent });/pickPanelFromEvent: undefined, pickCreaseFromEvent });/' $A9
 run "A9 · H5: rebuildCreaseVisuals deja de actualizar el resaltado tras plegar" "A9 · H5"  's/^    updateSelectedCreaseVisuals();$/    void 0;/' $A9
 run_soak "A9 · soak de UI: cada reconstrucción deja una escucha de Reset en #three-view (fuga en un elemento persistente)" "A9 · soak" "s/^      resetBtn.addEventListener('click',function(){\$/      threeView.addEventListener('click',function(){/" $A9
+# A9.1 — src/ui/views.js: cableado de la fábrica (efectos al crearse, copia de S, widgets inyectados). Cada patrón cambia exactamente 1 línea.
+run "A9.1 · createViews llama a setStatus al crearse (n.º 18)"                 "A9 · (H2|H3)"        "s/^  var interactionMode = 'fold';\$/  var interactionMode = 'fold'; setStatus('');/" $A9
+run "A9.1 · createViews trabaja sobre una copia de S (espesor obsoleto)"     "Escena/materiales"   's/^export function createViews(S, deps){$/export function createViews(S, deps){ S = Object.assign({}, S);/'
+run "A9.1 · la composición pasa materialPill como artSourcePill"              "A9 · H2"             's/artSourcePill, modeFoldBtn\(.*\)getMaterialPreset });/artSourcePill: materialPill, modeFoldBtn\1getMaterialPreset });/' $A9
 echo "mutaciones detectadas: $ok · no detectadas: $bad"; [ "$bad" = 0 ]

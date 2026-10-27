@@ -96,4 +96,6 @@ mutT "A9.0b · a9-texto-identico: cambia una línea suelta de main.js"          
 mutT "A9.0b · a9-limites: segunda declaración de lastData (regla 6)"           's/^    var problems   = \[\];$/    var problems   = []; var lastData = null;/' $A9L
 mutT "A9.0b · a9-limites: envoltorio de enlace tardío no previsto (regla 8)"   's/pickPanelFromEvent, pickCreaseFromEvent });/pickPanelFromEvent: function(e){ return pickPanelFromEvent(e); }, pickCreaseFromEvent });/' $A9L
 mutT "A9.0b · a9-limites: el ancla del arnés cambia de texto (regla 9)"        's/^    function setStatus(m){ statusArea.textContent = m; }$/    function setStatus(m){ statusArea.textContent = m;  }/' $A9L
+# A9.1 — límites de src/ui/views.js (n.º 14: laguna de comportamiento declarada; THREE existe en el navegador, solo lo ven a9-limites y a5-limites)
+mutT  "A9.1 · a9-limites: ui/views.js usa THREE (n.º 14)"  's/^  function setDebugVisible(on){ if(outputArea)/  function setDebugVisible(on){ if(!THREE) return; if(outputArea)/' $A9L
 echo "mutaciones detectadas: $ok · no detectadas: $bad"; [ "$bad" = 0 ]

@@ -1,0 +1,6 @@
+# A9.1 — Investigación de rendimiento (D-A9-14)
+
+- **Primera lectura** (`rendimiento-A9.1-10corridas.json`, 10 corridas intercaladas frente a 3ea0d8a): `construir_ms` +21,3 % y `base_select_ms` +10,5 % ⇒ «INVESTIGAR (> 10 %)». Ninguna > +25 %.
+- **Datos crudos [MEDIDO]:** las dos métricas son **bimodales y con los mismos grupos en la referencia y en el bundle actual**: `construir_ms` ≈ 22–24 ms o ≈ 34–42 ms; `base_select_ms` ≈ 0,80–0,90 ms o ≈ 1,05–1,36 ms. Con 10 muestras la mediana cae en un grupo u otro según cuántas corridas de cada lado caen en el grupo bajo (en la medición de ruido de A9.0b, la referencia dio 36,9 ms; en esta, 28,9 ms: misma fuente de src/).
+- **Repetición con 20 corridas** (`rendimiento-A9.1-20corridas.json`): todas las métricas **OK**; `construir_ms` −10,9 % (el actual es más rápido), `base_select_ms` +2,3 %; grupo bajo de `construir_ms` 5/20 (ref) y 6/20 (act), de `base_select_ms` 6/20 y 4/20.
+- **Conclusión [INFERENCIA respaldada por los datos]:** variación del instrumento (Chrome headless, temporizadores y planificación del proceso), no del producto. A9.1 no toca la ruta de «Continue» salvo que `show3D`/`setActiveTab`/`ensureCep` se llaman a través de las variables que devuelve `createViews` (mismo cuerpo de función; bundle: 144/144 funciones idénticas). Se acepta con la lectura de 20 corridas, como en A8.3.

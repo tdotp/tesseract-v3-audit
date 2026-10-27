@@ -8,9 +8,9 @@ import test from 'node:test'; import assert from 'node:assert/strict'; import fs
 import { SRC, srcFiles, functionsAnyIndent, norm, residual, multisetDiff } from '../lib/a7.mjs'; import { refTree, refMain, handlerBlocks, CLOSURE_3EA0D8A } from '../lib/a9.mjs';
 
 // Estado esperado en ESTE paso (se actualiza en cada paso aprobado; igualdad exacta).
-const NEW_FUNCTIONS = []; // A9.0b: ninguna (src/ sin cambios)
+const NEW_FUNCTIONS = ['createViews']; // A9.1
 const HANDLERS_FILE = 'main.js'; // Bloque 1: los 15 manejadores siguen en main.js (bindEvents llega en A9.5, no autorizado)
-const EXPECTED_RESIDUAL = { quitadas: [], anadidas: [] }; // A9.0b: main.js = 3ea0d8a
+const EXPECTED_RESIDUAL = {"quitadas":["import { hasCep, evalScript, evalScriptJSON, pathToFileURL } from './bridge/cep.js';","var interactionMode = 'fold';"],"anadidas":["import { evalScript, evalScriptJSON, pathToFileURL } from './bridge/cep.js';","import { createViews } from './ui/views.js';","var { syncMaterialPresetUI, setInteractionMode, ensureCep, showImport, show3D, setDebugVisible, setActiveTab, syncMaterialInputs, setArtStatus } = createViews(S, { importView, threeView, outputArea, tabButtons, tabPanels, thicknessInput, materialPresetSelect, materialPill, artStatus, artSourcePill, modeFoldBtn, modeBaseBtn, interactionModePill, interactionStatus, viewportBadge, viewport3d, errorMsg, testBtn, extractBtn, previewBtn, continueBtn, backBtn, export3dBtn, setStatus, getMaterialPreset }); /* A9.1: presentación (ui/views.js); interactionMode es privado de la fábrica */"]}; // A9.1: revisado a mano (sale el import con hasCep y var interactionMode; entran el import sin hasCep, el de ui/views.js y la línea de composición de createViews)
 
 const ref = refTree(); const refMainText = refMain();
 const key = (f) => f.name + '\n' + norm(f.text);

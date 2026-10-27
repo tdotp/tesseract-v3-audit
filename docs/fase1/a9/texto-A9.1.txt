@@ -1,0 +1,10 @@
+IDÉNTICA syncMaterialPresetUI (5 líneas; 3ea0d8a sangría 4 → ui/views.js sangría 2)
+IDÉNTICA setInteractionMode (14 líneas; 3ea0d8a sangría 4 → ui/views.js sangría 2)
+IDÉNTICA ensureCep (8 líneas; 3ea0d8a sangría 4 → ui/views.js sangría 2)
+IDÉNTICA showImport (1 líneas; 3ea0d8a sangría 4 → ui/views.js sangría 2)
+IDÉNTICA show3D (1 líneas; 3ea0d8a sangría 4 → ui/views.js sangría 2)
+IDÉNTICA setDebugVisible (1 líneas; 3ea0d8a sangría 4 → ui/views.js sangría 2)
+IDÉNTICA setActiveTab (11 líneas; 3ea0d8a sangría 4 → ui/views.js sangría 2)
+IDÉNTICA syncMaterialInputs (1 líneas; 3ea0d8a sangría 4 → ui/views.js sangría 2)
+IDÉNTICA setArtStatus (4 líneas; 3ea0d8a sangría 4 → ui/views.js sangría 2)
+9/9 idénticas byte a byte salvo −2 espacios por línea

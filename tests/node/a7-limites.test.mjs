@@ -38,9 +38,9 @@ test('document y window solo dentro de las funciones previstas', () => {
 test('sin estado de módulo: ningún var/let de primer nivel en app/, scene/ ni fold/', () => {
   for (const f of files) assert.deepEqual(codeOnly(raw(f)).split('\n').filter((l) => /^(var|let)\s/.test(l)), [], f);
 });
-test('regla 8: ningún campo de S aparece suelto (sin «S.») en main.js, scene/ ni fold/ (salvo como clave o tras un punto)', () => {
+test('regla 8: ningún campo de S aparece suelto (sin «S.») en main.js, scene/, fold/ ni ui/ (salvo como clave o tras un punto)', () => {
   if (!S_APPLIED) return;
-  for (const f of ['main.js', ...files.filter((f) => !f.startsWith('app/'))]) { const c = codeOnly(raw(f));
+  for (const f of ['main.js', ...files.filter((f) => !f.startsWith('app/')), ...srcFiles().filter((f) => /^ui\//.test(f))]) { /* A9.1: también ui/ (D-A9-9) */ const c = codeOnly(raw(f));
     for (const name of STATE_FIELDS) { const bad = c.split('\n').filter((l) => new RegExp('(?<![\\w.$])(?<!get )' + name + '\\b(?!\\s*:)').test(l)); assert.deepEqual(bad, [], `${f}: «${name}» sin S.`); } }
 });
 test('todos los módulos de app/, scene/ y fold/ se cargan en Node SIN window, document ni THREE', async () => {

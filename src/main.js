@@ -2,7 +2,7 @@ import { DEFAULT_THICKNESS_MM, MATERIAL_PRESETS, CREASE_HINGE_RADIUS_FACTOR, CRE
 import { EXTRACT_SCRIPT } from './host/extract.js';
 import { buildArtworkExportScript } from './host/art.js';
 import { TEST_CONNECTION_SCRIPT } from './host/test-connection.js';
-import { hasCep, evalScript, evalScriptJSON, pathToFileURL } from './bridge/cep.js';
+import { evalScript, evalScriptJSON, pathToFileURL } from './bridge/cep.js';
 import { saveBlobWithDialog } from './bridge/fs.js';
 import { createLegacyEngine } from './core/engine.js';
 import { createAppState } from './app/state.js';
@@ -17,6 +17,7 @@ import { createFolding } from './fold/folding.js';
 import { createGlbBuilder } from './export/glb-builder.js';
 import { createGlbImage } from './export/glb-image.js';
 import { createGlbScene } from './export/glb-scene.js';
+import { createViews } from './ui/views.js';
 
 (function () {
   'use strict';
@@ -72,7 +73,6 @@ import { createGlbScene } from './export/glb-scene.js';
     var selectedCreaseLabelEl = null;
     var selectedCreaseSliderEl = null;
     var selectedCreaseNumberEl = null;
-    var interactionMode = 'fold';
 
     function setStatus(m){ statusArea.textContent = m; }
     function log(m){
@@ -95,27 +95,7 @@ import { createGlbScene } from './export/glb-scene.js';
     var { textureToImageBytes } = createGlbImage({ log }); /* A8.2: codificación de texturas para el GLB (bytesFromDataURL queda interna) */
     var { buildExportSceneMeshes } = createGlbScene(S); /* A8.3: recorrido de la escena para el GLB */
     var { buildGLBBlobFromCurrentView } = createGlbBuilder({ buildExportSceneMeshes, textureToImageBytes }); /* A8.4: constructor del GLB */
-
-    function syncMaterialPresetUI(){
-      var preset = getMaterialPreset();
-      if(materialPresetSelect) materialPresetSelect.value = preset.key;
-      if(materialPill) materialPill.textContent = preset.label;
-    }
-
-    function setInteractionMode(mode, announce){
-      interactionMode = (mode==='base') ? 'base' : 'fold';
-      if(modeFoldBtn) modeFoldBtn.classList.toggle('active', interactionMode==='fold');
-      if(modeBaseBtn) modeBaseBtn.classList.toggle('active', interactionMode==='base');
-      if(interactionModePill) interactionModePill.textContent = interactionMode==='base' ? 'Base selection' : 'Crease selection';
-      if(interactionStatus) interactionStatus.textContent = interactionMode==='base'
-        ? 'Shift + click any panel to assign it as the base. Alt/Option + click a red fold line to target a crease.'
-        : 'Alt/Option + click a red fold line to target a crease. Shift + click any panel to change the base.';
-      if(viewportBadge){
-        viewportBadge.textContent = interactionMode==='base' ? 'Shift + click panel for base' : 'Alt/Option + click red line · Shift + click panel for base';
-        if(viewport3d) viewport3d.classList.toggle('viewport-base', interactionMode==='base');
-      }
-      if(announce) setStatus(interactionMode==='base' ? 'Base selection mode enabled' : 'Crease selection mode enabled');
-    }
+    var { syncMaterialPresetUI, setInteractionMode, ensureCep, showImport, show3D, setDebugVisible, setActiveTab, syncMaterialInputs, setArtStatus } = createViews(S, { importView, threeView, outputArea, tabButtons, tabPanels, thicknessInput, materialPresetSelect, materialPill, artStatus, artSourcePill, modeFoldBtn, modeBaseBtn, interactionModePill, interactionStatus, viewportBadge, viewport3d, errorMsg, testBtn, extractBtn, previewBtn, continueBtn, backBtn, export3dBtn, setStatus, getMaterialPreset }); /* A9.1: presentación (ui/views.js); interactionMode es privado de la fábrica */
 
 
     if(!importView||!threeView||!statusArea||!errorMsg||!testBtn||!extractBtn||
@@ -133,31 +113,7 @@ import { createGlbScene } from './export/glb-scene.js';
     /* ================================================================
        CEP BRIDGE — clean, no intrusive catch
        ================================================================ */
-    function ensureCep(){
-      if(!hasCep()){
-        errorMsg.style.display='block';
-        [testBtn,extractBtn,previewBtn,continueBtn,backBtn,export3dBtn].forEach(function(b){b.disabled=true;});
-        setStatus('CEP bridge not found.'); return false;
-      }
-      return true;
-    }
 
-    function showImport(){ importView.style.display='block'; threeView.style.display='none'; }
-    function show3D()    { importView.style.display='none';  threeView.style.display='block'; }
-    function setDebugVisible(on){ if(outputArea) outputArea.style.display = on?'block':'none'; }
-
-    function setActiveTab(key){
-      key = key || 'material';
-      tabButtons.forEach(function(btn){
-        var active = btn.dataset.tab === key;
-        btn.classList.toggle('active', active);
-        btn.setAttribute('aria-selected', active ? 'true' : 'false');
-      });
-      tabPanels.forEach(function(panel){
-        panel.classList.toggle('active', panel.id === 'tab-' + key);
-      });
-    }
-    function syncMaterialInputs(){ if(thicknessInput) thicknessInput.value=String(S.currentThicknessMm.toFixed(2)); syncMaterialPresetUI(); }
     function applyMaterialPreset(presetKey, rebuild){
       if(!MATERIAL_PRESETS[presetKey]) presetKey = 'white';
       S.currentMaterialPreset = presetKey;
@@ -178,11 +134,6 @@ import { createGlbScene } from './export/glb-scene.js';
         refreshPanelMaterials();
         rebuildCreaseVisuals(buildChildrenOfMap());
       }
-    }
-
-    function setArtStatus(message,pill){
-      if(artStatus) artStatus.textContent = message;
-      if(artSourcePill) artSourcePill.textContent = pill || 'No art';
     }
 
     function resetValidationUI(){

@@ -1,0 +1,24 @@
+{
+ "_nota": "A9.1: bundle de 3ea0d8a (anterior) frente al actual con tests/tools/bundle-eq.mjs (solo primer nivel; la comparación a cualquier sangría está en equivalencia-A9.1.json). Se omiten los comentarios de ruta que esbuild escribe con el directorio temporal de la referencia.",
+ "soloEnAnterior": [
+  "syncMaterialPresetUI",
+  "setInteractionMode",
+  "ensureCep",
+  "showImport",
+  "show3D",
+  "setDebugVisible",
+  "setActiveTab",
+  "syncMaterialInputs",
+  "setArtStatus"
+ ],
+ "soloEnNuevo": [
+  "createViews"
+ ],
+ "distintas": [],
+ "lineasQuitadas": [
+  "1× var interactionMode = \"fold\";"
+ ],
+ "lineasAnadidas": [
+  "1× var { syncMaterialPresetUI, setInteractionMode, ensureCep, showImport, show3D, setDebugVisible, setActiveTab, syncMaterialInputs, setArtStatus } = createViews(S, { importView, threeView, outputArea, tabButtons, tabPanels, thicknessInput, materialPresetSelect, materialPill, artStatus, artSourcePill, modeFoldBtn, modeBaseBtn, interactionModePill, interactionStatus, viewportBadge, viewport3d, errorMsg, testBtn, extractBtn, previewBtn, continueBtn, backBtn, export3dBtn, setStatus, getMaterialPreset });"
+ ]
+}
