@@ -1,0 +1,33 @@
+{
+ "funcionesAnteriores": 144,
+ "funcionesNuevas": 150,
+ "identicas": 143,
+ "renombradosEsbuild": [
+  {
+   "funcion": "buildFoldUI",
+   "renombrados": [
+    {
+     "de": "debugDetails2",
+     "a": "debugDetails"
+    }
+   ]
+  }
+ ],
+ "distintas": [],
+ "duplicadas": [],
+ "soloEnAnterior": [],
+ "soloEnNuevo": [
+  "createViews",
+  "createFoldControls",
+  "createPicking",
+  "createActions",
+  "createController",
+  "bindEvents"
+ ],
+ "manejadores": {
+  "lineasReferencia": 170,
+  "lineasBindEvents": 170,
+  "identicas": true,
+  "diferencias": []
+ }
+}

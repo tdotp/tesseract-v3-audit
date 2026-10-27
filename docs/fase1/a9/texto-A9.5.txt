@@ -1,0 +1,6 @@
+IDÉNTICA applyMaterialPreset (21 líneas; 3ea0d8a sangría 4 → ui/controller.js sangría 2)
+IDÉNTICA resetValidationUI (6 líneas; 3ea0d8a sangría 4 → ui/controller.js sangría 2)
+IDÉNTICA validateGeometry (20 líneas; 3ea0d8a sangría 4 → ui/controller.js sangría 2)
+IDÉNTICA render2D (33 líneas; 3ea0d8a sangría 4 → ui/controller.js sangría 2)
+4/4 idénticas byte a byte salvo −2 espacios por línea
+manejadores: bloques 15 15 idénticos con su sangría: true

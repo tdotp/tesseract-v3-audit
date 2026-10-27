@@ -13,15 +13,16 @@ export function sourceText(file) {
   const files = []; (function walk(d) { for (const e of fs.readdirSync(d, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) { const p = path.join(d, e.name); if (e.isDirectory()) walk(p); else if (/\.js$/.test(e.name) && p !== path.resolve(file)) files.push(p); } })(path.dirname(path.resolve(file)));
   return [path.resolve(file), ...files].map((f) => fs.readFileSync(f, 'utf8')).join('\n');
 }
-// Funciones de la clausura (4 espacios) o de módulo (sin sangría, con o sin export: se devuelve sin «export»).
-export function extractFunctions(src) {
+// Funciones de la clausura (4 espacios) o de módulo (sin sangría, con o sin export: se devuelve sin «export»). A9.5 (D-A9-5): con { indent2: true } también las de 2 espacios
+// (funciones de una fábrica createX(S, deps): validateGeometry vive en createController). Solo se pide para el objetivo src (indent2Allowed).
+export function extractFunctions(src, { indent2 = false } = {}) {
   const L = src.split('\n'), out = new Map();
   for (let i = 0; i < L.length; i++) {
-    const m = /^( {4}|)(?:export )?(?:async )?function (\w+)\(/.exec(L[i]); if (!m) continue;
+    const m = (indent2 ? /^( {4}| {2}|)(?:export )?(?:async )?function (\w+)\(/ : /^( {4}|)(?:export )?(?:async )?function (\w+)\(/).exec(L[i]); if (!m) continue;
     const bal = (s) => (s.match(/\{/g) || []).length - (s.match(/\}/g) || []).length;
     let j = i, text = L[i].replace(/^export /, '');
     if (bal(L[i]) !== 0) { while (++j < L.length) { text += '\n' + L[j]; if (L[j] === m[1] + '}') break; } }
-    out.set(m[2], text); i = j;
+    out.set(m[2], text); if (!(indent2 && m[1] === '' && /function create[A-Z]\w*\(/.test(L[i]))) i = j; // A9.5: con indent2 se entra en el cuerpo de las fábricas createX(…) para ver sus funciones de 2 espacios
   }
   return out;
 }
@@ -40,13 +41,15 @@ export const GEOMETRY_FUNCTIONS = ['distPtSeg', 'segsFromPath', 'buildAllSegs', 
 
 // A6.5 (D-A6-3): el cálculo de la validación vive en validateDieline (core/legacy/validate.js) solo en src/; la validateGeometry de main.js queda como presentación.
 const SRC_ONLY_FUNCTIONS = ['validateDieline'];
+// A9.5 (D-A9-5): la sangría de 2 espacios se admite SOLO para src, nunca para baseline ni panel/ (lo fija a9-limites; TESS_LOADER_INDENT2=all solo existe para el control negativo n.º 22).
+export function indent2Allowed(file) { if (process.env.TESS_LOADER_INDENT2 === 'all') return true; return path.resolve(file) === path.resolve(TARGETS.src); }
 export function loadGeometry(file) {
-  const src = sourceText(file), fns = extractFunctions(src), consts = extractConstants(src);
+  const ind2 = indent2Allowed(file); const src = sourceText(file), fns = extractFunctions(src, { indent2: ind2 }), consts = extractConstants(src);
   const isSrc = path.resolve(file) === path.resolve(TARGETS.src); const extra = isSrc ? SRC_ONLY_FUNCTIONS : [];
   for (const n of SRC_ONLY_FUNCTIONS) if (fns.has(n) !== isSrc) throw new Error(`${n}: ${isSrc ? 'falta en src/' : 'no debe existir en ' + file}`);
   const missing = GEOMETRY_FUNCTIONS.filter((n) => !fns.has(n)); if (missing.length) throw new Error('funciones no encontradas: ' + missing.join(', '));
   const count = (re) => (src.match(re) || []).length; // A6: definición única (si quedara una copia vieja, extractFunctions se quedaría con la última sin avisar)
-  for (const n of [...GEOMETRY_FUNCTIONS, ...extra]) { const k = count(new RegExp('^(?: {4}|)(?:export )?function ' + n + '\\(', 'gm')); if (k !== 1) throw new Error(`función ${n} definida ${k} veces`); }
+  for (const n of [...GEOMETRY_FUNCTIONS, ...extra]) { const k = count(new RegExp('^(?: {4}' + (ind2 ? '| {2}' : '') + '|)(?:export )?function ' + n + '\\(', 'gm')); if (k !== 1) throw new Error(`función ${n} definida ${k} veces`); }
   for (const n of ['TOLERANCE_MM', 'GRAPH_EPS']) { const k = count(new RegExp('^(?:    var|export const) ' + n + '\\s*=', 'gm')); if (k !== 1) throw new Error(`constante ${n} definida ${k} veces`); }
   const code = `(function(){
     var TOLERANCE_MM=${consts.TOLERANCE_MM}, GRAPH_EPS=${consts.GRAPH_EPS};

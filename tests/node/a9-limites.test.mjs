@@ -5,20 +5,22 @@
 //  7 identificadores libres: solo globales esperados (excepción única declarada: buildChildrenOfMap, KI-24) · 8 número exacto de envoltorios de enlace tardío en main.js ·
 //  9 main.js conserva el ancla del arnés y __tessDebugView con su texto, y solo las funciones previstas en este paso.
 import test from 'node:test'; import assert from 'node:assert/strict'; import fs from 'node:fs'; import path from 'node:path'; import { pathToFileURL } from 'node:url';
-import { SRC, srcFiles, codeOnly, functionsAnyIndent } from '../lib/a7.mjs'; import { freeIdentifiers, KNOWN_GLOBALS } from '../lib/a8.mjs'; import { CLOSURE_3EA0D8A } from '../lib/a9.mjs';
+import { SRC, srcFiles, codeOnly, functionsAnyIndent } from '../lib/a7.mjs'; import { freeIdentifiers, KNOWN_GLOBALS } from '../lib/a8.mjs'; import { CLOSURE_3EA0D8A } from '../lib/a9.mjs'; import { TARGETS, extractFunctions, indent2Allowed } from '../lib/legacy.mjs';
 
 // Estado esperado en ESTE paso (se actualiza en cada paso aprobado; igualdad exacta).
-const INVENTORY = ['app/actions.js', 'ui/fold-controls.js', 'ui/picking.js', 'ui/views.js']; // A9.4 (app/state.js queda fuera de este inventario: lo rige a7-limites)
+const INVENTORY = ['app/actions.js', 'ui/controller.js', 'ui/fold-controls.js', 'ui/picking.js', 'ui/views.js']; // A9.5 (app/state.js queda fuera de este inventario: lo rige a7-limites)
 const RULES = { // por módulo: { exports, imports, doc: funciones donde se permite document, free: identificadores libres admitidos además de KNOWN_GLOBALS }
   'ui/views.js': { exports: ['createViews'], imports: ['../bridge/cep.js'], doc: [], free: [] }, // A9.1
   'app/actions.js': { exports: ['createActions'], imports: ['../host/art.js', '../bridge/cep.js', '../bridge/fs.js'], doc: ['exportPNG'], free: [] }, // A9.2: document SOLO en exportPNG (ajuste A)
   'ui/fold-controls.js': { exports: ['createFoldControls'], imports: [], doc: ['buildFoldUI'], free: [] }, // A9.3: document solo en buildFoldUI
-  'ui/picking.js': { exports: ['createPicking'], imports: [], doc: [], free: [] } }; // A9.4
+  'ui/picking.js': { exports: ['createPicking'], imports: [], doc: [], free: [] }, // A9.4
+  'ui/controller.js': { exports: ['createController'], imports: ['../config/look.js', '../host/extract.js', '../host/test-connection.js', '../bridge/cep.js'], doc: ['validateGeometry', 'bindEvents'], free: ['buildChildrenOfMap'] } }; // A9.5: buildChildrenOfMap = KI-24 (excepción única)
 const VIEWS = ['syncMaterialPresetUI', 'setInteractionMode', 'ensureCep', 'showImport', 'show3D', 'setDebugVisible', 'setActiveTab', 'syncMaterialInputs', 'setArtStatus']; // A9.1
 const ACTIONS = ['refreshArtwork', 'exportPNG', 'exportGLB']; // A9.2
 const FOLD_CONTROLS = ['updatePerCreaseRow', 'updateSelectedCreaseVisuals', 'syncSelectedCreaseUI', 'selectFoldEdge', 'applySelectedCreaseAngle', 'setBasePanel', 'buildFoldUI']; // A9.3
 const PICKING = ['pickPanelFromEvent', 'pickCreaseFromEvent']; // A9.4
-const MAIN_FUNCTIONS = CLOSURE_3EA0D8A.filter((n) => !VIEWS.includes(n) && !ACTIONS.includes(n) && !FOLD_CONTROLS.includes(n) && !PICKING.includes(n)); // funciones de la clausura de main.js en este paso
+const CONTROLLER = ['applyMaterialPreset', 'resetValidationUI', 'validateGeometry', 'render2D']; // A9.5
+const MAIN_FUNCTIONS = CLOSURE_3EA0D8A.filter((n) => !VIEWS.includes(n) && !ACTIONS.includes(n) && !FOLD_CONTROLS.includes(n) && !PICKING.includes(n) && !CONTROLLER.includes(n)); // A9.5: setStatus, log, clearLog, __tessDebugView // funciones de la clausura de main.js en este paso
 const WRAPPERS = { // regla 8: envoltorios de enlace tardío en main.js (forma fija de A9_PROPUESTA §5.3) → línea de composición donde deben estar
   'updateSelectedCreaseVisuals: function(){ return updateSelectedCreaseVisuals(); }': 'createCreaseVisuals(S, {', // A9.3
   'pickPanelFromEvent: function(e){ return pickPanelFromEvent(e); }': 'createViewport(S, {', 'pickCreaseFromEvent: function(e){ return pickCreaseFromEvent(e); }': 'createViewport(S, {' }; // A9.4
@@ -48,7 +50,7 @@ test('regla 5 · sin estado de módulo; el cuerpo de cada fábrica solo desestru
     for (const l of L) { if (/^export function create\w+\(S, deps\)\{$/.test(l)) { inF = true; continue; } if (l === '}') { inF = false; continue; } if (!inF) continue;
       if (inFn) { if (l === '  }') inFn = false; continue; } if (!/^ {2}\S/.test(l)) continue;
       if (/^ {2}(async )?function \w+\(/.test(l) && (l.match(/\{/g) || []).length > (l.match(/\}/g) || []).length) { inFn = true; continue; }
-      assert.match(l, /^ {2}(var \{[\w, ]+\} = deps;|var \w+ = (''|-?\d+(\.\d+)?|null|true|false|\[\]);|(async )?function \w+\(|return \{[\w, ]+\};|\})/, `${f}: sentencia con posible efecto al crear la fábrica: ${l.trim()}`); } }
+      assert.match(l, /^ {2}(var \{[\w, ]+\} = deps;|var \w+\s*=\s*(''|-?\d+(\.\d+)?|null|true|false|\[\]);|(async )?function \w+\(|return \{[\w, ]+\};|\})/, `${f}: sentencia con posible efecto al crear la fábrica: ${l.trim()}`); } }
 });
 test('regla 6 · lastData y problems: una sola declaración y todos sus usos en el mismo archivo; los 6 widgets privados de plegado, también', () => {
   for (const name of ['lastData', 'problems', ...FOLD_WIDGETS]) {
@@ -70,4 +72,17 @@ test('regla 9 · main.js conserva el ancla del arnés y __tessDebugView con su t
 });
 test('los módulos de ui/ y app/ se cargan en Node SIN window, document ni THREE', async () => {
   delete globalThis.window; delete globalThis.document; delete globalThis.THREE; for (const f of files) await assert.doesNotReject(import(pathToFileURL(path.join(SRC, f)).href), f);
+});
+test('A9.5 · bindEvents: main.js lo llama UNA vez, después de if(!ensureCep()) return; y de las 6 llamadas de arranque; main.js no registra ninguna otra escucha', () => {
+  const L = mainText.split('\n'); const calls = L.map((l, i) => [l, i]).filter(([l]) => /\bbindEvents\(\)/.test(codeOnly(l)) && !/= createController\(/.test(l));
+  assert.deepEqual(calls.map(([l]) => l), ['    bindEvents();'], 'una sola llamada, como sentencia propia');
+  const cep = L.indexOf('    if(!ensureCep()) return;'), last = L.indexOf("    setInteractionMode('fold', false);"); assert.ok(cep > 0 && last > cep && calls[0][1] > last, 'orden: guarda → ensureCep → arranque → bindEvents');
+  assert.equal((codeOnly(mainText).match(/\.addEventListener\(/g) || []).length, 1, 'main.js solo registra DOMContentLoaded');
+});
+test('A9.5 · KI-24 se preserva: buildChildrenOfMap sigue SIN declararse en ui/controller.js (identificador libre)', () => {
+  if (!files.includes('ui/controller.js')) return; assert.ok(freeIdentifiers(raw('ui/controller.js')).includes('buildChildrenOfMap'));
+});
+test('A9.5 · cargador (D-A9-5): la sangría de 2 espacios solo se admite para src; baseline y panel/ siguen exigiendo 4 o 0', () => {
+  assert.equal(indent2Allowed(TARGETS.src), true); assert.equal(indent2Allowed(TARGETS.baseline), false); assert.equal(indent2Allowed(TARGETS.panel), false);
+  const t = '  function f(){\n    return 1;\n  }\n    function g(){ return 2; }\n'; assert.deepEqual([...extractFunctions(t).keys()], ['g']); assert.deepEqual([...extractFunctions(t, { indent2: true }).keys()].sort(), ['f', 'g']);
 });

@@ -93,7 +93,7 @@ mutT() { # nombre, patrón sed, archivo de prueba
 A9T=tests/node/a9-texto-identico.test.mjs; A9L=tests/node/a9-limites.test.mjs
 mutT "A9.0b · a9-texto-identico: cambia el texto de un manejador (Back)"        "s/setStatus('Back to import');/setStatus('Back to import.');/" $A9T
 mutT "A9.0b · a9-texto-identico: cambia una línea suelta de main.js"           "s/^    if(modeFoldBtn) modeFoldBtn.style.display='none';\$/    if(modeFoldBtn) modeFoldBtn.style.display='hidden';/" $A9T
-mutT "A9.0b · a9-limites: segunda declaración de lastData (regla 6)"           's/^    var problems   = \[\];$/    var problems   = []; var lastData = null;/' $A9L
+mutT "A9.0b · a9-limites: segunda declaración de lastData (regla 6)"           's/^  var problems   = \[\];$/  var problems   = []; var lastData = null;/' $A9L  # A9.5: lastData y problems pasaron a ui/controller.js (sangría −2)
 mutT "A9.0b · a9-limites: falta un envoltorio de enlace tardío (regla 8)"        's/, pickCreaseFromEvent: function(e){ return pickCreaseFromEvent(e); } });/, pickCreaseFromEvent });/' $A9L  # A9.4: con los 3 envoltorios ya presentes, el control quita uno (antes añadía uno no previsto)
 mutT "A9.0b · a9-limites: el ancla del arnés cambia de texto (regla 9)"        's/^    function setStatus(m){ statusArea.textContent = m; }$/    function setStatus(m){ statusArea.textContent = m;  }/' $A9L
 # A9.1 — límites de src/ui/views.js (n.º 14: laguna de comportamiento declarada; THREE existe en el navegador, solo lo ven a9-limites y a5-limites)
@@ -102,4 +102,10 @@ mutT  "A9.1 · a9-limites: ui/views.js usa THREE (n.º 14)"  's/^  function setD
 mutT  "A9.2 · a9-limites: app/actions.js usa document fuera de exportPNG"  's/^  async function exportGLB(){$/  async function exportGLB(){ void document;/' $A9L
 # A9.4 — n.º 20: el valor devuelto por el envoltorio de pick no es observable (onUp no hace nada después del return): laguna de comportamiento; lo fija la regla 8 de a9-limites (forma exacta)
 mutT  "A9.4 · a9-limites: el envoltorio de pickPanelFromEvent no devuelve el resultado (n.º 20)"  's/pickPanelFromEvent: function(e){ return pickPanelFromEvent(e); }/pickPanelFromEvent: function(e){ pickPanelFromEvent(e); }/' $A9L
+# A9.5 — controlador: el cargador sigue viendo validateGeometry (ahora en ui/controller.js) y solo admite la sangría 2 para src (D-A9-5)
+A6V=tests/node/a6-validacion.test.mjs
+mutT  "A9.5 · a6-validacion: validateGeometry pierde el primer problema del motor (el cargador la ve en ui/controller.js)"  's/problems=geometryEngine.validate(data).problems;/problems=geometryEngine.validate(data).problems.slice(1);/' $A6V
+envT() { # nombre, VAR=valor, archivo de prueba: sin mutar src/, ejecuta la prueba con un ajuste del arnés que NO debe aceptarse
+  if env "$2" node --test "$3" >/dev/null 2>&1; then echo "NO DETECTADA  $1"; bad=$((bad+1)); else echo "detectada     $1"; ok=$((ok+1)); fi; }
+envT  "A9.5 · cargador: la sangría 2 se admitiría también para baseline y panel/ (n.º 22)"  TESS_LOADER_INDENT2=all $A9L
 echo "mutaciones detectadas: $ok · no detectadas: $bad"; [ "$bad" = 0 ]

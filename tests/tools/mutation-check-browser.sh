@@ -111,4 +111,9 @@ run "A9.3 · createFoldControls trabaja sobre una copia de S (n.º 13)"         
 run "A9.4 · el envoltorio de pickPanelFromEvent no la llama (n.º 2)"                 "A9 · H5"                 's/pickPanelFromEvent: function(e){ return pickPanelFromEvent(e); }/pickPanelFromEvent: function(e){ return undefined; }/' $A9
 run "A9.4 · el envoltorio de pickCreaseFromEvent llama a pickPanelFromEvent (n.º 19)" "Interacciones · bundle"  's/pickCreaseFromEvent: function(e){ return pickCreaseFromEvent(e); }/pickCreaseFromEvent: function(e){ return pickPanelFromEvent(e); }/'
 run "A9.4 · createPicking trabaja sobre una copia de S"                              "A9 · H5"                 's/^export function createPicking(S, deps){$/export function createPicking(S, deps){ S = Object.assign({}, S);/' $A9
+# A9.5 — src/ui/controller.js: un solo bindEvents tras ensureCep, KI-24 intacto, cableado de la fábrica. Cada patrón cambia exactamente 1 línea.
+run "A9.5 · bindEvents() se llama dos veces (n.º 21)"                                 "A9 · H1"                         's/^    bindEvents();$/    bindEvents(); bindEvents();/' $A9
+run "A9.5 · buildChildrenOfMap declarada en el controlador (KI-24 corregido sin tarea; n.º 15)" "Puente CEP · (baseline|bundle)" 's/^  var problems   = \[\];$/  var problems   = []; function buildChildrenOfMap(){ return []; }/' tests/browser/bridge.test.mjs
+run "A9.5 · createController trabaja sobre una copia de S"                          "Escena/materiales"               's/^export function createController(S, deps){$/export function createController(S, deps){ S = Object.assign({}, S);/'
+run "A9.5 · la composición pasa showImport como show3D al controlador"              "A9 · H2"                         's/show3D\(, setDebugVisible.*exportGLB }); \/\*\)/show3D: showImport\1/' $A9
 echo "mutaciones detectadas: $ok · no detectadas: $bad"; [ "$bad" = 0 ]

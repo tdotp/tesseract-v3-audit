@@ -13,7 +13,7 @@ test('inventario de src/ al cierre de A5 (los módulos aprobados y nada más)', 
   assert.deepEqual(files.filter((f) => !/^(core|app|scene|fold|export|ui)\//.test(f)), ['bridge/cep.js', 'bridge/fs.js', 'config/look.js', 'host/art.js', 'host/extract.js', 'host/save-dialog.js', 'host/test-connection.js', 'main.js']); // core/ (A6): inventario exacto en a6-limites · app/, scene/, fold/ (A7): en a7-limites · ui/ (A9): en a9-limites
 });
 test('main.js solo importa config/, host/ y bridge/; ningún módulo se importa a sí mismo ni hay ciclos', () => {
-  assert.deepEqual(imports('main.js').filter((i) => !/^\.\/(core|app|scene|fold|export|ui)\//.test(i)).sort(), ['./bridge/cep.js', './config/look.js', './host/extract.js', './host/test-connection.js']); // A9.2: host/art.js y bridge/fs.js pasan a app/actions.js
+  assert.deepEqual(imports('main.js').filter((i) => !/^\.\/(core|app|scene|fold|export|ui)\//.test(i)).sort(), ['./bridge/cep.js', './config/look.js']); // A9.5: host/extract.js y host/test-connection.js pasan a ui/controller.js · A9.2: host/art.js y bridge/fs.js pasan a app/actions.js
   for (const f of files.filter((f) => f !== 'main.js')) for (const i of imports(f)) assert.notEqual(path.join(path.dirname(f), i), 'main.js', f);
 });
 test('config/ y host/ no importan nada; bridge/cep no importa nada; bridge/fs solo importa host/save-dialog', () => {
@@ -21,7 +21,7 @@ test('config/ y host/ no importan nada; bridge/cep no importa nada; bridge/fs so
   assert.deepEqual(imports('bridge/fs.js'), ['../host/save-dialog.js']);
 });
 test('THREE solo en main.js; document solo en main.js y en triggerDownload (bridge/fs); window.cep solo en saveBlobWithDialog', () => {
-  for (const f of files.filter((f) => f !== 'main.js' && f !== 'app/actions.js' && f !== 'ui/fold-controls.js' && !/^(scene|fold|export)\//.test(f))) { // A9.2: app/actions.js (document solo en exportPNG) y A9.3: ui/fold-controls.js (document solo en buildFoldUI) los rige a9-limites · A7: THREE, document y window en scene/ y fold/ los regula a7-limites; A8: en export/, a8-limites
+  for (const f of files.filter((f) => f !== 'main.js' && f !== 'app/actions.js' && f !== 'ui/fold-controls.js' && f !== 'ui/controller.js' && !/^(scene|fold|export)\//.test(f))) { // A9.2: app/actions.js (document solo en exportPNG) A9.3: ui/fold-controls.js (document solo en buildFoldUI) y A9.5: ui/controller.js (document solo en validateGeometry y bindEvents) los rige a9-limites · A7: THREE, document y window en scene/ y fold/ los regula a7-limites; A8: en export/, a8-limites
     assert.doesNotMatch(code(f), /\bTHREE\b/, f);
     const doc = code(f).match(/\bdocument\b/g) || []; if (f === 'bridge/fs.js') assert.equal(doc.length, (fnBody(f, 'triggerDownload').match(/\bdocument\b/g) || []).length, 'document fuera de triggerDownload'); else assert.equal(doc.length, 0, f);
     if (/^(config|host)\//.test(f)) assert.doesNotMatch(code(f), /\bwindow\b/, f);

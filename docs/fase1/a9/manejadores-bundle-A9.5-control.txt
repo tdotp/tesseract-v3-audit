@@ -1,0 +1,14 @@
+# A9.5 — control de a9-manejadores-bundle: un manejador con un cambio real (Back to import → Back to import.) ⇒ debe salir con 1
+{
+ "lineasReferencia": 170,
+ "lineasBindEvents": 170,
+ "identicas": false,
+ "diferencias": [
+  {
+   "linea": 113,
+   "referencia": "setStatus(\"Back to import\");",
+   "actual": "setStatus(\"Back to import.\");"
+  }
+ ]
+}
+RC=1
