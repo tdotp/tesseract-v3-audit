@@ -94,10 +94,12 @@ A9T=tests/node/a9-texto-identico.test.mjs; A9L=tests/node/a9-limites.test.mjs
 mutT "A9.0b · a9-texto-identico: cambia el texto de un manejador (Back)"        "s/setStatus('Back to import');/setStatus('Back to import.');/" $A9T
 mutT "A9.0b · a9-texto-identico: cambia una línea suelta de main.js"           "s/^    if(modeFoldBtn) modeFoldBtn.style.display='none';\$/    if(modeFoldBtn) modeFoldBtn.style.display='hidden';/" $A9T
 mutT "A9.0b · a9-limites: segunda declaración de lastData (regla 6)"           's/^    var problems   = \[\];$/    var problems   = []; var lastData = null;/' $A9L
-mutT "A9.0b · a9-limites: envoltorio de enlace tardío no previsto (regla 8)"   's/pickPanelFromEvent, pickCreaseFromEvent });/pickPanelFromEvent: function(e){ return pickPanelFromEvent(e); }, pickCreaseFromEvent });/' $A9L
+mutT "A9.0b · a9-limites: falta un envoltorio de enlace tardío (regla 8)"        's/, pickCreaseFromEvent: function(e){ return pickCreaseFromEvent(e); } });/, pickCreaseFromEvent });/' $A9L  # A9.4: con los 3 envoltorios ya presentes, el control quita uno (antes añadía uno no previsto)
 mutT "A9.0b · a9-limites: el ancla del arnés cambia de texto (regla 9)"        's/^    function setStatus(m){ statusArea.textContent = m; }$/    function setStatus(m){ statusArea.textContent = m;  }/' $A9L
 # A9.1 — límites de src/ui/views.js (n.º 14: laguna de comportamiento declarada; THREE existe en el navegador, solo lo ven a9-limites y a5-limites)
 mutT  "A9.1 · a9-limites: ui/views.js usa THREE (n.º 14)"  's/^  function setDebugVisible(on){ if(outputArea)/  function setDebugVisible(on){ if(!THREE) return; if(outputArea)/' $A9L
 # A9.2 — límites de src/app/actions.js (ajuste A: document solo dentro de exportPNG)
 mutT  "A9.2 · a9-limites: app/actions.js usa document fuera de exportPNG"  's/^  async function exportGLB(){$/  async function exportGLB(){ void document;/' $A9L
+# A9.4 — n.º 20: el valor devuelto por el envoltorio de pick no es observable (onUp no hace nada después del return): laguna de comportamiento; lo fija la regla 8 de a9-limites (forma exacta)
+mutT  "A9.4 · a9-limites: el envoltorio de pickPanelFromEvent no devuelve el resultado (n.º 20)"  's/pickPanelFromEvent: function(e){ return pickPanelFromEvent(e); }/pickPanelFromEvent: function(e){ pickPanelFromEvent(e); }/' $A9L
 echo "mutaciones detectadas: $ok · no detectadas: $bad"; [ "$bad" = 0 ]

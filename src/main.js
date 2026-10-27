@@ -17,6 +17,7 @@ import { createGlbImage } from './export/glb-image.js';
 import { createGlbScene } from './export/glb-scene.js';
 import { createViews } from './ui/views.js';
 import { createFoldControls } from './ui/fold-controls.js';
+import { createPicking } from './ui/picking.js';
 import { createActions } from './app/actions.js';
 
 (function () {
@@ -81,7 +82,7 @@ import { createActions } from './app/actions.js';
     var { getMaterialPreset, getPanelShellHex, getEdgeLineHex, getFoldHingeHex, getFoldHingeRadius, refreshPanelMaterials } = createMaterials(S);
     var { makeLabelCanvas, roundRect, getLabelResources, disposeLabelCache, makePanelLabelSprite } = createLabels();
     var { signedDisplayAngle, internalAngleFromDisplay } = createFoldAngles(S);
-    var { resize3D, updateCameraFromOrbit, init3D, fitCamera3D } = createViewport(S, { canvas3d, viewport3d, log, setStatus, pickPanelFromEvent, pickCreaseFromEvent });
+    var { resize3D, updateCameraFromOrbit, init3D, fitCamera3D } = createViewport(S, { canvas3d, viewport3d, log, setStatus, pickPanelFromEvent: function(e){ return pickPanelFromEvent(e); }, pickCreaseFromEvent: function(e){ return pickCreaseFromEvent(e); } }); /* A9.4: enlace tardío (D-A9-3/4); las asigna createPicking más abajo */
     var { hasArtworkLoaded, loadTextureFromPath, disposeArtOverlays, applyArtUVs, addArtworkOverlay, applyArtworkToScene, disposeCurrentArtTextures } = createArtwork(S, { refreshPanelMaterials });
     var { disposeCreaseVisuals, projectInsetDir, buildRibbonStripGeometry, makeBridgeRowsForEdge, addFoldBridgeVisual, rebuildCreaseVisuals } = createCreaseVisuals(S, { getFoldHingeHex, signedDisplayAngle, updateSelectedCreaseVisuals: function(){ return updateSelectedCreaseVisuals(); } }); /* A9.3: enlace tardío (D-A9-3); la función la asigna createFoldControls más abajo */
     var { clearAllMeshes, build3DFromPanels } = createPanelMeshes(S, { log, getPanelShellHex, getEdgeLineHex, applyArtworkToScene, disposeLabelCache, disposeCreaseVisuals });
@@ -91,6 +92,7 @@ import { createActions } from './app/actions.js';
     var { buildGLBBlobFromCurrentView } = createGlbBuilder({ buildExportSceneMeshes, textureToImageBytes }); /* A8.4: constructor del GLB */
     var { syncMaterialPresetUI, setInteractionMode, ensureCep, showImport, show3D, setDebugVisible, setActiveTab, syncMaterialInputs, setArtStatus } = createViews(S, { importView, threeView, outputArea, tabButtons, tabPanels, thicknessInput, materialPresetSelect, materialPill, artStatus, artSourcePill, modeFoldBtn, modeBaseBtn, interactionModePill, interactionStatus, viewportBadge, viewport3d, errorMsg, testBtn, extractBtn, previewBtn, continueBtn, backBtn, export3dBtn, setStatus, getMaterialPreset }); /* A9.1: presentación (ui/views.js); interactionMode es privado de la fábrica */
     var { updatePerCreaseRow, updateSelectedCreaseVisuals, syncSelectedCreaseUI, selectFoldEdge, applySelectedCreaseAngle, setBasePanel, buildFoldUI } = createFoldControls(S, { threeView, byId, geometryEngine, applyFolding, fitCamera3D, refreshPanelMaterials, signedDisplayAngle, internalAngleFromDisplay, setInteractionMode, setStatus }); /* A9.3: controles de plegado (ui/fold-controls.js); los 6 widgets del panel son privados de la fábrica */
+    var { pickPanelFromEvent, pickCreaseFromEvent } = createPicking(S, { canvas3d, setBasePanel, selectFoldEdge, setActiveTab, setInteractionMode, setStatus }); /* A9.4: selección por clic (ui/picking.js) */
     var { refreshArtwork, exportPNG, exportGLB } = createActions(S, { log, setStatus, ensureCep, setArtStatus, loadTextureFromPath, applyArtworkToScene, disposeCurrentArtTextures, buildGLBBlobFromCurrentView }); /* A9.2: acciones (app/actions.js); el manejador de «Export GLB» sigue aquí */
 
 
@@ -211,47 +213,10 @@ import { createActions } from './app/actions.js';
        BUILD 3D PANELS (escena). Los paneles 2D salen de src/core/legacy/panels.js (A6.4).
        ================================================================ */
 
-    function pickPanelFromEvent(e){
-      if(!S.renderer3d || !S.camera3d || !S.raycaster3d || !S.pointer3d || !S.panelMeshes.length) return false;
-      var rect = canvas3d.getBoundingClientRect();
-      if(!rect.width || !rect.height) return false;
-      S.pointer3d.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-      S.pointer3d.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
-      S.raycaster3d.setFromCamera(S.pointer3d, S.camera3d);
-      var hits = S.raycaster3d.intersectObjects(S.panelMeshes, false);
-      if(!hits || !hits.length) return false;
-      var panelIdx = hits[0].object && hits[0].object.userData ? hits[0].object.userData.panelIndex : null;
-      if(panelIdx===null || panelIdx===undefined) return false;
-      setBasePanel(panelIdx, true, true);
-      setActiveTab('material');
-    setInteractionMode('fold', false);
-      setStatus('Base set to P'+panelIdx+' · Shift + click another panel to change it');
-      return true;
-    }
-
     /* ADJACENCY + FOLD TREE → src/core/legacy/adjacency.js y src/core/legacy/fold-tree.js (A6.3). Aquí quedan los signos de presentación de la UI. */
 
 
     /* A1 (fuga GPU): libera geometría y material de las líneas visibles y cajas de selección de crease. */
-
-    function pickCreaseFromEvent(e){
-      if(!S.renderer3d || !S.camera3d || !S.raycaster3d || !S.pointer3d || !S.creasePickables.length) return false;
-      var rect = canvas3d.getBoundingClientRect();
-      if(!rect.width || !rect.height) return false;
-      S.pointer3d.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-      S.pointer3d.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
-      S.raycaster3d.params.Line = S.raycaster3d.params.Line || {};
-      S.raycaster3d.params.Line.threshold = 40;
-      S.raycaster3d.setFromCamera(S.pointer3d, S.camera3d);
-      var hits = S.raycaster3d.intersectObjects(S.creasePickables, true).sort(function(a,b){ return a.distance-b.distance; });
-      if(!hits || !hits.length) return false;
-      var edgeIdx = hits[0].object && hits[0].object.userData ? hits[0].object.userData.edgeIdx : null;
-      if(edgeIdx===null || edgeIdx===undefined) return false;
-      selectFoldEdge(edgeIdx, false);
-      setActiveTab('creases');
-      setStatus('Crease C'+edgeIdx+' selected · Alt/Option + click another red line to retarget');
-      return true;
-    }
 
     /* ================================================================
        APPLY FOLDING — hierarchical pivot rotation

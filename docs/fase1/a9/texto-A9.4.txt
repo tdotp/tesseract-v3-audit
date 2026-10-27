@@ -1,0 +1,3 @@
+IDÉNTICA pickPanelFromEvent (17 líneas; 3ea0d8a sangría 4 → ui/picking.js sangría 2)
+IDÉNTICA pickCreaseFromEvent (18 líneas; 3ea0d8a sangría 4 → ui/picking.js sangría 2)
+2/2 idénticas byte a byte salvo −2 espacios por línea
