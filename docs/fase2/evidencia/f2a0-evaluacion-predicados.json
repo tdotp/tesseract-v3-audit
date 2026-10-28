@@ -1,0 +1,77 @@
+{
+ "ccwerrboundA": 3.3306690738754716e-16,
+ "filas": [
+  {
+   "troquel": "caja-botanica-real",
+   "entrada": "×1",
+   "orientaciones": 730,
+   "exactasCero": 530,
+   "doubleIngenuoErroneas": 0,
+   "filtroSinDecidir": 530,
+   "filtroCorrecto": true,
+   "ms_double": 0.21,
+   "ms_filtrado": 5.19,
+   "ms_exacto": 7.83
+  },
+  {
+   "troquel": "caja-botanica-real",
+   "entrada": "rotación 37°",
+   "orientaciones": 818,
+   "exactasCero": 490,
+   "doubleIngenuoErroneas": 0,
+   "filtroSinDecidir": 498,
+   "filtroCorrecto": true,
+   "ms_double": 0.15,
+   "ms_filtrado": 5.87,
+   "ms_exacto": 11.85
+  },
+  {
+   "troquel": "caja-botanica-real",
+   "entrada": "traslación +1e5",
+   "orientaciones": 730,
+   "exactasCero": 530,
+   "doubleIngenuoErroneas": 0,
+   "filtroSinDecidir": 530,
+   "filtroCorrecto": true,
+   "ms_double": 0.03,
+   "ms_filtrado": 2.99,
+   "ms_exacto": 4.61
+  },
+  {
+   "troquel": "ill-real-caja-botanica",
+   "entrada": "×1",
+   "orientaciones": 472,
+   "exactasCero": 311,
+   "doubleIngenuoErroneas": 0,
+   "filtroSinDecidir": 311,
+   "filtroCorrecto": true,
+   "ms_double": 0.02,
+   "ms_filtrado": 2.58,
+   "ms_exacto": 4.72
+  },
+  {
+   "troquel": "ill-real-caja-botanica",
+   "entrada": "rotación 37°",
+   "orientaciones": 592,
+   "exactasCero": 282,
+   "doubleIngenuoErroneas": 0,
+   "filtroSinDecidir": 285,
+   "filtroCorrecto": true,
+   "ms_double": 0.02,
+   "ms_filtrado": 3.26,
+   "ms_exacto": 9.91
+  },
+  {
+   "troquel": "ill-real-caja-botanica",
+   "entrada": "traslación +1e5",
+   "orientaciones": 472,
+   "exactasCero": 311,
+   "doubleIngenuoErroneas": 0,
+   "filtroSinDecidir": 311,
+   "filtroCorrecto": true,
+   "ms_double": 0.03,
+   "ms_filtrado": 1.7,
+   "ms_exacto": 3.13
+  }
+ ]
+}

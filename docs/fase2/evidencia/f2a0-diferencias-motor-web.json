@@ -1,0 +1,85 @@
+{
+ "caja-botanica-real": {
+  "webCompleto": {
+   "paneles": 13,
+   "error": null
+  },
+  "verticesMovidosPorElAjusteWeb": 0,
+  "maxMovimiento_mm": 0,
+  "unionesCreaseCreaseSinCerrar": [],
+  "oraculoSobreAjusteWeb": {
+   "paneles": 13,
+   "adyacencias": 12,
+   "conservacionExacta": true,
+   "creasesQueSeparan": 12,
+   "colganteMm": 0,
+   "astillas": 0,
+   "panelesArea": [
+    1579.924,
+    391.469,
+    4800.162,
+    665.709,
+    665.575,
+    665.674,
+    1599.96,
+    391.373,
+    4819.635,
+    1760.321,
+    4787.652,
+    4800.163,
+    665.574
+   ]
+  },
+  "oraculoAjustePropio": {
+   "paneles": 13,
+   "adyacencias": 12,
+   "conservacionExacta": true
+  }
+ },
+ "ill-real-caja-botanica": {
+  "webCompleto": {
+   "paneles": null,
+   "error": "buildFoldTopology: geometry conservation failed; expected 27593.508852 mm², generated 25993.527281 mm². No material was deleted."
+  },
+  "verticesMovidosPorElAjusteWeb": 19,
+  "maxMovimiento_mm": 0.004971354050708114,
+  "unionesCreaseCreaseSinCerrar": [
+   {
+    "a": "C7",
+    "b": "C9",
+    "d_mm": 0.000015225324237563345,
+    "en": [
+     "217.6094",
+     "308.8589"
+    ]
+   }
+  ],
+  "oraculoSobreAjusteWeb": {
+   "paneles": 12,
+   "adyacencias": 12,
+   "conservacionExacta": true,
+   "creasesQueSeparan": 11,
+   "colganteMm": 39.0031,
+   "astillas": 0,
+   "panelesArea": [
+    1579.942,
+    391.472,
+    4800.222,
+    665.716,
+    1991.354,
+    665.583,
+    665.681,
+    4819.794,
+    1760.549,
+    4787.499,
+    4800.149,
+    665.548
+   ]
+  },
+  "oraculoAjustePropio": {
+   "paneles": 13,
+   "adyacencias": 12,
+   "conservacionExacta": true
+  }
+ }
+}

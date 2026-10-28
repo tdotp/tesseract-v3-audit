@@ -1,0 +1,350 @@
+{
+ "nota": "Oráculo F2A-0. 13 paneles = candidato (DP-2). ε = 0.05 solo experimental (DP-3).",
+ "original_vs_illustrator": "representación",
+ "paneles": [
+  {
+   "panel": "C0",
+   "areaOriginal": 316.2712,
+   "areaIllustrator": 316.2748,
+   "dA_Illustrator": 0.0036,
+   "areaHistX075_normalizada": 316.2744,
+   "centroideOriginal": [
+    197.609871,
+    -146.197298
+   ],
+   "legacy original ×1": "P6 · geometría: borde desplazado · ΔA=2.86",
+   "legacy Illustrator ×1": "— · topología: perdido",
+   "legacy original ×0.75": "P8 · geometría: borde desplazado · ΔA=2.86"
+  },
+  {
+   "panel": "C0 C8",
+   "areaOriginal": 1579.9239,
+   "areaIllustrator": 1579.9424,
+   "dA_Illustrator": 0.0185,
+   "areaHistX075_normalizada": 1579.9399,
+   "centroideOriginal": [
+    197.610878,
+    -170.896269
+   ],
+   "legacy original ×1": "P5 · geometría: borde desplazado · ΔA=19.90",
+   "legacy Illustrator ×1": "P6 · topología: fusionado con otro · ΔA=339.03",
+   "legacy original ×0.75": "P7 · geometría: borde desplazado · ΔA=9.88"
+  },
+  {
+   "panel": "C1",
+   "areaOriginal": 665.5745,
+   "areaIllustrator": 665.5825,
+   "dA_Illustrator": 0.008,
+   "areaHistX075_normalizada": 665.5813,
+   "centroideOriginal": [
+    317.523473,
+    -181.61005
+   ],
+   "legacy original ×1": "P9 · idéntico · ΔA=-0.00",
+   "legacy Illustrator ×1": "P8 · representación · ΔA=-0.00",
+   "legacy original ×0.75": "P11 · geometría: borde desplazado · ΔA=1.00"
+  },
+  {
+   "panel": "C1 C2 C5",
+   "areaOriginal": 4800.1623,
+   "areaIllustrator": 4800.2215,
+   "dA_Illustrator": 0.0592,
+   "areaHistX075_normalizada": 4800.2122,
+   "centroideOriginal": [
+    317.609391,
+    -251.143982
+   ],
+   "legacy original ×1": "P8 · idéntico · ΔA=-0.00",
+   "legacy Illustrator ×1": "P9 · representación · ΔA=0.00",
+   "legacy original ×0.75": "P10 · idéntico · ΔA=0.00"
+  },
+  {
+   "panel": "C10",
+   "areaOriginal": 665.7087,
+   "areaIllustrator": 665.7163,
+   "dA_Illustrator": 0.0076,
+   "areaHistX075_normalizada": 665.7153,
+   "centroideOriginal": [
+    237.524382,
+    -320.679515
+   ],
+   "legacy original ×1": "— · topología: perdido",
+   "legacy Illustrator ×1": "P2 · geometría: borde desplazado · ΔA=0.75",
+   "legacy original ×0.75": "P4 · idéntico · ΔA=-0.00"
+  },
+  {
+   "panel": "C2",
+   "areaOriginal": 665.6736,
+   "areaIllustrator": 665.6812,
+   "dA_Illustrator": 0.0076,
+   "areaHistX075_normalizada": 665.68,
+   "centroideOriginal": [
+    317.696286,
+    -320.679614
+   ],
+   "legacy original ×1": "P10 · geometría: borde desplazado · ΔA=0.75",
+   "legacy Illustrator ×1": "P10 · geometría: borde desplazado · ΔA=0.75",
+   "legacy original ×0.75": "P12 · geometría: borde desplazado · ΔA=1.00"
+  },
+  {
+   "panel": "C3",
+   "areaOriginal": 316.1947,
+   "areaIllustrator": 316.1639,
+   "dA_Illustrator": -0.0307,
+   "areaHistX075_normalizada": 316.1632,
+   "centroideOriginal": [
+    277.609888,
+    -356.593546
+   ],
+   "legacy original ×1": "P1 · idéntico · ΔA=-0.00",
+   "legacy Illustrator ×1": "P1 · representación · ΔA=0.03",
+   "legacy original ×0.75": "P1 · idéntico · ΔA=-0.00"
+  },
+  {
+   "panel": "C3 C11",
+   "areaOriginal": 1599.9598,
+   "areaIllustrator": 1600.0123,
+   "dA_Illustrator": 0.0525,
+   "areaHistX075_normalizada": 1600.0111,
+   "centroideOriginal": [
+    277.609888,
+    -331.6457
+   ],
+   "legacy original ×1": "P0 · geometría: borde desplazado · ΔA=-19.90",
+   "legacy Illustrator ×1": "P0 · geometría: borde desplazado · ΔA=-19.93",
+   "legacy original ×0.75": "P0 · representación · ΔA=-0.11"
+  },
+  {
+   "panel": "C4",
+   "areaOriginal": 1760.3207,
+   "areaIllustrator": 1760.5495,
+   "dA_Illustrator": 0.2288,
+   "areaHistX075_normalizada": 1760.5505,
+   "centroideOriginal": [
+    170.168354,
+    -251.143982
+   ],
+   "legacy original ×1": "P4 · idéntico · ΔA=0.00",
+   "legacy Illustrator ×1": "P5 · representación · ΔA=-0.21",
+   "legacy original ×0.75": "P6 · idéntico · ΔA=-0.00"
+  },
+  {
+   "panel": "C4 C8 C9",
+   "areaOriginal": 4819.6353,
+   "areaIllustrator": 4819.7939,
+   "dA_Illustrator": 0.1586,
+   "areaHistX075_normalizada": 4819.7904,
+   "centroideOriginal": [
+    197.610878,
+    -250.895274
+   ],
+   "legacy original ×1": "P3 · geometría: borde desplazado · ΔA=-19.90",
+   "legacy Illustrator ×1": "P4 · geometría: borde desplazado · ΔA=10.06",
+   "legacy original ×0.75": "P5 · geometría: borde desplazado · ΔA=10.16"
+  },
+  {
+   "panel": "C5 C6 C11",
+   "areaOriginal": 4794.7622,
+   "areaIllustrator": 4794.6039,
+   "dA_Illustrator": -0.1583,
+   "areaHistX075_normalizada": 4794.5967,
+   "centroideOriginal": [
+    277.609888,
+    -251.700093
+   ],
+   "legacy original ×1": "P7 · representación · ΔA=-0.00",
+   "legacy Illustrator ×1": "P7 · representación · ΔA=-0.21",
+   "legacy original ×0.75": "P2 · geometría: borde desplazado · ΔA=10.02"
+  },
+  {
+   "panel": "C6 C7 C9 C10",
+   "areaOriginal": 4800.1629,
+   "areaIllustrator": 4800.149,
+   "dA_Illustrator": -0.014,
+   "areaHistX075_normalizada": 4800.1417,
+   "centroideOriginal": [
+    237.610383,
+    -251.143982
+   ],
+   "legacy original ×1": "P2 · idéntico · ΔA=-0.00",
+   "legacy Illustrator ×1": "P3 · geometría: borde desplazado · ΔA=-29.57",
+   "legacy original ×0.75": "P3 · geometría: borde desplazado · ΔA=-60.11"
+  },
+  {
+   "panel": "C7",
+   "areaOriginal": 665.5745,
+   "areaIllustrator": 665.5475,
+   "dA_Illustrator": -0.027,
+   "areaHistX075_normalizada": 665.546,
+   "centroideOriginal": [
+    237.696302,
+    -181.61005
+   ],
+   "legacy original ×1": "— · topología: perdido",
+   "legacy Illustrator ×1": "— · topología: perdido",
+   "legacy original ×0.75": "P9 · idéntico · ΔA=0.00"
+  }
+ ],
+ "creases": [
+  {
+   "crease": "C0",
+   "separaMm": 38.999,
+   "sobreCorteMm": 0,
+   "une": "C0 C8 ⟷ C0",
+   "une_Illustrator": "C0 C8 ⟷ C0",
+   "sobreCorte_Illustrator": 0.003,
+   "fuera_Illustrator": 0,
+   "legacy original ×1 (adyacencias con esa crease)": 1,
+   "legacy Illustrator ×1 (adyacencias con esa crease)": 0,
+   "legacy original ×0.75 (adyacencias con esa crease)": 1
+  },
+  {
+   "crease": "C1",
+   "separaMm": 39.5,
+   "sobreCorteMm": 0,
+   "une": "C1 C2 C5 ⟷ C1",
+   "une_Illustrator": "C1 C2 C5 ⟷ C1",
+   "sobreCorte_Illustrator": 0,
+   "fuera_Illustrator": 0,
+   "legacy original ×1 (adyacencias con esa crease)": 1,
+   "legacy Illustrator ×1 (adyacencias con esa crease)": 1,
+   "legacy original ×0.75 (adyacencias con esa crease)": 1
+  },
+  {
+   "crease": "C2",
+   "separaMm": 39.5,
+   "sobreCorteMm": 0,
+   "une": "C1 C2 C5 ⟷ C2",
+   "une_Illustrator": "C1 C2 C5 ⟷ C2",
+   "sobreCorte_Illustrator": 0,
+   "fuera_Illustrator": 0,
+   "legacy original ×1 (adyacencias con esa crease)": 1,
+   "legacy Illustrator ×1 (adyacencias con esa crease)": 1,
+   "legacy original ×0.75 (adyacencias con esa crease)": 1
+  },
+  {
+   "crease": "C3",
+   "separaMm": 39.003,
+   "sobreCorteMm": 0,
+   "une": "C3 C11 ⟷ C3",
+   "une_Illustrator": "C3 C11 ⟷ C3",
+   "sobreCorte_Illustrator": 0,
+   "fuera_Illustrator": 0.004,
+   "legacy original ×1 (adyacencias con esa crease)": 1,
+   "legacy Illustrator ×1 (adyacencias con esa crease)": 1,
+   "legacy original ×0.75 (adyacencias con esa crease)": 1
+  },
+  {
+   "crease": "C4",
+   "separaMm": 120,
+   "sobreCorteMm": 0,
+   "une": "C4 C8 C9 ⟷ C4",
+   "une_Illustrator": "C4 C8 C9 ⟷ C4",
+   "sobreCorte_Illustrator": 0,
+   "fuera_Illustrator": 0,
+   "legacy original ×1 (adyacencias con esa crease)": 1,
+   "legacy Illustrator ×1 (adyacencias con esa crease)": 1,
+   "legacy original ×0.75 (adyacencias con esa crease)": 1
+  },
+  {
+   "crease": "C5",
+   "separaMm": 120,
+   "sobreCorteMm": 0,
+   "une": "C1 C2 C5 ⟷ C5 C6 C11",
+   "une_Illustrator": "C1 C2 C5 ⟷ C5 C6 C11",
+   "sobreCorte_Illustrator": 0,
+   "fuera_Illustrator": 0,
+   "legacy original ×1 (adyacencias con esa crease)": 1,
+   "legacy Illustrator ×1 (adyacencias con esa crease)": 1,
+   "legacy original ×0.75 (adyacencias con esa crease)": 1
+  },
+  {
+   "crease": "C6",
+   "separaMm": 120,
+   "sobreCorteMm": 0,
+   "une": "C5 C6 C11 ⟷ C6 C7 C9 C10",
+   "une_Illustrator": "C5 C6 C11 ⟷ C6 C7 C9 C10",
+   "sobreCorte_Illustrator": 0,
+   "fuera_Illustrator": 0,
+   "legacy original ×1 (adyacencias con esa crease)": 1,
+   "legacy Illustrator ×1 (adyacencias con esa crease)": 1,
+   "legacy original ×0.75 (adyacencias con esa crease)": 1
+  },
+  {
+   "crease": "C7",
+   "separaMm": 39.5,
+   "sobreCorteMm": 0.501,
+   "une": "C6 C7 C9 C10 ⟷ C7",
+   "une_Illustrator": "C6 C7 C9 C10 ⟷ C7",
+   "sobreCorte_Illustrator": 0,
+   "fuera_Illustrator": 0.504,
+   "legacy original ×1 (adyacencias con esa crease)": 0,
+   "legacy Illustrator ×1 (adyacencias con esa crease)": 0,
+   "legacy original ×0.75 (adyacencias con esa crease)": 1
+  },
+  {
+   "crease": "C8",
+   "separaMm": 39.998,
+   "sobreCorteMm": 0,
+   "une": "C0 C8 ⟷ C4 C8 C9",
+   "une_Illustrator": "C0 C8 ⟷ C4 C8 C9",
+   "sobreCorte_Illustrator": 0,
+   "fuera_Illustrator": 0,
+   "legacy original ×1 (adyacencias con esa crease)": 1,
+   "legacy Illustrator ×1 (adyacencias con esa crease)": 1,
+   "legacy original ×0.75 (adyacencias con esa crease)": 1
+  },
+  {
+   "crease": "C9",
+   "separaMm": 120,
+   "sobreCorteMm": 0,
+   "une": "C4 C8 C9 ⟷ C6 C7 C9 C10",
+   "une_Illustrator": "C4 C8 C9 ⟷ C6 C7 C9 C10",
+   "sobreCorte_Illustrator": 0,
+   "fuera_Illustrator": 0,
+   "legacy original ×1 (adyacencias con esa crease)": 1,
+   "legacy Illustrator ×1 (adyacencias con esa crease)": 1,
+   "legacy original ×0.75 (adyacencias con esa crease)": 1
+  },
+  {
+   "crease": "C10",
+   "separaMm": 39.5,
+   "sobreCorteMm": 0.501,
+   "une": "C10 ⟷ C6 C7 C9 C10",
+   "une_Illustrator": "C10 ⟷ C6 C7 C9 C10",
+   "sobreCorte_Illustrator": 0.497,
+   "fuera_Illustrator": 0,
+   "legacy original ×1 (adyacencias con esa crease)": 0,
+   "legacy Illustrator ×1 (adyacencias con esa crease)": 1,
+   "legacy original ×0.75 (adyacencias con esa crease)": 1
+  },
+  {
+   "crease": "C11",
+   "separaMm": 39.998,
+   "sobreCorteMm": 0,
+   "une": "C3 C11 ⟷ C5 C6 C11",
+   "une_Illustrator": "C3 C11 ⟷ C5 C6 C11",
+   "sobreCorte_Illustrator": 0,
+   "fuera_Illustrator": 0,
+   "legacy original ×1 (adyacencias con esa crease)": 1,
+   "legacy Illustrator ×1 (adyacencias con esa crease)": 1,
+   "legacy original ×0.75 (adyacencias con esa crease)": 1
+  }
+ ],
+ "legacyEspurios": {
+  "legacy original ×1": [],
+  "legacy Illustrator ×1": [],
+  "legacy original ×0.75": []
+ },
+ "legacyAdyacenciasQueFaltan": {
+  "legacy original ×1": [
+   "3-11",
+   "11-12"
+  ],
+  "legacy Illustrator ×1": [
+   "0-1",
+   "11-12"
+  ],
+  "legacy original ×0.75": []
+ }
+}
