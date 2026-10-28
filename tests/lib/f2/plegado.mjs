@@ -48,3 +48,24 @@ export function arbolCanonico(m, T, mapa, dec = 6) {
   const f = firmasModelo(m, mapa); const k = (p) => p.x.toFixed(dec) + ',' + p.y.toFixed(dec);
   return T.aristas.map((e) => { const ka = k(e.crease.a), kb = k(e.crease.b); const orden = ka < kb; return [f[e.parent], f[e.child], orden ? ka + ' ' + kb : kb + ' ' + ka, orden ? e.sign : -e.sign].join(' | '); });
 }
+
+// F2A-2R — Clasificación INDEPENDIENTE de cada unión del oráculo (pareja de paneles adyacentes) con aritmética racional exacta y sin el
+// núcleo: aristas compartidas por los polígonos exactos de los dos paneles que NO están sobre un corte de la entrada (los cortes nunca se
+// ajustan), agrupadas por recta exacta ⇒ 'plegable' (una recta), 'ambigua' (varias, todas paralelas) o 'no-plegable'. Las uniones que
+// el oráculo da a través de una isla (sin aristas compartidas en los polígonos) quedan como 'sin-aristas-en-poligono'.
+export function clasificarUnionesOraculo(O, d) {
+  const corte = []; const segs = (pa, cerrado) => { const q = pa.points.map((x) => Q.pDouble(x.anchor)); for (let i = 0; i < q.length - (cerrado ? 0 : 1); i++) corte.push([q[i], q[(i + 1) % q.length]]); };
+  segs(d.outerBoundary, true); (d.holes || []).forEach((h) => segs(h, true)); (d.cutLines || []).forEach((k) => { const g = k.geom || k; segs(g, !!g.closed); });
+  const enSeg = (p, [a, b]) => Q.orient(a, b, p) === 0 && Q.cmp(p.x, Q.min(a.x, b.x)) >= 0 && Q.cmp(p.x, Q.max(a.x, b.x)) <= 0 && Q.cmp(p.y, Q.min(a.y, b.y)) >= 0 && Q.cmp(p.y, Q.max(a.y, b.y)) <= 0;
+  const esCorte = (u, v) => corte.some((s) => enSeg(u, s) && enSeg(v, s));
+  const aristas = (poli) => poli.map((p, i) => [p, poli[(i + 1) % poli.length]]);
+  return O.adyacencias.map((x) => {
+    const kB = new Set(aristas(O.paneles[x.b].poligono).map(([u, v]) => Q.pClave(v) + '>' + Q.pClave(u)));
+    const comp = aristas(O.paneles[x.a].poligono).filter(([u, v]) => kB.has(Q.pClave(u) + '>' + Q.pClave(v)) && !esCorte(u, v));
+    const rectas = []; for (const [u, v] of comp) { const r = rectas.find(([p, q]) => Q.orient(p, q, u) === 0 && Q.orient(p, q, v) === 0); if (!r) rectas.push([u, v]); }
+    const dir = ([p, q]) => Q.pResta(q, p); const clase = !rectas.length ? 'sin-aristas-en-poligono' : rectas.length === 1 ? 'plegable' : rectas.every((r) => Q.esCero(Q.cruz(dir(rectas[0]), dir(r)))) ? 'ambigua' : 'no-plegable';
+    return { a: x.a, b: x.b, creases: x.creases, clase, rectas: rectas.length };
+  });
+}
+// Componentes y número ciclomático de un grafo (n nodos, lista de parejas): referencia independiente para H-02
+export function componentesYCiclomatico(n, pares) { const p = Array.from({ length: n }, (_, i) => i); const r = (i) => (p[i] === i ? i : (p[i] = r(p[i]))); for (const [a, b] of pares) p[r(a)] = r(b); const c = new Set(Array.from({ length: n }, (_, i) => r(i))).size; return { componentes: c, ciclomatico: pares.length - n + c }; }

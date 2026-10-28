@@ -8,7 +8,7 @@ import { oraculo } from '../lib/f2/oraculo.mjs';
 import * as Q from '../lib/f2/racional.mjs';
 import { firmaTopologica } from '../lib/f2/comparar.mjs';
 import { FIXTURES_F2 } from '../lib/f2/fixtures-f2.mjs';
-import { firmasModelo, firmasOraculo, poligonoOraculo, distBorde } from '../lib/f2/plegado.mjs';
+import { firmasModelo, firmasOraculo, poligonoOraculo, distBorde, clasificarUnionesOraculo } from '../lib/f2/plegado.mjs';
 import { aliasPrint } from '../lib/contracts.mjs';
 import { createLegacyEngine } from '../../src/core/engine.js';
 
@@ -53,9 +53,13 @@ describe('F2A-2 · contrato PanelModel v1 y oráculo (22 sintéticos de F2A-0, 6
     // 3 · conservación
     const bruta = m.panels.reduce((s, p) => s + p.area, 0), huecos = m.f2a2.paneles.reduce((s, p) => s + p.huecos.reduce((t, h) => t + h.area, 0), 0);
     assert.ok(Math.abs(bruta - huecos - Q.aNumero(O.conservacion.generada)) <= tol(bruta), 'conservación de área');
-    // 4 · adyacencias = oráculo (por firma) y creaseIdx es una de sus creases
-    const A = construirAdyacencias(m); const fa = A.adyacencias.map((x) => [fm[x.panelA], fm[x.panelB]].sort().join(' ⟷ ')).sort();
-    const oa = O.adyacencias.map((x) => [fo[x.a], fo[x.b]].sort().join(' ⟷ ')).sort(); assert.deepEqual(fa, oa, 'parejas adyacentes');
+    // 4 · UNIONES = parejas adyacentes del oráculo (por firma), con su clase = la clasificación independiente exacta; adyacencias v1 =
+    //     solo las uniones plegables (F2A-2R, H-01: antes se exigía adyacencias = todas las parejas del oráculo, que fijaba el defecto)
+    const A = construirAdyacencias(m); const par = (a, b) => [a, b].sort().join(' ⟷ ');
+    assert.deepEqual(A.uniones.map((x) => par(fm[x.panelA], fm[x.panelB])).sort(), O.adyacencias.map((x) => par(fo[x.a], fo[x.b])).sort(), 'uniones = parejas adyacentes del oráculo');
+    const CI = new Map(clasificarUnionesOraculo(O, d).map((x) => [par(fo[x.a], fo[x.b]), x]));
+    for (const x of A.uniones) { const c = CI.get(par(fm[x.panelA], fm[x.panelB])); assert.deepEqual(x.creases, c.creases, 'creases de la unión'); if (c.clase !== 'sin-aristas-en-poligono') { assert.equal(x.clase, c.clase, 'clase = clasificación independiente'); assert.equal(x.grupos.length, c.rectas, 'mismas rectas'); } }
+    assert.deepEqual(A.adyacencias.map((x) => par(fm[x.panelA], fm[x.panelB])).sort(), A.uniones.filter((x) => x.clase === 'plegable').map((x) => par(fm[x.panelA], fm[x.panelB])).sort(), 'adyacencias v1 = uniones plegables');
     for (const [k, x] of A.adyacencias.entries()) { const o = O.adyacencias.find((y) => [fo[y.a], fo[y.b]].sort().join() === [fm[x.panelA], fm[x.panelB]].sort().join()); assert.ok(o.creases.includes('C' + x.creaseIdx)); assert.deepEqual(A.detalle[k].creases, o.creases, 'creases de la pareja');
       for (const P of [m.panels[x.panelA], m.panels[x.panelB]]) for (const q of [x.crease.a, x.crease.b]) assert.ok(distBorde(q, P.vertices) <= 1e-9 * M + 1e-12, 'el eje está en el borde de los dos paneles'); }
     // 5 · componentes
@@ -85,7 +89,9 @@ describe('F2A-2 · creaseEdges e invariantes de alias: idénticos al legacy (I4)
     const d = { version: '1.0', units: 'mm', holes: [], cutLines: [], outerBoundary: { closed: true, points: [p(0, 0), p(100, 0), p(100, 100), p(0, 100)] }, creases: [{ closed: true, points: [p(25, 25), p(75, 25), p(75, 75), p(25, 75)] }] };
     const m = adaptarPanelModel(d); assert.equal(m.creaseEdges.length, 3); assert.equal(m.f2a2.cierres.length, 1); assert.equal(m.f2a2.conversiones[5].cuantos, 1);
     assert.equal(m.panels.length, 2); const anillo = m.f2a2.paneles.find((x) => x.huecos.length); assert.equal(anillo.huecos[0].tipo, 'crease', 'el disco interior es otro panel, no un hueco de material');
-    const A = construirAdyacencias(m); assert.equal(A.adyacencias.length, 1); assert.equal(A.diagnosticos.find((x) => x.tipo === 'adyacencia-no-colineal').grupos, 4, 'bloqueo: cuatro lados no colineales');
+    // F2A-2R (H-01): antes 1 adyacencia v1 con el lado más largo como eje; ahora la unión se conserva como no plegable y no hay AdjacencyEdge
+    const A = construirAdyacencias(m); assert.equal(A.adyacencias.length, 0); assert.equal(A.uniones.length, 1); assert.equal(A.uniones[0].clase, 'no-plegable');
+    assert.equal(A.uniones[0].grupos.length, 4, 'cuatro lados no colineales, todos conservados'); assert.equal(A.diagnosticos.find((x) => x.tipo === 'union-no-plegable').rectas, 4);
   });
 });
 

@@ -10,7 +10,7 @@
 import { clone } from '../fixtures.mjs';
 import { adaptarPanelModel, construirAdyacencias, construirArbolPlegado, baseDefecto } from '../../../experimental/plegado/index.js';
 import { oraculo } from './oraculo.mjs';
-import { firmasModelo, firmasOraculo, dentro, convexo, nivelesBFS } from './plegado.mjs';
+import { firmasModelo, firmasOraculo, dentro, convexo, nivelesBFS, clasificarUnionesOraculo } from './plegado.mjs';
 
 const area = (ps) => { let s = 0; for (let i = 0; i < ps.length; i++) { const a = ps[i], b = ps[(i + 1) % ps.length]; s += (a.x - ps[0].x) * (b.y - ps[0].y) - (b.x - ps[0].x) * (a.y - ps[0].y); } return Math.abs(s / 2); };
 const nivelesDe = (n, tree, base) => { const L = Array(n).fill(-1); if (base >= 0) L[base] = 0; for (const e of tree) L[e.child] = L[e.parent] + 1; return L; };
@@ -20,7 +20,7 @@ export function compararConLegacy(d, eps, L, { computeFoldSign, ki = [] } = {}) 
   const m = adaptarPanelModel(d, { eps }); const A = construirAdyacencias(m); const n = m.panels.length;
   const O = oraculo(d, { eps: eps == null ? null : String(eps) }); const fm = firmasModelo(m), fo = firmasOraculo(O);
   const errores = []; if (JSON.stringify(fm.slice().sort()) !== JSON.stringify(fo.slice().sort())) errores.push('paneles distintos del oráculo');
-  const parO = new Set(O.adyacencias.map((x) => [fo[x.a], fo[x.b]].sort().join('⟷'))); const parM = new Set(A.adyacencias.map((x) => [fm[x.panelA], fm[x.panelB]].sort().join('⟷')));
+  const parO = new Set(O.adyacencias.map((x) => [fo[x.a], fo[x.b]].sort().join('⟷'))); const parM = new Set(A.uniones.map((x) => [fm[x.panelA], fm[x.panelB]].sort().join('⟷'))); // F2A-2R: uniones (todas las parejas), no solo las plegables
   if ([...parO].sort().join() !== [...parM].sort().join()) errores.push('adyacencias distintas del oráculo');
   const corrige = errores.length === 0; const difs = []; const dif = (clase, que, extra = {}) => difs.push({ clase, que, corrige: clase === 'representación' ? false : corrige, ...extra });
   // correspondencia legacy → adaptador: el polígono exterior más pequeño que contiene el centroide del legacy
@@ -41,7 +41,8 @@ export function compararConLegacy(d, eps, L, { computeFoldSign, ki = [] } = {}) 
   map.forEach((x, j) => { if (x === -1) dif('topología', `panel espurio del legacy P${j} (${lp.panels[j].area.toFixed(3)} mm²)`); });
   const parL = new Set(la.map((x) => (map[x.panelA] >= 0 && map[x.panelB] >= 0 ? [fm[map[x.panelA]], fm[map[x.panelB]]].sort().join('⟷') : `P${x.panelA}⟷P${x.panelB} (con una cara del legacy sin panel)`)));
   for (const k of parM) if (!parL.has(k)) dif('topología', `adyacencia ${k} ausente en el legacy`); for (const k of parL) if (!parM.has(k)) dif('topología', `adyacencia ${k} del legacy no existe en el adaptador`);
-  if (la.length !== A.adyacencias.length && la.length) dif('representación', `${la.length} AdjacencyEdge del legacy (una por segmento de crease) frente a ${A.adyacencias.length} (una por pareja)`);
+  if (la.length !== A.adyacencias.length && la.length) dif('representación', `${la.length} AdjacencyEdge del legacy (una por segmento de crease) frente a ${A.adyacencias.length} (una por pareja plegable)`);
+  for (const u of A.uniones) if (u.clase !== 'plegable') dif('geometría', `unión ${[fm[u.panelA], fm[u.panelB]].sort().join('⟷')} ${u.clase} (${u.grupos.length} rectas): el legacy la usa como bisagra, el adaptador no`);
   // árbol: desde la misma base (la del legacy, traducida)
   const res = { filas, base: { legacy: lb, adaptador: baseDefecto(m), legacyTraducida: lb >= 0 ? map[lb] : -1 } };
   if (res.base.legacyTraducida >= 0 && fm[res.base.adaptador] !== fm[res.base.legacyTraducida]) dif(difs.some((x) => x.clase === 'topología') ? 'topología' : 'representación', `base por defecto distinta: legacy ${fm[res.base.legacyTraducida]} frente a ${fm[res.base.adaptador]} (empate de área o panel perdido)`);
@@ -67,7 +68,8 @@ export function compararConLegacy(d, eps, L, { computeFoldSign, ki = [] } = {}) 
     if (computeFoldSign) { const s = T.aristas.map((e) => ({ convexo: convexo(m.panels[e.child].vertices), igual: computeFoldSign(m.panels[e.parent], m.panels[e.child], e.crease) === e.sign })); res.signoCentroide = { convexosIguales: s.filter((x) => x.convexo && x.igual).length, convexosDistintos: s.filter((x) => x.convexo && !x.igual).length, noConvexosDistintos: s.filter((x) => !x.convexo && !x.igual).length, noConvexos: s.filter((x) => !x.convexo).length }; }
     res.adyacenciaLegacySobreModelo = L.buildAdjacency(m.panels, m.creaseEdges).length;
     // niveles del adaptador frente a un BFS independiente sobre el oráculo
-    const oi = fm.map((x) => fo.indexOf(x)); if (!errores.length && JSON.stringify(nivelesBFS(n, O.adyacencias.map((x) => [oi.indexOf(x.a), oi.indexOf(x.b)]), b)) !== JSON.stringify(T.niveles)) errores.push('niveles distintos del BFS sobre el oráculo');
+    const oi = fm.map((x) => fo.indexOf(x)); const paresP = clasificarUnionesOraculo(O, d).filter((x) => x.clase === 'plegable').map((x) => [oi.indexOf(x.a), oi.indexOf(x.b)]); // F2A-2R: grafo de bisagras plegables (clasificación independiente)
+    if (!errores.length && JSON.stringify(nivelesBFS(n, paresP, b)) !== JSON.stringify(T.niveles)) errores.push('niveles distintos del BFS sobre el oráculo');
   }
   return { legacy: { paneles: lp.panels.length, adyacencias: la.length, aristas: lt.length }, adaptador: { paneles: n, adyacencias: A.adyacencias.length }, oraculo: { paneles: O.paneles.length }, ki, diferencias: difs, erroresAdaptador: errores, ...res };
 }

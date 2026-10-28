@@ -7,7 +7,7 @@ import { adaptarPanelModel, construirAdyacencias, construirArbolPlegado, baseDef
 import { oraculo } from '../lib/f2/oraculo.mjs';
 import { PERMUTACIONES, transformarDouble } from '../lib/f2/comparar.mjs';
 import { FIXTURES_F2 } from '../lib/f2/fixtures-f2.mjs';
-import { firmasModelo, firmasOraculo, poligonoOraculo, ladoPorSondas, nivelesBFS, plegar, centroidePoli, arbolCanonico } from '../lib/f2/plegado.mjs';
+import { firmasModelo, firmasOraculo, poligonoOraculo, ladoPorSondas, nivelesBFS, plegar, centroidePoli, arbolCanonico, clasificarUnionesOraculo, componentesYCiclomatico } from '../lib/f2/plegado.mjs';
 
 const rd = (f) => JSON.parse(fs.readFileSync(path.join(ROOT, f), 'utf8'));
 const CB = 'tests/fixtures/real/caja-botanica-real.dieline.json', ILL = 'tests/fixtures/illustrator-real/ill-real-caja-botanica.dieline.json', HIST = 'tests/fixtures/real/caja-botanica-illustrator-export.dieline.json';
@@ -18,7 +18,10 @@ const todo = (d, eps, base) => { const m = adaptarPanelModel(d, { eps }); const 
 // Validez del árbol desde una base contra el oráculo: aristas = adyacencias, niveles BFS independientes, signo por sondas, componentes
 function validarArbol(d, eps, base) {
   const { m, A, T } = todo(d, eps, base); const O = oraculo(d, { eps }); const fm = firmasModelo(m), fo = firmasOraculo(O); const oi = fm.map((f) => fo.indexOf(f)); const n = m.panels.length;
-  const L = nivelesBFS(n, O.adyacencias.map((x) => [oi.indexOf(x.a), oi.indexOf(x.b)]), base); assert.deepEqual(T.niveles, L, 'niveles BFS = los del grafo del oráculo');
+  // grafo de bisagras de referencia = uniones del oráculo clasificadas como plegables de forma independiente (F2A-2R, H-01; antes: todas)
+  const CI = clasificarUnionesOraculo(O, d); assert.ok(CI.every((x) => x.clase !== 'sin-aristas-en-poligono'), 'clasificación independiente completa');
+  const paresP = CI.filter((x) => x.clase === 'plegable').map((x) => [oi.indexOf(x.a), oi.indexOf(x.b)]);
+  const L = nivelesBFS(n, paresP, base); assert.deepEqual(T.niveles, L, 'niveles BFS = los del grafo de bisagras del oráculo');
   const comp = L.filter((x) => x >= 0).length; assert.equal(T.aristas.length, comp - 1, 'árbol de la componente de la base'); assert.deepEqual(T.noAlcanzados, L.map((x, i) => (x < 0 ? i : -1)).filter((i) => i >= 0));
   const hijos = new Set(); T.aristas.forEach((e, k) => {
     assert.ok(!hijos.has(e.child) && e.child !== base, 'cada panel entra una vez'); hijos.add(e.child); assert.equal(T.niveles[e.parent], T.niveles[e.child] - 1, 'padre en el nivel anterior');
@@ -28,8 +31,13 @@ function validarArbol(d, eps, base) {
     assert.equal(ladoPorSondas(poligonoOraculo(O.paneles[oi[e.parent]]), e.crease), -lado, 'el padre está al otro lado');
   });
   assert.equal(T.adyacenciasFueraDelArbol.length, A.adyacencias.length - T.aristas.length);
-  const ncomp = T.componentes.length; assert.equal(ncomp, O.componentesPaneles); assert.equal(T.diagnosticos.some((x) => x.tipo === 'componente-desconectado'), ncomp > 1);
-  if (T.adyacenciasFueraDelArbol.length) assert.equal(T.diagnosticos.find((x) => x.tipo === 'ciclo').numeroCiclomatico, A.adyacencias.length - n + ncomp);
+  // componentes y ciclos sobre el grafo COMPLETO de bisagras (F2A-2R, H-02; antes se exigía `ciclo` ante cualquier adyacencia fuera del árbol)
+  const ref = componentesYCiclomatico(n, paresP); const ncomp = T.componentes.length; assert.equal(ncomp, ref.componentes, 'componentes del grafo de bisagras');
+  assert.equal(T.diagnosticos.some((x) => x.tipo === 'componente-desconectado'), ncomp > 1); assert.equal(T.numeroCiclomatico, ref.ciclomatico, 'ν = m − n + c independiente');
+  assert.equal(T.adyacenciasCiclo.length, ref.ciclomatico); assert.equal(T.diagnosticos.some((x) => x.tipo === 'ciclo'), ref.ciclomatico > 0, 'diagnóstico de ciclo solo si hay ciclos reales');
+  const part = [...T.adyacenciaDeArista, ...T.adyacenciasCiclo, ...T.adyacenciasNoAlcanzadas].sort((x, y) => x - y); assert.deepEqual(part, A.adyacencias.map((_, k) => k), 'árbol + ciclo + no alcanzadas = todas, sin repetición');
+  const enBase = new Set(T.componentes[0]); for (const k of T.adyacenciasNoAlcanzadas) assert.ok(!enBase.has(A.adyacencias[k].panelA), 'las no alcanzadas son de otras componentes');
+  for (const k of T.adyacenciasCiclo) assert.equal(componentesYCiclomatico(n, A.adyacencias.filter((_, j) => j !== k).map((x) => [x.panelA, x.panelB])).componentes, ref.componentes, 'quitar una adyacencia de ciclo no desconecta nada');
   return { m, A, T };
 }
 
@@ -48,7 +56,7 @@ describe('F2A-2 · selección explícita de base: cualquier panel da un árbol v
 });
 
 describe('F2A-2 · plegado rígido con la convención de src/fold/folding.js (ejes y ángulos)', () => {
-  for (const [n, d, eps] of [['caja-botanica-real', () => rd(CB), null], ['ill-real ε 0.05', () => rd(ILL), '0.05'], ['rejilla 4×4', () => gridDieline(4), null], ['escalón de crease (eje del grupo colineal)', FIXTURES_F2['escalon-crease'].build, null]]) test(n, () => {
+  for (const [n, d, eps] of [['caja-botanica-real', () => rd(CB), null], ['ill-real ε 0.05', () => rd(ILL), '0.05'], ['rejilla 4×4', () => gridDieline(4), null], ['T exacta (tres bisagras sobre dos rectas)', FIXTURES_F2['t-exacta'].build, null]]) test(n, () => {
     const { m, T, b } = todo(d(), eps); const P = m.panels; const N = P.length; let M = 1; for (const p of P) for (const v of p.vertices) M = Math.max(M, Math.abs(v.x), Math.abs(v.y));
     const T0 = plegar(N, T.aristas, b, []); for (let i = 0; i < N; i++) if (T.niveles[i] >= 0) for (const v of P[i].vertices) { const w = T0[i](v); assert.ok(Math.abs(w.x - v.x) + Math.abs(w.y - v.y) + Math.abs(w.z) < 1e-12 * M, 'a 0° todo queda plano y en su sitio'); }
     let s = 7; const r = () => ((s = (s * 1103515245 + 12345) % 2147483648) / 2147483648) * 180 - 90; const ang = T.aristas.map(r); const TA = plegar(N, T.aristas, b, ang);
@@ -84,9 +92,11 @@ describe('F2A-2 · casos ambiguos A-1…A-12 (F2A0_04): comportamiento del adapt
   const p = (x, y) => ({ anchor: { x, y }, left: { x, y }, right: { x, y } }); const P = (pts, closed) => ({ closed, points: pts.map(([x, y]) => p(x, y)) });
   const W = (o) => ({ version: '1.0', units: 'mm', holes: [], cutLines: [], outerBoundary: P([[0, 0], [80, 0], [80, 40], [0, 40]], true), ...o });
   const diags = (R) => new Set([...R.m.f2a2.diagnosticos, ...R.A.diagnosticos, ...R.T.diagnosticos].map((x) => x.tipo));
-  test('A-1 detalles de 0,5 mm: se conservan; el escalón de crease que separa la misma pareja ⇒ adyacencia-no-colineal (bloqueo de plegado rígido)', () => {
-    const R = todo(FIXTURES_F2['escalon-crease'].build(), null); assert.ok(diags(R).has('adyacencia-no-colineal')); assert.equal(R.T.aristas.length, 1); const x = R.A.detalle[0]; assert.ok(x.grupos > 1 && x.longitud < x.longitudTotal);
-    const C = todo(FIXTURES_F2['escalon-contorno'].build(), null); assert.equal(C.T.aristas.length, 1); assert.ok(!diags(C).has('adyacencia-no-colineal'));
+  // F2A-2R (H-01): antes este caso exigía 1 FoldEdge (el tramo colineal más largo como bisagra); ahora la unión es no plegable y no hay pliegue
+  test('A-1 detalles de 0,5 mm: se conservan; el escalón de crease que separa la misma pareja es una unión NO plegable: sin FoldEdge, con diagnóstico y desconexión explicada', () => {
+    const R = todo(FIXTURES_F2['escalon-crease'].build(), null); assert.ok(diags(R).has('union-no-plegable')); assert.equal(R.T.aristas.length, 0); assert.equal(R.A.adyacencias.length, 0);
+    const u = R.A.uniones[0]; assert.equal(u.clase, 'no-plegable'); assert.equal(u.grupos.length, 3); assert.equal(R.T.componentes.length, 2); assert.deepEqual(R.T.diagnosticos.find((x) => x.tipo === 'componente-desconectado').unionesNoPlegablesEntreComponentes.map((x) => x.union), [0]);
+    const C = todo(FIXTURES_F2['escalon-contorno'].build(), null); assert.equal(C.T.aristas.length, 1); assert.ok(!diags(C).has('union-no-plegable'));
   });
   test('A-2 Caja Botánica: 13 paneles, 12 adyacencias, el grafo ya es un árbol (sin ciclos ni componentes sueltas) en las tres extracciones', () => {
     for (const [f, e] of [[CB, null], [ILL, '0.05'], [HIST, '0.05']]) { const R = todo(rd(f), e); assert.equal(R.T.aristas.length, 12); assert.equal(R.T.adyacenciasFueraDelArbol.length, 0); assert.ok(!diags(R).has('ciclo') && !diags(R).has('componente-desconectado') && !diags(R).has('adyacencia-no-colineal')); }
