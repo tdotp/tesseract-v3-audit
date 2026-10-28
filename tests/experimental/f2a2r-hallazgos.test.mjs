@@ -109,8 +109,10 @@ describe('F2A-2R · controles negativos (reintroducción de los defectos)', () =
     const Mut = await mutante('h01', [["const clase = grupos.length === 1 ? 'plegable' : grupos.every(paralelo) ? 'ambigua' : 'no-plegable';", "const clase = 'plegable';"]]); assert.equal(defectoH01(Mut), true);
   });
   test('H-02 reintroducido (ciclo = toda adyacencia fuera del árbol de la base) ⇒ detectado, con o sin la comprobación interna de ν', async () => {
-    const a = "const ciclo = todas.filter((k) => !enArbol.has(k) && !bosque.has(k));"; const g = "  if (numeroCiclomatico !== ciclo.length) throw";
-    assert.equal(defectoH02(await mutante('h02a', [[a, 'const ciclo = fuera;']])), true);
-    assert.equal(defectoH02(await mutante('h02b', [[a, 'const ciclo = fuera;'], [g, '  if (false) throw']])), true);
+    // F2A-2P: la partición se hace en una sola pasada; el defecto se reintroduce igual (toda adyacencia fuera del árbol cuenta como ciclo)
+    const a = "if (bosque.has(k)) noAlcanzadas.push(k); /* bosque de otras componentes: NO son ciclos */ else ciclo.push(k);"; const g = "  if (numeroCiclomatico !== ciclo.length) throw";
+    const defecto = "if (bosque.has(k)) noAlcanzadas.push(k); ciclo.push(k);";
+    assert.equal(defectoH02(await mutante('h02a', [[a, defecto]])), true);
+    assert.equal(defectoH02(await mutante('h02b', [[a, defecto], [g, '  if (false) throw']])), true);
   });
 });

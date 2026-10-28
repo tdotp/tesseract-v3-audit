@@ -35,47 +35,52 @@ function detalleDe(modelo) {
 export function construirAdyacencias(modelo) {
   const D = detalleDe(modelo); const V = D.arreglo.vertices; const { reg } = D.caras;
   const pDeR = new Map(D.regionDePanel.map((r, i) => [r, i]));
-  const pares = new Map();
+  const pares = new Map(); const nP = D.regionDePanel.length;
   for (const e of D.arreglo.aristas) {
-    const tags = [...e.tags]; if (!tags.some(esC) || tags.some((t) => !esC(t))) continue;
+    let hayC = false, hayOtro = false; for (const t of e.tags) { if (esC(t)) hayC = true; else hayOtro = true; } if (!hayC || hayOtro) continue;
     const a = pDeR.get(reg(e.h[0].ciclo)), b = pDeR.get(reg(e.h[1].ciclo)); if (a == null || b == null || a === b) continue;
-    const k = Math.min(a, b) + '|' + Math.max(a, b); if (!pares.has(k)) pares.set(k, { a: Math.min(a, b), b: Math.max(a, b), ar: [] });
-    const refs = [...e.refs].map(ref).filter(Boolean).sort((x, y) => x.c - y.c || x.s - y.s);
-    pares.get(k).ar.push({ e, refs, hDe: { [a]: e.h[0], [b]: e.h[1] }, L: Math.hypot(V[e.u].x - V[e.v].x, V[e.u].y - V[e.v].y) });
+    const lo = a < b ? a : b, hi = a < b ? b : a, k = lo * nP + hi; let p = pares.get(k); if (!p) { p = { a: lo, b: hi, ar: [] }; pares.set(k, p); }
+    const refs = []; for (const r of e.refs) { const x = ref(r); if (x) refs.push(x); } refs.sort((x, y) => x.c - y.c || x.s - y.s);
+    // F2A-2P: cadenas de segmento y de crease de la arista calculadas una sola vez (antes, en cada agregado)
+    p.ar.push({ e, refs, seg: refs.map((r) => 'C' + r.c + ':' + r.s), cr: refs.map((r) => 'C' + r.c), hA: a === lo ? e.h[0] : e.h[1], L: Math.hypot(V[e.u].x - V[e.v].x, V[e.u].y - V[e.v].y) });
   }
   const adyacencias = [], detalle = [], uniones = [], diagnosticos = [];
   const largo = (g) => g.reduce((s, x) => s + x.L, 0);
-  const segs = (g) => [...new Set(g.flatMap((x) => x.refs.map((r) => 'C' + r.c + ':' + r.s)))].sort();
-  const creasesDe = (g) => [...new Set(g.flatMap((x) => x.refs.map((r) => 'C' + r.c)))].sort((x, y) => idx(x) - idx(y));
+  const segs = (g) => { const u = new Set(); for (const x of g) for (const t of x.seg) u.add(t); return [...u].sort(); };
+  const creasesDe = (g) => { const u = new Set(); for (const x of g) for (const t of x.cr) u.add(t); return [...u].sort((x, y) => idx(x) - idx(y)); };
+  const agregados = (g) => ({ creases: creasesDe(g), segmentos: segs(g), longitud: largo(g) });
   for (const p of [...pares.values()].sort((x, y) => x.a - y.a || x.b - y.b)) {
     // referencia determinista: menor (crease, segmento) y, a igualdad, menor vértice
     p.ar.sort((x, y) => x.refs[0].c - y.refs[0].c || x.refs[0].s - y.refs[0].s || Math.min(x.e.u, x.e.v) - Math.min(y.e.u, y.e.v));
     const grupos = []; for (const x of p.ar) { const g = grupos.find((g) => { const [P, Q] = g[0].e.dir; return orientG(P, Q, x.e.dir[0]) === 0 && orientG(P, Q, x.e.dir[1]) === 0; }); if (g) g.push(x); else grupos.push([x]); }
     const paralelo = (g) => { const [P, Q] = grupos[0][0].e.dir, [R, S2] = g[0].e.dir; return cruzDireccionesG(P, Q, R, S2) === 0; };
     const clase = grupos.length === 1 ? 'plegable' : grupos.every(paralelo) ? 'ambigua' : 'no-plegable';
-    const u = uniones.length; const creasesTodas = creasesDe(p.ar);
+    const u = uniones.length;
+    // agregados de cada recta y de la unión; si hay una sola recta (plegable), la unión, su recta y el detalle COMPARTEN los mismos
+    // arreglos y valores (mismos elementos en el mismo orden: el resultado serializado es idéntico; los objetos de salida son de solo lectura)
+    const ag = grupos.map(agregados); const T = grupos.length === 1 ? ag[0] : agregados(p.ar); const creasesTodas = T.creases;
     // la unión conserva TODAS sus aristas atómicas (coordenadas y segmentos de origen), agrupadas por recta
-    uniones.push({ panelA: p.a, panelB: p.b, clase, adyacencia: -1, creases: creasesTodas, segmentos: segs(p.ar), longitudTotal: largo(p.ar),
-      grupos: grupos.map((g) => ({ creases: creasesDe(g), segmentos: segs(g), longitud: largo(g), aristas: g.map((x) => ({ u: { x: V[x.e.u].x, y: V[x.e.u].y }, v: { x: V[x.e.v].x, y: V[x.e.v].y }, segmentos: x.refs.map((r) => 'C' + r.c + ':' + r.s) })) })) });
+    uniones.push({ panelA: p.a, panelB: p.b, clase, adyacencia: -1, creases: creasesTodas, segmentos: T.segmentos, longitudTotal: T.longitud,
+      grupos: grupos.map((g, j) => ({ creases: ag[j].creases, segmentos: ag[j].segmentos, longitud: ag[j].longitud, aristas: g.map((x) => ({ u: { x: V[x.e.u].x, y: V[x.e.u].y }, v: { x: V[x.e.v].x, y: V[x.e.v].y }, segmentos: x.seg })) })) });
     if (clase !== 'plegable') {
-      diagnosticos.push({ tipo: clase === 'ambigua' ? 'union-ambigua' : 'union-no-plegable', union: u, panelA: p.a, panelB: p.b, rectas: grupos.length, creases: creasesTodas, segmentos: segs(p.ar), longitudTotal: largo(p.ar),
+      diagnosticos.push({ tipo: clase === 'ambigua' ? 'union-ambigua' : 'union-no-plegable', union: u, panelA: p.a, panelB: p.b, rectas: grupos.length, creases: creasesTodas, segmentos: T.segmentos, longitudTotal: T.longitud,
         motivo: clase === 'ambigua' ? 'aristas sobre rectas paralelas distintas: sin un eje único; requiere una decisión geométrica explícita' : 'aristas sobre rectas no paralelas: ninguna bisagra rígida es compatible' });
       continue;
     }
     const G = grupos[0];
     const r0 = G[0].refs[0]; const pts = D.creases[r0.c].pts; const s0 = pts[r0.s], s1 = pts[(r0.s + 1) % pts.length];
     const dx = s1.x - s0.x, dy = s1.y - s0.y; const pr = (v) => (v.x - s0.x) * dx + (v.y - s0.y) * dy;
-    let lo = null, hi = null; for (const x of G) for (const w of [x.e.u, x.e.v]) { const t = pr(V[w]); if (!lo || t < lo.t) lo = { t, w }; if (!hi || t > hi.t) hi = { t, w }; }
-    const A = { x: V[lo.w].x, y: V[lo.w].y }, B = { x: V[hi.w].x, y: V[hi.w].y };
+    let wLo = -1, wHi = -1, tLo = 0, tHi = 0; for (const x of G) for (let q = 0; q < 2; q++) { const w = q ? x.e.v : x.e.u, t = pr(V[w]); if (wLo < 0 || t < tLo) { tLo = t; wLo = w; } if (wHi < 0 || t > tHi) { tHi = t; wHi = w; } }
+    const A = { x: V[wLo].x, y: V[wLo].y }, B = { x: V[wHi].x, y: V[wHi].y };
     // lado: el panel a está a la izquierda de su semiarista; ¿coincide su sentido con a→b del eje?
-    const lados = new Set(G.map((x) => { const h = x.hDe[p.a]; return (V[h.t].x - V[h.o].x) * (B.x - A.x) + (V[h.t].y - V[h.o].y) * (B.y - A.y) > 0 ? p.a : p.b; }));
+    const lados = new Set(G.map((x) => { const h = x.hA; return (V[h.t].x - V[h.o].x) * (B.x - A.x) + (V[h.t].y - V[h.o].y) * (B.y - A.y) > 0 ? p.a : p.b; }));
     if (lados.size !== 1) throw new ErrorPanelModel('adaptador-incoherente', [{ tipo: 'error', codigo: 'lado', mensaje: `pareja ${p.a}-${p.b}: lado del eje incoherente entre sus aristas` }]);
     const orden = G.slice().sort((x, y) => (pr(V[x.e.u]) + pr(V[x.e.v])) - (pr(V[y.e.u]) + pr(V[y.e.v])));
     let tramos = 1; for (let k = 1; k < orden.length; k++) { const u = orden[k - 1].e, v = orden[k].e; if (![u.u, u.v].some((w) => w === v.u || w === v.v)) tramos++; }
-    const creasesEje = creasesDe(G);
+    const creasesEje = ag[0].creases; // una sola recta: G y la unión tienen las mismas aristas en el mismo orden
     const k = adyacencias.length; uniones[u].adyacencia = k;
     adyacencias.push({ panelA: p.a, panelB: p.b, crease: { a: A, b: B }, creaseIdx: idx(creasesEje[0]) });
-    detalle.push({ union: u, creases: creasesTodas, creasesEje, segmentos: segs(G), longitud: largo(G), longitudTotal: largo(p.ar), aristas: G.length, tramos, izquierda: [...lados][0] });
+    detalle.push({ union: u, creases: creasesTodas, creasesEje, segmentos: ag[0].segmentos, longitud: ag[0].longitud, longitudTotal: T.longitud, aristas: G.length, tramos, izquierda: [...lados][0] });
     if (creasesEje.length > 1) diagnosticos.push({ tipo: 'adyacencia-varias-creases', adyacencia: k, creases: creasesEje });
     if (tramos > 1) diagnosticos.push({ tipo: 'adyacencia-discontinua', adyacencia: k, tramos });
   }
@@ -119,27 +124,27 @@ export function construirArbolPlegado(modelo, ady, base) {
   const T0 = bfsNiveles(P, A, X, vec, base, claves);
   // grafo COMPLETO de bisagras plegables: componentes (la de la base primero) y bosque generador determinista en las demás
   const pp = P.map((_, i) => i); const rz = (i) => (pp[i] === i ? i : (pp[i] = rz(pp[i]))); A.forEach((x) => { pp[rz(x.panelA)] = rz(x.panelB); });
+  // componentes en orden de su panel menor (inserción ascendente), con la de la base primero; índice de componente de cada panel
   const comps = new Map(); P.forEach((_, i) => { const r = rz(i); if (!comps.has(r)) comps.set(r, []); comps.get(r).push(i); });
-  const componentes = [...comps.values()].sort((a, b) => (a.includes(base) ? -1 : b.includes(base) ? 1 : a[0] - b[0]));
+  const rBase = rz(base); const componentes = [comps.get(rBase)]; for (const [r, c] of comps) if (r !== rBase) componentes.push(c);
+  const compDe = new Array(n); componentes.forEach((c, j) => { for (const i of c) compDe[i] = j; });
   const enArbol = new Set(T0.adyDeArista); const bosque = new Set();
   for (const c of componentes.slice(1)) { // raíz = mayor área v1 de la componente; a igualdad, menor vértice mínimo (como baseDefecto)
     const raiz = c.reduce((m, i) => (P[i].area > P[m].area || (P[i].area === P[m].area && cmpClave(claves[i], claves[m]) < 0) ? i : m));
     for (const k of bfsNiveles(P, A, X, vec, raiz, claves).adyDeArista) bosque.add(k);
   }
-  const todas = A.map((_, k) => k);
-  const fuera = todas.filter((k) => !enArbol.has(k));                         // fuera del árbol de la base (ciclos + componentes no alcanzadas)
-  const noAlcanzadas = todas.filter((k) => bosque.has(k));                    // aristas del bosque de componentes sin la base: NO son ciclos
-  const ciclo = todas.filter((k) => !enArbol.has(k) && !bosque.has(k));       // cierran un ciclo en su componente
+  // partición en una pasada (orden ascendente de adyacencia): fuera del árbol de la base = ciclos + componentes no alcanzadas
+  const fuera = [], noAlcanzadas = [], ciclo = [];
+  for (let k = 0; k < A.length; k++) { if (enArbol.has(k)) continue; fuera.push(k); if (bosque.has(k)) noAlcanzadas.push(k); /* bosque de otras componentes: NO son ciclos */ else ciclo.push(k); /* cierran un ciclo */ }
   const numeroCiclomatico = A.length - n + componentes.length;
   if (numeroCiclomatico !== ciclo.length) throw new ErrorPanelModel('adaptador-incoherente', [{ tipo: 'error', codigo: 'ciclomatico', mensaje: `ν = ${numeroCiclomatico} ≠ ${ciclo.length} adyacencias de ciclo` }]);
-  const compDe = new Map(); componentes.forEach((c, j) => c.forEach((i) => compDe.set(i, j)));
   const noAlcanzados = P.map((_, i) => i).filter((i) => T0.nivel[i] === -1);
   const diagnosticos = [];
   if (componentes.length > 1) {
     // uniones no plegables o ambiguas que unirían componentes distintas: la desconexión se debe (también) a ellas
-    const porUnion = U.map((x, j) => ({ union: j, clase: x.clase, componentes: [compDe.get(x.panelA), compDe.get(x.panelB)].sort((a, b) => a - b) })).filter((x) => x.clase !== 'plegable' && x.componentes[0] !== x.componentes[1]);
+    const porUnion = U.map((x, j) => ({ union: j, clase: x.clase, componentes: [compDe[x.panelA], compDe[x.panelB]].sort((a, b) => a - b) })).filter((x) => x.clase !== 'plegable' && x.componentes[0] !== x.componentes[1]);
     diagnosticos.push({ tipo: 'componente-desconectado', componentes: componentes.slice(1), noAlcanzados, adyacenciasNoAlcanzadas: noAlcanzadas, unionesNoPlegablesEntreComponentes: porUnion });
   }
-  if (ciclo.length) diagnosticos.push({ tipo: 'ciclo', adyacencias: ciclo, numeroCiclomatico, porComponente: componentes.map((c, j) => ({ componente: j, adyacencias: ciclo.filter((k) => compDe.get(A[k].panelA) === j) })).filter((x) => x.adyacencias.length) });
+  if (ciclo.length) diagnosticos.push({ tipo: 'ciclo', adyacencias: ciclo, numeroCiclomatico, porComponente: componentes.map((c, j) => ({ componente: j, adyacencias: ciclo.filter((k) => compDe[A[k].panelA] === j) })).filter((x) => x.adyacencias.length) });
   return { aristas: T0.aristas, base, niveles: T0.nivel, adyacenciaDeArista: T0.adyDeArista, componentes, noAlcanzados, adyacenciasFueraDelArbol: fuera, adyacenciasNoAlcanzadas: noAlcanzadas, adyacenciasCiclo: ciclo, numeroCiclomatico, empates: T0.empates, diagnosticos };
 }
