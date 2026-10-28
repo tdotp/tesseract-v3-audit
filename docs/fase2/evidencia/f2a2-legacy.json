@@ -1,0 +1,1747 @@
+[
+ {
+  "caso": "x-cruz",
+  "legacyAcierta": false,
+  "ki": "KI-09",
+  "legacy": "5 p · 12 ady · 0 pl",
+  "adaptador": "4 p · 4 ady",
+  "oraculo": 4,
+  "topología": 4,
+  "geometría": 0,
+  "representación": 1,
+  "esperadas": 4,
+  "erroresAdaptador": [],
+  "diferencias": [
+   {
+    "clase": "topología",
+    "que": "cara P1 del legacy (3200.000 mm²) cubre 4 paneles: fusión o cara exterior colada — y es la BASE por defecto del legacy",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0 C1#0⟷C0 C1#3 del legacy no existe en el adaptador",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0 C1#1⟷C0 C1#2 del legacy no existe en el adaptador",
+    "corrige": true
+   },
+   {
+    "clase": "representación",
+    "que": "12 AdjacencyEdge del legacy (una por segmento de crease) frente a 4 (una por pareja)",
+    "corrige": false
+   },
+   {
+    "clase": "topología",
+    "que": "el árbol del legacy parte de una cara que no es un panel (0 pliegues): no comparable",
+    "corrige": true
+   }
+  ],
+  "signoCentroide": {
+   "convexosIguales": 3,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 0
+  },
+  "legacySobreModelo": {
+   "aristas": 3,
+   "mismosNiveles": true,
+   "mismasAristas": false
+  },
+  "adyacenciaLegacySobreModelo": 12
+ },
+ {
+  "caso": "rejilla-4x4",
+  "legacyAcierta": true,
+  "ki": "",
+  "legacy": "16 p · 24 ady · 15 pl",
+  "adaptador": "16 p · 24 ady",
+  "oraculo": 16,
+  "topología": 0,
+  "geometría": 0,
+  "representación": 2,
+  "esperadas": 0,
+  "erroresAdaptador": [],
+  "diferencias": [
+   {
+    "clase": "representación",
+    "que": "base por defecto distinta: legacy C0 C3 C8#0 frente a C0 C1#0 (empate de área o panel perdido)",
+    "corrige": false
+   },
+   {
+    "clase": "representación",
+    "que": "3 aristas con otro padre en un empate BFS (mismos niveles)",
+    "corrige": false
+   }
+  ],
+  "signoCentroide": {
+   "convexosIguales": 15,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 0
+  },
+  "legacySobreModelo": {
+   "aristas": 15,
+   "mismosNiveles": true,
+   "mismasAristas": false
+  },
+  "adyacenciaLegacySobreModelo": 24
+ },
+ {
+  "caso": "t-exacta",
+  "legacyAcierta": false,
+  "ki": "KI-04",
+  "legacy": "2 p · 1 ady · 1 pl",
+  "adaptador": "3 p · 3 ady",
+  "oraculo": 3,
+  "topología": 4,
+  "geometría": 0,
+  "representación": 2,
+  "esperadas": 4,
+  "erroresAdaptador": [],
+  "diferencias": [
+   {
+    "clase": "topología",
+    "que": "panel C0#0 (1600.000 mm²) perdido en el legacy",
+    "corrige": true,
+    "panel": 2
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0 C1#0⟷C0#0 ausente en el legacy",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0 C1#1⟷C0#0 ausente en el legacy",
+    "corrige": true
+   },
+   {
+    "clase": "representación",
+    "que": "1 AdjacencyEdge del legacy (una por segmento de crease) frente a 3 (una por pareja)",
+    "corrige": false
+   },
+   {
+    "clase": "topología",
+    "que": "base por defecto distinta: legacy C0 C1#0 frente a C0#0 (empate de área o panel perdido)",
+    "corrige": true
+   },
+   {
+    "clase": "representación",
+    "que": "1 aristas con otro padre en un empate BFS (mismos niveles)",
+    "corrige": false
+   }
+  ],
+  "signoCentroide": {
+   "convexosIguales": 2,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 0
+  },
+  "legacySobreModelo": {
+   "aristas": 2,
+   "mismosNiveles": true,
+   "mismasAristas": true
+  },
+  "adyacenciaLegacySobreModelo": 1
+ },
+ {
+  "caso": "t-ruido",
+  "legacyAcierta": false,
+  "ki": "KI-04",
+  "legacy": "2 p · 1 ady · 1 pl",
+  "adaptador": "3 p · 3 ady",
+  "oraculo": 3,
+  "topología": 4,
+  "geometría": 2,
+  "representación": 2,
+  "esperadas": 6,
+  "erroresAdaptador": [],
+  "diferencias": [
+   {
+    "clase": "geometría",
+    "que": "panel C0 C1#0: ΔA bruta -3.91e-2 mm², Δcentroide 9.90e-4 mm",
+    "corrige": true,
+    "panel": 0
+   },
+   {
+    "clase": "geometría",
+    "que": "panel C0 C1#1: ΔA bruta -3.91e-2 mm², Δcentroide 9.90e-4 mm",
+    "corrige": true,
+    "panel": 1
+   },
+   {
+    "clase": "topología",
+    "que": "panel C0#0 (1600.000 mm²) perdido en el legacy",
+    "corrige": true,
+    "panel": 2
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0 C1#0⟷C0#0 ausente en el legacy",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0 C1#1⟷C0#0 ausente en el legacy",
+    "corrige": true
+   },
+   {
+    "clase": "representación",
+    "que": "1 AdjacencyEdge del legacy (una por segmento de crease) frente a 3 (una por pareja)",
+    "corrige": false
+   },
+   {
+    "clase": "topología",
+    "que": "base por defecto distinta: legacy C0 C1#0 frente a C0#0 (empate de área o panel perdido)",
+    "corrige": true
+   },
+   {
+    "clase": "representación",
+    "que": "1 aristas con otro padre en un empate BFS (mismos niveles)",
+    "corrige": false
+   }
+  ],
+  "signoCentroide": {
+   "convexosIguales": 2,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 0
+  },
+  "legacySobreModelo": {
+   "aristas": 2,
+   "mismosNiveles": true,
+   "mismasAristas": true
+  },
+  "adyacenciaLegacySobreModelo": 1
+ },
+ {
+  "caso": "t-ruido-sin-ajuste",
+  "legacyAcierta": false,
+  "ki": "A-7",
+  "legacy": "2 p · 1 ady · 1 pl",
+  "adaptador": "2 p · 1 ady",
+  "oraculo": 2,
+  "topología": 6,
+  "geometría": 0,
+  "representación": 0,
+  "esperadas": 6,
+  "erroresAdaptador": [],
+  "diferencias": [
+   {
+    "clase": "topología",
+    "que": "panel C0#0 (1600.000 mm²) perdido en el legacy",
+    "corrige": true,
+    "panel": 0
+   },
+   {
+    "clase": "topología",
+    "que": "panel C0#1 dividido en 2 por el legacy",
+    "corrige": true,
+    "panel": 1
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0#0⟷C0#1 ausente en el legacy",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0#1⟷C0#1 del legacy no existe en el adaptador",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "base por defecto distinta: legacy C0#1 frente a C0#0 (empate de área o panel perdido)",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "niveles del árbol distintos (paneles alcanzados o distancia a la base)",
+    "corrige": true
+   }
+  ],
+  "signoCentroide": {
+   "convexosIguales": 1,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 0
+  },
+  "legacySobreModelo": {
+   "aristas": 1,
+   "mismosNiveles": true,
+   "mismasAristas": true
+  },
+  "adyacenciaLegacySobreModelo": 1
+ },
+ {
+  "caso": "t-desalineada-0.375",
+  "legacyAcierta": false,
+  "ki": "A-3",
+  "legacy": "2 p · 1 ady · 1 pl",
+  "adaptador": "2 p · 1 ady",
+  "oraculo": 2,
+  "topología": 6,
+  "geometría": 0,
+  "representación": 0,
+  "esperadas": 6,
+  "erroresAdaptador": [],
+  "diferencias": [
+   {
+    "clase": "topología",
+    "que": "panel C0#0 (1600.000 mm²) perdido en el legacy",
+    "corrige": true,
+    "panel": 0
+   },
+   {
+    "clase": "topología",
+    "que": "panel C0#1 dividido en 2 por el legacy",
+    "corrige": true,
+    "panel": 1
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0#0⟷C0#1 ausente en el legacy",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0#1⟷C0#1 del legacy no existe en el adaptador",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "base por defecto distinta: legacy C0#1 frente a C0#0 (empate de área o panel perdido)",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "niveles del árbol distintos (paneles alcanzados o distancia a la base)",
+    "corrige": true
+   }
+  ],
+  "signoCentroide": {
+   "convexosIguales": 1,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 0
+  },
+  "legacySobreModelo": {
+   "aristas": 1,
+   "mismosNiveles": true,
+   "mismasAristas": true
+  },
+  "adyacenciaLegacySobreModelo": 1
+ },
+ {
+  "caso": "crease-corta-ruido",
+  "legacyAcierta": false,
+  "ki": "KI-17",
+  "legacy": "2 p · 1 ady · 1 pl",
+  "adaptador": "2 p · 1 ady",
+  "oraculo": 2,
+  "topología": 0,
+  "geometría": 2,
+  "representación": 1,
+  "esperadas": 2,
+  "erroresAdaptador": [],
+  "diferencias": [
+   {
+    "clase": "geometría",
+    "que": "panel C0#0: ΔA bruta -1.56e-1 mm², Δcentroide 6.51e-4 mm",
+    "corrige": true,
+    "panel": 0
+   },
+   {
+    "clase": "geometría",
+    "que": "panel C0#1: ΔA bruta -1.56e-1 mm², Δcentroide 6.51e-4 mm",
+    "corrige": true,
+    "panel": 1
+   },
+   {
+    "clase": "representación",
+    "que": "base por defecto distinta: legacy C0#1 frente a C0#0 (empate de área o panel perdido)",
+    "corrige": false
+   }
+  ],
+  "signoCentroide": {
+   "convexosIguales": 1,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 0
+  },
+  "legacySobreModelo": {
+   "aristas": 1,
+   "mismosNiveles": true,
+   "mismasAristas": true
+  },
+  "adyacenciaLegacySobreModelo": 1
+ },
+ {
+  "caso": "crease-corta-banda",
+  "legacyAcierta": false,
+  "ki": "A-4 KI-17",
+  "legacy": "2 p · 1 ady · 1 pl",
+  "adaptador": "1 p · 0 ady",
+  "oraculo": 1,
+  "topología": 3,
+  "geometría": 0,
+  "representación": 1,
+  "esperadas": 3,
+  "erroresAdaptador": [],
+  "diferencias": [
+   {
+    "clase": "topología",
+    "que": "panel #0 dividido en 2 por el legacy",
+    "corrige": true,
+    "panel": 0
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia #0⟷#0 del legacy no existe en el adaptador",
+    "corrige": true
+   },
+   {
+    "clase": "representación",
+    "que": "1 AdjacencyEdge del legacy (una por segmento de crease) frente a 0 (una por pareja)",
+    "corrige": false
+   },
+   {
+    "clase": "topología",
+    "que": "niveles del árbol distintos (paneles alcanzados o distancia a la base)",
+    "corrige": true
+   }
+  ],
+  "signoCentroide": {
+   "convexosIguales": 0,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 0
+  },
+  "legacySobreModelo": {
+   "aristas": 0,
+   "mismosNiveles": true,
+   "mismasAristas": true
+  },
+  "adyacenciaLegacySobreModelo": 0
+ },
+ {
+  "caso": "crease-corta-0.6",
+  "legacyAcierta": false,
+  "ki": "A-5 KI-17",
+  "legacy": "2 p · 1 ady · 1 pl",
+  "adaptador": "1 p · 0 ady",
+  "oraculo": 1,
+  "topología": 3,
+  "geometría": 0,
+  "representación": 1,
+  "esperadas": 3,
+  "erroresAdaptador": [],
+  "diferencias": [
+   {
+    "clase": "topología",
+    "que": "panel #0 dividido en 2 por el legacy",
+    "corrige": true,
+    "panel": 0
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia #0⟷#0 del legacy no existe en el adaptador",
+    "corrige": true
+   },
+   {
+    "clase": "representación",
+    "que": "1 AdjacencyEdge del legacy (una por segmento de crease) frente a 0 (una por pareja)",
+    "corrige": false
+   },
+   {
+    "clase": "topología",
+    "que": "niveles del árbol distintos (paneles alcanzados o distancia a la base)",
+    "corrige": true
+   }
+  ],
+  "signoCentroide": {
+   "convexosIguales": 0,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 0
+  },
+  "legacySobreModelo": {
+   "aristas": 0,
+   "mismosNiveles": true,
+   "mismasAristas": true
+  },
+  "adyacenciaLegacySobreModelo": 0
+ },
+ {
+  "caso": "crease-sobresale-0.3",
+  "legacyAcierta": false,
+  "ki": "",
+  "legacy": "2 p · 1 ady · 1 pl",
+  "adaptador": "2 p · 1 ady",
+  "oraculo": 2,
+  "topología": 0,
+  "geometría": 0,
+  "representación": 1,
+  "esperadas": 0,
+  "erroresAdaptador": [],
+  "diferencias": [
+   {
+    "clase": "representación",
+    "que": "base por defecto distinta: legacy C0#1 frente a C0#0 (empate de área o panel perdido)",
+    "corrige": false
+   }
+  ],
+  "signoCentroide": {
+   "convexosIguales": 1,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 0
+  },
+  "legacySobreModelo": {
+   "aristas": 1,
+   "mismosNiveles": true,
+   "mismasAristas": true
+  },
+  "adyacenciaLegacySobreModelo": 1
+ },
+ {
+  "caso": "crease-sobre-corte",
+  "legacyAcierta": false,
+  "ki": "",
+  "legacy": "2 p · 1 ady · 1 pl",
+  "adaptador": "2 p · 1 ady",
+  "oraculo": 2,
+  "topología": 0,
+  "geometría": 0,
+  "representación": 1,
+  "esperadas": 0,
+  "erroresAdaptador": [],
+  "diferencias": [
+   {
+    "clase": "representación",
+    "que": "base por defecto distinta: legacy C0#1 frente a C0#0 (empate de área o panel perdido)",
+    "corrige": false
+   }
+  ],
+  "signoCentroide": {
+   "convexosIguales": 1,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 0
+  },
+  "legacySobreModelo": {
+   "aristas": 1,
+   "mismosNiveles": true,
+   "mismasAristas": true
+  },
+  "adyacenciaLegacySobreModelo": 1
+ },
+ {
+  "caso": "crease-paralela-ruido",
+  "legacyAcierta": false,
+  "ki": "A-6",
+  "legacy": "1 p · 0 ady · 0 pl",
+  "adaptador": "2 p · 1 ady",
+  "oraculo": 2,
+  "topología": 5,
+  "geometría": 0,
+  "representación": 0,
+  "esperadas": 5,
+  "erroresAdaptador": [],
+  "diferencias": [
+   {
+    "clase": "topología",
+    "que": "cara P0 del legacy (3200.000 mm²) cubre 2 paneles: fusión o cara exterior colada — y es la BASE por defecto del legacy",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "panel C0#0 (0.313 mm²) perdido en el legacy",
+    "corrige": true,
+    "panel": 0
+   },
+   {
+    "clase": "topología",
+    "que": "panel C0#1 (3199.688 mm²) perdido en el legacy",
+    "corrige": true,
+    "panel": 1
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0#0⟷C0#1 ausente en el legacy",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "el árbol del legacy parte de una cara que no es un panel (0 pliegues): no comparable",
+    "corrige": true
+   }
+  ],
+  "signoCentroide": {
+   "convexosIguales": 1,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 0
+  },
+  "legacySobreModelo": {
+   "aristas": 1,
+   "mismosNiveles": true,
+   "mismasAristas": true
+  },
+  "adyacenciaLegacySobreModelo": 1
+ },
+ {
+  "caso": "escalon-crease",
+  "legacyAcierta": false,
+  "ki": "A-1",
+  "legacy": "2 p · 2 ady · 1 pl",
+  "adaptador": "2 p · 1 ady",
+  "oraculo": 2,
+  "topología": 0,
+  "geometría": 2,
+  "representación": 1,
+  "esperadas": 2,
+  "erroresAdaptador": [],
+  "diferencias": [
+   {
+    "clase": "geometría",
+    "que": "panel C0 C1 C2#0: ΔA bruta 9.96e+0 mm², Δcentroide 1.05e-1 mm",
+    "corrige": true,
+    "panel": 0
+   },
+   {
+    "clase": "geometría",
+    "que": "panel C0 C1 C2#1: ΔA bruta -9.96e+0 mm², Δcentroide 1.03e-1 mm",
+    "corrige": true,
+    "panel": 1
+   },
+   {
+    "clase": "representación",
+    "que": "2 AdjacencyEdge del legacy (una por segmento de crease) frente a 1 (una por pareja)",
+    "corrige": false
+   }
+  ],
+  "signoCentroide": {
+   "convexosIguales": 0,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 1
+  },
+  "legacySobreModelo": {
+   "aristas": 1,
+   "mismosNiveles": true,
+   "mismasAristas": true
+  },
+  "adyacenciaLegacySobreModelo": 3
+ },
+ {
+  "caso": "escalon-contorno",
+  "legacyAcierta": false,
+  "ki": "A-1",
+  "legacy": "2 p · 1 ady · 1 pl",
+  "adaptador": "2 p · 1 ady",
+  "oraculo": 2,
+  "topología": 0,
+  "geometría": 1,
+  "representación": 0,
+  "esperadas": 1,
+  "erroresAdaptador": [],
+  "diferencias": [
+   {
+    "clase": "geometría",
+    "que": "panel C0#1: ΔA bruta -9.96e+0 mm², Δcentroide 1.31e-1 mm",
+    "corrige": true,
+    "panel": 1
+   }
+  ],
+  "signoCentroide": {
+   "convexosIguales": 1,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 0
+  },
+  "legacySobreModelo": {
+   "aristas": 1,
+   "mismosNiveles": true,
+   "mismasAristas": true
+  },
+  "adyacenciaLegacySobreModelo": 1
+ },
+ {
+  "caso": "contorno-longitud-cero",
+  "legacyAcierta": false,
+  "ki": "",
+  "legacy": "2 p · 1 ady · 1 pl",
+  "adaptador": "2 p · 1 ady",
+  "oraculo": 2,
+  "topología": 0,
+  "geometría": 0,
+  "representación": 1,
+  "esperadas": 0,
+  "erroresAdaptador": [],
+  "diferencias": [
+   {
+    "clase": "representación",
+    "que": "base por defecto distinta: legacy C0#1 frente a C0#0 (empate de área o panel perdido)",
+    "corrige": false
+   }
+  ],
+  "signoCentroide": {
+   "convexosIguales": 1,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 0
+  },
+  "legacySobreModelo": {
+   "aristas": 1,
+   "mismosNiveles": true,
+   "mismasAristas": true
+  },
+  "adyacenciaLegacySobreModelo": 1
+ },
+ {
+  "caso": "hueco-centrado",
+  "legacyAcierta": false,
+  "ki": "KI-05",
+  "legacy": "2 p · 0 ady · 0 pl",
+  "adaptador": "2 p · 1 ady",
+  "oraculo": 2,
+  "topología": 4,
+  "geometría": 0,
+  "representación": 0,
+  "esperadas": 4,
+  "erroresAdaptador": [],
+  "diferencias": [
+   {
+    "clase": "topología",
+    "que": "cara P0 del legacy (6400.000 mm²) cubre 2 paneles: fusión o cara exterior colada — y es la BASE por defecto del legacy",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "panel C0#0 (3200.000 mm²) perdido en el legacy",
+    "corrige": true,
+    "panel": 0
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0#0⟷C0#1 ausente en el legacy",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "el árbol del legacy parte de una cara que no es un panel (0 pliegues): no comparable",
+    "corrige": true
+   }
+  ],
+  "signoCentroide": {
+   "convexosIguales": 1,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 0
+  },
+  "legacySobreModelo": {
+   "aristas": 1,
+   "mismosNiveles": true,
+   "mismasAristas": true
+  },
+  "adyacenciaLegacySobreModelo": 1
+ },
+ {
+  "caso": "hueco-descentrado",
+  "legacyAcierta": false,
+  "ki": "KI-06",
+  "legacy": "2 p · 1 ady · 1 pl",
+  "adaptador": "2 p · 1 ady",
+  "oraculo": 2,
+  "topología": 0,
+  "geometría": 0,
+  "representación": 1,
+  "esperadas": 0,
+  "erroresAdaptador": [],
+  "diferencias": [
+   {
+    "clase": "representación",
+    "que": "base por defecto distinta: legacy C0#0 frente a C0#1 (empate de área o panel perdido)",
+    "corrige": false
+   }
+  ],
+  "signoCentroide": {
+   "convexosIguales": 1,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 0
+  },
+  "legacySobreModelo": {
+   "aristas": 1,
+   "mismosNiveles": true,
+   "mismasAristas": true
+  },
+  "adyacenciaLegacySobreModelo": 1
+ },
+ {
+  "caso": "corte-abierto-divide",
+  "legacyAcierta": false,
+  "ki": "A-9",
+  "legacy": "1 p · 0 ady · 0 pl",
+  "adaptador": "2 p · 0 ady",
+  "oraculo": 2,
+  "topología": 4,
+  "geometría": 0,
+  "representación": 0,
+  "esperadas": 4,
+  "erroresAdaptador": [],
+  "diferencias": [
+   {
+    "clase": "topología",
+    "que": "cara P0 del legacy (3200.000 mm²) cubre 2 paneles: fusión o cara exterior colada — y es la BASE por defecto del legacy",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "panel #0 (1600.000 mm²) perdido en el legacy",
+    "corrige": true,
+    "panel": 0
+   },
+   {
+    "clase": "topología",
+    "que": "panel #1 (1600.000 mm²) perdido en el legacy",
+    "corrige": true,
+    "panel": 1
+   },
+   {
+    "clase": "topología",
+    "que": "el árbol del legacy parte de una cara que no es un panel (0 pliegues): no comparable",
+    "corrige": true
+   }
+  ],
+  "signoCentroide": {
+   "convexosIguales": 0,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 0
+  },
+  "legacySobreModelo": {
+   "aristas": 0,
+   "mismosNiveles": true,
+   "mismasAristas": true
+  },
+  "adyacenciaLegacySobreModelo": 0
+ },
+ {
+  "caso": "corte-abierto-parcial",
+  "legacyAcierta": false,
+  "ki": "A-9",
+  "legacy": "1 p · 0 ady · 0 pl",
+  "adaptador": "1 p · 0 ady",
+  "oraculo": 1,
+  "topología": 0,
+  "geometría": 0,
+  "representación": 0,
+  "esperadas": 0,
+  "erroresAdaptador": [],
+  "diferencias": [],
+  "signoCentroide": {
+   "convexosIguales": 0,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 0
+  },
+  "legacySobreModelo": {
+   "aristas": 0,
+   "mismosNiveles": true,
+   "mismasAristas": true
+  },
+  "adyacenciaLegacySobreModelo": 0
+ },
+ {
+  "caso": "panel-pequeno-1.5mm2",
+  "legacyAcierta": false,
+  "ki": "KI-19",
+  "legacy": "2 p · 0 ady · 0 pl",
+  "adaptador": "2 p · 1 ady",
+  "oraculo": 2,
+  "topología": 4,
+  "geometría": 0,
+  "representación": 0,
+  "esperadas": 4,
+  "erroresAdaptador": [],
+  "diferencias": [
+   {
+    "clase": "topología",
+    "que": "cara P0 del legacy (46.500 mm²) cubre 2 paneles: fusión o cara exterior colada — y es la BASE por defecto del legacy",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "panel C0#0 (1.500 mm²) perdido en el legacy",
+    "corrige": true,
+    "panel": 0
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0#0⟷C0#1 ausente en el legacy",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "el árbol del legacy parte de una cara que no es un panel (0 pliegues): no comparable",
+    "corrige": true
+   }
+  ],
+  "signoCentroide": {
+   "convexosIguales": 1,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 0
+  },
+  "legacySobreModelo": {
+   "aristas": 1,
+   "mismosNiveles": true,
+   "mismasAristas": true
+  },
+  "adyacenciaLegacySobreModelo": 1
+ },
+ {
+  "caso": "panel-delgado-40x1",
+  "legacyAcierta": false,
+  "ki": "KI-19",
+  "legacy": "2 p · 0 ady · 0 pl",
+  "adaptador": "2 p · 1 ady",
+  "oraculo": 2,
+  "topología": 4,
+  "geometría": 0,
+  "representación": 0,
+  "esperadas": 4,
+  "erroresAdaptador": [],
+  "diferencias": [
+   {
+    "clase": "topología",
+    "que": "cara P0 del legacy (440.000 mm²) cubre 2 paneles: fusión o cara exterior colada — y es la BASE por defecto del legacy",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "panel C0#0 (40.000 mm²) perdido en el legacy",
+    "corrige": true,
+    "panel": 0
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0#0⟷C0#1 ausente en el legacy",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "el árbol del legacy parte de una cara que no es un panel (0 pliegues): no comparable",
+    "corrige": true
+   }
+  ],
+  "signoCentroide": {
+   "convexosIguales": 1,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 0
+  },
+  "legacySobreModelo": {
+   "aristas": 1,
+   "mismosNiveles": true,
+   "mismasAristas": true
+  },
+  "adyacenciaLegacySobreModelo": 1
+ },
+ {
+  "caso": "esquinas-redondeadas-anclas",
+  "legacyAcierta": false,
+  "ki": "A-10 KI-07",
+  "legacy": "2 p · 1 ady · 1 pl",
+  "adaptador": "2 p · 1 ady",
+  "oraculo": 2,
+  "topología": 0,
+  "geometría": 0,
+  "representación": 1,
+  "esperadas": 0,
+  "erroresAdaptador": [],
+  "diferencias": [
+   {
+    "clase": "representación",
+    "que": "base por defecto distinta: legacy C0#1 frente a C0#0 (empate de área o panel perdido)",
+    "corrige": false
+   }
+  ],
+  "signoCentroide": {
+   "convexosIguales": 1,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 0
+  },
+  "legacySobreModelo": {
+   "aristas": 1,
+   "mismosNiveles": true,
+   "mismasAristas": true
+  },
+  "adyacenciaLegacySobreModelo": 1
+ },
+ {
+  "caso": "caja-botanica-real",
+  "legacyAcierta": false,
+  "ki": "KI-22 KI-04",
+  "legacy": "11 p · 10 ady · 10 pl",
+  "adaptador": "13 p · 12 ady",
+  "oraculo": 13,
+  "topología": 5,
+  "geometría": 6,
+  "representación": 2,
+  "esperadas": 11,
+  "erroresAdaptador": [],
+  "diferencias": [
+   {
+    "clase": "geometría",
+    "que": "panel C0 C8#0: ΔA bruta 1.99e+1 mm², Δcentroide 2.49e-1 mm",
+    "corrige": true,
+    "panel": 0
+   },
+   {
+    "clase": "geometría",
+    "que": "panel C0#0: ΔA bruta 2.86e+0 mm², Δcentroide 1.42e-1 mm",
+    "corrige": true,
+    "panel": 1
+   },
+   {
+    "clase": "topología",
+    "que": "panel C10#0 (665.709 mm²) perdido en el legacy",
+    "corrige": true,
+    "panel": 3
+   },
+   {
+    "clase": "geometría",
+    "que": "panel C2#0: ΔA bruta 7.52e-1 mm², Δcentroide 2.35e-2 mm",
+    "corrige": true,
+    "panel": 5
+   },
+   {
+    "clase": "geometría",
+    "que": "panel C3 C11#0: ΔA bruta -1.99e+1 mm², Δcentroide 8.40e-2 mm",
+    "corrige": true,
+    "panel": 6
+   },
+   {
+    "clase": "geometría",
+    "que": "panel C4 C8 C9#0: ΔA bruta -1.99e+1 mm², Δcentroide 2.49e-1 mm",
+    "corrige": true,
+    "panel": 8
+   },
+   {
+    "clase": "geometría",
+    "que": "panel C5 C6 C11#0: ΔA bruta -4.40e-3 mm², Δcentroide 5.49e-5 mm",
+    "corrige": true,
+    "panel": 10
+   },
+   {
+    "clase": "topología",
+    "que": "panel C7#0 (665.574 mm²) perdido en el legacy",
+    "corrige": true,
+    "panel": 12
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C10#0⟷C6 C7 C9 C10#0 ausente en el legacy",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C6 C7 C9 C10#0⟷C7#0 ausente en el legacy",
+    "corrige": true
+   },
+   {
+    "clase": "representación",
+    "que": "10 AdjacencyEdge del legacy (una por segmento de crease) frente a 12 (una por pareja)",
+    "corrige": false
+   },
+   {
+    "clase": "topología",
+    "que": "base por defecto distinta: legacy C6 C7 C9 C10#0 frente a C4 C8 C9#0 (empate de área o panel perdido)",
+    "corrige": true
+   },
+   {
+    "clase": "representación",
+    "que": "2 aristas con otro padre en un empate BFS (mismos niveles)",
+    "corrige": false
+   }
+  ],
+  "signoCentroide": {
+   "convexosIguales": 7,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 5
+  },
+  "legacySobreModelo": {
+   "aristas": 12,
+   "mismosNiveles": true,
+   "mismasAristas": true
+  },
+  "adyacenciaLegacySobreModelo": 10
+ },
+ {
+  "caso": "ill-real-caja-botanica ε 0.05",
+  "legacyAcierta": false,
+  "ki": "KI-22 KI-04",
+  "legacy": "11 p · 10 ady · 10 pl",
+  "adaptador": "13 p · 12 ady",
+  "oraculo": 13,
+  "topología": 8,
+  "geometría": 10,
+  "representación": 2,
+  "esperadas": 18,
+  "erroresAdaptador": [],
+  "diferencias": [
+   {
+    "clase": "topología",
+    "que": "cara P6 del legacy (1918.973 mm²) cubre 2 paneles: fusión o cara exterior colada",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "panel C0 C8#0 (1579.942 mm²) perdido en el legacy",
+    "corrige": true,
+    "panel": 0
+   },
+   {
+    "clase": "topología",
+    "que": "panel C0#0 (316.275 mm²) perdido en el legacy",
+    "corrige": true,
+    "panel": 1
+   },
+   {
+    "clase": "geometría",
+    "que": "panel C1 C2 C5#0: ΔA bruta 3.01e-3 mm², Δcentroide 1.15e-5 mm",
+    "corrige": true,
+    "panel": 2
+   },
+   {
+    "clase": "geometría",
+    "que": "panel C10#0: ΔA bruta 7.52e-1 mm², Δcentroide 2.35e-2 mm",
+    "corrige": true,
+    "panel": 3
+   },
+   {
+    "clase": "geometría",
+    "que": "panel C1#0: ΔA bruta -4.25e-4 mm², Δcentroide 7.53e-6 mm",
+    "corrige": true,
+    "panel": 4
+   },
+   {
+    "clase": "geometría",
+    "que": "panel C2#0: ΔA bruta 7.52e-1 mm², Δcentroide 2.35e-2 mm",
+    "corrige": true,
+    "panel": 5
+   },
+   {
+    "clase": "geometría",
+    "que": "panel C3 C11#0: ΔA bruta -1.99e+1 mm², Δcentroide 8.44e-2 mm",
+    "corrige": true,
+    "panel": 6
+   },
+   {
+    "clase": "geometría",
+    "que": "panel C3#0: ΔA bruta 3.42e-2 mm², Δcentroide 8.84e-4 mm",
+    "corrige": true,
+    "panel": 7
+   },
+   {
+    "clase": "geometría",
+    "que": "panel C4 C8 C9#0: ΔA bruta 1.01e+1 mm², Δcentroide 3.93e-1 mm",
+    "corrige": true,
+    "panel": 8
+   },
+   {
+    "clase": "geometría",
+    "que": "panel C4#0: ΔA bruta -2.09e-1 mm², Δcentroide 2.53e-3 mm",
+    "corrige": true,
+    "panel": 9
+   },
+   {
+    "clase": "geometría",
+    "que": "panel C5 C6 C11#0: ΔA bruta -2.13e-1 mm², Δcentroide 1.23e-3 mm",
+    "corrige": true,
+    "panel": 10
+   },
+   {
+    "clase": "geometría",
+    "que": "panel C6 C7 C9 C10#0: ΔA bruta -2.96e+1 mm², Δcentroide 1.76e-1 mm",
+    "corrige": true,
+    "panel": 11
+   },
+   {
+    "clase": "topología",
+    "que": "panel C7#0 (665.548 mm²) perdido en el legacy",
+    "corrige": true,
+    "panel": 12
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0 C8#0⟷C0#0 ausente en el legacy",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0 C8#0⟷C4 C8 C9#0 ausente en el legacy",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C6 C7 C9 C10#0⟷C7#0 ausente en el legacy",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia P4⟷P6 (con una cara del legacy sin panel) del legacy no existe en el adaptador",
+    "corrige": true
+   },
+   {
+    "clase": "representación",
+    "que": "10 AdjacencyEdge del legacy (una por segmento de crease) frente a 12 (una por pareja)",
+    "corrige": false
+   },
+   {
+    "clase": "representación",
+    "que": "3 aristas con otro padre en un empate BFS (mismos niveles)",
+    "corrige": false
+   }
+  ],
+  "signoCentroide": {
+   "convexosIguales": 5,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 7
+  },
+  "legacySobreModelo": {
+   "aristas": 12,
+   "mismosNiveles": true,
+   "mismasAristas": true
+  },
+  "adyacenciaLegacySobreModelo": 11
+ },
+ {
+  "caso": "histórico ×0.75 ε 0.05",
+  "legacyAcierta": false,
+  "ki": "KI-22",
+  "legacy": "13 p · 12 ady · 12 pl",
+  "adaptador": "13 p · 12 ady",
+  "oraculo": 13,
+  "topología": 0,
+  "geometría": 11,
+  "representación": 2,
+  "esperadas": 11,
+  "erroresAdaptador": [],
+  "diferencias": [
+   {
+    "clase": "geometría",
+    "que": "panel C0 C5 C6#0: ΔA bruta 2.27e+1 mm², Δcentroide 3.78e-1 mm",
+    "corrige": true,
+    "panel": 0
+   },
+   {
+    "clase": "geometría",
+    "que": "panel C0 C8#0: ΔA bruta -8.11e-2 mm², Δcentroide 2.52e-1 mm",
+    "corrige": true,
+    "panel": 1
+   },
+   {
+    "clase": "geometría",
+    "que": "panel C1 C2 C4 C5#0: ΔA bruta -3.38e+1 mm², Δcentroide 2.09e-3 mm",
+    "corrige": true,
+    "panel": 2
+   },
+   {
+    "clase": "geometría",
+    "que": "panel C11#0: ΔA bruta 1.61e+0 mm², Δcentroide 1.07e-1 mm",
+    "corrige": true,
+    "panel": 4
+   },
+   {
+    "clase": "geometría",
+    "que": "panel C2 C3 C7#0: ΔA bruta 5.66e+0 mm², Δcentroide 2.95e-1 mm",
+    "corrige": true,
+    "panel": 6
+   },
+   {
+    "clase": "geometría",
+    "que": "panel C3 C11#0: ΔA bruta 5.56e+0 mm², Δcentroide 2.37e-1 mm",
+    "corrige": true,
+    "panel": 7
+   },
+   {
+    "clase": "geometría",
+    "que": "panel C4#0: ΔA bruta 1.98e-2 mm², Δcentroide 4.64e-4 mm",
+    "corrige": true,
+    "panel": 8
+   },
+   {
+    "clase": "geometría",
+    "que": "panel C6 C9 C10#0: ΔA bruta -1.69e+1 mm², Δcentroide 1.33e-1 mm",
+    "corrige": true,
+    "panel": 9
+   },
+   {
+    "clase": "geometría",
+    "que": "panel C7#0: ΔA bruta -1.19e-1 mm², Δcentroide 1.92e-3 mm",
+    "corrige": true,
+    "panel": 10
+   },
+   {
+    "clase": "geometría",
+    "que": "panel C8#0: ΔA bruta 1.94e-2 mm², Δcentroide 6.67e-4 mm",
+    "corrige": true,
+    "panel": 11
+   },
+   {
+    "clase": "geometría",
+    "que": "panel C9#0: ΔA bruta 5.64e-1 mm², Δcentroide 2.39e-2 mm",
+    "corrige": true,
+    "panel": 12
+   },
+   {
+    "clase": "representación",
+    "que": "base por defecto distinta: legacy C0 C5 C6#0 frente a C2 C3 C7#0 (empate de área o panel perdido)",
+    "corrige": false
+   },
+   {
+    "clase": "representación",
+    "que": "mismas aristas en otro orden (índice de FoldEdge = identidad en la interfaz)",
+    "corrige": false
+   }
+  ],
+  "signoCentroide": {
+   "convexosIguales": 5,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 7
+  },
+  "legacySobreModelo": {
+   "aristas": 12,
+   "mismosNiveles": true,
+   "mismasAristas": true
+  },
+  "adyacenciaLegacySobreModelo": 12
+ },
+ {
+  "caso": "ill-real-caja-simple",
+  "legacyAcierta": true,
+  "ki": "KI-06",
+  "legacy": "2 p · 1 ady · 1 pl",
+  "adaptador": "2 p · 1 ady",
+  "oraculo": 2,
+  "topología": 0,
+  "geometría": 0,
+  "representación": 0,
+  "esperadas": 0,
+  "erroresAdaptador": [],
+  "diferencias": [],
+  "signoCentroide": {
+   "convexosIguales": 1,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 0
+  },
+  "legacySobreModelo": {
+   "aristas": 1,
+   "mismosNiveles": true,
+   "mismasAristas": true
+  },
+  "adyacenciaLegacySobreModelo": 1
+ },
+ {
+  "caso": "ill-real-compuesto",
+  "legacyAcierta": false,
+  "ki": "",
+  "legacy": "2 p · 1 ady · 1 pl",
+  "adaptador": "2 p · 1 ady",
+  "oraculo": 2,
+  "topología": 0,
+  "geometría": 0,
+  "representación": 0,
+  "esperadas": 0,
+  "erroresAdaptador": [],
+  "diferencias": [],
+  "signoCentroide": {
+   "convexosIguales": 1,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 0
+  },
+  "legacySobreModelo": {
+   "aristas": 1,
+   "mismosNiveles": true,
+   "mismasAristas": true
+  },
+  "adyacenciaLegacySobreModelo": 1
+ },
+ {
+  "caso": "ill-real-curvas",
+  "legacyAcierta": false,
+  "ki": "A-10 KI-07",
+  "legacy": "2 p · 1 ady · 1 pl",
+  "adaptador": "2 p · 1 ady",
+  "oraculo": 2,
+  "topología": 0,
+  "geometría": 0,
+  "representación": 0,
+  "esperadas": 0,
+  "erroresAdaptador": [],
+  "diferencias": [],
+  "signoCentroide": {
+   "convexosIguales": 1,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 0
+  },
+  "legacySobreModelo": {
+   "aristas": 1,
+   "mismosNiveles": true,
+   "mismasAristas": true
+  },
+  "adyacenciaLegacySobreModelo": 1
+ },
+ {
+  "caso": "panel no convexo envolvente",
+  "legacyAcierta": false,
+  "ki": "KI-36 (propuesto): signo por centroide",
+  "legacy": "2 p · 0 ady · 0 pl",
+  "adaptador": "2 p · 1 ady",
+  "oraculo": 2,
+  "topología": 3,
+  "geometría": 0,
+  "representación": 1,
+  "esperadas": 3,
+  "erroresAdaptador": [],
+  "diferencias": [
+   {
+    "clase": "topología",
+    "que": "panel C0#0 (2900.000 mm²) perdido en el legacy",
+    "corrige": true,
+    "panel": 0
+   },
+   {
+    "clase": "topología",
+    "que": "panel C0#1 dividido en 2 por el legacy",
+    "corrige": true,
+    "panel": 1
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0#0⟷C0#1 ausente en el legacy",
+    "corrige": true
+   },
+   {
+    "clase": "representación",
+    "que": "1 aristas con otro padre en un empate BFS (mismos niveles)",
+    "corrige": false
+   }
+  ],
+  "signoCentroide": {
+   "convexosIguales": 0,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 1,
+   "noConvexos": 1
+  },
+  "legacySobreModelo": {
+   "aristas": 1,
+   "mismosNiveles": true,
+   "mismasAristas": true
+  },
+  "adyacenciaLegacySobreModelo": 1
+ },
+ {
+  "caso": "rejilla 2×2",
+  "legacyAcierta": true,
+  "ki": "",
+  "legacy": "4 p · 4 ady · 3 pl",
+  "adaptador": "4 p · 4 ady",
+  "oraculo": 4,
+  "topología": 0,
+  "geometría": 0,
+  "representación": 1,
+  "esperadas": 0,
+  "erroresAdaptador": [],
+  "diferencias": [
+   {
+    "clase": "representación",
+    "que": "base por defecto distinta: legacy C0 C3#0 frente a C0 C1#0 (empate de área o panel perdido)",
+    "corrige": false
+   }
+  ],
+  "signoCentroide": {
+   "convexosIguales": 3,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 0
+  },
+  "legacySobreModelo": {
+   "aristas": 3,
+   "mismosNiveles": true,
+   "mismasAristas": true
+  },
+  "adyacenciaLegacySobreModelo": 4
+ },
+ {
+  "caso": "rejilla 6×6",
+  "legacyAcierta": true,
+  "ki": "",
+  "legacy": "36 p · 60 ady · 35 pl",
+  "adaptador": "36 p · 60 ady",
+  "oraculo": 36,
+  "topología": 0,
+  "geometría": 0,
+  "representación": 2,
+  "esperadas": 0,
+  "erroresAdaptador": [],
+  "diferencias": [
+   {
+    "clase": "representación",
+    "que": "base por defecto distinta: legacy C0 C3 C12#0 frente a C0 C1#0 (empate de área o panel perdido)",
+    "corrige": false
+   },
+   {
+    "clase": "representación",
+    "que": "10 aristas con otro padre en un empate BFS (mismos niveles)",
+    "corrige": false
+   }
+  ],
+  "signoCentroide": {
+   "convexosIguales": 35,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 0
+  },
+  "legacySobreModelo": {
+   "aristas": 35,
+   "mismosNiveles": true,
+   "mismasAristas": false
+  },
+  "adyacenciaLegacySobreModelo": 60
+ },
+ {
+  "caso": "rejilla 8×8",
+  "legacyAcierta": true,
+  "ki": "",
+  "legacy": "64 p · 112 ady · 63 pl",
+  "adaptador": "64 p · 112 ady",
+  "oraculo": 64,
+  "topología": 0,
+  "geometría": 0,
+  "representación": 2,
+  "esperadas": 0,
+  "erroresAdaptador": [],
+  "diferencias": [
+   {
+    "clase": "representación",
+    "que": "base por defecto distinta: legacy C0 C3 C16#0 frente a C0 C1#0 (empate de área o panel perdido)",
+    "corrige": false
+   },
+   {
+    "clase": "representación",
+    "que": "21 aristas con otro padre en un empate BFS (mismos niveles)",
+    "corrige": false
+   }
+  ],
+  "signoCentroide": {
+   "convexosIguales": 63,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 0
+  },
+  "legacySobreModelo": {
+   "aristas": 63,
+   "mismosNiveles": true,
+   "mismasAristas": false
+  },
+  "adyacenciaLegacySobreModelo": 112
+ },
+ {
+  "caso": "rejilla 3×3 líneas completas",
+  "legacyAcierta": false,
+  "ki": "KI-09",
+  "legacy": "10 p · 60 ady · 0 pl",
+  "adaptador": "9 p · 12 ady",
+  "oraculo": 9,
+  "topología": 24,
+  "geometría": 0,
+  "representación": 1,
+  "esperadas": 24,
+  "erroresAdaptador": [],
+  "diferencias": [
+   {
+    "clase": "topología",
+    "que": "cara P1 del legacy (14400.000 mm²) cubre 9 paneles: fusión o cara exterior colada — y es la BASE por defecto del legacy",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0 C1#0⟷C0 C2 C3#0 del legacy no existe en el adaptador",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0 C1#0⟷C0 C3#0 del legacy no existe en el adaptador",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0 C1 C2 C3#0⟷C0 C1#0 del legacy no existe en el adaptador",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0 C1 C2#0⟷C0 C2 C3#0 del legacy no existe en el adaptador",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0 C1 C2#0⟷C0 C3#0 del legacy no existe en el adaptador",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0 C1 C2#0⟷C0 C1 C3#0 del legacy no existe en el adaptador",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0 C1 C3#0⟷C0 C2 C3#0 del legacy no existe en el adaptador",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0 C1 C2 C3#0⟷C0 C3#0 del legacy no existe en el adaptador",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0 C1#0⟷C1 C2#0 del legacy no existe en el adaptador",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0 C1#0⟷C1 C2 C3#0 del legacy no existe en el adaptador",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0 C1 C2#0⟷C1 C2 C3#0 del legacy no existe en el adaptador",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0 C1 C3#0⟷C1 C2#0 del legacy no existe en el adaptador",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0 C1 C2 C3#0⟷C1 C2#0 del legacy no existe en el adaptador",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0 C1 C3#0⟷C1 C2 C3#0 del legacy no existe en el adaptador",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0 C1 C2#0⟷C2 C3#0 del legacy no existe en el adaptador",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0 C2 C3#0⟷C1 C2#0 del legacy no existe en el adaptador",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C1 C2#0⟷C2 C3#0 del legacy no existe en el adaptador",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0 C2 C3#0⟷C1 C2 C3#0 del legacy no existe en el adaptador",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0 C1 C2 C3#0⟷C2 C3#0 del legacy no existe en el adaptador",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0 C3#0⟷C1 C2 C3#0 del legacy no existe en el adaptador",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0 C3#0⟷C2 C3#0 del legacy no existe en el adaptador",
+    "corrige": true
+   },
+   {
+    "clase": "topología",
+    "que": "adyacencia C0 C1 C3#0⟷C2 C3#0 del legacy no existe en el adaptador",
+    "corrige": true
+   },
+   {
+    "clase": "representación",
+    "que": "60 AdjacencyEdge del legacy (una por segmento de crease) frente a 12 (una por pareja)",
+    "corrige": false
+   },
+   {
+    "clase": "topología",
+    "que": "el árbol del legacy parte de una cara que no es un panel (0 pliegues): no comparable",
+    "corrige": true
+   }
+  ],
+  "signoCentroide": {
+   "convexosIguales": 8,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 0
+  },
+  "legacySobreModelo": {
+   "aristas": 8,
+   "mismosNiveles": true,
+   "mismasAristas": false
+  },
+  "adyacenciaLegacySobreModelo": 60
+ },
+ {
+  "caso": "rejilla 4×4 densa",
+  "legacyAcierta": true,
+  "ki": "",
+  "legacy": "16 p · 24 ady · 15 pl",
+  "adaptador": "16 p · 24 ady",
+  "oraculo": 16,
+  "topología": 0,
+  "geometría": 0,
+  "representación": 1,
+  "esperadas": 0,
+  "erroresAdaptador": [],
+  "diferencias": [
+   {
+    "clase": "representación",
+    "que": "6 aristas con otro padre en un empate BFS (mismos niveles)",
+    "corrige": false
+   }
+  ],
+  "signoCentroide": {
+   "convexosIguales": 15,
+   "convexosDistintos": 0,
+   "noConvexosDistintos": 0,
+   "noConvexos": 0
+  },
+  "legacySobreModelo": {
+   "aristas": 15,
+   "mismosNiveles": true,
+   "mismasAristas": false
+  },
+  "adyacenciaLegacySobreModelo": 24
+ }
+]
