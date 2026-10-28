@@ -1,0 +1,5 @@
+{
+  "type": "module",
+  "private": true,
+  "description": "F2A-3: integración EXPERIMENTAL (fachada GeometryEngine v1 del motor experimental y selector legacy/experimental). Solo la usa el bundle experimental (tools/build/build-experimental.mjs); el bundle normal y src/ no la conocen."
+}
