@@ -26,3 +26,20 @@ node tools/f2/metamorficas.mjs --json $EV/metamorficas-y-correspondencia.json > 
 
 **Resultados negativos conservados:** el motor web tal cual falla con la extracción real (`motor-web-vs-legacy`); el legacy con ε pequeño sigue sin conservar área (`experimento-tolerancias`); la conservación de área sola no detecta fusiones de paneles (web con snap 0,001: 8 paneles con área conservada).
 Los bundles del motor web se escriben en `tests/results/f2/` (ignorado por git) y requieren la carpeta hermana `../tesseract-web` en `c0aeb34`.
+
+## F2A-0 (2026-10-27)
+
+```bash
+node tools/f2/matriz-correspondencia.mjs                                    # → f2a0-matriz-correspondencia.{md,json}
+node tools/f2/diferencias-motor-web.mjs --json $EV/f2a0-diferencias-motor-web.json > $EV/f2a0-diferencias-motor-web.txt
+node tools/f2/evaluar-predicados.mjs --json $EV/f2a0-evaluacion-predicados.json > $EV/f2a0-evaluacion-predicados.txt
+node tests/tools/make-f2-golden.mjs                                         # → tests/golden/f2-caja-botanica.golden.json (desde el oráculo)
+node --test tests/node/f2-*.test.mjs                                         # 95 pruebas de F2A-0
+```
+
+| Archivo | Qué demuestra | Documento |
+|---|---|---|
+| `f2a0-matriz-correspondencia.{md,json}` | 13 paneles y 12 creases del oráculo en las 3 extracciones frente al legacy (×1 y ×0,75), con clase de cada diferencia | `F2A0_02` §3, §5 |
+| `f2a0-diferencias-motor-web.{json,txt}` | Por qué el motor web acierta con la extracción original y lanza con la de Illustrator real (DP-5, KI-34) | `F2A0_06` |
+| `f2a0-evaluacion-predicados.{json,txt}` | Frecuencia de orientaciones exactamente nulas y coste de tres estrategias de predicado (DP-4) | `F2A0_07` §3 |
+| `run-all-F2A-0.txt` | Batería de regresión con las pruebas de F2A-0 | `F2A0_00` §4 |

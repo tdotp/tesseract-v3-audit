@@ -1,5 +1,5 @@
 // F2A-0 — ORÁCULO GEOMÉTRICO independiente del legacy (y del motor web). Solo pruebas: nunca se empaqueta ni lo importa src/.
-// Independencia (docs/fase2/F2A0_02_ORACULO.md): no importa src/ ni tesseract-web; aritmética racional exacta (racional.mjs); sin
+// Independencia (docs/fase2/F2A0_01_ORACULO.md): no importa src/ ni tesseract-web; aritmética racional exacta (racional.mjs); sin
 // tolerancias salvo el AJUSTE declarado de la etapa 1 (opcional, ε experimental, DP-3); identidad de vértices EXACTA; orden angular
 // exacto (sin atan2); clasificación de caras por PARIDAD de contornos cerrados cruzados (regla par-impar), no por centroide.
 //
