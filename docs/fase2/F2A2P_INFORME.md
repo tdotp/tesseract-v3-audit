@@ -141,11 +141,21 @@ Ninguna en los resultados (788/788 iguales). Diferencias de **representación in
 
 | Id | Asunto |
 |---|---|
-| D-F2A2P-1 | Criterio 5: abordar el coste del **núcleo** (expansiones del ajuste; coste fijo en casos diminutos) en una intervención autorizada, o revisar el criterio para casos < 0,1 ms |
-| D-F2A2P-2 | ¿Se acepta la compartición de arreglos de solo lectura en la salida (§10) como parte del contrato del motor experimental, o se exige copia defensiva al integrar? |
-| D-F2A2P-3 | Memoria: ¿conservar siempre `uniones` completas en el modelo de producción o generarlas bajo demanda (con las mismas garantías)? |
+| D-F2A2P-1 (**aprobada**, §14) | Criterio 5: abordar el coste del **núcleo** (expansiones del ajuste; coste fijo en casos diminutos) en una intervención autorizada, o revisar el criterio para casos < 0,1 ms |
+| D-F2A2P-2 (**aprobada**, §14) | ¿Se acepta la compartición de arreglos de solo lectura en la salida (§10) como parte del contrato del motor experimental, o se exige copia defensiva al integrar? |
+| D-F2A2P-3 (**aprobada**, §14) | Memoria: ¿conservar siempre `uniones` completas en el modelo de producción o generarlas bajo demanda (con las mismas garantías)? |
 | (heredadas) | D-F2A2-1 (contrato de `buildAdjacency` frente al arreglo), D-F2A2-2…4, 6, 8…10; interfaz de los diagnósticos de uniones no plegables (D-F2A2R-2) |
 
 ## 13. Punto de parada
 
 F2A-2P completada. **No** se inicia F2A-3 ni F2B ni la integración. Se presentan informe, commits locales y resultados para revisión.
+
+## 14. Cierre: auditoría independiente y decisiones aprobadas (usuario, 2026-10-28)
+
+La auditoría independiente aprueba el **cierre técnico de F2A-2P**. Resultados aceptados: equivalencia funcional 788/788; batería experimental 322/322; H-01 y H-02 conservados; menos tiempo y memoria en adyacencias y árbol frente a F2A-2R. **El criterio 5 original sigue pendiente (3/10 casos más lentos que el legacy) y no se declara cumplido.**
+
+| Id | Decisión aprobada |
+|---|---|
+| **D-F2A2P-1** | Rendimiento: se conserva el criterio original **sin modificar umbrales**. Los tres casos pendientes se atribuyen principalmente al núcleo geométrico; una intervención específica sobre el núcleo se **documenta** pero no se ejecuta ahora |
+| **D-F2A2P-2** | Referencias compartidas: **aceptadas bajo un contrato explícito de solo lectura**. Antes de cualquier integración hay que establecer cómo verificar que los consumidores de producción no mutan `creases`, `segmentos` y demás estructuras compartidas. Sin copias defensivas indiscriminadas |
+| **D-F2A2P-3** | Memoria y trazabilidad: se **conservan las `uniones` completas** durante la etapa experimental; no se eliminan referencias geométricas ni se generan estructuras bajo demanda sin autorización posterior |
