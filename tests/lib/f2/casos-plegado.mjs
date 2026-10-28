@@ -28,3 +28,18 @@ Object.assign(CASOS_LEGACY, {
   'rejilla 3×3 líneas completas': { build: () => gridDieline(3, { fullLines: true }), eps: null, ki: ['KI-09'] }, 'rejilla 4×4 densa': { build: () => gridDieline(4, { extra: 25 }), eps: null, ki: [] },
 });
 for (const [n, c] of Object.entries(CASOS_LEGACY)) c.legacyAcierta = ACIERTA.has(n);
+
+// F2A-2R — casos mínimos de los hallazgos H-01 (uniones no colineales) y H-02 (componentes desconectadas frente a ciclos)
+const P2 = (pts, closed) => ({ closed, points: pts.map(([x, y]) => q(x, y)) });
+const W2 = (o, w = 80, h = 40) => ({ version: '1.0', units: 'mm', holes: [], cutLines: [], outerBoundary: P2([[0, 0], [w, 0], [w, h], [0, h]], true), ...o });
+const CORTE_MEDIO = { geom: P2([[40, 0], [40, 40]], false) };
+export const CASOS_F2A2R = {
+  escalon: () => FIXTURES_F2['escalon-crease'].build(),
+  ambigua: () => W2({ creases: [P2([[0, 20], [40, 20]], false), P2([[40, 20.5], [80, 20.5]], false)], cutLines: [{ geom: P2([[40, 20], [40, 20.5]], false) }] }), // dos rectas paralelas desplazadas, unidas por un corte
+  ele: () => W2({ creases: [P2([[0, 20], [40, 20], [40, 40]], false)] }),                                                                         // crease en L: dos rectas perpendiculares
+  eleConectada: () => W2({ creases: [P2([[0, 40], [80, 40]], false), P2([[0, 20], [40, 20], [40, 40]], false)] }, 80, 60),                         // la L excluida no desconecta (todo pasa por la franja superior)
+  dosComponentes: () => W2({ cutLines: [CORTE_MEDIO], creases: [P2([[0, 20], [40, 20]], false), P2([[40, 20], [80, 20]], false)] }),              // 2 + 2, una adyacencia interna en cada una
+  cicloFuera: () => W2({ cutLines: [CORTE_MEDIO], creases: [P2([[60, 0], [60, 40]], false), P2([[40, 20], [80, 20]], false)] }),                   // base = mitad izquierda (1 600); ciclo 2×2 en la derecha
+  cicloEnBaseYBosque: () => W2({ cutLines: [{ geom: P2([[60, 0], [60, 40]], false) }], creases: [P2([[30, 0], [30, 40]], false), P2([[0, 20], [60, 20]], false), P2([[60, 20], [80, 20]], false)] }),
+};
+

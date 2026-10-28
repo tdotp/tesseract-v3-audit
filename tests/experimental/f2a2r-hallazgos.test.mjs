@@ -8,23 +8,15 @@ import { ROOT } from '../lib/fixtures.mjs';
 import * as M from '../../experimental/plegado/index.js';
 import { oraculo } from '../lib/f2/oraculo.mjs';
 import { FIXTURES_F2 } from '../lib/f2/fixtures-f2.mjs';
+import { CASOS_F2A2R } from '../lib/f2/casos-plegado.mjs';
 import { sintetico, generador } from '../lib/f2/aleatorios.mjs';
 import { firmasModelo, firmasOraculo, clasificarUnionesOraculo, componentesYCiclomatico, plegar, distBorde } from '../lib/f2/plegado.mjs';
 
-const q = (x, y) => ({ anchor: { x, y }, left: { x, y }, right: { x, y } }); const P = (pts, closed) => ({ closed, points: pts.map(([x, y]) => q(x, y)) });
+const P = (pts, closed) => ({ closed, points: pts.map(([x, y]) => ({ anchor: { x, y }, left: { x, y }, right: { x, y } })) });
 const W = (o, w = 80, h = 40) => ({ version: '1.0', units: 'mm', holes: [], cutLines: [], outerBoundary: P([[0, 0], [w, 0], [w, h], [0, h]], true), ...o });
 const todo = (Mod, d, base) => { const m = Mod.adaptarPanelModel(d); const A = Mod.construirAdyacencias(m); const b = base == null ? Mod.baseDefecto(m) : base; return { m, A, T: Mod.construirArbolPlegado(m, A, b), b }; };
 const tipos = (R) => new Set([...R.A.diagnosticos, ...R.T.diagnosticos].map((x) => x.tipo));
-const CORTE_MEDIO = { geom: P([[40, 0], [40, 40]], false) };
-const CASOS_R = {
-  escalon: () => FIXTURES_F2['escalon-crease'].build(),
-  ambigua: () => W({ creases: [P([[0, 20], [40, 20]], false), P([[40, 20.5], [80, 20.5]], false)], cutLines: [{ geom: P([[40, 20], [40, 20.5]], false) }] }), // dos rectas paralelas desplazadas, unidas por un corte
-  ele: () => W({ creases: [P([[0, 20], [40, 20], [40, 40]], false)] }),                                                                         // crease en L: dos rectas perpendiculares
-  eleConectada: () => W({ creases: [P([[0, 40], [80, 40]], false), P([[0, 20], [40, 20], [40, 40]], false)] }, 80, 60),                         // la L excluida no desconecta (todo pasa por la franja superior)
-  dosComponentes: () => W({ cutLines: [CORTE_MEDIO], creases: [P([[0, 20], [40, 20]], false), P([[40, 20], [80, 20]], false)] }),              // 2 + 2, una adyacencia interna en cada una
-  cicloFuera: () => W({ cutLines: [CORTE_MEDIO], creases: [P([[60, 0], [60, 40]], false), P([[40, 20], [80, 20]], false)] }),                   // base = mitad izquierda (1 600); ciclo 2×2 en la derecha
-  cicloEnBaseYBosque: () => W({ cutLines: [{ geom: P([[60, 0], [60, 40]], false) }], creases: [P([[30, 0], [30, 40]], false), P([[0, 20], [60, 20]], false), P([[60, 20], [80, 20]], false)] }),
-};
+const CASOS_R = CASOS_F2A2R;
 
 describe('F2A-2R · H-01: una unión sin eje único colineal no produce ningún FoldEdge', () => {
   test('escalón de crease (A-1): unión no plegable con sus 3 rectas, segmentos y aristas conservados; 0 adyacencias v1, 0 pliegues; la desconexión que causa se diagnostica', () => {

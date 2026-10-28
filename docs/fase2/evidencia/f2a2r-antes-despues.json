@@ -1,0 +1,380 @@
+[
+ {
+  "caso": "x-cruz",
+  "antes": "4 ady · 3 pl · 1 comp · ciclo 1 (ν 1)",
+  "despues": "4 ady (4 uniones, 0 no plegables/ambiguas) · 3 pl · 1 comp · ciclo 1 (ν 1)",
+  "cambios": "idéntico",
+  "diagAntes": "ciclo",
+  "diagDespues": "ciclo",
+  "hallazgo": ""
+ },
+ {
+  "caso": "rejilla-4x4",
+  "antes": "24 ady · 15 pl · 1 comp · ciclo 9 (ν 9)",
+  "despues": "24 ady (24 uniones, 0 no plegables/ambiguas) · 15 pl · 1 comp · ciclo 9 (ν 9)",
+  "cambios": "idéntico",
+  "diagAntes": "ciclo",
+  "diagDespues": "ciclo",
+  "hallazgo": ""
+ },
+ {
+  "caso": "t-exacta",
+  "antes": "3 ady · 2 pl · 1 comp · ciclo 1 (ν 1)",
+  "despues": "3 ady (3 uniones, 0 no plegables/ambiguas) · 2 pl · 1 comp · ciclo 1 (ν 1)",
+  "cambios": "idéntico",
+  "diagAntes": "ciclo",
+  "diagDespues": "ciclo",
+  "hallazgo": ""
+ },
+ {
+  "caso": "t-ruido",
+  "antes": "3 ady · 2 pl · 1 comp · ciclo 1 (ν 1)",
+  "despues": "3 ady (3 uniones, 0 no plegables/ambiguas) · 2 pl · 1 comp · ciclo 1 (ν 1)",
+  "cambios": "idéntico",
+  "diagAntes": "ciclo",
+  "diagDespues": "ciclo",
+  "hallazgo": ""
+ },
+ {
+  "caso": "t-ruido-sin-ajuste",
+  "antes": "1 ady · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "despues": "1 ady (1 uniones, 0 no plegables/ambiguas) · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "cambios": "idéntico",
+  "diagAntes": "",
+  "diagDespues": "",
+  "hallazgo": ""
+ },
+ {
+  "caso": "t-desalineada-0.375",
+  "antes": "1 ady · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "despues": "1 ady (1 uniones, 0 no plegables/ambiguas) · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "cambios": "idéntico",
+  "diagAntes": "",
+  "diagDespues": "",
+  "hallazgo": ""
+ },
+ {
+  "caso": "crease-corta-ruido",
+  "antes": "1 ady · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "despues": "1 ady (1 uniones, 0 no plegables/ambiguas) · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "cambios": "idéntico",
+  "diagAntes": "",
+  "diagDespues": "",
+  "hallazgo": ""
+ },
+ {
+  "caso": "crease-corta-banda",
+  "antes": "0 ady · 0 pl · 1 comp · ciclo 0 (ν 0)",
+  "despues": "0 ady (0 uniones, 0 no plegables/ambiguas) · 0 pl · 1 comp · ciclo 0 (ν 0)",
+  "cambios": "idéntico",
+  "diagAntes": "",
+  "diagDespues": "",
+  "hallazgo": ""
+ },
+ {
+  "caso": "crease-corta-0.6",
+  "antes": "0 ady · 0 pl · 1 comp · ciclo 0 (ν 0)",
+  "despues": "0 ady (0 uniones, 0 no plegables/ambiguas) · 0 pl · 1 comp · ciclo 0 (ν 0)",
+  "cambios": "idéntico",
+  "diagAntes": "",
+  "diagDespues": "",
+  "hallazgo": ""
+ },
+ {
+  "caso": "crease-sobresale-0.3",
+  "antes": "1 ady · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "despues": "1 ady (1 uniones, 0 no plegables/ambiguas) · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "cambios": "idéntico",
+  "diagAntes": "",
+  "diagDespues": "",
+  "hallazgo": ""
+ },
+ {
+  "caso": "crease-sobre-corte",
+  "antes": "1 ady · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "despues": "1 ady (1 uniones, 0 no plegables/ambiguas) · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "cambios": "idéntico",
+  "diagAntes": "",
+  "diagDespues": "",
+  "hallazgo": ""
+ },
+ {
+  "caso": "crease-paralela-ruido",
+  "antes": "1 ady · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "despues": "1 ady (1 uniones, 0 no plegables/ambiguas) · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "cambios": "idéntico",
+  "diagAntes": "",
+  "diagDespues": "",
+  "hallazgo": ""
+ },
+ {
+  "caso": "escalon-crease",
+  "antes": "1 ady · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "despues": "0 ady (1 uniones, 1 no plegables/ambiguas) · 0 pl · 2 comp · ciclo 0 (ν 0)",
+  "cambios": "adyacencias v1, árbol, componentes",
+  "diagAntes": "adyacencia-no-colineal",
+  "diagDespues": "componente-desconectado union-no-plegable",
+  "hallazgo": "H-01"
+ },
+ {
+  "caso": "escalon-contorno",
+  "antes": "1 ady · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "despues": "1 ady (1 uniones, 0 no plegables/ambiguas) · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "cambios": "idéntico",
+  "diagAntes": "",
+  "diagDespues": "",
+  "hallazgo": ""
+ },
+ {
+  "caso": "contorno-longitud-cero",
+  "antes": "1 ady · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "despues": "1 ady (1 uniones, 0 no plegables/ambiguas) · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "cambios": "idéntico",
+  "diagAntes": "",
+  "diagDespues": "",
+  "hallazgo": ""
+ },
+ {
+  "caso": "hueco-centrado",
+  "antes": "1 ady · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "despues": "1 ady (1 uniones, 0 no plegables/ambiguas) · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "cambios": "idéntico",
+  "diagAntes": "",
+  "diagDespues": "",
+  "hallazgo": ""
+ },
+ {
+  "caso": "hueco-descentrado",
+  "antes": "1 ady · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "despues": "1 ady (1 uniones, 0 no plegables/ambiguas) · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "cambios": "idéntico",
+  "diagAntes": "",
+  "diagDespues": "",
+  "hallazgo": ""
+ },
+ {
+  "caso": "corte-abierto-divide",
+  "antes": "0 ady · 0 pl · 2 comp · ciclo 0 (ν 0)",
+  "despues": "0 ady (0 uniones, 0 no plegables/ambiguas) · 0 pl · 2 comp · ciclo 0 (ν 0)",
+  "cambios": "idéntico",
+  "diagAntes": "componente-desconectado",
+  "diagDespues": "componente-desconectado",
+  "hallazgo": ""
+ },
+ {
+  "caso": "corte-abierto-parcial",
+  "antes": "0 ady · 0 pl · 1 comp · ciclo 0 (ν 0)",
+  "despues": "0 ady (0 uniones, 0 no plegables/ambiguas) · 0 pl · 1 comp · ciclo 0 (ν 0)",
+  "cambios": "idéntico",
+  "diagAntes": "",
+  "diagDespues": "",
+  "hallazgo": ""
+ },
+ {
+  "caso": "panel-pequeno-1.5mm2",
+  "antes": "1 ady · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "despues": "1 ady (1 uniones, 0 no plegables/ambiguas) · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "cambios": "idéntico",
+  "diagAntes": "",
+  "diagDespues": "",
+  "hallazgo": ""
+ },
+ {
+  "caso": "panel-delgado-40x1",
+  "antes": "1 ady · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "despues": "1 ady (1 uniones, 0 no plegables/ambiguas) · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "cambios": "idéntico",
+  "diagAntes": "",
+  "diagDespues": "",
+  "hallazgo": ""
+ },
+ {
+  "caso": "esquinas-redondeadas-anclas",
+  "antes": "1 ady · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "despues": "1 ady (1 uniones, 0 no plegables/ambiguas) · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "cambios": "idéntico",
+  "diagAntes": "",
+  "diagDespues": "",
+  "hallazgo": ""
+ },
+ {
+  "caso": "caja-botanica-real",
+  "antes": "12 ady · 12 pl · 1 comp · ciclo 0 (ν 0)",
+  "despues": "12 ady (12 uniones, 0 no plegables/ambiguas) · 12 pl · 1 comp · ciclo 0 (ν 0)",
+  "cambios": "idéntico",
+  "diagAntes": "",
+  "diagDespues": "",
+  "hallazgo": ""
+ },
+ {
+  "caso": "ill-real-caja-botanica ε 0.05",
+  "antes": "12 ady · 12 pl · 1 comp · ciclo 0 (ν 0)",
+  "despues": "12 ady (12 uniones, 0 no plegables/ambiguas) · 12 pl · 1 comp · ciclo 0 (ν 0)",
+  "cambios": "idéntico",
+  "diagAntes": "",
+  "diagDespues": "",
+  "hallazgo": ""
+ },
+ {
+  "caso": "histórico ×0.75 ε 0.05",
+  "antes": "12 ady · 12 pl · 1 comp · ciclo 0 (ν 0)",
+  "despues": "12 ady (12 uniones, 0 no plegables/ambiguas) · 12 pl · 1 comp · ciclo 0 (ν 0)",
+  "cambios": "idéntico",
+  "diagAntes": "",
+  "diagDespues": "",
+  "hallazgo": ""
+ },
+ {
+  "caso": "ill-real-caja-simple",
+  "antes": "1 ady · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "despues": "1 ady (1 uniones, 0 no plegables/ambiguas) · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "cambios": "idéntico",
+  "diagAntes": "",
+  "diagDespues": "",
+  "hallazgo": ""
+ },
+ {
+  "caso": "ill-real-compuesto",
+  "antes": "1 ady · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "despues": "1 ady (1 uniones, 0 no plegables/ambiguas) · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "cambios": "idéntico",
+  "diagAntes": "",
+  "diagDespues": "",
+  "hallazgo": ""
+ },
+ {
+  "caso": "ill-real-curvas",
+  "antes": "1 ady · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "despues": "1 ady (1 uniones, 0 no plegables/ambiguas) · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "cambios": "idéntico",
+  "diagAntes": "",
+  "diagDespues": "",
+  "hallazgo": ""
+ },
+ {
+  "caso": "panel no convexo envolvente",
+  "antes": "1 ady · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "despues": "1 ady (1 uniones, 0 no plegables/ambiguas) · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "cambios": "idéntico",
+  "diagAntes": "",
+  "diagDespues": "",
+  "hallazgo": ""
+ },
+ {
+  "caso": "rejilla 2×2",
+  "antes": "4 ady · 3 pl · 1 comp · ciclo 1 (ν 1)",
+  "despues": "4 ady (4 uniones, 0 no plegables/ambiguas) · 3 pl · 1 comp · ciclo 1 (ν 1)",
+  "cambios": "idéntico",
+  "diagAntes": "ciclo",
+  "diagDespues": "ciclo",
+  "hallazgo": ""
+ },
+ {
+  "caso": "rejilla 6×6",
+  "antes": "60 ady · 35 pl · 1 comp · ciclo 25 (ν 25)",
+  "despues": "60 ady (60 uniones, 0 no plegables/ambiguas) · 35 pl · 1 comp · ciclo 25 (ν 25)",
+  "cambios": "idéntico",
+  "diagAntes": "ciclo",
+  "diagDespues": "ciclo",
+  "hallazgo": ""
+ },
+ {
+  "caso": "rejilla 8×8",
+  "antes": "112 ady · 63 pl · 1 comp · ciclo 49 (ν 49)",
+  "despues": "112 ady (112 uniones, 0 no plegables/ambiguas) · 63 pl · 1 comp · ciclo 49 (ν 49)",
+  "cambios": "idéntico",
+  "diagAntes": "ciclo",
+  "diagDespues": "ciclo",
+  "hallazgo": ""
+ },
+ {
+  "caso": "rejilla 3×3 líneas completas",
+  "antes": "12 ady · 8 pl · 1 comp · ciclo 4 (ν 4)",
+  "despues": "12 ady (12 uniones, 0 no plegables/ambiguas) · 8 pl · 1 comp · ciclo 4 (ν 4)",
+  "cambios": "idéntico",
+  "diagAntes": "ciclo",
+  "diagDespues": "ciclo",
+  "hallazgo": ""
+ },
+ {
+  "caso": "rejilla 4×4 densa",
+  "antes": "24 ady · 15 pl · 1 comp · ciclo 9 (ν 9)",
+  "despues": "24 ady (24 uniones, 0 no plegables/ambiguas) · 15 pl · 1 comp · ciclo 9 (ν 9)",
+  "cambios": "idéntico",
+  "diagAntes": "ciclo",
+  "diagDespues": "ciclo",
+  "hallazgo": ""
+ },
+ {
+  "caso": "F2A-2R escalon",
+  "antes": "1 ady · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "despues": "0 ady (1 uniones, 1 no plegables/ambiguas) · 0 pl · 2 comp · ciclo 0 (ν 0)",
+  "cambios": "adyacencias v1, árbol, componentes",
+  "diagAntes": "adyacencia-no-colineal",
+  "diagDespues": "componente-desconectado union-no-plegable",
+  "hallazgo": "H-01"
+ },
+ {
+  "caso": "F2A-2R ambigua",
+  "antes": "1 ady · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "despues": "0 ady (1 uniones, 1 no plegables/ambiguas) · 0 pl · 2 comp · ciclo 0 (ν 0)",
+  "cambios": "adyacencias v1, árbol, componentes",
+  "diagAntes": "adyacencia-no-colineal",
+  "diagDespues": "componente-desconectado union-ambigua",
+  "hallazgo": "H-01"
+ },
+ {
+  "caso": "F2A-2R ele",
+  "antes": "1 ady · 1 pl · 1 comp · ciclo 0 (ν 0)",
+  "despues": "0 ady (1 uniones, 1 no plegables/ambiguas) · 0 pl · 2 comp · ciclo 0 (ν 0)",
+  "cambios": "adyacencias v1, árbol, componentes",
+  "diagAntes": "adyacencia-no-colineal",
+  "diagDespues": "componente-desconectado union-no-plegable",
+  "hallazgo": "H-01"
+ },
+ {
+  "caso": "F2A-2R eleConectada",
+  "antes": "3 ady · 2 pl · 1 comp · ciclo 1 (ν 1)",
+  "despues": "2 ady (3 uniones, 1 no plegables/ambiguas) · 2 pl · 1 comp · ciclo 0 (ν 0)",
+  "cambios": "adyacencias v1, árbol, ciclos",
+  "diagAntes": "adyacencia-no-colineal ciclo",
+  "diagDespues": "union-no-plegable",
+  "hallazgo": "H-01"
+ },
+ {
+  "caso": "F2A-2R dosComponentes",
+  "antes": "2 ady · 1 pl · 2 comp · ciclo 1 (ν 0)",
+  "despues": "2 ady (2 uniones, 0 no plegables/ambiguas) · 1 pl · 2 comp · ciclo 0 (ν 0)",
+  "cambios": "ciclos",
+  "diagAntes": "ciclo componente-desconectado",
+  "diagDespues": "componente-desconectado",
+  "hallazgo": "H-02"
+ },
+ {
+  "caso": "F2A-2R cicloFuera",
+  "antes": "4 ady · 0 pl · 2 comp · ciclo 4 (ν 1)",
+  "despues": "4 ady (4 uniones, 0 no plegables/ambiguas) · 0 pl · 2 comp · ciclo 1 (ν 1)",
+  "cambios": "ciclos",
+  "diagAntes": "ciclo componente-desconectado",
+  "diagDespues": "ciclo componente-desconectado",
+  "hallazgo": "H-02"
+ },
+ {
+  "caso": "F2A-2R cicloEnBaseYBosque",
+  "antes": "5 ady · 3 pl · 2 comp · ciclo 2 (ν 1)",
+  "despues": "5 ady (5 uniones, 0 no plegables/ambiguas) · 3 pl · 2 comp · ciclo 1 (ν 1)",
+  "cambios": "ciclos",
+  "diagAntes": "ciclo componente-desconectado",
+  "diagDespues": "ciclo componente-desconectado",
+  "hallazgo": "H-02"
+ },
+ {
+  "caso": "A-7 ill-real-caja-botanica sin ajuste (fuera de dominio)",
+  "antes": "3 ady · 3 pl · 1 comp · ciclo 0 (ν 0)",
+  "despues": "1 ady (3 uniones, 2 no plegables/ambiguas) · 0 pl · 3 comp · ciclo 0 (ν 0)",
+  "cambios": "adyacencias v1, árbol, componentes",
+  "diagAntes": "adyacencia-no-colineal",
+  "diagDespues": "componente-desconectado union-no-plegable",
+  "hallazgo": "H-01"
+ }
+]
