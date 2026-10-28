@@ -13,8 +13,10 @@
 //     fallo experimental POSTERIOR a buildPanels (árbol, base) no puede rehacerse atómicamente con el legacy (la interfaz ya tiene los
 //     paneles experimentales) ⇒ la construcción se DETIENE con ErrorPanelModel('construccion-detenida') y diagnóstico; nunca se devuelve un
 //     árbol legacy para paneles experimentales. La solución transaccional (buildModel completo) queda para un contrato v2.
-// Opciones (solo pruebas, además de las de createLegacyEngine): eps, congelar, programar(f), reloj(), umbralSombraMs, crearLegacy,
-// crearExperimental, dependenciasExperimentales.
+// Opciones (además de las de createLegacyEngine): eps, congelar, programar(f), reloj(), umbralSombraMs, avisarCambioDeOrigen (por defecto true;
+// la interfaz experimental lo desactiva porque ella misma reinicia la base) y, solo en pruebas, crearLegacy, crearExperimental, dependenciasExperimentales.
+// Fuera de v1 (Entrega 2): suscribir(fn) a los cambios de modo, diagnosticos(panelData, base) del modelo experimental y simularFallo(etapa), un
+// interruptor de DEPURACIÓN no persistente que hace fallar al experimental en una etapa para validar la recuperación en Illustrator real.
 import { createLegacyEngine as crearMotorLegacy, GEOMETRY_ENGINE_CONTRACT } from '../../src/core/engine.js';
 import { createExperimentalEngine, esModeloExperimental, EPS_EXPERIMENTAL, ID_MOTOR_EXPERIMENTAL } from './motor-v1.js';
 import { ErrorPanelModel } from '../plegado/index.js';
@@ -57,7 +59,10 @@ export function createLegacyEngine(options) {
   const programar = typeof o.programar === 'function' ? o.programar : (f) => f();
   const reloj = typeof o.reloj === 'function' ? o.reloj : () => Date.now();
   const umbral = typeof o.umbralSombraMs === 'number' ? o.umbralSombraMs : UMBRAL_SOMBRA_MS;
-  const estado = { modo: 'sombra', congelar: !!o.congelar, n: 0, ultimoOrigen: null };
+  const estado = { modo: 'sombra', congelar: !!o.congelar, n: 0, ultimoOrigen: null, falloSimulado: null };
+  const avisarOrigen = o.avisarCambioDeOrigen !== false; const suscriptores = new Set();
+  const notificar = () => { for (const f of [...suscriptores]) { try { f(estado.modo); } catch (e) { /* un suscriptor nunca rompe el selector */ } } };
+  const ETAPAS_SIMULABLES = ['buildPanels', 'buildAdjacency', 'buildFoldTree', 'defaultBaseIndex'];
   const registro = []; const legPaneles = new WeakSet(); const expObjetos = new WeakSet(); const sombraDe = new WeakMap();
   const anotar = (e) => { try { registro.push({ n: ++estado.n, modo: estado.modo, ...e }); if (registro.length > MAX_REGISTRO) registro.splice(0, registro.length - MAX_REGISTRO); } catch (x) { /* el registro nunca rompe una operación */ } };
   const crearExp = (conLog, congelar) => { // un fallo al crear el experimental nunca impide el legacy: queda anotado y el modo activo no se puede activar
@@ -78,9 +83,10 @@ export function createLegacyEngine(options) {
   const detener = (etapa, e) => { const d = describir(e); anotar({ etapa, origen: 'experimental', detenida: true, causa: d });
     log(`Motor experimental: fallo en ${etapa} (${d.codigo || d.nombre}). La construcción se DETIENE sin mezclar resultados del legacy; vuelva a «Continue to 3D» o desactive el modo activo.`);
     return e && e.codigo === 'modelo-ajeno' ? e : fallo('construccion-detenida', etapa, d.mensaje, { causa: d.codigo || d.nombre }); };
-  const enExperimental = (etapa, f) => { try { const r = f(); marcarExp(r); return r; } catch (e) { throw detener(etapa, e); } };
+  const simulado = (etapa) => { if (estado.falloSimulado === etapa) throw fallo('fallo-simulado', etapa, 'fallo SIMULADO para depuración (simularFallo)'); };
+  const enExperimental = (etapa, f) => { try { simulado(etapa); const r = f(); marcarExp(r); return r; } catch (e) { throw detener(etapa, e); } };
   const avisoOrigen = (nuevo) => { const prev = estado.ultimoOrigen; estado.ultimoOrigen = nuevo;
-    if (prev && prev !== nuevo && estado.modo === 'activo') log(`Aviso: este modelo viene del motor ${nuevo} y el anterior del ${prev}; la base elegida antes puede designar otro panel (KI-30: el reinicio de la base al cambiar de motor está pendiente de la interfaz).`); };
+    if (avisarOrigen && prev && prev !== nuevo && estado.modo === 'activo') log(`Aviso: este modelo viene del motor ${nuevo} y el anterior del ${prev}; la base elegida antes puede designar otro panel (KI-30: el reinicio de la base al cambiar de motor está pendiente de la interfaz).`); };
   const registrarLegacy = (m) => { if (esObjeto(m) && esObjeto(m.panels)) legPaneles.add(m.panels); };
 
   // ── sombra: nunca lanza, nunca recibe objetos del legacy, nunca escribe en el log ──
@@ -112,7 +118,7 @@ export function createLegacyEngine(options) {
   function buildPanelsActivo(d) {
     log(`Motor de geometría: modo ACTIVO — esta construcción usa el motor experimental ${ID_MOTOR_EXPERIMENTAL} (no persistente; desactivar: __tessMotorExperimental.desactivar()).`); // «Continue to 3D» limpia el log: se repite en cada construcción
     const antes = huella(d); let X = null, error = null;
-    try { X = motores.activo.buildPanels(d); if (!esObjeto(X) || !Array.isArray(X.panels) || !Array.isArray(X.creaseEdges)) throw fallo('adaptador-incoherente', 'buildPanels', 'el experimental no devolvió {panels[], creaseEdges[]}'); }
+    try { simulado('buildPanels'); X = motores.activo.buildPanels(d); if (!esObjeto(X) || !Array.isArray(X.panels) || !Array.isArray(X.creaseEdges)) throw fallo('adaptador-incoherente', 'buildPanels', 'el experimental no devolvió {panels[], creaseEdges[]}'); }
     catch (e) { error = e; }
     if (!error) { marcarExp(X.panels); marcarExp(X.creaseEdges); avisoOrigen('experimental'); const r = resumenModelo(X); anotar({ etapa: 'buildPanels', origen: 'experimental', paneles: r.paneles, creaseEdges: r.creaseEdges }); return X; }
     const d0 = describir(error);
@@ -127,12 +133,12 @@ export function createLegacyEngine(options) {
 
   function cambiarModo(modo, opciones) {
     if (modo === 'sombra') { if (estado.modo !== 'sombra') { estado.modo = 'sombra'; anotar({ control: 'modo', a: 'sombra' });
-      log('Motor de geometría: modo SOMBRA (predeterminado): la interfaz usa el motor legacy y el experimental solo se compara aparte. Los modelos ya construidos conservan su motor de origen.'); } return true; }
+      log('Motor de geometría: modo SOMBRA (predeterminado): la interfaz usa el motor legacy y el experimental solo se compara aparte. Los modelos ya construidos conservan su motor de origen.'); notificar(); } return true; }
     if (modo !== 'activo') throw new TypeError(`cambiarModo: modo desconocido «${String(modo)}» (sombra | activo)`);
     if (!opciones || opciones.confirmacion !== CONFIRMACION_ACTIVO) { anotar({ control: 'activacion-rechazada' }); log(`Motor de geometría: activación RECHAZADA (falta la confirmación explícita). Sigue en modo ${estado.modo.toUpperCase()}.`); return false; }
     if (!motores.activo) { anotar({ control: 'activacion-rechazada', motivo: 'experimental no disponible' }); log('Motor de geometría: el motor experimental no está disponible; sigue en modo SOMBRA.'); return false; }
     if (estado.modo !== 'activo') { estado.modo = 'activo'; anotar({ control: 'modo', a: 'activo' });
-      log(`Motor de geometría: modo ACTIVO — los modelos NUEVOS los construye el motor experimental ${ID_MOTOR_EXPERIMENTAL} (ε=${eps === null ? 'sin ajuste' : eps + ' mm'}). No es persistente: al recargar el panel vuelve a SOMBRA. Pulse «Continue to 3D» para reconstruir.`); }
+      log(`Motor de geometría: modo ACTIVO — los modelos NUEVOS los construye el motor experimental ${ID_MOTOR_EXPERIMENTAL} (ε=${eps === null ? 'sin ajuste' : eps + ' mm'}). No es persistente: al recargar el panel vuelve a SOMBRA. Pulse «Continue to 3D» para reconstruir.`); notificar(); }
     return true;
   }
 
@@ -170,5 +176,13 @@ export function createLegacyEngine(options) {
     registro: () => JSON.parse(JSON.stringify(registro)),
     congelarSalidas(v) { estado.congelar = !!v; const m = crearExp(true, estado.congelar); if (m) motores.activo = m; anotar({ control: 'congelar', a: estado.congelar });
       log(`Motor experimental: salidas ${estado.congelar ? 'CONGELADAS en profundidad (depuración)' : 'sin congelar'} para los modelos nuevos.`); return estado.congelar; },
+    eps,
+    suscribir(fn) { if (typeof fn !== 'function') throw new TypeError('suscribir: se esperaba una función'); suscriptores.add(fn); return () => { suscriptores.delete(fn); }; },
+    diagnosticos(panelData, baseIndex) { // solo modelos experimentales; nunca lanza (un fallo se devuelve como diagnóstico)
+      const panels = esObjeto(panelData) ? panelData.panels : undefined; if (!esExp(panels) || !motores.activo || typeof motores.activo.diagnosticos !== 'function') return [];
+      try { return JSON.parse(JSON.stringify(motores.activo.diagnosticos(panels, baseIndex))); } catch (e) { const d = describir(e); return [{ tipo: 'error', codigo: d.codigo || d.nombre, mensaje: d.mensaje }]; } },
+    simularFallo(etapa) { if (etapa !== null && !ETAPAS_SIMULABLES.includes(etapa)) throw new TypeError(`simularFallo: etapa desconocida «${String(etapa)}» (${ETAPAS_SIMULABLES.join(' | ')} | null)`);
+      estado.falloSimulado = etapa; anotar({ control: 'fallo-simulado', etapa });
+      log(etapa ? `Depuración: el motor experimental FALLARÁ (simulado) en ${etapa} hasta simularFallo(null) o recargar el panel.` : 'Depuración: fallo simulado desactivado.'); return estado.falloSimulado; },
   });
 }

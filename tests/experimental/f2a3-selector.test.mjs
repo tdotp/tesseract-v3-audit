@@ -42,7 +42,7 @@ describe('F2A-3 · I-2 · 1. modo SOMBRA (predeterminado): exactamente el legacy
   test('forma: congelado, v1 + controles; arranca en sombra; validate ES el del legacy', () => {
     const { S } = sel(); assert.ok(Object.isFrozen(S)); assert.equal(S.modo(), 'sombra'); assert.equal(S.contract, 1); assert.equal(S.validate, crearLegacy({}).validate);
     for (const k of ['validate', 'buildPanels', 'buildAdjacency', 'buildFoldTree', 'defaultBaseIndex']) assert.equal(typeof S[k], 'function', k);
-    assert.deepEqual(Object.keys(S).sort(), ['buildAdjacency', 'buildFoldTree', 'buildPanels', 'cambiarModo', 'congelarSalidas', 'contract', 'defaultBaseIndex', 'id', 'modo', 'origenDelModelo', 'registro', 'validate']);
+    assert.deepEqual(Object.keys(S).sort(), ['buildAdjacency', 'buildFoldTree', 'buildPanels', 'cambiarModo', 'congelarSalidas', 'contract', 'defaultBaseIndex', 'diagnosticos', 'eps', 'id', 'modo', 'origenDelModelo', 'registro', 'simularFallo', 'suscribir', 'validate']);
   });
   test(`${Object.keys(CASOS).length} casos, uno a uno: salidas, excepciones y log idénticos al legacy solo; la sombra anota una comparación por etapa`, () => {
     let comparados = 0;
@@ -199,4 +199,27 @@ describe('F2A-3 · I-2 · 5–6. base, documento, H-01/H-02, plegado y GLB en mo
       assert.ok(Object.isFrozen(m.panels[0].vertices) && Object.isFrozen(A) && Object.isFrozen(T)); const antes = JSON.stringify([m, A, T]);
       const x = await ejecutarConsumidores({ modelo: m, adyacencias: A, arbol: T, base: b }); assert.equal(x.mallas, m.panels.length); assert.equal(x.puentes, T.length); assert.ok(x.glbBytes > 1000); assert.equal(JSON.stringify([m, A, T]), antes);
     });
+});
+
+describe('F2A-3 · Entrega 2 · controles del selector para la interfaz: suscripción, diagnósticos y fallo simulado', () => {
+  test('suscribir: aviso en cada cambio REAL de modo; se puede cancelar; un suscriptor que lanza no rompe nada', () => {
+    const { S } = sel(); const vistos = []; const fuera = S.suscribir((m) => vistos.push(m)); S.suscribir(() => { throw new Error('suscriptor roto'); });
+    S.cambiarModo('activo', { confirmacion: 'no' }); S.cambiarModo('activo', { confirmacion: CONFIRMACION_ACTIVO }); S.cambiarModo('activo', { confirmacion: CONFIRMACION_ACTIVO }); S.cambiarModo('sombra'); S.cambiarModo('sombra');
+    assert.deepEqual(vistos, ['activo', 'sombra']); fuera(); S.cambiarModo('activo', { confirmacion: CONFIRMACION_ACTIVO }); assert.deepEqual(vistos, ['activo', 'sombra']); assert.throws(() => S.suscribir(null), TypeError);
+  });
+  test('diagnosticos: [] para modelos legacy o ajenos; los del motor v1 para modelos experimentales (H-01); nunca lanza', () => {
+    const { S } = sel({ eps: null }); assert.deepEqual(S.diagnosticos(S.buildPanels(CAJA()), 0), []); assert.deepEqual(S.diagnosticos(null, 0), []);
+    S.cambiarModo('activo', { confirmacion: CONFIRMACION_ACTIVO }); const m = S.buildPanels(CASOS_F2A2R.ele()); const M = createExperimentalEngine({ validate: crearLegacy({}).validate, eps: null }); const r = M.buildPanels(CASOS_F2A2R.ele());
+    assert.deepEqual(S.diagnosticos(m, 0), M.diagnosticos(r.panels, 0)); assert.deepEqual(S.diagnosticos(m, 0).map((d) => d.tipo), ['union-no-plegable', 'componente-desconectado']);
+    assert.equal(S.diagnosticos(m, 99)[0].codigo, 'base-invalida', 'un fallo se devuelve como diagnóstico');
+  });
+  test('simularFallo: buildPanels ⇒ fallback legacy completo; buildFoldTree ⇒ construccion-detenida (causa fallo-simulado); null lo quita; la sombra y el legacy no se ven afectados', () => {
+    const ref = legacySolo(() => [CAJA()]); const { S, logs } = sel(); S.simularFallo('buildPanels'); assert.equal(flujoUI(S, [CAJA()]), ref.salida, 'en sombra no afecta'); assert.ok(logs.some((l) => /FALLARÁ \(simulado\) en buildPanels/.test(l)));
+    S.cambiarModo('activo', { confirmacion: CONFIRMACION_ACTIVO }); const m = S.buildPanels(CAJA()); assert.equal(S.origenDelModelo(m), 'legacy'); assert.equal(S.registro().find((e) => e.fallback).causa.codigo, 'fallo-simulado');
+    S.simularFallo('buildFoldTree'); const x = S.buildPanels(CAJA()); const A = S.buildAdjacency(x.panels, x.creaseEdges); assert.throws(() => S.buildFoldTree(x.panels, A, 0), (e) => e.codigo === 'construccion-detenida' && e.diagnosticos[0].causa === 'fallo-simulado');
+    S.simularFallo(null); assert.equal(S.buildFoldTree(x.panels, A, 0).length, 12); assert.throws(() => S.simularFallo('validate'), TypeError);
+  });
+  test('avisarCambioDeOrigen: false (lo usa la interfaz experimental, que reinicia la base) ⇒ sin aviso KI-30 del selector', () => {
+    const { S, logs } = sel({ avisarCambioDeOrigen: false }); S.buildPanels(CAJA()); S.cambiarModo('activo', { confirmacion: CONFIRMACION_ACTIVO }); S.buildPanels(CAJA()); assert.ok(!logs.some((l) => /KI-30/.test(l)));
+  });
 });

@@ -13,7 +13,7 @@ import { construirExperimental, safeOutExperimental, EXP_IDS, DEFAULT_OUT } from
 import { CONFIRMACION_ACTIVO } from '../../experimental/integracion/selector.js';
 
 let tmp, X, X2, P, N; const leer = (d, f) => fs.readFileSync(path.join(d, f));
-const MARCAS = ['experimental-f2a2', 'adaptarPanelModel', 'construirArbolPlegado', 'construirAdyacencias', 'ErrorPanelModel', '__tessMotorExperimental', 'ACTIVAR-EXPERIMENTAL', 'selector-f2a3', 'tesseract.f2a3.modelo'];
+const MARCAS = ['experimental-f2a2', 'adaptarPanelModel', 'construirArbolPlegado', 'construirAdyacencias', 'ErrorPanelModel', '__tessMotorExperimental', 'ACTIVAR-EXPERIMENTAL', 'selector-f2a3', 'tesseract.f2a3.modelo', 'tess-exp-motor', 'Base reiniciada (KI-30)'];
 before(async () => {
   tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'tess-f2a3-bundle-')); await ensureDist(); const pinAntes = fs.readFileSync(path.join(ROOT, 'dist/SHA256SUMS'), 'utf8');
   X = await construirExperimental({ out: path.join(tmp, 'exp') }); X2 = await construirExperimental({ out: path.join(tmp, 'exp2') });
@@ -22,10 +22,12 @@ before(async () => {
 });
 after(() => fs.rmSync(tmp, { recursive: true, force: true }));
 
-test('una sola sustitución de ./core/engine.js (desde src/main.js); el selector, el motor v1, el plegado, el núcleo y el legacy real dentro del bundle', () => {
-  assert.deepEqual(X.info.motor.sustituciones, ['src/main.js']); assert.equal(X.info.motor.modulo_sustituido, './core/engine.js'); assert.equal(X.info.motor.modo_predeterminado, 'sombra');
-  for (const f of ['experimental/integracion/entrada-cep.js', 'experimental/integracion/selector.js', 'experimental/integracion/motor-v1.js', 'experimental/plegado/arbol.js', 'experimental/plegado/adaptador.js']) assert.ok(X.info.motor.modulos_experimentales.includes(f), f);
-  assert.ok(X.info.motor.modulos_experimentales.some((f) => f.startsWith('experimental/geometria/'))); assert.ok(X.entradas.includes('src/core/engine.js') && X.entradas.includes('src/core/legacy/panels.js'), 'el legacy real sigue dentro');
+test('exactamente 3 sustituciones (solo desde src/main.js): motor ⇒ selector, controles de plegado y controlador ⇒ envoltorios de las fábricas REALES; todo lo demás, el src/ de siempre', () => {
+  assert.deepEqual(X.info.motor.sustituciones, { './core/engine.js': 'experimental/integracion/entrada-cep.js', './ui/fold-controls.js': 'experimental/integracion/fold-controls-cep.js', './ui/controller.js': 'experimental/integracion/controller-cep.js' });
+  assert.equal(X.info.motor.modulo_sustituido, './core/engine.js'); assert.equal(X.info.motor.modo_predeterminado, 'sombra');
+  for (const f of ['experimental/integracion/entrada-cep.js', 'experimental/integracion/selector.js', 'experimental/integracion/motor-v1.js', 'experimental/integracion/interfaz-cep.js', 'experimental/integracion/fold-controls-cep.js', 'experimental/integracion/controller-cep.js', 'experimental/plegado/arbol.js', 'experimental/plegado/adaptador.js']) assert.ok(X.info.motor.modulos_experimentales.includes(f), f);
+  assert.ok(X.info.motor.modulos_experimentales.some((f) => f.startsWith('experimental/geometria/'))); for (const f of ['src/core/engine.js', 'src/core/legacy/panels.js', 'src/ui/fold-controls.js', 'src/ui/controller.js', 'src/ui/picking.js']) assert.ok(X.entradas.includes(f), 'el código real sigue dentro: ' + f);
+  const fuentes = (r) => r.entradas.filter((f) => f.startsWith('src/')).sort(); assert.deepEqual(fuentes(X), fuentes(P), 'mismos módulos de src/ que el bundle sin sustituciones');
   const t = leer(X.out, 'main.js').toString(); for (const m of MARCAS) assert.ok(t.includes(m), m); assert.match(t.split('\n')[0], /Tesseract V3 EXPERIMENTAL .* modo SOMBRA por defecto/);
 });
 test('determinista y verificable: dos construcciones idénticas; SHA256SUMS coincide con los archivos; BUILD_INFO declara instalado=false e identidad propia', () => {
@@ -66,11 +68,18 @@ test('entrada-cep.js: devuelve el selector en SOMBRA y publica un punto de contr
     assert.ok(logs.some((l) => /modo ACTIVO/.test(l)) && logs.some((l) => /RECHAZADA/.test(l)), 'cambios visibles en el log del panel');
   } finally { delete globalThis[CONTROL_GLOBAL]; }
 });
+test('aislamiento estático de la interfaz experimental: imports permitidos y sin almacenamiento, consola, CEP ni globales nuevos', () => {
+  const leerSin = (f) => fs.readFileSync(path.join(ROOT, 'experimental/integracion', f), 'utf8').replace(/\/\/.*$/gm, '');
+  const imports = (t) => [...t.matchAll(/^(?:import|export)[^'"\n]*from '([^']+)'/gm)].map((m) => m[1]);
+  assert.deepEqual(imports(leerSin('interfaz-cep.js')), ['./selector.js']); assert.deepEqual(imports(leerSin('fold-controls-cep.js')), ['../../src/ui/fold-controls.js', './interfaz-cep.js']); assert.deepEqual(imports(leerSin('controller-cep.js')), ['../../src/ui/controller.js', './interfaz-cep.js']);
+  for (const f of ['interfaz-cep.js', 'fold-controls-cep.js', 'controller-cep.js']) { const t = leerSin(f); assert.doesNotMatch(t, /\b(THREE|window|console|localStorage|sessionStorage|indexedDB|require|process|globalThis|__adobe_cep__|csInterface)\b/, f); assert.equal([...t.matchAll(/^(?:export )?(?:let|var) /gm)].length, 0, f); }
+  assert.match(leerSin('interfaz-cep.js'), /^const INTERFACES = new WeakMap\(\);/m, 'único estado de módulo: una interfaz por estado S (WeakMap)');
+});
 test('aislamiento estático de entrada-cep.js: solo importa ./selector.js; únicos globales: globalThis (punto de control) y setTimeout (sombra diferida)', () => {
   const t = fs.readFileSync(path.join(ROOT, 'experimental/integracion/entrada-cep.js'), 'utf8').replace(/\/\/.*$/gm, '');
   assert.deepEqual([...t.matchAll(/^(?:import|export)[^'"\n]*from '([^']+)'/gm)].map((m) => m[1]), ['./selector.js']);
   assert.doesNotMatch(t, /\b(THREE|window|document|console|localStorage|sessionStorage|indexedDB|require|process|__adobe_cep__|csInterface)\b/); assert.equal([...t.matchAll(/^(?:export )?(?:let|var) /gm)].length, 0);
-  assert.equal(fs.readdirSync(path.join(ROOT, 'experimental/integracion')).sort().join(','), 'entrada-cep.js,motor-v1.js,package.json,selector.js');
+  assert.equal(fs.readdirSync(path.join(ROOT, 'experimental/integracion')).sort().join(','), 'controller-cep.js,entrada-cep.js,fold-controls-cep.js,interfaz-cep.js,motor-v1.js,package.json,selector.js');
 });
 test('aislamiento de extensiones CEP: ningún manifiesto instalado declara la identidad experimental; no hay copias tesseract-v3* (nada instalado)', () => {
   const dirs = [path.join(os.homedir(), 'Library/Application Support/Adobe/CEP/extensions'), '/Library/Application Support/Adobe/CEP/extensions']; let vistos = 0;
