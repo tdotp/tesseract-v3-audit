@@ -1,0 +1,101 @@
+{
+ "fecha": "2026-10-28T18:27:46.829Z",
+ "orden": "interacciones",
+ "modo": "sombra",
+ "pasos": {
+  "extraer": {
+   "ms": 91.20000000111759,
+   "estado": "Extraction complete"
+  },
+  "construir": {
+   "ms": 89.30000000074506,
+   "estado": "3D ready · thickness=0.3mm",
+   "barra": {
+    "modo": "SOMBRA (legacy)",
+    "construccion": "Construcción actual: LEGACY · 11 paneles · 10 pliegues · base P0"
+   }
+  },
+  "shiftClic": {
+   "baseInicial": "0",
+   "hallados": [
+    {
+     "id": "4",
+     "estado": "Base set to P4 · Shift + click another panel to change it",
+     "punto": [
+      344.2,
+      623.1
+     ]
+    },
+    {
+     "id": "3",
+     "estado": "Base set to P3 · Shift + click another panel to change it",
+     "punto": [
+      406.8,
+      623.1
+     ]
+    }
+   ],
+   "selectorTras": "3",
+   "pestanaMaterial": true,
+   "barra": {
+    "modo": "SOMBRA (legacy)",
+    "construccion": "Construcción actual: LEGACY · 11 paneles · 10 pliegues · base P3"
+   }
+  },
+  "shiftTrasPlegar": {
+   "plegadoCambiaImagen": true,
+   "baseAntes": "3",
+   "hallado": {
+    "id": "5",
+    "estado": "Base set to P5 · Shift + click another panel to change it",
+    "punto": [
+     344.2,
+     583.9
+    ]
+   },
+   "selectorTras": "5",
+   "angulosTras": "0,0,0,0,0,0,0,0,0,0,0,0",
+   "replegarCambiaImagen": true
+  },
+  "altClic": {
+   "hallados": [
+    {
+     "id": "9",
+     "estado": "Crease C9 selected · Alt/Option + click another red line to retarget",
+     "punto": [
+      281.6,
+      544.8
+     ]
+    }
+   ],
+   "pestanaCreases": true,
+   "etiquetaSeleccion": "Selected crease: C9 · P0 → P1 · 0°",
+   "filaResaltada": 1
+  },
+  "anguloCrease": {
+   "cambiaImagen": true
+  },
+  "baseSelectorTrasPlegar": {
+   "pedida": "7",
+   "estado": "3D ready · base=P7 · thickness=0.3mm",
+   "selector": "7"
+  },
+  "materialesEspesor": {
+   "kraft": "Kraft board",
+   "gray": "Gray board",
+   "white": "White board",
+   "espesor 0.8": "Thickness applied: 0.8mm",
+   "espesor 0": "Thickness must be greater than 0",
+   "espesor 0.25": "Thickness applied: 0.3mm"
+  },
+  "png": {
+   "ruta": "/private/tmp/tesseract_rc/rc-sombra.png",
+   "err": 0,
+   "bytes": 65775
+  },
+  "pickError": 0
+ },
+ "dpr": 1.25,
+ "captura": "tests/results/f2a3-rc/capturas/interacciones-sombra.png",
+ "errores": []
+}

@@ -1,0 +1,19 @@
+{
+ "fecha": "2026-10-28T18:41:40.557Z",
+ "orden": "dialogo",
+ "cancelar": true,
+ "modo": "sombra",
+ "barra": {
+  "modo": "SOMBRA (legacy)",
+  "construccion": "Construcción actual: LEGACY · 11 paneles · 10 pliegues · base P0"
+ },
+ "historialEstado": [
+  "Exporting GLB…",
+  "GLB export cancelled",
+  "GLB exported from current 3D pose"
+ ],
+ "archivosNuevos": [],
+ "sustituido": null,
+ "archivo": null,
+ "errores": []
+}

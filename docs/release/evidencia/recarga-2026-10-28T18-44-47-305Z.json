@@ -1,0 +1,15 @@
+{
+ "fecha": "2026-10-28T18:44:47.325Z",
+ "orden": "recarga",
+ "documento": "N0-A",
+ "pasos": {},
+ "capturas": {
+  "recarga": "tests/results/f2a3-cep/capturas/recarga-2026-10-28T18-44-47-305Z.png"
+ },
+ "tras": {
+  "modo": "sombra",
+  "barra": "SOMBRA (legacy)",
+  "status": "Ready"
+ },
+ "consola": []
+}

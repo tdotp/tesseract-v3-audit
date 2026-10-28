@@ -1,0 +1,28 @@
+{
+ "fecha": "2026-10-28T18:42:24.268Z",
+ "orden": "dialogo",
+ "cancelar": false,
+ "modo": "sombra",
+ "barra": {
+  "modo": "SOMBRA (legacy)",
+  "construccion": "Construcción actual: LEGACY · 2 paneles · 1 pliegues · base P0"
+ },
+ "historialEstado": [
+  "Exporting GLB…",
+  "GLB saved: /private/tmp/tesseract_rc/rc-sombra-arte.glb",
+  "GLB exported from current 3D pose"
+ ],
+ "archivosNuevos": [
+  "rc-sombra-arte.glb"
+ ],
+ "sustituido": {
+  "ruta": "/private/tmp/tesseract_rc/rc-sombra-arte.sustituido.glb",
+  "sha256": "b4973a54840cd0c1a58e6018fd4927369dd5df5a72d23c3465ed25059dcdd1f6"
+ },
+ "archivo": {
+  "ruta": "/private/tmp/tesseract_rc/rc-sombra-arte.glb",
+  "bytes": 295440,
+  "sha256": "b4973a54840cd0c1a58e6018fd4927369dd5df5a72d23c3465ed25059dcdd1f6"
+ },
+ "errores": []
+}

@@ -1,0 +1,28 @@
+{
+ "fecha": "2026-10-28T18:41:38.373Z",
+ "orden": "dialogo",
+ "cancelar": false,
+ "modo": "sombra",
+ "barra": {
+  "modo": "SOMBRA (legacy)",
+  "construccion": "Construcción actual: LEGACY · 11 paneles · 10 pliegues · base P0"
+ },
+ "historialEstado": [
+  "Exporting GLB…",
+  "GLB saved: /private/tmp/tesseract_rc/rc-sombra-plano.glb",
+  "GLB exported from current 3D pose"
+ ],
+ "archivosNuevos": [
+  "rc-sombra-plano.glb"
+ ],
+ "sustituido": {
+  "ruta": "/private/tmp/tesseract_rc/rc-sombra-plano.sustituido.glb",
+  "sha256": "737bcd2312da1191a57f5b6530749ffd6bf20b6dd1737c454a62d7f38d8e40b4"
+ },
+ "archivo": {
+  "ruta": "/private/tmp/tesseract_rc/rc-sombra-plano.glb",
+  "bytes": 33436,
+  "sha256": "737bcd2312da1191a57f5b6530749ffd6bf20b6dd1737c454a62d7f38d8e40b4"
+ },
+ "errores": []
+}

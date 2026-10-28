@@ -1,0 +1,28 @@
+{
+ "fecha": "2026-10-28T18:41:47.371Z",
+ "orden": "dialogo",
+ "cancelar": false,
+ "modo": "activo",
+ "barra": {
+  "modo": "ACTIVO (experimental)",
+  "construccion": "Construcción actual: EXPERIMENTAL (experimental-f2a2) · 13 paneles · 12 pliegues · base P8"
+ },
+ "historialEstado": [
+  "Exporting GLB…",
+  "GLB saved: /private/tmp/tesseract_rc/rc-activo-plano.glb",
+  "GLB exported from current 3D pose"
+ ],
+ "archivosNuevos": [
+  "rc-activo-plano.glb"
+ ],
+ "sustituido": {
+  "ruta": "/private/tmp/tesseract_rc/rc-activo-plano.sustituido.glb",
+  "sha256": "7da50989ab121401f06edafa20683c38ec71d86f7065c52039022da91c80e9e6"
+ },
+ "archivo": {
+  "ruta": "/private/tmp/tesseract_rc/rc-activo-plano.glb",
+  "bytes": 43228,
+  "sha256": "7da50989ab121401f06edafa20683c38ec71d86f7065c52039022da91c80e9e6"
+ },
+ "errores": []
+}

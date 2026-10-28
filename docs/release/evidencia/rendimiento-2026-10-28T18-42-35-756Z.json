@@ -1,0 +1,584 @@
+{
+ "fecha": "2026-10-28T18:43:21.288Z",
+ "orden": "rendimiento",
+ "n": 5,
+ "metodologia": "Panel recién cargado en cada ejecución (Page.reload); N0-A abierto; mismos pasos en sombra y activo; tiempos con performance.now en la página real (extracción y 3D: clic → texto de estado final, sondeo cada 20 ms; motor: tiempos() del selector con performance.now; plegado: evento input del deslizador ALL → applyFolding síncrono y hasta 2 frames; GLB: clic → estado final, con el diálogo sustituido por una ruta en /private/tmp); memoria: Runtime.getHeapUsage tras HeapProfiler.collectGarbage",
+ "ejecuciones": [
+  {
+   "modo": "sombra",
+   "i": 0,
+   "extraccionMs": 54.70000000111759,
+   "construccion3dMs": 73.40000000037253,
+   "motor": {
+    "buildPanels": {
+     "op": "buildPanels",
+     "modo": "sombra",
+     "origen": "legacy",
+     "ms": 12.699999999254942
+    },
+    "buildAdjacency": {
+     "op": "buildAdjacency",
+     "modo": "sombra",
+     "origen": "legacy",
+     "ms": 0.7000000011175871
+    },
+    "buildFoldTree": {
+     "op": "buildFoldTree",
+     "modo": "sombra",
+     "origen": "legacy",
+     "ms": 0.19999999925494194
+    }
+   },
+   "sombra": [
+    {
+     "etapa": "buildPanels",
+     "ms": 12.5
+    },
+    {
+     "etapa": "buildAdjacency",
+     "ms": 0
+    },
+    {
+     "etapa": "buildFoldTree",
+     "ms": 0.5
+    }
+   ],
+   "plegadoSincronoMs": 3.800000000745058,
+   "plegadoHastaPintarMs": 59.70000000111759,
+   "exportGlbMs": 26.799999998882413,
+   "heapAntesMB": 1.8682708740234375,
+   "heapTrasConstruirMB": 5.477352142333984,
+   "barra": {
+    "modo": "SOMBRA (legacy)",
+    "construccion": "Construcción actual: LEGACY · 11 paneles · 10 pliegues · base P0"
+   },
+   "errores": []
+  },
+  {
+   "modo": "sombra",
+   "i": 1,
+   "extraccionMs": 53.90000000037253,
+   "construccion3dMs": 67.29999999888241,
+   "motor": {
+    "buildPanels": {
+     "op": "buildPanels",
+     "modo": "sombra",
+     "origen": "legacy",
+     "ms": 12.299999998882413
+    },
+    "buildAdjacency": {
+     "op": "buildAdjacency",
+     "modo": "sombra",
+     "origen": "legacy",
+     "ms": 0.599999999627471
+    },
+    "buildFoldTree": {
+     "op": "buildFoldTree",
+     "modo": "sombra",
+     "origen": "legacy",
+     "ms": 0.40000000037252903
+    }
+   },
+   "sombra": [
+    {
+     "etapa": "buildPanels",
+     "ms": 14.399999998509884
+    },
+    {
+     "etapa": "buildAdjacency",
+     "ms": 0
+    },
+    {
+     "etapa": "buildFoldTree",
+     "ms": 0.40000000037252903
+    }
+   ],
+   "plegadoSincronoMs": 3.5,
+   "plegadoHastaPintarMs": 43.19999999925494,
+   "exportGlbMs": 32.09999999962747,
+   "heapAntesMB": 1.868255615234375,
+   "heapTrasConstruirMB": 4.764804840087891,
+   "barra": {
+    "modo": "SOMBRA (legacy)",
+    "construccion": "Construcción actual: LEGACY · 11 paneles · 10 pliegues · base P0"
+   },
+   "errores": []
+  },
+  {
+   "modo": "sombra",
+   "i": 2,
+   "extraccionMs": 52.30000000074506,
+   "construccion3dMs": 65.80000000074506,
+   "motor": {
+    "buildPanels": {
+     "op": "buildPanels",
+     "modo": "sombra",
+     "origen": "legacy",
+     "ms": 12.699999999254942
+    },
+    "buildAdjacency": {
+     "op": "buildAdjacency",
+     "modo": "sombra",
+     "origen": "legacy",
+     "ms": 0.599999999627471
+    },
+    "buildFoldTree": {
+     "op": "buildFoldTree",
+     "modo": "sombra",
+     "origen": "legacy",
+     "ms": 0.30000000074505806
+    }
+   },
+   "sombra": [
+    {
+     "etapa": "buildPanels",
+     "ms": 13.199999999254942
+    },
+    {
+     "etapa": "buildAdjacency",
+     "ms": 0
+    },
+    {
+     "etapa": "buildFoldTree",
+     "ms": 0.40000000037252903
+    }
+   ],
+   "plegadoSincronoMs": 3.299999998882413,
+   "plegadoHastaPintarMs": 52.899999998509884,
+   "exportGlbMs": 24.5,
+   "heapAntesMB": 1.868255615234375,
+   "heapTrasConstruirMB": 4.733787536621094,
+   "barra": {
+    "modo": "SOMBRA (legacy)",
+    "construccion": "Construcción actual: LEGACY · 11 paneles · 10 pliegues · base P0"
+   },
+   "errores": []
+  },
+  {
+   "modo": "sombra",
+   "i": 3,
+   "extraccionMs": 52.80000000074506,
+   "construccion3dMs": 71.80000000074506,
+   "motor": {
+    "buildPanels": {
+     "op": "buildPanels",
+     "modo": "sombra",
+     "origen": "legacy",
+     "ms": 12.399999998509884
+    },
+    "buildAdjacency": {
+     "op": "buildAdjacency",
+     "modo": "sombra",
+     "origen": "legacy",
+     "ms": 0.599999999627471
+    },
+    "buildFoldTree": {
+     "op": "buildFoldTree",
+     "modo": "sombra",
+     "origen": "legacy",
+     "ms": 0.30000000074505806
+    }
+   },
+   "sombra": [
+    {
+     "etapa": "buildPanels",
+     "ms": 13.199999999254942
+    },
+    {
+     "etapa": "buildAdjacency",
+     "ms": 0
+    },
+    {
+     "etapa": "buildFoldTree",
+     "ms": 0.40000000037252903
+    }
+   ],
+   "plegadoSincronoMs": 3.399999998509884,
+   "plegadoHastaPintarMs": 67,
+   "exportGlbMs": 32.69999999925494,
+   "heapAntesMB": 1.8681411743164062,
+   "heapTrasConstruirMB": 4.735630035400391,
+   "barra": {
+    "modo": "SOMBRA (legacy)",
+    "construccion": "Construcción actual: LEGACY · 11 paneles · 10 pliegues · base P0"
+   },
+   "errores": []
+  },
+  {
+   "modo": "sombra",
+   "i": 4,
+   "extraccionMs": 54.30000000074506,
+   "construccion3dMs": 67.40000000037253,
+   "motor": {
+    "buildPanels": {
+     "op": "buildPanels",
+     "modo": "sombra",
+     "origen": "legacy",
+     "ms": 12.700000001117587
+    },
+    "buildAdjacency": {
+     "op": "buildAdjacency",
+     "modo": "sombra",
+     "origen": "legacy",
+     "ms": 0.8999999985098839
+    },
+    "buildFoldTree": {
+     "op": "buildFoldTree",
+     "modo": "sombra",
+     "origen": "legacy",
+     "ms": 0.30000000074505806
+    }
+   },
+   "sombra": [
+    {
+     "etapa": "buildPanels",
+     "ms": 13.400000000372529
+    },
+    {
+     "etapa": "buildAdjacency",
+     "ms": 0.09999999962747097
+    },
+    {
+     "etapa": "buildFoldTree",
+     "ms": 0.5
+    }
+   ],
+   "plegadoSincronoMs": 2.900000000372529,
+   "plegadoHastaPintarMs": 61.5,
+   "exportGlbMs": 32.80000000074506,
+   "heapAntesMB": 1.8681411743164062,
+   "heapTrasConstruirMB": 4.767333984375,
+   "barra": {
+    "modo": "SOMBRA (legacy)",
+    "construccion": "Construcción actual: LEGACY · 11 paneles · 10 pliegues · base P0"
+   },
+   "errores": []
+  },
+  {
+   "modo": "activo",
+   "i": 0,
+   "extraccionMs": 60.100000001490116,
+   "construccion3dMs": 71.70000000111759,
+   "motor": {
+    "buildPanels": {
+     "op": "buildPanels",
+     "modo": "activo",
+     "origen": "experimental",
+     "ms": 16.09999999962747
+    },
+    "buildAdjacency": {
+     "op": "buildAdjacency",
+     "modo": "activo",
+     "origen": "experimental",
+     "ms": 0.30000000074505806
+    },
+    "buildFoldTree": {
+     "op": "buildFoldTree",
+     "modo": "activo",
+     "origen": "experimental",
+     "ms": 0.30000000074505806
+    }
+   },
+   "sombra": [],
+   "plegadoSincronoMs": 3.600000001490116,
+   "plegadoHastaPintarMs": 44.80000000074506,
+   "exportGlbMs": 32.90000000037253,
+   "heapAntesMB": 1.8908920288085938,
+   "heapTrasConstruirMB": 5.585979461669922,
+   "barra": {
+    "modo": "ACTIVO (experimental)",
+    "construccion": "Construcción actual: EXPERIMENTAL (experimental-f2a2) · 13 paneles · 12 pliegues · base P0"
+   },
+   "errores": []
+  },
+  {
+   "modo": "activo",
+   "i": 1,
+   "extraccionMs": 47.69999999925494,
+   "construccion3dMs": 73.09999999962747,
+   "motor": {
+    "buildPanels": {
+     "op": "buildPanels",
+     "modo": "activo",
+     "origen": "experimental",
+     "ms": 16.800000000745058
+    },
+    "buildAdjacency": {
+     "op": "buildAdjacency",
+     "modo": "activo",
+     "origen": "experimental",
+     "ms": 0.3999999985098839
+    },
+    "buildFoldTree": {
+     "op": "buildFoldTree",
+     "modo": "activo",
+     "origen": "experimental",
+     "ms": 0.2999999988824129
+    }
+   },
+   "sombra": [],
+   "plegadoSincronoMs": 3.599999999627471,
+   "plegadoHastaPintarMs": 46.69999999925494,
+   "exportGlbMs": 31.299999998882413,
+   "heapAntesMB": 1.8908920288085938,
+   "heapTrasConstruirMB": 5.414989471435547,
+   "barra": {
+    "modo": "ACTIVO (experimental)",
+    "construccion": "Construcción actual: EXPERIMENTAL (experimental-f2a2) · 13 paneles · 12 pliegues · base P0"
+   },
+   "errores": []
+  },
+  {
+   "modo": "activo",
+   "i": 2,
+   "extraccionMs": 43.59999999962747,
+   "construccion3dMs": 62,
+   "motor": {
+    "buildPanels": {
+     "op": "buildPanels",
+     "modo": "activo",
+     "origen": "experimental",
+     "ms": 16.59999999962747
+    },
+    "buildAdjacency": {
+     "op": "buildAdjacency",
+     "modo": "activo",
+     "origen": "experimental",
+     "ms": 0.19999999925494194
+    },
+    "buildFoldTree": {
+     "op": "buildFoldTree",
+     "modo": "activo",
+     "origen": "experimental",
+     "ms": 0.30000000074505806
+    }
+   },
+   "sombra": [],
+   "plegadoSincronoMs": 3.800000000745058,
+   "plegadoHastaPintarMs": 63.20000000111759,
+   "exportGlbMs": 43.30000000074506,
+   "heapAntesMB": 1.8908920288085938,
+   "heapTrasConstruirMB": 5.613437652587891,
+   "barra": {
+    "modo": "ACTIVO (experimental)",
+    "construccion": "Construcción actual: EXPERIMENTAL (experimental-f2a2) · 13 paneles · 12 pliegues · base P0"
+   },
+   "errores": []
+  },
+  {
+   "modo": "activo",
+   "i": 3,
+   "extraccionMs": 54.19999999925494,
+   "construccion3dMs": 67.30000000074506,
+   "motor": {
+    "buildPanels": {
+     "op": "buildPanels",
+     "modo": "activo",
+     "origen": "experimental",
+     "ms": 16.199999999254942
+    },
+    "buildAdjacency": {
+     "op": "buildAdjacency",
+     "modo": "activo",
+     "origen": "experimental",
+     "ms": 0.2000000011175871
+    },
+    "buildFoldTree": {
+     "op": "buildFoldTree",
+     "modo": "activo",
+     "origen": "experimental",
+     "ms": 0.40000000037252903
+    }
+   },
+   "sombra": [],
+   "plegadoSincronoMs": 3.300000000745058,
+   "plegadoHastaPintarMs": 63.90000000037253,
+   "exportGlbMs": 32.40000000037253,
+   "heapAntesMB": 1.8908920288085938,
+   "heapTrasConstruirMB": 4.704181671142578,
+   "barra": {
+    "modo": "ACTIVO (experimental)",
+    "construccion": "Construcción actual: EXPERIMENTAL (experimental-f2a2) · 13 paneles · 12 pliegues · base P0"
+   },
+   "errores": []
+  },
+  {
+   "modo": "activo",
+   "i": 4,
+   "extraccionMs": 57.30000000074506,
+   "construccion3dMs": 76,
+   "motor": {
+    "buildPanels": {
+     "op": "buildPanels",
+     "modo": "activo",
+     "origen": "experimental",
+     "ms": 16.199999999254942
+    },
+    "buildAdjacency": {
+     "op": "buildAdjacency",
+     "modo": "activo",
+     "origen": "experimental",
+     "ms": 0.2000000011175871
+    },
+    "buildFoldTree": {
+     "op": "buildFoldTree",
+     "modo": "activo",
+     "origen": "experimental",
+     "ms": 0.40000000037252903
+    }
+   },
+   "sombra": [],
+   "plegadoSincronoMs": 3.200000001117587,
+   "plegadoHastaPintarMs": 62.5,
+   "exportGlbMs": 32.09999999962747,
+   "heapAntesMB": 1.8908920288085938,
+   "heapTrasConstruirMB": 4.704898834228516,
+   "barra": {
+    "modo": "ACTIVO (experimental)",
+    "construccion": "Construcción actual: EXPERIMENTAL (experimental-f2a2) · 13 paneles · 12 pliegues · base P0"
+   },
+   "errores": []
+  }
+ ],
+ "resumen": {
+  "sombra": {
+   "extraccionMs": {
+    "n": 5,
+    "mediana": 53.9,
+    "min": 52.3,
+    "max": 54.7
+   },
+   "construccion3dMs": {
+    "n": 5,
+    "mediana": 67.4,
+    "min": 65.8,
+    "max": 73.4
+   },
+   "motorBuildPanelsMs": {
+    "n": 5,
+    "mediana": 12.7,
+    "min": 12.3,
+    "max": 12.7
+   },
+   "motorBuildAdjacencyMs": {
+    "n": 5,
+    "mediana": 0.6,
+    "min": 0.6,
+    "max": 0.9
+   },
+   "motorBuildFoldTreeMs": {
+    "n": 5,
+    "mediana": 0.3,
+    "min": 0.2,
+    "max": 0.4
+   },
+   "sombraExperimentalBuildPanelsMs": {
+    "n": 5,
+    "mediana": 13.2,
+    "min": 12.5,
+    "max": 14.4
+   },
+   "plegadoSincronoMs": {
+    "n": 5,
+    "mediana": 3.4,
+    "min": 2.9,
+    "max": 3.8
+   },
+   "plegadoHastaPintarMs": {
+    "n": 5,
+    "mediana": 59.7,
+    "min": 43.2,
+    "max": 67
+   },
+   "exportGlbMs": {
+    "n": 5,
+    "mediana": 32.1,
+    "min": 24.5,
+    "max": 32.8
+   },
+   "heapTrasConstruirMB": {
+    "n": 5,
+    "mediana": 4.76,
+    "min": 4.73,
+    "max": 5.48
+   },
+   "heapDeltaConstruirMB": {
+    "n": 5,
+    "mediana": 2.9,
+    "min": 2.87,
+    "max": 3.61
+   },
+   "origen": [
+    "legacy"
+   ],
+   "errores": 0
+  },
+  "activo": {
+   "extraccionMs": {
+    "n": 5,
+    "mediana": 54.2,
+    "min": 43.6,
+    "max": 60.1
+   },
+   "construccion3dMs": {
+    "n": 5,
+    "mediana": 71.7,
+    "min": 62,
+    "max": 76
+   },
+   "motorBuildPanelsMs": {
+    "n": 5,
+    "mediana": 16.2,
+    "min": 16.1,
+    "max": 16.8
+   },
+   "motorBuildAdjacencyMs": {
+    "n": 5,
+    "mediana": 0.2,
+    "min": 0.2,
+    "max": 0.4
+   },
+   "motorBuildFoldTreeMs": {
+    "n": 5,
+    "mediana": 0.3,
+    "min": 0.3,
+    "max": 0.4
+   },
+   "sombraExperimentalBuildPanelsMs": null,
+   "plegadoSincronoMs": {
+    "n": 5,
+    "mediana": 3.6,
+    "min": 3.2,
+    "max": 3.8
+   },
+   "plegadoHastaPintarMs": {
+    "n": 5,
+    "mediana": 62.5,
+    "min": 44.8,
+    "max": 63.9
+   },
+   "exportGlbMs": {
+    "n": 5,
+    "mediana": 32.4,
+    "min": 31.3,
+    "max": 43.3
+   },
+   "heapTrasConstruirMB": {
+    "n": 5,
+    "mediana": 5.41,
+    "min": 4.7,
+    "max": 5.61
+   },
+   "heapDeltaConstruirMB": {
+    "n": 5,
+    "mediana": 3.52,
+    "min": 2.81,
+    "max": 3.72
+   },
+   "origen": [
+    "experimental"
+   ],
+   "errores": 0
+  }
+ }
+}

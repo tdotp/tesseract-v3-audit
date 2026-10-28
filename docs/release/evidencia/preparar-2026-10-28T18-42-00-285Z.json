@@ -1,0 +1,15 @@
+{
+ "fecha": "2026-10-28T18:42:05.561Z",
+ "orden": "preparar",
+ "modo": "activo",
+ "extraccionMs": 33.79999999888241,
+ "construccionMs": 3300.9000000003725,
+ "arte": "Artwork loaded from layers. Mapping uses full artboard coordinates.",
+ "barra": {
+  "modo": "ACTIVO (experimental)",
+  "construccion": "Construcción actual: EXPERIMENTAL (experimental-f2a2) · 2 paneles · 1 pliegues · base P0"
+ },
+ "estado": "3D ready · thickness=0.3mm",
+ "captura": "tests/results/f2a3-rc/capturas/preparar-activo-arte.png",
+ "errores": []
+}

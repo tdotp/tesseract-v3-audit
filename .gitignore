@@ -6,3 +6,4 @@ dist/
 tests/results/
 .dist.lock/
 dist-experimental*/
+/release/

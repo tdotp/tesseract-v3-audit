@@ -1,0 +1,101 @@
+{
+ "fecha": "2026-10-28T18:28:29.292Z",
+ "orden": "interacciones",
+ "modo": "activo",
+ "pasos": {
+  "extraer": {
+   "ms": 206.5,
+   "estado": "Extraction complete"
+  },
+  "construir": {
+   "ms": 46.600000001490116,
+   "estado": "3D ready · thickness=0.3mm",
+   "barra": {
+    "modo": "ACTIVO (experimental)",
+    "construccion": "Construcción actual: EXPERIMENTAL (experimental-f2a2) · 13 paneles · 12 pliegues · base P8"
+   }
+  },
+  "shiftClic": {
+   "baseInicial": "8",
+   "hallados": [
+    {
+     "id": "8",
+     "estado": "Base set to P8 · Shift + click another panel to change it",
+     "punto": [
+      344.2,
+      622.8
+     ]
+    },
+    {
+     "id": "11",
+     "estado": "Base set to P11 · Shift + click another panel to change it",
+     "punto": [
+      406.8,
+      622.8
+     ]
+    }
+   ],
+   "selectorTras": "11",
+   "pestanaMaterial": true,
+   "barra": {
+    "modo": "ACTIVO (experimental)",
+    "construccion": "Construcción actual: EXPERIMENTAL (experimental-f2a2) · 13 paneles · 12 pliegues · base P11"
+   }
+  },
+  "shiftTrasPlegar": {
+   "plegadoCambiaImagen": true,
+   "baseAntes": "11",
+   "hallado": {
+    "id": "9",
+    "estado": "Base set to P9 · Shift + click another panel to change it",
+    "punto": [
+     344.2,
+     583.6
+    ]
+   },
+   "selectorTras": "9",
+   "angulosTras": "0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+   "replegarCambiaImagen": true
+  },
+  "altClic": {
+   "hallados": [
+    {
+     "id": "9",
+     "estado": "Crease C9 selected · Alt/Option + click another red line to retarget",
+     "punto": [
+      281.6,
+      544.5
+     ]
+    }
+   ],
+   "pestanaCreases": true,
+   "etiquetaSeleccion": "Selected crease: C9 · P6 → P7 · 0°",
+   "filaResaltada": 1
+  },
+  "anguloCrease": {
+   "cambiaImagen": true
+  },
+  "baseSelectorTrasPlegar": {
+   "pedida": "11",
+   "estado": "3D ready · base=P11 · thickness=0.3mm",
+   "selector": "11"
+  },
+  "materialesEspesor": {
+   "kraft": "Kraft board",
+   "gray": "Gray board",
+   "white": "White board",
+   "espesor 0.8": "Thickness applied: 0.8mm",
+   "espesor 0": "Thickness must be greater than 0",
+   "espesor 0.25": "Thickness applied: 0.3mm"
+  },
+  "png": {
+   "ruta": "/private/tmp/tesseract_rc/rc-activo.png",
+   "err": 0,
+   "bytes": 64920
+  },
+  "pickError": 0
+ },
+ "dpr": 1.25,
+ "captura": "tests/results/f2a3-rc/capturas/interacciones-activo.png",
+ "errores": []
+}

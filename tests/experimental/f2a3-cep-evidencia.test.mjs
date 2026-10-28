@@ -4,16 +4,17 @@
 // corresponde al código actual (el main.js validado = una construcción limpia del bundle experimental desde este árbol).
 import { test } from 'node:test'; import assert from 'node:assert/strict'; import fs from 'node:fs'; import os from 'node:os'; import path from 'node:path'; import crypto from 'node:crypto';
 import { ROOT } from '../lib/fixtures.mjs'; import { REAL_SHA } from '../lib/a8.mjs'; import { summarize, parseGLB } from '../lib/glb.mjs';
-import { construirExperimental } from '../../tools/build/build-experimental.mjs';
+import { construirRC } from '../../tools/build/build-rc.mjs';
 
 const E = path.join(ROOT, 'docs/fase2/evidencia/f2a3-cep'); const leer = (f) => JSON.parse(fs.readFileSync(path.join(E, f), 'utf8'));
 const sha = (b) => crypto.createHash('sha256').update(b).digest('hex'); const exp = (f) => fs.readFileSync(path.join(E, 'exportaciones', f));
 const ID = leer('identidad-2026-10-28T17-32-41-464Z.json'), CAJA = leer('caja-2026-10-28T17-32-41-613Z.json'), ARTE = leer('arte-2026-10-28T17-35-44-504Z.json'), REC = leer('recarga-2026-10-28T17-36-21-326Z.json');
 
-test('identidad en Illustrator real: extensión experimental, ILST 30.8.2, Chromium 99 de CEP 12.1.1, three r132, SOMBRA y barra; main.js = construcción limpia del árbol actual', async () => {
+test('identidad en Illustrator real: extensión experimental, ILST 30.8.2, Chromium 99 de CEP 12.1.1, three r132, SOMBRA y barra; main.js = construcción limpia del commit validado (ec5f5d8)', async () => {
   assert.deepEqual(ID.veredicto, { extension: true, host: true, mainJs: true, three: true, sombra: true, barra: true, chromium: true });
   assert.equal(ID.identidad.host.appVersion, '30.8.2'); assert.match(ID.identidad.ua, /Chrome\/99\.0\.4844\.84 AdobeCEP\/12\.1\.1/); assert.match(ID.identidad.href, /\/CEP\/extensions\/tesseract-v3-experimental\/index\.html$/);
-  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'tess-f2a3-ev-')); try { await construirExperimental({ out: tmp }); assert.equal(sha(fs.readFileSync(path.join(tmp, 'main.js'))), ID.identidad.mainJs.sha256, 'el main.js validado en real es el que construye este árbol'); } finally { fs.rmSync(tmp, { recursive: true, force: true }); }
+  // La Entrega 2 se validó con el árbol de ec5f5d8; desde el release candidate el código cambió (tiempos, diagnósticos agrupados): se reconstruye ESE commit
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'tess-f2a3-ev-')); try { const r = await construirRC({ commit: 'ec5f5d81f735b23b11f8dcc2da674fbc29c3e4e3', out: tmp }); assert.equal(r.release.main_js_sha256, ID.identidad.mainJs.sha256, 'el main.js validado en real es el que construye ec5f5d8'); } finally { fs.rmSync(tmp, { recursive: true, force: true }); }
 });
 test('Caja Botánica (N0-A) en real: extracción y 2D, sombra = legacy (11 de 13), activación en la barra, experimental 13/12, bases, plegado, materiales, recuperación y vuelta a sombra; consola sin errores', () => {
   const p = CAJA.pasos; assert.deepEqual(Object.entries(p).filter(([, v]) => v && v.error), []); assert.deepEqual(CAJA.consola, []);
