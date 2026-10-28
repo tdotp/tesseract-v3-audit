@@ -3,7 +3,8 @@
 #   1) reference/legacy-baseline coincide byte a byte con reference/legacy-baseline.SHA256SUMS
 #   2) la extensión INSTALADA coincide con ese mismo baseline (no ha sido modificada por nadie)
 #   3) panel/ solo difiere del baseline en archivos esperados (lista abajo)
-#   4) V3 no está instalada en el CEP del usuario (estricto por defecto; `--a4-instalado` admite SOLO tesseract-v3 idéntica a dist/, para A4 autorizado)
+#   4) V3 no está instalada en el CEP del usuario (estricto por defecto; `--a4-instalado` admite SOLO tesseract-v3 idéntica a dist/, para A4 autorizado;
+#      `--experimental-instalado` admite SOLO tesseract-v3-experimental idéntica a dist-experimental/, para la instalación experimental autorizada de F2A-3)
 set -u
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 INSTALLED="${TESSERACT_INSTALLED:-/Library/Application Support/Adobe/CEP/extensions/tesseract}"
@@ -32,6 +33,16 @@ if [ "${1:-}" = "--a4-instalado" ]; then
     if (cd "$V3" && shasum -a 256 -c "$DISTD/SHA256SUMS" --quiet 2>/dev/null); then ok4=1; else ok4=0; fi
     extra=$(cd "$V3" && find . -type f ! -name .DS_Store ! -name .debug ! -name SHA256SUMS ! -name BUILD_INFO.json | LC_ALL=C sort | diff - <(cut -c67- "$DISTD/SHA256SUMS" | LC_ALL=C sort) || true)
     if [ "$ok4" = 1 ] && [ -z "$extra" ]; then echo "OK (modo A4: tesseract-v3 idéntica a dist/, salvo .debug)"; else echo "FALLA: tesseract-v3 no coincide con dist/ ${extra:+(archivos distintos: $extra)}"; fail=1; fi
+  fi
+elif [ "${1:-}" = "--experimental-instalado" ]; then
+  # Modo F2A-3 (SOLO tras autorización expresa): se admite exactamente UNA copia, tesseract-v3-experimental, idéntica a dist-experimental/ (más .debug) y ninguna otra tesseract-v3*.
+  DEXP="${TESS_DIST_EXP_DIR:-$ROOT/dist-experimental}"; VX="$V3_PARENT/tesseract-v3-experimental"; otros=$(ls -d "$V3_PARENT"/tesseract-v3* 2>/dev/null | grep -v '/tesseract-v3-experimental$' || true)
+  if [ -n "$otros" ]; then echo "FALLA: hay copias tesseract-v3* distintas de tesseract-v3-experimental:"; echo "$otros"; fail=1
+  elif [ ! -d "$VX" ]; then echo "OK (modo experimental: no hay copia instalada)"
+  else
+    if (cd "$VX" && shasum -a 256 -c "$DEXP/SHA256SUMS" --quiet 2>/dev/null); then okx=1; else okx=0; fi
+    extra=$(cd "$VX" && find . -type f ! -name .DS_Store ! -name .debug ! -name SHA256SUMS ! -name BUILD_INFO.json | LC_ALL=C sort | diff - <(cut -c67- "$DEXP/SHA256SUMS" | LC_ALL=C sort) || true)
+    if [ "$okx" = 1 ] && [ -z "$extra" ]; then echo "OK (modo experimental: tesseract-v3-experimental idéntica a dist-experimental/, salvo .debug)"; else echo "FALLA: tesseract-v3-experimental no coincide con dist-experimental/ ${extra:+(archivos distintos: $extra)}"; fail=1; fi
   fi
 elif ls -d "$V3_PARENT/tesseract-v3"* >/dev/null 2>&1; then echo "AVISO: existe una copia tesseract-v3* en el CEP del usuario (no autorizada o pendiente de retirar)"; fail=1; else echo "OK (no instalado)"; fi
 exit $fail
