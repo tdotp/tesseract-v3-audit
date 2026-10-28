@@ -114,7 +114,7 @@ describe('F2A-2 · rechazo de entradas inválidas con diagnóstico explícito (n
 describe('F2A-2 · identificadores, unidades y orientación', () => {
   test('repetición: salida idéntica (determinista)', () => { const d = rd('tests/fixtures/real/caja-botanica-real.dieline.json'); assert.equal(JSON.stringify(adaptarPanelModel(d)), JSON.stringify(adaptarPanelModel(d))); });
   test('f2a2.paneles[i].id/creases = paneles del núcleo en su orden canónico; firmaTopologica del modelo = la del oráculo', () => {
-    const d = rd('tests/fixtures/real/caja-botanica-real.dieline.json'); const m = adaptarPanelModel(d); assert.deepEqual(m.f2a2.paneles.map((p) => p.id), m.panels.map((_, i) => 'F' + i));
+    const d = rd('tests/fixtures/real/caja-botanica-real.dieline.json'); const m = adaptarPanelModel(d); assert.deepEqual(m.f2a2.paneles.map((p) => p.id).sort(), m.panels.map((_, i) => 'F' + i).sort()); assert.deepEqual(m.f2a2.paneles.map((p) => p.creases.join(' ') + '|' + p.areaNeta.toFixed(6)), m.f2a2.paneles.map((p) => p.creases.join(' ') + '|' + p.areaNeta.toFixed(6)).sort(), 'orden canónico del núcleo (creases + área)');
     const R = { paneles: m.f2a2.paneles.map((p) => ({ creases: p.creases })), adyacencias: construirAdyacencias(m).adyacencias.map((x) => ({ a: x.panelA, b: x.panelB, creases: [] })), componentesPaneles: m.f2a2.componentes };
     const O = oraculo(d, {}); assert.deepEqual(firmaTopologica(R).paneles, firmaTopologica(O).paneles);
   });

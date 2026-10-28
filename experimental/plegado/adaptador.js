@@ -6,7 +6,7 @@
 //   CreaseEdge {a, b, creaseIdx, segIdx}   a/b SON los anchor de la entrada
 //   PanelModel {panels: Panel[], creaseEdges: CreaseEdge[], creases: Path[]}
 // Todo lo que v1 no puede expresar va en UN campo declarado, `f2a2` (los objetos v1 no llevan campos extra):
-//   f2a2.paneles[i]   {id, creases, areaNeta, huecos: [{tipo, vertices (CW)}], bordesCorte, islas}   (i = índice del panel v1)
+//   f2a2.paneles[i]   {id, creases, areaNeta, huecos: [{tipo, vertices (CW)}], bordesCorte, islas}   (i = índice del panel v1; id = el del núcleo)
 //   f2a2.conversiones conversiones con pérdida de precisión o de representación (siempre presentes, con su cuenta)
 //   f2a2.diagnosticos diagnósticos del núcleo (ajuste, banda-ambigua, astilla, ambiguo) y del adaptador
 //   f2a2.detalle      NO enumerable: estructuras del núcleo (arreglo y caras) que usan construirAdyacencias/construirArbolPlegado
@@ -90,8 +90,14 @@ export function adaptarPanelModel(d, opciones = {}) {
   const diag = R.diagnosticos.map((x) => ({ origen: 'nucleo', ...x }));
   const cuenta = { cruces: new Set(), exactos: new Set(), antenas: 0, anillosNulos: 0 };
   const panels = [], ext = [], incoherentes = [];
-  D.regionDePanel.forEach((r, i) => {
-    const P = R.paneles[i]; const c = ciclos[r];
+  // Orden de los paneles v1 = orden canónico del núcleo (creases que lo separan + área); a igualdad EXACTA de esa clave (paneles
+  // simétricos), el vértice mínimo (x, y) del ciclo: así el índice v1 no depende del orden de la entrada (el núcleo desempata por región)
+  const clave = (i) => R.paneles[i].creases.join(' ') + '|' + R.paneles[i].area.toFixed(6);
+  const vmin = (i) => ciclos[D.regionDePanel[i]].hs.reduce((m, h) => { const v = V[h.o]; return !m || v.x < m.x || (v.x === m.x && v.y < m.y) ? v : m; }, null);
+  const orden = R.paneles.map((_, i) => i).sort((i, j) => { const a = clave(i), b = clave(j); if (a !== b) return a < b ? -1 : 1; const p = vmin(i), q = vmin(j); return p.x - q.x || p.y - q.y || i - j; });
+  const regionDePanel = orden.map((i) => D.regionDePanel[i]);
+  orden.forEach((iN) => {
+    const r = D.regionDePanel[iN]; const P = R.paneles[iN]; const c = ciclos[r];
     const { anillos: an, quitadas } = anillos(c); cuenta.antenas += quitadas / 2;
     const islas = ciclos.filter((x) => x.contenidaEn === r).map(anillos); islas.forEach((x) => { cuenta.antenas += x.quitadas / 2; });
     const conArea = (hs) => ({ hs, area: areaPoligono(hs.map((h) => V[h.o])) });
@@ -128,6 +134,6 @@ export function adaptarPanelModel(d, opciones = {}) {
     { tipo: 'cierre-de-crease-fuera-de-creaseEdges', cuantos: cierres.length, perdida: 'representación', nota: 'como el legacy; el núcleo sí usa el cierre' },
   ];
   const f2a2 = { motor: MOTOR, contrato: 'PanelModel v1 + extensión f2a2', unidades: 'mm', ejeY: 'arriba', orientacion: 'CCW (huecos CW)', opciones: R.opciones, paneles: ext, cierres, conversiones, diagnosticos: diag, componentes: R.componentesPaneles, conservacion: R.conservacion };
-  Object.defineProperty(f2a2, 'detalle', { value: { ...D, resumen: R }, enumerable: false });
+  Object.defineProperty(f2a2, 'detalle', { value: { ...D, regionDePanel, ordenNucleo: orden, resumen: R }, enumerable: false });
   return { panels, creaseEdges, creases: d.creases || [], f2a2 };
 }

@@ -5,13 +5,15 @@ import * as Q from './racional.mjs';
 
 const cs = (l, mapa = (id) => id) => l.map(mapa).sort((a, b) => Number(a.slice(1)) - Number(b.slice(1))).join(' ');
 // Firma de cada panel = conjunto de creases que lo separan + rango por área entre los de igual conjunto (como areasPorFirma de F2A-0)
-export function firmas(paneles, area, mapa) {
-  const g = new Map(); paneles.forEach((p, i) => { const k = cs(p.creases, mapa); if (!g.has(k)) g.set(k, []); g.get(k).push({ i, a: area(p) }); });
-  const out = []; for (const [k, ps] of g) ps.sort((x, y) => x.a - y.a).forEach((p, r) => { out[p.i] = k + '#' + r; }); return out;
+// (a igualdad de área, el vértice mínimo (x, y) del polígono: identifica paneles simétricos sin depender del orden de la entrada)
+const vmin = (ps) => ps.reduce((m, v) => (v.x < m.x || (v.x === m.x && v.y < m.y) ? v : m));
+export function firmas(paneles, area, mapa, poli) {
+  const g = new Map(); paneles.forEach((p, i) => { const k = cs(p.creases, mapa); if (!g.has(k)) g.set(k, []); g.get(k).push({ i, a: area(p), v: vmin(poli(i)) }); });
+  const out = []; for (const [k, ps] of g) ps.sort((x, y) => x.a - y.a || x.v.x - y.v.x || x.v.y - y.v.y).forEach((p, r) => { out[p.i] = k + '#' + r; }); return out;
 }
-export const firmasModelo = (m, mapa) => firmas(m.f2a2.paneles, (p) => p.areaNeta, mapa);
-export const firmasOraculo = (O) => firmas(O.paneles, (p) => Q.aNumero(p.area));
+export const firmasModelo = (m, mapa) => firmas(m.f2a2.paneles, (p) => p.areaNeta, mapa, (i) => m.panels[i].vertices);
 export const poligonoOraculo = (p) => p.poligono.map((v) => ({ x: Q.aNumero(v.x), y: Q.aNumero(v.y) }));
+export const firmasOraculo = (O) => firmas(O.paneles, (p) => Q.aNumero(p.area), undefined, (i) => poligonoOraculo(O.paneles[i]));
 
 // Punto estrictamente dentro de un polígono (paridad de cruces, double); suficiente para sondas alejadas del borde
 export function dentro(p, ps) { let r = false; for (let i = 0, j = ps.length - 1; i < ps.length; j = i++) { const a = ps[j], b = ps[i]; if ((a.y > p.y) !== (b.y > p.y) && p.x < ((b.x - a.x) * (p.y - a.y)) / (b.y - a.y) + a.x) r = !r; } return r; }
