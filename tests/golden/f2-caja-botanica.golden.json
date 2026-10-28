@@ -1,0 +1,1881 @@
+{
+ "_nota": "Golden del ORÁCULO independiente (F2A-0). 13 paneles = resultado CANDIDATO (DP-2), no criterio único. ε = 0.05 solo experimental (DP-3).",
+ "casos": {
+  "caja-botanica-real@eps=null": {
+   "fixture": "tests/fixtures/real/caja-botanica-real.dieline.json",
+   "sha256Fixture": "26f784341d67e02420fed54aa2f79af4f43a9d5b5a55032b20868487920982ea",
+   "opciones": {
+    "eps": null,
+    "rho": "3",
+    "curvas": "anclas"
+   },
+   "contornoIntacto": true,
+   "segmentosLongitudCero": 12,
+   "arreglo": {
+    "vertices": 61,
+    "aristas": 73,
+    "ciclos": 14,
+    "componentesGrafo": 1,
+    "eulerOK": true,
+    "paridadCoherente": true
+   },
+   "ajustes": 0,
+   "ambiguedades": [],
+   "paneles": [
+    {
+     "id": "F0",
+     "creases": [
+      "C0",
+      "C8"
+     ],
+     "area": "244481383459637451216769980501/154742504910672534362390528",
+     "areaMm2": 1579.92391,
+     "vertices": 6,
+     "bordesCorte": 4,
+     "islas": 0,
+     "centroideMm": [
+      197.610878,
+      -170.896269
+     ]
+    },
+    {
+     "id": "F1",
+     "creases": [
+      "C0"
+     ],
+     "area": "783049671186870141498392460259/2475880078570760549798248448",
+     "areaMm2": 316.271243,
+     "vertices": 5,
+     "bordesCorte": 4,
+     "islas": 0,
+     "centroideMm": [
+      197.609871,
+      -146.197298
+     ]
+    },
+    {
+     "id": "F2",
+     "creases": [
+      "C1",
+      "C2",
+      "C5"
+     ],
+     "area": "1485578272319765038565421676335/309485009821345068724781056",
+     "areaMm2": 4800.162286,
+     "vertices": 6,
+     "bordesCorte": 3,
+     "islas": 0,
+     "centroideMm": [
+      317.609391,
+      -251.143982
+     ]
+    },
+    {
+     "id": "F3",
+     "creases": [
+      "C10"
+     ],
+     "area": "824107472747178225829813860683/1237940039285380274899124224",
+     "areaMm2": 665.708715,
+     "vertices": 7,
+     "bordesCorte": 6,
+     "islas": 0,
+     "centroideMm": [
+      237.524382,
+      -320.679515
+     ]
+    },
+    {
+     "id": "F4",
+     "creases": [
+      "C1"
+     ],
+     "area": "51496335059006225224346336423/77371252455336267181195264",
+     "areaMm2": 665.574531,
+     "vertices": 7,
+     "bordesCorte": 6,
+     "islas": 0,
+     "centroideMm": [
+      317.523473,
+      -181.61005
+     ]
+    },
+    {
+     "id": "F5",
+     "creases": [
+      "C2"
+     ],
+     "area": "206015996639033368940540600831/309485009821345068724781056",
+     "areaMm2": 665.673587,
+     "vertices": 7,
+     "bordesCorte": 6,
+     "islas": 0,
+     "centroideMm": [
+      317.696286,
+      -320.679614
+     ]
+    },
+    {
+     "id": "F6",
+     "creases": [
+      "C3",
+      "C11"
+     ],
+     "area": "247581784652816543030242701395/154742504910672534362390528",
+     "areaMm2": 1599.959783,
+     "vertices": 6,
+     "bordesCorte": 4,
+     "islas": 0,
+     "centroideMm": [
+      277.609888,
+      -331.6457
+     ]
+    },
+    {
+     "id": "F7",
+     "creases": [
+      "C3"
+     ],
+     "area": "48928752312246742432442561635/154742504910672534362390528",
+     "areaMm2": 316.194651,
+     "vertices": 4,
+     "bordesCorte": 3,
+     "islas": 0,
+     "centroideMm": [
+      277.609888,
+      -356.593546
+     ]
+    },
+    {
+     "id": "F8",
+     "creases": [
+      "C4",
+      "C8",
+      "C9"
+     ],
+     "area": "2983209772887772106450945662407/618970019642690137449562112",
+     "areaMm2": 4819.635327,
+     "vertices": 6,
+     "bordesCorte": 3,
+     "islas": 0,
+     "centroideMm": [
+      197.610878,
+      -250.895274
+     ]
+    },
+    {
+     "id": "F9",
+     "creases": [
+      "C4"
+     ],
+     "area": "1089585715974029361966561785727/618970019642690137449562112",
+     "areaMm2": 1760.320664,
+     "vertices": 4,
+     "bordesCorte": 3,
+     "islas": 0,
+     "centroideMm": [
+      170.168354,
+      -251.143982
+     ]
+    },
+    {
+     "id": "F10",
+     "creases": [
+      "C5",
+      "C6",
+      "C11"
+     ],
+     "area": "5935628100262536358284483296435/1237940039285380274899124224",
+     "areaMm2": 4794.762195,
+     "vertices": 14,
+     "bordesCorte": 11,
+     "islas": 0,
+     "centroideMm": [
+      277.609888,
+      -251.700093
+     ]
+    },
+    {
+     "id": "F11",
+     "creases": [
+      "C6",
+      "C7",
+      "C9",
+      "C10"
+     ],
+     "area": "2971156944465396300806760433161/618970019642690137449562112",
+     "areaMm2": 4800.162932,
+     "vertices": 6,
+     "bordesCorte": 2,
+     "islas": 0,
+     "centroideMm": [
+      237.610383,
+      -251.143982
+     ]
+    },
+    {
+     "id": "F12",
+     "creases": [
+      "C7"
+     ],
+     "area": "1647882628655005613272650469827/2475880078570760549798248448",
+     "areaMm2": 665.574493,
+     "vertices": 7,
+     "bordesCorte": 6,
+     "islas": 0,
+     "centroideMm": [
+      237.696302,
+      -181.61005
+     ]
+    }
+   ],
+   "adyacencias": [
+    {
+     "a": 0,
+     "b": 1,
+     "creases": [
+      "C0"
+     ],
+     "longitudMm": 38.999386
+    },
+    {
+     "a": 0,
+     "b": 8,
+     "creases": [
+      "C8"
+     ],
+     "longitudMm": 39.997742
+    },
+    {
+     "a": 2,
+     "b": 4,
+     "creases": [
+      "C1"
+     ],
+     "longitudMm": 39.500327
+    },
+    {
+     "a": 2,
+     "b": 5,
+     "creases": [
+      "C2"
+     ],
+     "longitudMm": 39.500327
+    },
+    {
+     "a": 2,
+     "b": 10,
+     "creases": [
+      "C5"
+     ],
+     "longitudMm": 120.000268
+    },
+    {
+     "a": 3,
+     "b": 11,
+     "creases": [
+      "C10"
+     ],
+     "longitudMm": 39.500327
+    },
+    {
+     "a": 6,
+     "b": 7,
+     "creases": [
+      "C3"
+     ],
+     "longitudMm": 39.002912
+    },
+    {
+     "a": 6,
+     "b": 10,
+     "creases": [
+      "C11"
+     ],
+     "longitudMm": 39.997742
+    },
+    {
+     "a": 8,
+     "b": 9,
+     "creases": [
+      "C4"
+     ],
+     "longitudMm": 120.000268
+    },
+    {
+     "a": 8,
+     "b": 11,
+     "creases": [
+      "C9"
+     ],
+     "longitudMm": 120.000268
+    },
+    {
+     "a": 10,
+     "b": 11,
+     "creases": [
+      "C6"
+     ],
+     "longitudMm": 120.000268
+    },
+    {
+     "a": 11,
+     "b": 12,
+     "creases": [
+      "C7"
+     ],
+     "longitudMm": 39.500322
+    }
+   ],
+   "creases": [
+    {
+     "id": "C0",
+     "separaMm": 38.999386,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "0-1"
+     ]
+    },
+    {
+     "id": "C1",
+     "separaMm": 39.500327,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "2-4"
+     ]
+    },
+    {
+     "id": "C2",
+     "separaMm": 39.500327,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "2-5"
+     ]
+    },
+    {
+     "id": "C3",
+     "separaMm": 39.002912,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "6-7"
+     ]
+    },
+    {
+     "id": "C4",
+     "separaMm": 120.000268,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "8-9"
+     ]
+    },
+    {
+     "id": "C5",
+     "separaMm": 120.000268,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "2-10"
+     ]
+    },
+    {
+     "id": "C6",
+     "separaMm": 120.000268,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "10-11"
+     ]
+    },
+    {
+     "id": "C7",
+     "separaMm": 39.500322,
+     "colganteMm": 0,
+     "sobreCorteMm": 0.500947,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "11-12"
+     ]
+    },
+    {
+     "id": "C8",
+     "separaMm": 39.997742,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "0-8"
+     ]
+    },
+    {
+     "id": "C9",
+     "separaMm": 120.000268,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "8-11"
+     ]
+    },
+    {
+     "id": "C10",
+     "separaMm": 39.500327,
+     "colganteMm": 0,
+     "sobreCorteMm": 0.500941,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "3-11"
+     ]
+    },
+    {
+     "id": "C11",
+     "separaMm": 39.997742,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "6-10"
+     ]
+    }
+   ],
+   "componentesPaneles": 1,
+   "conservacion": {
+    "exacta": true,
+    "esperadaMm2": 27449.924319,
+    "generadaMm2": 27449.924319,
+    "esperada": "33981360389761947126997386824431/1237940039285380274899124224",
+    "contornosCruzados": false
+   }
+  },
+  "caja-botanica-real@eps=0.05": {
+   "fixture": "tests/fixtures/real/caja-botanica-real.dieline.json",
+   "sha256Fixture": "26f784341d67e02420fed54aa2f79af4f43a9d5b5a55032b20868487920982ea",
+   "opciones": {
+    "eps": "0.05",
+    "rho": "3",
+    "curvas": "anclas"
+   },
+   "contornoIntacto": true,
+   "segmentosLongitudCero": 12,
+   "arreglo": {
+    "vertices": 61,
+    "aristas": 73,
+    "ciclos": 14,
+    "componentesGrafo": 1,
+    "eulerOK": true,
+    "paridadCoherente": true
+   },
+   "ajustes": 0,
+   "ambiguedades": [],
+   "paneles": [
+    {
+     "id": "F0",
+     "creases": [
+      "C0",
+      "C8"
+     ],
+     "area": "244481383459637451216769980501/154742504910672534362390528",
+     "areaMm2": 1579.92391,
+     "vertices": 6,
+     "bordesCorte": 4,
+     "islas": 0,
+     "centroideMm": [
+      197.610878,
+      -170.896269
+     ]
+    },
+    {
+     "id": "F1",
+     "creases": [
+      "C0"
+     ],
+     "area": "783049671186870141498392460259/2475880078570760549798248448",
+     "areaMm2": 316.271243,
+     "vertices": 5,
+     "bordesCorte": 4,
+     "islas": 0,
+     "centroideMm": [
+      197.609871,
+      -146.197298
+     ]
+    },
+    {
+     "id": "F2",
+     "creases": [
+      "C1",
+      "C2",
+      "C5"
+     ],
+     "area": "1485578272319765038565421676335/309485009821345068724781056",
+     "areaMm2": 4800.162286,
+     "vertices": 6,
+     "bordesCorte": 3,
+     "islas": 0,
+     "centroideMm": [
+      317.609391,
+      -251.143982
+     ]
+    },
+    {
+     "id": "F3",
+     "creases": [
+      "C10"
+     ],
+     "area": "824107472747178225829813860683/1237940039285380274899124224",
+     "areaMm2": 665.708715,
+     "vertices": 7,
+     "bordesCorte": 6,
+     "islas": 0,
+     "centroideMm": [
+      237.524382,
+      -320.679515
+     ]
+    },
+    {
+     "id": "F4",
+     "creases": [
+      "C1"
+     ],
+     "area": "51496335059006225224346336423/77371252455336267181195264",
+     "areaMm2": 665.574531,
+     "vertices": 7,
+     "bordesCorte": 6,
+     "islas": 0,
+     "centroideMm": [
+      317.523473,
+      -181.61005
+     ]
+    },
+    {
+     "id": "F5",
+     "creases": [
+      "C2"
+     ],
+     "area": "206015996639033368940540600831/309485009821345068724781056",
+     "areaMm2": 665.673587,
+     "vertices": 7,
+     "bordesCorte": 6,
+     "islas": 0,
+     "centroideMm": [
+      317.696286,
+      -320.679614
+     ]
+    },
+    {
+     "id": "F6",
+     "creases": [
+      "C3",
+      "C11"
+     ],
+     "area": "247581784652816543030242701395/154742504910672534362390528",
+     "areaMm2": 1599.959783,
+     "vertices": 6,
+     "bordesCorte": 4,
+     "islas": 0,
+     "centroideMm": [
+      277.609888,
+      -331.6457
+     ]
+    },
+    {
+     "id": "F7",
+     "creases": [
+      "C3"
+     ],
+     "area": "48928752312246742432442561635/154742504910672534362390528",
+     "areaMm2": 316.194651,
+     "vertices": 4,
+     "bordesCorte": 3,
+     "islas": 0,
+     "centroideMm": [
+      277.609888,
+      -356.593546
+     ]
+    },
+    {
+     "id": "F8",
+     "creases": [
+      "C4",
+      "C8",
+      "C9"
+     ],
+     "area": "2983209772887772106450945662407/618970019642690137449562112",
+     "areaMm2": 4819.635327,
+     "vertices": 6,
+     "bordesCorte": 3,
+     "islas": 0,
+     "centroideMm": [
+      197.610878,
+      -250.895274
+     ]
+    },
+    {
+     "id": "F9",
+     "creases": [
+      "C4"
+     ],
+     "area": "1089585715974029361966561785727/618970019642690137449562112",
+     "areaMm2": 1760.320664,
+     "vertices": 4,
+     "bordesCorte": 3,
+     "islas": 0,
+     "centroideMm": [
+      170.168354,
+      -251.143982
+     ]
+    },
+    {
+     "id": "F10",
+     "creases": [
+      "C5",
+      "C6",
+      "C11"
+     ],
+     "area": "5935628100262536358284483296435/1237940039285380274899124224",
+     "areaMm2": 4794.762195,
+     "vertices": 14,
+     "bordesCorte": 11,
+     "islas": 0,
+     "centroideMm": [
+      277.609888,
+      -251.700093
+     ]
+    },
+    {
+     "id": "F11",
+     "creases": [
+      "C6",
+      "C7",
+      "C9",
+      "C10"
+     ],
+     "area": "2971156944465396300806760433161/618970019642690137449562112",
+     "areaMm2": 4800.162932,
+     "vertices": 6,
+     "bordesCorte": 2,
+     "islas": 0,
+     "centroideMm": [
+      237.610383,
+      -251.143982
+     ]
+    },
+    {
+     "id": "F12",
+     "creases": [
+      "C7"
+     ],
+     "area": "1647882628655005613272650469827/2475880078570760549798248448",
+     "areaMm2": 665.574493,
+     "vertices": 7,
+     "bordesCorte": 6,
+     "islas": 0,
+     "centroideMm": [
+      237.696302,
+      -181.61005
+     ]
+    }
+   ],
+   "adyacencias": [
+    {
+     "a": 0,
+     "b": 1,
+     "creases": [
+      "C0"
+     ],
+     "longitudMm": 38.999386
+    },
+    {
+     "a": 0,
+     "b": 8,
+     "creases": [
+      "C8"
+     ],
+     "longitudMm": 39.997742
+    },
+    {
+     "a": 2,
+     "b": 4,
+     "creases": [
+      "C1"
+     ],
+     "longitudMm": 39.500327
+    },
+    {
+     "a": 2,
+     "b": 5,
+     "creases": [
+      "C2"
+     ],
+     "longitudMm": 39.500327
+    },
+    {
+     "a": 2,
+     "b": 10,
+     "creases": [
+      "C5"
+     ],
+     "longitudMm": 120.000268
+    },
+    {
+     "a": 3,
+     "b": 11,
+     "creases": [
+      "C10"
+     ],
+     "longitudMm": 39.500327
+    },
+    {
+     "a": 6,
+     "b": 7,
+     "creases": [
+      "C3"
+     ],
+     "longitudMm": 39.002912
+    },
+    {
+     "a": 6,
+     "b": 10,
+     "creases": [
+      "C11"
+     ],
+     "longitudMm": 39.997742
+    },
+    {
+     "a": 8,
+     "b": 9,
+     "creases": [
+      "C4"
+     ],
+     "longitudMm": 120.000268
+    },
+    {
+     "a": 8,
+     "b": 11,
+     "creases": [
+      "C9"
+     ],
+     "longitudMm": 120.000268
+    },
+    {
+     "a": 10,
+     "b": 11,
+     "creases": [
+      "C6"
+     ],
+     "longitudMm": 120.000268
+    },
+    {
+     "a": 11,
+     "b": 12,
+     "creases": [
+      "C7"
+     ],
+     "longitudMm": 39.500322
+    }
+   ],
+   "creases": [
+    {
+     "id": "C0",
+     "separaMm": 38.999386,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "0-1"
+     ]
+    },
+    {
+     "id": "C1",
+     "separaMm": 39.500327,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "2-4"
+     ]
+    },
+    {
+     "id": "C2",
+     "separaMm": 39.500327,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "2-5"
+     ]
+    },
+    {
+     "id": "C3",
+     "separaMm": 39.002912,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "6-7"
+     ]
+    },
+    {
+     "id": "C4",
+     "separaMm": 120.000268,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "8-9"
+     ]
+    },
+    {
+     "id": "C5",
+     "separaMm": 120.000268,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "2-10"
+     ]
+    },
+    {
+     "id": "C6",
+     "separaMm": 120.000268,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "10-11"
+     ]
+    },
+    {
+     "id": "C7",
+     "separaMm": 39.500322,
+     "colganteMm": 0,
+     "sobreCorteMm": 0.500947,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "11-12"
+     ]
+    },
+    {
+     "id": "C8",
+     "separaMm": 39.997742,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "0-8"
+     ]
+    },
+    {
+     "id": "C9",
+     "separaMm": 120.000268,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "8-11"
+     ]
+    },
+    {
+     "id": "C10",
+     "separaMm": 39.500327,
+     "colganteMm": 0,
+     "sobreCorteMm": 0.500941,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "3-11"
+     ]
+    },
+    {
+     "id": "C11",
+     "separaMm": 39.997742,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "6-10"
+     ]
+    }
+   ],
+   "componentesPaneles": 1,
+   "conservacion": {
+    "exacta": true,
+    "esperadaMm2": 27449.924319,
+    "generadaMm2": 27449.924319,
+    "esperada": "33981360389761947126997386824431/1237940039285380274899124224",
+    "contornosCruzados": false
+   }
+  },
+  "ill-real-caja-botanica@eps=0.05": {
+   "fixture": "tests/fixtures/illustrator-real/ill-real-caja-botanica.dieline.json",
+   "sha256Fixture": "20cdc195bb800fd31711b56279505b37d1567be6aed7c0429d0b93708135f794",
+   "opciones": {
+    "eps": "0.05",
+    "rho": "3",
+    "curvas": "anclas"
+   },
+   "contornoIntacto": true,
+   "segmentosLongitudCero": 4,
+   "arreglo": {
+    "vertices": 68,
+    "aristas": 82,
+    "ciclos": 16,
+    "componentesGrafo": 1,
+    "eulerOK": true,
+    "paridadCoherente": true
+   },
+   "ajustes": 19,
+   "ambiguedades": [],
+   "paneles": [
+    {
+     "id": "F0",
+     "creases": [
+      "C0",
+      "C8"
+     ],
+     "area": "977936991942240323388413355309/618970019642690137449562112",
+     "areaMm2": 1579.942422,
+     "vertices": 7,
+     "bordesCorte": 5,
+     "islas": 0,
+     "centroideMm": [
+      197.608648,
+      329.104828
+     ]
+    },
+    {
+     "id": "F1",
+     "creases": [
+      "C0"
+     ],
+     "area": "48941162139840191866208799117/154742504910672534362390528",
+     "areaMm2": 316.274847,
+     "vertices": 4,
+     "bordesCorte": 3,
+     "islas": 0,
+     "centroideMm": [
+      197.607646,
+      353.803945
+     ]
+    },
+    {
+     "id": "F2",
+     "creases": [
+      "C1",
+      "C2",
+      "C5"
+     ],
+     "area": "1485596608001135979479021592455/309485009821345068724781056",
+     "areaMm2": 4800.221532,
+     "vertices": 6,
+     "bordesCorte": 3,
+     "islas": 0,
+     "centroideMm": [
+      317.607826,
+      248.856656
+     ]
+    },
+    {
+     "id": "F3",
+     "creases": [
+      "C10"
+     ],
+     "area": "824116850660844588227111610883/1237940039285380274899124224",
+     "areaMm2": 665.71629,
+     "vertices": 7,
+     "bordesCorte": 6,
+     "islas": 0,
+     "centroideMm": [
+      237.52237,
+      179.320708
+     ]
+    },
+    {
+     "id": "F4",
+     "creases": [
+      "C1"
+     ],
+     "area": "411975628398984696376314216561/618970019642690137449562112",
+     "areaMm2": 665.582525,
+     "vertices": 9,
+     "bordesCorte": 8,
+     "islas": 0,
+     "centroideMm": [
+      317.52193,
+      318.390986
+     ]
+    },
+    {
+     "id": "F5",
+     "creases": [
+      "C2"
+     ],
+     "area": "824073437306599989746338406309/1237940039285380274899124224",
+     "areaMm2": 665.681221,
+     "vertices": 7,
+     "bordesCorte": 6,
+     "islas": 0,
+     "centroideMm": [
+      317.694738,
+      179.32061
+     ]
+    },
+    {
+     "id": "F6",
+     "creases": [
+      "C3",
+      "C11"
+     ],
+     "area": "568946585099771893533457170917590065456518944651671795943404058423031810658976368649502141815572808633/355588877860548036785895180202893405883925779126278375686912222630392894545749903526424848287924224",
+     "areaMm2": 1600.012319,
+     "vertices": 10,
+     "bordesCorte": 8,
+     "islas": 0,
+     "centroideMm": [
+      277.607962,
+      168.354034
+     ]
+    },
+    {
+     "id": "F7",
+     "creases": [
+      "C3"
+     ],
+     "area": "112424373650262978190737995995904991610556009839556902540651266689577893017743791748132629686625817823/355588877860548036785895180202893405883925779126278375686912222630392894545749903526424848287924224",
+     "areaMm2": 316.16392,
+     "vertices": 4,
+     "bordesCorte": 3,
+     "islas": 0,
+     "centroideMm": [
+      277.608783,
+      143.405937
+     ]
+    },
+    {
+     "id": "F8",
+     "creases": [
+      "C4",
+      "C8",
+      "C9"
+     ],
+     "area": "16603839978466010987878332211084289652017347330368418552907/3444927347017313049336741461506898584806511544222351360",
+     "areaMm2": 4819.793948,
+     "vertices": 7,
+     "bordesCorte": 4,
+     "islas": 0,
+     "centroideMm": [
+      197.610807,
+      249.105782
+     ]
+    },
+    {
+     "id": "F9",
+     "creases": [
+      "C4"
+     ],
+     "area": "2179454670140732586777021950241/1237940039285380274899124224",
+     "areaMm2": 1760.549462,
+     "vertices": 5,
+     "bordesCorte": 4,
+     "islas": 0,
+     "centroideMm": [
+      170.166851,
+      248.85428
+     ]
+    },
+    {
+     "id": "F10",
+     "creases": [
+      "C5",
+      "C6",
+      "C11"
+     ],
+     "area": "1483858023271044231027626821285/309485009821345068724781056",
+     "areaMm2": 4794.603862,
+     "vertices": 12,
+     "bordesCorte": 9,
+     "islas": 0,
+     "centroideMm": [
+      277.608961,
+      248.2996
+     ]
+    },
+    {
+     "id": "F11",
+     "creases": [
+      "C6",
+      "C7",
+      "C9",
+      "C10"
+     ],
+     "area": "64767961124331249307066427319900163959998044474416755872639742902493391250349083224586592033685608013/13492906506439935006116236696728627106330726169371311885127746176363329858313955614004697188270080",
+     "areaMm2": 4800.148959,
+     "vertices": 7,
+     "bordesCorte": 3,
+     "islas": 0,
+     "centroideMm": [
+      237.610497,
+      248.858389
+     ]
+    },
+    {
+     "id": "F12",
+     "creases": [
+      "C7"
+     ],
+     "area": "287365464324067437097430821245585586183642278476131700986017120363887316741200006713381388939961633517/431773008206077920195719574295316067402583237419881980324087877643626555466046579648150310024642560",
+     "areaMm2": 665.547542,
+     "vertices": 7,
+     "bordesCorte": 6,
+     "islas": 0,
+     "centroideMm": [
+      237.694648,
+      318.391487
+     ]
+    }
+   ],
+   "adyacencias": [
+    {
+     "a": 0,
+     "b": 1,
+     "creases": [
+      "C0"
+     ],
+     "longitudMm": 38.999614
+    },
+    {
+     "a": 0,
+     "b": 8,
+     "creases": [
+      "C8"
+     ],
+     "longitudMm": 39.997971
+    },
+    {
+     "a": 2,
+     "b": 4,
+     "creases": [
+      "C1"
+     ],
+     "longitudMm": 39.500585
+    },
+    {
+     "a": 2,
+     "b": 5,
+     "creases": [
+      "C2"
+     ],
+     "longitudMm": 39.500564
+    },
+    {
+     "a": 2,
+     "b": 10,
+     "creases": [
+      "C5"
+     ],
+     "longitudMm": 120.000977
+    },
+    {
+     "a": 3,
+     "b": 11,
+     "creases": [
+      "C10"
+     ],
+     "longitudMm": 39.500542
+    },
+    {
+     "a": 6,
+     "b": 7,
+     "creases": [
+      "C3"
+     ],
+     "longitudMm": 39.001358
+    },
+    {
+     "a": 6,
+     "b": 10,
+     "creases": [
+      "C11"
+     ],
+     "longitudMm": 39.997971
+    },
+    {
+     "a": 8,
+     "b": 9,
+     "creases": [
+      "C4"
+     ],
+     "longitudMm": 120.000977
+    },
+    {
+     "a": 8,
+     "b": 11,
+     "creases": [
+      "C9"
+     ],
+     "longitudMm": 120.002704
+    },
+    {
+     "a": 10,
+     "b": 11,
+     "creases": [
+      "C6"
+     ],
+     "longitudMm": 120.000977
+    },
+    {
+     "a": 11,
+     "b": 12,
+     "creases": [
+      "C7"
+     ],
+     "longitudMm": 39.498814
+    }
+   ],
+   "creases": [
+    {
+     "id": "C0",
+     "separaMm": 38.999614,
+     "colganteMm": 0,
+     "sobreCorteMm": 0.003467,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "0-1"
+     ]
+    },
+    {
+     "id": "C1",
+     "separaMm": 39.500585,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "2-4"
+     ]
+    },
+    {
+     "id": "C2",
+     "separaMm": 39.500564,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "2-5"
+     ]
+    },
+    {
+     "id": "C3",
+     "separaMm": 39.001358,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0.003531,
+     "bordeMm": 0,
+     "pares": [
+      "6-7"
+     ]
+    },
+    {
+     "id": "C4",
+     "separaMm": 120.000977,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "8-9"
+     ]
+    },
+    {
+     "id": "C5",
+     "separaMm": 120.000977,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "2-10"
+     ]
+    },
+    {
+     "id": "C6",
+     "separaMm": 120.000977,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "10-11"
+     ]
+    },
+    {
+     "id": "C7",
+     "separaMm": 39.498814,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0.504427,
+     "bordeMm": 0,
+     "pares": [
+      "11-12"
+     ]
+    },
+    {
+     "id": "C8",
+     "separaMm": 39.997971,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "0-8"
+     ]
+    },
+    {
+     "id": "C9",
+     "separaMm": 120.002704,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "8-11"
+     ]
+    },
+    {
+     "id": "C10",
+     "separaMm": 39.500542,
+     "colganteMm": 0,
+     "sobreCorteMm": 0.497472,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "3-11"
+     ]
+    },
+    {
+     "id": "C11",
+     "separaMm": 39.997971,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "6-10"
+     ]
+    }
+   ],
+   "componentesPaneles": 1,
+   "conservacion": {
+    "exacta": true,
+    "esperadaMm2": 27450.23885,
+    "generadaMm2": 27450.23885,
+    "esperada": "16990874880469983518463427860431/618970019642690137449562112",
+    "contornosCruzados": false
+   }
+  },
+  "caja-botanica-illustrator-export@eps=0.05": {
+   "fixture": "tests/fixtures/real/caja-botanica-illustrator-export.dieline.json",
+   "sha256Fixture": "ead6bed5e659ee6318d0c226f3f5c1af4695e848261b121811629e63303258d7",
+   "opciones": {
+    "eps": "0.05",
+    "rho": "3",
+    "curvas": "anclas"
+   },
+   "contornoIntacto": true,
+   "segmentosLongitudCero": 4,
+   "arreglo": {
+    "vertices": 73,
+    "aristas": 90,
+    "ciclos": 19,
+    "componentesGrafo": 1,
+    "eulerOK": true,
+    "paridadCoherente": true
+   },
+   "ajustes": 18,
+   "ambiguedades": [],
+   "paneles": [
+    {
+     "id": "F0",
+     "creases": [
+      "C0",
+      "C5",
+      "C6"
+     ],
+     "area": "834668891208670958875624505505/309485009821345068724781056",
+     "areaMm2": 2696.960643,
+     "vertices": 13,
+     "bordesCorte": 10,
+     "islas": 0,
+     "centroideMm": [
+      208.206577,
+      188.774656
+     ]
+    },
+    {
+     "id": "F1",
+     "creases": [
+      "C0",
+      "C8"
+     ],
+     "area": "1053288063432160164750582762863362608410394533746859224246372788874497475159846969775674730040679331641001926946911/1170311976802234934350462626633212654895144757867398035809875902346989375674630804349047797809097494417956143104",
+     "areaMm2": 900.006224,
+     "vertices": 10,
+     "bordesCorte": 8,
+     "islas": 0,
+     "centroideMm": [
+      208.205812,
+      248.733791
+     ]
+    },
+    {
+     "id": "F2",
+     "creases": [
+      "C1",
+      "C2",
+      "C4",
+      "C5"
+     ],
+     "area": "16148224438222327739873568239713860187160686453571092986286374301536765689042194512121239185220076305162137464594246752714160721553115129908817/5980647358565914630243166900682602396964899616390753624804140666634806823281144866146276163200471385739220561252951421491995281993318268928",
+     "areaMm2": 2700.079685,
+     "vertices": 10,
+     "bordesCorte": 6,
+     "islas": 0,
+     "centroideMm": [
+      178.207752,
+      188.355552
+     ]
+    },
+    {
+     "id": "F3",
+     "creases": [
+      "C10"
+     ],
+     "area": "926943413546706449829559383255/2475880078570760549798248448",
+     "areaMm2": 374.389463,
+     "vertices": 8,
+     "bordesCorte": 7,
+     "islas": 0,
+     "centroideMm": [
+      238.141258,
+      136.206157
+     ]
+    },
+    {
+     "id": "F4",
+     "creases": [
+      "C11"
+     ],
+     "area": "6882340805046024811474323617/38685626227668133590597632",
+     "areaMm2": 177.90434,
+     "vertices": 4,
+     "bordesCorte": 3,
+     "islas": 0,
+     "centroideMm": [
+      148.205601,
+      109.64646
+     ]
+    },
+    {
+     "id": "F5",
+     "creases": [
+      "C1"
+     ],
+     "area": "6818655882195366594946674949775695374677014520251923916695420102362792773/18209066842964264497970688552505450238616418503604402575639527653638144",
+     "areaMm2": 374.464872,
+     "vertices": 7,
+     "bordesCorte": 6,
+     "islas": 0,
+     "centroideMm": [
+      178.141635,
+      240.508792
+     ]
+    },
+    {
+     "id": "F6",
+     "creases": [
+      "C2",
+      "C3",
+      "C7"
+     ],
+     "area": "10507096445765906357150007784545641475730641358305966626933/3875538382824922581375360591797216633751675667266666496",
+     "areaMm2": 2711.132082,
+     "vertices": 7,
+     "bordesCorte": 4,
+     "islas": 0,
+     "centroideMm": [
+      148.208001,
+      188.170018
+     ]
+    },
+    {
+     "id": "F7",
+     "creases": [
+      "C3",
+      "C11"
+     ],
+     "area": "550088685327337820300966752801/618970019642690137449562112",
+     "areaMm2": 888.716203,
+     "vertices": 7,
+     "bordesCorte": 5,
+     "islas": 0,
+     "centroideMm": [
+      148.206354,
+      128.170781
+     ]
+    },
+    {
+     "id": "F8",
+     "creases": [
+      "C4"
+     ],
+     "area": "304432286504095139585705240413333752634585712099572195660450025018370771580883905206512510579293655/813186407613828532636125127300684722351695595401216157239172586078735073019453181790249367371776",
+     "areaMm2": 374.36962,
+     "vertices": 7,
+     "bordesCorte": 6,
+     "islas": 0,
+     "centroideMm": [
+      178.270844,
+      136.205778
+     ]
+    },
+    {
+     "id": "F9",
+     "creases": [
+      "C6",
+      "C9",
+      "C10"
+     ],
+     "area": "3342585886073978925199923934983/1237940039285380274899124224",
+     "areaMm2": 2700.119376,
+     "vertices": 8,
+     "bordesCorte": 5,
+     "islas": 0,
+     "centroideMm": [
+      238.205698,
+      188.356875
+     ]
+    },
+    {
+     "id": "F10",
+     "creases": [
+      "C7"
+     ],
+     "area": "153243000415713048768035260951/154742504910672534362390528",
+     "areaMm2": 990.309679,
+     "vertices": 5,
+     "bordesCorte": 4,
+     "islas": 0,
+     "centroideMm": [
+      127.625028,
+      188.358678
+     ]
+    },
+    {
+     "id": "F11",
+     "creases": [
+      "C8"
+     ],
+     "area": "208130417149200426474797695009008062010182393365435740207949631049654362979127390605306155054435548327760179731857/1170311976802234934350462626633212654895144757867398035809875902346989375674630804349047797809097494417956143104",
+     "areaMm2": 177.841824,
+     "vertices": 4,
+     "bordesCorte": 3,
+     "islas": 0,
+     "centroideMm": [
+      208.206447,
+      267.444856
+     ]
+    },
+    {
+     "id": "F12",
+     "creases": [
+      "C9"
+     ],
+     "area": "115885122437136321176908465373/309485009821345068724781056",
+     "areaMm2": 374.445026,
+     "vertices": 7,
+     "bordesCorte": 6,
+     "islas": 0,
+     "centroideMm": [
+      238.270867,
+      240.508867
+     ]
+    }
+   ],
+   "adyacencias": [
+    {
+     "a": 0,
+     "b": 1,
+     "creases": [
+      "C0"
+     ],
+     "longitudMm": 29.998458
+    },
+    {
+     "a": 0,
+     "b": 2,
+     "creases": [
+      "C5"
+     ],
+     "longitudMm": 90.000667
+    },
+    {
+     "a": 0,
+     "b": 9,
+     "creases": [
+      "C6"
+     ],
+     "longitudMm": 90.000667
+    },
+    {
+     "a": 1,
+     "b": 11,
+     "creases": [
+      "C8"
+     ],
+     "longitudMm": 29.25101
+    },
+    {
+     "a": 2,
+     "b": 5,
+     "creases": [
+      "C1"
+     ],
+     "longitudMm": 29.625396
+    },
+    {
+     "a": 2,
+     "b": 6,
+     "creases": [
+      "C2"
+     ],
+     "longitudMm": 90.00199
+    },
+    {
+     "a": 2,
+     "b": 8,
+     "creases": [
+      "C4"
+     ],
+     "longitudMm": 29.624073
+    },
+    {
+     "a": 3,
+     "b": 9,
+     "creases": [
+      "C10"
+     ],
+     "longitudMm": 29.625396
+    },
+    {
+     "a": 4,
+     "b": 7,
+     "creases": [
+      "C11"
+     ],
+     "longitudMm": 29.249688
+    },
+    {
+     "a": 6,
+     "b": 7,
+     "creases": [
+      "C3"
+     ],
+     "longitudMm": 29.998458
+    },
+    {
+     "a": 6,
+     "b": 10,
+     "creases": [
+      "C7"
+     ],
+     "longitudMm": 90.000667
+    },
+    {
+     "a": 9,
+     "b": 12,
+     "creases": [
+      "C9"
+     ],
+     "longitudMm": 29.625396
+    }
+   ],
+   "creases": [
+    {
+     "id": "C0",
+     "separaMm": 29.998458,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "0-1"
+     ]
+    },
+    {
+     "id": "C1",
+     "separaMm": 29.625396,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0.373063,
+     "bordeMm": 0,
+     "pares": [
+      "2-5"
+     ]
+    },
+    {
+     "id": "C2",
+     "separaMm": 90.00199,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "2-6"
+     ]
+    },
+    {
+     "id": "C3",
+     "separaMm": 29.998458,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "6-7"
+     ]
+    },
+    {
+     "id": "C4",
+     "separaMm": 29.624073,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0.378354,
+     "bordeMm": 0,
+     "pares": [
+      "2-8"
+     ]
+    },
+    {
+     "id": "C5",
+     "separaMm": 90.000667,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "0-2"
+     ]
+    },
+    {
+     "id": "C6",
+     "separaMm": 90.000667,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "0-9"
+     ]
+    },
+    {
+     "id": "C7",
+     "separaMm": 90.000667,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "6-10"
+     ]
+    },
+    {
+     "id": "C8",
+     "separaMm": 29.25101,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0.002646,
+     "bordeMm": 0,
+     "pares": [
+      "1-11"
+     ]
+    },
+    {
+     "id": "C9",
+     "separaMm": 29.625396,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "9-12"
+     ]
+    },
+    {
+     "id": "C10",
+     "separaMm": 29.625396,
+     "colganteMm": 0,
+     "sobreCorteMm": 0,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "3-9"
+     ]
+    },
+    {
+     "id": "C11",
+     "separaMm": 29.249688,
+     "colganteMm": 0,
+     "sobreCorteMm": 0.002646,
+     "fueraMm": 0,
+     "bordeMm": 0,
+     "pares": [
+      "4-7"
+     ]
+    }
+   ],
+   "componentesPaneles": 1,
+   "conservacion": {
+    "exacta": true,
+    "esperadaMm2": 15440.739038,
+    "generadaMm2": 15440.739038,
+    "esperada": "19114709091587982798025692699163/1237940039285380274899124224",
+    "contornosCruzados": false
+   }
+  }
+ }
+}
