@@ -109,15 +109,26 @@ Sin fallos intermitentes: la carrera `install-dry-run` ↔ `a4-herramienta` (inc
 
 | Id | Asunto | Situación |
 |---|---|---|
-| D-F2A2R-1 | Regla explícita para uniones **ambiguas** (ejes paralelos desplazados, A-1): ¿unificarlas en un eje o bloquearlas siempre? | Hoy se bloquean con diagnóstico; ninguna aparece en los troqueles reales disponibles |
-| D-F2A2R-2 | **Uniones no plegables en datos reales fuera de dominio** (A-7: tramos de ruido de 0,003 mm sin ajuste) fragmentan el modelo en componentes | Correcto geométricamente sin ajuste; con ε 0,05 la Caja Botánica vuelve a 12 bisagras plegables. La interfaz futura debe mostrarlas |
-| D-F2A2R-3 | Coste añadido de la corrección (criterio 5: 4/10) | No optimizado por instrucción; revisable en una intervención de rendimiento autorizada |
-| D-F2A2R-4 | Las uniones a través de islas (crease cerrada interior) no tienen aristas en los polígonos del oráculo: la clasificación independiente no las cubre | Cubiertas por la prueba específica de la crease cerrada |
+| D-F2A2R-1 (**aprobada**, §13) | Regla explícita para uniones **ambiguas** (ejes paralelos desplazados, A-1): ¿unificarlas en un eje o bloquearlas siempre? | Hoy se bloquean con diagnóstico; ninguna aparece en los troqueles reales disponibles |
+| D-F2A2R-2 (**aprobada**, §13) | **Uniones no plegables en datos reales fuera de dominio** (A-7: tramos de ruido de 0,003 mm sin ajuste) fragmentan el modelo en componentes | Correcto geométricamente sin ajuste; con ε 0,05 la Caja Botánica vuelve a 12 bisagras plegables. La interfaz futura debe mostrarlas |
+| D-F2A2R-3 (**aprobada**, §13) | Coste añadido de la corrección (criterio 5: 4/10) | No optimizado por instrucción; revisable en una intervención de rendimiento autorizada |
+| D-F2A2R-4 (**aprobada**, §13) | Las uniones a través de islas (crease cerrada interior) no tienen aristas en los polígonos del oráculo: la clasificación independiente no las cubre | Cubiertas por la prueba específica de la crease cerrada |
 | (heredadas) | D-F2A2-1…10 de `F2A2_INFORME.md` §10 | Sin cambios; D-F2A2-5 queda resuelta por H-01 (bloqueo en lugar de eje más largo) |
 
 ## 11. Riesgos
 
 Sin tolerancias nuevas, la clasificación depende del ajuste (ε experimental): sin él, el ruido de 0,003 mm basta para que una unión real sea no plegable (comportamiento correcto y diagnosticado, pero visible). Rendimiento (§7). Chromium 99 real y CEP siguen sin probar. Integración (F2A-5) pendiente de D-F2A2-1.
+
+## 13. Cierre: segunda auditoría independiente y decisiones aprobadas (usuario, 2026-10-27)
+
+La segunda auditoría independiente aprueba el **cierre técnico de F2A-2R con condiciones**: H-01 y H-02 se consideran corregidos. Decisiones aprobadas:
+
+| Id | Decisión |
+|---|---|
+| **D-F2A2R-1** | Las uniones **ambiguas** (ejes paralelos desplazados) permanecen **bloqueadas por defecto**. No se permite unificar ejes con ajustes automáticos ni usar el tramo más largo en lugar de la unión completa |
+| **D-F2A2R-2** | Las uniones **no plegables** de A-7 (geometría fuera de dominio) se **conservan y diagnostican**: no se ocultan, no se descartan en silencio y no se cambian tolerancias para que el árbol cierre. Su representación en la interfaz queda para una fase posterior |
+| **D-F2A2R-3** | Se autoriza **F2A-2P**, intervención experimental para investigar y optimizar el coste añadido por H-01/H-02 **sin cambiar sus resultados** (informe `docs/fase2/F2A2P_INFORME.md`) |
+| **D-F2A2R-4** | Se conservan **pruebas explícitas** de uniones a través de islas y de creases cerradas interiores; el clasificador independiente basado en polígonos no basta por sí solo |
 
 ## 12. Punto de parada
 
