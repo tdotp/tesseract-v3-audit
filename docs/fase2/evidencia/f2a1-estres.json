@@ -1,0 +1,14 @@
+{
+ "transformaciones": {
+  "casos": 300,
+  "fallos": []
+ },
+ "sinteticos": {
+  "casos": 2000,
+  "fallos": [],
+  "conPaneles": 596,
+  "conCruces": 865,
+  "conColgantes": 1914
+ },
+ "segundos": 71.601
+}

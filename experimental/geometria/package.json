@@ -1,0 +1,5 @@
+{
+  "type": "module",
+  "private": true,
+  "description": "F2A-1: núcleo geométrico EXPERIMENTAL. Fuera de src/: ni el bundle ni el panel CEP lo usan."
+}
