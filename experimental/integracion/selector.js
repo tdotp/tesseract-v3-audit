@@ -110,6 +110,7 @@ export function createLegacyEngine(options) {
   };
 
   function buildPanelsActivo(d) {
+    log(`Motor de geometría: modo ACTIVO — esta construcción usa el motor experimental ${ID_MOTOR_EXPERIMENTAL} (no persistente; desactivar: __tessMotorExperimental.desactivar()).`); // «Continue to 3D» limpia el log: se repite en cada construcción
     const antes = huella(d); let X = null, error = null;
     try { X = motores.activo.buildPanels(d); if (!esObjeto(X) || !Array.isArray(X.panels) || !Array.isArray(X.creaseEdges)) throw fallo('adaptador-incoherente', 'buildPanels', 'el experimental no devolvió {panels[], creaseEdges[]}'); }
     catch (e) { error = e; }
