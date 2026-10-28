@@ -5,3 +5,4 @@ dist/
 .scratch/
 tests/results/
 .dist.lock/
+dist-experimental*/
