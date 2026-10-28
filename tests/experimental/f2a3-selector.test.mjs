@@ -42,7 +42,7 @@ describe('F2A-3 · I-2 · 1. modo SOMBRA (predeterminado): exactamente el legacy
   test('forma: congelado, v1 + controles; arranca en sombra; validate ES el del legacy', () => {
     const { S } = sel(); assert.ok(Object.isFrozen(S)); assert.equal(S.modo(), 'sombra'); assert.equal(S.contract, 1); assert.equal(S.validate, crearLegacy({}).validate);
     for (const k of ['validate', 'buildPanels', 'buildAdjacency', 'buildFoldTree', 'defaultBaseIndex']) assert.equal(typeof S[k], 'function', k);
-    assert.deepEqual(Object.keys(S).sort(), ['buildAdjacency', 'buildFoldTree', 'buildPanels', 'cambiarModo', 'congelarSalidas', 'contract', 'defaultBaseIndex', 'diagnosticos', 'eps', 'id', 'modo', 'origenDelModelo', 'registro', 'simularFallo', 'suscribir', 'validate']);
+    assert.deepEqual(Object.keys(S).sort(), ['buildAdjacency', 'buildFoldTree', 'buildPanels', 'cambiarModo', 'congelarSalidas', 'contract', 'defaultBaseIndex', 'diagnosticos', 'eps', 'id', 'modo', 'origenDelModelo', 'registro', 'simularFallo', 'suscribir', 'tiempos', 'validate']);
   });
   test(`${Object.keys(CASOS).length} casos, uno a uno: salidas, excepciones y log idénticos al legacy solo; la sombra anota una comparación por etapa`, () => {
     let comparados = 0;
@@ -221,5 +221,15 @@ describe('F2A-3 · Entrega 2 · controles del selector para la interfaz: suscrip
   });
   test('avisarCambioDeOrigen: false (lo usa la interfaz experimental, que reinicia la base) ⇒ sin aviso KI-30 del selector', () => {
     const { S, logs } = sel({ avisarCambioDeOrigen: false }); S.buildPanels(CAJA()); S.cambiarModo('activo', { confirmacion: CONFIRMACION_ACTIVO }); S.buildPanels(CAJA()); assert.ok(!logs.some((l) => /KI-30/.test(l)));
+  });
+});
+
+describe('RC · tiempos por operación (medición en CEP real)', () => {
+  test('cada operación v1 anota op, modo, origen y ms con el reloj inyectado; medir no cambia salidas, excepciones ni log; acotado', () => {
+    let t = 0; const reloj = () => (t += 5); const ref = legacySolo(() => [CAJA()]); const { S, logs } = sel({ reloj }); assert.equal(flujoUI(S, [CAJA()]), ref.salida); assert.deepEqual(logs, ref.logs);
+    const T = S.tiempos(); assert.deepEqual([...new Set(T.map((x) => x.op))].sort(), ['buildAdjacency', 'buildFoldTree', 'buildPanels', 'defaultBaseIndex']); assert.ok(T.every((x) => x.modo === 'sombra' && x.origen === 'legacy' && x.ms > 0), JSON.stringify(T));
+    S.cambiarModo('activo', { confirmacion: CONFIRMACION_ACTIVO }); const m = S.buildPanels(CAJA()); S.buildFoldTree(m.panels, S.buildAdjacency(m.panels, m.creaseEdges), 0); assert.deepEqual(S.tiempos().slice(-3).map((x) => [x.op, x.origen]), [['buildPanels', 'experimental'], ['buildAdjacency', 'experimental'], ['buildFoldTree', 'experimental']]);
+    assert.equal(errorOf(() => S.buildPanels(null)), errorOf(() => crearLegacy({ log: () => {} }).buildPanels(null)), 'la excepción del legacy pasa intacta'); assert.equal(S.tiempos().at(-1).op, 'buildPanels');
+    for (let i = 0; i < MAX_REGISTRO + 5; i++) S.buildAdjacency(m.panels, m.creaseEdges); assert.equal(S.tiempos().length, MAX_REGISTRO); const c = S.tiempos(); c[0].ms = -1; assert.notEqual(S.tiempos()[0].ms, -1, 'copia');
   });
 });

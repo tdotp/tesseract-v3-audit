@@ -51,6 +51,8 @@ test('G2 · motor de la construcción actual y diagnósticos: legacy con compara
   await doc(CASOS_F2A2R.ele()); await construir(); b = await B.eval(BARRA); assert.match(b.diag, /^Diagnósticos geométricos \(2\): 1 × unión no plegable, 1 × pieza desconectada de la base$/);
   assert.ok(b.items.some((t) => /^Unión no plegable: no se usa como bisagra · /.test(t)), JSON.stringify(b.items));
   await doc(CASOS_F2A2R.cicloFuera()); await construir(); b = await B.eval(BARRA); assert.match(b.diag, /ciclo de bisagras/); assert.match(b.diag, /pieza desconectada/);
+  await doc(JSON.parse(fs.readFileSync(path.join(ROOT, 'tests/fixtures/illustrator-real/ill-real-caja-botanica.dieline.json'), 'utf8'))); await construir(); b = await B.eval(BARRA);
+  assert.match(b.diag, /^Diagnósticos geométricos \(\d+\): \d+ × extremo de crease ajustado \(ε\)$/); assert.ok(b.items.length <= 3 && /^… y \d+ más: extremo de crease ajustado/.test(b.items.at(-1)), 'diagnósticos repetidos agrupados: ' + JSON.stringify(b.items));
   assert.deepEqual(B.errors.slice(e0), []);
 });
 

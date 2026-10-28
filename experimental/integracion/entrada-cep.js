@@ -15,17 +15,18 @@ export const AYUDA = `Tesseract V3 (experimental) · motor de geometría. Por de
   ${CONTROL_GLOBAL}.activar('${CONFIRMACION_ACTIVO}')      → modo ACTIVO (modelos nuevos con el experimental; pulse «Continue to 3D»)
   ${CONTROL_GLOBAL}.desactivar()                          → vuelve a SOMBRA
   ${CONTROL_GLOBAL}.registro()                            → comparaciones, fallbacks y fallos anotados
+  ${CONTROL_GLOBAL}.tiempos()                             → milisegundos de cada operación del motor (modo y origen)
   ${CONTROL_GLOBAL}.congelarSalidas(true | false)         → depuración: congela en profundidad los modelos experimentales nuevos
   ${CONTROL_GLOBAL}.simularFallo('buildFoldTree' | 'buildPanels' | null) → depuración: hace fallar al experimental para probar la recuperación
 Nada es persistente: al recargar el panel vuelve a SOMBRA.`;
 
 export function createLegacyEngine(options) {
-  const motor = crearSelector({ ...(options || {}), programar: (f) => { setTimeout(f, 0); }, avisarCambioDeOrigen: false }); // la interfaz experimental reinicia la base (KI-30)
+  const motor = crearSelector({ ...(options || {}), programar: (f) => { setTimeout(f, 0); }, reloj: () => performance.now(), avisarCambioDeOrigen: false }); // la interfaz experimental reinicia la base (KI-30)
   const control = Object.freeze({
     selector: motor.id, ayuda: () => AYUDA, modo: () => motor.modo(),
     activar: (confirmacion) => motor.cambiarModo('activo', { confirmacion }), desactivar: () => motor.cambiarModo('sombra'),
     registro: () => motor.registro(), origenDelModelo: (panelData) => motor.origenDelModelo(panelData), congelarSalidas: (v) => motor.congelarSalidas(v),
-    simularFallo: (etapa) => motor.simularFallo(etapa === undefined ? null : etapa), diagnosticos: (panelData, base) => motor.diagnosticos(panelData, base),
+    simularFallo: (etapa) => motor.simularFallo(etapa === undefined ? null : etapa), diagnosticos: (panelData, base) => motor.diagnosticos(panelData, base), tiempos: () => motor.tiempos(),
   });
   Object.defineProperty(globalThis, CONTROL_GLOBAL, { value: control, enumerable: false, writable: false, configurable: true });
   return motor;

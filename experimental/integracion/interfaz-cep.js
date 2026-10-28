@@ -22,6 +22,11 @@ const ETIQUETAS = { 'union-no-plegable': 'Unión no plegable: no se usa como bis
   'islas-dudosas': 'Islas dudosas', 'huecos-solo-en-extension': 'Huecos solo en la extensión', 'punto-ajustado-redondeado': 'Punto ajustado redondeado', 'banda-ambigua': 'Banda ambigua', ambiguo: 'Caso ambiguo', error: 'Error' };
 const etiqueta = (t) => ETIQUETAS[t] || t;
 const valor = (v) => (typeof v === 'number' ? String(Math.round(v * 1000) / 1000) : Array.isArray(v) ? v.slice(0, 6).map(valor).join(', ') + (v.length > 6 ? '…' : '') : v && typeof v === 'object' ? JSON.stringify(v).slice(0, 60) : String(v));
+export function agrupar(ds, maximo = 2) { // por tipo, en orden de aparición: los 2 primeros en detalle y una línea con el resto
+  const grupos = new Map(); for (const d of ds) { const k = d && d.tipo; if (!grupos.has(k)) grupos.set(k, []); grupos.get(k).push(d); }
+  const out = []; for (const [k, g] of grupos) { for (const d of g.slice(0, maximo)) out.push(describirDiagnostico(d)); if (g.length > maximo) out.push(`… y ${g.length - maximo} más: ${etiqueta(k).split(':')[0].toLowerCase()}`); }
+  return out;
+}
 export function describirDiagnostico(d) { // texto legible: etiqueta + mensaje o campos relevantes (sin origen ni tipo)
   const campos = Object.keys(d || {}).filter((k) => !['origen', 'tipo', 'mensaje', 'codigo'].includes(k)).map((k) => `${k} ${valor(d[k])}`);
   return `${etiqueta(d && d.tipo)}${d && d.mensaje ? ': ' + String(d.mensaje).slice(0, 160) : ''}${campos.length ? ' · ' + campos.join(' · ').slice(0, 160) : ''}`;
@@ -116,7 +121,7 @@ export function crearInterfaz(S, selector) {
     if (c.origen === 'experimental') { const base = S.currentBasePanelIndex; // un árbol por (modelo, base): se reutiliza mientras no cambien
       if (!E.diag || E.diag.panelData !== c.panelData || E.diag.base !== base) E.diag = { panelData: c.panelData, base, lista: selector.diagnosticos(c.panelData, base) };
       const ds = E.diag.lista; const cuenta = {}; for (const d of ds) cuenta[etiqueta(d.tipo).split(':')[0]] = (cuenta[etiqueta(d.tipo).split(':')[0]] || 0) + 1;
-      return { titulo: ds.length ? `Diagnósticos geométricos (${ds.length}): ${Object.entries(cuenta).map(([k, n]) => `${n} × ${k.toLowerCase()}`).join(', ')}` : 'Diagnósticos geométricos: ninguno', items: ds.map(describirDiagnostico) }; }
+      return { titulo: ds.length ? `Diagnósticos geométricos (${ds.length}): ${Object.entries(cuenta).map(([k, n]) => `${n} × ${k.toLowerCase()}`).join(', ')}` : 'Diagnósticos geométricos: ninguno', items: agrupar(ds) }; }
     const cmp = selector.registro().filter((x) => x.sombra && x.etapa === 'buildPanels').pop();
     if (!cmp) return { titulo: 'Comparación en sombra: pendiente', items: [] };
     if (cmp.fallo) return { titulo: 'Comparación en sombra: el experimental falló', items: [`${cmp.fallo.codigo || cmp.fallo.nombre}: ${cmp.fallo.mensaje}`] };

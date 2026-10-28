@@ -15,7 +15,7 @@
 //     árbol legacy para paneles experimentales. La solución transaccional (buildModel completo) queda para un contrato v2.
 // Opciones (además de las de createLegacyEngine): eps, congelar, programar(f), reloj(), umbralSombraMs, avisarCambioDeOrigen (por defecto true;
 // la interfaz experimental lo desactiva porque ella misma reinicia la base) y, solo en pruebas, crearLegacy, crearExperimental, dependenciasExperimentales.
-// Fuera de v1 (Entrega 2): suscribir(fn) a los cambios de modo, diagnosticos(panelData, base) del modelo experimental y simularFallo(etapa), un
+// Fuera de v1 (Entrega 2 y RC): tiempos() de cada operación, suscribir(fn) a los cambios de modo, diagnosticos(panelData, base) del modelo experimental y simularFallo(etapa), un
 // interruptor de DEPURACIÓN no persistente que hace fallar al experimental en una etapa para validar la recuperación en Illustrator real.
 import { createLegacyEngine as crearMotorLegacy, GEOMETRY_ENGINE_CONTRACT } from '../../src/core/engine.js';
 import { createExperimentalEngine, esModeloExperimental, EPS_EXPERIMENTAL, ID_MOTOR_EXPERIMENTAL } from './motor-v1.js';
@@ -142,38 +142,50 @@ export function createLegacyEngine(options) {
     return true;
   }
 
+  function v1BuildPanels(d) {
+    if (estado.modo === 'activo' && motores.activo) return buildPanelsActivo(d);
+    const copia = motores.sombra ? huella(d) : undefined; // copia profunda ANTES del legacy: la sombra ve la entrada original
+    const m = legacy.buildPanels(d); registrarLegacy(m); estado.ultimoOrigen = 'legacy'; sombraBuildPanels(copia, m);
+    return m;
+  }
+  function v1BuildAdjacency(panels, creaseEdges) {
+    if (esExp(panels)) return enExperimental('buildAdjacency', () => motores.activo.buildAdjacency(panels, creaseEdges));
+    if (contieneExp(panels, creaseEdges)) throw mezcla('buildAdjacency');
+    const A = legacy.buildAdjacency(panels, creaseEdges); if (esObjeto(panels) && legPaneles.has(panels) && sombraDe.has(panels)) sombraAdyacencias(panels, A);
+    return A;
+  }
+  function v1BuildFoldTree(panels, adjacency, baseIndex) {
+    if (esExp(panels)) return enExperimental('buildFoldTree', () => motores.activo.buildFoldTree(panels, adjacency, baseIndex));
+    if (contieneExp(panels, adjacency)) throw mezcla('buildFoldTree');
+    const T = legacy.buildFoldTree(panels, adjacency, baseIndex); if (esObjeto(panels) && legPaneles.has(panels) && sombraDe.has(panels)) sombraArbol(panels, T, baseIndex);
+    return T;
+  }
+  function v1DefaultBaseIndex(m) {
+    const panels = esObjeto(m) ? m.panels : undefined;
+    if (esExp(panels)) return enExperimental('defaultBaseIndex', () => motores.activo.defaultBaseIndex(m));
+    if (contieneExp(panels, esObjeto(m) ? m.creaseEdges : undefined)) throw mezcla('defaultBaseIndex');
+    return legacy.defaultBaseIndex(m);
+  }
+
+  // Tiempos de cada operación v1 (fuera de v1: tiempos()), con el reloj inyectado (en el bundle, performance.now). Medir no cambia nada
+  // observable: la excepción se propaga igual y no se escribe en el log. Lista acotada como el registro.
+  const tiempos = [];
+  const cronometrar = (op, f, panels) => { const t0 = reloj(); let origenOp = op === 'buildPanels' ? null : origen(panels); try { const r = f(); if (op === 'buildPanels') origenOp = origen(esObjeto(r) ? r.panels : undefined); return r; }
+    finally { try { tiempos.push({ op, modo: estado.modo, origen: origenOp, ms: reloj() - t0 }); if (tiempos.length > MAX_REGISTRO) tiempos.splice(0, tiempos.length - MAX_REGISTRO); } catch (x) { /* nunca rompe la operación */ } } };
+
   return Object.freeze({
     id: ID_SELECTOR, contract: GEOMETRY_ENGINE_CONTRACT,
     validate: legacy.validate, // los dos modos: el validador del legacy (D-F2A3-4)
-    buildPanels(d) {
-      if (estado.modo === 'activo' && motores.activo) return buildPanelsActivo(d);
-      const copia = motores.sombra ? huella(d) : undefined; // copia profunda ANTES del legacy: la sombra ve la entrada original
-      const m = legacy.buildPanels(d); registrarLegacy(m); estado.ultimoOrigen = 'legacy'; sombraBuildPanels(copia, m);
-      return m;
-    },
-    buildAdjacency(panels, creaseEdges) {
-      if (esExp(panels)) return enExperimental('buildAdjacency', () => motores.activo.buildAdjacency(panels, creaseEdges));
-      if (contieneExp(panels, creaseEdges)) throw mezcla('buildAdjacency');
-      const A = legacy.buildAdjacency(panels, creaseEdges); if (esObjeto(panels) && legPaneles.has(panels) && sombraDe.has(panels)) sombraAdyacencias(panels, A);
-      return A;
-    },
-    buildFoldTree(panels, adjacency, baseIndex) {
-      if (esExp(panels)) return enExperimental('buildFoldTree', () => motores.activo.buildFoldTree(panels, adjacency, baseIndex));
-      if (contieneExp(panels, adjacency)) throw mezcla('buildFoldTree');
-      const T = legacy.buildFoldTree(panels, adjacency, baseIndex); if (esObjeto(panels) && legPaneles.has(panels) && sombraDe.has(panels)) sombraArbol(panels, T, baseIndex);
-      return T;
-    },
-    defaultBaseIndex(m) {
-      const panels = esObjeto(m) ? m.panels : undefined;
-      if (esExp(panels)) return enExperimental('defaultBaseIndex', () => motores.activo.defaultBaseIndex(m));
-      if (contieneExp(panels, esObjeto(m) ? m.creaseEdges : undefined)) throw mezcla('defaultBaseIndex');
-      return legacy.defaultBaseIndex(m);
-    },
+    buildPanels: (d) => cronometrar('buildPanels', () => v1BuildPanels(d)),
+    buildAdjacency: (panels, creaseEdges) => cronometrar('buildAdjacency', () => v1BuildAdjacency(panels, creaseEdges), panels),
+    buildFoldTree: (panels, adjacency, baseIndex) => cronometrar('buildFoldTree', () => v1BuildFoldTree(panels, adjacency, baseIndex), panels),
+    defaultBaseIndex: (m) => cronometrar('defaultBaseIndex', () => v1DefaultBaseIndex(m), esObjeto(m) ? m.panels : undefined),
     // ── fuera de v1: control explícito, visible y no persistente ──
     modo: () => estado.modo,
     cambiarModo,
     origenDelModelo: (panelData) => origen(esObjeto(panelData) ? panelData.panels : undefined),
     registro: () => JSON.parse(JSON.stringify(registro)),
+    tiempos: () => tiempos.map((t) => ({ ...t })),
     congelarSalidas(v) { estado.congelar = !!v; const m = crearExp(true, estado.congelar); if (m) motores.activo = m; anotar({ control: 'congelar', a: estado.congelar });
       log(`Motor experimental: salidas ${estado.congelar ? 'CONGELADAS en profundidad (depuración)' : 'sin congelar'} para los modelos nuevos.`); return estado.congelar; },
     eps,
