@@ -1,0 +1,40 @@
+# F2A-2 · rendimiento y memoria (node --expose-gc tools/f2/rendimiento-plegado.mjs --json docs/fase2/evidencia/f2a2-rendimiento.json) · 2026-10-27 21:40 · HEAD 57a9c66
+Node v24.12.0 · arm64 · mediana de 20 · predicados = filtro/exacto/exactoCero de una ejecución del núcleo
+┌─────────┬────────────────────────────────────────────┬────────────┬────────────┬───────────┬─────────────┬────────────────┬──────────┬────────────┬──────────────┬──────────┬────────────┐
+│ (index) │ caso                                       │ L_total_ms │ N_total_ms │ total N/L │ N_nucleo_ms │ N_adaptador_ms │ N_ady_ms │ N_arbol_ms │ L_paneles_ms │ L_ady_ms │ L_arbol_ms │
+├─────────┼────────────────────────────────────────────┼────────────┼────────────┼───────────┼─────────────┼────────────────┼──────────┼────────────┼──────────────┼──────────┼────────────┤
+│ 0       │ 'caja-botanica-real'                       │ 2.789      │ 0.446      │ 0.16      │ 0.488       │ 0.13           │ 0.047    │ 0.017      │ 3.008        │ 0.021    │ 0.006      │
+│ 1       │ 'ill-real-caja-botanica (ε 0.05)'          │ 2.82       │ 1.339      │ 0.47      │ 1.356       │ -0.071         │ 0.042    │ 0.011      │ 2.915        │ 0.023    │ 0.005      │
+│ 2       │ 'histórico ×0.75 (ε 0.05)'                 │ 1.05       │ 1.91       │ 1.82      │ 2.01        │ 0.015          │ 0.03     │ 0.012      │ 1.035        │ 0.027    │ 0.005      │
+│ 3       │ 'ill-real-caja-simple'                     │ 0.059      │ 0.085      │ 1.44      │ 0.066       │ 0.016          │ 0.002    │ 0.001      │ 0.063        │ 0.001    │ 0          │
+│ 4       │ 'rejilla 2×2'                              │ 0.057      │ 0.115      │ 2.02      │ 0.08        │ 0.022          │ 0.013    │ 0.005      │ 0.062        │ 0.002    │ 0.001      │
+│ 5       │ 'rejilla 4×4'                              │ 0.946      │ 0.396      │ 0.42      │ 0.28        │ 0.087          │ 0.075    │ 0.022      │ 0.869        │ 0.046    │ 0.011      │
+│ 6       │ 'rejilla 6×6'                              │ 7.049      │ 0.952      │ 0.14      │ 0.706       │ 0.107          │ 0.182    │ 0.024      │ 6.682        │ 0.284    │ 0.014      │
+│ 7       │ 'rejilla 8×8'                              │ 28.672     │ 1.515      │ 0.05      │ 1.262       │ 0.184          │ 0.338    │ 0.042      │ 27.978       │ 0.911    │ 0.038      │
+│ 8       │ 'rejilla 3×3 líneas completas'             │ 0.218      │ 0.198      │ 0.91      │ 0.163       │ 0.007          │ 0.023    │ 0.006      │ 0.183        │ 0.065    │ 0.001      │
+│ 9       │ 'rejilla 4×4 densa (25 puntos por arista)' │ 9.001      │ 0.809      │ 0.09      │ 0.76        │ 0.099          │ 0.049    │ 0.013      │ 8.969        │ 0.122    │ 0.011      │
+└─────────┴────────────────────────────────────────────┴────────────┴────────────┴───────────┴─────────────┴────────────────┴──────────┴────────────┴──────────────┴──────────┴────────────┘
+┌─────────┬────────────────────────────────────────────┬─────────────────┬────────────────────┬─────────────────┬────────────────┬─────────────────┐
+│ (index) │ caso                                       │ retenido L/N kB │ tras soltar L/N kB │ pico RSS L/N MB │ predicados     │ núcleo sin ε ms │
+├─────────┼────────────────────────────────────────────┼─────────────────┼────────────────────┼─────────────────┼────────────────┼─────────────────┤
+│ 0       │ 'caja-botanica-real'                       │ '36.3 / 157'    │ '93.6 / 65.9'      │ '81.4 / 71.2'   │ '446/80/80'    │ '—'             │
+│ 1       │ 'ill-real-caja-botanica (ε 0.05)'          │ '36.3 / 197.4'  │ '115.7 / 247.9'    │ '77.4 / 100.7'  │ '453/54/54'    │ 0.359           │
+│ 2       │ 'histórico ×0.75 (ε 0.05)'                 │ '17.1 / 208.7'  │ '-119.1 / 228'     │ '66 / 112.8'    │ '471/63/50'    │ 0.378           │
+│ 3       │ 'ill-real-caja-simple'                     │ '-10.8 / 30'    │ '-134 / 57.6'      │ '53.4 / 54.9'   │ '72/4/4'       │ '—'             │
+│ 4       │ 'rejilla 2×2'                              │ '4.4 / 37.5'    │ '-11.7 / 37.2'     │ '52.8 / 56'     │ '57/16/16'     │ '—'             │
+│ 5       │ 'rejilla 4×4'                              │ '28.2 / 121'    │ '12.6 / 52'        │ '62.3 / 73.1'   │ '267/96/96'    │ '—'             │
+│ 6       │ 'rejilla 6×6'                              │ '70.7 / 277.9'  │ '75.4 / 244.6'     │ '75.9 / 79.9'   │ '653/240/240'  │ '—'             │
+│ 7       │ 'rejilla 8×8'                              │ '127.8 / 478.9' │ '129.9 / 501.2'    │ '98.1 / 106.2'  │ '1215/448/448' │ '—'             │
+│ 8       │ 'rejilla 3×3 líneas completas'             │ '24.7 / 68.1'   │ '24.3 / 68.2'      │ '58.8 / 72.7'   │ '76/16/16'     │ '—'             │
+│ 9       │ 'rejilla 4×4 densa (25 puntos por arista)' │ '48.8 / 293.1'  │ '47.6 / 293.1'     │ '99.1 / 82.5'   │ '487/488/488'  │ '—'             │
+└─────────┴────────────────────────────────────────────┴─────────────────┴────────────────────┴─────────────────┴────────────────┴─────────────────┘
+Criterio 5 del Plan §5 (tiempo ≤ legacy en todos los casos): NO SE CUMPLE en 3 de 10: histórico ×0.75 (ε 0.05), ill-real-caja-simple, rejilla 2×2
+
+## Fugas (heap tras GC cada 400 ejecuciones de la cadena experimental completa)
+grid8 heap tras GC cada 400 ejecuciones (kB): 5429 5860 5470 5487 5240 5470
+hist heap tras GC cada 400 ejecuciones (kB): 5863 6072 5617 6054 5892 6063
+
+## Perfil de CPU: núcleo con ajuste, histórico ×0.75 ε 0.05, 1500 ejecuciones (node --cpu-prof; % de muestras propias)
+grow 17.4 · escalar 15.1 · producto 11.6 · GC 6.4 · suma 6.0 · calcular 4.7 · construirArreglo 4.0 · construirCaras 3.0 · ajustarExtremos 2.8 · resta 2.3 · twoProduct 2.0 (expansiones ≈ 52 %); inclusivo: construirArreglo 51.3 %, ajustarExtremos 22.6 %, construirCaras 9.3 %
+caja-botanica-real kB retenidos por resultado · nucleo(): 19.1 · nucleoDetallado(): 139.5 · cadena completa: 163.8 · cadena sin el detalle: 30.3
+rejilla 8×8 kB retenidos por resultado · nucleo(): 75.1 · nucleoDetallado(): 342.7 · cadena completa: 501.0 · cadena sin el detalle: 157.0
