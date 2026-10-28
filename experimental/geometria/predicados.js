@@ -8,7 +8,7 @@ const SPLITTER = 134217729; // 2^27 + 1
 const EPS = 2 ** -53;
 const ERR_ORIENT = (3 + 16 * EPS) * EPS; // ccwerrboundA
 
-export const contadores = { filtro: 0, exacto: 0 }; // para medir cuántas veces se necesita la vía exacta
+export const contadores = { filtro: 0, exacto: 0, exactoCero: 0 }; // para medir cuántas veces se necesita la vía exacta
 
 // x + y = a + b exactamente (y es el error de redondeo de x)
 function twoSum(a, b) { const x = a + b, bv = x - a, av = x - bv; return [(a - av) + (b - bv), x]; }
@@ -49,7 +49,7 @@ export function cruzDirecciones(a, b, c, d) {
 export function orient(a, b, c) {
   const l = (b.x - a.x) * (c.y - a.y), r = (b.y - a.y) * (c.x - a.x), det = l - r, cota = ERR_ORIENT * (Math.abs(l) + Math.abs(r));
   if (det > cota || -det > cota) { contadores.filtro++; return det > 0 ? 1 : -1; }
-  contadores.exacto++; return signo(cruzExacto(b.x, b.y, a.x, a.y, c.x, c.y, a.x, a.y));
+  contadores.exacto++; const sg = signo(cruzExacto(b.x, b.y, a.x, a.y, c.x, c.y, a.x, a.y)); if (sg === 0) contadores.exactoCero++; return sg;
 }
 // ¿p está sobre el segmento cerrado [a, b]? (exacto)
 export function sobreSegmento(p, a, b) {
@@ -57,7 +57,13 @@ export function sobreSegmento(p, a, b) {
   return Math.min(a.x, b.x) <= p.x && p.x <= Math.max(a.x, b.x) && Math.min(a.y, b.y) <= p.y && p.y <= Math.max(a.y, b.y);
 }
 // Fracción exacta n/d (expansiones, d > 0) — parámetro de un punto a lo largo de un segmento.
-export function compararFracciones(f, g) { return signo(resta(producto(f.n, g.d), producto(g.n, f.d))); }
+// Filtro: aprox() de cada expansión tiene error relativo ≤ 2u, así que el cociente aproximado tiene error relativo ≤ ~6u; si los dos
+// cocientes difieren en más de 1e-12 relativo, el orden aproximado es el exacto. Si no, comparación exacta.
+export function compararFracciones(f, g) {
+  const a = aprox(f.n) / aprox(f.d), b = aprox(g.n) / aprox(g.d);
+  if (Number.isFinite(a) && Number.isFinite(b) && Math.abs(a - b) > 1e-12 * (Math.abs(a) + Math.abs(b) + 1e-300)) return a > b ? 1 : -1;
+  return signo(resta(producto(f.n, g.d), producto(g.n, f.d)));
+}
 
 // ---------- Puntos homogéneos exactos ----------
 // Un punto es un double {x, y} o un punto EXACTO {x, y, H: {X, Y, W}} con X, Y, W expansiones y W > 0 (x, y = aproximación para informar).
@@ -72,11 +78,26 @@ function det3(a, b, c) {
   const m1 = resta(producto(B.Y, C.W), producto(C.Y, B.W)), m2 = resta(producto(B.X, C.W), producto(C.X, B.W)), m3 = resta(producto(B.X, C.Y), producto(C.X, B.Y));
   return suma(resta(producto(A.X, m1), producto(A.Y, m2)), producto(A.W, m3));
 }
+// Filtro para puntos exactos: sus coordenadas aproximadas (x, y) difieren de las exactas como mucho δ = 16·u·M (M = mayor |coordenada|):
+// aprox() de una expansión no solapada tiene error relativo ≤ 2u y la división por W añade otro redondeo; 16u es una cota holgada.
+// Si |det aproximado| supera la cota de error que inducen δ y los redondeos, su signo es el exacto; si no, se evalúa exactamente.
+function cotaDet(u1, v1, u2, v2, M) { const d = 2 * 16 * EPS * M + EPS * Math.max(Math.abs(u1), Math.abs(v1), Math.abs(u2), Math.abs(v2)); return 2 * ((Math.abs(u1) + Math.abs(v1) + Math.abs(u2) + Math.abs(v2)) * d + 2 * d * d) + 4 * EPS * (Math.abs(u1 * v2) + Math.abs(u2 * v1)); }
+const magnitud = (...ps) => { let M = 1; for (const p of ps) M = Math.max(M, Math.abs(p.x), Math.abs(p.y)); return M; };
 // orient con puntos exactos o double
-export function orientG(a, b, c) { return a.H || b.H || c.H ? (contadores.exacto++, signo(det3(a, b, c))) : orient(a, b, c); }
+export function orientG(a, b, c) {
+  if (a === b || b === c || a === c) { contadores.filtro++; return 0; } // dos puntos idénticos (mismo objeto): colineales por definición
+  if (!a.H && !b.H && !c.H) return orient(a, b, c);
+  // atajo EXACTO por construcción: un punto proyectado sobre [A, B] es A + t·(B − A) con t racional ⇒ colineal con A y B
+  const enRecta = (p, q, r) => r.sobre && ((r.sobre[0] === p && r.sobre[1] === q) || (r.sobre[0] === q && r.sobre[1] === p));
+  if (enRecta(a, b, c) || enRecta(b, c, a) || enRecta(c, a, b)) { contadores.filtro++; return 0; }
+  const u1 = b.x - a.x, v1 = b.y - a.y, u2 = c.x - a.x, v2 = c.y - a.y, det = u1 * v2 - v1 * u2, cota = cotaDet(u1, v1, u2, v2, magnitud(a, b, c));
+  if (det > cota || -det > cota) { contadores.filtro++; return det > 0 ? 1 : -1; }
+  contadores.exacto++; const sg = signo(det3(a, b, c)); if (sg === 0) contadores.exactoCero++; return sg;
+}
 // signo(p.k − q.k) exacto (k = 'x' | 'y')
 export function cmpCoord(p, q, k) {
   if (!p.H && !q.H) return p[k] === q[k] ? 0 : p[k] > q[k] ? 1 : -1;
+  const dif = p[k] - q[k]; if (Math.abs(dif) > 4 * 16 * EPS * magnitud(p, q)) return dif > 0 ? 1 : -1;
   const P = H(p), Qq = H(q), K = k === 'x' ? 'X' : 'Y'; return signo(resta(producto(P[K], Qq.W), producto(Qq[K], P.W)));
 }
 // vector (q − p) con denominador positivo omitido: (Xq·Wp − Xp·Wq, Yq·Wp − Yp·Wq)
@@ -84,7 +105,12 @@ function vec(p, q) { const P = H(p), Q2 = H(q); return { x: resta(producto(Q2.X,
 const cruzV = (u, v) => resta(producto(u.x, v.y), producto(u.y, v.x));
 const puntoV = (u, v) => suma(producto(u.x, v.x), producto(u.y, v.y));
 // signo de (q − p) × (s − r), general
-export function cruzDireccionesG(p, q, r, s) { return p.H || q.H || r.H || s.H ? (contadores.exacto++, signo(cruzV(vec(p, q), vec(r, s)))) : cruzDirecciones(p, q, r, s); }
+export function cruzDireccionesG(p, q, r, s) {
+  if (!p.H && !q.H && !r.H && !s.H) return cruzDirecciones(p, q, r, s);
+  const u1 = q.x - p.x, v1 = q.y - p.y, u2 = s.x - r.x, v2 = s.y - r.y, det = u1 * v2 - v1 * u2, cota = cotaDet(u1, v1, u2, v2, magnitud(p, q, r, s));
+  if (det > cota || -det > cota) { contadores.filtro++; return det > 0 ? 1 : -1; }
+  contadores.exacto++; return signo(cruzV(vec(p, q), vec(r, s)));
+}
 // ¿p sobre el segmento cerrado [a, b]? (general)
 export function sobreSegmentoG(p, a, b) {
   if (orientG(a, b, p) !== 0) return false;
@@ -108,7 +134,7 @@ export function proyectarExacto(p, a, b) {
   if (signo(dUR) <= 0) return { extremo: a, punto: a, d: Math.hypot(p.x - a.x, p.y - a.y) };
   if (signo(resta(producto(dUR, H(b).W), producto(P.W, dRR))) >= 0) return { extremo: b, punto: b, d: Math.hypot(p.x - b.x, p.y - b.y) };
   // P' = (XA·Wp·dRR + dUR·R) / (WA·Wp·dRR)
-  const base = producto(P.W, dRR); const q = puntoExacto(suma(producto(A.X, base), producto(dUR, R.x)), suma(producto(A.Y, base), producto(dUR, R.y)), producto(A.W, base));
+  const base = producto(P.W, dRR); const q = puntoExacto(suma(producto(A.X, base), producto(dUR, R.x)), suma(producto(A.Y, base), producto(dUR, R.y)), producto(A.W, base)); q.sobre = [a, b];
   return { extremo: null, punto: q, d: Math.hypot(p.x - q.x, p.y - q.y) };
 }
 // Media EXACTA de puntos double: (Σx, Σy) / k

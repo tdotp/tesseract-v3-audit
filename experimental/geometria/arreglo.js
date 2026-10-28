@@ -11,7 +11,7 @@ const claveDe = (x, y) => x + '|' + y; // String(double) es exacto e inyectivo (
 export function construirArreglo(segmentos) {
   const puntos = []; const porClave = new Map(), porObjeto = new Map();
   const punto = (p) => {
-    if (p.H) { let r = porObjeto.get(p); if (!r) { r = { id: puntos.length, x: p.x, y: p.y, H: p.H, tipo: 'entrada' }; puntos.push(r); porObjeto.set(p, r); } return r; }
+    if (p.H) { let r = porObjeto.get(p); if (!r) { r = { id: puntos.length, x: p.x, y: p.y, H: p.H, tipo: 'entrada' }; puntos.push(r); porObjeto.set(p, r); if (p.sobre) r.sobre = [punto(p.sobre[0]), punto(p.sobre[1])]; } return r; }
     const k = claveDe(p.x, p.y); let r = porClave.get(k); if (!r) { r = { id: puntos.length, x: p.x, y: p.y, tipo: 'entrada' }; puntos.push(r); porClave.set(k, r); } return r;
   };
   const S = segmentos.map((s, i) => { const a = punto(s.a), b = punto(s.b); const m = a.H || b.H ? 1e-9 * (1 + Math.abs(a.x) + Math.abs(a.y) + Math.abs(b.x) + Math.abs(b.y)) : 0; return { i, a, b, tag: s.tag, ref: s.ref, ent: [{ p: a, modo: 'linea' }, { p: b, modo: 'linea' }], x0: Math.min(a.x, b.x) - m, x1: Math.max(a.x, b.x) + m, y0: Math.min(a.y, b.y) - m, y1: Math.max(a.y, b.y) + m }; });

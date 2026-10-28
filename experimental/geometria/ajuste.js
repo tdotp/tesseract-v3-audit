@@ -7,10 +7,20 @@
 //     el segmento: evita el fallo del motor web, KI-34, y la incoherencia de una incidencia «declarada»);
 //   C extremos aún libres → proyección exacta sobre el segmento de otra crease (T con ruido), iterada hasta el punto fijo.
 // Las DECISIONES (≤ ε, banda, candidato más cercano) usan distancias en double: son decisiones de tolerancia, no topológicas.
-import { sobreSegmentoG, proyectarExacto, mediaExacta, compararDistancias2 } from './predicados.js';
+import { sobreSegmentoG as sobreSegmentoExacto, proyectarExacto, mediaExacta, compararDistancias2 } from './predicados.js';
 
 // ¿el candidato c está más cerca de p que el mejor actual? Exacto si las distancias aproximadas casi empatan (junto a una esquina del
 // corte dos segmentos pueden estar a la misma distancia salvo 1e-16: la elección debe coincidir con la de la aritmética exacta).
+// Distancia lateral APROXIMADA (double) de p a [a, b]: solo para seleccionar candidatos; las decisiones finas se toman en exacto.
+function distAprox(p, a, b) { const rx = b.x - a.x, ry = b.y - a.y, L = rx * rx + ry * ry; let t = L ? ((p.x - a.x) * rx + (p.y - a.y) * ry) / L : 0; t = t < 0 ? 0 : t > 1 ? 1 : t; return Math.hypot(p.x - a.x - t * rx, p.y - a.y - t * ry); }
+// ¿p está EXACTAMENTE sobre [a, b]? Solo se evalúa en exacto si la distancia aproximada es despreciable
+const sobreSegmentoG = (p, a, b) => distAprox(p, a, b) <= 1e-9 * (1 + Math.abs(p.x) + Math.abs(p.y)) && sobreSegmentoExacto(p, a, b);
+// Proyección exacta solo sobre los candidatos que pueden ganar: el más cercano en double y los que casi empatan con él
+function mejorProyeccion(p, segs) {
+  const ds = segs.map((s) => distAprox(p, s.a, s.b)); let m = Infinity; for (const d of ds) if (d < m) m = d;
+  let best = null; segs.forEach((s, i) => { if (ds[i] - m > 1e-9 * (1 + m)) return; const pr = { ...proyectarExacto(p, s.a, s.b), s }; if (masCerca(p, pr, best)) best = pr; });
+  return { best, ds };
+}
 const masCerca = (p, c, best) => !best || (Math.abs(c.d - best.d) > 1e-9 * (1 + c.d + best.d) ? c.d < best.d : compararDistancias2(p, c.punto, p, best.punto) < 0);
 
 // cortes / creases: [{id, cerrado, pts:[punto]}] (se modifican los pts de las creases). Devuelve {diag}.
@@ -37,10 +47,9 @@ export function ajustarExtremos(cortes, creases, eps, rho = 3) {
       // «ya está sobre el corte» se decide EXACTAMENTE (una distancia aproximada de 0 puede ser 1e-17 exacta: entonces se proyecta)
       if (tocaCorte(rep)) regla = regla || 'A-ya-sobre-corte';
       else {
-        let best = null; const cands = [];
-        for (const s of segsCorte) { const pr = proyectarExacto(rep, s.a, s.b); if (pr.d <= eps * rho) cands.push(pr); if (masCerca(rep, pr, best)) best = { ...pr, s }; }
+        const { best, ds } = mejorProyeccion(rep, segsCorte);
         if (best && best.d <= eps) {
-          if (cands.some((c) => dist(c.punto, best.punto) > eps)) diag.push({ tipo: 'ambiguo', etapa: 'A', grupo: g.map(clave) });
+          if (segsCorte.some((s, i) => ds[i] <= eps * rho && dist(proyectarExacto(rep, s.a, s.b).punto, best.punto) > eps)) diag.push({ tipo: 'ambiguo', etapa: 'A', grupo: g.map(clave) });
           rep = best.punto; regla = 'A-corte:' + best.s.path;
         }
       }
@@ -53,9 +62,11 @@ export function ajustarExtremos(cortes, creases, eps, rho = 3) {
   for (let pasada = 0; pasada < 20; pasada++) {
     let cambios = 0;
     for (const n of libres) {
-      const p = get(n); let best = null, toca = false;
-      for (const c of creases) { if (c.id === n.c) continue; for (let i = 0; i < c.pts.length - (c.cerrado ? 0 : 1); i++) { const a = c.pts[i], b = c.pts[(i + 1) % c.pts.length]; if (sobreSegmentoG(p, a, b)) { toca = true; break; } const pr = proyectarExacto(p, a, b); if (masCerca(p, pr, best)) best = { ...pr, path: c.id }; } if (toca) break; }
-      if (toca || !best || best.d > eps) continue;
+      const p = get(n); const segs = [];
+      for (const c of creases) { if (c.id === n.c) continue; for (let i = 0; i < c.pts.length - (c.cerrado ? 0 : 1); i++) segs.push({ a: c.pts[i], b: c.pts[(i + 1) % c.pts.length], path: c.id }); }
+      if (segs.some((s) => sobreSegmentoG(p, s.a, s.b))) continue;
+      const { best: b0 } = mejorProyeccion(p, segs); const best = b0 && { ...b0, path: b0.s.path };
+      if (!best || best.d > eps) continue;
       if (pasada === 0) diag.push({ tipo: 'ajuste', regla: 'C-crease:' + best.path, crease: n.c, extremo: n.k, d_mm: best.d });
       set(n, best.punto); cambios++;
     }
@@ -65,7 +76,7 @@ export function ajustarExtremos(cortes, creases, eps, rho = 3) {
   const todos = [...segsCorte]; creases.forEach((c) => { for (let i = 0; i < c.pts.length - (c.cerrado ? 0 : 1); i++) todos.push({ a: c.pts[i], b: c.pts[(i + 1) % c.pts.length], path: c.id }); });
   for (const n of nodos.filter((x) => x.esExt)) {
     const p = get(n); let dmin = Infinity, toca = false;
-    for (const s of todos) { if (s.path === n.c) continue; if (sobreSegmentoG(p, s.a, s.b)) { toca = true; break; } dmin = Math.min(dmin, proyectarExacto(p, s.a, s.b).d); }
+    for (const s of todos) { if (s.path === n.c) continue; if (sobreSegmentoG(p, s.a, s.b)) { toca = true; break; } dmin = Math.min(dmin, distAprox(p, s.a, s.b)); }
     if (!toca && dmin > eps && dmin <= eps * rho) diag.push({ tipo: 'banda-ambigua', crease: n.c, extremo: n.k, d_mm: dmin });
   }
   return { diag };
