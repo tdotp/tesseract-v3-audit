@@ -97,6 +97,9 @@ El desglose de esfuerzo está en `09_ESTIMACION_FASE1_REVISADA.md`.
 ## D4 — Pliegues que no alcanzan o sobresalen: normalización geométrica validada
 
 **Contexto.** Illustrator produce creases con extremos a ~0.375 mm de donde deberían tocarse y otros que sobresalen del corte. Regla del repo web: "el troquel importado jamás se altera". Aclaración propuesta: **el documento de Illustrator nunca se modifica** (V3 no escribe en él); el **modelo interno** puede normalizarse, solo creases (nunca el contorno de corte), con informe de cada ajuste.
+
+> **Corrección (F2.0/F2A-0, 2026-10-27; el texto original se conserva arriba):** con la extracción a escala real los extremos de crease **tocan** el corte (0,0000 mm en `caja-botanica-real`; ≤ 0,005 mm tras el viaje por SVG). Los «~0.375 mm» eran escalones de diseño de ≈ 0,5 mm vistos en el fixture a ×0,75 (KI-22). El normalizador de 2A pasa a ser un **ajuste tipado de ruido** (≤ ε, solo extremos de crease), no un cierre de holguras de 0,375 mm. Evidencia: `docs/fase2/01_DIAGNOSTICO_KI22.md` §6, `tests/node/f2-caja-botanica.test.mjs`.
+
 Evidencia: ver §1 (hallazgos 1–2).
 
 | Alternativa | Qué implica | Ventajas | Riesgos |

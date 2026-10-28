@@ -10,6 +10,9 @@ Los casos sintéticos se generan por código (`tests/lib/fixtures.mjs`), de form
 
 **Nota (Nivel 0, 2026-10-23):** `real/caja-botanica-illustrator-export.dieline.json` se derivó del SVG interpretando 1 px = 1 px CSS (0.2646 mm), es decir **a escala ×0.75 respecto del tamaño real**. Illustrator real reabre ese SVG con 1 px = 1 pt y la extracción (175.0 × 223.5 mm) coincide con `real/caja-botanica-real.dieline.json`. El fixture se conserva sin cambios (sus golden/pruebas siguen siendo válidos como caso a ×0.75: 13 paneles); a escala real el motor vigente da 11 (KI-22, KI-04). Evidencia: `docs/fase1/nivel0-real/` y `tests/node/nivel0-evidencia.test.mjs`.
 
+**Corrección (F2A-0, 2026-10-27; la nota anterior se conserva):** la extracción real y `caja-botanica-real` coinciden en tamaño y en topología (mismos 13 paneles candidatos del oráculo, mismas 12 creases en el mismo orden), **no** en vértices (56 frente a 69 en el contorno), origen/sentido de Y ni ruido (≤ 0,005 mm frente a 0); sus áreas por panel difieren ≤ 0,23 mm² (diferencia de **representación**). El histórico ×0,75 tiene además las creases en otro orden y Y invertida. Evidencia: `docs/fase2/evidencia/f2a0-matriz-correspondencia.md`, `tests/node/f2-caja-botanica.test.mjs`.
+
+
 ## Familia `illustrator-real/` (añadida tras el Nivel 0; 2026-10-23)
 Extracciones hechas por **Illustrator 30.8.2 real** (1 px del SVG = 1 pt, escala ×1,0). Generadas de forma determinista por `tests/tools/make-illustrator-real-fixtures.mjs` desde la evidencia `docs/fase1/nivel0-real/*__extract.json` (cada golden guarda el SHA-256 de su fuente). **No sustituyen ni modifican** los fixtures/goldens históricos: estos quedan congelados por `tests/golden/fixtures.pins.json`.
 | Archivo | Origen | Notas |
