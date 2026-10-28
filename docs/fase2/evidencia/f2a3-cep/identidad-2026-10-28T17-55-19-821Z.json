@@ -1,0 +1,90 @@
+{
+ "fecha": "2026-10-28T17:55:19.842Z",
+ "orden": "identidad",
+ "documento": "N0-A",
+ "pasos": {},
+ "capturas": {
+  "inicio": "tests/results/f2a3-cep/capturas/identidad-2026-10-28T17-55-19-821Z.png"
+ },
+ "identidad": {
+  "href": "file:///Users/gerardocalambasposada/Library/Application%20Support/Adobe/CEP/extensions/tesseract-v3-experimental/index.html",
+  "ext": "com.tato.tesseract.v3.experimental.panel",
+  "host": {
+   "appVersion": "30.8.2",
+   "appSkinInfo": {
+    "systemHighlightColor": {
+     "alpha": 255,
+     "green": 112,
+     "blue": 112,
+     "red": 112
+    },
+    "baseFontSize": 10,
+    "appBarBackgroundColorSRGB": {
+     "antialiasLevel": 1,
+     "type": 1,
+     "color": {
+      "alpha": 255,
+      "green": 50,
+      "blue": 50,
+      "red": 50
+     }
+    },
+    "appBarBackgroundColor": {
+     "antialiasLevel": 1,
+     "type": 1,
+     "color": {
+      "alpha": 255,
+      "green": 50,
+      "blue": 50,
+      "red": 50
+     }
+    },
+    "panelBackgroundColor": {
+     "antialiasLevel": 1,
+     "type": 1,
+     "color": {
+      "alpha": 255,
+      "green": 50,
+      "blue": 50,
+      "red": 50
+     }
+    },
+    "baseFontFamily": "LucidaGrande",
+    "panelBackgroundColorSRGB": {
+     "antialiasLevel": 1,
+     "type": 1,
+     "color": {
+      "alpha": 255,
+      "green": 50,
+      "blue": 50,
+      "red": 50
+     }
+    }
+   },
+   "appLocale": "en_US",
+   "isAppOnline": true,
+   "appUILocale": "en_US",
+   "appName": "ILST",
+   "appId": "ILST"
+  },
+  "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 AdobeCEP/12.1.1 Safari/537.36",
+  "three": "132",
+  "mainJs": {
+   "bytes": 228121,
+   "sha256": "3b1106ab25a4e334ca6978d822226971a9982c2797e07cead0024b7b5f675c53"
+  },
+  "control": "object",
+  "modo": "sombra",
+  "barra": true
+ },
+ "veredicto": {
+  "extension": true,
+  "host": true,
+  "mainJs": true,
+  "three": true,
+  "sombra": true,
+  "barra": true,
+  "chromium": true
+ },
+ "consola": []
+}

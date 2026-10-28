@@ -1,0 +1,15 @@
+OK: dist-experimental íntegro y reproducible
+  OK   permisos del destino razonables
+  OK   las demás extensiones (incl. TesserArt_Validator y el plugin original) están estructuralmente idénticas al snapshot previo
+  OK   verify-isolation.sh --experimental-instalado verde
+INSTALACIÓN CORRECTA. Registro: /Users/gerardocalambasposada/Documents/Antigravity/Tesseract/Tesseract v3/tests/results/f2a3-cep/install-record.json. Siguiente paso: reiniciar Illustrator y abrir Ventana ▸ Extensiones ▸ Tesseract V3 (experimental).
+documentos abiertos: 0
+menú tras reinstalar y reiniciar: Libraries, Tesseract, Validador editorial
+
+VERIFY CORRECTO
+30330 Wed Oct 28 12:54:38 2026    
+menú tras reinstalar y reiniciar (reinicio del usuario): Libraries, Tesseract, Tesseract V3 (experimental), Validador editorial
+identidad {"extension": true, "host": true, "mainJs": true, "three": true, "sombra": true, "barra": true, "chromium": true} 30.8.2 {'bytes': 228121, 'sha256': '3b1106ab25a4e334ca6978d822226971a9982c2797e07cead0024b7b5f675c53'} consola []
+tests/results/f2a3-cep/identidad-2026-10-28T17-55-19-821Z.json
+VERIFY CORRECTO
+OK (modo experimental: tesseract-v3-experimental idéntica a dist-experimental/, salvo .debug)
