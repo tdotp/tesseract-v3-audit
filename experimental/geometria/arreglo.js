@@ -56,8 +56,8 @@ export function construirArreglo(segmentos) {
     const ids = []; for (const e of s.ent) { const v = vDe.get(e.p.id); if (ids[ids.length - 1] !== v) ids.push(v); }
     for (let q = 0; q + 1 < ids.length; q++) {
       const u = ids[q], v = ids[q + 1]; if (u === v) continue; const key = u < v ? u + '|' + v : v + '|' + u;
-      if (!aristas.has(key)) aristas.set(key, { u: Math.min(u, v), v: Math.max(u, v), tags: new Set(), dir: u < v ? [s.a, s.b] : [s.b, s.a] });
-      aristas.get(key).tags.add(s.tag);
+      if (!aristas.has(key)) aristas.set(key, { u: Math.min(u, v), v: Math.max(u, v), tags: new Set(), refs: new Set(), dir: u < v ? [s.a, s.b] : [s.b, s.a] });
+      aristas.get(key).tags.add(s.tag); aristas.get(key).refs.add(s.ref); // refs (F2A-2): segmento de origen «C<i>:<k>» para creaseEdges
     }
   }
   return { vertices, aristas: [...aristas.values()], segmentos: S.length, cruces, puntosEntrada: puntos.filter((p) => p.tipo === 'entrada').length, puntosExactos: puntos.filter((p) => p.H).length };

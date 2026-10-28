@@ -1,0 +1,5 @@
+{
+  "type": "module",
+  "private": true,
+  "description": "F2A-2: adaptador EXPERIMENTAL del núcleo a PanelModel v1 y árbol de plegado. Fuera de src/: ni el bundle ni el panel CEP lo usan."
+}

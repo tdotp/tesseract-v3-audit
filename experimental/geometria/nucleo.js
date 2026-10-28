@@ -22,7 +22,13 @@ function polilinea(path, cerrado, curvas) {
 const ordId = (a, b) => (a[0] === b[0] ? Number(a.slice(1)) - Number(b.slice(1)) : a < b ? -1 : 1);
 const esCerrado = (t) => /^(B|H\d+)$/.test(t);
 
-export function nucleo(dieline, opciones = {}) {
+export function nucleo(dieline, opciones = {}) { return calcular(dieline, opciones)[0]; }
+// F2A-2: misma salida que nucleo() y, aparte, las estructuras internas que necesita el adaptador a PanelModel v1 (experimental/plegado/):
+// arreglo (vértices y aristas con etiquetas y segmentos de origen), caras (semiaristas, ciclos, regiones), región de cada panel en el orden
+// canónico y las polilíneas de cortes y creases tras el ajuste. Solo lectura: el adaptador no debe mutarlas.
+export function nucleoDetallado(dieline, opciones = {}) { const [resumen, detalle] = calcular(dieline, opciones); return { resumen, detalle }; }
+
+function calcular(dieline, opciones) {
   const t0 = typeof performance !== 'undefined' ? performance.now() : 0;
   const curvas = opciones.curvas || 'anclas';
   const cortes = []; if (dieline.outerBoundary) cortes.push({ id: 'B', cerrado: true, pts: polilinea(dieline.outerBoundary, true, curvas) });
@@ -68,7 +74,7 @@ export function nucleo(dieline, opciones = {}) {
   for (const c of cerrados) { let prof = 0; for (const o of cerrados) { if (o === c) continue; const v = c.pts.find((q) => dentroPoligono(q, o.pts) !== null); if (v && dentroPoligono(v, o.pts)) prof++; } const A = Math.abs(areaPoligono(c.pts)); esperada += prof % 2 ? -A : A; }
   const generada = PP.reduce((s, p) => s + p.area, 0);
   if (opciones.eps != null) PP.forEach((p, i) => { let per = 0; for (let k = 0; k < p.poligono.length; k++) { const a = p.poligono[k], b = p.poligono[(k + 1) % p.poligono.length]; per += Math.hypot(a.x - b.x, a.y - b.y); } if (per && (2 * p.area) / per < Number(opciones.eps)) diag.push({ tipo: 'astilla', panel: 'F' + i, area_mm2: p.area }); });
-  return {
+  const resumen = {
     motor: 'experimental-f2a1', opciones: { eps: opciones.eps == null ? null : String(opciones.eps), rho: String(opciones.rho == null ? 3 : opciones.rho), curvas },
     contornoIntacto, segmentosLongitudCero: longitudCero, diagnosticos: diag,
     arreglo: { segmentos: arr.segmentos, cruces: arr.cruces, vertices: F.euler.V, aristas: F.euler.E, ciclos: F.euler.ciclos, componentesGrafo: F.euler.componentes, eulerOK: F.euler.ok, paridadCoherente: F.coherente, islasDudosas: F.islasDudosas, puntosExactos: arr.puntosExactos },
@@ -78,4 +84,5 @@ export function nucleo(dieline, opciones = {}) {
     conservacion: { esperadaMm2: esperada, generadaMm2: generada, difRelativa: esperada ? (generada - esperada) / esperada : generada },
     ms: typeof performance !== 'undefined' ? performance.now() - t0 : null,
   };
+  return [resumen, { arreglo: arr, caras: F, regionDePanel: PP.map((p) => p.region), cortes, creases }];
 }
