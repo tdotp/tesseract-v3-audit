@@ -21,7 +21,7 @@ const ETIQUETAS = { 'union-no-plegable': 'Unión no plegable: no se usa como bis
   'antenas-fuera-del-contorno': 'Líneas fuera del contorno', 'adyacencia-discontinua': 'Bisagra discontinua', 'adyacencia-varias-creases': 'Bisagra formada por varias creases', 'curvas-a-polilinea': 'Curvas aproximadas por polilíneas',
   'islas-dudosas': 'Islas dudosas', 'huecos-solo-en-extension': 'Huecos solo en la extensión', 'punto-ajustado-redondeado': 'Punto ajustado redondeado', 'banda-ambigua': 'Banda ambigua', ambiguo: 'Caso ambiguo', error: 'Error' };
 const etiqueta = (t) => ETIQUETAS[t] || t;
-const valor = (v) => (typeof v === 'number' ? String(Math.round(v * 100) / 100) : Array.isArray(v) ? v.slice(0, 6).map(valor).join(', ') + (v.length > 6 ? '…' : '') : v && typeof v === 'object' ? JSON.stringify(v).slice(0, 60) : String(v));
+const valor = (v) => (typeof v === 'number' ? String(Math.round(v * 1000) / 1000) : Array.isArray(v) ? v.slice(0, 6).map(valor).join(', ') + (v.length > 6 ? '…' : '') : v && typeof v === 'object' ? JSON.stringify(v).slice(0, 60) : String(v));
 export function describirDiagnostico(d) { // texto legible: etiqueta + mensaje o campos relevantes (sin origen ni tipo)
   const campos = Object.keys(d || {}).filter((k) => !['origen', 'tipo', 'mensaje', 'codigo'].includes(k)).map((k) => `${k} ${valor(d[k])}`);
   return `${etiqueta(d && d.tipo)}${d && d.mensaje ? ': ' + String(d.mensaje).slice(0, 160) : ''}${campos.length ? ' · ' + campos.join(' · ').slice(0, 160) : ''}`;
@@ -31,7 +31,7 @@ const textoError = (e) => { try { return (e && (e.codigo || e.name)) ? `${e.codi
 export function interfazDe(S, selector) { let i = INTERFACES.get(S); if (!i) { i = crearInterfaz(S, selector); INTERFACES.set(S, i); } return i; }
 
 export function crearInterfaz(S, selector) {
-  const E = { diag: null, pendiente: null, ultimaClave: null, ultimoValido: null, construccion: null, mensaje: null, confirmando: false, log: null, setStatus: null, plegado: null, applyFolding: null, dom: null };
+  const E = { diag: null, pendiente: null, fallida: null, ultimaClave: null, ultimoValido: null, construccion: null, mensaje: null, confirmando: false, log: null, setStatus: null, plegado: null, applyFolding: null, dom: null };
   const escribir = (m) => { try { if (E.log) E.log(m); } catch (x) { /* el registro nunca rompe la interfaz */ } };
   const mensaje = (tipo, texto) => { E.mensaje = texto ? { tipo, texto } : null; if (texto) escribir(texto); refrescar(); };
   const huella = (d) => { try { return JSON.stringify(d); } catch (x) { return String(Math.random()); } };
@@ -47,18 +47,20 @@ export function crearInterfaz(S, selector) {
         S.currentBasePanelIndex = -1; S.baseSelectionConfirmed = false; // KI-30: la interfaz elige la base por defecto del motor en uso
         escribir(`Base reiniciada (KI-30): documento o motor distinto del de la construcción anterior; se usa la base por defecto del motor ${origen}.`);
       }
-      E.ultimaClave = clave; E.ultimoValido = null; E.pendiente = null; E.construccion = { origen, paneles: Array.isArray(m && m.panels) ? m.panels.length : 0, fallback, panelData: m };
+      E.ultimaClave = clave; E.ultimoValido = null; E.pendiente = null; E.fallida = null; E.construccion = { origen, paneles: Array.isArray(m && m.panels) ? m.panels.length : 0, fallback, panelData: m };
       refrescarDespues(); return m;
     },
     buildAdjacency: (panels, creaseEdges) => selector.buildAdjacency(panels, creaseEdges),
     buildFoldTree(panels, adjacency, baseIndex) {
       const prev = E.ultimoValido;
-      try { const T = selector.buildFoldTree(panels, adjacency, baseIndex); E.ultimoValido = { panels, adjacency, base: baseIndex, tree: T, confirmado: S.baseSelectionConfirmed }; refrescarDespues(); return T; }
+      try { const T = selector.buildFoldTree(panels, adjacency, baseIndex); E.ultimoValido = { panels, adjacency, base: baseIndex, tree: T, confirmado: S.baseSelectionConfirmed };
+        if (E.fallida && (E.fallida.panels !== panels || E.fallida.conservada !== baseIndex)) { E.fallida = null; E.mensaje = null; } // otro cambio de base correcto: el aviso ya no aplica
+        refrescarDespues(); return T; }
       catch (e) {
         if (prev && prev.panels === panels && prev.adjacency === adjacency && S.currentPanelData && S.currentPanelData.panels === panels) { // cambio de base fallido ⇒ transacción
-          S.currentBasePanelIndex = prev.base; S.baseSelectionConfirmed = prev.confirmado;
+          S.currentBasePanelIndex = prev.base; S.baseSelectionConfirmed = prev.confirmado; E.fallida = { panels, conservada: prev.base };
           if (!E.pendiente || E.pendiente.panels !== panels) { // una sola restauración por transacción: el redibujado de setBasePanel puede volver a pasar por aquí
-            E.pendiente = { panels, base: prev.base, angulos: Array.isArray(S.foldAngles) ? S.foldAngles.slice() : [], seleccion: S.selectedFoldEdgeIdx };
+            E.pendiente = { panels, base: prev.base, angulos: Array.isArray(S.foldAngles) ? S.foldAngles.slice() : [], seleccion: S.selectedFoldEdgeIdx, todas: valorTodas() };
             mensaje('error', `No se pudo cambiar la base a P${baseIndex} (${textoError(e)}). Se conserva la base P${prev.base} con su plegado.`);
             const p = E.pendiente; Promise.resolve().then(() => { if (E.pendiente === p) E.pendiente = null; restaurar(p); }); // después de que setBasePanel termine (síncrono)
           }
@@ -73,10 +75,12 @@ export function crearInterfaz(S, selector) {
     defaultBaseIndex: (m) => selector.defaultBaseIndex(m),
   });
 
+  function deslizadorTodas() { return typeof document === 'undefined' ? null : document.querySelector('#fold-panel details.all-creases input[type=range]'); }
+  function valorTodas() { const t = deslizadorTodas(); return t ? t.value : null; }
   function restaurar(p) { // ángulos y crease seleccionada del último estado válido, si el modelo y la base siguen siendo esos
     if (!S.currentPanelData || S.currentPanelData.panels !== p.panels || S.currentBasePanelIndex !== p.base || !Array.isArray(S.foldTree) || S.foldTree.length !== p.angulos.length) return;
     S.foldAngles = p.angulos.slice(); S.selectedFoldEdgeIdx = p.seleccion < S.foldTree.length ? p.seleccion : (S.foldTree.length ? 0 : -1);
-    try { if (E.plegado) { for (let i = 0; i < S.foldTree.length; i++) E.plegado.updatePerCreaseRow(i); E.plegado.syncSelectedCreaseUI(); } if (E.applyFolding) E.applyFolding(); } catch (x) { escribir('Interfaz experimental: no se pudieron redibujar los ángulos restaurados: ' + textoError(x)); }
+    try { if (E.plegado) { for (let i = 0; i < S.foldTree.length; i++) E.plegado.updatePerCreaseRow(i); E.plegado.syncSelectedCreaseUI(); } const t = deslizadorTodas(); if (t && p.todas !== null) t.value = p.todas; if (E.applyFolding) E.applyFolding(); } catch (x) { escribir('Interfaz experimental: no se pudieron redibujar los ángulos restaurados: ' + textoError(x)); }
     if (E.setStatus) E.setStatus(`Base change failed · base=P${p.base} kept`);
   }
 

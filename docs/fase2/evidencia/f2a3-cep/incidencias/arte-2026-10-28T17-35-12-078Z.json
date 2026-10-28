@@ -1,0 +1,890 @@
+{
+ "fecha": "2026-10-28T17:35:12.104Z",
+ "orden": "arte",
+ "documento": "N0-B",
+ "pasos": {
+  "V0": {
+   "ext": "com.tato.tesseract.v3.experimental.panel",
+   "host": "ILST",
+   "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 AdobeCEP/12.1.1 Safari/537.36",
+   "modo": "sombra",
+   "barra": {
+    "modo": "SOMBRA (legacy)",
+    "construccion": "Construcción actual: LEGACY · 11 paneles · 10 pliegues · base P4",
+    "origen": "legacy",
+    "mensaje": null,
+    "tipo": "",
+    "diag": "Comparación en sombra: legacy 11 paneles · experimental 13 paneles",
+    "items": [
+     "paneles: legacy 11 · experimental 13",
+     "areaTotal: legacy 26769.121 · experimental 27450.239",
+     "Las áreas de los paneles difieren"
+    ]
+   },
+   "titulo": "Tesseract"
+  },
+  "V1": {
+   "status": "Extraction complete",
+   "validacion": "✅ No problems found",
+   "avisos": [],
+   "continuar": true,
+   "jsonBytes": 3668,
+   "lienzo2d": {
+    "hash": "8c98e35fe2850447",
+    "pixelesConTrazo": 833
+   }
+  },
+  "V2": {
+   "status": "3D ready · thickness=0.3mm",
+   "barra": {
+    "modo": "SOMBRA (legacy)",
+    "construccion": "Construcción actual: LEGACY · 2 paneles · 1 pliegues · base P1",
+    "origen": "legacy",
+    "mensaje": null,
+    "tipo": "",
+    "diag": "Comparación en sombra: legacy 2 paneles · experimental 2 paneles (coinciden)",
+    "items": []
+   },
+   "plegado": {
+    "foldPanel": true,
+    "deslizadores": 3,
+    "opcionesBase": 2,
+    "base": "1"
+   },
+   "logPaneles": [
+    "Panels after shell filter: 3",
+    "Connectivity filter: keeping 2 of 3 panels from largest crease-connected component"
+   ],
+   "comparacionSombra": [
+    {
+     "n": 21,
+     "modo": "sombra",
+     "etapa": "buildPanels",
+     "sombra": true,
+     "ms": 0,
+     "comparacion": {
+      "coincide": true,
+      "legacy": {
+       "paneles": 2,
+       "creaseEdges": 1,
+       "areaTotal": 6000,
+       "areas": [
+        3000,
+        3000
+       ]
+      },
+      "experimental": {
+       "paneles": 2,
+       "creaseEdges": 1,
+       "areaTotal": 6000,
+       "areas": [
+        3000,
+        3000
+       ],
+       "diagnosticos": {}
+      },
+      "diferencias": []
+     },
+     "lento": false
+    },
+    {
+     "n": 22,
+     "modo": "sombra",
+     "etapa": "buildAdjacency",
+     "sombra": true,
+     "ms": 0,
+     "comparacion": {
+      "coincide": true,
+      "legacy": {
+       "adyacencias": 1
+      },
+      "experimental": {
+       "adyacencias": 1
+      },
+      "diferencias": []
+     },
+     "lento": false
+    },
+    {
+     "n": 23,
+     "modo": "sombra",
+     "etapa": "buildFoldTree",
+     "sombra": true,
+     "ms": 0,
+     "baseLegacy": 1,
+     "baseExperimental": 0,
+     "comparacion": {
+      "coincide": true,
+      "legacy": {
+       "aristas": 1
+      },
+      "experimental": {
+       "aristas": 1
+      },
+      "diferencias": []
+     },
+     "diagnosticos": {},
+     "lento": false
+    }
+   ],
+   "hashPlano": "bfc0486d59c64d19"
+  },
+  "ARTE": {
+   "status": "3D ready · thickness=0.3mm",
+   "arte": "Artwork loaded from layers. Mapping uses full artboard coordinates.",
+   "fuente": "Layers",
+   "log": []
+  },
+  "V7-arte-sombra": {
+   "png": {
+    "botonVisible": false,
+    "bytes": 54354,
+    "ruta": "/private/tmp/tesseract_f2a3/f2a3-arte-sombra.png",
+    "err": 0
+   },
+   "glb": {
+    "status": "GLB exported from current 3D pose",
+    "escrituras": [
+     {
+      "p": "/private/tmp/tesseract_f2a3/f2a3-arte-sombra.glb",
+      "bytes": 295440,
+      "err": 0
+     }
+    ],
+    "log": []
+   }
+  },
+  "V3": {
+   "antes": "sombra",
+   "confirmacionVisible": true,
+   "modoTrasPrimerClic": "sombra",
+   "modo": "activo",
+   "barra": {
+    "modo": "ACTIVO (experimental)",
+    "construccion": "Construcción actual: LEGACY · 2 paneles · 1 pliegues · base P1",
+    "origen": "legacy",
+    "mensaje": "Modo ACTIVO: pulse «Continue to 3D» (o vuelva a extraer) para construir con el motor experimental.",
+    "tipo": "info",
+    "diag": "Comparación en sombra: legacy 2 paneles · experimental 2 paneles (coinciden)",
+    "items": []
+   },
+   "log": [
+    "Motor de geometría: modo ACTIVO — los modelos NUEVOS los construye el motor experimental experimental-f2a2 (ε=0.05 mm). No es persistente: al recargar el panel vuelve a SOMBRA. Pulse «Continue to 3D» para reconstruir."
+   ]
+  },
+  "V4": {
+   "status": "3D ready · thickness=0.3mm",
+   "barra": {
+    "modo": "ACTIVO (experimental)",
+    "construccion": "Construcción actual: EXPERIMENTAL (experimental-f2a2) · 2 paneles · 1 pliegues · base P0",
+    "origen": "experimental",
+    "mensaje": null,
+    "tipo": "",
+    "diag": "Diagnósticos geométricos: ninguno",
+    "items": []
+   },
+   "plegado": {
+    "foldPanel": true,
+    "deslizadores": 3,
+    "opcionesBase": 2,
+    "base": "0"
+   },
+   "log": [
+    "Motor de geometría: modo ACTIVO — esta construcción usa el motor experimental experimental-f2a2 (no persistente; desactivar: __tessMotorExperimental.desactivar()).",
+    "=== buildPanels (experimental-f2a2, ε=0.05 mm) === panels=2",
+    "Base reiniciada (KI-30): documento o motor distinto del de la construcción anterior; se usa la base por defecto del motor experimental.",
+    "Adjacency edges: 1 (experimental exacto)",
+    "Fold tree edges: 1 (base=P0, experimental)"
+   ],
+   "hashPlano": "e572e5b48cf34a11"
+  },
+  "V7-arte-activo": {
+   "png": {
+    "botonVisible": false,
+    "bytes": 54249,
+    "ruta": "/private/tmp/tesseract_f2a3/f2a3-arte-activo.png",
+    "err": 0
+   },
+   "glb": {
+    "status": "GLB exported from current 3D pose",
+    "escrituras": [
+     {
+      "p": "/private/tmp/tesseract_f2a3/f2a3-arte-activo.glb",
+      "bytes": 295440,
+      "err": 0
+     }
+    ],
+    "log": []
+   }
+  },
+  "V10": {
+   "status": "3D ready · thickness=0.3mm",
+   "barra": {
+    "modo": "SOMBRA (legacy)",
+    "construccion": "Construcción actual: LEGACY · 2 paneles · 1 pliegues · base P1",
+    "origen": "legacy",
+    "mensaje": null,
+    "tipo": "",
+    "diag": "Comparación en sombra: legacy 2 paneles · experimental 2 paneles (coinciden)",
+    "items": []
+   },
+   "plegado": {
+    "foldPanel": true,
+    "deslizadores": 3,
+    "opcionesBase": 2,
+    "base": "1"
+   },
+   "modo": "sombra",
+   "log": [
+    "Base reiniciada (KI-30): documento o motor distinto del de la construcción anterior; se usa la base por defecto del motor legacy."
+   ]
+  }
+ },
+ "capturas": {
+  "V1": "tests/results/f2a3-cep/capturas/arte-V1-2026-10-28T17-35-12-078Z.png",
+  "ARTE": "tests/results/f2a3-cep/capturas/arte-ARTE-2026-10-28T17-35-12-078Z.png",
+  "V7-arte-activo": "tests/results/f2a3-cep/capturas/arte-V7-arte-activo-2026-10-28T17-35-12-078Z.png"
+ },
+ "final": {
+  "modo": "sombra",
+  "registro": [
+   {
+    "n": 1,
+    "modo": "sombra",
+    "etapa": "buildPanels",
+    "sombra": true,
+    "ms": 15,
+    "comparacion": {
+     "coincide": false,
+     "legacy": {
+      "paneles": 11,
+      "creaseEdges": 12,
+      "areaTotal": 26769.121,
+      "areas": [
+       316.198,
+       665.582,
+       666.433,
+       666.468,
+       1580.079,
+       1760.341,
+       1918.973,
+       4770.579,
+       4794.391,
+       4800.225,
+       4829.852
+      ]
+     },
+     "experimental": {
+      "paneles": 13,
+      "creaseEdges": 12,
+      "areaTotal": 27450.239,
+      "areas": [
+       316.164,
+       316.275,
+       665.548,
+       665.583,
+       665.681,
+       665.716,
+       1579.942,
+       1600.012,
+       1760.549,
+       4794.604,
+       4800.149,
+       4800.222,
+       4819.794
+      ],
+      "diagnosticos": {
+       "ajuste": 19
+      }
+     },
+     "diferencias": [
+      {
+       "campo": "paneles",
+       "legacy": 11,
+       "experimental": 13
+      },
+      {
+       "campo": "areaTotal",
+       "legacy": 26769.121,
+       "experimental": 27450.239
+      },
+      {
+       "campo": "areas",
+       "legacy": [
+        316.198,
+        665.582,
+        666.433,
+        666.468,
+        1580.079,
+        1760.341,
+        1918.973,
+        4770.579,
+        4794.391,
+        4800.225,
+        4829.852
+       ],
+       "experimental": [
+        316.164,
+        316.275,
+        665.548,
+        665.583,
+        665.681,
+        665.716,
+        1579.942,
+        1600.012,
+        1760.549,
+        4794.604,
+        4800.149,
+        4800.222,
+        4819.794
+       ]
+      }
+     ]
+    },
+    "lento": false
+   },
+   {
+    "n": 2,
+    "modo": "sombra",
+    "etapa": "buildAdjacency",
+    "sombra": true,
+    "ms": 0,
+    "comparacion": {
+     "coincide": false,
+     "legacy": {
+      "adyacencias": 10
+     },
+     "experimental": {
+      "adyacencias": 12
+     },
+     "diferencias": [
+      {
+       "campo": "adyacencias",
+       "legacy": 10,
+       "experimental": 12
+      }
+     ]
+    },
+    "lento": false
+   },
+   {
+    "n": 3,
+    "modo": "sombra",
+    "etapa": "buildFoldTree",
+    "sombra": true,
+    "ms": 1,
+    "baseLegacy": 0,
+    "baseExperimental": 6,
+    "comparacion": {
+     "coincide": false,
+     "legacy": {
+      "aristas": 10
+     },
+     "experimental": {
+      "aristas": 12
+     },
+     "diferencias": [
+      {
+       "campo": "aristas",
+       "legacy": 10,
+       "experimental": 12
+      }
+     ]
+    },
+    "diagnosticos": {
+     "ajuste": 19
+    },
+    "lento": false
+   },
+   {
+    "n": 4,
+    "modo": "activo",
+    "control": "modo",
+    "a": "activo"
+   },
+   {
+    "n": 5,
+    "modo": "activo",
+    "etapa": "buildPanels",
+    "origen": "experimental",
+    "paneles": 13,
+    "creaseEdges": 12
+   },
+   {
+    "n": 6,
+    "modo": "activo",
+    "control": "fallo-simulado",
+    "etapa": "buildFoldTree"
+   },
+   {
+    "n": 7,
+    "modo": "activo",
+    "etapa": "buildFoldTree",
+    "origen": "experimental",
+    "detenida": true,
+    "causa": {
+     "nombre": "ErrorPanelModel",
+     "codigo": "fallo-simulado",
+     "mensaje": "fallo-simulado: buildFoldTree: fallo SIMULADO para depuración (simularFallo)"
+    }
+   },
+   {
+    "n": 8,
+    "modo": "activo",
+    "etapa": "buildFoldTree",
+    "origen": "experimental",
+    "detenida": true,
+    "causa": {
+     "nombre": "ErrorPanelModel",
+     "codigo": "fallo-simulado",
+     "mensaje": "fallo-simulado: buildFoldTree: fallo SIMULADO para depuración (simularFallo)"
+    }
+   },
+   {
+    "n": 9,
+    "modo": "activo",
+    "control": "fallo-simulado",
+    "etapa": null
+   },
+   {
+    "n": 10,
+    "modo": "activo",
+    "control": "fallo-simulado",
+    "etapa": "buildFoldTree"
+   },
+   {
+    "n": 11,
+    "modo": "activo",
+    "etapa": "buildPanels",
+    "origen": "experimental",
+    "paneles": 13,
+    "creaseEdges": 12
+   },
+   {
+    "n": 12,
+    "modo": "activo",
+    "etapa": "buildFoldTree",
+    "origen": "experimental",
+    "detenida": true,
+    "causa": {
+     "nombre": "ErrorPanelModel",
+     "codigo": "fallo-simulado",
+     "mensaje": "fallo-simulado: buildFoldTree: fallo SIMULADO para depuración (simularFallo)"
+    }
+   },
+   {
+    "n": 13,
+    "modo": "activo",
+    "control": "fallo-simulado",
+    "etapa": "buildPanels"
+   },
+   {
+    "n": 14,
+    "modo": "activo",
+    "etapa": "buildPanels",
+    "origen": "legacy",
+    "fallback": true,
+    "causa": {
+     "nombre": "ErrorPanelModel",
+     "codigo": "fallo-simulado",
+     "mensaje": "fallo-simulado: buildPanels: fallo SIMULADO para depuración (simularFallo)"
+    },
+    "paneles": 11,
+    "creaseEdges": 12
+   },
+   {
+    "n": 15,
+    "modo": "activo",
+    "control": "fallo-simulado",
+    "etapa": null
+   },
+   {
+    "n": 16,
+    "modo": "activo",
+    "etapa": "buildPanels",
+    "origen": "experimental",
+    "paneles": 13,
+    "creaseEdges": 12
+   },
+   {
+    "n": 17,
+    "modo": "sombra",
+    "control": "modo",
+    "a": "sombra"
+   },
+   {
+    "n": 18,
+    "modo": "sombra",
+    "etapa": "buildPanels",
+    "sombra": true,
+    "ms": 3,
+    "comparacion": {
+     "coincide": false,
+     "legacy": {
+      "paneles": 11,
+      "creaseEdges": 12,
+      "areaTotal": 26769.121,
+      "areas": [
+       316.198,
+       665.582,
+       666.433,
+       666.468,
+       1580.079,
+       1760.341,
+       1918.973,
+       4770.579,
+       4794.391,
+       4800.225,
+       4829.852
+      ]
+     },
+     "experimental": {
+      "paneles": 13,
+      "creaseEdges": 12,
+      "areaTotal": 27450.239,
+      "areas": [
+       316.164,
+       316.275,
+       665.548,
+       665.583,
+       665.681,
+       665.716,
+       1579.942,
+       1600.012,
+       1760.549,
+       4794.604,
+       4800.149,
+       4800.222,
+       4819.794
+      ],
+      "diagnosticos": {
+       "ajuste": 19
+      }
+     },
+     "diferencias": [
+      {
+       "campo": "paneles",
+       "legacy": 11,
+       "experimental": 13
+      },
+      {
+       "campo": "areaTotal",
+       "legacy": 26769.121,
+       "experimental": 27450.239
+      },
+      {
+       "campo": "areas",
+       "legacy": [
+        316.198,
+        665.582,
+        666.433,
+        666.468,
+        1580.079,
+        1760.341,
+        1918.973,
+        4770.579,
+        4794.391,
+        4800.225,
+        4829.852
+       ],
+       "experimental": [
+        316.164,
+        316.275,
+        665.548,
+        665.583,
+        665.681,
+        665.716,
+        1579.942,
+        1600.012,
+        1760.549,
+        4794.604,
+        4800.149,
+        4800.222,
+        4819.794
+       ]
+      }
+     ]
+    },
+    "lento": false
+   },
+   {
+    "n": 19,
+    "modo": "sombra",
+    "etapa": "buildAdjacency",
+    "sombra": true,
+    "ms": 0,
+    "comparacion": {
+     "coincide": false,
+     "legacy": {
+      "adyacencias": 10
+     },
+     "experimental": {
+      "adyacencias": 12
+     },
+     "diferencias": [
+      {
+       "campo": "adyacencias",
+       "legacy": 10,
+       "experimental": 12
+      }
+     ]
+    },
+    "lento": false
+   },
+   {
+    "n": 20,
+    "modo": "sombra",
+    "etapa": "buildFoldTree",
+    "sombra": true,
+    "ms": 0,
+    "baseLegacy": 4,
+    "baseExperimental": 8,
+    "comparacion": {
+     "coincide": false,
+     "legacy": {
+      "aristas": 10
+     },
+     "experimental": {
+      "aristas": 12
+     },
+     "diferencias": [
+      {
+       "campo": "aristas",
+       "legacy": 10,
+       "experimental": 12
+      }
+     ]
+    },
+    "diagnosticos": {
+     "ajuste": 19
+    },
+    "lento": false
+   },
+   {
+    "n": 21,
+    "modo": "sombra",
+    "etapa": "buildPanels",
+    "sombra": true,
+    "ms": 0,
+    "comparacion": {
+     "coincide": true,
+     "legacy": {
+      "paneles": 2,
+      "creaseEdges": 1,
+      "areaTotal": 6000,
+      "areas": [
+       3000,
+       3000
+      ]
+     },
+     "experimental": {
+      "paneles": 2,
+      "creaseEdges": 1,
+      "areaTotal": 6000,
+      "areas": [
+       3000,
+       3000
+      ],
+      "diagnosticos": {}
+     },
+     "diferencias": []
+    },
+    "lento": false
+   },
+   {
+    "n": 22,
+    "modo": "sombra",
+    "etapa": "buildAdjacency",
+    "sombra": true,
+    "ms": 0,
+    "comparacion": {
+     "coincide": true,
+     "legacy": {
+      "adyacencias": 1
+     },
+     "experimental": {
+      "adyacencias": 1
+     },
+     "diferencias": []
+    },
+    "lento": false
+   },
+   {
+    "n": 23,
+    "modo": "sombra",
+    "etapa": "buildFoldTree",
+    "sombra": true,
+    "ms": 0,
+    "baseLegacy": 1,
+    "baseExperimental": 0,
+    "comparacion": {
+     "coincide": true,
+     "legacy": {
+      "aristas": 1
+     },
+     "experimental": {
+      "aristas": 1
+     },
+     "diferencias": []
+    },
+    "diagnosticos": {},
+    "lento": false
+   },
+   {
+    "n": 24,
+    "modo": "activo",
+    "control": "modo",
+    "a": "activo"
+   },
+   {
+    "n": 25,
+    "modo": "activo",
+    "etapa": "buildPanels",
+    "origen": "experimental",
+    "paneles": 2,
+    "creaseEdges": 1
+   },
+   {
+    "n": 26,
+    "modo": "sombra",
+    "control": "modo",
+    "a": "sombra"
+   },
+   {
+    "n": 27,
+    "modo": "sombra",
+    "etapa": "buildPanels",
+    "sombra": true,
+    "ms": 1,
+    "comparacion": {
+     "coincide": true,
+     "legacy": {
+      "paneles": 2,
+      "creaseEdges": 1,
+      "areaTotal": 6000,
+      "areas": [
+       3000,
+       3000
+      ]
+     },
+     "experimental": {
+      "paneles": 2,
+      "creaseEdges": 1,
+      "areaTotal": 6000,
+      "areas": [
+       3000,
+       3000
+      ],
+      "diagnosticos": {}
+     },
+     "diferencias": []
+    },
+    "lento": false
+   },
+   {
+    "n": 28,
+    "modo": "sombra",
+    "etapa": "buildAdjacency",
+    "sombra": true,
+    "ms": 0,
+    "comparacion": {
+     "coincide": true,
+     "legacy": {
+      "adyacencias": 1
+     },
+     "experimental": {
+      "adyacencias": 1
+     },
+     "diferencias": []
+    },
+    "lento": false
+   },
+   {
+    "n": 29,
+    "modo": "sombra",
+    "etapa": "buildFoldTree",
+    "sombra": true,
+    "ms": 0,
+    "baseLegacy": 1,
+    "baseExperimental": 0,
+    "comparacion": {
+     "coincide": true,
+     "legacy": {
+      "aristas": 1
+     },
+     "experimental": {
+      "aristas": 1
+     },
+     "diferencias": []
+    },
+    "diagnosticos": {},
+    "lento": false
+   }
+  ],
+  "log": [
+   "=== buildPanels ===",
+   "Closed cut contours reclassified · shells=1 holes=1 total=2",
+   "Total topo segments (closed cuts + creases): 9",
+   "buildTopology: 9 input segments",
+   "After splitting: 11 segments (3 iterations)",
+   "Graph: 10 vertices, 10 adj entries",
+   "Faces traced: 5",
+   "  Face 0: area=-6000.0 verts=6 hole=true",
+   "  Face 1: area=3000.0 verts=4 hole=false",
+   "  Face 2: area=3000.0 verts=4 hole=false",
+   "  Face 3: area=100.0 verts=4 hole=false",
+   "  Face 4: area=-100.0 verts=4 hole=true",
+   "Panels after shell filter: 3",
+   "Connectivity filter: keeping 2 of 3 panels from largest crease-connected component",
+   "Base reiniciada (KI-30): documento o motor distinto del de la construcción anterior; se usa la base por defecto del motor legacy.",
+   "Built 2 panel meshes, 1 crease edge segments",
+   "Adjacency edges: 1 (strict)",
+   "Fold tree edges: 1 (base=P1)",
+   ""
+  ],
+  "barra": {
+   "modo": "SOMBRA (legacy)",
+   "construccion": "Construcción actual: LEGACY · 2 paneles · 1 pliegues · base P1",
+   "origen": "legacy",
+   "mensaje": null,
+   "tipo": "",
+   "diag": "Comparación en sombra: legacy 2 paneles · experimental 2 paneles (coinciden)",
+   "items": []
+  }
+ },
+ "archivos": {
+  "f2a3-activo.glb": {
+   "bytes": 68192,
+   "sha256": "f8bfbe396b28ae3bebe7444d84e62ad7fdaa019c76cd18d7f99ee80d5f000f12"
+  },
+  "f2a3-activo.png": {
+   "bytes": 68339,
+   "sha256": "0251c46208ad05507b97db6b19d8362abe2a647f6094378579dd85db8bbb6271"
+  },
+  "f2a3-arte-activo.glb": {
+   "bytes": 295440,
+   "sha256": "f497a5487b0e7c15db8ce245d867f8abd112b13dd35561a05ec59fbda17f9bfb"
+  },
+  "f2a3-arte-activo.png": {
+   "bytes": 54249,
+   "sha256": "d0a19f9de7b603d819db0a03570a52b38a0677c8b8c4b6bef853f300c820e438"
+  },
+  "f2a3-arte-sombra.glb": {
+   "bytes": 295440,
+   "sha256": "9e8dd2e5c573265ce9815006deec6111fea6c9499a06da072ca8803e166a8b64"
+  },
+  "f2a3-arte-sombra.png": {
+   "bytes": 54353,
+   "sha256": "3b3a672ebc198dbb77ee8dcb8abd1070ed1b904036292432a1ca4bbd9d90a696"
+  },
+  "f2a3-sombra.glb": {
+   "bytes": 33436,
+   "sha256": "737bcd2312da1191a57f5b6530749ffd6bf20b6dd1737c454a62d7f38d8e40b4"
+  },
+  "f2a3-sombra.png": {
+   "bytes": 68026,
+   "sha256": "f19f2884bd6a298fa97d4375752aef62ea5b7d9a2ee8bcabacbdde0aaa78f003"
+  }
+ },
+ "consola": []
+}

@@ -1,0 +1,1077 @@
+{
+ "fecha": "2026-10-28T17:29:54.657Z",
+ "orden": "caja",
+ "documento": "N0-A",
+ "pasos": {
+  "V0": {
+   "ext": "com.tato.tesseract.v3.experimental.panel",
+   "host": "ILST",
+   "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 AdobeCEP/12.1.1 Safari/537.36",
+   "modo": "sombra",
+   "barra": {
+    "modo": "SOMBRA (legacy)",
+    "construccion": "Construcción actual: ninguna",
+    "origen": "",
+    "mensaje": null,
+    "tipo": "",
+    "diag": "Diagnósticos: sin construcción",
+    "items": []
+   },
+   "titulo": "Tesseract"
+  },
+  "V1": {
+   "status": "Extraction complete",
+   "validacion": "✅ No problems found",
+   "avisos": [],
+   "continuar": true,
+   "jsonBytes": 25527,
+   "lienzo2d": {
+    "hash": "8ce5009906f1ab4f",
+    "pixelesConTrazo": 818
+   }
+  },
+  "V2": {
+   "status": "3D ready · thickness=0.3mm",
+   "barra": {
+    "modo": "SOMBRA (legacy)",
+    "construccion": "Construcción actual: LEGACY · 11 paneles · 10 pliegues · base P0",
+    "origen": "legacy",
+    "mensaje": null,
+    "tipo": "",
+    "diag": "Comparación en sombra: legacy 11 paneles · experimental 13 paneles",
+    "items": [
+     "paneles: legacy 11 · experimental 13",
+     "areaTotal: legacy 26769.121 · experimental 27450.239",
+     "Las áreas de los paneles difieren"
+    ]
+   },
+   "plegado": {
+    "foldPanel": true,
+    "deslizadores": 12,
+    "opcionesBase": 11,
+    "base": "0"
+   },
+   "logPaneles": [
+    "Panels after shell filter: 13",
+    "Connectivity filter: keeping 11 of 13 panels from largest crease-connected component"
+   ],
+   "comparacionSombra": [
+    {
+     "n": 1,
+     "modo": "sombra",
+     "etapa": "buildPanels",
+     "sombra": true,
+     "ms": 13,
+     "comparacion": {
+      "coincide": false,
+      "legacy": {
+       "paneles": 11,
+       "creaseEdges": 12,
+       "areaTotal": 26769.121,
+       "areas": [
+        316.198,
+        665.582,
+        666.433,
+        666.468,
+        1580.079,
+        1760.341,
+        1918.973,
+        4770.579,
+        4794.391,
+        4800.225,
+        4829.852
+       ]
+      },
+      "experimental": {
+       "paneles": 13,
+       "creaseEdges": 12,
+       "areaTotal": 27450.239,
+       "areas": [
+        316.164,
+        316.275,
+        665.548,
+        665.583,
+        665.681,
+        665.716,
+        1579.942,
+        1600.012,
+        1760.549,
+        4794.604,
+        4800.149,
+        4800.222,
+        4819.794
+       ],
+       "diagnosticos": {
+        "ajuste": 19
+       }
+      },
+      "diferencias": [
+       {
+        "campo": "paneles",
+        "legacy": 11,
+        "experimental": 13
+       },
+       {
+        "campo": "areaTotal",
+        "legacy": 26769.121,
+        "experimental": 27450.239
+       },
+       {
+        "campo": "areas",
+        "legacy": [
+         316.198,
+         665.582,
+         666.433,
+         666.468,
+         1580.079,
+         1760.341,
+         1918.973,
+         4770.579,
+         4794.391,
+         4800.225,
+         4829.852
+        ],
+        "experimental": [
+         316.164,
+         316.275,
+         665.548,
+         665.583,
+         665.681,
+         665.716,
+         1579.942,
+         1600.012,
+         1760.549,
+         4794.604,
+         4800.149,
+         4800.222,
+         4819.794
+        ]
+       }
+      ]
+     },
+     "lento": false
+    },
+    {
+     "n": 2,
+     "modo": "sombra",
+     "etapa": "buildAdjacency",
+     "sombra": true,
+     "ms": 0,
+     "comparacion": {
+      "coincide": false,
+      "legacy": {
+       "adyacencias": 10
+      },
+      "experimental": {
+       "adyacencias": 12
+      },
+      "diferencias": [
+       {
+        "campo": "adyacencias",
+        "legacy": 10,
+        "experimental": 12
+       }
+      ]
+     },
+     "lento": false
+    },
+    {
+     "n": 3,
+     "modo": "sombra",
+     "etapa": "buildFoldTree",
+     "sombra": true,
+     "ms": 1,
+     "baseLegacy": 0,
+     "baseExperimental": 6,
+     "comparacion": {
+      "coincide": false,
+      "legacy": {
+       "aristas": 10
+      },
+      "experimental": {
+       "aristas": 12
+      },
+      "diferencias": [
+       {
+        "campo": "aristas",
+        "legacy": 10,
+        "experimental": 12
+       }
+      ]
+     },
+     "diagnosticos": {
+      "ajuste": 19
+     },
+     "lento": false
+    }
+   ],
+   "hashPlano": "531a868b92e1867b"
+  },
+  "V7-sombra": {
+   "png": {
+    "botonVisible": false,
+    "bytes": 68028,
+    "ruta": "/private/tmp/tesseract_f2a3/f2a3-sombra.png",
+    "err": 0
+   },
+   "glb": {
+    "status": "GLB exported from current 3D pose",
+    "escrituras": [
+     {
+      "p": "/private/tmp/tesseract_f2a3/f2a3-sombra.glb",
+      "bytes": 33438,
+      "err": 0
+     }
+    ],
+    "log": []
+   }
+  },
+  "V3": {
+   "antes": "sombra",
+   "confirmacionVisible": true,
+   "modoTrasPrimerClic": "sombra",
+   "modo": "activo",
+   "barra": {
+    "modo": "ACTIVO (experimental)",
+    "construccion": "Construcción actual: LEGACY · 11 paneles · 10 pliegues · base P0",
+    "origen": "legacy",
+    "mensaje": "Modo ACTIVO: pulse «Continue to 3D» (o vuelva a extraer) para construir con el motor experimental.",
+    "tipo": "info",
+    "diag": "Comparación en sombra: legacy 11 paneles · experimental 13 paneles",
+    "items": [
+     "paneles: legacy 11 · experimental 13",
+     "areaTotal: legacy 26769.121 · experimental 27450.239",
+     "Las áreas de los paneles difieren"
+    ]
+   },
+   "log": [
+    "Motor de geometría: modo ACTIVO — los modelos NUEVOS los construye el motor experimental experimental-f2a2 (ε=0.05 mm). No es persistente: al recargar el panel vuelve a SOMBRA. Pulse «Continue to 3D» para reconstruir."
+   ]
+  },
+  "V4": {
+   "status": "3D ready · thickness=0.3mm",
+   "barra": {
+    "modo": "ACTIVO (experimental)",
+    "construccion": "Construcción actual: EXPERIMENTAL (experimental-f2a2) · 13 paneles · 12 pliegues · base P8",
+    "origen": "experimental",
+    "mensaje": null,
+    "tipo": "",
+    "diag": "Diagnósticos geométricos (19): 19 × extremo de crease ajustado (ε)",
+    "items": [
+     "Extremo de crease ajustado (ε) · regla A-corte:B · crease C0 · extremo 0 · d_mm 0",
+     "Extremo de crease ajustado (ε) · regla A-corte:B · crease C0 · extremo 1 · d_mm 0",
+     "Extremo de crease ajustado (ε) · regla A-corte:B · crease C1 · extremo 0 · d_mm 0",
+     "Extremo de crease ajustado (ε) · regla A-corte:B · crease C1 · extremo 1 · d_mm 0",
+     "Extremo de crease ajustado (ε) · regla A-corte:B · crease C2 · extremo 0 · d_mm 0",
+     "Extremo de crease ajustado (ε) · regla A-corte:B · crease C5 · extremo 0 · d_mm 0",
+     "Extremo de crease ajustado (ε) · regla A-corte:B · crease C2 · extremo 1 · d_mm 0",
+     "Extremo de crease ajustado (ε) · regla A-corte:B · crease C3 · extremo 0 · d_mm 0",
+     "Extremo de crease ajustado (ε) · regla A-corte:B · crease C4 · extremo 0 · d_mm 0",
+     "Extremo de crease ajustado (ε) · regla A-corte:B · crease C6 · extremo 0 · d_mm 0",
+     "Extremo de crease ajustado (ε) · regla A-corte:B · crease C7 · extremo 1 · d_mm 0",
+     "Extremo de crease ajustado (ε) · regla A-corte:B · crease C6 · extremo 1 · d_mm 0"
+    ]
+   },
+   "plegado": {
+    "foldPanel": true,
+    "deslizadores": 14,
+    "opcionesBase": 13,
+    "base": "8"
+   },
+   "log": [
+    "Motor de geometría: modo ACTIVO — esta construcción usa el motor experimental experimental-f2a2 (no persistente; desactivar: __tessMotorExperimental.desactivar()).",
+    "=== buildPanels (experimental-f2a2, ε=0.05 mm) === panels=13",
+    "Base reiniciada (KI-30): documento o motor distinto del de la construcción anterior; se usa la base por defecto del motor experimental.",
+    "Adjacency edges: 12 (experimental exacto)",
+    "Fold tree edges: 12 (base=P8, experimental)"
+   ],
+   "hashPlano": "17218c67a0c1541a"
+  },
+  "V5": {
+   "bases": {
+    "0": {
+     "status": "3D ready · base=P0 · thickness=0.3mm",
+     "plegado": {
+      "foldPanel": true,
+      "deslizadores": 14,
+      "opcionesBase": 13,
+      "base": "0"
+     },
+     "barra": {
+      "modo": "ACTIVO (experimental)",
+      "construccion": "Construcción actual: EXPERIMENTAL (experimental-f2a2) · 13 paneles · 12 pliegues · base P0",
+      "origen": "experimental",
+      "mensaje": null,
+      "tipo": "",
+      "diag": "Diagnósticos geométricos (19): 19 × extremo de crease ajustado (ε)",
+      "items": [
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C0 · extremo 0 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C0 · extremo 1 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C1 · extremo 0 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C1 · extremo 1 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C2 · extremo 0 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C5 · extremo 0 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C2 · extremo 1 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C3 · extremo 0 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C4 · extremo 0 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C6 · extremo 0 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C7 · extremo 1 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C6 · extremo 1 · d_mm 0"
+      ]
+     }
+    },
+    "5": {
+     "status": "3D ready · base=P5 · thickness=0.3mm",
+     "plegado": {
+      "foldPanel": true,
+      "deslizadores": 14,
+      "opcionesBase": 13,
+      "base": "5"
+     },
+     "barra": {
+      "modo": "ACTIVO (experimental)",
+      "construccion": "Construcción actual: EXPERIMENTAL (experimental-f2a2) · 13 paneles · 12 pliegues · base P5",
+      "origen": "experimental",
+      "mensaje": null,
+      "tipo": "",
+      "diag": "Diagnósticos geométricos (19): 19 × extremo de crease ajustado (ε)",
+      "items": [
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C0 · extremo 0 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C0 · extremo 1 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C1 · extremo 0 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C1 · extremo 1 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C2 · extremo 0 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C5 · extremo 0 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C2 · extremo 1 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C3 · extremo 0 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C4 · extremo 0 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C6 · extremo 0 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C7 · extremo 1 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C6 · extremo 1 · d_mm 0"
+      ]
+     }
+    },
+    "12": {
+     "status": "3D ready · base=P12 · thickness=0.3mm",
+     "plegado": {
+      "foldPanel": true,
+      "deslizadores": 14,
+      "opcionesBase": 13,
+      "base": "12"
+     },
+     "barra": {
+      "modo": "ACTIVO (experimental)",
+      "construccion": "Construcción actual: EXPERIMENTAL (experimental-f2a2) · 13 paneles · 12 pliegues · base P12",
+      "origen": "experimental",
+      "mensaje": null,
+      "tipo": "",
+      "diag": "Diagnósticos geométricos (19): 19 × extremo de crease ajustado (ε)",
+      "items": [
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C0 · extremo 0 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C0 · extremo 1 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C1 · extremo 0 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C1 · extremo 1 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C2 · extremo 0 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C5 · extremo 0 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C2 · extremo 1 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C3 · extremo 0 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C4 · extremo 0 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C6 · extremo 0 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C7 · extremo 1 · d_mm 0",
+       "Extremo de crease ajustado (ε) · regla A-corte:B · crease C6 · extremo 1 · d_mm 0"
+      ]
+     }
+    }
+   },
+   "hashBase0Plano": "dee122d3ebd0ff01",
+   "hashTodas60": "86989d1a71f18e77",
+   "hashUnaCrease": "062996e3792cd82d",
+   "hashTrasReset": "dee122d3ebd0ff01",
+   "plegadoCambiaLaImagen": true,
+   "resetVuelveAlPlano": true
+  },
+  "V6": {
+   "kraft": {
+    "pill": "Kraft board",
+    "status": "Material preset applied: Kraft board"
+   },
+   "gray": {
+    "pill": "Gray board",
+    "status": "Material preset applied: Gray board"
+   },
+   "white": {
+    "pill": "White board",
+    "status": "Material preset applied: White board"
+   },
+   "espesor 0.8": "Thickness applied: 0.8mm",
+   "espesor 0": "Thickness must be greater than 0"
+  },
+  "V7-activo": {
+   "png": {
+    "botonVisible": false,
+    "bytes": 68340,
+    "ruta": "/private/tmp/tesseract_f2a3/f2a3-activo.png",
+    "err": 0
+   },
+   "glb": {
+    "status": "GLB exported from current 3D pose",
+    "escrituras": [
+     {
+      "p": "/private/tmp/tesseract_f2a3/f2a3-activo.glb",
+      "bytes": 68193,
+      "err": 0
+     }
+    ],
+    "log": []
+   }
+  },
+  "V8": {
+   "pedida": 3,
+   "antes": {
+    "foldPanel": true,
+    "deslizadores": 14,
+    "opcionesBase": 13,
+    "base": "0",
+    "angulos": "-60,60,-60,-60,-60,-60,60,60,60,60,-60,-60,-60,-60"
+   },
+   "durante": {
+    "status": "Base change failed · base=P0 kept",
+    "barra": {
+     "modo": "ACTIVO (experimental)",
+     "construccion": "Construcción actual: EXPERIMENTAL (experimental-f2a2) · 13 paneles · 12 pliegues · base P0",
+     "origen": "experimental",
+     "mensaje": "No se pudo cambiar la base a P3 (construccion-detenida: buildFoldTree: fallo-simulado: buildFoldTree: fallo SIMULADO para depuración (simularFallo)). Se conserva la base P0 con su plegado.",
+     "tipo": "error",
+     "diag": "Diagnósticos geométricos (19): 19 × extremo de crease ajustado (ε)",
+     "items": [
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C0 · extremo 0 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C0 · extremo 1 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C1 · extremo 0 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C1 · extremo 1 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C2 · extremo 0 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C5 · extremo 0 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C2 · extremo 1 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C3 · extremo 0 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C4 · extremo 0 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C6 · extremo 0 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C7 · extremo 1 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C6 · extremo 1 · d_mm 0"
+     ]
+    },
+    "foldPanel": true,
+    "deslizadores": 14,
+    "opcionesBase": 13,
+    "base": "0",
+    "angulos": "-60,0,-60,-60,-60,-60,60,60,60,60,-60,-60,-60,-60"
+   },
+   "conservaBase": true,
+   "conservaAngulos": false,
+   "trasQuitarElFallo": {
+    "base": "3",
+    "status": "3D ready · base=P3 · thickness=0.3mm"
+   }
+  },
+  "V9": {
+   "detencion": {
+    "status": "3D error: construccion-detenida: buildFoldTree: fallo-simulado: buildFoldTree: fallo SIMULADO para depuración (simularFallo)",
+    "barra": {
+     "modo": "ACTIVO (experimental)",
+     "construccion": "Construcción actual: EXPERIMENTAL (experimental-f2a2) · 13 paneles",
+     "origen": "experimental",
+     "mensaje": "Construcción DETENIDA por el motor experimental (construccion-detenida: buildFoldTree: fallo-simulado: buildFoldTree: fallo SIMULADO para depuración (simularFallo)). No se mezclan resultados con el legacy: vuelva a sombra o reconstruya.",
+     "tipo": "error",
+     "diag": "Diagnósticos geométricos (19): 19 × extremo de crease ajustado (ε)",
+     "items": [
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C0 · extremo 0 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C0 · extremo 1 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C1 · extremo 0 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C1 · extremo 1 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C2 · extremo 0 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C5 · extremo 0 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C2 · extremo 1 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C3 · extremo 0 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C4 · extremo 0 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C6 · extremo 0 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C7 · extremo 1 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C6 · extremo 1 · d_mm 0"
+     ]
+    },
+    "plegado": {
+     "foldPanel": false,
+     "deslizadores": 0,
+     "opcionesBase": 0,
+     "base": null
+    }
+   },
+   "fallback": {
+    "status": "3D ready · thickness=0.3mm",
+    "barra": {
+     "modo": "ACTIVO (experimental)",
+     "construccion": "Construcción actual: LEGACY (fallback) · 11 paneles · 10 pliegues · base P4",
+     "origen": "legacy",
+     "mensaje": "El motor experimental no pudo construir este troquel (fallo-simulado); esta construcción usa el motor LEGACY completo.",
+     "tipo": "aviso",
+     "diag": "Comparación en sombra: legacy 11 paneles · experimental 13 paneles",
+     "items": [
+      "paneles: legacy 11 · experimental 13",
+      "areaTotal: legacy 26769.121 · experimental 27450.239",
+      "Las áreas de los paneles difieren"
+     ]
+    },
+    "plegado": {
+     "foldPanel": true,
+     "deslizadores": 12,
+     "opcionesBase": 11,
+     "base": "4"
+    }
+   },
+   "recuperacion": {
+    "status": "3D ready · thickness=0.3mm",
+    "barra": {
+     "modo": "ACTIVO (experimental)",
+     "construccion": "Construcción actual: EXPERIMENTAL (experimental-f2a2) · 13 paneles · 12 pliegues · base P8",
+     "origen": "experimental",
+     "mensaje": null,
+     "tipo": "",
+     "diag": "Diagnósticos geométricos (19): 19 × extremo de crease ajustado (ε)",
+     "items": [
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C0 · extremo 0 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C0 · extremo 1 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C1 · extremo 0 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C1 · extremo 1 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C2 · extremo 0 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C5 · extremo 0 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C2 · extremo 1 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C3 · extremo 0 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C4 · extremo 0 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C6 · extremo 0 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C7 · extremo 1 · d_mm 0",
+      "Extremo de crease ajustado (ε) · regla A-corte:B · crease C6 · extremo 1 · d_mm 0"
+     ]
+    },
+    "plegado": {
+     "foldPanel": true,
+     "deslizadores": 14,
+     "opcionesBase": 13,
+     "base": "8"
+    }
+   }
+  },
+  "V10": {
+   "status": "3D ready · thickness=0.3mm",
+   "barra": {
+    "modo": "SOMBRA (legacy)",
+    "construccion": "Construcción actual: LEGACY · 11 paneles · 10 pliegues · base P4",
+    "origen": "legacy",
+    "mensaje": null,
+    "tipo": "",
+    "diag": "Comparación en sombra: legacy 11 paneles · experimental 13 paneles",
+    "items": [
+     "paneles: legacy 11 · experimental 13",
+     "areaTotal: legacy 26769.121 · experimental 27450.239",
+     "Las áreas de los paneles difieren"
+    ]
+   },
+   "plegado": {
+    "foldPanel": true,
+    "deslizadores": 12,
+    "opcionesBase": 11,
+    "base": "4"
+   },
+   "modo": "sombra",
+   "log": [
+    "Base reiniciada (KI-30): documento o motor distinto del de la construcción anterior; se usa la base por defecto del motor legacy."
+   ]
+  }
+ },
+ "capturas": {
+  "V0": "tests/results/f2a3-cep/capturas/caja-V0-2026-10-28T17-29-54-640Z.png",
+  "V1": "tests/results/f2a3-cep/capturas/caja-V1-2026-10-28T17-29-54-640Z.png",
+  "V2": "tests/results/f2a3-cep/capturas/caja-V2-2026-10-28T17-29-54-640Z.png",
+  "V3": "tests/results/f2a3-cep/capturas/caja-V3-2026-10-28T17-29-54-640Z.png",
+  "V4": "tests/results/f2a3-cep/capturas/caja-V4-2026-10-28T17-29-54-640Z.png",
+  "V5": "tests/results/f2a3-cep/capturas/caja-V5-2026-10-28T17-29-54-640Z.png",
+  "V7-activo": "tests/results/f2a3-cep/capturas/caja-V7-activo-2026-10-28T17-29-54-640Z.png",
+  "V8": "tests/results/f2a3-cep/capturas/caja-V8-2026-10-28T17-29-54-640Z.png",
+  "V9": "tests/results/f2a3-cep/capturas/caja-V9-2026-10-28T17-29-54-640Z.png",
+  "V10": "tests/results/f2a3-cep/capturas/caja-V10-2026-10-28T17-29-54-640Z.png"
+ },
+ "final": {
+  "modo": "sombra",
+  "registro": [
+   {
+    "n": 1,
+    "modo": "sombra",
+    "etapa": "buildPanels",
+    "sombra": true,
+    "ms": 13,
+    "comparacion": {
+     "coincide": false,
+     "legacy": {
+      "paneles": 11,
+      "creaseEdges": 12,
+      "areaTotal": 26769.121,
+      "areas": [
+       316.198,
+       665.582,
+       666.433,
+       666.468,
+       1580.079,
+       1760.341,
+       1918.973,
+       4770.579,
+       4794.391,
+       4800.225,
+       4829.852
+      ]
+     },
+     "experimental": {
+      "paneles": 13,
+      "creaseEdges": 12,
+      "areaTotal": 27450.239,
+      "areas": [
+       316.164,
+       316.275,
+       665.548,
+       665.583,
+       665.681,
+       665.716,
+       1579.942,
+       1600.012,
+       1760.549,
+       4794.604,
+       4800.149,
+       4800.222,
+       4819.794
+      ],
+      "diagnosticos": {
+       "ajuste": 19
+      }
+     },
+     "diferencias": [
+      {
+       "campo": "paneles",
+       "legacy": 11,
+       "experimental": 13
+      },
+      {
+       "campo": "areaTotal",
+       "legacy": 26769.121,
+       "experimental": 27450.239
+      },
+      {
+       "campo": "areas",
+       "legacy": [
+        316.198,
+        665.582,
+        666.433,
+        666.468,
+        1580.079,
+        1760.341,
+        1918.973,
+        4770.579,
+        4794.391,
+        4800.225,
+        4829.852
+       ],
+       "experimental": [
+        316.164,
+        316.275,
+        665.548,
+        665.583,
+        665.681,
+        665.716,
+        1579.942,
+        1600.012,
+        1760.549,
+        4794.604,
+        4800.149,
+        4800.222,
+        4819.794
+       ]
+      }
+     ]
+    },
+    "lento": false
+   },
+   {
+    "n": 2,
+    "modo": "sombra",
+    "etapa": "buildAdjacency",
+    "sombra": true,
+    "ms": 0,
+    "comparacion": {
+     "coincide": false,
+     "legacy": {
+      "adyacencias": 10
+     },
+     "experimental": {
+      "adyacencias": 12
+     },
+     "diferencias": [
+      {
+       "campo": "adyacencias",
+       "legacy": 10,
+       "experimental": 12
+      }
+     ]
+    },
+    "lento": false
+   },
+   {
+    "n": 3,
+    "modo": "sombra",
+    "etapa": "buildFoldTree",
+    "sombra": true,
+    "ms": 1,
+    "baseLegacy": 0,
+    "baseExperimental": 6,
+    "comparacion": {
+     "coincide": false,
+     "legacy": {
+      "aristas": 10
+     },
+     "experimental": {
+      "aristas": 12
+     },
+     "diferencias": [
+      {
+       "campo": "aristas",
+       "legacy": 10,
+       "experimental": 12
+      }
+     ]
+    },
+    "diagnosticos": {
+     "ajuste": 19
+    },
+    "lento": false
+   },
+   {
+    "n": 4,
+    "modo": "activo",
+    "control": "modo",
+    "a": "activo"
+   },
+   {
+    "n": 5,
+    "modo": "activo",
+    "etapa": "buildPanels",
+    "origen": "experimental",
+    "paneles": 13,
+    "creaseEdges": 12
+   },
+   {
+    "n": 6,
+    "modo": "activo",
+    "control": "fallo-simulado",
+    "etapa": "buildFoldTree"
+   },
+   {
+    "n": 7,
+    "modo": "activo",
+    "etapa": "buildFoldTree",
+    "origen": "experimental",
+    "detenida": true,
+    "causa": {
+     "nombre": "ErrorPanelModel",
+     "codigo": "fallo-simulado",
+     "mensaje": "fallo-simulado: buildFoldTree: fallo SIMULADO para depuración (simularFallo)"
+    }
+   },
+   {
+    "n": 8,
+    "modo": "activo",
+    "etapa": "buildFoldTree",
+    "origen": "experimental",
+    "detenida": true,
+    "causa": {
+     "nombre": "ErrorPanelModel",
+     "codigo": "fallo-simulado",
+     "mensaje": "fallo-simulado: buildFoldTree: fallo SIMULADO para depuración (simularFallo)"
+    }
+   },
+   {
+    "n": 9,
+    "modo": "activo",
+    "control": "fallo-simulado",
+    "etapa": null
+   },
+   {
+    "n": 10,
+    "modo": "activo",
+    "control": "fallo-simulado",
+    "etapa": "buildFoldTree"
+   },
+   {
+    "n": 11,
+    "modo": "activo",
+    "etapa": "buildPanels",
+    "origen": "experimental",
+    "paneles": 13,
+    "creaseEdges": 12
+   },
+   {
+    "n": 12,
+    "modo": "activo",
+    "etapa": "buildFoldTree",
+    "origen": "experimental",
+    "detenida": true,
+    "causa": {
+     "nombre": "ErrorPanelModel",
+     "codigo": "fallo-simulado",
+     "mensaje": "fallo-simulado: buildFoldTree: fallo SIMULADO para depuración (simularFallo)"
+    }
+   },
+   {
+    "n": 13,
+    "modo": "activo",
+    "control": "fallo-simulado",
+    "etapa": "buildPanels"
+   },
+   {
+    "n": 14,
+    "modo": "activo",
+    "etapa": "buildPanels",
+    "origen": "legacy",
+    "fallback": true,
+    "causa": {
+     "nombre": "ErrorPanelModel",
+     "codigo": "fallo-simulado",
+     "mensaje": "fallo-simulado: buildPanels: fallo SIMULADO para depuración (simularFallo)"
+    },
+    "paneles": 11,
+    "creaseEdges": 12
+   },
+   {
+    "n": 15,
+    "modo": "activo",
+    "control": "fallo-simulado",
+    "etapa": null
+   },
+   {
+    "n": 16,
+    "modo": "activo",
+    "etapa": "buildPanels",
+    "origen": "experimental",
+    "paneles": 13,
+    "creaseEdges": 12
+   },
+   {
+    "n": 17,
+    "modo": "sombra",
+    "control": "modo",
+    "a": "sombra"
+   },
+   {
+    "n": 18,
+    "modo": "sombra",
+    "etapa": "buildPanels",
+    "sombra": true,
+    "ms": 2,
+    "comparacion": {
+     "coincide": false,
+     "legacy": {
+      "paneles": 11,
+      "creaseEdges": 12,
+      "areaTotal": 26769.121,
+      "areas": [
+       316.198,
+       665.582,
+       666.433,
+       666.468,
+       1580.079,
+       1760.341,
+       1918.973,
+       4770.579,
+       4794.391,
+       4800.225,
+       4829.852
+      ]
+     },
+     "experimental": {
+      "paneles": 13,
+      "creaseEdges": 12,
+      "areaTotal": 27450.239,
+      "areas": [
+       316.164,
+       316.275,
+       665.548,
+       665.583,
+       665.681,
+       665.716,
+       1579.942,
+       1600.012,
+       1760.549,
+       4794.604,
+       4800.149,
+       4800.222,
+       4819.794
+      ],
+      "diagnosticos": {
+       "ajuste": 19
+      }
+     },
+     "diferencias": [
+      {
+       "campo": "paneles",
+       "legacy": 11,
+       "experimental": 13
+      },
+      {
+       "campo": "areaTotal",
+       "legacy": 26769.121,
+       "experimental": 27450.239
+      },
+      {
+       "campo": "areas",
+       "legacy": [
+        316.198,
+        665.582,
+        666.433,
+        666.468,
+        1580.079,
+        1760.341,
+        1918.973,
+        4770.579,
+        4794.391,
+        4800.225,
+        4829.852
+       ],
+       "experimental": [
+        316.164,
+        316.275,
+        665.548,
+        665.583,
+        665.681,
+        665.716,
+        1579.942,
+        1600.012,
+        1760.549,
+        4794.604,
+        4800.149,
+        4800.222,
+        4819.794
+       ]
+      }
+     ]
+    },
+    "lento": false
+   },
+   {
+    "n": 19,
+    "modo": "sombra",
+    "etapa": "buildAdjacency",
+    "sombra": true,
+    "ms": 0,
+    "comparacion": {
+     "coincide": false,
+     "legacy": {
+      "adyacencias": 10
+     },
+     "experimental": {
+      "adyacencias": 12
+     },
+     "diferencias": [
+      {
+       "campo": "adyacencias",
+       "legacy": 10,
+       "experimental": 12
+      }
+     ]
+    },
+    "lento": false
+   },
+   {
+    "n": 20,
+    "modo": "sombra",
+    "etapa": "buildFoldTree",
+    "sombra": true,
+    "ms": 0,
+    "baseLegacy": 4,
+    "baseExperimental": 8,
+    "comparacion": {
+     "coincide": false,
+     "legacy": {
+      "aristas": 10
+     },
+     "experimental": {
+      "aristas": 12
+     },
+     "diferencias": [
+      {
+       "campo": "aristas",
+       "legacy": 10,
+       "experimental": 12
+      }
+     ]
+    },
+    "diagnosticos": {
+     "ajuste": 19
+    },
+    "lento": false
+   }
+  ],
+  "log": [
+   "=== buildPanels ===",
+   "Closed cut contours reclassified · shells=1 holes=0 total=1",
+   "Total topo segments (closed cuts + creases): 68",
+   "buildTopology: 68 input segments",
+   "After splitting: 78 segments (9 iterations)",
+   "Graph: 52 vertices, 52 adj entries",
+   "Faces traced: 13",
+   "  Face 0: area=-27434.7 verts=49 hole=true",
+   "  Face 1: area=1580.1 verts=4 hole=false",
+   "  Face 2: area=316.2 verts=4 hole=false",
+   "  Face 3: area=666.5 verts=8 hole=false",
+   "  Face 4: area=4770.6 verts=5 hole=false",
+   "  Face 5: area=4829.9 verts=4 hole=false",
+   "  Face 6: area=1760.3 verts=4 hole=false",
+   "  Face 7: area=1919.0 verts=9 hole=false",
+   "  Face 8: area=665.6 verts=7 hole=false",
+   "  Face 9: area=4794.4 verts=11 hole=false",
+   "  Face 10: area=665.6 verts=7 hole=false",
+   "  Face 11: area=4800.2 verts=6 hole=false",
+   "  Face 12: area=666.4 verts=8 hole=false",
+   "Panels after shell filter: 13",
+   "Connectivity filter: keeping 11 of 13 panels from largest crease-connected component",
+   "Base reiniciada (KI-30): documento o motor distinto del de la construcción anterior; se usa la base por defecto del motor legacy.",
+   "Built 11 panel meshes, 12 crease edge segments",
+   "Adjacency edges: 10 (strict)",
+   "Fold tree edges: 10 (base=P4)",
+   ""
+  ],
+  "barra": {
+   "modo": "SOMBRA (legacy)",
+   "construccion": "Construcción actual: LEGACY · 11 paneles · 10 pliegues · base P4",
+   "origen": "legacy",
+   "mensaje": null,
+   "tipo": "",
+   "diag": "Comparación en sombra: legacy 11 paneles · experimental 13 paneles",
+   "items": [
+    "paneles: legacy 11 · experimental 13",
+    "areaTotal: legacy 26769.121 · experimental 27450.239",
+    "Las áreas de los paneles difieren"
+   ]
+  }
+ },
+ "archivos": {
+  "f2a3-activo.glb": {
+   "bytes": 68192,
+   "sha256": "f8bfbe396b28ae3bebe7444d84e62ad7fdaa019c76cd18d7f99ee80d5f000f12"
+  },
+  "f2a3-activo.png": {
+   "bytes": 68339,
+   "sha256": "0251c46208ad05507b97db6b19d8362abe2a647f6094378579dd85db8bbb6271"
+  },
+  "f2a3-sombra.glb": {
+   "bytes": 33436,
+   "sha256": "737bcd2312da1191a57f5b6530749ffd6bf20b6dd1737c454a62d7f38d8e40b4"
+  },
+  "f2a3-sombra.png": {
+   "bytes": 68026,
+   "sha256": "f19f2884bd6a298fa97d4375752aef62ea5b7d9a2ee8bcabacbdde0aaa78f003"
+  }
+ },
+ "consola": []
+}

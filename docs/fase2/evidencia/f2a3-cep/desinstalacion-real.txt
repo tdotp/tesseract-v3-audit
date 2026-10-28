@@ -1,0 +1,9 @@
+== F2A-3 · desinstalación experimental AUTORIZADA el 2026-10-28: se borra SOLO /Users/gerardocalambasposada/Library/Application Support/Adobe/CEP/extensions/tesseract-v3-experimental
+  OK   borrado /Users/gerardocalambasposada/Library/Application Support/Adobe/CEP/extensions/tesseract-v3-experimental
+  OK   las demás extensiones siguen idénticas (solo se retiró la experimental)
+  OK   estado = snapshot previo a la instalación
+  OK   verify-isolation.sh estricto verde (nada de V3 instalado)
+Falta: reiniciar Illustrator para que el menú «Tesseract V3 (experimental)» desaparezca.
+DESINSTALACIÓN CORRECTA
+menú tras desinstalar y reiniciar: Libraries, Tesseract, Validador editorial
+puerto 8089 sin DevTools (panel experimental ausente)

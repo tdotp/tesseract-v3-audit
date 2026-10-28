@@ -69,10 +69,10 @@ test('G4 · cambio de base TRANSACCIONAL: si buildFoldTree falla se conservan ba
   await B.eval(`(async () => { await T.setAll(45); const r = document.querySelectorAll('#fold-panel .crease-row, #fold-panel [data-edge]'); })()`); await B.eval(`(async () => { const s = document.querySelectorAll('#fold-panel input[type=range]'); s[2].value = '-30'; T.fire(s[2], 'input'); await T.sleep(60); })()`);
   const antes = await B.eval(ESTADO); assert.equal(antes.base, 3);
   await B.eval(`${CTRL}.simularFallo('buildFoldTree')`); await B.eval(BASE(7)); await espera(60); const s = await B.eval(ESTADO); const b = await B.eval(BARRA);
-  assert.equal(s.base, 3, 'base anterior restaurada'); assert.equal(s.selectBase, '3', 'el selector de base vuelve a P3'); assert.equal(s.arbol, antes.arbol, 'mismo árbol'); assert.equal(s.angulos, antes.angulos, 'mismos ángulos (no se aplanó)'); assert.equal(s.sel, antes.sel, 'misma crease seleccionada');
+  assert.equal(await B.eval(`document.querySelector('#fold-panel details.all-creases input[type=range]').value`), '45', 'el deslizador ALL conserva su valor'); assert.equal(s.base, 3, 'base anterior restaurada'); assert.equal(s.selectBase, '3', 'el selector de base vuelve a P3'); assert.equal(s.arbol, antes.arbol, 'mismo árbol'); assert.equal(s.angulos, antes.angulos, 'mismos ángulos (no se aplanó)'); assert.equal(s.sel, antes.sel, 'misma crease seleccionada');
   assert.equal(b.tipo, 'error'); assert.match(b.mensaje, /No se pudo cambiar la base a P7 \(construccion-detenida: .*fallo SIMULADO.*\)\. Se conserva la base P3 con su plegado\./); assert.match(s.status, /Base change failed · base=P3 kept/);
   assert.deepEqual(B.errors.slice(e0), [], 'sin excepciones no capturadas');
-  await B.eval(`${CTRL}.simularFallo(null)`); await B.eval(BASE(7)); assert.equal((await B.eval(ESTADO)).base, 7, 'sin el fallo, el cambio de base funciona');
+  await B.eval(`${CTRL}.simularFallo(null)`); await B.eval(BASE(7)); assert.equal((await B.eval(ESTADO)).base, 7, 'sin el fallo, el cambio de base funciona'); assert.equal((await B.eval(BARRA)).mensaje, null, 'el aviso de fallo desaparece tras un cambio de base correcto');
 });
 
 test('G5–G6 · primer árbol fallido ⇒ construcción DETENIDA sin restos del modelo anterior; fallo en buildPanels ⇒ fallback atómico visible', async () => {
