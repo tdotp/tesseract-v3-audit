@@ -1,0 +1,190 @@
+{
+ "node": "v24.12.0",
+ "arch": "arm64",
+ "modulo": "git archive 2a00433 (experimental/)",
+ "etapas": null,
+ "filas": [
+  {
+   "caso": "caja-botanica-real",
+   "uniones": null,
+   "plegables": 12,
+   "componentes": 1,
+   "ady_ms": 0.0505,
+   "arbol_ms": 0.0125,
+   "kB": {
+    "uniones": null,
+    "detalle": 6.4,
+    "adyacencias": 3.1,
+    "diagnosticos": 0.1,
+    "arbol": 2.8
+   }
+  },
+  {
+   "caso": "ill-real-caja-botanica (ε 0.05)",
+   "uniones": null,
+   "plegables": 12,
+   "componentes": 1,
+   "ady_ms": 0.0442,
+   "arbol_ms": 0.0095,
+   "kB": {
+    "uniones": null,
+    "detalle": 4.5,
+    "adyacencias": 3,
+    "diagnosticos": 0,
+    "arbol": 1.6
+   }
+  },
+  {
+   "caso": "histórico ×0.75 (ε 0.05)",
+   "uniones": null,
+   "plegables": 12,
+   "componentes": 1,
+   "ady_ms": 0.0354,
+   "arbol_ms": 0.0113,
+   "kB": {
+    "uniones": null,
+    "detalle": 4.5,
+    "adyacencias": 3,
+    "diagnosticos": 0,
+    "arbol": 1.9
+   }
+  },
+  {
+   "caso": "ill-real-caja-simple",
+   "uniones": null,
+   "plegables": 1,
+   "componentes": 1,
+   "ady_ms": 0.0025,
+   "arbol_ms": 0.0011,
+   "kB": {
+    "uniones": null,
+    "detalle": -2.8,
+    "adyacencias": 0.4,
+    "diagnosticos": 0.1,
+    "arbol": 1
+   }
+  },
+  {
+   "caso": "rejilla 2×2",
+   "uniones": null,
+   "plegables": 4,
+   "componentes": 1,
+   "ady_ms": 0.0128,
+   "arbol_ms": 0.0047,
+   "kB": {
+    "uniones": null,
+    "detalle": 1.5,
+    "adyacencias": 1.1,
+    "diagnosticos": 0.1,
+    "arbol": 1.4
+   }
+  },
+  {
+   "caso": "rejilla 4×4",
+   "uniones": null,
+   "plegables": 24,
+   "componentes": 1,
+   "ady_ms": 0.0827,
+   "arbol_ms": 0.0228,
+   "kB": {
+    "uniones": null,
+    "detalle": 11.5,
+    "adyacencias": 5.8,
+    "diagnosticos": 0,
+    "arbol": 2.2
+   }
+  },
+  {
+   "caso": "rejilla 6×6",
+   "uniones": null,
+   "plegables": 60,
+   "componentes": 1,
+   "ady_ms": 0.1919,
+   "arbol_ms": 0.0276,
+   "kB": {
+    "uniones": null,
+    "detalle": 24.1,
+    "adyacencias": 11,
+    "diagnosticos": 0,
+    "arbol": 4.3
+   }
+  },
+  {
+   "caso": "rejilla 8×8",
+   "uniones": null,
+   "plegables": 112,
+   "componentes": 1,
+   "ady_ms": 0.2348,
+   "arbol_ms": 0.0409,
+   "kB": {
+    "uniones": null,
+    "detalle": 38.6,
+    "adyacencias": 20.4,
+    "diagnosticos": 0,
+    "arbol": 7.2
+   }
+  },
+  {
+   "caso": "rejilla 3×3 líneas completas",
+   "uniones": null,
+   "plegables": 12,
+   "componentes": 1,
+   "ady_ms": 0.025,
+   "arbol_ms": 0.006,
+   "kB": {
+    "uniones": null,
+    "detalle": 4.4,
+    "adyacencias": 2.1,
+    "diagnosticos": 0.1,
+    "arbol": 1.7
+   }
+  },
+  {
+   "caso": "rejilla 4×4 densa (25 puntos por arista)",
+   "uniones": null,
+   "plegables": 24,
+   "componentes": 1,
+   "ady_ms": 0.0785,
+   "arbol_ms": 0.0119,
+   "kB": {
+    "uniones": null,
+    "detalle": 9,
+    "adyacencias": 4.5,
+    "diagnosticos": 0.1,
+    "arbol": 2.4
+   }
+  },
+  {
+   "caso": "F2A-2R cicloFuera (2 componentes)",
+   "uniones": null,
+   "plegables": 4,
+   "componentes": 2,
+   "ady_ms": 0.009,
+   "arbol_ms": 0.003,
+   "kB": {
+    "uniones": null,
+    "detalle": 1.6,
+    "adyacencias": 0.9,
+    "diagnosticos": -0.1,
+    "arbol": 1.5
+   }
+  },
+  {
+   "caso": "A-7 ill-real sin ajuste (no plegables)",
+   "uniones": null,
+   "plegables": 3,
+   "componentes": 1,
+   "ady_ms": 0.0228,
+   "arbol_ms": 0.0057,
+   "kB": {
+    "uniones": null,
+    "detalle": 1.4,
+    "adyacencias": 3.5,
+    "diagnosticos": -0.2,
+    "arbol": 1.2
+   }
+  }
+ ],
+ "repartoAdy": null,
+ "repartoArbol": null
+}

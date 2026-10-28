@@ -1,0 +1,529 @@
+{
+ "node": "v24.12.0",
+ "arch": "arm64",
+ "modulo": "experimental",
+ "etapas": [
+  {
+   "etapa": "1 agrupación por pareja",
+   "lineas": [
+    35,
+    45
+   ]
+  },
+  {
+   "etapa": "2 clasificación y conservación (uniones)",
+   "lineas": [
+    46,
+    64
+   ]
+  },
+  {
+   "etapa": "3 adyacencias plegables (eje, lado, detalle)",
+   "lineas": [
+    65,
+    82
+   ]
+  },
+  {
+   "etapa": "4 BFS y elección de padres",
+   "lineas": [
+    95,
+    111
+   ]
+  },
+  {
+   "etapa": "4b preparación del árbol (vecinos, claves)",
+   "lineas": [
+    114,
+    119
+   ]
+  },
+  {
+   "etapa": "5 componentes, bosque y partición",
+   "lineas": [
+    120,
+    136
+   ]
+  },
+  {
+   "etapa": "6 diagnósticos y salida",
+   "lineas": [
+    137,
+    144
+   ]
+  }
+ ],
+ "filas": [
+  {
+   "caso": "caja-botanica-real",
+   "uniones": 12,
+   "plegables": 12,
+   "componentes": 1,
+   "ady_ms": 0.0564,
+   "arbol_ms": 0.014,
+   "perfilAdy": {
+    "muestras": 11573,
+    "propiasArbol": 10017,
+    "iteraciones": 13756,
+    "etapas": {
+     "1 agrupación por pareja": 2383,
+     "2 clasificación y conservación (uniones)": 5996,
+     "3 adyacencias plegables (eje, lado, detalle)": 766,
+     "otras líneas de arbol.js": 872
+    }
+   },
+   "perfilArbol": {
+    "muestras": 11502,
+    "propiasArbol": 10273,
+    "iteraciones": 100411,
+    "etapas": {
+     "4 BFS y elección de padres": 3995,
+     "4b preparación del árbol (vecinos, claves)": 3516,
+     "5 componentes, bosque y partición": 2287,
+     "6 diagnósticos y salida": 6,
+     "otras líneas de arbol.js": 469
+    }
+   },
+   "kB": {
+    "uniones": 10.3,
+    "detalle": 4.7,
+    "adyacencias": 3.2,
+    "diagnosticos": -0.7,
+    "arbol": 1.7
+   }
+  },
+  {
+   "caso": "ill-real-caja-botanica (ε 0.05)",
+   "uniones": 12,
+   "plegables": 12,
+   "componentes": 1,
+   "ady_ms": 0.0556,
+   "arbol_ms": 0.0101,
+   "perfilAdy": {
+    "muestras": 11625,
+    "propiasArbol": 10356,
+    "iteraciones": 13906,
+    "etapas": {
+     "1 agrupación por pareja": 2250,
+     "2 clasificación y conservación (uniones)": 6049,
+     "3 adyacencias plegables (eje, lado, detalle)": 969,
+     "otras líneas de arbol.js": 1088
+    }
+   },
+   "perfilArbol": {
+    "muestras": 11576,
+    "propiasArbol": 10291,
+    "iteraciones": 116630,
+    "etapas": {
+     "4 BFS y elección de padres": 4499,
+     "4b preparación del árbol (vecinos, claves)": 1461,
+     "5 componentes, bosque y partición": 3456,
+     "6 diagnósticos y salida": 19,
+     "otras líneas de arbol.js": 856
+    }
+   },
+   "kB": {
+    "uniones": 10.6,
+    "detalle": 4.2,
+    "adyacencias": 3.1,
+    "diagnosticos": -0.2,
+    "arbol": 1.7
+   }
+  },
+  {
+   "caso": "histórico ×0.75 (ε 0.05)",
+   "uniones": 12,
+   "plegables": 12,
+   "componentes": 1,
+   "ady_ms": 0.0316,
+   "arbol_ms": 0.0048,
+   "perfilAdy": {
+    "muestras": 11603,
+    "propiasArbol": 10404,
+    "iteraciones": 14231,
+    "etapas": {
+     "1 agrupación por pareja": 2013,
+     "2 clasificación y conservación (uniones)": 6398,
+     "3 adyacencias plegables (eje, lado, detalle)": 1024,
+     "otras líneas de arbol.js": 969
+    }
+   },
+   "perfilArbol": {
+    "muestras": 11640,
+    "propiasArbol": 10477,
+    "iteraciones": 117951,
+    "etapas": {
+     "4 BFS y elección de padres": 4541,
+     "4b preparación del árbol (vecinos, claves)": 959,
+     "5 componentes, bosque y partición": 4086,
+     "6 diagnósticos y salida": 21,
+     "otras líneas de arbol.js": 870
+    }
+   },
+   "kB": {
+    "uniones": 10.6,
+    "detalle": 4.8,
+    "adyacencias": 3.1,
+    "diagnosticos": 0.3,
+    "arbol": 1.8
+   }
+  },
+  {
+   "caso": "ill-real-caja-simple",
+   "uniones": 1,
+   "plegables": 1,
+   "componentes": 1,
+   "ady_ms": 0.0027,
+   "arbol_ms": 0.0005,
+   "perfilAdy": {
+    "muestras": 11553,
+    "propiasArbol": 9952,
+    "iteraciones": 170893,
+    "etapas": {
+     "1 agrupación por pareja": 1916,
+     "2 clasificación y conservación (uniones)": 6180,
+     "3 adyacencias plegables (eje, lado, detalle)": 892,
+     "otras líneas de arbol.js": 964
+    }
+   },
+   "perfilArbol": {
+    "muestras": 11570,
+    "propiasArbol": 9157,
+    "iteraciones": 736327,
+    "etapas": {
+     "4 BFS y elección de padres": 3108,
+     "4b preparación del árbol (vecinos, claves)": 1251,
+     "5 componentes, bosque y partición": 4231,
+     "6 diagnósticos y salida": 102,
+     "otras líneas de arbol.js": 465
+    }
+   },
+   "kB": {
+    "uniones": -3.6,
+    "detalle": 0.3,
+    "adyacencias": 0.3,
+    "diagnosticos": -0.6,
+    "arbol": 1
+   }
+  },
+  {
+   "caso": "rejilla 2×2",
+   "uniones": 4,
+   "plegables": 4,
+   "componentes": 1,
+   "ady_ms": 0.0183,
+   "arbol_ms": 0.0054,
+   "perfilAdy": {
+    "muestras": 11555,
+    "propiasArbol": 10230,
+    "iteraciones": 46126,
+    "etapas": {
+     "1 agrupación por pareja": 2005,
+     "2 clasificación y conservación (uniones)": 6717,
+     "3 adyacencias plegables (eje, lado, detalle)": 937,
+     "otras líneas de arbol.js": 571
+    }
+   },
+   "perfilArbol": {
+    "muestras": 11559,
+    "propiasArbol": 9592,
+    "iteraciones": 333633,
+    "etapas": {
+     "4 BFS y elección de padres": 3681,
+     "4b preparación del árbol (vecinos, claves)": 1669,
+     "5 componentes, bosque y partición": 3448,
+     "6 diagnósticos y salida": 384,
+     "otras líneas de arbol.js": 410
+    }
+   },
+   "kB": {
+    "uniones": 3.7,
+    "detalle": 1.4,
+    "adyacencias": 0.9,
+    "diagnosticos": 0.2,
+    "arbol": 1.9
+   }
+  },
+  {
+   "caso": "rejilla 4×4",
+   "uniones": 24,
+   "plegables": 24,
+   "componentes": 1,
+   "ady_ms": 0.0505,
+   "arbol_ms": 0.0058,
+   "perfilAdy": {
+    "muestras": 11546,
+    "propiasArbol": 10429,
+    "iteraciones": 7623,
+    "etapas": {
+     "1 agrupación por pareja": 1771,
+     "2 clasificación y conservación (uniones)": 6850,
+     "3 adyacencias plegables (eje, lado, detalle)": 1086,
+     "otras líneas de arbol.js": 722
+    }
+   },
+   "perfilArbol": {
+    "muestras": 11572,
+    "propiasArbol": 10296,
+    "iteraciones": 82794,
+    "etapas": {
+     "4 BFS y elección de padres": 4424,
+     "4b preparación del árbol (vecinos, claves)": 998,
+     "5 componentes, bosque y partición": 4218,
+     "6 diagnósticos y salida": 242,
+     "otras líneas de arbol.js": 414
+    }
+   },
+   "kB": {
+    "uniones": 21.1,
+    "detalle": 8.7,
+    "adyacencias": 4.6,
+    "diagnosticos": -0.3,
+    "arbol": 2.8
+   }
+  },
+  {
+   "caso": "rejilla 6×6",
+   "uniones": 60,
+   "plegables": 60,
+   "componentes": 1,
+   "ady_ms": 0.122,
+   "arbol_ms": 0.0162,
+   "perfilAdy": {
+    "muestras": 11684,
+    "propiasArbol": 10575,
+    "iteraciones": 3079,
+    "etapas": {
+     "1 agrupación por pareja": 1790,
+     "2 clasificación y conservación (uniones)": 6933,
+     "3 adyacencias plegables (eje, lado, detalle)": 1090,
+     "otras líneas de arbol.js": 762
+    }
+   },
+   "perfilArbol": {
+    "muestras": 11676,
+    "propiasArbol": 10539,
+    "iteraciones": 33279,
+    "etapas": {
+     "4 BFS y elección de padres": 4314,
+     "4b preparación del árbol (vecinos, claves)": 944,
+     "5 componentes, bosque y partición": 4576,
+     "6 diagnósticos y salida": 220,
+     "otras líneas de arbol.js": 485
+    }
+   },
+   "kB": {
+    "uniones": 50.8,
+    "detalle": 22.3,
+    "adyacencias": 11,
+    "diagnosticos": 0.1,
+    "arbol": 5.3
+   }
+  },
+  {
+   "caso": "rejilla 8×8",
+   "uniones": 112,
+   "plegables": 112,
+   "componentes": 1,
+   "ady_ms": 0.2337,
+   "arbol_ms": 0.0247,
+   "perfilAdy": {
+    "muestras": 11575,
+    "propiasArbol": 10632,
+    "iteraciones": 1620,
+    "etapas": {
+     "1 agrupación por pareja": 1891,
+     "2 clasificación y conservación (uniones)": 6872,
+     "3 adyacencias plegables (eje, lado, detalle)": 1093,
+     "otras líneas de arbol.js": 776
+    }
+   },
+   "perfilArbol": {
+    "muestras": 11598,
+    "propiasArbol": 10450,
+    "iteraciones": 18100,
+    "etapas": {
+     "4 BFS y elección de padres": 4413,
+     "4b preparación del árbol (vecinos, claves)": 924,
+     "5 componentes, bosque y partición": 4375,
+     "6 diagnósticos y salida": 242,
+     "otras líneas de arbol.js": 496
+    }
+   },
+   "kB": {
+    "uniones": 90.3,
+    "detalle": 41.4,
+    "adyacencias": 20.4,
+    "diagnosticos": 0.1,
+    "arbol": 8.9
+   }
+  },
+  {
+   "caso": "rejilla 3×3 líneas completas",
+   "uniones": 12,
+   "plegables": 12,
+   "componentes": 1,
+   "ady_ms": 0.0283,
+   "arbol_ms": 0.0037,
+   "perfilAdy": {
+    "muestras": 11594,
+    "propiasArbol": 10575,
+    "iteraciones": 15955,
+    "etapas": {
+     "1 agrupación por pareja": 1955,
+     "2 clasificación y conservación (uniones)": 6937,
+     "3 adyacencias plegables (eje, lado, detalle)": 1113,
+     "otras líneas de arbol.js": 570
+    }
+   },
+   "perfilArbol": {
+    "muestras": 11560,
+    "propiasArbol": 10128,
+    "iteraciones": 146190,
+    "etapas": {
+     "4 BFS y elección de padres": 4173,
+     "4b preparación del árbol (vecinos, claves)": 1004,
+     "5 componentes, bosque y partición": 4258,
+     "6 diagnósticos y salida": 254,
+     "otras líneas de arbol.js": 439
+    }
+   },
+   "kB": {
+    "uniones": 10.6,
+    "detalle": 4.5,
+    "adyacencias": 2,
+    "diagnosticos": -0.1,
+    "arbol": 2.4
+   }
+  },
+  {
+   "caso": "rejilla 4×4 densa (25 puntos por arista)",
+   "uniones": 24,
+   "plegables": 24,
+   "componentes": 1,
+   "ady_ms": 0.0515,
+   "arbol_ms": 0.0065,
+   "perfilAdy": {
+    "muestras": 11602,
+    "propiasArbol": 10540,
+    "iteraciones": 7304,
+    "etapas": {
+     "1 agrupación por pareja": 1989,
+     "2 clasificación y conservación (uniones)": 6628,
+     "3 adyacencias plegables (eje, lado, detalle)": 1011,
+     "otras líneas de arbol.js": 912
+    }
+   },
+   "perfilArbol": {
+    "muestras": 11627,
+    "propiasArbol": 10387,
+    "iteraciones": 78823,
+    "etapas": {
+     "4 BFS y elección de padres": 4263,
+     "4b preparación del árbol (vecinos, claves)": 929,
+     "5 componentes, bosque y partición": 3991,
+     "6 diagnósticos y salida": 241,
+     "otras líneas de arbol.js": 963
+    }
+   },
+   "kB": {
+    "uniones": 21.1,
+    "detalle": 8.7,
+    "adyacencias": 4.6,
+    "diagnosticos": -0.5,
+    "arbol": 2.8
+   }
+  },
+  {
+   "caso": "F2A-2R cicloFuera (2 componentes)",
+   "uniones": 4,
+   "plegables": 4,
+   "componentes": 2,
+   "ady_ms": 0.0102,
+   "arbol_ms": 0.0057,
+   "perfilAdy": {
+    "muestras": 11623,
+    "propiasArbol": 10483,
+    "iteraciones": 47426,
+    "etapas": {
+     "1 agrupación por pareja": 1854,
+     "2 clasificación y conservación (uniones)": 6918,
+     "3 adyacencias plegables (eje, lado, detalle)": 1049,
+     "otras líneas de arbol.js": 662
+    }
+   },
+   "perfilArbol": {
+    "muestras": 11515,
+    "propiasArbol": 9967,
+    "iteraciones": 191609,
+    "etapas": {
+     "4 BFS y elección de padres": 2633,
+     "4b preparación del árbol (vecinos, claves)": 1409,
+     "5 componentes, bosque y partición": 3232,
+     "6 diagnósticos y salida": 2191,
+     "otras líneas de arbol.js": 502
+    }
+   },
+   "kB": {
+    "uniones": 3.7,
+    "detalle": 1.4,
+    "adyacencias": 0.6,
+    "diagnosticos": -0.1,
+    "arbol": 2.2
+   }
+  },
+  {
+   "caso": "A-7 ill-real sin ajuste (no plegables)",
+   "uniones": 3,
+   "plegables": 1,
+   "componentes": 3,
+   "ady_ms": 0.0302,
+   "arbol_ms": 0.0036,
+   "perfilAdy": {
+    "muestras": 10325,
+    "propiasArbol": 8675,
+    "iteraciones": 22385,
+    "etapas": {
+     "1 agrupación por pareja": 2316,
+     "2 clasificación y conservación (uniones)": 4922,
+     "3 adyacencias plegables (eje, lado, detalle)": 142,
+     "4 BFS y elección de padres": 7,
+     "otras líneas de arbol.js": 1288
+    }
+   },
+   "perfilArbol": {
+    "muestras": 11545,
+    "propiasArbol": 9883,
+    "iteraciones": 240369,
+    "etapas": {
+     "4 BFS y elección de padres": 2087,
+     "4b preparación del árbol (vecinos, claves)": 799,
+     "5 componentes, bosque y partición": 3187,
+     "6 diagnósticos y salida": 2222,
+     "otras líneas de arbol.js": 1588
+    }
+   },
+   "kB": {
+    "uniones": 5.3,
+    "detalle": 0.8,
+    "adyacencias": 0,
+    "diagnosticos": 1.3,
+    "arbol": 1.5
+   }
+  }
+ ],
+ "repartoAdy": {
+  "1 agrupación por pareja": 19.6,
+  "2 clasificación y conservación (uniones)": 63,
+  "3 adyacencias plegables (eje, lado, detalle)": 9.1,
+  "otras líneas de arbol.js": 8.3,
+  "4 BFS y elección de padres": 0
+ },
+ "repartoArbol": {
+  "4 BFS y elección de padres": 38,
+  "4b preparación del árbol (vecinos, claves)": 13.1,
+  "5 componentes, bosque y partición": 37.3,
+  "6 diagnósticos y salida": 5.1,
+  "otras líneas de arbol.js": 6.6
+ }
+}
