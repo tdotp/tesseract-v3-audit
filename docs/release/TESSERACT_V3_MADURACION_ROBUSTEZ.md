@@ -3,7 +3,7 @@
 Fecha: 2026-11-01 · Encargo: «Tesseract V3 — Maduración del producto: robustez y exportación» (lote único) · HEAD inicial: `43125543b4ed54f0eca1d4764e112c6e6baa6666` · Rama local `main` (sin push).
 Etiquetas: **[AUTO]** pruebas automatizadas (Node o Chrome headless) · **[REAL]** Adobe Illustrator 30.8.2 real (CEP 12.1.1, Chromium 99) · **[ESTÁTICO]** lectura de código · **[PENDIENTE]** sin comprobar.
 
-> **Estado final del lote (2026-11-01):** H-02, H-03, H-05, H-07, KI-24, KI-02, H-06 y **KI-37** corregidos con pruebas. Versión `3.0.1-dev.1`, `main.js` de producto `e69e4ba8…` (§7). Baterías de producto, experimental e histórica en verde (§15). **Queda sin comprobar:** el flujo de KI-37 dentro del panel CEP real (pantalla del Mac bloqueada; §15.4), el validador oficial de Khronos, Dimension y Cinema 4D (§10).
+> **Estado final del lote (2026-11-01):** H-02, H-03, H-05, H-07, KI-24, KI-02, H-06 y **KI-37** corregidos con pruebas. Versión `3.0.1-dev.1`, `main.js` de producto `e69e4ba8…` (§7). Baterías de producto, experimental e histórica en verde (§15). **Queda sin comprobar:** el validador oficial de Khronos, Dimension y Cinema 4D (§10). El flujo de KI-37 dentro del panel CEP real ya se validó (§15.4).
 
 ## 1. Decisión D-0 registrada
 
@@ -143,7 +143,7 @@ Todas en secuencia, con el experimental retirado temporalmente (el aislamiento e
 
 | Riesgo | Clase | Valoración y siguiente paso |
 |---|---|---|
-| **KI-37** | **Corregido** (§15) | Solo falta comprobar el flujo completo dentro del panel CEP real (§15.4) |
+| **KI-37** | **Corregido** (§15) | Validado en el panel CEP real. Queda la limitación de visibilidad del mensaje de §15.5 |
 | Validador oficial de Khronos no ejecutado | Limitación de verificación | Ejecutar `gltf-validator` (requiere autorización para descargarlo) sobre `docs/release/evidencia/maduracion/glb/` |
 | Dimension y Cinema 4D sin comprobar | Pendiente externo | Abrir `real-sombra-plano.glb` en Dimension: debe medir 175 × 0,25 × 223,5 mm |
 | H-05 no detecta cambios dentro del MISMO documento después de extraer | Límite declarado | Volver a extraer, como antes. Evita vigilancia continua (requisito del encargo) |
@@ -161,9 +161,10 @@ Todas en secuencia, con el experimental retirado temporalmente (el aislamiento e
 | `1c03c18440d2bdf07695b949693c10bd1d674b0d` | test(d0): RC cerrado verificado desde 7258524 y batería histórica desde .scratch |
 | `59541440e53e34e117c8ef6213969b5de150e251` | test(real): validación de 3.0.1-dev en Illustrator real y evidencia |
 | `556986d` (`git rev-parse 556986d` da el SHA completo) | docs(release): informe de maduración 3.0.1-dev, KNOWN_ISSUES y HANDOFF |
-| commit que contiene este párrafo (`git log -1 -- docs/release/TESSERACT_V3_MADURACION_ROBUSTEZ.md`) | fix(artwork): detectar fallos silenciosos de exportacion PNG en Illustrator |
+| `3285ea5fae9a0ff849687a43d9d65fdff3f27af0` | fix(artwork): detectar fallos silenciosos de exportacion PNG en Illustrator |
+| commit que contiene este párrafo (`git log -1 -- docs/release/TESSERACT_V3_MADURACION_ROBUSTEZ.md`) | docs(release): validacion de KI-37 en el panel CEP real |
 
-Autor único en todos: `Gerardo Calambas posada`. Es la grafía exacta de toda la historia del repositorio; la prueba de aislamiento exige un único autor, por lo que no se cambió la minúscula. Sin trailers, sin rebase, sin squash y sin force push. Publicados con un push fast-forward autorizado en `tdotp/tesseract-v3-audit`, rama `audit/f2a2`.
+Autor único en todos: `Gerardo Calambas posada`. Es la grafía exacta de toda la historia del repositorio; la prueba de aislamiento exige un único autor, por lo que no se cambió la minúscula. Sin trailers, sin rebase, sin squash y sin force push. Los cinco primeros, publicados con un push fast-forward autorizado en `tdotp/tesseract-v3-audit`, rama `audit/f2a2`; el último se publica solo con autorización.
 
 ## 12. Estado de los plugins instalados
 
@@ -171,7 +172,8 @@ Autor único en todos: `Gerardo Calambas posada`. Es la grafía exacta de toda l
 - **TesserArt_Validator**: **intacto**; snapshot de las demás extensiones idéntico antes y después.
 - **tesseract-v3-experimental**: durante la validación se instaló **temporalmente** el bundle 3.0.1-dev (`5f4ce999…`). Al terminar se **restauró el RC 3.0.0-rc.1** (`b36f3d89…`, manifiesto 3.0.0, `.debug` 8089), **byte a byte igual** al estado previo (`instalacion-antes.txt` / `instalacion-despues.txt`).
 - Tras la segunda instalación temporal (bundle con KI-37) se restauró de nuevo el RC, otra vez **byte a byte** (`diff -r` con el respaldo tomado antes) y con el snapshot de las demás extensiones idéntico.
-- **Illustrator quedó ABIERTO, con 0 documentos.** Con la pantalla bloqueada rechaza la orden de salir («Cancelado por el usuario», −128) y, según la regla del proyecto, no se forzó. Hay que cerrarlo y volver a abrirlo para que su lista de extensiones vuelva a leer el RC. `PlayerDebugMode` no se tocó.
+- Tras la validación con el panel se restauró por tercera vez el RC, byte a byte. Elegir el panel en el menú no descarga su motor: seguía ejecutando en memoria el bundle de prueba, así que se **recargó** y se comprobó que el código en ejecución es el RC (sin KI-37, modo sombra, «Ready»).
+- **Illustrator quedó abierto, con 0 documentos** y el panel experimental visible con el RC. `PlayerDebugMode` no se tocó.
 - Nota operativa: con el RC instalado, `dist-experimental/` del repositorio ya es el bundle de producto. Para verificar el aislamiento contra el RC instalado: `TESS_DIST_EXP_DIR="$PWD/release/tesseract-v3-3.0.0-rc.1/extension" tools/verify-isolation.sh --experimental-instalado` (verde).
 
 ## 13. Procedimiento de rollback
@@ -185,11 +187,10 @@ Autor único en todos: `Gerardo Calambas posada`. Es la grafía exacta de toda l
 
 - El lote está **cerrado** con las reservas de §10 y §15.4. **Lo siguiente lo define dirección de arte y producto**; este lote no inició UX/UI, visor, materiales, huecos, curvas, F2B ni distribución.
 - Verificaciones cortas que siguen abiertas antes de considerar un RC 3.0.1:
-  1. repetir `node tools/a4/v301-real.mjs todo` con la sesión desbloqueada (flujo de KI-37 con el panel);
-  2. ejecutar el validador oficial de Khronos sobre `docs/release/evidencia/maduracion/glb/` (requiere autorizar su descarga);
-  3. medir `real-sombra-plano.glb` en Adobe Dimension (debe dar 175 × 0,25 × 223,5 mm);
-  4. Cinema 4D, cuando haya licencia;
-  5. confirmar a mano Shift+clic y Alt+clic.
+  1. ejecutar el validador oficial de Khronos sobre `docs/release/evidencia/maduracion/glb/` (requiere autorizar su descarga);
+  2. medir `real-sombra-plano.glb` en Adobe Dimension (debe dar 175 × 0,25 × 223,5 mm);
+  3. Cinema 4D, cuando haya licencia;
+  4. confirmar a mano Shift+clic y Alt+clic.
 - **3.0.1-dev.1 no es un RC aprobado.** Tampoco hay firma ni distribución estable.
 
 ## 15. KI-37: cierre
@@ -243,9 +244,22 @@ Cubren: PNG válido; `exportFile` sin excepción y sin archivo; archivo vacío; 
 | **KI-37 + H-02, mesas Tiro/Retiro, sin escritura** | Mensaje con `frontal (Tiro)`, acentos correctos; **mesa activa restaurada: el camino del `finally` ya se ejerce en real** |
 | Recuperación al restaurar el permiso | Exporta de nuevo los dos PNG |
 
-**NO comprobado en real (pendiente):** el flujo **dentro del panel CEP** con este bundle (`e69e4ba8…`): mensaje visible en el panel, arte previo conservado y texturas. La pantalla del Mac estaba **bloqueada**: los menús de Illustrator quedan deshabilitados y el panel no se puede abrir. No se intentó desbloquearla. Ese flujo está cubierto en Chrome headless (§15.3) y el conductor ya tiene el paso preparado: `node tools/a4/v301-real.mjs todo`. **Tampoco se reprodujeron en real** el archivo vacío, «Front correcto y Back falla» ni la excepción de `exportFile`: solo con la maqueta.
+**Panel CEP real, con la sesión desbloqueada** (`node tools/a4/v301-real.mjs todo`; `evidencia/maduracion/ki37/real-panel.json`): panel con el `main.js` `e69e4ba8…`, modo sombra, 0 errores de consola; se empezó y terminó con 0 documentos.
+
+| Comprobado en el panel real | Resultado |
+|---|---|
+| **KI-37, capas, sin escritura** | `art-status`: mensaje exacto con `frontal (Front)`; indicador «Art error»; capas y mesa activa intactas |
+| **Arte vigente conservado** | GLB con arte **idéntico antes y después del fallo** (`67ba14d7…`) |
+| Recuperación | Al restaurar el permiso, «Artwork loaded from layers» |
+| **KI-37 + H-02, mesas, sin escritura** | Mensaje exacto; mesa activa original (0) restaurada; después «Artwork loaded from artboards» |
+| Carpeta `tesseract_art` | Modo `755` restaurado; `faltan: []` |
+| H-05, H-03 (doble refresco), KI-24, activo 13/12 | Igual que en §9, con este bundle |
+| GLB reales | 0 errores y 0 degenerados; **mismos bytes que el candidato anterior**: `ffafe55f…`, `cd799b59…`, `49b756b7…`, `c9d0a4de…`, `67ba14d7…` |
+
+**Solo con maqueta, no reproducidos en real:** el archivo vacío, «Front correcto y Back falla» y la excepción de `exportFile`. La comprobación del mensaje en el panel se hizo por el texto del DOM (`art-status`): la captura `real-panel-pestana-material.png` tiene activa la pestaña Material y **no** lo muestra (§15.5). La interacción fue por CDP, no con la mano del usuario.
 
 ### 15.5 Limitaciones restantes de KI-37
 - Los PNG correctos de un intento parcial (Front escrito y Back fallido) quedan en la carpeta temporal, como cualquier exportación anterior; no se borran.
+- **Visibilidad del mensaje:** `art-status` está dentro de la pestaña **Artwork** (comportamiento anterior a KI-37). Al pulsar «Refresh Artwork» se ve, porque el botón está en esa pestaña. En el refresco automático de «Continue to 3D» está activa la pestaña Material y la línea de estado superior no lo muestra: **el usuario no ve el fallo hasta abrir Artwork**. No se cambió: corresponde a la revisión de UX/UI, salvo que se decida antes.
 - Los mensajes de KI-37 están en español y el resto del panel sigue en inglés; la unificación corresponde a UX/UI.
 - La comprobación es de existencia y tamaño, no de validez interna del PNG; un PNG corrupto con datos llegaría a la carga de textura y daría el mensaje de textura.

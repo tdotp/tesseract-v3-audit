@@ -1,0 +1,459 @@
+{
+ "fecha": "2026-11-01T19:18:37.114Z",
+ "pasos": {
+  "KI24": {
+   "pill": "Kraft board",
+   "log": "",
+   "status": "Ready",
+   "errores": []
+  },
+  "abrirA": {
+   "nombre": "N0-A_caja_real_export.svg",
+   "activo": "N0-A_caja_real_export.svg",
+   "docs": [
+    "N0-A_caja_real_export.svg"
+   ],
+   "preparado": "preparado: capas (arriba→abajo) = Cuts, Creases | Creases:1; Cuts:1; capa original vacía eliminada"
+  },
+  "extraerA": {
+   "status": "Extraction complete",
+   "continuar": true
+  },
+  "abrirB": {
+   "nombre": "N0-B_caja_simple_arte.svg",
+   "activo": "N0-B_caja_simple_arte.svg",
+   "docs": [
+    "N0-B_caja_simple_arte.svg",
+    "N0-A_caja_real_export.svg"
+   ],
+   "preparado": "preparado: capas (arriba→abajo) = Cuts, Creases, Front, Back | Back:1; Front:1; Creases:1; Cuts:2; capa original vacía e"
+  },
+  "H05_continuarConB": {
+   "status": "The active document changed since the extraction. Extract the dieline again.",
+   "vista3d": false,
+   "continuarActivo": false,
+   "capturas": "tests/results/v301-real/capturas/H05-rechazo.png"
+  },
+  "volverA": {
+   "activo": "N0-A_caja_real_export.svg"
+  },
+  "extraerA2": {
+   "status": "Extraction complete",
+   "continuar": true
+  },
+  "construirA": {
+   "status": "3D ready · thickness=0.3mm",
+   "vista3d": true,
+   "continuarActivo": true,
+   "capturas": "tests/results/v301-real/capturas/sombra-60.png"
+  },
+  "GLB_sombra_plano": {
+   "png": {
+    "botonVisible": false,
+    "bytes": 68028,
+    "ruta": "/private/tmp/tesseract_f2a3/f2a3-v301-sombra-plano.png",
+    "err": 0
+   },
+   "glb": {
+    "status": "GLB exported from current 3D pose",
+    "escrituras": [
+     {
+      "p": "/private/tmp/tesseract_f2a3/f2a3-v301-sombra-plano.glb",
+      "bytes": 33636,
+      "err": 0
+     }
+    ],
+    "log": []
+   }
+  },
+  "GLB_sombra_60": {
+   "png": {
+    "botonVisible": false,
+    "bytes": 68199,
+    "ruta": "/private/tmp/tesseract_f2a3/f2a3-v301-sombra-60.png",
+    "err": 0
+   },
+   "glb": {
+    "status": "GLB exported from current 3D pose",
+    "escrituras": [
+     {
+      "p": "/private/tmp/tesseract_f2a3/f2a3-v301-sombra-60.glb",
+      "bytes": 54672,
+      "err": 0
+     }
+    ],
+    "log": []
+   }
+  },
+  "activarB": {
+   "activo": "N0-B_caja_simple_arte.svg"
+  },
+  "H05_arteDesdeB": {
+   "arte": "Artwork not applied: the active document is not the one the 3D model was built from. Extract and build again.",
+   "fuente": "Art error",
+   "capturas": "tests/results/v301-real/capturas/H05-arte-rechazado.png"
+  },
+  "volverA2": {
+   "activo": "N0-A_caja_real_export.svg"
+  },
+  "activarExperimental": {
+   "antes": "sombra",
+   "confirmacionVisible": true,
+   "modoTrasPrimerClic": "sombra",
+   "modo": "activo",
+   "barra": {
+    "modo": "ACTIVO (experimental)",
+    "construccion": "Construcción actual: LEGACY · 11 paneles · 10 pliegues · base P0",
+    "origen": "legacy",
+    "mensaje": "Modo ACTIVO: pulse «Continue to 3D» (o vuelva a extraer) para construir con el motor experimental.",
+    "tipo": "info",
+    "diag": "Comparación en sombra: legacy 11 paneles · experimental 13 paneles",
+    "items": [
+     "paneles: legacy 11 · experimental 13",
+     "areaTotal: legacy 26769.121 · experimental 27450.239",
+     "Las áreas de los paneles difieren"
+    ]
+   },
+   "log": [
+    "Motor de geometría: modo ACTIVO — los modelos NUEVOS los construye el motor experimental experimental-f2a2 (ε=0.05 mm). No es persistente: al recargar el panel vuelve a SOMBRA. Pulse «Continue to 3D» para reconstruir."
+   ]
+  },
+  "construirActivo": {
+   "status": "3D ready · thickness=0.3mm",
+   "barra": {
+    "modo": "ACTIVO (experimental)",
+    "construccion": "Construcción actual: EXPERIMENTAL (experimental-f2a2) · 13 paneles · 12 pliegues · base P8",
+    "origen": "experimental",
+    "mensaje": null,
+    "tipo": "",
+    "diag": "Diagnósticos geométricos (19): 19 × extremo de crease ajustado (ε)",
+    "items": [
+     "Extremo de crease ajustado (ε) · regla A-corte:B · crease C0 · extremo 0 · d_mm 0.004",
+     "Extremo de crease ajustado (ε) · regla A-corte:B · crease C0 · extremo 1 · d_mm 0.005",
+     "… y 17 más: extremo de crease ajustado (ε)"
+    ]
+   },
+   "plegado": {
+    "foldPanel": true,
+    "deslizadores": 14,
+    "opcionesBase": 13,
+    "base": "8"
+   },
+   "log": [
+    "Motor de geometría: modo ACTIVO — esta construcción usa el motor experimental experimental-f2a2 (no persistente; desactivar: __tessMotorExperimental.desactivar()).",
+    "=== buildPanels (experimental-f2a2, ε=0.05 mm) === panels=13",
+    "Base reiniciada (KI-30): documento o motor distinto del de la construcción anterior; se usa la base por defecto del motor experimental.",
+    "Adjacency edges: 12 (experimental exacto)",
+    "Fold tree edges: 12 (base=P8, experimental)"
+   ],
+   "hashPlano": "17218c67a0c1541a",
+   "capturas": "tests/results/v301-real/capturas/activo-60.png"
+  },
+  "GLB_activo_plano": {
+   "png": {
+    "botonVisible": false,
+    "bytes": 67905,
+    "ruta": "/private/tmp/tesseract_f2a3/f2a3-v301-activo-plano.png",
+    "err": 0
+   },
+   "glb": {
+    "status": "GLB exported from current 3D pose",
+    "escrituras": [
+     {
+      "p": "/private/tmp/tesseract_f2a3/f2a3-v301-activo-plano.glb",
+      "bytes": 42834,
+      "err": 0
+     }
+    ],
+    "log": []
+   }
+  },
+  "GLB_activo_60": {
+   "png": {
+    "botonVisible": false,
+    "bytes": 70023,
+    "ruta": "/private/tmp/tesseract_f2a3/f2a3-v301-activo-60.png",
+    "err": 0
+   },
+   "glb": {
+    "status": "GLB exported from current 3D pose",
+    "escrituras": [
+     {
+      "p": "/private/tmp/tesseract_f2a3/f2a3-v301-activo-60.glb",
+      "bytes": 68064,
+      "err": 0
+     }
+    ],
+    "log": []
+   }
+  },
+  "activarB2": {
+   "activo": "N0-B_caja_simple_arte.svg"
+  },
+  "extraerB": {
+   "status": "Extraction complete",
+   "continuar": true
+  },
+  "construirB": {
+   "status": "3D ready · thickness=0.3mm",
+   "vista3d": true,
+   "continuarActivo": true
+  },
+  "H03_dobleRefresco": {
+   "arte": "Artwork loaded from layers. Mapping uses full artboard coordinates.",
+   "liberadas": 4,
+   "capturas": "tests/results/v301-real/capturas/H03-arte-60.png"
+  },
+  "GLB_sombra_arte_60": {
+   "png": {
+    "botonVisible": false,
+    "bytes": 54378,
+    "ruta": "/private/tmp/tesseract_f2a3/f2a3-v301-sombra-arte-60.png",
+    "err": 0
+   },
+   "glb": {
+    "status": "GLB exported from current 3D pose",
+    "escrituras": [
+     {
+      "p": "/private/tmp/tesseract_f2a3/f2a3-v301-sombra-arte-60.glb",
+      "bytes": 297900,
+      "err": 0
+     }
+    ],
+    "log": []
+   }
+  },
+  "KI37_carpeta": {
+   "archivos": 14,
+   "modo": "755"
+  },
+  "KI37_glbAntes": {
+   "png": {
+    "botonVisible": false,
+    "bytes": 54378,
+    "ruta": "/private/tmp/tesseract_f2a3/f2a3-v301-ki37-antes.png",
+    "err": 0
+   },
+   "glb": {
+    "status": "GLB exported from current 3D pose",
+    "escrituras": [
+     {
+      "p": "/private/tmp/tesseract_f2a3/f2a3-v301-ki37-antes.glb",
+      "bytes": 297900,
+      "err": 0
+     }
+    ],
+    "log": []
+   }
+  },
+  "KI37_visAntes": {
+   "Cuts": true,
+   "Creases": true,
+   "Front": true,
+   "Back": true
+  },
+  "KI37_mesaAntes": {
+   "activa": 0
+  },
+  "KI37_capasFalla": {
+   "arte": "No se pudo exportar el artwork frontal (Front). Illustrator no creó el archivo PNG. Verifique la carpeta temporal y vuelva a intentarlo.",
+   "fuente": "Art error",
+   "capturas": "tests/results/v301-real/capturas/KI37-mensaje.png"
+  },
+  "KI37_visDespues": {
+   "Cuts": true,
+   "Creases": true,
+   "Front": true,
+   "Back": true
+  },
+  "KI37_mesaDespues": {
+   "activa": 0
+  },
+  "KI37_glbDespues": {
+   "png": {
+    "botonVisible": false,
+    "bytes": 54378,
+    "ruta": "/private/tmp/tesseract_f2a3/f2a3-v301-ki37-despues.png",
+    "err": 0
+   },
+   "glb": {
+    "status": "GLB exported from current 3D pose",
+    "escrituras": [
+     {
+      "p": "/private/tmp/tesseract_f2a3/f2a3-v301-ki37-despues.glb",
+      "bytes": 297900,
+      "err": 0
+     }
+    ],
+    "log": []
+   }
+  },
+  "KI37_recuperacion": {
+   "arte": "Artwork loaded from layers. Mapping uses full artboard coordinates.",
+   "fuente": "Layers"
+  },
+  "H02_preparar": {
+   "mesas": 3,
+   "activa": 0
+  },
+  "H02_arteFalla": {
+   "arte": "No se pudo exportar el artwork frontal (Front). Illustrator no creó el archivo PNG. Verifique la carpeta temporal y vuelva a intentarlo.",
+   "fuente": "Art error",
+   "mesaActiva": {
+    "activa": 0,
+    "nombre": "Artboard 1"
+   }
+  },
+  "H02_arteRestaurado": {
+   "arte": "Artwork loaded from artboards. Mapping uses full artboard coordinates.",
+   "fuente": "Artboards",
+   "mesaActiva": {
+    "activa": 0
+   }
+  },
+  "KI37_carpetaFinal": {
+   "modo": "755",
+   "faltan": [],
+   "nuevos": 4
+  }
+ },
+ "inicio": {
+  "docs": [],
+  "activo": null,
+  "interaccion": "UserInteractionLevel.DISPLAYALERTS",
+  "temp": "$TMPDIR"
+ },
+ "copias": {
+  "N0-A": "02714e637c50d253820d9ad15ea7db117ba8f2e662bd638bdd59275e3b8f6b43",
+  "N0-B": "05f89f7b2aaada535fc84bb31fe4a386ce68ce44bc4054221d75adf354d3ade7"
+ },
+ "identidad": {
+  "illustrator": {
+   "docs": [],
+   "activo": null,
+   "interaccion": "UserInteractionLevel.DISPLAYALERTS",
+   "temp": "$TMPDIR"
+  },
+  "panel": {
+   "ext": "com.tato.tesseract.v3.experimental.panel",
+   "host": "30.8.2",
+   "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 AdobeCEP/12.1.1 Safari/537.36",
+   "mainJs": "e69e4ba81c74460d521c69d93fcfa64fde97d1358631391575452a0fdfaa4f40",
+   "modo": "sombra"
+  },
+  "mainJsEsperado": "e69e4ba81c74460d521c69d93fcfa64fde97d1358631391575452a0fdfaa4f40",
+  "ok": true
+ },
+ "erroresConsola": [],
+ "cierre": [
+  {
+   "cerrado": "N0-B_caja_simple_arte.svg",
+   "docs": [
+    "N0-A_caja_real_export.svg"
+   ]
+  },
+  {
+   "cerrado": "N0-A_caja_real_export.svg",
+   "docs": []
+  }
+ ],
+ "fin": {
+  "docs": [],
+  "activo": null,
+  "interaccion": "UserInteractionLevel.DISPLAYALERTS",
+  "temp": "$TMPDIR"
+ },
+ "glb": {
+  "sombra-plano": {
+   "sha256": "ffafe55f101a84c40c34df19ced427287899cfe113c480b026020f03f95e16e0",
+   "bytes": 33636,
+   "errores": [],
+   "degenerados": 0,
+   "triangulos": 236,
+   "caja_m": [
+    0.17499905079603195,
+    0.00025000001187438684,
+    0.22349900007247925
+   ],
+   "generador": "Tesseract V3"
+  },
+  "sombra-60": {
+   "sha256": "cd799b59ef81eccd9b344b795f2f14ad9b0041cbb3ff7a54bbbd3202cf019b1f",
+   "bytes": 54672,
+   "errores": [],
+   "degenerados": 0,
+   "triangulos": 316,
+   "caja_m": [
+    0.12793131172657013,
+    0.1434954134747386,
+    0.12746618129312992
+   ],
+   "generador": "Tesseract V3"
+  },
+  "activo-plano": {
+   "sha256": "49b756b78adf34d129e275329f4da0db27f86efb19b529eaa6b1625f2febb1cb",
+   "bytes": 42832,
+   "errores": [],
+   "degenerados": 0,
+   "triangulos": 310,
+   "caja_m": [
+    0.17499904334545135,
+    0.00025000001187438825,
+    0.22349899262189865
+   ],
+   "generador": "Tesseract V3"
+  },
+  "activo-60": {
+   "sha256": "c9d0a4de536257027823f5eebd18bf8e7644c7f0dd950513ff49bb888b8d4d30",
+   "bytes": 68064,
+   "errores": [],
+   "degenerados": 0,
+   "triangulos": 406,
+   "caja_m": [
+    0.12793220207095146,
+    0.1085217297077179,
+    0.1837460845708847
+   ],
+   "generador": "Tesseract V3"
+  },
+  "sombra-arte-60": {
+   "sha256": "67ba14d73ea54999a6dd24de8f0247f6dea6dee27aafe9ff2f517d94993641a1",
+   "bytes": 297900,
+   "errores": [],
+   "degenerados": 0,
+   "triangulos": 40,
+   "caja_m": [
+    0.07506928220391273,
+    0.04354626624262892,
+    0.05999999865889549
+   ],
+   "generador": "Tesseract V3"
+  },
+  "ki37-antes": {
+   "sha256": "67ba14d73ea54999a6dd24de8f0247f6dea6dee27aafe9ff2f517d94993641a1",
+   "bytes": 297900,
+   "errores": [],
+   "degenerados": 0,
+   "triangulos": 40,
+   "caja_m": [
+    0.07506928220391273,
+    0.04354626624262892,
+    0.05999999865889549
+   ],
+   "generador": "Tesseract V3"
+  },
+  "ki37-despues": {
+   "sha256": "67ba14d73ea54999a6dd24de8f0247f6dea6dee27aafe9ff2f517d94993641a1",
+   "bytes": 297900,
+   "errores": [],
+   "degenerados": 0,
+   "triangulos": 40,
+   "caja_m": [
+    0.07506928220391273,
+    0.04354626624262892,
+    0.05999999865889549
+   ],
+   "generador": "Tesseract V3"
+  }
+ }
+}
