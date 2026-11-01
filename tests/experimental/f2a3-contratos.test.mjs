@@ -88,7 +88,8 @@ describe('F2A-3 · 4. alarma estática: operaciones que mutan en sitio en los co
     const ops = []; const dir = path.join(ROOT, 'src');
     for (const sub of ['ui', 'fold', 'scene', 'app', 'export']) for (const f of fs.readdirSync(path.join(dir, sub))) { const t = fs.readFileSync(path.join(dir, sub, f), 'utf8').split('\n');
       t.forEach((l, i) => { for (const m of l.matchAll(/\.(sort|reverse|splice|copyWithin|unshift)\(/g)) ops.push(`${sub}/${f}:${i + 1} ${m[1]}`); }); }
-    // única aparición: picking.js ordena el arreglo NUEVO de impactos del raycaster (no datos del motor)
-    assert.deepEqual(ops, ['ui/picking.js:36 sort']);
+    // picking.js ordena el arreglo NUEVO de impactos del raycaster; D-0 (3.0.1-dev, KI-02): glb-scene.js ordena el arreglo NUEVO `used` de índices de vértices
+    // usados por la exportación (local, no son datos del motor). Ninguna toca datos del motor.
+    assert.deepEqual(ops, ['ui/picking.js:36 sort', 'export/glb-scene.js:76 sort']);
   });
 });

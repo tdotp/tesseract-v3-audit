@@ -22,8 +22,14 @@ test('RC determinista desde un commit: mismo .zip byte a byte; SHA256SUMS del RC
 });
 test('RELEASE.json: versión, commit, identidad CEP propia, manifiesto (ILST, CSXS 12), motores y compatibilidad declarados; BUILD_INFO sin commit (reproducible)', () => {
   const r = A.release; assert.equal(r.version, VERSION_RC); assert.equal(r.fuente.commit, HEAD); assert.equal(r.identidad.extensionId, EXP_IDS.extensionId); assert.equal(r.identidad.manifiesto.bundleId, EXP_IDS.bundleId);
-  assert.deepEqual([r.identidad.manifiesto.bundleVersion, r.identidad.manifiesto.host, r.identidad.manifiesto.csxs], ['3.0.0', '[0.0,99.9]', '12.0']); assert.match(r.motores.predeterminado, /^sombra/); assert.match(r.compatibilidad.validado, /Illustrator 30\.8\.2/);
+  assert.deepEqual([r.identidad.manifiesto.bundleVersion, r.identidad.manifiesto.host, r.identidad.manifiesto.csxs], [EXP_IDS.version, '[0.0,99.9]', '12.0']); // D-0: la versión del árbol (3.0.0 en el RC cerrado; 3.0.1 en la línea de producto) assert.match(r.motores.predeterminado, /^sombra/); assert.match(r.compatibilidad.validado, /Illustrator 30\.8\.2/);
   assert.match(r.tipo, /EVALUACIÓN/); assert.equal(JSON.parse(fs.readFileSync(path.join(A.dir, 'extension/BUILD_INFO.json'), 'utf8')).repo.commit, null);
+});
+// D-0 (2026-11-01): el RC 3.0.0-rc.1 queda CERRADO en 7258524; su artefacto se sigue reconstruyendo byte a byte desde ese commit.
+let RC_CERRADO = null; const rcCerrado = async () => (RC_CERRADO ||= await construirRC({ commit: '7258524', out: path.join(tmp, 'rc-cerrado') }));
+test('D-0 · el RC 3.0.0-rc.1 cerrado se reconstruye byte a byte desde 7258524: zip 8f4edc7d…, main.js b36f3d89…, manifiesto 3.0.0', async () => {
+  const r = await rcCerrado(); assert.equal(r.zipSha, '8f4edc7d288ac12f01913a73d92e54965494b5ccf8d4b2b0485cffaa9dd08d75'); assert.equal(r.release.main_js_sha256, 'b36f3d8998555391627cc995a73e1f63714624015122b5e9a1400fe7d8275428');
+  assert.equal(r.release.version, '3.0.0-rc.1'); assert.equal(r.release.identidad.manifiesto.bundleVersion, '3.0.0');
 });
 test('el main.js del RC es el del árbol actual (si el código no cambió desde HEAD) y el de ec5f5d8 reproduce el validado en la Entrega 2', async () => {
   if (codigoIgualQueHead()) { const t = path.join(tmp, 'arbol'); await construirExperimental({ out: t }); assert.equal(A.release.main_js_sha256, sha(fs.readFileSync(path.join(t, 'main.js')))); }
@@ -31,9 +37,9 @@ test('el main.js del RC es el del árbol actual (si el código no cambió desde 
 });
 
 const ID = leer('identidad-2026-10-28T18-44-03-193Z.json');
-test('evidencia real · identidad del panel validado: ILST 30.8.2, CEP 12.1.1, Chromium 99; main.js = construcción limpia de este árbol', async () => {
+test('evidencia real · identidad del panel validado: ILST 30.8.2, CEP 12.1.1, Chromium 99; main.js = construcción limpia del RC cerrado (7258524; D-0)', async () => {
   assert.deepEqual(ID.veredicto, { extension: true, host: true, mainJs: true, three: true, sombra: true, barra: true, chromium: true }); assert.equal(ID.identidad.host.appVersion, '30.8.2'); assert.match(ID.identidad.ua, /Chrome\/99\.0\.4844\.84 AdobeCEP\/12\.1\.1/);
-  const t = path.join(tmp, 'id'); await construirExperimental({ out: t }); assert.equal(sha(fs.readFileSync(path.join(t, 'main.js'))), ID.identidad.mainJs.sha256, 'el main.js validado en real es el que construye este árbol');
+  assert.equal((await rcCerrado()).release.main_js_sha256, ID.identidad.mainJs.sha256, 'el main.js validado en real es el del RC cerrado (7258524)');
 });
 test('evidencia real · Shift+clic (base, también tras plegar) y Alt+clic (crease) con entrada de confianza escalada por devicePixelRatio, en sombra y activo; sin «Pick error»', () => {
   for (const f of fs.readdirSync(E).filter((x) => x.startsWith('interacciones-'))) { const r = leer(f); const p = r.pasos; assert.deepEqual(r.errores, [], f); assert.equal(r.dpr, 1.25);
