@@ -5,7 +5,10 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms)); const sha = (f) => 
 // (A5, validada en el CEP real; build.test la reproduce desde el src/ de 31459fc), tests/golden/dist-a6.SHA256SUMS (A6, validada en el CEP real; la lee
 // a6-cep-evidencia y build.test la reproduce desde el src/ de 2939dbc), tests/golden/dist-a7.SHA256SUMS (A7; src/ de a322d7a) y tests/golden/dist-a8.SHA256SUMS
 // (A8, validada en el CEP real; la leen a8-cep-* y build.test la reproduce desde el src/ de 3ea0d8a).
-export const DIST_PIN = path.join(ROOT, 'tests/golden/dist-a9.SHA256SUMS');
+// D-0 (2026-11-01): dist-a9 queda CERRADA como huella histórica de F1 (build.test la reproduce desde el src/ del commit congelado HIST_COMMIT y la
+// batería histórica entera corre con tests/run-historico.sh). La huella vigente del bundle normal de la línea de producto es una huella NUEVA por versión.
+export const DIST_PIN_HISTORICO = path.join(ROOT, 'tests/golden/dist-a9.SHA256SUMS');
+export const DIST_PIN = path.join(ROOT, 'tests/golden/dist-3.0.1-dev.1.SHA256SUMS');
 function distOk() { const d = path.join(ROOT, 'dist'), sums = path.join(d, 'SHA256SUMS'); try { if (fs.readFileSync(sums, 'utf8') !== fs.readFileSync(DIST_PIN, 'utf8')) return false;
   return fs.readFileSync(sums, 'utf8').split('\n').filter(Boolean).every((l) => { const [h, f] = l.split(/\s+/); return fs.existsSync(path.join(d, f)) && sha(path.join(d, f)) === h; }) && fs.existsSync(path.join(d, 'BUILD_INFO.json')); } catch { return false; } }
 export async function ensureDist() { const lock = path.join(ROOT, '.dist.lock');

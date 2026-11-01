@@ -4,7 +4,10 @@
 //  · Las 8 funciones de exportación existen EXACTAMENTE una vez fuera de core/. Desde A9.2 exportPNG y exportGLB viven (una sola vez) en app/actions.js; desde A9.5 el manejador del botón, con su texto, está en bindEvents (ui/controller.js).
 //  · Las líneas sueltas de main.js cambian solo como se prevé en este paso (imports, cableado, declaraciones que salen).
 import test from 'node:test'; import assert from 'node:assert/strict'; import fs from 'node:fs'; import path from 'node:path';
-import { SRC, srcFiles, functionsAnyIndent, norm, residual, multisetDiff } from '../lib/a7.mjs'; import { EXPORT_FUNCTIONS, refTree, refMain } from '../lib/a8.mjs';
+import { SRC, srcFiles, functionsAnyIndent, norm, residual, multisetDiff } from '../lib/a7.mjs'; import { EXPORT_FUNCTIONS, refTree, refMain } from '../lib/a8.mjs'; import { D0_FUNCIONES_NUEVAS, D0_MANEJADORES, cambiadasEn, mainSinD0, primeraLinea } from '../lib/d0.mjs';
+// D-0 (3.0.1-dev): las diferencias autorizadas respecto de la referencia están en tests/lib/d0.mjs y se comparan como listas EXACTAS; la igualdad
+// estricta de F1 sigue en la batería histórica (tests/run-historico.sh, commit congelado).
+
 
 // Estado esperado en ESTE paso (se actualiza en cada paso aprobado; igualdad exacta).
 const NEW_FUNCTIONS = ['createGlbBuilder', 'createGlbImage', 'createGlbScene', 'createViews', 'createActions', 'createFoldControls', 'createPicking', 'createController', 'bindEvents']; // A8.4: fábricas nuevas; las 8 funciones movidas cambian de archivo, no son nuevas · A9.1: createViews · A9.2: createActions · A9.3: createFoldControls · A9.4: createPicking · A9.5: createController y bindEvents
@@ -21,10 +24,11 @@ test('la referencia a322d7a tiene main.js y los módulos de A5–A7 (sin core/) 
   const closure = functionsAnyIndent(refMainText).filter((f) => f.indent === 4).map((f) => f.name); for (const n of EXPORT_FUNCTIONS) assert.ok(closure.includes(n), n);
 });
 test('cada función de la referencia existe en src/ con el mismo texto (salvo sangría, export y S.); no se pierde ni se altera ninguna', () => {
-  const d = multisetDiff(refFns.map(key), srcFns.map(key)); assert.deepEqual(d.quitadas.map((k) => k.split('\n')[0]), [], 'funciones quitadas o alteradas');
+  const d = multisetDiff(refFns.map(key), srcFns.map(key)); assert.deepEqual(d.quitadas.map((k) => k.split('\n')[0]).sort(), cambiadasEn(refFns.map((f) => f.name)), 'funciones quitadas o alteradas (solo las de D-0)');
 });
 test('funciones añadidas: solo las previstas en este paso', () => {
-  const d = multisetDiff(refFns.map(key), srcFns.map(key)); assert.deepEqual(d.anadidas.map((k) => k.split('\n')[0]).sort(), [...NEW_FUNCTIONS].sort());
+  const d = multisetDiff(refFns.map(key), srcFns.map(key)); const n0 = Object.keys(D0_FUNCIONES_NUEVAS).filter((n) => srcFns.some((x) => x.name === n));
+  assert.deepEqual(d.anadidas.map((k) => k.split('\n')[0]).sort(), [...NEW_FUNCTIONS, ...cambiadasEn(refFns.map((f) => f.name)), ...n0].sort()); // D-0: versiones nuevas de las cambiadas + nuevas declaradas
 });
 test('las 8 funciones de exportación están definidas EXACTAMENTE una vez fuera de core/', () => {
   for (const n of EXPORT_FUNCTIONS) { const k = srcFns.filter((x) => x.name === n).length; assert.equal(k, 1, `${n}: ${k} definiciones`); }
@@ -37,5 +41,5 @@ test('exportPNG y exportGLB: una sola vez y en app/actions.js (A9.2, D-A9-9); el
   assert.match(fs.readFileSync(path.join(SRC, 'app/actions.js'), 'utf8'), /^import \{ saveBlobWithDialog \} from '\.\.\/bridge\/fs\.js';$/m);
 });
 test('líneas sueltas de main.js frente a a322d7a: solo los cambios previstos en este paso', () => {
-  const d = multisetDiff(residual(refMainText), residual(mainText)); assert.deepEqual(d, EXPECTED_RESIDUAL);
+  const d = multisetDiff(residual(refMainText), residual(mainSinD0(mainText))); assert.deepEqual(d, EXPECTED_RESIDUAL); // D-0: líneas declaradas deshechas
 });

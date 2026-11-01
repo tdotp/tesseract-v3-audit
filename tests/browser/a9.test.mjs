@@ -53,8 +53,11 @@ test('A9 · H1 · las 15 escuchas de main.js se registran UNA vez y en el orden 
   for (const k of ['baseSelect', 'baseShift', 'espesor', 'preset']) assert.equal(b[k].persistentes, b.construir.persistentes, `${k}: escuchas persistentes constantes`);
   assert.deepEqual(b.errores, []);
 });
-test('A9 · H1 · texto de cada manejador: bundle actual = bundle de 3ea0d8a (mismo orden)', () => {
-  assert.ok(TXT.ref && TXT.dist, 'faltan referencia o bundle'); for (const k of Object.keys(TXT.ref)) assert.deepEqual(TXT.dist[k], TXT.ref[k], `${k}: texto de algún manejador distinto`);
+// D-0 (3.0.1-dev, H-05): los manejadores de «Extract Dieline» y «Continue to 3D» cambian (identidad del documento); los demás, idénticos y en el mismo orden.
+const D0_H1 = ['#extract-btn click ', '#continue-3d-btn click '];
+test('A9 · H1 · texto de cada manejador: bundle actual = bundle de 3ea0d8a (mismo orden), salvo los dos de D-0 (H-05), que deben cambiar', () => {
+  assert.ok(TXT.ref && TXT.dist, 'faltan referencia o bundle'); for (const k of Object.keys(TXT.ref)) { assert.equal(TXT.dist[k].length, TXT.ref[k].length, `${k}: número de manejadores`);
+    TXT.ref[k].forEach((r, i) => { const d0 = D0_H1.find((p) => r.startsWith(p)); if (d0) { assert.ok(TXT.dist[k][i].startsWith(d0), `${k}: ${d0}en su lugar`); assert.notEqual(TXT.dist[k][i], r, `${k}: cambio D-0 declarado que no aparece (${d0})`); } else assert.equal(TXT.dist[k][i], r, `${k}: texto de algún manejador distinto`); }); }
 });
 
 // ───────────────────────── H2: historial de mensajes ─────────────────────────
@@ -81,7 +84,10 @@ for (const t of TG) test(`A9 · H2 · ${names[t]}: historial de mensajes y estad
   const out = {}; for (const [name, code] of Object.entries(H2CASES)) { await open(t, H2Q[name] || ''); const e0 = H.browser.errors.length; out[name] = await ev(`(async () => { ${code} })()`); out[name].errores = errs(e0); }
   R.H2[t] = out; save(`a9-h2-${t}`, out);
 });
-test('A9 · H2 · baseline, panel y bundle: mismo historial en todos los flujos', () => { sameAsBase('H2'); });
+// D-0 (3.0.1-dev): KI-24 corregido en el bundle: el mismo historial que el baseline, sin el ReferenceError del preset antes del 3D (y nada más distinto).
+test('A9 · H2 · baseline, panel y bundle: mismo historial en todos los flujos (bundle: sin el ReferenceError de KI-24)', () => {
+  assert.deepEqual(R.H2.fix, R.H2.base, 'H2: panel/ ≠ baseline'); const esperado = structuredClone(R.H2.base); assert.deepEqual(esperado['ki24-preset-antes-de-3d'].errores, ['ReferenceError: buildChildrenOfMap is not defined']);
+  esperado['ki24-preset-antes-de-3d'].errores = []; assert.deepEqual(R.H2.dist, esperado, 'H2: bundle ≠ baseline (salvo KI-24)'); });
 test('A9 · H2 · comportamientos documentados (incluidos los defectos que se preservan)', () => {
   const b = R.H2.base; const last = (arr, re) => arr.filter((l) => re.test(l)).at(-1);
   assert.ok(b.normal.extraer.includes('#status-area Extraction complete')); assert.deepEqual(b.normal.preview, ['#preview-canvas.display block', '#status-area 2D preview updated']);

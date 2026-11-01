@@ -3,7 +3,8 @@
 //      determinista, SHA256SUMS verificable, identidad CEP propia, sin APIs posteriores a Chromium 99;
 //   2. control de paridad: la misma configuración SIN sustituir el motor produce byte a byte el main.js del bundle normal, y los estáticos
 //      del experimental son los del normal salvo el manifiesto;
-//   3. el bundle normal (dist/) sigue en dist-a9, no contiene nada experimental y construir el experimental no lo toca; salida protegida;
+//   3. el bundle normal (dist/) sigue en su huella vigente (D-0: dist-a9 hasta el RC; la de la línea de producto desde 3.0.1-dev, ver tests/lib/dist.mjs),
+//      no contiene nada experimental y construir el experimental no lo toca; salida protegida;
 //   4. punto de control de entrada-cep.js (no enumerable, de solo lectura, no persistente) y aislamiento estático de experimental/integracion/;
 //   5. aislamiento de extensiones CEP: ningún manifiesto instalado declara la identidad experimental (V3 y el experimental NO instalados).
 import { test, before, after } from 'node:test'; import assert from 'node:assert/strict'; import fs from 'node:fs'; import os from 'node:os'; import path from 'node:path'; import { execFileSync, spawnSync } from 'node:child_process';
@@ -37,15 +38,15 @@ test('identidad CEP propia, distinta del plugin original y de V3 normal; menú �
   const m = leer(X.out, 'CSXS/manifest.xml').toString(); assert.match(m, /ExtensionBundleId="com\.tato\.tesseract\.v3\.experimental"/); assert.equal((m.match(/com\.tato\.tesseract\.v3\.experimental\.panel/g) || []).length, 2);
   assert.match(m, /<Menu>Tesseract V3 \(experimental\)<\/Menu>/); assert.doesNotMatch(m, /"com\.tato\.tesseract"|"com\.tato\.tesseract\.panel"|"com\.tato\.tesseract\.v3\.panel"/);
   for (const k of ['bundleId', 'extensionId', 'menu', 'name']) assert.notEqual(EXP_IDS[k], V3_IDS[k], k);
-  const n = leer(N.out, 'CSXS/manifest.xml').toString(); assert.equal(m.replace(/com\.tato\.tesseract\.v3\.experimental/g, 'com.tato.tesseract.v3').replace(/Tesseract V3 \(experimental\)/g, 'Tesseract V3'), n, 'solo cambia la identidad respecto al manifiesto normal');
+  const n = leer(N.out, 'CSXS/manifest.xml').toString(); assert.equal(m.replace(/com\.tato\.tesseract\.v3\.experimental/g, 'com.tato.tesseract.v3').replace(/Tesseract V3 \(experimental\)/g, 'Tesseract V3').replace(new RegExp(`Version="${EXP_IDS.version.replace(/\./g, '\\.')}"`, 'g'), `Version="${V3_IDS.version}"`), n, 'solo cambian la identidad y (D-0) la versión de la línea de producto respecto al manifiesto normal');
 });
 test('Chromium 99: sin avisos de esbuild (chrome99) y sin APIs posteriores a la 99 en el bundle experimental', () => { const t = leer(X.out, 'main.js').toString(); for (const [tok, desc] of JS_POST99) assert.ok(!t.includes(tok), desc); });
 test('control de paridad: la misma configuración sin sustituir el motor = main.js del bundle normal byte a byte; estáticos idénticos salvo el manifiesto', () => {
-  assert.ok(leer(P.out, 'main.js').equals(leer(N.out, 'main.js')), 'main.js idéntico'); assert.ok(leer(N.out, 'main.js').equals(leer(ROOT, 'dist/main.js')), 'y = dist/main.js (dist-a9)');
+  assert.ok(leer(P.out, 'main.js').equals(leer(N.out, 'main.js')), 'main.js idéntico'); assert.ok(leer(N.out, 'main.js').equals(leer(ROOT, 'dist/main.js')), 'y = dist/main.js (huella vigente)');
   const lista = (d) => fs.readFileSync(path.join(d, 'SHA256SUMS'), 'utf8').trim().split('\n').filter((l) => !/\.\/(main\.js|CSXS\/manifest\.xml)$/.test(l));
-  assert.deepEqual(lista(X.out), lista(N.out)); assert.equal(N.sums, fs.readFileSync(DIST_PIN, 'utf8'), 'una construcción normal limpia sigue dando la huella dist-a9');
+  assert.deepEqual(lista(X.out), lista(N.out)); assert.equal(N.sums, fs.readFileSync(DIST_PIN, 'utf8'), 'una construcción normal limpia sigue dando la huella vigente');
 });
-test('bundle normal intacto: dist/ = dist-a9 y sin ninguna marca experimental; src/ no menciona experimental/ ni el selector', () => {
+test('bundle normal intacto: dist/ = huella vigente y sin ninguna marca experimental; src/ no menciona experimental/ ni el selector', () => {
   assert.equal(fs.readFileSync(path.join(ROOT, 'dist/SHA256SUMS'), 'utf8'), fs.readFileSync(DIST_PIN, 'utf8')); assert.deepEqual(verifyDir(path.join(ROOT, 'dist')), []);
   const t = leer(ROOT, 'dist/main.js').toString(); for (const m of MARCAS) assert.ok(!t.includes(m), m);
   const g = spawnSync('git', ['-C', ROOT, 'grep', '-l', '-E', 'experimental/|selector-f2a3|entrada-cep|__tessMotor|adaptarPanelModel', '--', 'src', 'panel', ':!panel/libs', 'tools/build/build.mjs', 'tools/install.sh'], { encoding: 'utf8' });

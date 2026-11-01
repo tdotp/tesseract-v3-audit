@@ -5,7 +5,7 @@
 //  7 identificadores libres: solo globales esperados (excepción única declarada: buildChildrenOfMap, KI-24) · 8 número exacto de envoltorios de enlace tardío en main.js ·
 //  9 main.js conserva el ancla del arnés y __tessDebugView con su texto, y solo las funciones previstas en este paso.
 import test from 'node:test'; import assert from 'node:assert/strict'; import fs from 'node:fs'; import path from 'node:path'; import { pathToFileURL } from 'node:url';
-import { SRC, srcFiles, codeOnly, functionsAnyIndent } from '../lib/a7.mjs'; import { freeIdentifiers, KNOWN_GLOBALS } from '../lib/a8.mjs'; import { CLOSURE_3EA0D8A } from '../lib/a9.mjs'; import { TARGETS, extractFunctions, indent2Allowed } from '../lib/legacy.mjs';
+import { SRC, srcFiles, codeOnly, functionsAnyIndent } from '../lib/a7.mjs'; import { D0_IMPORTS_NUEVOS } from '../lib/d0.mjs'; import { freeIdentifiers, KNOWN_GLOBALS } from '../lib/a8.mjs'; import { CLOSURE_3EA0D8A } from '../lib/a9.mjs'; import { TARGETS, extractFunctions, indent2Allowed } from '../lib/legacy.mjs';
 
 // Estado esperado en ESTE paso (se actualiza en cada paso aprobado; igualdad exacta).
 const INVENTORY = ['app/actions.js', 'ui/controller.js', 'ui/fold-controls.js', 'ui/picking.js', 'ui/views.js']; // A9.5 (app/state.js queda fuera de este inventario: lo rige a7-limites)
@@ -41,7 +41,7 @@ test('reglas 2 y 3 · sin THREE ni window; document solo dentro de las funciones
     assert.equal(countIn(raw(f), 'document'), inFns(f, RULES[f].doc, 'document'), `${f}: document fuera de ${RULES[f].doc.join(', ') || '(ninguna)'}`); }
 });
 test('regla 4 · imports solo los previstos, solo con nombre; ninguno hacia scene/, fold/, export/, core/, ui/, app/ ni main.js', () => {
-  for (const f of files) { const imps = importsOf(f); assert.deepEqual([...imps].sort(), [...RULES[f].imports].sort(), f); assert.doesNotMatch(raw(f), /^\s*import\s+(?!\{)/m, `${f}: solo imports con nombre`);
+  for (const f of files) { const imps = importsOf(f); assert.deepEqual([...imps].sort(), [...RULES[f].imports, ...(D0_IMPORTS_NUEVOS[f] || [])].sort(), f); /* D-0: imports nuevos declarados en tests/lib/d0.mjs */ assert.doesNotMatch(raw(f), /^\s*import\s+(?!\{)/m, `${f}: solo imports con nombre`);
     for (const i of imps) assert.ok(/^\.\.\/(host|bridge|config)\//.test(i), `${f} importa ${i}`); }
 });
 test('regla 5 · sin estado de módulo; el cuerpo de cada fábrica solo desestructura deps, declara variables privadas con valor literal y funciones, y devuelve', () => {
@@ -79,8 +79,9 @@ test('A9.5 · bindEvents: main.js lo llama UNA vez, después de if(!ensureCep())
   const cep = L.indexOf('    if(!ensureCep()) return;'), last = L.indexOf("    setInteractionMode('fold', false);"); assert.ok(cep > 0 && last > cep && calls[0][1] > last, 'orden: guarda → ensureCep → arranque → bindEvents');
   assert.equal((codeOnly(mainText).match(/\.addEventListener\(/g) || []).length, 1, 'main.js solo registra DOMContentLoaded');
 });
-test('A9.5 · KI-24 se preserva: buildChildrenOfMap sigue SIN declararse en ui/controller.js (identificador libre)', () => {
-  if (!files.includes('ui/controller.js')) return; assert.ok(freeIdentifiers(raw('ui/controller.js')).includes('buildChildrenOfMap'));
+// D-0 (3.0.1-dev): KI-24 CORREGIDO. La aserción de F1 («se preserva») sigue en la batería histórica (tests/run-historico.sh); aquí se exige lo contrario.
+test('KI-24 corregido (D-0): buildChildrenOfMap ya NO es un identificador libre en ui/controller.js (llega por deps desde fold/folding.js)', () => {
+  assert.ok(!freeIdentifiers(raw('ui/controller.js')).includes('buildChildrenOfMap')); assert.match(raw('ui/controller.js'), /applyArtworkToScene, rebuildCreaseVisuals, buildChildrenOfMap, build3DFromPanels,/);
 });
 test('A9.5 · cargador (D-A9-5): la sangría de 2 espacios solo se admite para src; baseline y panel/ siguen exigiendo 4 o 0', () => {
   assert.equal(indent2Allowed(TARGETS.src), true); assert.equal(indent2Allowed(TARGETS.baseline), false); assert.equal(indent2Allowed(TARGETS.panel), false);

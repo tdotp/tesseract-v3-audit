@@ -1,6 +1,7 @@
 // A8.4 — Constructor del GLB: clave de deduplicación de materiales y ensamblado del contenedor binario glTF 2.0 (JSON + BIN) a partir de la lista de mallas en espacio MUNDO.
 // Texto idéntico al de src/main.js de a322d7a salvo la sangría (docs/fase1/A8_PROPUESTA.md §4.1). Recibe inyectadas buildExportSceneMeshes (glb-scene) y textureToImageBytes (glb-image);
-// no lee S ni toca el DOM. Conserva las invariantes I-G1…G6 (orden de nodos, materiales, imágenes, vistas y claves del JSON; alineación a 4 B; constantes de KI-03). THREE es el global de index.html.
+// no lee S ni toca el DOM. Conserva las invariantes I-G1…G6 (orden de nodos, materiales, imágenes, vistas y claves del JSON; alineación a 4 B). 3.0.1-dev: generador
+// «Tesseract V3» y asset.extras.tesseract con las unidades (H-06); roughness 1 y metallic 0 de KI-03 sin cambios. THREE es el global de index.html.
 import { padBytes, toUint8View } from './glb-bytes.js';
 
 export function createGlbBuilder(deps){
@@ -20,7 +21,7 @@ export function createGlbBuilder(deps){
     if(!meshes.length) throw new Error('Nothing exportable in current 3D view');
 
     var gltf = {
-      asset:{version:'2.0', generator:'Tesseract Phase 7B'},
+      asset:{version:'2.0', generator:'Tesseract V3', extras:{ tesseract:{ unidades:'m', unidadInterna:'mm', escalaAplicada:0.001 } } }, /* 3.0.1-dev (H-06): posiciones ya convertidas a metros en glb-scene; extras solo informa */
       scene:0,
       scenes:[{nodes:[]}],
       nodes:[],

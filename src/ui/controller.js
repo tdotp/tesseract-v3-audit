@@ -2,15 +2,20 @@
 // Texto idéntico al de src/main.js de 3ea0d8a salvo la sangría (docs/fase1/A9_PROPUESTA.md §5.2, §16.2.2–§16.2.3): las funciones y lastData/problems, −2 espacios; los
 // manejadores, sin cambios (en el cuerpo de bindEvents conservan sus 4 espacios). lastData y problems son privados de la fábrica (una sola instancia).
 // bindEvents registra las escuchas en el ORDEN de hoy y main.js lo llama UNA vez, después de ensureCep; crear la fábrica no registra nada (sin efectos al crearse).
-// document solo en validateGeometry y bindEvents; sin THREE ni window. buildChildrenOfMap sigue sin declararse (KI-24, excepción única de identificadores libres).
+// document solo en validateGeometry y bindEvents; sin THREE ni window.
+// 3.0.1-dev (D-0): KI-24 corregido (buildChildrenOfMap llega de fold/folding.js; sin escena no hay pliegues que rehacer). H-05: la extracción guarda la
+// identidad del documento (host/doc-identity.js) y «Continue to 3D» la comprueba con una lectura puntual antes de construir; si cambió, invalida
+// la extracción y pide extraer de nuevo.
 import { MATERIAL_PRESETS } from '../config/look.js';
 import { EXTRACT_SCRIPT } from '../host/extract.js';
 import { TEST_CONNECTION_SCRIPT } from '../host/test-connection.js';
 import { evalScript } from '../bridge/cep.js';
+import { withDocIdentity, DOC_IDENTITY_SCRIPT, unwrapDocIdentity, sameDocument } from '../host/doc-identity.js';
 
 export function createController(S, deps){
-  var { threeView, testBtn, extractBtn, previewBtn, continueBtn, debugToggle, outputArea, validationStatus, problemsList, canvas2d, ctx2d, backBtn, export3dBtn, exportGlbBtn, debugDetails, thicknessInput, applyThicknessBtn, materialPresetSelect, refreshArtBtn, modeFoldBtn, modeBaseBtn, tabButtons, setStatus, log, clearLog, geometryEngine, getMaterialPreset, refreshPanelMaterials, init3D, fitCamera3D, applyArtworkToScene, rebuildCreaseVisuals, build3DFromPanels, syncMaterialPresetUI, setInteractionMode, showImport, show3D, setDebugVisible, setActiveTab, syncMaterialInputs, buildFoldUI, refreshArtwork, exportPNG, exportGLB } = deps;
+  var { threeView, testBtn, extractBtn, previewBtn, continueBtn, debugToggle, outputArea, validationStatus, problemsList, canvas2d, ctx2d, backBtn, export3dBtn, exportGlbBtn, debugDetails, thicknessInput, applyThicknessBtn, materialPresetSelect, refreshArtBtn, modeFoldBtn, modeBaseBtn, tabButtons, setStatus, log, clearLog, geometryEngine, getMaterialPreset, refreshPanelMaterials, init3D, fitCamera3D, applyArtworkToScene, rebuildCreaseVisuals, buildChildrenOfMap, build3DFromPanels, syncMaterialPresetUI, setInteractionMode, showImport, show3D, setDebugVisible, setActiveTab, syncMaterialInputs, buildFoldUI, refreshArtwork, exportPNG, exportGLB } = deps;
   var lastData   = null;
+  var lastDocIdentity = null; /* identidad del documento de lastData (host/doc-identity.js); vale solo junto a lastData */
   var problems   = [];
 
   function applyMaterialPreset(presetKey, rebuild){
@@ -31,7 +36,7 @@ export function createController(S, deps){
       }
     } else {
       refreshPanelMaterials();
-      rebuildCreaseVisuals(buildChildrenOfMap());
+      if(S.scene3d && S.foldTree.length) rebuildCreaseVisuals(buildChildrenOfMap());
     }
   }
 
@@ -111,14 +116,18 @@ export function createController(S, deps){
       outputArea.value='';
       resetValidationUI();
 
-      evalScript(EXTRACT_SCRIPT,function(result){
+      evalScript(withDocIdentity(EXTRACT_SCRIPT),function(result){
         try{
           if(!result || result==='undefined' || result==='null' || result==='EvalScript error.'){
             setStatus('Error: ' + String(result || 'No result returned'));
             return;
           }
-          var parsed = JSON.parse(result);
-          if(parsed.error){
+          var answer = unwrapDocIdentity(JSON.parse(result));
+          var parsed = answer.result;
+          result = JSON.stringify(parsed);
+          lastDocIdentity = answer.identity;
+          if(!parsed || parsed.error){
+            parsed = parsed || {error:'No result returned'};
             lastData = parsed;
             outputArea.value = result;
             if(debugToggle.checked) setDebugVisible(true);
@@ -154,6 +163,30 @@ export function createController(S, deps){
         setStatus('Nothing to build. Extract first.');
         return;
       }
+      var data = lastData, dataIdentity = lastDocIdentity;
+      evalScript(DOC_IDENTITY_SCRIPT, function(result){
+        var now;
+        try{ now = unwrapDocIdentity(JSON.parse(result)).identity; }
+        catch(err){
+          setStatus('Could not check the active document. Extract the dieline again.');
+          log('Document check failed: ' + String(result || 'No result returned'));
+          return;
+        }
+        if(data!==lastData) return; /* llegó otra extracción mientras tanto: manda la más reciente */
+        if(!sameDocument(dataIdentity, now)){
+          lastData = null; lastDocIdentity = null;
+          resetValidationUI();
+          outputArea.value = '';
+          ctx2d.clearRect(0,0,canvas2d.width,canvas2d.height);
+          setStatus('The active document changed since the extraction. Extract the dieline again.');
+          log('Build refused: the active document is not the one the dieline was extracted from');
+          return;
+        }
+        buildFromExtraction(dataIdentity);
+      });
+    });
+
+    function buildFromExtraction(dataIdentity){
       clearLog();
       show3D();
       setStatus('Preparing 3D...');
@@ -170,6 +203,7 @@ export function createController(S, deps){
           return;
         }
         S.currentPanelData = panelData;
+        S.currentDocIdentity = dataIdentity;
         if(S.currentBasePanelIndex<0 || S.currentBasePanelIndex>=panelData.panels.length){
           S.currentBasePanelIndex = geometryEngine.defaultBaseIndex(panelData);
         }
@@ -186,7 +220,7 @@ export function createController(S, deps){
         log('3D error: ' + err.message);
         setStatus('3D error: ' + err.message);
       }
-    });
+    }
 
     applyThicknessBtn.addEventListener('click', function(){
       var parsed = parseFloat(thicknessInput.value);

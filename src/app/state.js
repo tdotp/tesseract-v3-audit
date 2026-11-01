@@ -1,7 +1,7 @@
 // A7.1 — Estado de dominio compartido de la aplicación (docs/fase1/A7_PROPUESTA.md §4.1, D-A7-2).
 // Los 26 campos que antes eran variables de la clausura de main.js, con los MISMOS valores iniciales. El objeto está sellado: una asignación a un campo
 // que no existe lanza TypeError (módulos en modo estricto) en vez de crear estado nuevo en silencio. Sin THREE ni DOM: solo referencias que guarda y comparte.
-// Se quedan en main.js lastData, problems y los widgets del DOM; labelCache y creaseLinesGroup son privados de su módulo.
+// 3.0.1-dev: + currentDocIdentity (27 campos; H-05). Se quedan en main.js lastData, problems y los widgets del DOM; labelCache y creaseLinesGroup son privados de su módulo.
 import { DEFAULT_THICKNESS_MM } from '../config/look.js';
 
 export function createAppState(){
@@ -39,6 +39,8 @@ export function createAppState(){
     creaseVisuals: [],
     foldBridgeGroup: null,
     /* arte */
-    currentArtState: null
+    currentArtState: null,
+    /* documento de origen del modelo 3D vigente (3.0.1-dev, H-05): identidad devuelta por host/doc-identity.js; undefined = desconocida */
+    currentDocIdentity: undefined
   });
 }

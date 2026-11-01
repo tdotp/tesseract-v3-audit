@@ -2,7 +2,7 @@
 // interacciones, regresión baseline↔panel y métricas base. Corre sobre COPIAS instrumentadas en un directorio temporal.
 // LÍMITE: no es Illustrator/CEP (Chromium 99); el puente CEP está simulado (shim.js). Ver docs/fase1/PROCEDIMIENTO_VALIDACION_ILLUSTRATOR.md.
 import test, { before, after } from 'node:test'; import assert from 'node:assert/strict'; import fs from 'node:fs'; import path from 'node:path';
-import { prepare, textOf, PAGE_HELPERS } from './harness.mjs'; import { ROOT } from '../lib/fixtures.mjs'; import { summarize, parseGLB } from '../lib/glb.mjs';
+import { prepare, textOf, PAGE_HELPERS } from './harness.mjs'; import { validarGLB, equivalenciaHistorica } from '../lib/glb-conformidad.mjs'; import { ROOT } from '../lib/fixtures.mjs'; import { summarize, parseGLB } from '../lib/glb.mjs';
 import { TARGETS, loadGeometry } from '../lib/legacy.mjs';
 
 const OUT = path.join(ROOT, 'tests/results/latest'); fs.mkdirSync(OUT, { recursive: true });
@@ -41,7 +41,9 @@ for (const [label, withArt, cycles] of [['sin arte', false, 6], ['con arte y ref
 for (const t of ['fix', 'dist']) for (const fx of ['caja', 'ill']) test(`Regresión · baseline vs ${names[t]} (${fx}): píxeles, escena y GLB idénticos`, async () => {
   await H.browser.goto(`${H.url}/${t === 'fix' ? 'compare' : 'compare-dist'}-${fx}.html`); await evalIn(`new Promise(r => setTimeout(r, 1200))`);
   const r = await evalIn(`tesseractCompareFrames()`); save(`regresion-${names[t]}-${fx}`, r);
-  assert.deepEqual(r.resumen, { poses_identicas: true, escena_identica: true, glb_identico: true }, JSON.stringify(r.poses));
+  // D-0 (3.0.1-dev): el bundle (src/ evolucionado) exporta en metros y sin triángulos de área nula, así que su GLB YA NO es idéntico al del baseline;
+  // su equivalencia semántica (×0,001) se exige más abajo. Píxeles y escena siguen idénticos. La igualdad de F1 sigue en tests/run-historico.sh.
+  assert.deepEqual(r.resumen, { poses_identicas: true, escena_identica: true, glb_identico: t !== 'dist' }, JSON.stringify(r.poses));
   assert.equal(r.paneles.A, r.paneles.B);
 });
 
@@ -103,23 +105,26 @@ test('Arte · baseline, panel y bundle son idénticos', () => { const strip = (o
 
 // ───────────────────────── Exportación GLB ─────────────────────────
 const poseCases = [['plano_sin_arte', 0, false], ['plegado60_sin_arte', 60, false], ['plano_con_arte', 0, true], ['plegado60_con_arte', 60, true]];
-const glbResults = {};
+const glbResults = {}; const glbBufs = {};
 for (const t of TG) for (const fx of ['caja', 'ill']) test(`GLB · ${names[t]} (${fx}): estructura, materiales, unidades (mm) y normales (KI-02/KI-03)`, async () => {
   await load(`${t}-${fx}`); await evalIn(CAPTURE); await evalIn(`T.build()`); const res = glbResults[`${t}-${fx}`] = {};
   let artLoaded = false;
   for (const [name, deg, withArt] of poseCases) {
     if (withArt && !artLoaded) { await evalIn(`harnessLoadArt()`); artLoaded = true; } await evalIn(`T.setAll(${deg})`);
     const b64 = await evalIn(`captureGLB()`); assert.ok(b64 && b64.length > 100, 'sin GLB: ' + name); const buf = Buffer.from(b64, 'base64'); const s = summarize(parseGLB(buf));
-    res[name] = { bytes: buf.length, sha: (await import('node:crypto')).createHash('sha256').update(buf).digest('hex').slice(0, 16), ...s };
+    glbBufs[`${t}-${fx}/${name}`] = buf; res[name] = { bytes: buf.length, sha: (await import('node:crypto')).createHash('sha256').update(buf).digest('hex').slice(0, 16), ...s };
   }
   save(`glb-${names[t]}-${fx}`, res);
   for (const [name, , withArt] of poseCases) { const s = res[name];
-    assert.equal(s.generator, 'Tesseract Phase 7B'); assert.deepEqual(s.extensionsUsed, []); assert.equal(s.nodes, s.meshes); assert.equal(s.images, withArt ? 2 : 0); assert.equal(s.textures, withArt ? 2 : 0);
-    assert.ok(Math.max(...s.bbox.size) > 100, 'unidades: debería estar en mm (≥100 unidades) — KI-03'); assert.ok(s.materialSummary.every((m) => m.metallic === 0 && m.roughness === 1 && m.doubleSided), 'KI-03: metallic 0, roughness 1, doubleSided');
+    const v3 = t === 'dist'; // D-0: el bundle es la línea de producto (generador «Tesseract V3», metros, sin normales nulas); baseline y panel/, las referencias de F1
+    assert.equal(s.generator, v3 ? 'Tesseract V3' : 'Tesseract Phase 7B'); assert.deepEqual(s.extensionsUsed, []); assert.equal(s.nodes, s.meshes); assert.equal(s.images, withArt ? 2 : 0); assert.equal(s.textures, withArt ? 2 : 0);
+    if (v3) { assert.ok(Math.max(...s.bbox.size) < 1, 'unidades: metros (H-06)'); assert.equal(s.normals.zeroLength + s.normals.nonUnit, 0, 'KI-02'); } else assert.ok(Math.max(...s.bbox.size) > 100, 'unidades: debería estar en mm (≥100 unidades) — KI-03'); assert.ok(s.materialSummary.every((m) => m.metallic === 0 && m.roughness === 1 && m.doubleSided), 'KI-03: metallic 0, roughness 1, doubleSided');
     assert.ok(s.materialSummary.filter((m) => m.texture).every((m) => m.alphaMode === 'BLEND'), 'arte con alphaMode BLEND'); }
   assert.deepEqual(H.browser.errors, []);
 });
-test('GLB · baseline, panel y bundle producen GLB idénticos byte a byte (caja e ill)', () => { for (const fx of ['caja', 'ill']) for (const [name] of poseCases) for (const t of ['fix', 'dist']) assert.equal(glbResults[`${t}-${fx}`][name].sha, glbResults[`base-${fx}`][name].sha, `${t}/${fx}/${name}`); });
+test('GLB · baseline y panel producen GLB idénticos byte a byte; el bundle (D-0) es semánticamente igual ×0,001 y sin errores de conformidad (caja e ill)', () => { for (const fx of ['caja', 'ill']) for (const [name] of poseCases) {
+  assert.equal(glbResults[`fix-${fx}`][name].sha, glbResults[`base-${fx}`][name].sha, `fix/${fx}/${name}`);
+  const nuevo = glbBufs[`dist-${fx}/${name}`]; const eq = equivalenciaHistorica(nuevo, glbBufs[`base-${fx}/${name}`]); assert.ok(eq.ok, `dist/${fx}/${name}: ` + eq.diferencias.join(' | ')); assert.deepEqual(validarGLB(nuevo).errores, [], `dist/${fx}/${name}`); } });
 test('GLB · estructura coincide con el golden del baseline (o se regenera con UPDATE_GOLDEN=1)', () => {
   const pick = (s) => { const { bytes, sha, ...rest } = s; return rest; };
   const cur = JSON.parse(JSON.stringify(Object.fromEntries(['caja', 'ill'].map((fx) => [fx, Object.fromEntries(poseCases.map(([n]) => [n, pick(glbResults[`base-${fx}`][n])]))])))); // JSON: normaliza -0

@@ -1,4 +1,5 @@
-// Texto ExtendScript (ES3) que se envía a Illustrator por evalScript (A5.2). Copia literal de panel/main.js (referencia A1): no editar sin tarea aprobada.
+// Texto ExtendScript (ES3) que se envía a Illustrator por evalScript (A5.2). Copia de panel/main.js (referencia A1) con UNA corrección aprobada (D-0, 3.0.1-dev):
+// H-02/KI-21 — exportArtboardByIndex restaura la mesa activa en un finally aunque exportFile lance (antes quedaba la mesa de Front/Back activa).
 export function buildArtworkExportScript(){
   return [
     '(function(){',
@@ -31,7 +32,7 @@ export function buildArtworkExportScript(){
     '  var stamp=(new Date()).getTime();',
     '  var result={ok:true,mode:"none",front:null,back:null,available:{artboards:[],layers:[]},activeArtboardIndex:doc.artboards.getActiveArtboardIndex()};',
     '  function exportActiveArtboardToPNG(label){ var idx=doc.artboards.getActiveArtboardIndex(); var ab=doc.artboards[idx]; var r=ab.artboardRect; var widthPt=Math.abs(r[2]-r[0]); var heightPt=Math.abs(r[1]-r[3]); var maxSidePt=Math.max(widthPt,heightPt); var targetMaxPx=4096; var scalePct=maxSidePt>0?Math.min(800,Math.max(100,(targetMaxPx/maxSidePt)*100)):100; var file=new File(outFolder.fsName+"/"+slug(doc.name)+"_"+label+"_"+stamp+".png"); var opt=new ExportOptionsPNG24(); opt.antiAliasing=true; opt.transparency=true; opt.artBoardClipping=true; opt.horizontalScale=scalePct; opt.verticalScale=scalePct; doc.exportFile(file,ExportType.PNG24,opt); return {path:file.fsName, rect:mmRectFromAB(ab), label:label, exportScale:scalePct}; }',
-    '  function exportArtboardByIndex(idx,label){ var prev=doc.artboards.getActiveArtboardIndex(); doc.artboards.setActiveArtboardIndex(idx); var out=exportActiveArtboardToPNG(label); doc.artboards.setActiveArtboardIndex(prev); return out; }',
+    '  function exportArtboardByIndex(idx,label){ var prev=doc.artboards.getActiveArtboardIndex(); doc.artboards.setActiveArtboardIndex(idx); try{ return exportActiveArtboardToPNG(label); } finally { doc.artboards.setActiveArtboardIndex(prev); } }',
     '  var artboardFront=null, artboardBack=null;',
     '  for(var ai=0;ai<doc.artboards.length;ai++){ var ab=doc.artboards[ai]; var role=roleForName(ab.name); result.available.artboards.push({name:ab.name,index:ai,role:role}); if(role==="front" && !artboardFront) artboardFront={index:ai,name:ab.name}; if(role==="back" && !artboardBack) artboardBack={index:ai,name:ab.name}; }',
     '  function visitLayers(container,acc){ for(var li=0;li<container.layers.length;li++){ var lyr=container.layers[li]; var role=roleForName(lyr.name); acc.push({layer:lyr,role:role,name:lyr.name}); if(lyr.layers&&lyr.layers.length) visitLayers(lyr,acc); } }',

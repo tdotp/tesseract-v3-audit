@@ -2,7 +2,7 @@
 // config y host no importan nada · bridge/cep solo toca window.__adobe_cep__ · bridge/fs solo importa host/save-dialog y toca el DOM únicamente para la descarga ·
 // ningún módulo salvo main.js usa THREE · ninguno lee window/document al cargarse · main.js solo importa config/, host/ y bridge/.
 import test from 'node:test'; import assert from 'node:assert/strict'; import fs from 'node:fs'; import path from 'node:path'; import { pathToFileURL } from 'node:url';
-import { TARGETS } from '../lib/legacy.mjs';
+import { TARGETS } from '../lib/legacy.mjs'; import { D0_MODULOS_NUEVOS } from '../lib/d0.mjs';
 const SRC = path.dirname(TARGETS.src);
 const files = []; (function walk(d) { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const p = path.join(d, e.name); if (e.isDirectory()) walk(p); else if (e.name.endsWith('.js')) files.push(path.relative(SRC, p)); } })(SRC); files.sort();
 const code = (f) => fs.readFileSync(path.join(SRC, f), 'utf8').replace(/^\s*\/\/.*$/gm, '').replace(/\/\*[\s\S]*?\*\//g, '').replace(/'(?:[^'\\\n]|\\.)*'|"(?:[^"\\\n]|\\.)*"/g, "''");
@@ -10,7 +10,7 @@ const imports = (f) => [...fs.readFileSync(path.join(SRC, f), 'utf8').matchAll(/
 const fnBody = (f, name) => { const s = fs.readFileSync(path.join(SRC, f), 'utf8'); const i = s.indexOf('function ' + name + '('); return s.slice(i, s.indexOf('\n}\n', i)); };
 
 test('inventario de src/ al cierre de A5 (los módulos aprobados y nada más)', () => {
-  assert.deepEqual(files.filter((f) => !/^(core|app|scene|fold|export|ui)\//.test(f)), ['bridge/cep.js', 'bridge/fs.js', 'config/look.js', 'host/art.js', 'host/extract.js', 'host/save-dialog.js', 'host/test-connection.js', 'main.js']); // core/ (A6): inventario exacto en a6-limites · app/, scene/, fold/ (A7): en a7-limites · ui/ (A9): en a9-limites
+  assert.deepEqual(files.filter((f) => !/^(core|app|scene|fold|export|ui)\//.test(f)), ['bridge/cep.js', 'bridge/fs.js', 'config/look.js', 'host/art.js', 'host/extract.js', 'host/save-dialog.js', 'host/test-connection.js', 'main.js', ...D0_MODULOS_NUEVOS.filter((m) => !/^(core|app|scene|fold|export|ui)\//.test(m))].sort()); // D-0: + módulos nuevos declarados en tests/lib/d0.mjs · core/ (A6): inventario exacto en a6-limites · app/, scene/, fold/ (A7): en a7-limites · ui/ (A9): en a9-limites
 });
 test('main.js solo importa config/, host/ y bridge/; ningún módulo se importa a sí mismo ni hay ciclos', () => {
   assert.deepEqual(imports('main.js').filter((i) => !/^\.\/(core|app|scene|fold|export|ui)\//.test(i)).sort(), ['./bridge/cep.js', './config/look.js']); // A9.5: host/extract.js y host/test-connection.js pasan a ui/controller.js · A9.2: host/art.js y bridge/fs.js pasan a app/actions.js

@@ -4,6 +4,17 @@
 export function createFolding(S, deps){
   var { makePanelLabelSprite, refreshPanelMaterials, rebuildCreaseVisuals } = deps;
 
+  /* 3.0.1-dev (KI-24): mapa padre → hijos del árbol de plegado vigente. Lo usan applyFolding y quien necesita rehacer los visuales de pliegue
+     sin replegar (cambio de preset sin reconstruir, arte nuevo); antes se llamaba desde controller.js sin estar declarado (ReferenceError). */
+  function buildChildrenOfMap(){
+    var childrenOf={};
+    S.foldTree.forEach(function(edge,ei){
+      if(!childrenOf[edge.parent]) childrenOf[edge.parent]=[];
+      childrenOf[edge.parent].push({child:edge.child,crease:edge.crease,edgeIdx:ei});
+    });
+    return childrenOf;
+  }
+
   function applyFolding(){
     if(!S.scene3d || !S.panelMeshes.length) return;
 
@@ -37,11 +48,7 @@ export function createFolding(S, deps){
       panelGroups[pIdx]=g;
     });
 
-    var childrenOf={};
-    S.foldTree.forEach(function(edge,ei){
-      if(!childrenOf[edge.parent]) childrenOf[edge.parent]=[];
-      childrenOf[edge.parent].push({child:edge.child,crease:edge.crease,edgeIdx:ei});
-    });
+    var childrenOf=buildChildrenOfMap();
 
     var attached={};
     function attachChildren(parentIdx,parentGroup){
@@ -100,5 +107,5 @@ export function createFolding(S, deps){
     if(S.scene3d) S.scene3d.updateMatrixWorld(true);
   }
 
-  return { applyFolding };
+  return { applyFolding, buildChildrenOfMap };
 }

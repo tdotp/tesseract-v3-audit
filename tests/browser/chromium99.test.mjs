@@ -1,6 +1,7 @@
 // A3 — comportamiento con un conjunto de APIs reducido al de Chromium 99: en un Chrome moderno se ELIMINAN, antes de cargar la página, las APIs
 // añadidas después de la 99 y se repite el flujo completo en baseline, panel y bundle. No sustituye a Chromium 99 real (CEF 4844): es una red de seguridad.
 import test, { before, after } from 'node:test'; import assert from 'node:assert/strict'; import fs from 'node:fs'; import path from 'node:path'; import { createHash } from 'node:crypto';
+import { validarGLB, equivalenciaHistorica } from '../lib/glb-conformidad.mjs'; // D-0 (3.0.1-dev): el bundle exporta en metros y sin triángulos de área nula
 import { prepare, textOf, PAGE_HELPERS } from './harness.mjs'; import { ROOT } from '../lib/fixtures.mjs'; import { summarize, parseGLB } from '../lib/glb.mjs';
 const REDUCE = `(() => { const del = (o, k) => { try { delete o[k]; } catch (e) {} }; const TA = Object.getPrototypeOf(Uint8Array.prototype);
   for (const k of ['toSorted', 'toReversed', 'toSpliced', 'with', 'group', 'groupBy']) { del(Array.prototype, k); del(TA, k); }
@@ -20,8 +21,9 @@ async function seq(h, t) { const ev = (c) => h.browser.eval(c); await h.open(`${
 for (const t of ['base', 'fix', 'dist']) test(`APIs reducidas a Chromium 99 · ${t === 'base' ? 'baseline' : t === 'fix' ? 'panel' : 'bundle'}: flujo completo sin errores (3D, plegado, arte, GLB, ciclos de GPU) y mismo GLB que con APIs completas`, async () => {
   const f = await seq(F, t); full[t] = createHash('sha256').update(f.buf).digest('hex').slice(0, 16);
   const { buf, ev } = await seq(H, t); const low = await ev('window.__lowApi'); assert.deepEqual(low, { arr: false, ta: false, prom: false, grp: false, set: false, iter: 'undefined', url: false, abort: false }, 'las APIs posteriores deben estar eliminadas');
-  const s = summarize(parseGLB(buf)); res[t] = { sha: createHash('sha256').update(buf).digest('hex').slice(0, 16), nodes: s.nodes, images: s.images };
+  const s = summarize(parseGLB(buf)); res[t] = { sha: createHash('sha256').update(buf).digest('hex').slice(0, 16), nodes: s.nodes, images: s.images, buf };
   const g = await ev('tesseractLeakCycles({ cycles: 3, withArt: true })'); assert.equal(g.veredicto, t === 'base' ? 'CRECE' : 'SIN CRECIMIENTO ACUMULATIVO');
-  assert.deepEqual(H.browser.errors, [], 'errores JS con APIs reducidas'); assert.equal(s.images, 2); assert.equal(s.generator, 'Tesseract Phase 7B'); assert.equal(res[t].sha, full[t], 'el GLB con APIs reducidas debe ser idéntico al de APIs completas');
+  assert.deepEqual(H.browser.errors, [], 'errores JS con APIs reducidas'); assert.equal(s.images, 2); assert.equal(s.generator, t === 'dist' ? 'Tesseract V3' : 'Tesseract Phase 7B'); assert.equal(res[t].sha, full[t], 'el GLB con APIs reducidas debe ser idéntico al de APIs completas');
 });
-test('APIs reducidas: baseline, panel y bundle exportan el mismo GLB entre sí (reducidas y completas)', () => { assert.equal(res.fix.sha, res.base.sha); assert.equal(res.dist.sha, res.base.sha); assert.equal(full.fix, full.base); assert.equal(full.dist, full.base); });
+test('APIs reducidas: baseline y panel exportan el mismo GLB (reducidas y completas); el bundle (D-0), uno equivalente ×0,001 y conforme', () => { assert.equal(res.fix.sha, res.base.sha); assert.equal(full.fix, full.base);
+  const e = equivalenciaHistorica(res.dist.buf, res.base.buf); assert.ok(e.ok, e.diferencias.join(' | ')); assert.deepEqual(validarGLB(res.dist.buf).errores, []); });

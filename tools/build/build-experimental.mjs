@@ -14,7 +14,10 @@ import * as esbuild from 'esbuild';
 import { TARGET, DEFAULT_ENTRY, DEFAULT_ASSETS, verifyDir } from './build.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
-export const EXP_IDS = { bundleId: 'com.tato.tesseract.v3.experimental', extensionId: 'com.tato.tesseract.v3.experimental.panel', version: '3.0.0', name: 'Tesseract V3 (experimental)', menu: 'Tesseract V3 (experimental)' };
+// D-0 (2026-11-01): este bundle es la LÍNEA DE PRODUCTO de Tesseract V3 (el RC 3.0.0-rc.1 queda cerrado como referencia en el commit 7258524).
+// Versión de desarrollo posterior al RC; no es un RC aprobado. El manifiesto CEP solo admite x.y.z: 3.0.1; la etiqueta completa va en BUILD_INFO.
+export const VERSION_PRODUCTO = '3.0.1-dev.1';
+export const EXP_IDS = { bundleId: 'com.tato.tesseract.v3.experimental', extensionId: 'com.tato.tesseract.v3.experimental.panel', version: '3.0.1', name: 'Tesseract V3 (experimental)', menu: 'Tesseract V3 (experimental)' };
 export const MODULO_SUSTITUIDO = './core/engine.js';
 export const ENTRADA_EXPERIMENTAL = path.join(ROOT, 'experimental', 'integracion', 'entrada-cep.js');
 export const SUSTITUCIONES = Object.freeze({ [MODULO_SUSTITUIDO]: ENTRADA_EXPERIMENTAL, './ui/fold-controls.js': path.join(ROOT, 'experimental', 'integracion', 'fold-controls-cep.js'), './ui/controller.js': path.join(ROOT, 'experimental', 'integracion', 'controller-cep.js') });
@@ -71,7 +74,7 @@ export async function construirExperimental({ entry = DEFAULT_ENTRY, assets = DE
   const uniq = [...new Set(listFiles(out).concat(debugPort ? ['.debug'] : []).filter((f) => !['SHA256SUMS', 'BUILD_INFO.json'].includes(f)))].sort();
   const sums = uniq.map((f) => `${sha(fs.readFileSync(path.join(out, f)))}  ./${f}`).join('\n') + '\n'; fs.writeFileSync(path.join(out, 'SHA256SUMS'), sums);
   let commit = null, dirty = null; try { commit = execFileSync('git', ['-C', ROOT, 'rev-parse', '--short', 'HEAD'], { encoding: 'utf8' }).trim(); dirty = execFileSync('git', ['-C', ROOT, 'status', '--porcelain'], { encoding: 'utf8' }).trim() !== ''; } catch {}
-  const info = { producto: 'Tesseract V3 EXPERIMENTAL (bundle IIFE; mismo src/main.js que el bundle normal; motor = selector F2A-3)', herramientas: { node: process.version, esbuild: esbuild.version, target: TARGET, formato: 'iife', minify: false },
+  const info = { producto: 'Tesseract V3 EXPERIMENTAL (bundle IIFE; mismo src/main.js que el bundle normal; motor = selector F2A-3)', version: VERSION_PRODUCTO, linea: 'producto (D-0); no es un RC aprobado', herramientas: { node: process.version, esbuild: esbuild.version, target: TARGET, formato: 'iife', minify: false },
     fuente: { entrada: path.relative(ROOT, entry) || entry, estaticos: path.relative(ROOT, assets) || '.', main_js_sha256: srcHash, main_js_bytes: srcMain.length },
     motor: redirigir ? { modulo_sustituido: MODULO_SUSTITUIDO, sustituido_por: path.relative(ROOT, ENTRADA_EXPERIMENTAL), sustituciones: Object.fromEntries(Object.entries(SUSTITUCIONES).map(([k, v]) => [k, path.relative(ROOT, v)])), modo_predeterminado: 'sombra', control: '__tessMotorExperimental', modulos_experimentales: experimentales } : { control_de_paridad: true },
     identidad: EXP_IDS, depuracion: debugPort ? { puerto: Number(debugPort), nota: '.debug solo para validación; NO distribuir' } : null,

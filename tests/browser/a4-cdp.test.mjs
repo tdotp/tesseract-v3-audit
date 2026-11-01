@@ -45,6 +45,8 @@ test('targets: lista los objetivos (solo lectura) y se niega si el puerto no res
 });
 test('A4 · la referencia GLB (baseline, panel y bundle en Chrome headless) se reproduce y coincide con lo exportado por el CEP REAL (docs/fase1/a4-real)', async () => {
   const real = JSON.parse(fs.readFileSync(ROOT + '/docs/fase1/a4-real/glb-referencia.json', 'utf8')).resultados; const r = await glbRef([`--out=${out}`]);
-  for (const n of ['baseline', 'panel', 'bundle']) { assert.deepEqual(r[n].errores, [], n); assert.ok(r[n].paneles.some((l) => /keeping 11 of 13/.test(l)), n); for (const pose of ['plano', 'todas60']) assert.equal(r[n][pose].sha256, real[n][pose].sha256, `${n} ${pose}`); }
-  assert.equal(r.baseline.plano.sha256, r.bundle.plano.sha256); assert.equal(r.baseline.todas60.sha256, r.bundle.todas60.sha256);
+  // D-0 (3.0.1-dev): baseline y panel/ siguen dando los bytes del CEP real; el bundle (src/ evolucionado) exporta en metros y sin triángulos de área nula:
+  // su equivalencia ×0,001 con esos MISMOS archivos reales se exige en tests/browser/a8.test.mjs (N1) y tests/producto/producto-navegador.test.mjs.
+  for (const n of ['baseline', 'panel', 'bundle']) { assert.deepEqual(r[n].errores, [], n); assert.ok(r[n].paneles.some((l) => /keeping 11 of 13/.test(l)), n); if (n !== 'bundle') for (const pose of ['plano', 'todas60']) assert.equal(r[n][pose].sha256, real[n][pose].sha256, `${n} ${pose}`); }
+  for (const pose of ['plano', 'todas60']) { assert.notEqual(r.bundle[pose].sha256, r.baseline[pose].sha256, `bundle ${pose}: la diferencia D-0 es visible`); assert.ok(r.bundle[pose].bytes > 1000, `bundle ${pose}`); }
 });

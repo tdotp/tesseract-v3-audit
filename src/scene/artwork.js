@@ -1,6 +1,6 @@
 // A7.4 — Arte Front/Back sobre los paneles: carga de texturas, UV por artboard completo, overlays y su liberación.
 // Texto idéntico al de src/main.js de 2939dbc salvo la sangría y «S.». Invariante L1: las texturas de arte son COMPARTIDAS (overlays y puentes) y solo
-// las libera disposeCurrentArtTextures. THREE es el global de index.html.
+// las libera disposeCurrentArtTextures (desde 3.0.1-dev, refreshArtwork de app/actions.js, después de pasar overlays y puentes al arte nuevo). THREE es el global de index.html.
 import { ART_TOP_OFFSET, ART_BOTTOM_OFFSET } from '../config/look.js';
 import { pathToFileURL } from '../bridge/cep.js';
 import { shapeFromVerts } from './three-utils.js';

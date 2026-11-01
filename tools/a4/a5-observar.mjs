@@ -10,6 +10,9 @@ import { listTargets, pickTarget, connect } from './cdp-run.mjs';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 // Textos ExtendScript esperados (baseline congelado; fijados en tests/node/host-scripts.test.mjs) y GLB del CEP real de A4 (docs/fase1/a4-real)
 export const EXPECTED_SCRIPTS = { test: [48, '444efa9b8bdb7395'], extraer: [5536, 'bd4c215d56fb4cdc'], arte: [5677, 'ab1c20da805454b7'], guardar: [188, 'be6c47e148487d9d'] };
+// D-0 (3.0.1-dev): la línea de producto envía la extracción y el arte DENTRO del envoltorio de identidad (src/host/doc-identity.js; aquí se registra el script
+// interior, sin envoltorio), el arte con la corrección H-02 y una comprobación de identidad antes de construir. Firmas admitidas ADEMÁS de las de F1, por tipo.
+export const EXPECTED_SCRIPTS_D0 = { arte: [5683, '0055b547b4ded33b'], identidad: [1074, '2a2a263a339b8569'] };
 export const GLB_A4 = { plano: '737bcd2312da1191a57f5b6530749ffd6bf20b6dd1737c454a62d7f38d8e40b4', todas60: '87aa2e4c5cc39092e4b040b77f713bc371f6e7c8b47cc56b8711cb5167275017', arte: 'b4973a54840cd0c1' };
 
 const INSTALL = `(() => { if (window.__a5rec) return 'ya estaba instalado';
@@ -25,15 +28,16 @@ const INSTALL = `(() => { if (window.__a5rec) return 'ya estaba instalado';
   return 'instalado'; })()`;
 const READ = (restore) => `(async () => { const rec = window.__a5rec; if (!rec) return null;
   const sha = async (s) => [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)))].map((b) => b.toString(16).padStart(2, '0')).join('').slice(0, 16);
-  const kind = (s) => s.indexOf('OK_FROM_ILLUSTRATOR') > -1 ? 'test' : s.indexOf('tesseract_art') > -1 ? 'arte' : s.indexOf('saveDialog') > -1 ? 'guardar' : s.indexOf('outerBoundary') > -1 ? 'extraer' : 'otro';
+  const identidad = (s) => s.indexOf('__tessDocIdentity') > -1 && s.indexOf('return "{}"') > -1; const interior = (s) => (s.indexOf('__tessDocIdentity') > -1 && !identidad(s) ? s.slice(s.indexOf('var __r=') + 8, s.lastIndexOf(';\\nreturn "{"+__tessQ')) + ';' : s);
+  const kind = (s) => identidad(s) ? 'identidad' : s.indexOf('OK_FROM_ILLUSTRATOR') > -1 ? 'test' : s.indexOf('tesseract_art') > -1 ? 'arte' : s.indexOf('saveDialog') > -1 ? 'guardar' : s.indexOf('outerBoundary') > -1 ? 'extraer' : 'otro';
   const out = { inicio: rec.inicio, sinCepFs: !!rec.sinCepFs, historialEstado: rec.status.slice(), historialArte: rec.art.slice(), escrituras: rec.writes.slice(),
-    scripts: await Promise.all(rec.scripts.map(async (s) => ({ tipo: kind(s), longitud: s.length, sha256_16: await sha(s) }))) };
+    scripts: await Promise.all(rec.scripts.map(async (s) => { const t = identidad(s) ? s : interior(s); return { tipo: kind(s), longitud: t.length, sha256_16: await sha(t) }; })) };
   if (${restore ? 'true' : 'false'}) { rec.restore.reverse().forEach((f) => { try { f(); } catch (e) {} }); delete window.__a5rec; out.restaurado = true; }
   return out; })()`;
 
 export function veredicto(r) { // comprobaciones automáticas; lo visual y los diálogos los confirma el usuario
   const checks = [];
-  for (const s of r.scripts) { const e = EXPECTED_SCRIPTS[s.tipo]; checks.push({ name: `script ${s.tipo} = baseline (${s.longitud} B, ${s.sha256_16})`, ok: !!e && e[0] === s.longitud && e[1] === s.sha256_16 }); }
+  for (const s of r.scripts) { const ok = [EXPECTED_SCRIPTS[s.tipo], EXPECTED_SCRIPTS_D0[s.tipo]].some((e) => !!e && e[0] === s.longitud && e[1] === s.sha256_16); checks.push({ name: `script ${s.tipo} = baseline o D-0 (${s.longitud} B, ${s.sha256_16})`, ok }); }
   for (const w of r.escrituras) checks.push({ name: `escritura ${w.ruta}: err 0 y archivo en disco`, ok: (w.err === 0 || w.err === '0') && !!w.archivo });
   return { ok: checks.every((c) => c.ok), checks, tiposDeScriptVistos: [...new Set(r.scripts.map((s) => s.tipo))].sort() };
 }

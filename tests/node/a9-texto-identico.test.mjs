@@ -5,7 +5,10 @@
 //  · Los 15 manejadores de primer nivel son idénticos como bloques de texto salvo la sangría y conservan su orden (en el Bloque 1 siguen en main.js).
 //  · Las líneas sueltas de main.js cambian EXACTAMENTE como se prevé en este paso (EXPECTED_RESIDUAL).
 import test from 'node:test'; import assert from 'node:assert/strict'; import fs from 'node:fs'; import path from 'node:path';
-import { SRC, srcFiles, functionsAnyIndent, norm, residual, multisetDiff } from '../lib/a7.mjs'; import { refTree, refMain, handlerBlocks, CLOSURE_3EA0D8A } from '../lib/a9.mjs';
+import { SRC, srcFiles, functionsAnyIndent, norm, residual, multisetDiff } from '../lib/a7.mjs'; import { refTree, refMain, handlerBlocks, CLOSURE_3EA0D8A } from '../lib/a9.mjs'; import { D0_FUNCIONES_NUEVAS, D0_MANEJADORES, cambiadasEn, mainSinD0, primeraLinea } from '../lib/d0.mjs';
+// D-0 (3.0.1-dev): las diferencias autorizadas respecto de la referencia están en tests/lib/d0.mjs y se comparan como listas EXACTAS; la igualdad
+// estricta de F1 sigue en la batería histórica (tests/run-historico.sh, commit congelado).
+
 
 // Estado esperado en ESTE paso (se actualiza en cada paso aprobado; igualdad exacta).
 const NEW_FUNCTIONS = ['createViews', 'createActions', 'createFoldControls', 'createPicking', 'createController', 'bindEvents']; // A9.1 · A9.2 · A9.3 · A9.4 · A9.5
@@ -25,21 +28,24 @@ test('la referencia 3ea0d8a: main.js + 21 módulos fuera de core/, las 29 funcio
   assert.equal(handlerBlocks(refMainText).length, 15);
 });
 test('cada función de la referencia existe en src/ con el mismo texto (salvo sangría, export y S.); no se pierde ni se altera ninguna', () => {
-  const d = multisetDiff(refFns.map(key), srcFns.map(key)); assert.deepEqual(d.quitadas.map((k) => k.split('\n')[0]), [], 'funciones quitadas o alteradas');
+  const d = multisetDiff(refFns.map(key), srcFns.map(key)); assert.deepEqual(d.quitadas.map((k) => k.split('\n')[0]).sort(), cambiadasEn(refFns.map((f) => f.name)), 'funciones quitadas o alteradas (solo las de D-0)');
 });
 test('funciones añadidas: solo las previstas en este paso', () => {
-  const d = multisetDiff(refFns.map(key), srcFns.map(key)); assert.deepEqual(d.anadidas.map((k) => k.split('\n')[0]).sort(), [...NEW_FUNCTIONS].sort());
+  const d = multisetDiff(refFns.map(key), srcFns.map(key)); const n0 = Object.keys(D0_FUNCIONES_NUEVAS).filter((n) => srcFns.some((x) => x.name === n));
+  assert.deepEqual(d.anadidas.map((k) => k.split('\n')[0]).sort(), [...NEW_FUNCTIONS, ...cambiadasEn(refFns.map((f) => f.name)), ...n0].sort()); // D-0: versiones nuevas de las cambiadas + nuevas declaradas
 });
 test('las 29 funciones de la clausura de 3ea0d8a están definidas EXACTAMENTE una vez fuera de core/', () => {
   for (const n of CLOSURE_3EA0D8A) { const k = srcFns.filter((x) => x.name === n).length; assert.equal(k, 1, `${n}: ${k} definiciones`); }
 });
 test('los 15 manejadores: mismo texto salvo la sangría y mismo orden', () => {
   const r = handlerBlocks(refMainText).map(blockKey); const where = fs.readFileSync(path.join(SRC, HANDLERS_FILE), 'utf8'); const holder = functionsAnyIndent(where).filter((f) => f.name === HANDLERS_FN); assert.equal(holder.length, 1, HANDLERS_FN);
-  const hb = handlerBlocks(holder[0].text); const c = hb.map(blockKey); const rawRef = handlerBlocks(refMainText).map((b) => b.text);
-  hb.forEach((b, i) => assert.equal(b.text, rawRef[i], `manejador ${i + 1}: en bindEvents conserva también su sangría`)); assert.equal(handlerBlocks(fs.readFileSync(path.join(SRC, 'main.js'), 'utf8')).length, 0, 'main.js ya no registra manejadores');
-  assert.equal(c.length, 15, `${HANDLERS_FILE}: ${c.length} manejadores`); c.forEach((b, i) => assert.equal(b, r[i], `manejador ${i + 1} (${r[i].split('\n')[0]}) cambió de texto u orden`));
+  const todos = handlerBlocks(holder[0].text); assert.deepEqual(todos.map((b) => primeraLinea(b.text)).filter((l) => D0_MANEJADORES.nuevos.includes(l)), D0_MANEJADORES.nuevos, 'D-0: bloques nuevos declarados');
+  const hb = todos.filter((b) => !D0_MANEJADORES.nuevos.includes(primeraLinea(b.text))); const c = hb.map(blockKey); const rawRef = handlerBlocks(refMainText).map((b) => b.text); const cambia = (i) => D0_MANEJADORES.cambiados.includes(primeraLinea(rawRef[i]));
+  assert.equal(rawRef.filter((t, i) => cambia(i)).length, D0_MANEJADORES.cambiados.length, 'D-0: manejadores cambiados declarados');
+  hb.forEach((b, i) => { if (cambia(i)) assert.notEqual(b.text, rawRef[i], `manejador ${i + 1}: cambio D-0 declarado que no aparece`); else assert.equal(b.text, rawRef[i], `manejador ${i + 1}: en bindEvents conserva también su sangría`); }); assert.equal(handlerBlocks(fs.readFileSync(path.join(SRC, 'main.js'), 'utf8')).length, 0, 'main.js ya no registra manejadores');
+  assert.equal(c.length, 15, `${HANDLERS_FILE}: ${c.length} manejadores`); c.forEach((b, i) => { if (!cambia(i)) assert.equal(b, r[i], `manejador ${i + 1} (${r[i].split('\n')[0]}) cambió de texto u orden`); else assert.equal(primeraLinea(b), primeraLinea(r[i]), `manejador ${i + 1}: mismo lugar`); });
   for (const f of files.filter((f) => f !== HANDLERS_FILE)) assert.equal(handlerBlocks(fs.readFileSync(path.join(SRC, f), 'utf8'), 2).filter((b) => r.includes(blockKey(b))).length, 0, `${f}: copia de un manejador`);
 });
 test('líneas sueltas de main.js frente a 3ea0d8a: solo los cambios previstos en este paso', () => {
-  const d = multisetDiff(residual(refMainText), residual(mainText)); assert.deepEqual(d, EXPECTED_RESIDUAL);
+  const d = multisetDiff(residual(refMainText), residual(mainSinD0(mainText))); assert.deepEqual(d, EXPECTED_RESIDUAL); // D-0: líneas declaradas deshechas
 });

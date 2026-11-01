@@ -70,7 +70,7 @@ test('B · ACTIVO: activación explícita y visible; Caja Botánica con 13 panel
   assert.match(r.log, /^Motor de geometría: modo ACTIVO — esta construcción usa el motor experimental/m, 'visible en cada construcción (el log se limpia al construir)'); assert.match(r.log, /=== buildPanels \(experimental-f2a2, ε=0\.05 mm\) === panels=13/);
   const M = motorNode(); const m = M.buildPanels(structuredClone(CAJA)); const A = M.buildAdjacency(m.panels, m.creaseEdges);
   assert.equal(r.panelData, JSON.stringify(m.panels), 'modelo del navegador = motor v1 en Node'); assert.equal(r.creaseEdges, JSON.stringify(m.creaseEdges)); assert.equal(r.adj, JSON.stringify(A)); assert.equal(r.arbol, JSON.stringify(M.buildFoldTree(m.panels, A, r.base)));
-  assert.equal(r.resumen.images, 2); assert.equal(r.resumen.generator, 'Tesseract Phase 7B'); assert.notEqual(r.glb, R.dist.glb, 'GLB distinto del legacy (13 paneles frente a 11: KI-22/KI-04 corregidos)');
+  assert.equal(r.resumen.images, 2); assert.equal(r.resumen.generator, 'Tesseract V3'); /* D-0 (3.0.1-dev, H-06): antes «Tesseract Phase 7B» */ assert.notEqual(r.glb, R.dist.glb, 'GLB distinto del legacy (13 paneles frente a 11: KI-22/KI-04 corregidos)');
   for (const b of [12, 5, 0]) { await F.eval(BASE_SELECT(b)); const s = await F.eval(ESTADO); assert.equal(s.base, b); assert.equal(s.arbol, JSON.stringify(M.buildFoldTree(m.panels, A, b)), 'base ' + b); assert.equal(s.nFold, 12); }
   assert.deepEqual(F.errors.slice(e0), []);
 });

@@ -1,6 +1,6 @@
 // A3 — el build: reproducible, huellas fijadas, solo cambia la identidad del manifiesto, script clásico (sin módulos), zonas protegidas.
 import test from 'node:test'; import assert from 'node:assert/strict'; import fs from 'node:fs'; import os from 'node:os'; import path from 'node:path'; import crypto from 'node:crypto'; import { spawnSync, execFileSync } from 'node:child_process';
-import { ROOT } from '../lib/fixtures.mjs'; import { build, verifyDir, V3_IDS, TARGET } from '../../tools/build/build.mjs'; import { DIST_PIN } from '../lib/dist.mjs';
+import { ROOT } from '../lib/fixtures.mjs'; import { build, verifyDir, V3_IDS, TARGET } from '../../tools/build/build.mjs'; import { DIST_PIN, DIST_PIN_HISTORICO } from '../lib/dist.mjs'; import { HIST_COMMIT } from '../lib/d0.mjs';
 const sha = (f) => crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex');
 const tmp = () => fs.mkdtempSync(path.join(os.tmpdir(), 'tess-build-test-')); const walk = (root, d = root, o = []) => { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const p = path.join(d, e.name); e.isDirectory() ? walk(root, p, o) : o.push(path.relative(root, p)); } return o.sort(); };
 const cli = (args) => spawnSync('node', [ROOT + '/tools/build/build.mjs', ...args], { encoding: 'utf8' });
@@ -9,8 +9,14 @@ test('el build se ejecuta dos veces y produce EXACTAMENTE los mismos bytes (repr
   const t = tmp(); dirs.push(t); A = await build({ out: path.join(t, 'a') }); B = await build({ out: path.join(t, 'b') }); assert.equal(A.sums, B.sums);
   for (const f of walk(path.join(t, 'a'))) if (f !== 'BUILD_INFO.json') assert.equal(sha(path.join(t, 'a', f)), sha(path.join(t, 'b', f)), f);
 });
-test('HUELLAS FIJADAS: SHA256SUMS del build = tests/golden/dist-a9.SHA256SUMS (huella vigente; detecta cambios en src/, en los estáticos de panel/ o en la versión de esbuild)', () => {
-  assert.equal(A.sums, fs.readFileSync(DIST_PIN, 'utf8'), 'si el cambio es intencional (paso aprobado de A9), regenera la huella vigente con: node tools/build/build.mjs && cp dist/SHA256SUMS tests/golden/dist-a9.SHA256SUMS');
+test('HUELLAS FIJADAS (línea de producto, D-0): SHA256SUMS del build normal = la huella vigente de tests/lib/dist.mjs (detecta cambios en src/, en los estáticos de panel/ o en la versión de esbuild)', () => {
+  assert.equal(A.sums, fs.readFileSync(DIST_PIN, 'utf8'), 'si el cambio es intencional y aprobado, registra una huella NUEVA (no sobrescribas una huella cerrada): ver tests/lib/dist.mjs');
+});
+test('HISTÓRICO A9 (D-0): el src/ del commit congelado de la línea histórica reproduce EXACTAMENTE tests/golden/dist-a9.SHA256SUMS (main.js e5902a3c…)', () => {
+  const t = tmp(); dirs.push(t); execFileSync('/bin/sh', ['-c', `git -C "${ROOT}" archive ${HIST_COMMIT} src | tar -x -C "${t}"`]);
+  const r = spawnSync('node', [ROOT + '/tools/build/build.mjs', '--entry', 'src/main.js', '--assets', ROOT + '/panel', '--out', path.join(t, 'out')], { cwd: t, encoding: 'utf8' }); assert.equal(r.status, 0, r.stderr);
+  assert.equal(fs.readFileSync(path.join(t, 'out', 'SHA256SUMS'), 'utf8'), fs.readFileSync(DIST_PIN_HISTORICO, 'utf8'));
+  assert.match(fs.readFileSync(DIST_PIN_HISTORICO, 'utf8'), /^e5902a3cc3deccf19f07c236a8fd4d6b98834baae30c564dfc367350406f9d46  \.\/main\.js$/m);
 });
 test('HISTÓRICO A5 (T7): el src/ del commit 31459fc (bundle validado en el CEP real) sigue reproduciendo EXACTAMENTE tests/golden/dist-a5.SHA256SUMS', () => {
   const t = tmp(); dirs.push(t); execFileSync('/bin/sh', ['-c', `git -C "${ROOT}" archive 31459fc src | tar -x -C "${t}"`]);

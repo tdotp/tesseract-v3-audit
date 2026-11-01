@@ -21,10 +21,10 @@ test('observación pasiva del flujo real del panel: Test Connection, extracción
   await ev(`(async () => { T.$('test-btn').click(); await T.sleep(100); await T.build(); return true; })()`);
   await ev(exportWith(glbFile)); await ev(exportWith(''));
   const r = await run(a('leer', ['--restaurar']));
-  assert.deepEqual(r.veredicto.tiposDeScriptVistos, ['arte', 'extraer', 'guardar', 'test']); assert.equal(r.veredicto.ok, true, JSON.stringify(r.veredicto.checks.filter((c) => !c.ok)));
+  assert.deepEqual(r.veredicto.tiposDeScriptVistos, ['arte', 'extraer', 'guardar', 'identidad', 'test']); // D-0 (3.0.1-dev): + la comprobación de identidad antes de construir (H-05) assert.equal(r.veredicto.ok, true, JSON.stringify(r.veredicto.checks.filter((c) => !c.ok)));
   assert.equal(r.scripts.filter((s) => s.tipo === 'guardar').length, 2);
   const tail = r.historialEstado.slice(-6); assert.deepEqual(tail, ['Exporting GLB…', 'GLB saved: ' + glbFile, 'GLB exported from current 3D pose', 'Exporting GLB…', 'GLB export cancelled', 'GLB exported from current 3D pose'], 'KI-25 visible en el historial');
-  assert.equal(r.escrituras.length, 1); assert.equal(r.escrituras[0].ruta, glbFile); assert.equal(r.escrituras[0].enc, 'Base64'); assert.equal(r.escrituras[0].longitudBase64, 40792, 'mismo GLB que la batería del puente (pasivo)');
+  assert.equal(r.escrituras.length, 1); assert.equal(r.escrituras[0].ruta, glbFile); assert.equal(r.escrituras[0].enc, 'Base64'); assert.equal(r.escrituras[0].longitudBase64, 41020, 'mismo GLB que la batería del puente (pasivo); D-0: 41020 (metros, sin triángulos de área nula), antes 40792');
   assert.equal(r.escrituras[0].archivo.sha256, crypto.createHash('sha256').update(fs.readFileSync(glbFile)).digest('hex')); assert.ok(fs.existsSync(r.archivo));
   assert.deepEqual(await ev(`[window.__a5rec === undefined, window.__adobe_cep__.evalScript === window.__origEval, window.cep.fs.writeFile === window.__origWrite, Object.prototype.hasOwnProperty.call(T.$('status-area'), 'textContent')]`), [true, true, true, false], 'restaurado');
   assert.deepEqual(await ev(`window.__w.length`), 1, 'el panel escribió exactamente una vez (el observador no duplica ni bloquea)');

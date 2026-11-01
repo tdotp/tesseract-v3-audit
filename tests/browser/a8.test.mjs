@@ -6,6 +6,11 @@
 import test, { before, after } from 'node:test'; import assert from 'node:assert/strict'; import fs from 'node:fs'; import path from 'node:path'; import crypto from 'node:crypto';
 import { prepare, textOf, PAGE_HELPERS, FIXTURE_FILES } from './harness.mjs'; import { ROOT } from '../lib/fixtures.mjs'; import { parseGLB } from '../lib/glb.mjs';
 import { REAL_SHA, readReal, N0B_RECT, compareStructural, structureOf, imageBytes, sha256, alignmentOf } from '../lib/a8.mjs';
+import { validarGLB, equivalenciaHistorica } from '../lib/glb-conformidad.mjs';
+// D-0 (3.0.1-dev): baseline y panel/ (referencias de F1) siguen comparándose BYTE A BYTE; el bundle (src/ evolucionado: metros, sin triángulos de área nula,
+// normales unitarias) se compara SEMÁNTICAMENTE (×0,001, tests/lib/glb-conformidad.mjs) y con el comprobador de conformidad. La versión byte a byte de F1
+// del bundle sigue en la batería histórica (tests/run-historico.sh).
+const equivalente = (nuevo, ref, msg) => { const e = equivalenciaHistorica(nuevo, ref); assert.ok(e.ok, msg + ': ' + e.diferencias.join(' | ')); };
 
 const OUT = path.join(ROOT, 'tests/results/latest'); fs.mkdirSync(OUT, { recursive: true });
 const save = (name, data) => fs.writeFileSync(path.join(OUT, name + '.json'), JSON.stringify(data, null, 1));
@@ -53,7 +58,8 @@ for (const t of TG) test(`A8 · N1 · GLB sin arte de ${names[t]} = archivos de 
   const flat = Buffer.from((await evalIn('A8EXP(false)')).b64, 'base64'); await evalIn('T.setAll(60)'); const a60 = Buffer.from((await evalIn('A8EXP(false)')).b64, 'base64');
   n1[t] = { plano: sha256(flat), todas60: sha256(a60) }; save(`a8-n1-${names[t]}`, { ...n1[t], bytes: [flat.length, a60.length] });
   assert.equal(sha256(readReal('plano')), REAL_SHA.plano); assert.equal(sha256(readReal('todas60')), REAL_SHA.todas60);
-  assert.ok(flat.equals(readReal('plano')), `plano ≠ archivo real (${sha256(flat).slice(0, 12)})`); assert.ok(a60.equals(readReal('todas60')), `todas a 60° ≠ archivo real (${sha256(a60).slice(0, 12)})`);
+  if (t === 'dist') { equivalente(flat, readReal('plano'), 'plano'); equivalente(a60, readReal('todas60'), 'todas a 60°'); for (const b of [flat, a60]) assert.deepEqual(validarGLB(b).errores, []); }
+  else { assert.ok(flat.equals(readReal('plano')), `plano ≠ archivo real (${sha256(flat).slice(0, 12)})`); assert.ok(a60.equals(readReal('todas60')), `todas a 60° ≠ archivo real (${sha256(a60).slice(0, 12)})`); }
   assert.deepEqual(H.browser.errors, []);
 });
 
@@ -62,33 +68,37 @@ const n3 = {};
 for (const t of TG) test(`A8 · N3 · GLB con arte real de ${names[t]}: equivalencia ESTRUCTURAL con el archivo de Illustrator real (y registro de la BINARIA)`, async () => {
   const imgs = realArtImages(); await load(`${t}-simple`); await evalIn(INST); await evalIn(EXPORT); await evalIn(PIX); await evalIn(ART_REAL(imgs));
   assert.match(await evalIn(BUILD_ART), /Artwork loaded from layers/); const r = await evalIn('A8EXP(false)'); const out = Buffer.from(r.b64, 'base64'); const real = readReal('arte');
-  const est = compareStructural(real, out); const realImgs = imageBytes(parseGLB(real)), outImgs = imageBytes(parseGLB(out));
+  if (t === 'dist') { equivalente(out, real, 'arte real'); assert.deepEqual(validarGLB(out).errores, []); }
+  const est = t === 'dist' ? null : compareStructural(real, out); const realImgs = imageBytes(parseGLB(real)), outImgs = imageBytes(parseGLB(out));
   const px = []; for (let i = 0; i < realImgs.length; i++) px.push(await evalIn(`A8PIX(${JSON.stringify(realImgs[i].toString('base64'))}, ${JSON.stringify(outImgs[i].toString('base64'))})`));
-  n3[t] = { out, binario: { identicoAlReal: out.equals(real), sha256: sha256(out), shaReal: REAL_SHA.arte, bytes: out.length, bytesReal: real.length }, estructural: { ...est, pixeles: px } };
+  n3[t] = { out, binario: { identicoAlReal: out.equals(real), sha256: sha256(out), shaReal: REAL_SHA.arte, bytes: out.length, bytesReal: real.length }, estructural: { ...(est || { semantica: 'D-0' }), pixeles: px } };
   save(`a8-n3-arte-${names[t]}`, { binario: n3[t].binario, estructural: n3[t].estructural });
   // ESTRUCTURAL (exigible): mismo JSON salvo desplazamientos y longitud de imagen, mismo orden de claves, todas las vistas que no son imagen idénticas byte a byte, 2 imágenes del mismo tamaño en píxeles.
-  assert.equal(est.esqueletoJson, true, 'esqueleto del JSON'); assert.equal(est.ordenClaves, true, 'orden de claves'); assert.deepEqual(est.vistasNoImagenDistintas, [], 'vistas de datos distintas');
+  if (est) { assert.equal(est.esqueletoJson, true, 'esqueleto del JSON'); assert.equal(est.ordenClaves, true, 'orden de claves'); assert.deepEqual(est.vistasNoImagenDistintas, [], 'vistas de datos distintas'); }
   const al = alignmentOf(out); assert.deepEqual({ ...al, util: 0 }, { vistasAlineadas: true, huecosOk: true, colaBinOk: true, chunksMultiplo4: true, relleno20: true, jsonTermina: true, longitudCabecera: true, util: 0 }, 'alineación y relleno (invisibles al comparar por contenido)');
-  assert.equal(est.imagenes.length, 2); for (const im of est.imagenes) assert.deepEqual(im.dims[0], im.dims[1], 'tamaño de imagen');
+  if (est) { assert.equal(est.imagenes.length, 2); for (const im of est.imagenes) assert.deepEqual(im.dims[0], im.dims[1], 'tamaño de imagen'); } else assert.equal(outImgs.length, 2);
   for (const p of px) assert.equal(p.dims, true, 'tamaño en píxeles de la imagen');
   // BINARIA (condicional): si el codificador PNG de este Chrome coincidiera con el de CEP, el archivo sería el real; si no, solo se informa. Nunca se exige igualdad binaria con el real en headless.
   if (n3[t].binario.identicoAlReal) assert.equal(sha256(out), REAL_SHA.arte);
   assert.deepEqual(H.browser.errors, []);
 });
-test('A8 · N3 · el GLB con arte real es idéntico BYTE A BYTE entre baseline, panel y bundle (misma sesión de Chrome)', () => { assert.ok(n3.fix.out.equals(n3.base.out), 'panel ≠ baseline'); assert.ok(n3.dist.out.equals(n3.base.out), 'bundle ≠ baseline'); });
+test('A8 · N3 · el GLB con arte real: panel = baseline BYTE A BYTE; bundle ≡ baseline ×0,001 con las MISMAS imágenes byte a byte (misma sesión de Chrome)', () => { assert.ok(n3.fix.out.equals(n3.base.out), 'panel ≠ baseline'); equivalente(n3.dist.out, n3.base.out, 'bundle');
+  assert.deepEqual(imageBytes(parseGLB(n3.dist.out)).map((b) => sha256(b)), imageBytes(parseGLB(n3.base.out)).map((b) => sha256(b)), 'imágenes'); });
 
 // ───────────────────────── N2: baseline = panel = bundle y determinismo ─────────────────────────
-const FLOW_N2 = `(async () => { const { sleep, raf2, setAll } = T; const o = {}; const ex = async (k) => { const a = await A8EXP(true); const b = await A8EXP(true); o[k] = a.sha; o[k + '_bytes'] = a.bytes; o[k + '_repetida'] = a.sha === b.sha; };
+const FLOW_N2 = `(async () => { const { sleep, raf2, setAll } = T; const o = {}; const ex = async (k) => { const a = await A8EXP(true); const b = await A8EXP(true); o[k] = a.sha; o[k + '_bytes'] = a.bytes; o[k + '_repetida'] = a.sha === b.sha; if (!/^arte/.test(k)) o[k + '_b64'] = (await A8EXP(false)).b64; };
   await T.build(); await ex('plano'); await setAll(30); await ex('a30'); await setAll(60); await ex('a60'); await setAll(0);
   await harnessLoadArt(); __a8.hook(); await sleep(300); await raf2(); await ex('arte_plano'); await setAll(45); await ex('arte_a45');
   const th = T.$('thickness-input'); th.value = '1.2'; T.$('apply-thickness-btn').click(); await sleep(300); await raf2(); await ex('arte_espesor'); return o; })()`;
 const n2 = {};
 for (const fx of ['caja', 'ill']) for (const t of TG) test(`A8 · N2 · ${names[t]} (${fx}): exportación en 6 estados con y sin arte, y repetida`, async () => {
-  await load(`${t}-${fx}`); await evalIn(INST); await evalIn(EXPORT); n2[`${t}-${fx}`] = await evalIn(FLOW_N2, 240000); save(`a8-n2-${names[t]}-${fx}`, n2[`${t}-${fx}`]);
+  await load(`${t}-${fx}`); await evalIn(INST); await evalIn(EXPORT); n2[`${t}-${fx}`] = await evalIn(FLOW_N2, 240000); save(`a8-n2-${names[t]}-${fx}`, Object.fromEntries(Object.entries(n2[`${t}-${fx}`]).filter(([k]) => !k.endsWith('_b64'))));
   for (const k of ['plano', 'a30', 'a60', 'arte_plano', 'arte_a45', 'arte_espesor']) assert.equal(n2[`${t}-${fx}`][k + '_repetida'], true, `determinismo (${k})`);
   assert.deepEqual(H.browser.errors, []);
 });
-for (const fx of ['caja', 'ill']) test(`A8 · N2 · ${fx}: baseline, panel y bundle exportan los mismos bytes en cada estado`, () => { assert.deepEqual(n2[`fix-${fx}`], n2[`base-${fx}`]); assert.deepEqual(n2[`dist-${fx}`], n2[`base-${fx}`]); });
+for (const fx of ['caja', 'ill']) test(`A8 · N2 · ${fx}: panel = baseline byte a byte en cada estado; bundle ≡ baseline ×0,001 sin arte (con arte: N3 y tests/producto/) y conforme`, () => { assert.deepEqual(n2[`fix-${fx}`], n2[`base-${fx}`]);
+  for (const k of ['plano', 'a30', 'a60']) { const b = (t) => Buffer.from(n2[`${t}-${fx}`][k + '_b64'], 'base64'); equivalente(b('dist'), b('base'), `${fx}/${k}`); assert.deepEqual(validarGLB(b('dist')).errores, [], `${fx}/${k}`); }
+  for (const k of ['arte_plano', 'arte_a45', 'arte_espesor']) assert.notEqual(n2[`dist-${fx}`][k], n2[`base-${fx}`][k], `${fx}/${k}: la diferencia D-0 se ve también con arte`); });
 
 // ───────────────────────── E1/E2: la exportación no muta la escena ni crea recursos de GPU ─────────────────────────
 for (const t of TG) test(`A8 · E1/E2 · ${names[t]}: exportar (con arte) no cambia la escena ni la memoria de GPU`, async () => {
@@ -142,7 +152,11 @@ for (const t of TG) test(`A8 · E6 · estructura del GLB de ${names[t]}: nodos, 
   const imgs = realArtImages(); await load(`${t}-simple`); await evalIn(INST); await evalIn(EXPORT); await evalIn(ART_REAL(imgs)); await evalIn(BUILD_ART); o.simple_arte = structureOf(Buffer.from((await evalIn('A8EXP(false)')).b64, 'base64'));
   assert.ok(o.real_a60.nodos.length === 31 && o.real_plano.nodos.length === 11 && o.simple_arte.nodos.length === 6, 'nodos 11/31/6 como en los GLB reales'); assert.deepEqual(H.browser.errors, []);
 });
-test('A8 · E6 · estructura: baseline, panel y bundle idénticos', () => { assert.deepEqual(struct.fix, struct.base); assert.deepEqual(struct.dist, struct.base); });
+test('A8 · E6 · estructura: panel = baseline; bundle con la MISMA estructura salvo lo de D-0 (recuentos de vértices/índices, generador, min/max ×0,001)', () => { assert.deepEqual(struct.fix, struct.base);
+  const sinD0 = (o) => Object.fromEntries(Object.entries(o).map(([fx, s]) => [fx, { claves: s.claves, escena: s.escena, materiales: s.materiales, imagenes: s.imagenes.map((i) => ({ ...i, bufferView: 0, imagenVista: 0 })), texturas: s.texturas, samplers: s.samplers, accesores: s.accesores,
+    nodos: s.nodos.map((n) => ({ nombre: n.nombre, malla: n.malla, material: n.material, modo: n.modo, vistas: n.vistas.map((v) => v && [v[0], v[4]]) })) }]));
+  assert.deepEqual(sinD0(struct.dist), sinD0(struct.base));
+  for (const [fx, s] of Object.entries(struct.dist)) s.nodos.forEach((n, i) => { const b = struct.base[fx].nodos[i].minmax; if (!n.minmax) return; n.minmax.forEach((a, j) => a.forEach((x, c) => assert.ok(Math.abs(x - b[j][c] * 0.001) < 1e-6, `${fx} nodo ${i}: min/max ${x} vs ${b[j][c]} mm`))); }); for (const s of Object.values(struct.dist)) assert.equal(s.asset.generator, 'Tesseract V3'); });
 test('A8 · E6 · estructura: el baseline coincide con el golden fijado (o se regenera desde el baseline con UPDATE_GOLDEN_A8=1)', () => {
   const cur = JSON.parse(JSON.stringify(struct.base)); // JSON: normaliza -0
   if (UPDATE) { fs.writeFileSync(GOLD, JSON.stringify({ _fuente: 'reference/legacy-baseline vía Chrome headless (A8.0a)', ...cur }, null, 1)); return; }

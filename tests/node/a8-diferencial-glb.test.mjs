@@ -5,21 +5,24 @@
 import test from 'node:test'; import assert from 'node:assert/strict';
 import { sceneCases, loadExporter, sha256, setupEnv, alignmentOf, MODULE_ORDER, orderExportFiles } from '../lib/a8.mjs'; import fs from 'node:fs'; import path from 'node:path'; import { SRC, srcFiles } from '../lib/a7.mjs'; import { parseGLB } from '../lib/glb.mjs';
 
-setupEnv(); const CASES = sceneCases(); const TARGETS = ['baseline', 'panel', 'src'];
+// D-0 (3.0.1-dev): src/export/ ya NO debe ser igual byte a byte al baseline (metros, sin triángulos de área nula, normales unitarias, H-07). Aquí sigue
+// la comparación de F1 entre las dos referencias congeladas (baseline = panel); la de src con el baseline es SEMÁNTICA y está en
+// tests/producto/glb-node.test.mjs (mismas escenas). La igualdad byte a byte original de src sigue en la batería histórica (tests/run-historico.sh).
+setupEnv(); const CASES = sceneCases(); const TARGETS = ['baseline', 'panel'];
 async function run(target, make) {
   const { scene, ...meta } = make(); const logs = []; const log = (m) => logs.push(String(m));
   try { const ex = await loadExporter(target, scene, log); const blob = ex.buildGLBBlobFromCurrentView(); const buf = Buffer.from(await blob.arrayBuffer()); return { ok: true, type: blob.type, len: buf.length, sha: sha256(buf), logs, buf, meta }; }
   catch (e) { return { ok: false, error: e.constructor.name + ': ' + e.message, logs, meta }; }
 }
 const results = {}; // nombre → {baseline, panel, src}
-for (const [name, make] of Object.entries(CASES)) test(`N4 · ${name}: baseline, panel y src producen el mismo resultado`, async () => {
+for (const [name, make] of Object.entries(CASES)) test(`N4 · ${name}: baseline y panel producen el mismo resultado`, async () => {
   const r = results[name] = {}; for (const t of TARGETS) r[t] = await run(t, make);
-  for (const t of ['panel', 'src']) { const a = { ...r[t] }, b = { ...r.baseline }; delete a.buf; delete b.buf; delete a.meta; delete b.meta; assert.deepEqual(a, b, `${name}: ${t} ≠ baseline`); }
+  for (const t of ['panel']) { const a = { ...r[t] }, b = { ...r.baseline }; delete a.buf; delete b.buf; delete a.meta; delete b.meta; assert.deepEqual(a, b, `${name}: ${t} ≠ baseline`); }
   const m = r.baseline.meta; if (m.esperaError) { assert.equal(r.baseline.ok, false); assert.ok(r.baseline.error.includes(m.esperaError), r.baseline.error); }
   else if (!m.ki28 && !name.startsWith('aleatoria ')) { assert.equal(r.baseline.ok, true, name + ': ' + r.baseline.error); assert.equal(r.baseline.type, 'model/gltf-binary'); }
 });
 // El caso KI-28 documenta el defecto SIN corregirlo: Math.max.apply con ≥ 125 000 índices desborda la pila en V8 (en CEP el límite es [NO VERIFICADO]).
-test('N4 · KI-28 (pendiente de confirmación): ≥ 125 000 índices lanzan RangeError en los tres objetivos, igual', () => {
+test('N4 · KI-28: ≥ 125 000 índices lanzan RangeError en las dos referencias (corregido en src: H-07, tests/producto/robustez.test.mjs)', () => {
   const r = results['KI-28: ≥ 125 000 índices']; for (const t of TARGETS) { assert.equal(r[t].ok, false, t); assert.match(r[t].error, /^RangeError/, t); }
 });
 // Guardas de cobertura: cada escena debe ejercer de verdad la rama que dice cubrir (si no, la prueba diferencial sería vacía).

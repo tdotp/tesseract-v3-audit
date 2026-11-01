@@ -3,6 +3,9 @@
 // cada mensaje de estado en orden (se intercepta textContent, no solo el último valor), scripts enviados (tipo, longitud, SHA-256), descargas, escrituras de cep.fs, DOM y excepciones.
 // Las tres versiones deben ser idénticas; además se fijan explícitamente los comportamientos documentados (incluidos los defectos).
 import test, { before, after } from 'node:test'; import assert from 'node:assert/strict'; import fs from 'node:fs'; import path from 'node:path';
+import crypto from 'node:crypto'; import { TARGETS, extractScripts } from '../lib/legacy.mjs'; import { D0_ARTE_H02 } from '../lib/d0.mjs';
+const firma = (k, t) => k + ':' + t.length + ':' + crypto.createHash('sha256').update(t).digest('hex').slice(0, 16);
+const ARTE_BASE_TXT = extractScripts(TARGETS.baseline).art; const ARTE_F1 = firma('arte', ARTE_BASE_TXT), ARTE_D0 = firma('arte', ARTE_BASE_TXT.replace(D0_ARTE_H02.antes, () => D0_ARTE_H02.despues));
 import { prepare, PAGE_HELPERS } from './harness.mjs'; import { ROOT } from '../lib/fixtures.mjs';
 
 const NOCEP = `(() => { if (location.search.indexOf('nocep') < 0) return; Object.defineProperty(window, '__adobe_cep__', { configurable: true, get() { return undefined; }, set() {} }); })()`; // el shim no puede instalar el puente
@@ -31,6 +34,10 @@ const SNAP = `(async () => {
     vistas: [$('import-view').style.display, $('three-view').style.display], salida: out.length + ':' + await sha(out), salidaVisible: $('output-json').style.display,
     validacion: [$('validation-status').textContent, $('validation-status').className], problemas: $('problems-list').children.length, log: $('log-area').textContent, depuracionAbierta: $('debug-details').open,
     stock: [$('material-preset').value, $('material-pill').textContent], scripts: await Promise.all(rec.scripts.map(async (s) => kind(s) + ':' + s.length + ':' + await sha(s))),
+    // D-0 (3.0.1-dev, H-05): el bundle envuelve extracción y arte con la identidad del documento (src/host/doc-identity.js) y comprueba el documento antes de
+    // construir. scriptsSinD0 = los scripts con el envoltorio quitado y sin las comprobaciones de identidad (que se cuentan aparte): debe ser el del baseline.
+    scriptsSinD0: await Promise.all(rec.scripts.filter((s) => !(s.indexOf('__tessDocIdentity') > -1 && s.indexOf('return "{}"') > -1)).map(async (s) => { if (s.indexOf('__tessDocIdentity') > -1) s = s.slice(s.indexOf('var __r=') + 8, s.lastIndexOf(';\\nreturn "{"+__tessQ')) + ';'; return kind(s) + ':' + s.length + ':' + await sha(s); })),
+    comprobacionesDeIdentidad: rec.scripts.filter((s) => s.indexOf('__tessDocIdentity') > -1 && s.indexOf('return "{}"') > -1).length,
     descargas: rec.downloads, escrituras: rec.writes, paneles: window.__dbg ? __dbg.panels : null };
 })()`;
 
@@ -86,8 +93,13 @@ async function run(t, name, c) {
 for (const t of ['base', 'fix', 'dist']) test(`Puente CEP · ${names[t]}: ${Object.keys(CASES).length} casos (errores de evalScript, extracción, arte, guardado, CEP ausente, KI-24)`, async () => {
   for (const [name, c] of Object.entries(CASES)) res[t][name] = await run(t, name, c);
 });
-for (const t of ['fix', 'dist']) test(`Puente CEP · ${names[t]} idéntico al baseline en TODOS los casos (estado, historial, scripts, descargas, escrituras, DOM, excepciones)`, () => {
-  for (const name of Object.keys(CASES)) assert.deepEqual(res[t][name], res.base[name], names[t] + ' · ' + name);
+for (const t of ['fix', 'dist']) test(`Puente CEP · ${names[t]} idéntico al baseline en TODOS los casos (estado, historial, scripts, descargas, escrituras, DOM, excepciones)${t === 'dist' ? ' salvo lo declarado en D-0' : ''}`, () => {
+  for (const name of Object.keys(CASES)) { const b = { ...res.base[name] }; const x = { ...res[t][name] }; assert.deepEqual(b.scriptsSinD0, b.scripts, 'baseline sin envoltorio'); assert.equal(b.comprobacionesDeIdentidad, 0);
+    if (t === 'dist') { // D-0: mismos scripts una vez quitado el envoltorio; una comprobación de identidad por construcción; KI-24 sin excepción
+      b.scriptsSinD0 = b.scriptsSinD0.map((e) => (e === ARTE_F1 ? ARTE_D0 : e)); // H-02: el script de arte es el de F1 con la sustitución declarada
+      assert.equal(x.comprobacionesDeIdentidad, 0, name + ': ningún caso registra una construcción (el registro se vacía después de T.build); H-05 se prueba en tests/producto/'); for (const o of [x, b]) { o.scripts = o.scriptsSinD0; o.comprobacionesDeIdentidad = 0; o.escrituras = o.escrituras.map((w) => ({ ...w, len: 'GLB de 3.0.1-dev (contenido distinto: metros, KI-02)', head: w.head.slice(0, 8) })); } // la cabecera glTF v2 sigue igual
+      if (name === 'ki24-stock-antes-de-3d') { assert.match(String(b.excepciones), /buildChildrenOfMap is not defined/); b.excepciones = []; } }
+    assert.deepEqual(x, b, names[t] + ' · ' + name); }
 });
 test('Puente CEP · comportamientos documentados del baseline (se preservan, incluidos los defectos)', () => {
   fs.mkdirSync(path.join(ROOT, 'tests/results'), { recursive: true }); fs.writeFileSync(path.join(ROOT, 'tests/results/bridge-a5.json'), JSON.stringify(res.base, null, 1));
