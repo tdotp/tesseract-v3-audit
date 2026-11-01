@@ -1,18 +1,20 @@
 #!/usr/bin/env node
 // D-0 · 3.0.1-dev — Validación en Adobe Illustrator REAL del bundle de producto (tesseract-v3-experimental, .debug 8089) para el lote de robustez:
-// H-05 (documento cambiado entre extraer y construir; arte de otro documento), H-03 (refrescos de arte seguidos; texturas en uso), H-02 (exportación
-// de arte por mesas con la carpeta temporal de arte sin escritura, restaurada al final; OBSERVADO 2026-11-01: Illustrator 30.8.2 NO lanza en exportFile,
-// falla en silencio, así que este paso comprueba la mesa activa tras el flujo y registra el hallazgo KI-37, no el camino de excepción), KI-24 (preset antes del
+// H-05 (documento cambiado entre extraer y construir; arte de otro documento), H-03 (refrescos de arte seguidos; texturas en uso), KI-37/H-02 (exportación
+// de arte por capas y por mesas con la carpeta temporal de arte sin escritura, restaurada al final sin borrar nada: Illustrator 30.8.2 NO lanza en exportFile,
+// falla en silencio; el panel debe dar el mensaje con contexto y conservar el arte, la visibilidad y la mesa activa), KI-24 (preset antes del
 // 3D) y GLB (metros, conformidad) en sombra y activo. Conduce el panel por DevTools remoto (tools/a4/cdp-run.mjs; nunca otro panel) e Illustrator por
 // AppleScript con documentos DESECHABLES (copias de N0-A y N0-B en /tmp, preparadas como en el Nivel 0).
 //   node tools/a4/v301-real.mjs preflight    solo lectura: Illustrator, documentos abiertos, panel e identidad
 //   node tools/a4/v301-real.mjs todo         la validación completa (exige 0 documentos abiertos; cierra SOLO los N0-* que abre, sin guardar)
+//   node tools/a4/v301-real.mjs script       KI-37/H-05/H-02 sin panel: envía a Illustrator real los MISMOS textos ExtendScript del producto (no necesita abrir el panel CEP;
+//                                            sirve con la pantalla bloqueada) y comprueba con el disco lo que devuelve. Mismas garantías de documentos y carpeta.
 // Garantías: aborta si hay documentos abiertos al empezar, si el documento activo no es N0-* antes de tocarlo, o si al final la lista de documentos no
 // vuelve a ser la inicial. Los diálogos de Illustrator se silencian SOLO durante el paso H-02 (y se restauran). Salida: tests/results/v301-real/*.json,
 // capturas del panel y los GLB en /private/tmp/tesseract_f2a3/. No instala nada.
 import fs from 'node:fs'; import path from 'node:path'; import crypto from 'node:crypto'; import { execFileSync } from 'node:child_process'; import { fileURLToPath, pathToFileURL } from 'node:url';
 import { listTargets, pickTarget, connect } from './cdp-run.mjs'; import { PAGE } from './f2a3-cep.mjs';
-import { validarGLB, cajaGLB } from '../../tests/lib/glb-conformidad.mjs';
+import { validarGLB, cajaGLB } from '../../tests/lib/glb-conformidad.mjs'; import { buildArtworkExportScript } from '../../src/host/art.js'; import { EXTRACT_SCRIPT } from '../../src/host/extract.js'; import { withDocIdentity, unwrapDocIdentity } from '../../src/host/doc-identity.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..'); const STAGE = '/tmp/Tesseract_v301_run'; const GLBDIR = '/private/tmp/tesseract_f2a3';
 const RES = path.join(ROOT, 'tests/results/v301-real'); const EXT = 'com.tato.tesseract.v3.experimental.panel';
@@ -50,7 +52,7 @@ const H = `(() => { const $ = (id) => document.getElementById(id), sleep = (ms) 
   window.__V = { $, sleep, status, waitFor,
     extraer: async () => { $('extract-btn').click(); await waitFor(() => /Extraction complete|Error|error/.test(status()), 60000, 'extracción'); await sleep(200); return { status: status(), continuar: !$('continue-3d-btn').disabled }; },
     continuar: async () => { $('continue-3d-btn').click(); await waitFor(() => /3D ready|3D error|changed since the extraction|Nothing to build|Could not check/.test(status()), 60000, 'continuar'); await sleep(500); return { status: status(), vista3d: $('three-view').style.display !== 'none', continuarActivo: !$('continue-3d-btn').disabled }; },
-    arte: async () => { const a0 = $('art-status').textContent; $('refresh-art-btn').click(); await waitFor(() => /loaded|failed|not applied|No Front/.test($('art-status').textContent) && !/Searching/.test($('art-status').textContent), 90000, 'arte'); await sleep(600); return { arte: $('art-status').textContent, fuente: $('art-source-pill').textContent }; },
+    arte: async () => { const a0 = $('art-status').textContent; $('refresh-art-btn').click(); await waitFor(() => /loaded|failed|not applied|No Front|No se pudo/.test($('art-status').textContent) && !/Searching/.test($('art-status').textContent), 90000, 'arte'); await sleep(600); return { arte: $('art-status').textContent, fuente: $('art-source-pill').textContent }; },
     rastrear: () => { if (window.__lib) return; window.__lib = new Set(); const d = THREE.Texture.prototype.dispose; THREE.Texture.prototype.dispose = function () { window.__lib.add(this.uuid); return d.call(this); }; } };
   return true; })()`;
 
@@ -91,27 +93,58 @@ async function todo() { fs.mkdirSync(RES, { recursive: true }); fs.mkdirSync(GLB
       await __V.waitFor(() => /loaded|failed/.test(__V.$('art-status').textContent) && !/Searching/.test(__V.$('art-status').textContent), 90000, 'doble refresco'); await __V.sleep(1500);
       return { arte: __V.$('art-status').textContent, liberadas: [...window.__lib].length }; })()`)); // el panel real no expone la escena: la vida de las texturas se prueba en headless
     paso('GLB_sombra_arte_60', await ev(`window.__F2A3.run('V7', 'v301-sombra-arte-60')`)); R.pasos.H03_dobleRefresco.capturas = await captura(c, 'H03-arte-60');
-    // H-02 — exportación de arte por mesas con la carpeta temporal sin escritura (Illustrator falla en silencio: KI-37); la mesa activa debe seguir siendo la original
+    // KI-37 — exportación con la carpeta temporal sin escritura (Illustrator falla en silencio). Procedimiento reversible: se registra el contenido y el modo de la carpeta
+    // (de Tesseract, no compartida), solo se quita el permiso de escritura y se restaura; nada se borra. Primero modo capas (N0-B), después mesas (H-02).
+    fs.mkdirSync(artDir, { recursive: true }); const listaAntes = fs.readdirSync(artDir).sort(); paso('KI37_carpeta', { archivos: listaAntes.length, modo: (fs.statSync(artDir).mode & 0o777).toString(8) });
+    const VIS = 'var v={}; var ls=app.activeDocument.layers; for(var i=0;i<ls.length;i++) v[ls[i].name]=ls[i].visible; ser(v);';
+    paso('KI37_glbAntes', await ev(`window.__F2A3.run('V7', 'v301-ki37-antes')`)); R.pasos.KI37_visAntes = aiJson(VIS); R.pasos.KI37_mesaAntes = aiJson('ser({ activa: app.activeDocument.artboards.getActiveArtboardIndex() });');
+    artDirModo = fs.statSync(artDir).mode & 0o777; fs.chmodSync(artDir, 0o555); ai('app.userInteractionLevel=UserInteractionLevel.DONTDISPLAYALERTS; "ok";');
+    try { paso('KI37_capasFalla', await ev('__V.arte()')); R.pasos.KI37_capasFalla.capturas = await captura(c, 'KI37-mensaje'); }
+    finally { fs.chmodSync(artDir, artDirModo); artDirModo = null; ai('app.userInteractionLevel=UserInteractionLevel.DISPLAYALERTS; "ok";'); }
+    R.pasos.KI37_visDespues = aiJson(VIS); R.pasos.KI37_mesaDespues = aiJson('ser({ activa: app.activeDocument.artboards.getActiveArtboardIndex() });'); paso('KI37_glbDespues', await ev(`window.__F2A3.run('V7', 'v301-ki37-despues')`)); paso('KI37_recuperacion', await ev('__V.arte()'));
+    // H-02 — exportación de arte por mesas con la carpeta temporal sin escritura: ahora el fallo silencioso se convierte en excepción y pasa por el finally; la mesa activa debe seguir siendo la original
     paso('H02_preparar', aiJson(`var dd=app.activeDocument; if(dd.name.indexOf("N0-")!==0) throw new Error("no es de prueba"); var a0=dd.artboards[0]; var r=a0.artboardRect; var w=r[2]-r[0]; var aF=dd.artboards.add([r[2]+20, r[1], r[2]+20+w, r[3]]); aF.name="Front"; var aB=dd.artboards.add([r[2]+40+w, r[1], r[2]+40+2*w, r[3]]); aB.name="Back"; dd.artboards.setActiveArtboardIndex(0); ser({ mesas: dd.artboards.length, activa: dd.artboards.getActiveArtboardIndex() });`));
-    fs.mkdirSync(artDir, { recursive: true }); artDirModo = fs.statSync(artDir).mode & 0o777; fs.chmodSync(artDir, 0o555);
+    artDirModo = fs.statSync(artDir).mode & 0o777; fs.chmodSync(artDir, 0o555);
     ai('app.userInteractionLevel=UserInteractionLevel.DONTDISPLAYALERTS; "ok";');
     try { paso('H02_arteFalla', await ev('__V.arte()')); R.pasos.H02_arteFalla.mesaActiva = aiJson('ser({ activa: app.activeDocument.artboards.getActiveArtboardIndex(), nombre: app.activeDocument.artboards[app.activeDocument.artboards.getActiveArtboardIndex()].name });'); }
     finally { fs.chmodSync(artDir, artDirModo); artDirModo = null; ai('app.userInteractionLevel=UserInteractionLevel.DISPLAYALERTS; "ok";'); }
     paso('H02_arteRestaurado', await ev('__V.arte()')); R.pasos.H02_arteRestaurado.mesaActiva = aiJson('ser({ activa: app.activeDocument.artboards.getActiveArtboardIndex() });');
+    R.pasos.KI37_carpetaFinal = { modo: (fs.statSync(artDir).mode & 0o777).toString(8), faltan: listaAntes.filter((f) => !fs.readdirSync(artDir).includes(f)), nuevos: fs.readdirSync(artDir).filter((f) => !listaAntes.includes(f)).length };
     R.erroresConsola = errores(c, 0);
   } finally {
     if (artDirModo !== null) { try { fs.chmodSync(artDir, artDirModo); } catch {} try { ai('app.userInteractionLevel=UserInteractionLevel.DISPLAYALERTS; "ok";'); } catch {} }
     try { await c.close(); } catch {} R.cierre = cerrarPrueba(); R.fin = estado(); fs.writeFileSync(path.join(RES, 'ultimo.json'), JSON.stringify(R, null, 1));
     if (JSON.stringify(R.fin.docs) !== JSON.stringify(inicio.docs)) throw new Anomalia('la lista de documentos no volvió a la inicial: ' + JSON.stringify(R.fin.docs));
   }
-  R.glb = {}; for (const k of ['sombra-plano', 'sombra-60', 'activo-plano', 'activo-60', 'sombra-arte-60']) { const f = path.join(GLBDIR, `f2a3-v301-${k}.glb`); if (!fs.existsSync(f)) { R.glb[k] = { error: 'no existe ' + f }; continue; }
+  R.glb = {}; for (const k of ['sombra-plano', 'sombra-60', 'activo-plano', 'activo-60', 'sombra-arte-60', 'ki37-antes', 'ki37-despues']) { const f = path.join(GLBDIR, `f2a3-v301-${k}.glb`); if (!fs.existsSync(f)) { R.glb[k] = { error: 'no existe ' + f }; continue; }
     const b = fs.readFileSync(f); const v = validarGLB(b); R.glb[k] = { sha256: sha(b), bytes: b.length, errores: v.errores, degenerados: v.degenerados, triangulos: v.triangulos, caja_m: cajaGLB(b).size, generador: JSON.parse(b.slice(20, 20 + b.readUInt32LE(12)).toString()).asset.generator }; }
   const f = path.join(RES, `todo-${R.fecha.replace(/[:.]/g, '-')}.json`); fs.writeFileSync(f, JSON.stringify(R, null, 1)); return { archivo: path.relative(ROOT, f), R };
 }
 
+// Como evalScript: el texto viaja como cadena Unicode (argumento de osascript), no como archivo .jsx.
+function evalComoPanel(script, timeout = 120) { return execFileSync('osascript', ['-e', 'on run argv', '-e', `with timeout of ${timeout} seconds`, '-e', 'tell application "Adobe Illustrator" to do javascript (item 1 of argv)', '-e', 'end timeout', '-e', 'end run', script], { encoding: 'utf8', timeout: (timeout + 10) * 1000 }).trim(); }
+async function soloScript() { fs.mkdirSync(RES, { recursive: true }); const R = { fecha: new Date().toISOString(), modo: 'script (sin panel CEP)', pasos: {} }; const inicio = estado(); R.inicio = { docs: inicio.docs, interaccion: inicio.interaccion };
+  if (inicio.docs.length) throw new Anomalia('Illustrator tiene documentos abiertos; la validación exige 0: ' + JSON.stringify(inicio.docs)); R.copias = preparar(); const artDir = path.join(inicio.temp, 'tesseract_art'); let modo = null;
+  const arte = () => unwrapDocIdentity(JSON.parse(evalComoPanel(withDocIdentity(buildArtworkExportScript())))); const estadoDoc = () => aiJson('var d=app.activeDocument; var v={}; for(var i=0;i<d.layers.length;i++) v[d.layers[i].name]=d.layers[i].visible; ser({ capas:v, mesa:d.artboards.getActiveArtboardIndex() });');
+  const enDisco = (x) => x && { lado: x.label, existe: fs.existsSync(x.path), bytes: fs.existsSync(x.path) ? fs.statSync(x.path).size : 0, png: fs.existsSync(x.path) && fs.readFileSync(x.path).readUInt32BE(0) === 0x89504e47 };
+  const sinEscritura = (fn) => { fs.mkdirSync(artDir, { recursive: true }); modo = fs.statSync(artDir).mode & 0o777; fs.chmodSync(artDir, 0o555); ai('app.userInteractionLevel=UserInteractionLevel.DONTDISPLAYALERTS; "ok";'); try { return fn(); } finally { fs.chmodSync(artDir, modo); modo = null; ai('app.userInteractionLevel=UserInteractionLevel.DISPLAYALERTS; "ok";'); } };
+  fs.mkdirSync(artDir, { recursive: true }); const listaAntes = fs.readdirSync(artDir).sort(); R.pasos.carpeta = { archivos: listaAntes.length, modo: (fs.statSync(artDir).mode & 0o777).toString(8) };
+  try { abrirDoc('N0-A'); const ex = unwrapDocIdentity(JSON.parse(evalComoPanel(withDocIdentity(EXTRACT_SCRIPT)))); R.pasos.N0A_extraccion = { documento: ex.identity && ex.identity.name, ruta: !!(ex.identity && ex.identity.path), documentID: !!(ex.identity && ex.identity.documentID), creases: ex.result.creases && ex.result.creases.length, error: ex.result.error || null };
+    const a0 = arte(); R.pasos.N0A_arte = { modo: a0.result.mode, error: a0.result.error || null };
+    abrirDoc('N0-B'); const idB = unwrapDocIdentity(JSON.parse(evalComoPanel(withDocIdentity(EXTRACT_SCRIPT)))).identity; R.pasos.H05_distintos = { A: ex.identity.name, B: idB.name, mismaRuta: ex.identity.path === idB.path, mismoDocumentID: ex.identity.documentID === idB.documentID };
+    const e0 = estadoDoc(); const ok = arte(); R.pasos.capas_normal = { modo: ok.result.mode, error: ok.result.error || null, front: enDisco(ok.result.front), back: enDisco(ok.result.back), estadoIntacto: JSON.stringify(estadoDoc()) === JSON.stringify(e0) };
+    const f1 = sinEscritura(arte); R.pasos.capas_falla = { error: f1.result.error, usuario: f1.result.usuario, front: f1.result.front === undefined, back: f1.result.back === undefined, estadoIntacto: JSON.stringify(estadoDoc()) === JSON.stringify(e0) };
+    const prep = aiJson('var dd=app.activeDocument; if(dd.name.indexOf("N0-")!==0) throw new Error("no es de prueba"); var a0=dd.artboards[0]; var r=a0.artboardRect; var w=r[2]-r[0]; var aF=dd.artboards.add([r[2]+20, r[1], r[2]+20+w, r[3]]); aF.name="Tiro"; var aB=dd.artboards.add([r[2]+40+w, r[1], r[2]+40+2*w, r[3]]); aB.name="Retiro"; dd.artboards.setActiveArtboardIndex(0); ser({ mesas: dd.artboards.length, activa: dd.artboards.getActiveArtboardIndex() });'); R.pasos.mesas_preparar = prep;
+    const m0 = estadoDoc(); const okM = arte(); R.pasos.mesas_normal = { modo: okM.result.mode, error: okM.result.error || null, front: enDisco(okM.result.front), back: enDisco(okM.result.back), estadoIntacto: JSON.stringify(estadoDoc()) === JSON.stringify(m0) };
+    const f2 = sinEscritura(arte); R.pasos.mesas_falla = { error: f2.result.error, usuario: f2.result.usuario, mesaRestaurada: estadoDoc().mesa === m0.mesa, estadoIntacto: JSON.stringify(estadoDoc()) === JSON.stringify(m0) };
+    const okR = arte(); R.pasos.mesas_recuperacion = { modo: okR.result.mode, error: okR.result.error || null, front: enDisco(okR.result.front), back: enDisco(okR.result.back) };
+    const ahora = fs.readdirSync(artDir); R.pasos.carpetaFinal = { modo: (fs.statSync(artDir).mode & 0o777).toString(8), faltan: listaAntes.filter((f) => !ahora.includes(f)), nuevos: ahora.filter((f) => !listaAntes.includes(f)).length };
+  } finally { if (modo !== null) { try { fs.chmodSync(artDir, modo); } catch {} try { ai('app.userInteractionLevel=UserInteractionLevel.DISPLAYALERTS; "ok";'); } catch {} } R.cierre = cerrarPrueba(); const fin = estado(); R.fin = { docs: fin.docs, interaccion: fin.interaccion }; if (fin.docs.length) throw new Anomalia('quedan documentos: ' + JSON.stringify(fin.docs)); }
+  const f = path.join(RES, `script-${R.fecha.replace(/[:.]/g, '-')}.json`); fs.writeFileSync(f, JSON.stringify(R, null, 1)); return R; }
+
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const cmd = process.argv[2];
-  (cmd === 'preflight' ? preflight() : cmd === 'todo' ? todo() : Promise.reject(new Error('uso: v301-real.mjs preflight|todo')))
-    .then((r) => console.log(JSON.stringify(r.R ? { archivo: r.archivo, pasos: Object.fromEntries(Object.entries(r.R.pasos).map(([k, v]) => [k, v && (v.status || v.arte || v.error || v.activo || 'ok')])), glb: r.R.glb, erroresConsola: r.R.erroresConsola } : r, null, 1)))
+  (cmd === 'preflight' ? preflight() : cmd === 'todo' ? todo() : cmd === 'script' ? soloScript() : Promise.reject(new Error('uso: v301-real.mjs preflight|todo|script')))
+    .then((r) => console.log(JSON.stringify(r.modo ? r : r.R ? { archivo: r.archivo, pasos: Object.fromEntries(Object.entries(r.R.pasos).map(([k, v]) => [k, v && (v.status || v.arte || v.error || v.activo || 'ok')])), glb: r.R.glb, erroresConsola: r.R.erroresConsola } : r, null, 1)))
     .catch((e) => { console.error('ABORTADO:', e.message); process.exit(1); });
 }

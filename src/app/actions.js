@@ -23,6 +23,23 @@ export function createActions(S, deps){
     return ['front','back'].map(function(side){ return state[side] && state[side].texture; }).filter(function(tex){ return !!tex; });
   }
 
+  /* KI-37: mensaje ya comprensible para el usuario (fallo de exportación o de textura, con su contexto): se muestra tal cual. */
+  function artFailure(message){
+    var err = new Error(message);
+    err.forUser = true;
+    return err;
+  }
+
+  /* El error del cargador de texturas es un Event sin message: aquí se traduce a un mensaje con el lado afectado. */
+  async function loadSideTexture(side, fsPath){
+    try{
+      return await loadTextureFromPath(fsPath);
+    }catch(err){
+      log('Artwork texture load failed ('+side+'): '+fsPath);
+      throw artFailure('No se pudo cargar como textura el PNG del artwork '+(side==='front' ? 'frontal' : 'trasero')+'. Vuelva a actualizar el artwork.');
+    }
+  }
+
   function replaceArtState(nextState){
     var previous = texturesOf(S.currentArtState), keep = texturesOf(nextState);
     S.currentArtState = nextState;
@@ -44,7 +61,7 @@ export function createActions(S, deps){
       var answer = unwrapDocIdentity(await evalScriptJSON(withDocIdentity(buildArtworkExportScript())));
       var exported = answer.result;
       if(!current()) return;
-      if(exported && exported.error) throw new Error(exported.error);
+      if(exported && exported.error) throw exported.usuario ? artFailure(exported.error) : new Error(exported.error);
       if(!sameDocument(answer.identity, S.currentDocIdentity)){
         setArtStatus('Artwork not applied: the active document is not the one the 3D model was built from. Extract and build again.','Art error');
         log('Artwork refused: active document differs from the 3D model source');
@@ -58,12 +75,12 @@ export function createActions(S, deps){
       var nextState = { mode: exported.mode, front: null, back: null };
       if(exported.front && exported.front.path){
         nextState.front = { rect: exported.front.rect, texture: null, path: exported.front.path };
-        loaded.push(nextState.front.texture = await loadTextureFromPath(exported.front.path));
+        loaded.push(nextState.front.texture = await loadSideTexture('front', exported.front.path));
         if(!current()){ disposeTextures(loaded); return; }
       }
       if(exported.back && exported.back.path){
         nextState.back = { rect: exported.back.rect, texture: null, path: exported.back.path };
-        loaded.push(nextState.back.texture = await loadTextureFromPath(exported.back.path));
+        loaded.push(nextState.back.texture = await loadSideTexture('back', exported.back.path));
         if(!current()){ disposeTextures(loaded); return; }
       }
       loaded = [];
@@ -72,7 +89,7 @@ export function createActions(S, deps){
     }catch(err){
       disposeTextures(loaded);
       if(seq!==artRequestSeq) return;
-      setArtStatus('Artwork load failed: '+err.message, 'Art error');
+      setArtStatus(err.forUser ? err.message : 'Artwork load failed: '+err.message, 'Art error');
       log('Artwork load failed: '+err.message);
     }
   }

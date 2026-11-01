@@ -1,5 +1,7 @@
 // Texto ExtendScript (ES3) que se envía a Illustrator por evalScript (A5.2). Copia de panel/main.js (referencia A1) con UNA corrección aprobada (D-0, 3.0.1-dev):
 // H-02/KI-21 — exportArtboardByIndex restaura la mesa activa en un finally aunque exportFile lance (antes quedaba la mesa de Front/Back activa).
+// KI-37 — exportFile puede terminar sin excepción y sin escribir (observado en Illustrator real): tras cada exportación se comprueba que el PNG existe y tiene
+// datos; los fallos de exportación salen como {error, usuario:true}, con un mensaje comprensible y el contexto (lado y nombre de la mesa o capa), sin rutas.
 export function buildArtworkExportScript(){
   return [
     '(function(){',
@@ -31,8 +33,9 @@ export function buildArtworkExportScript(){
     '  var outFolder=new Folder(Folder.temp.fsName+"/tesseract_art"); if(!outFolder.exists) outFolder.create();',
     '  var stamp=(new Date()).getTime();',
     '  var result={ok:true,mode:"none",front:null,back:null,available:{artboards:[],layers:[]},activeArtboardIndex:doc.artboards.getActiveArtboardIndex()};',
-    '  function exportActiveArtboardToPNG(label){ var idx=doc.artboards.getActiveArtboardIndex(); var ab=doc.artboards[idx]; var r=ab.artboardRect; var widthPt=Math.abs(r[2]-r[0]); var heightPt=Math.abs(r[1]-r[3]); var maxSidePt=Math.max(widthPt,heightPt); var targetMaxPx=4096; var scalePct=maxSidePt>0?Math.min(800,Math.max(100,(targetMaxPx/maxSidePt)*100)):100; var file=new File(outFolder.fsName+"/"+slug(doc.name)+"_"+label+"_"+stamp+".png"); var opt=new ExportOptionsPNG24(); opt.antiAliasing=true; opt.transparency=true; opt.artBoardClipping=true; opt.horizontalScale=scalePct; opt.verticalScale=scalePct; doc.exportFile(file,ExportType.PNG24,opt); return {path:file.fsName, rect:mmRectFromAB(ab), label:label, exportScale:scalePct}; }',
-    '  function exportArtboardByIndex(idx,label){ var prev=doc.artboards.getActiveArtboardIndex(); doc.artboards.setActiveArtboardIndex(idx); try{ return exportActiveArtboardToPNG(label); } finally { doc.artboards.setActiveArtboardIndex(prev); } }',
+    '  function exportFailure(label,source,detail){ var err=new Error("No se pudo exportar el artwork "+(label==="front"?"frontal":"trasero")+" ("+source+"). "+detail+" Verifique la carpeta temporal y vuelva a intentarlo."); err.tessUsuario=true; return err; }',
+    '  function exportActiveArtboardToPNG(label,source){ var idx=doc.artboards.getActiveArtboardIndex(); var ab=doc.artboards[idx]; var r=ab.artboardRect; var widthPt=Math.abs(r[2]-r[0]); var heightPt=Math.abs(r[1]-r[3]); var maxSidePt=Math.max(widthPt,heightPt); var targetMaxPx=4096; var scalePct=maxSidePt>0?Math.min(800,Math.max(100,(targetMaxPx/maxSidePt)*100)):100; var file=new File(outFolder.fsName+"/"+slug(doc.name)+"_"+label+"_"+stamp+".png"); var opt=new ExportOptionsPNG24(); opt.antiAliasing=true; opt.transparency=true; opt.artBoardClipping=true; opt.horizontalScale=scalePct; opt.verticalScale=scalePct; try{ doc.exportFile(file,ExportType.PNG24,opt); }catch(exE){ throw exportFailure(label,source,"Illustrator informó: "+((exE&&exE.message)?exE.message:"error desconocido")+"."); } var written=new File(file.fsName); if(!written.exists) throw exportFailure(label,source,"Illustrator no creó el archivo PNG."); if(!(written.length>0)) throw exportFailure(label,source,"Illustrator creó el archivo PNG vacío."); return {path:file.fsName, rect:mmRectFromAB(ab), label:label, exportScale:scalePct}; }',
+    '  function exportArtboardByIndex(idx,label,source){ var prev=doc.artboards.getActiveArtboardIndex(); doc.artboards.setActiveArtboardIndex(idx); try{ return exportActiveArtboardToPNG(label,source); } finally { doc.artboards.setActiveArtboardIndex(prev); } }',
     '  var artboardFront=null, artboardBack=null;',
     '  for(var ai=0;ai<doc.artboards.length;ai++){ var ab=doc.artboards[ai]; var role=roleForName(ab.name); result.available.artboards.push({name:ab.name,index:ai,role:role}); if(role==="front" && !artboardFront) artboardFront={index:ai,name:ab.name}; if(role==="back" && !artboardBack) artboardBack={index:ai,name:ab.name}; }',
     '  function visitLayers(container,acc){ for(var li=0;li<container.layers.length;li++){ var lyr=container.layers[li]; var role=roleForName(lyr.name); acc.push({layer:lyr,role:role,name:lyr.name}); if(lyr.layers&&lyr.layers.length) visitLayers(lyr,acc); } }',
@@ -40,8 +43,8 @@ export function buildArtworkExportScript(){
     '  for(var lr=0;lr<layerRefs.length;lr++){ result.available.layers.push({name:layerRefs[lr].name,role:layerRefs[lr].role}); }',
     '  if(artboardFront||artboardBack){',
     '    result.mode="artboards";',
-    '    if(artboardFront) result.front=exportArtboardByIndex(artboardFront.index,"front");',
-    '    if(artboardBack) result.back=exportArtboardByIndex(artboardBack.index,"back");',
+    '    if(artboardFront) result.front=exportArtboardByIndex(artboardFront.index,"front",artboardFront.name);',
+    '    if(artboardBack) result.back=exportArtboardByIndex(artboardBack.index,"back",artboardBack.name);',
     '    return toJSON(result);',
     '  }',
     '  function snapVis(container,arr){ for(var i=0;i<container.layers.length;i++){ var lyr=container.layers[i]; arr.push({layer:lyr,visible:lyr.visible}); if(lyr.layers&&lyr.layers.length) snapVis(lyr,arr); } }',
@@ -54,12 +57,12 @@ export function buildArtworkExportScript(){
     '    result.mode="layers";',
     '    var states=[]; snapVis(doc,states);',
     '    try{',
-    '      if(frontLayer){ hideAll(doc); showBranch(frontLayer); result.front=exportActiveArtboardToPNG("front"); }',
-    '      if(backLayer){ hideAll(doc); showBranch(backLayer); result.back=exportActiveArtboardToPNG("back"); }',
+    '      if(frontLayer){ hideAll(doc); showBranch(frontLayer); result.front=exportActiveArtboardToPNG("front",frontLayer.name); }',
+    '      if(backLayer){ hideAll(doc); showBranch(backLayer); result.back=exportActiveArtboardToPNG("back",backLayer.name); }',
     '    } finally { restoreVis(states); }',
     '  }',
     '  return toJSON(result);',
-    '}catch(e){ return toJSON({error:"Artwork export failed: "+e.message+" line:"+e.line}); }',
+    '}catch(e){ if(e&&e.tessUsuario) return toJSON({error:e.message,usuario:true}); return toJSON({error:"Artwork export failed: "+e.message+" line:"+e.line}); }',
     '})();'
   ].join('\n');
 }

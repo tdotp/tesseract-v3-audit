@@ -1,0 +1,121 @@
+{
+ "fecha": "2026-11-01T17:37:05.012Z",
+ "modo": "script (sin panel CEP)",
+ "pasos": {
+  "carpeta": {
+   "archivos": 0,
+   "modo": "755"
+  },
+  "N0A_extraccion": {
+   "documento": "N0-A_caja_real_export.svg",
+   "ruta": true,
+   "documentID": false,
+   "creases": 12,
+   "error": null
+  },
+  "N0A_arte": {
+   "modo": "none",
+   "error": null
+  },
+  "H05_distintos": {
+   "A": "N0-A_caja_real_export.svg",
+   "B": "N0-B_caja_simple_arte.svg",
+   "mismaRuta": false,
+   "mismoDocumentID": true
+  },
+  "capas_normal": {
+   "modo": "layers",
+   "error": null,
+   "front": {
+    "lado": "front",
+    "existe": true,
+    "bytes": 31204,
+    "png": true
+   },
+   "back": {
+    "lado": "back",
+    "existe": true,
+    "bytes": 31203,
+    "png": true
+   },
+   "estadoIntacto": true
+  },
+  "capas_falla": {
+   "error": "No se pudo exportar el artwork frontal (Front). Illustrator no creó el archivo PNG. Verifique la carpeta temporal y vuelva a intentarlo.",
+   "usuario": true,
+   "front": true,
+   "back": true,
+   "estadoIntacto": true
+  },
+  "mesas_preparar": {
+   "mesas": 3,
+   "activa": 0
+  },
+  "mesas_normal": {
+   "modo": "artboards",
+   "error": null,
+   "front": {
+    "lado": "front",
+    "existe": true,
+    "bytes": 28076,
+    "png": true
+   },
+   "back": {
+    "lado": "back",
+    "existe": true,
+    "bytes": 28076,
+    "png": true
+   },
+   "estadoIntacto": true
+  },
+  "mesas_falla": {
+   "error": "No se pudo exportar el artwork frontal (Tiro). Illustrator no creó el archivo PNG. Verifique la carpeta temporal y vuelva a intentarlo.",
+   "usuario": true,
+   "mesaRestaurada": true,
+   "estadoIntacto": true
+  },
+  "mesas_recuperacion": {
+   "modo": "artboards",
+   "error": null,
+   "front": {
+    "lado": "front",
+    "existe": true,
+    "bytes": 28076,
+    "png": true
+   },
+   "back": {
+    "lado": "back",
+    "existe": true,
+    "bytes": 28076,
+    "png": true
+   }
+  },
+  "carpetaFinal": {
+   "modo": "755",
+   "faltan": [],
+   "nuevos": 6
+  }
+ },
+ "inicio": {
+  "docs": [],
+  "interaccion": "UserInteractionLevel.DISPLAYALERTS"
+ },
+ "copias": {
+  "N0-A": "02714e637c50d253820d9ad15ea7db117ba8f2e662bd638bdd59275e3b8f6b43",
+  "N0-B": "05f89f7b2aaada535fc84bb31fe4a386ce68ce44bc4054221d75adf354d3ade7"
+ },
+ "cierre": [
+  {
+   "cerrado": "N0-B_caja_simple_arte.svg",
+   "respuestaPerdida": true
+  },
+  {
+   "cerrado": "N0-A_caja_real_export.svg",
+   "respuestaPerdida": true
+  }
+ ],
+ "fin": {
+  "docs": [],
+  "interaccion": "UserInteractionLevel.DISPLAYALERTS"
+ }
+}

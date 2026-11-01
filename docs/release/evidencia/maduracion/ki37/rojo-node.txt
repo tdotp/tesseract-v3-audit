@@ -1,0 +1,181 @@
+✔ KI-37 · el comportamiento anterior (baseline): exportFile sin archivo se daba por bueno y devolvía una ruta inexistente (6.062792ms)
+✔ KI-37 · exportación correcta: los dos PNG existen y tienen datos; rutas devueltas; mesa activa restaurada (1.028334ms)
+✖ KI-37 · exportFile termina sin excepción pero NO crea el archivo: error comprensible, sin rutas, mesa activa restaurada (1.092458ms)
+✖ KI-37 · el archivo se crea VACÍO: error comprensible, sin rutas, mesa activa restaurada (0.747584ms)
+✖ KI-37 · Front correcto y Back falla en silencio: error del lado trasero, ninguna ruta parcial, mesa activa restaurada (0.738541ms)
+✖ KI-37 · el fallo que SÍ lanza excepción: mismo formato, con el detalle de Illustrator; mesa activa restaurada (0.467584ms)
+✖ KI-37 · contexto Tiro/Retiro: el mensaje nombra la mesa o la capa tal como está en el documento (0.680708ms)
+✖ KI-37 · modo capas: fallo silencioso de Front y de Back; visibilidad original y mesa activa intactas (0.857958ms)
+✖ KI-37 · a través del envoltorio de identidad el error llega al panel como resultado (r.error, r.usuario), con la identidad del documento (1.130542ms)
+✔ KI-37 · un error ajeno a la exportación conserva su formato técnico y no se presenta como mensaje de usuario (0.467916ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 3
+ℹ fail 7
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 62.5935
+
+✖ failing tests:
+
+test at tests/producto/ki37.test.mjs:21:1
+✖ KI-37 · exportFile termina sin excepción pero NO crea el archivo: error comprensible, sin rutas, mesa activa restaurada (1.092458ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'No se pudo exportar el artwork frontal (Front). Illustrator no creó el archivo PNG. Verifique la carpeta temporal y vuelva a intentarlo.'
+  
+      at TestContext.<anonymous> (file://~/Documents/Antigravity/Tesseract/Tesseract%20v3/tests/producto/ki37.test.mjs:22:106)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'No se pudo exportar el artwork frontal (Front). Illustrator no creó el archivo PNG. Verifique la carpeta temporal y vuelva a intentarlo.',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/producto/ki37.test.mjs:24:1
+✖ KI-37 · el archivo se crea VACÍO: error comprensible, sin rutas, mesa activa restaurada (0.747584ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'No se pudo exportar el artwork frontal (Front). Illustrator creó el archivo PNG vacío. Verifique la carpeta temporal y vuelva a intentarlo.'
+  
+      at TestContext.<anonymous> (file://~/Documents/Antigravity/Tesseract/Tesseract%20v3/tests/producto/ki37.test.mjs:25:82)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'No se pudo exportar el artwork frontal (Front). Illustrator creó el archivo PNG vacío. Verifique la carpeta temporal y vuelva a intentarlo.',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/producto/ki37.test.mjs:27:1
+✖ KI-37 · Front correcto y Back falla en silencio: error del lado trasero, ninguna ruta parcial, mesa activa restaurada (0.738541ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'No se pudo exportar el artwork trasero (Back). Illustrator no creó el archivo PNG. Verifique la carpeta temporal y vuelva a intentarlo.'
+  
+      at TestContext.<anonymous> (file://~/Documents/Antigravity/Tesseract/Tesseract%20v3/tests/producto/ki37.test.mjs:28:141)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'No se pudo exportar el artwork trasero (Back). Illustrator no creó el archivo PNG. Verifique la carpeta temporal y vuelva a intentarlo.',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/producto/ki37.test.mjs:30:1
+✖ KI-37 · el fallo que SÍ lanza excepción: mismo formato, con el detalle de Illustrator; mesa activa restaurada (0.467584ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'Artwork export failed: disco lleno line:undefined'
+  - 'No se pudo exportar el artwork trasero (Back). Illustrator informó: disco lleno. Verifique la carpeta temporal y vuelva a intentarlo.'
+  
+      at TestContext.<anonymous> (file://~/Documents/Antigravity/Tesseract/Tesseract%20v3/tests/producto/ki37.test.mjs:32:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Artwork export failed: disco lleno line:undefined',
+    expected: 'No se pudo exportar el artwork trasero (Back). Illustrator informó: disco lleno. Verifique la carpeta temporal y vuelva a intentarlo.',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/producto/ki37.test.mjs:35:1
+✖ KI-37 · contexto Tiro/Retiro: el mensaje nombra la mesa o la capa tal como está en el documento (0.680708ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'No se pudo exportar el artwork trasero (Retiro). Illustrator no creó el archivo PNG. Verifique la carpeta temporal y vuelva a intentarlo.'
+  
+      at TestContext.<anonymous> (file://~/Documents/Antigravity/Tesseract/Tesseract%20v3/tests/producto/ki37.test.mjs:36:184)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'No se pudo exportar el artwork trasero (Retiro). Illustrator no creó el archivo PNG. Verifique la carpeta temporal y vuelva a intentarlo.',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/producto/ki37.test.mjs:39:1
+✖ KI-37 · modo capas: fallo silencioso de Front y de Back; visibilidad original y mesa activa intactas (0.857958ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'No se pudo exportar el artwork frontal (Front). Illustrator no creó el archivo PNG. Verifique la carpeta temporal y vuelva a intentarlo.'
+  
+      at TestContext.<anonymous> (file://~/Documents/Antigravity/Tesseract/Tesseract%20v3/tests/producto/ki37.test.mjs:41:93)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'No se pudo exportar el artwork frontal (Front). Illustrator no creó el archivo PNG. Verifique la carpeta temporal y vuelva a intentarlo.',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/producto/ki37.test.mjs:43:1
+✖ KI-37 · a través del envoltorio de identidad el error llega al panel como resultado (r.error, r.usuario), con la identidad del documento (1.130542ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'No se pudo exportar el artwork frontal (Front). Illustrator no creó el archivo PNG. Verifique la carpeta temporal y vuelva a intentarlo.'
+  
+      at TestContext.<anonymous> (file://~/Documents/Antigravity/Tesseract/Tesseract%20v3/tests/producto/ki37.test.mjs:44:167)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'No se pudo exportar el artwork frontal (Front). Illustrator no creó el archivo PNG. Verifique la carpeta temporal y vuelva a intentarlo.',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

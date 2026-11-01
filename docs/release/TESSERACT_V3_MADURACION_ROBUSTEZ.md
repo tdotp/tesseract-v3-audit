@@ -3,6 +3,8 @@
 Fecha: 2026-11-01 · Encargo: «Tesseract V3 — Maduración del producto: robustez y exportación» (lote único) · HEAD inicial: `43125543b4ed54f0eca1d4764e112c6e6baa6666` · Rama local `main` (sin push).
 Etiquetas: **[AUTO]** pruebas automatizadas (Node o Chrome headless) · **[REAL]** Adobe Illustrator 30.8.2 real (CEP 12.1.1, Chromium 99) · **[ESTÁTICO]** lectura de código · **[PENDIENTE]** sin comprobar.
 
+> **Estado final del lote (2026-11-01):** H-02, H-03, H-05, H-07, KI-24, KI-02, H-06 y **KI-37** corregidos con pruebas. Versión `3.0.1-dev.1`, `main.js` de producto `e69e4ba8…` (§7). Baterías de producto, experimental e histórica en verde (§15). **Queda sin comprobar:** el flujo de KI-37 dentro del panel CEP real (pantalla del Mac bloqueada; §15.4), el validador oficial de Khronos, Dimension y Cinema 4D (§10).
+
 ## 1. Decisión D-0 registrada
 
 Aprobada por el usuario el 2026-11-01:
@@ -61,7 +63,7 @@ Todas en secuencia, con el experimental retirado temporalmente (el aislamiento e
 | `tests/run-all.sh` · aislamiento + build | verde | verde (`dist/` íntegro y reproducible) |
 | · Node | 662 + 1 omitida | **663 + 1 omitida, 0 fallos** (+1: reproducción de `dist-a9` desde `4312554`) |
 | · navegador (8 archivos) | 52 · 13 · 31 · 32 · 4 · 6 · 3 · 7 | **los mismos 148, 0 fallos** (comparaciones del bundle reorientadas a D-0) |
-| · producto (`tests/producto/`, nuevo) | — | **78/78** (robustez 13 · GLB en Node 48 · navegador 12 · D-0 5) |
+| · producto (`tests/producto/`, nuevo) | — | **91/91** tras KI-37 (robustez 13 · KI-37 10 · GLB en Node 48 · navegador 15 · D-0 5); 78/78 antes de KI-37 |
 | `tests/run-experimental.sh` | 464/464 | **465/465** (+1: el RC cerrado se reconstruye desde `7258524`) |
 | `tests/run-historico.sh` (nuevo; F1 sin cambios sobre `4312554`) | — | **TODO EN VERDE**: Node 662 + 1 omitida, navegador 148/148 |
 
@@ -107,8 +109,8 @@ Todas en secuencia, con el experimental retirado temporalmente (el aislamiento e
 | Qué | Valor |
 |---|---|
 | Versión | **3.0.1-dev.1** (manifiesto CEP `3.0.1`; etiqueta en `BUILD_INFO.json`). **No es un RC aprobado** |
-| Bundle de producto (`dist-experimental/`) | `tests/golden/producto-3.0.1-dev.1.SHA256SUMS` · `main.js` `5f4ce99915d16bcfcc80a32c41a11cc98581e1433a4e57758caf090a8e95499d` |
-| Bundle normal (legacy, solo vehículo de pruebas) | `tests/golden/dist-3.0.1-dev.1.SHA256SUMS` · `main.js` `0603c7f538b4af62c7de19a652028516a7560dffc1e3827c50b21b5a08d0cb5c` |
+| Bundle de producto (`dist-experimental/`) | `tests/golden/producto-3.0.1-dev.1.SHA256SUMS` · `main.js` `e69e4ba81c74460d521c69d93fcfa64fde97d1358631391575452a0fdfaa4f40` (con KI-37). La huella de esta versión sin publicar se actualizó; el primer candidato, validado con el panel en §9, fue `5f4ce999…` |
+| Bundle normal (legacy, solo vehículo de pruebas) | `tests/golden/dist-3.0.1-dev.1.SHA256SUMS` · `main.js` `78513c597d0fc4375139b9b246d07629304c32667cbf0f1d3c9b08988a76fb7e` (con KI-37; antes `0603c7f5…`) |
 | Histórica (sin cambios) | `tests/golden/dist-a9.SHA256SUMS` · `main.js` `e5902a3c…` |
 | RC cerrado (sin cambios) | `main.js` `b36f3d89…`, zip `8f4edc7d…` desde `7258524` |
 | Referencias GLB nuevas | No hay goldens binarios nuevos: las salidas de 3.0.1-dev se comparan **semánticamente** con las referencias históricas reales (A7 `737bcd23`/`87aa2e4c`, A8 arte `b4973a54`) y con el RC reconstruido. Se fijan dimensiones (0,174999 × 0,00025 × 0,223499 m en plano), número de mallas (11 sombra, 13 activo; 31 a 60°), estructura, materiales, imágenes, normales válidas y pose |
@@ -122,7 +124,7 @@ Todas en secuencia, con el experimental retirado temporalmente (el aislamiento e
 
 ## 9. Resultados en Illustrator real
 
-Adobe Illustrator 30.8.2, CEP 12.1.1, Chromium 99.0.4844.84 (macOS). Panel `com.tato.tesseract.v3.experimental.panel` con el `main.js` de producto `5f4ce999…`, modo sombra al cargar. Conducido con `tools/a4/v301-real.mjs` (DevTools 8089 + AppleScript) sobre copias desechables de N0-A y N0-B, que se abrieron, prepararon y cerraron sin guardar. Illustrator empezó y terminó con **0 documentos**. **0 errores de consola.** Evidencia: `docs/release/evidencia/maduracion/real-todo.json`, `capturas/`, `glb/real-*.glb`.
+**Esta tabla corresponde al primer candidato, anterior a KI-37; la validación real de KI-37 está en §15.4.** Adobe Illustrator 30.8.2, CEP 12.1.1, Chromium 99.0.4844.84 (macOS). Panel `com.tato.tesseract.v3.experimental.panel` con el `main.js` de producto `5f4ce999…`, modo sombra al cargar. Conducido con `tools/a4/v301-real.mjs` (DevTools 8089 + AppleScript) sobre copias desechables de N0-A y N0-B, que se abrieron, prepararon y cerraron sin guardar. Illustrator empezó y terminó con **0 documentos**. **0 errores de consola.** Evidencia: `docs/release/evidencia/maduracion/real-todo.json`, `capturas/`, `glb/real-*.glb`.
 
 | Comprobación | Resultado |
 |---|---|
@@ -141,10 +143,13 @@ Adobe Illustrator 30.8.2, CEP 12.1.1, Chromium 99.0.4844.84 (macOS). Panel `com.
 
 | Riesgo | Clase | Valoración y siguiente paso |
 |---|---|---|
-| **KI-37 (nuevo)**: en Illustrator real, `exportFile` falla **en silencio** (sin excepción y sin archivo) cuando no puede escribir el PNG de arte. El script devuelve éxito, el panel falla después al cargar la textura y muestra «Artwork load failed: undefined» (relacionado con KI-26/KI-27) | **Defecto demostrado en real** | Medio. Corrección mínima propuesta para el próximo paso: comprobar `file.exists` tras `exportFile` y lanzar (así el `finally` de H-02 también actúa en real) y dar un mensaje legible al fallar la textura. **No se implementó en este lote**, para no ampliar el alcance |
+| **KI-37** | **Corregido** (§15) | Solo falta comprobar el flujo completo dentro del panel CEP real (§15.4) |
 | Validador oficial de Khronos no ejecutado | Limitación de verificación | Ejecutar `gltf-validator` (requiere autorización para descargarlo) sobre `docs/release/evidencia/maduracion/glb/` |
 | Dimension y Cinema 4D sin comprobar | Pendiente externo | Abrir `real-sombra-plano.glb` en Dimension: debe medir 175 × 0,25 × 223,5 mm |
 | H-05 no detecta cambios dentro del MISMO documento después de extraer | Límite declarado | Volver a extraer, como antes. Evita vigilancia continua (requisito del encargo) |
+| H-05: los documentos abiertos desde SVG no tienen `xmpMM:DocumentID` en Illustrator real | Límite observado | La identidad se apoya en nombre y ruta, que ya los distinguen; los documentos sin guardar sí traen DocumentID |
+| Huecos 3D y curvas Bézier (H-01, H-04) | Limitación conocida | Sin cambios; no entraban en este lote |
+| UX/UI: auditoría y rediseño | Pendiente de producto | No iniciado |
 | Activo: el orden de paneles del troquel real difiere del fixture de headless | Diferencia preexistente (también en el RC) | Sin efecto en la geometría; se compara real con real |
 | Paquete sin firmar; corpus real de 2 documentos; Windows sin probar | Heredados del RC | Sin cambios |
 
@@ -155,16 +160,18 @@ Adobe Illustrator 30.8.2, CEP 12.1.1, Chromium 99.0.4844.84 (macOS). Panel `com.
 | `42446bbb046b18a574d1f010c5e81e421d576bc3` | feat(producto): línea 3.0.1-dev (D-0) con robustez de estado y GLB conforme |
 | `1c03c18440d2bdf07695b949693c10bd1d674b0d` | test(d0): RC cerrado verificado desde 7258524 y batería histórica desde .scratch |
 | `59541440e53e34e117c8ef6213969b5de150e251` | test(real): validación de 3.0.1-dev en Illustrator real y evidencia |
-| commit de este informe (`git log -1`) | docs(release): informe de maduración 3.0.1-dev, KNOWN_ISSUES y HANDOFF |
+| `556986d` (`git rev-parse 556986d` da el SHA completo) | docs(release): informe de maduración 3.0.1-dev, KNOWN_ISSUES y HANDOFF |
+| commit que contiene este párrafo (`git log -1 -- docs/release/TESSERACT_V3_MADURACION_ROBUSTEZ.md`) | fix(artwork): detectar fallos silenciosos de exportacion PNG en Illustrator |
 
-Commits locales en `main`, autor único Gerardo Calambas posada, sin trailers, sin rebase, squash, force push ni push. `tdotp/tesseract-v3-audit` no cambió.
+Autor único en todos: `Gerardo Calambas posada`. Es la grafía exacta de toda la historia del repositorio; la prueba de aislamiento exige un único autor, por lo que no se cambió la minúscula. Sin trailers, sin rebase, sin squash y sin force push. Publicados con un push fast-forward autorizado en `tdotp/tesseract-v3-audit`, rama `audit/f2a2`.
 
 ## 12. Estado de los plugins instalados
 
 - **Tesseract original** (`/Library/…/extensions/tesseract`): **intacto**, idéntico al baseline (`verify-isolation`).
 - **TesserArt_Validator**: **intacto**; snapshot de las demás extensiones idéntico antes y después.
 - **tesseract-v3-experimental**: durante la validación se instaló **temporalmente** el bundle 3.0.1-dev (`5f4ce999…`). Al terminar se **restauró el RC 3.0.0-rc.1** (`b36f3d89…`, manifiesto 3.0.0, `.debug` 8089), **byte a byte igual** al estado previo (`instalacion-antes.txt` / `instalacion-despues.txt`).
-- Illustrator quedó **cerrado**, como al empezar, sin documentos. `PlayerDebugMode` no se tocó.
+- Tras la segunda instalación temporal (bundle con KI-37) se restauró de nuevo el RC, otra vez **byte a byte** (`diff -r` con el respaldo tomado antes) y con el snapshot de las demás extensiones idéntico.
+- **Illustrator quedó ABIERTO, con 0 documentos.** Con la pantalla bloqueada rechaza la orden de salir («Cancelado por el usuario», −128) y, según la regla del proyecto, no se forzó. Hay que cerrarlo y volver a abrirlo para que su lista de extensiones vuelva a leer el RC. `PlayerDebugMode` no se tocó.
 - Nota operativa: con el RC instalado, `dist-experimental/` del repositorio ya es el bundle de producto. Para verificar el aislamiento contra el RC instalado: `TESS_DIST_EXP_DIR="$PWD/release/tesseract-v3-3.0.0-rc.1/extension" tools/verify-isolation.sh --experimental-instalado` (verde).
 
 ## 13. Procedimiento de rollback
@@ -176,9 +183,69 @@ Commits locales en `main`, autor único Gerardo Calambas posada, sin trailers, s
 
 ## 14. Recomendación de continuidad
 
-- El lote está **cerrado**. H-02, H-03, H-05, KI-24 y H-07 tienen correcciones comprobables. KI-02 y H-06 están corregidos y verificados con un comprobador independiente y con exportaciones reales, con las verificaciones externas pendientes de §10. Las tres líneas (histórica, producto y experimental) están en verde, el plugin original no cambió y la instalación volvió al RC.
-- **Recomendación:** dar por buena la base 3.0.1-dev para pasar a la revisión de UX/UI y dirección de arte. Antes, o en paralelo, conviene cerrar tres puntos cortos:
-  1. **KI-37**: comprobar el PNG escrito y dar un mensaje de textura legible (corrección mínima en `host/art.js` y `scene/artwork.js`);
-  2. autorizar la descarga del validador oficial de Khronos y ejecutarlo sobre `evidencia/maduracion/glb/`;
-  3. una medición manual en Dimension.
-- No se recomienda todavía marcar 3.0.1 como RC: faltan esas verificaciones externas, la confirmación manual de las interacciones y la firma.
+- El lote está **cerrado** con las reservas de §10 y §15.4. **Lo siguiente lo define dirección de arte y producto**; este lote no inició UX/UI, visor, materiales, huecos, curvas, F2B ni distribución.
+- Verificaciones cortas que siguen abiertas antes de considerar un RC 3.0.1:
+  1. repetir `node tools/a4/v301-real.mjs todo` con la sesión desbloqueada (flujo de KI-37 con el panel);
+  2. ejecutar el validador oficial de Khronos sobre `docs/release/evidencia/maduracion/glb/` (requiere autorizar su descarga);
+  3. medir `real-sombra-plano.glb` en Adobe Dimension (debe dar 175 × 0,25 × 223,5 mm);
+  4. Cinema 4D, cuando haya licencia;
+  5. confirmar a mano Shift+clic y Alt+clic.
+- **3.0.1-dev.1 no es un RC aprobado.** Tampoco hay firma ni distribución estable.
+
+## 15. KI-37: cierre
+
+### 15.1 Causa
+En Illustrator 30.8.2, `doc.exportFile()` puede terminar **sin excepción y sin escribir el archivo** si no puede crear el PNG. Se reprodujo en real dejando sin escritura la carpeta de arte y también poniendo un archivo en su lugar. El script confiaba en la ausencia de excepciones: devolvía `ok` con una ruta inexistente, el panel intentaba cargarla y `TextureLoader` rechazaba con un `Event` sin `message`. De ahí «Artwork load failed: undefined» (también KI-26).
+
+### 15.2 Implementación
+- **`src/host/art.js`** (ES3):
+  - tras cada `exportFile` crea un `File` nuevo y exige que exista y que `length > 0`;
+  - una excepción de `exportFile` también se convierte en un error con contexto;
+  - el error lleva la marca `tessUsuario`, y el `catch` exterior devuelve `{error, usuario: true}`, sin `line:` ni rutas de resultado;
+  - el contexto indica el lado y el nombre de la mesa o capa: `frontal (Front)`, `trasero (Back)`, `frontal (Tiro)`, `trasero (Retiro)`;
+  - los `finally` existentes (mesa activa y visibilidad) no cambian.
+- **Mensajes:**
+  - «No se pudo exportar el artwork frontal (Front). Illustrator no creó el archivo PNG. Verifique la carpeta temporal y vuelva a intentarlo.»
+  - «… Illustrator creó el archivo PNG vacío. …»
+  - «… Illustrator informó: \<detalle\>. …»
+- **`src/app/actions.js`:**
+  - un error con `usuario` se muestra tal cual, sin intentar cargar ninguna textura;
+  - si el PNG existe pero no carga como textura, el mensaje indica el lado afectado («No se pudo cargar como textura el PNG del artwork trasero. Vuelva a actualizar el artwork.»), en lugar de `undefined`;
+  - los errores ajenos conservan su formato técnico.
+- **Sin cambios:** `src/export`, `src/core`, `src/fold`, `src/scene`, `experimental/`, `panel/` y `reference/`. Tampoco se modificó el puente CEP.
+- **Pruebas e infraestructura:** la maqueta de Illustrator simula ahora la escritura (`escritura.bytes`: bytes, `null` sin archivo, 0 vacío, o lanzar); `tests/lib/d0.mjs` declara las sustituciones exactas del script (`D0_ARTE_KI37`); `tests/producto/ki37.test.mjs` es nuevo.
+
+### 15.3 Pruebas antes y después
+| Prueba | Antes de la corrección (`evidencia/maduracion/ki37/rojo-*.txt`) | Después |
+|---|---|---|
+| `tests/producto/ki37.test.mjs` | **7 de 10 fallan** | **10/10** |
+| `tests/producto/producto-navegador.test.mjs` | **4 de 15 fallan** | **15/15** |
+
+Cubren: PNG válido; `exportFile` sin excepción y sin archivo; archivo vacío; Front correcto y Back con fallo (sin rutas parciales); fallo con excepción; contexto Tiro/Retiro; modo capas con visibilidad intacta; mesa activa restaurada tras cada fallo; arte vigente conservado (también en overlays y puentes a 60°), sin cargas de textura y sin liberar nada en uso; textura frontal parcial liberada sin afectar a las texturas en uso.
+
+**Baterías finales, en secuencia** (`evidencia/maduracion/ki37/baterias.txt`), con el RC retirado temporalmente:
+| Batería | Resultado |
+|---|---|
+| `tests/run-all.sh` | **TODO EN VERDE**: Node 663 + 1 omitida · navegador 52 · 13 · 31 · 32 · 4 · 6 · 3 · 7 · producto 91 |
+| `tests/run-experimental.sh` | **465/465** (Caja Botánica 13 paneles y 12 pliegues sin cambios) |
+| `tests/run-historico.sh` | **TODO EN VERDE**: Node 662 + 1 omitida · navegador 148 |
+
+**Regresión comprobada:** los GLB de headless de hoy son **byte a byte iguales** a los del candidato anterior (`ffafe55f…` sombra plano, `cd799b59…` sombra 60°, `6d618320…` activo plano, `e873a319…` activo 60°), y `ffafe55f…` y `cd799b59…` coinciden además con la exportación del CEP real. Por tanto no cambian geometría, número de paneles, árbol y ángulos de plegado, base, materiales y espesor, contenido del GLB, conversión a metros ni normales. Solo se modificaron dos archivos de `src/`.
+
+### 15.4 Illustrator real
+`node tools/a4/v301-real.mjs script` (`evidencia/maduracion/ki37/real-script.json`): Illustrator 30.8.2, copias desechables de N0-A y N0-B, textos ExtendScript del producto enviados como cadena Unicode, igual que `evalScript`. Procedimiento de fallo reversible: se registró el contenido y el modo de `tesseract_art` (carpeta de Tesseract), solo se quitó la escritura y se restauró `755`; **nada se borró** (`faltan: []`). Se empezó y terminó con 0 documentos.
+
+| Comprobado en real | Resultado |
+|---|---|
+| Flujo normal, capas y mesas | PNG en disco, firma PNG correcta (28–31 KB); mesa activa y capas intactas |
+| N0-A: extracción con identidad; sin arte | 12 creases, modo `none` |
+| **KI-37, modo capas, sin escritura** | «No se pudo exportar el artwork frontal (Front). Illustrator no creó el archivo PNG. Verifique…», `usuario: true`, sin rutas; capas intactas |
+| **KI-37 + H-02, mesas Tiro/Retiro, sin escritura** | Mensaje con `frontal (Tiro)`, acentos correctos; **mesa activa restaurada: el camino del `finally` ya se ejerce en real** |
+| Recuperación al restaurar el permiso | Exporta de nuevo los dos PNG |
+
+**NO comprobado en real (pendiente):** el flujo **dentro del panel CEP** con este bundle (`e69e4ba8…`): mensaje visible en el panel, arte previo conservado y texturas. La pantalla del Mac estaba **bloqueada**: los menús de Illustrator quedan deshabilitados y el panel no se puede abrir. No se intentó desbloquearla. Ese flujo está cubierto en Chrome headless (§15.3) y el conductor ya tiene el paso preparado: `node tools/a4/v301-real.mjs todo`. **Tampoco se reprodujeron en real** el archivo vacío, «Front correcto y Back falla» ni la excepción de `exportFile`: solo con la maqueta.
+
+### 15.5 Limitaciones restantes de KI-37
+- Los PNG correctos de un intento parcial (Front escrito y Back fallido) quedan en la carpeta temporal, como cualquier exportación anterior; no se borran.
+- Los mensajes de KI-37 están en español y el resto del panel sigue en inglés; la unificación corresponde a UX/UI.
+- La comprobación es de existencia y tamaño, no de validez interna del PNG; un PNG corrupto con datos llegaría a la carga de textura y daría el mensaje de textura.

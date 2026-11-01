@@ -363,18 +363,21 @@ Invariantes: **I-E1** orden de nodos = recorrido en preorden de `S.scene3d` (G1)
 ## 30. Línea de producto 3.0.1-dev.1 — maduración: robustez y exportación (2026-11-01)
 - **D-0 (usuario, 2026-11-01):** el RC es la línea de desarrollo; `dist-a9` queda congelado (fuente `4312554`, `HIST_COMMIT` en `tests/lib/d0.mjs`); se permiten cambios justificados en `src/`; legacy por defecto y experimental explícito sin cambios; original y TesserArt_Validator intocables.
 - **Corregido en `src/`:** H-02/KI-21 (`finally` de la mesa activa), H-03/KI-35 (número de solicitud y liberación de texturas del arte), H-05/KI-36 (identidad del documento en la misma llamada: `src/host/doc-identity.js`), KI-24 (`buildChildrenOfMap`), H-07/KI-28 (sin `Math.max.apply`), KI-02 (sin triángulos de área nula; normales reparadas), H-06/KI-03 (GLB en metros, ×0,001 una vez).
-- **Versión:** `3.0.1-dev.1` (manifiesto `3.0.1`, misma identidad CEP experimental). Huellas nuevas: `tests/golden/producto-3.0.1-dev.1.SHA256SUMS` (`main.js` `5f4ce999…`) y `dist-3.0.1-dev.1.SHA256SUMS` (`0603c7f5…`). `dist-a9` y los goldens históricos no cambiaron.
-- **Baterías (en secuencia y sin el experimental instalado):** `tests/run-all.sh` TODO EN VERDE (Node 663 + 1 omitida, navegador 148, producto 78) → `tests/run-experimental.sh` 465/465 → `tests/run-historico.sh` TODO EN VERDE (F1 sin cambios sobre `4312554`).
+- **Versión:** `3.0.1-dev.1` (manifiesto `3.0.1`, misma identidad CEP experimental). Huellas nuevas: `tests/golden/producto-3.0.1-dev.1.SHA256SUMS` (`main.js` `e69e4ba8…`; primer candidato validado con panel: `5f4ce999…`) y `dist-3.0.1-dev.1.SHA256SUMS` (`78513c59…`). `dist-a9` y los goldens históricos no cambiaron.
+- **Baterías (en secuencia y sin el experimental instalado):** `tests/run-all.sh` TODO EN VERDE (Node 663 + 1 omitida, navegador 148, producto 91 con KI-37) → `tests/run-experimental.sh` 465/465 → `tests/run-historico.sh` TODO EN VERDE (F1 sin cambios sobre `4312554`).
 - **Cómo se adaptaron las pruebas de F1:** listas EXACTAS de diferencias en `tests/lib/d0.mjs`; las comparaciones de GLB del bundle pasan a ser semánticas (×0,001) con `tests/lib/glb-conformidad.mjs`, comprobador independiente calibrado con la medición oficial de la Fase 0.
-- **Real (Illustrator 30.8.2):** `tools/a4/v301-real.mjs todo`. H-05 rechaza construir y aplicar arte de otro documento; H-03 con doble refresco; KI-24; 5 GLB con 0 errores y en metros, equivalentes a los reales de A7 y del RC. **H-02: el camino de excepción no se puede provocar en real**, porque `exportFile` falla en silencio: nuevo **KI-37** abierto.
+- **Real (Illustrator 30.8.2):** `tools/a4/v301-real.mjs todo`. H-05 rechaza construir y aplicar arte de otro documento; H-03 con doble refresco; KI-24; 5 GLB con 0 errores y en metros, equivalentes a los reales de A7 y del RC. **H-02: el camino de excepción no se puede provocar en real**, porque entonces `exportFile` fallaba en silencio (KI-37, ya corregido; ver el cierre abajo).
 - **Pendiente:**
-  - KI-37;
+  - flujo de KI-37 dentro del panel CEP real (`node tools/a4/v301-real.mjs todo`, con la sesión desbloqueada);
+  - huecos 3D y curvas Bézier; auditoría y rediseño UX/UI;
   - validador oficial de Khronos (no instalado; nada descargado);
   - Dimension (no scriptable) y Cinema 4D (`c4dpy` pide licencia interactiva);
   - interacciones manuales del usuario;
   - firma.
-- **Estado al cerrar:** instalado el **RC 3.0.0-rc.1** (`b36f3d89…`), byte a byte igual que antes del lote; Illustrator cerrado; sin push. Con el RC instalado, el aislamiento se verifica con `TESS_DIST_EXP_DIR=release/tesseract-v3-3.0.0-rc.1/extension tools/verify-isolation.sh --experimental-instalado`.
+- **Estado al cerrar:** instalado el **RC 3.0.0-rc.1** (`b36f3d89…`), byte a byte igual que antes del lote; **Illustrator abierto con 0 documentos** (con la sesión bloqueada rechaza salir, −128; no se forzó: cerrarlo y reabrirlo para que relea las extensiones). Con el RC instalado, el aislamiento se verifica con `TESS_DIST_EXP_DIR=release/tesseract-v3-3.0.0-rc.1/extension tools/verify-isolation.sh --experimental-instalado`.
 - **Gotchas:**
   - `run-historico.sh` clona en `.scratch/`, no en el temporal del sistema (las pruebas de F1 tratan el temporal como zona permitida);
   - para reinstalar el RC hay que construir desde un `git archive 7258524` (el `BUILD_INFO.json` lleva el commit del repositorio que lo envuelve; no está en `SHA256SUMS`);
-  - `exportFile` de Illustrator no lanza al no poder escribir.
+  - `exportFile` de Illustrator no lanza al no poder escribir: tras exportar hay que comprobar el archivo;
+  - con la pantalla bloqueada, ExtendScript responde pero los menús están deshabilitados: el panel CEP no se abre y `quit` da −128.
+- **Cierre definitivo (2026-11-01): KI-37 corregido** (`src/host/art.js`, `src/app/actions.js`; informe §15). Pruebas en rojo antes y en verde después; baterías finales: producto en verde, experimental 465/465, histórica en verde. GLB byte a byte igual que el candidato anterior. Real a nivel de script: mensaje exacto en capas y mesas Tiro/Retiro, mesa activa restaurada. **Commits:** `42446bb`, `1c03c18`, `5954144`, `556986d` y el commit `fix(artwork): detectar fallos silenciosos de exportacion PNG en Illustrator`, publicados por fast-forward en `tdotp/tesseract-v3-audit` · `audit/f2a2`. **La siguiente etapa la define dirección de arte y producto; no iniciar UX/UI, visor, materiales, huecos, curvas, F2B ni distribución sin encargo.**

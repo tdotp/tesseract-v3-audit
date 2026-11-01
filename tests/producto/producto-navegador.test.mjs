@@ -101,9 +101,28 @@ test('H-03 · plegado a 60°: overlays Y puentes de plegado pasan al arte nuevo;
 test('H-03 · fallo parcial (front carga, back falla): el arte vigente no cambia y la textura front recién cargada se libera', async () => {
   const e0 = B.errors.length; await abrir(); await B.eval('(async () => { window.__arte.push({ art: await crearArte(20) }); })()'); await B.eval('T.build()'); await B.eval('esperarArte(/Artwork loaded/)'); const antes = await B.eval('arteActual()');
   await B.eval("(async () => { const a = await crearArte(200); a.back.path = 'blob:http://127.0.0.1/no-existe'; window.__arte.push({ art: a }); T.$('refresh-art-btn').click(); })()");
-  assert.match(await B.eval('esperarArte(/failed/)'), /Artwork load failed/); const r = await B.eval('({ arte: arteActual(), lib: [...__liberadas], uso: texturasEnUso() })');
+  assert.equal(await B.eval("esperarArte(/failed|No se pudo/)"), 'No se pudo cargar como textura el PNG del artwork trasero. Vuelva a actualizar el artwork.', 'KI-37: mensaje con contexto, sin «undefined»'); const r = await B.eval('({ arte: arteActual(), lib: [...__liberadas], uso: texturasEnUso() })');
   assert.deepEqual(r.arte, antes, 'sin referencias al intento fallido'); assert.equal(r.lib.length, 1, 'la front del intento fallido'); assert.ok(!antes.includes(r.lib[0])); assert.ok(r.uso.every((u) => antes.includes(u)));
   assert.deepEqual(B.errors.slice(e0), []);
+});
+const MSG_KI37 = 'No se pudo exportar el artwork frontal (Front). Illustrator no creó el archivo PNG. Verifique la carpeta temporal y vuelva a intentarlo.';
+const CARGAS = `(() => { window.__cargas = 0; const l = THREE.TextureLoader.prototype.load; THREE.TextureLoader.prototype.load = function () { window.__cargas++; return l.apply(this, arguments); }; })()`;
+test('KI-37 · el script informa del fallo de exportación: el panel muestra el mensaje tal cual, NO intenta cargar ninguna textura y conserva el arte vigente (también a 60°)', async () => {
+  const e0 = B.errors.length; await abrir(); await B.eval(CARGAS); await B.eval('(async () => { window.__arte.push({ art: await crearArte(20) }); })()'); await B.eval('T.build()'); await B.eval('esperarArte(/Artwork loaded/)'); await B.eval('T.setAll(60)');
+  const antes = await B.eval('({ arte: arteActual(), uso: texturasEnUso(), cargas: __cargas })'); assert.equal(antes.cargas, 2);
+  await B.eval(`(() => { window.__arte.push({ art: { error: ${JSON.stringify(MSG_KI37)}, usuario: true } }); T.$('refresh-art-btn').click(); })()`); assert.equal(await B.eval("esperarArte(/No se pudo|failed/)"), MSG_KI37);
+  const d = await B.eval("({ arte: arteActual(), uso: texturasEnUso(), cargas: __cargas, lib: [...__liberadas], pill: T.$('art-source-pill').textContent, log: T.$('log-area').textContent })");
+  assert.deepEqual(d.arte, antes.arte, 'el arte vigente no cambia'); assert.deepEqual(d.uso, antes.uso, 'overlays y puentes siguen con sus texturas'); assert.equal(d.cargas, 2, 'ninguna carga de textura'); assert.deepEqual(d.lib, [], 'nada en uso se libera'); assert.equal(d.pill, 'Art error'); assert.doesNotMatch(d.log, /undefined/); assert.deepEqual(B.errors.slice(e0), []);
+});
+test('KI-37 · sin arte previo: el fallo de exportación deja el modelo sin arte, sin texturas y con el mensaje; un refresco posterior correcto funciona', async () => {
+  const e0 = B.errors.length; await abrir(); await B.eval(CARGAS); await B.eval(`window.__arte.push({ art: { error: ${JSON.stringify(MSG_KI37)}, usuario: true } })`); await B.eval('T.build()'); assert.equal(await B.eval("esperarArte(/No se pudo|failed|loaded/)"), MSG_KI37);
+  assert.equal(await B.eval('arteActual()'), null); assert.equal(await B.eval('__cargas'), 0); assert.deepEqual(await B.eval('texturasEnUso()'), []);
+  await B.eval("(async () => { window.__arte.push({ art: await crearArte(200) }); T.$('refresh-art-btn').click(); })()"); assert.match(await B.eval('esperarArte(/Artwork loaded/)'), /Artwork loaded/); assert.equal((await B.eval('arteActual()')).filter(Boolean).length, 2); assert.deepEqual(B.errors.slice(e0), []);
+});
+test('KI-37 · ruta inexistente (texture front): nunca «undefined»; el arte vigente se conserva y no se libera nada en uso', async () => {
+  const e0 = B.errors.length; await abrir(); await B.eval('(async () => { window.__arte.push({ art: await crearArte(20) }); })()'); await B.eval('T.build()'); await B.eval('esperarArte(/Artwork loaded/)'); const antes = await B.eval('arteActual()');
+  await B.eval("(async () => { const a = await crearArte(200); a.front.path = 'blob:http://127.0.0.1/no-existe'; window.__arte.push({ art: a }); T.$('refresh-art-btn').click(); })()");
+  assert.equal(await B.eval("esperarArte(/No se pudo|failed/)"), 'No se pudo cargar como textura el PNG del artwork frontal. Vuelva a actualizar el artwork.'); assert.deepEqual(await B.eval('arteActual()'), antes); assert.deepEqual(await B.eval('[...__liberadas]'), []); assert.doesNotMatch(await B.eval("T.$('log-area').textContent"), /undefined/); assert.deepEqual(B.errors.slice(e0), []);
 });
 test('H-03 · reconstruir el modelo (Continue to 3D) a mitad de una carga: la carga vieja se descarta y no toca el modelo nuevo', async () => {
   const e0 = B.errors.length; await abrir(); await B.eval('T.build()'); await B.eval('esperarArte(/No Front|Artwork/)');

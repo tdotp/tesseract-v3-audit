@@ -16,9 +16,9 @@ const conDoc = (ill, { name, ruta = '', docId = '' }) => { ill.doc.name = name; 
 // ───────────── H-02 ─────────────
 test('H-02 · si exportFile falla en la mesa Back, la mesa activa original vuelve a quedar activa y el error sale como JSON', () => {
   const ill = makeIllustrator({ artboards: [ab('Otra'), ab('Front', 600, 400, 700), ab('Back', 600, 400, 1400)] }); ill.doc._active = 0;
-  const intentos = []; ill.doc.exportFile = () => { intentos.push(ill.doc._active); if (ill.doc._active === 2) throw new Error('disco lleno'); };
+  const intentos = []; ill.escritura.bytes = (ruta, activa) => { intentos.push(activa); if (activa === 2) throw new Error('disco lleno'); return 1024; };
   const out = run(buildArtworkExportScript(), ill);
-  assert.match(out.error, /^Artwork export failed: disco lleno/); assert.deepEqual(intentos, [1, 2], 'exportó Front (1) y falló en Back (2)');
+  assert.match(out.error, /disco lleno/); assert.equal(out.usuario, true); // KI-37: mensaje comprensible assert.deepEqual(intentos, [1, 2], 'exportó Front (1) y falló en Back (2)');
   assert.equal(ill.doc._active, 0, 'la mesa activa original (0) se restaura aunque la exportación lance');
 });
 test('H-02 · si falla la PRIMERA exportación (Front) también se restaura; sin fallo, el comportamiento no cambia', () => {
@@ -35,7 +35,7 @@ test('H-02 · el modo capas no toca la mesa activa ni la visibilidad final (rest
 });
 test('H-02 · el texto del script usa try/finally SOLO en exportArtboardByIndex (cambio mínimo)', () => {
   const s = buildArtworkExportScript(); assert.equal((s.match(/finally/g) || []).length, 2, 'el finally de capas que ya existía + el nuevo');
-  assert.match(s, /function exportArtboardByIndex\(idx,label\)\{ var prev=doc\.artboards\.getActiveArtboardIndex\(\); doc\.artboards\.setActiveArtboardIndex\(idx\); try\{ return exportActiveArtboardToPNG\(label\); \} finally \{ doc\.artboards\.setActiveArtboardIndex\(prev\); \} \}/);
+  assert.match(s, /function exportArtboardByIndex\(idx,label,source\)\{ var prev=doc\.artboards\.getActiveArtboardIndex\(\); doc\.artboards\.setActiveArtboardIndex\(idx\); try\{ return exportActiveArtboardToPNG\(label,source\); \} finally \{ doc\.artboards\.setActiveArtboardIndex\(prev\); \} \}/);
 });
 
 // ───────────── H-05 ─────────────

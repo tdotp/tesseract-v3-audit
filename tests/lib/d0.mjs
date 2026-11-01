@@ -11,7 +11,7 @@ export const D0_FUNCIONES_CAMBIADAS = {
   createAppState: 'H-05: campo currentDocIdentity',
   createFolding: 'KI-24: declara y devuelve buildChildrenOfMap',
   applyFolding: 'KI-24: usa buildChildrenOfMap',
-  buildArtworkExportScript: 'H-02: try/finally en exportArtboardByIndex',
+  buildArtworkExportScript: 'H-02: try/finally en exportArtboardByIndex; KI-37: comprobación del PNG escrito',
   applyMaterialPreset: 'KI-24: sin escena no rehace pliegues',
   refreshArtwork: 'H-03 (generación, liberación) y H-05 (documento)',
   createGlbScene: 'H-06: escala en la fábrica',
@@ -25,7 +25,7 @@ export const D0_FUNCIONES_CAMBIADAS = {
 // Funciones nuevas de la línea de producto (nombre → módulo).
 export const D0_FUNCIONES_NUEVAS = {
   buildChildrenOfMap: 'fold/folding.js', faceNormal: 'export/glb-scene.js', fallbackNormal: 'export/glb-scene.js',
-  disposeTextures: 'app/actions.js', texturesOf: 'app/actions.js', replaceArtState: 'app/actions.js', current: 'app/actions.js',
+  artFailure: 'app/actions.js', loadSideTexture: 'app/actions.js', disposeTextures: 'app/actions.js', texturesOf: 'app/actions.js', replaceArtState: 'app/actions.js', current: 'app/actions.js',
   buildFromExtraction: 'ui/controller.js', withDocIdentity: 'host/doc-identity.js', unwrapDocIdentity: 'host/doc-identity.js', sameDocument: 'host/doc-identity.js',
 };
 export const D0_MODULOS_NUEVOS = ['host/doc-identity.js'];
@@ -35,6 +35,21 @@ export const D0_ARTE_H02 = {
   antes: 'var prev=doc.artboards.getActiveArtboardIndex(); doc.artboards.setActiveArtboardIndex(idx); var out=exportActiveArtboardToPNG(label); doc.artboards.setActiveArtboardIndex(prev); return out; }',
   despues: 'var prev=doc.artboards.getActiveArtboardIndex(); doc.artboards.setActiveArtboardIndex(idx); try{ return exportActiveArtboardToPNG(label); } finally { doc.artboards.setActiveArtboardIndex(prev); } }',
 };
+// Sustituciones textuales de KI-37 en el script de arte, además de H-02 (aplicadas EN ORDEN sobre el texto de F1): comprobación del PNG escrito, contexto del
+// mensaje y error para el usuario. La prueba exige texto = baseline con ESTAS sustituciones y ninguna otra.
+export const D0_ARTE_KI37 = [
+  ['  function exportActiveArtboardToPNG(label){ var idx=', '  function exportFailure(label,source,detail){ var err=new Error("No se pudo exportar el artwork "+(label==="front"?"frontal":"trasero")+" ("+source+"). "+detail+" Verifique la carpeta temporal y vuelva a intentarlo."); err.tessUsuario=true; return err; }\n  function exportActiveArtboardToPNG(label,source){ var idx='],
+  ['doc.exportFile(file,ExportType.PNG24,opt); return {path:file.fsName,', 'try{ doc.exportFile(file,ExportType.PNG24,opt); }catch(exE){ throw exportFailure(label,source,"Illustrator informó: "+((exE&&exE.message)?exE.message:"error desconocido")+"."); } var written=new File(file.fsName); if(!written.exists) throw exportFailure(label,source,"Illustrator no creó el archivo PNG."); if(!(written.length>0)) throw exportFailure(label,source,"Illustrator creó el archivo PNG vacío."); return {path:file.fsName,'],
+  ['function exportArtboardByIndex(idx,label){', 'function exportArtboardByIndex(idx,label,source){'],
+  ['try{ return exportActiveArtboardToPNG(label); }', 'try{ return exportActiveArtboardToPNG(label,source); }'],
+  ['result.front=exportArtboardByIndex(artboardFront.index,"front");', 'result.front=exportArtboardByIndex(artboardFront.index,"front",artboardFront.name);'],
+  ['result.back=exportArtboardByIndex(artboardBack.index,"back");', 'result.back=exportArtboardByIndex(artboardBack.index,"back",artboardBack.name);'],
+  ['result.front=exportActiveArtboardToPNG("front"); }', 'result.front=exportActiveArtboardToPNG("front",frontLayer.name); }'],
+  ['result.back=exportActiveArtboardToPNG("back"); }', 'result.back=exportActiveArtboardToPNG("back",backLayer.name); }'],
+  ['}catch(e){ return toJSON({error:"Artwork export failed: "', '}catch(e){ if(e&&e.tessUsuario) return toJSON({error:e.message,usuario:true}); return toJSON({error:"Artwork export failed: "'],
+];
+// Script de arte esperado en la línea de producto a partir del de F1. Cada sustitución debe aplicar EXACTAMENTE una vez.
+export function arteD0(baseline) { let t = baseline; for (const [a, b] of [[D0_ARTE_H02.antes, D0_ARTE_H02.despues], ...D0_ARTE_KI37]) { const n = t.split(a).length - 1; if (n !== 1) throw new Error(`D-0: se esperaba 1 aparición de «${a.slice(0, 60)}», hay ${n}`); t = t.replace(a, () => b); } return t; }
 export const cambiadasEn = (nombres) => Object.keys(D0_FUNCIONES_CAMBIADAS).filter((n) => nombres.includes(n)).sort();
 // Líneas de src/main.js que cambian en la línea de producto: [texto de F1, texto actual] (cableado de buildChildrenOfMap para KI-24 y H-03).
 export const D0_MAIN_SUSTITUCIONES = [

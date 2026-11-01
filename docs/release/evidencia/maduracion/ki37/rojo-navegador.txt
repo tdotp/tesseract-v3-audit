@@ -1,0 +1,101 @@
+✔ H-05 · documento cambiado entre «Extract» y «Continue to 3D»: no se construye, se invalida la extracción y se pide extraer de nuevo (3683.175375ms)
+✔ H-05 · mismo nombre en otra carpeta = otro documento; volver al documento original sí construye (1835.452583ms)
+✔ H-05 · arte de un documento distinto del del modelo: no se aplica y el arte vigente se conserva (1554.73625ms)
+✔ H-03 · dos refrescos simultáneos: gana el ÚLTIMO aunque el primero responda después; las texturas del descartado se liberan (3180.954834ms)
+✔ H-03 · plegado a 60°: overlays Y puentes de plegado pasan al arte nuevo; las texturas viejas se liberan y ninguna en uso lo está (1794.422333ms)
+✖ H-03 · fallo parcial (front carga, back falla): el arte vigente no cambia y la textura front recién cargada se libera (1562.902792ms)
+✖ KI-37 · el script informa del fallo de exportación: el panel muestra el mensaje tal cual, NO intenta cargar ninguna textura y conserva el arte vigente (también a 60°) (1606.76125ms)
+✖ KI-37 · sin arte previo: el fallo de exportación deja el modelo sin arte, sin texturas y con el mensaje; un refresco posterior correcto funciona (1501.079792ms)
+✖ KI-37 · ruta inexistente (texture front): nunca «undefined»; el arte vigente se conserva y no se libera nada en uso (1548.528375ms)
+✔ H-03 · reconstruir el modelo (Continue to 3D) a mitad de una carga: la carga vieja se descarta y no toca el modelo nuevo (2966.643584ms)
+✔ KI-24 · cambiar el preset de material ANTES de construir no lanza; después el 3D se construye con ese preset (1552.35175ms)
+✔ GLB · sombra y activo, plano, 60° y con arte: 0 errores del comprobador independiente, sin triángulos degenerados, normales unitarias, en METROS (3717.526958ms)
+✔ GLB · dimensiones físicas: plano = troquel real (175,0 × 0,25 × 223,5 mm ⇒ 0,175 × 0,00025 × 0,2235 m); espesor y centro convertidos una sola vez (0.817708ms)
+✔ GLB · equivalencia semántica (×0,001) con las exportaciones REALES históricas del legacy: sombra plano (737bcd23) y sombra 60° (87aa2e4c) (4.733ms)
+✔ GLB · equivalencia semántica con el RC 3.0.0-rc.1 (reconstruido desde 7258524) en la misma escena: activo plano y 60°; el RC tenía los triángulos degenerados de KI-02 (2008.004917ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 11
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 28986.032542
+
+✖ failing tests:
+
+test at tests/producto/producto-navegador.test.mjs:101:1
+✖ H-03 · fallo parcial (front carga, back falla): el arte vigente no cambia y la textura front recién cargada se libera (1562.902792ms)
+  AssertionError [ERR_ASSERTION]: KI-37: mensaje con contexto, sin «undefined»
+  + actual - expected
+  
+  + 'Artwork load failed: undefined'
+  - 'No se pudo cargar como textura el PNG del artwork trasero. Vuelva a actualizar el artwork.'
+  
+      at TestContext.<anonymous> (file://~/Documents/Antigravity/Tesseract/Tesseract%20v3/tests/producto/producto-navegador.test.mjs:104:10)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'Artwork load failed: undefined',
+    expected: 'No se pudo cargar como textura el PNG del artwork trasero. Vuelva a actualizar el artwork.',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/producto/producto-navegador.test.mjs:110:1
+✖ KI-37 · el script informa del fallo de exportación: el panel muestra el mensaje tal cual, NO intenta cargar ninguna textura y conserva el arte vigente (también a 60°) (1606.76125ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'Artwork load failed: No se pudo exportar el artwork frontal (Front). Illustrator no creó el archivo PNG. Verifique la carpeta temporal y vuelva a intentarlo.'
+  - 'No se pudo exportar el artwork frontal (Front). Illustrator no creó el archivo PNG. Verifique la carpeta temporal y vuelva a intentarlo.'
+  
+      at TestContext.<anonymous> (file://~/Documents/Antigravity/Tesseract/Tesseract%20v3/tests/producto/producto-navegador.test.mjs:113:157)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Artwork load failed: No se pudo exportar el artwork frontal (Front). Illustrator no creó el archivo PNG. Verifique la carpeta temporal y vuelva a intentarlo.',
+    expected: 'No se pudo exportar el artwork frontal (Front). Illustrator no creó el archivo PNG. Verifique la carpeta temporal y vuelva a intentarlo.',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/producto/producto-navegador.test.mjs:117:1
+✖ KI-37 · sin arte previo: el fallo de exportación deja el modelo sin arte, sin texturas y con el mensaje; un refresco posterior correcto funciona (1501.079792ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'Artwork load failed: No se pudo exportar el artwork frontal (Front). Illustrator no creó el archivo PNG. Verifique la carpeta temporal y vuelva a intentarlo.'
+  - 'No se pudo exportar el artwork frontal (Front). Illustrator no creó el archivo PNG. Verifique la carpeta temporal y vuelva a intentarlo.'
+  
+      at TestContext.<anonymous> (file://~/Documents/Antigravity/Tesseract/Tesseract%20v3/tests/producto/producto-navegador.test.mjs:118:202)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Artwork load failed: No se pudo exportar el artwork frontal (Front). Illustrator no creó el archivo PNG. Verifique la carpeta temporal y vuelva a intentarlo.',
+    expected: 'No se pudo exportar el artwork frontal (Front). Illustrator no creó el archivo PNG. Verifique la carpeta temporal y vuelva a intentarlo.',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/producto/producto-navegador.test.mjs:122:1
+✖ KI-37 · ruta inexistente (texture front): nunca «undefined»; el arte vigente se conserva y no se libera nada en uso (1548.528375ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'Artwork load failed: undefined'
+  - 'No se pudo cargar como textura el PNG del artwork frontal. Vuelva a actualizar el artwork.'
+  
+      at TestContext.<anonymous> (file://~/Documents/Antigravity/Tesseract/Tesseract%20v3/tests/producto/producto-navegador.test.mjs:125:10)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Artwork load failed: undefined',
+    expected: 'No se pudo cargar como textura el PNG del artwork frontal. Vuelva a actualizar el artwork.',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

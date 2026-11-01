@@ -3,9 +3,9 @@
 // cada mensaje de estado en orden (se intercepta textContent, no solo el último valor), scripts enviados (tipo, longitud, SHA-256), descargas, escrituras de cep.fs, DOM y excepciones.
 // Las tres versiones deben ser idénticas; además se fijan explícitamente los comportamientos documentados (incluidos los defectos).
 import test, { before, after } from 'node:test'; import assert from 'node:assert/strict'; import fs from 'node:fs'; import path from 'node:path';
-import crypto from 'node:crypto'; import { TARGETS, extractScripts } from '../lib/legacy.mjs'; import { D0_ARTE_H02 } from '../lib/d0.mjs';
+import crypto from 'node:crypto'; import { TARGETS, extractScripts } from '../lib/legacy.mjs'; import { arteD0 } from '../lib/d0.mjs';
 const firma = (k, t) => k + ':' + t.length + ':' + crypto.createHash('sha256').update(t).digest('hex').slice(0, 16);
-const ARTE_BASE_TXT = extractScripts(TARGETS.baseline).art; const ARTE_F1 = firma('arte', ARTE_BASE_TXT), ARTE_D0 = firma('arte', ARTE_BASE_TXT.replace(D0_ARTE_H02.antes, () => D0_ARTE_H02.despues));
+const ARTE_BASE_TXT = extractScripts(TARGETS.baseline).art; const ARTE_F1 = firma('arte', ARTE_BASE_TXT), ARTE_D0 = firma('arte', arteD0(ARTE_BASE_TXT));
 import { prepare, PAGE_HELPERS } from './harness.mjs'; import { ROOT } from '../lib/fixtures.mjs';
 
 const NOCEP = `(() => { if (location.search.indexOf('nocep') < 0) return; Object.defineProperty(window, '__adobe_cep__', { configurable: true, get() { return undefined; }, set() {} }); })()`; // el shim no puede instalar el puente
@@ -96,8 +96,11 @@ for (const t of ['base', 'fix', 'dist']) test(`Puente CEP · ${names[t]}: ${Obje
 for (const t of ['fix', 'dist']) test(`Puente CEP · ${names[t]} idéntico al baseline en TODOS los casos (estado, historial, scripts, descargas, escrituras, DOM, excepciones)${t === 'dist' ? ' salvo lo declarado en D-0' : ''}`, () => {
   for (const name of Object.keys(CASES)) { const b = { ...res.base[name] }; const x = { ...res[t][name] }; assert.deepEqual(b.scriptsSinD0, b.scripts, 'baseline sin envoltorio'); assert.equal(b.comprobacionesDeIdentidad, 0);
     if (t === 'dist') { // D-0: mismos scripts una vez quitado el envoltorio; una comprobación de identidad por construcción; KI-24 sin excepción
-      b.scriptsSinD0 = b.scriptsSinD0.map((e) => (e === ARTE_F1 ? ARTE_D0 : e)); // H-02: el script de arte es el de F1 con la sustitución declarada
+      b.scriptsSinD0 = b.scriptsSinD0.map((e) => (e === ARTE_F1 ? ARTE_D0 : e)); // H-02 y KI-37: el script de arte es el de F1 con las sustituciones declaradas
       assert.equal(x.comprobacionesDeIdentidad, 0, name + ': ningún caso registra una construcción (el registro se vacía después de T.build); H-05 se prueba en tests/producto/'); for (const o of [x, b]) { o.scripts = o.scriptsSinD0; o.comprobacionesDeIdentidad = 0; o.escrituras = o.escrituras.map((w) => ({ ...w, len: 'GLB de 3.0.1-dev (contenido distinto: metros, KI-02)', head: w.head.slice(0, 8) })); } // la cabecera glTF v2 sigue igual
+      if (name === 'arte-textura-inexistente') { // KI-37: ya no «Artwork load failed: undefined»; mensaje con contexto y una línea más de registro. Solo cambian esos campos
+        const MSG = 'No se pudo cargar como textura el PNG del artwork frontal. Vuelva a actualizar el artwork.'; assert.deepEqual(x.arte, [MSG, 'Art error']); assert.ok(x.historialArte.includes(MSG)); assert.match(x.log, /Artwork texture load failed \(front\): \/nonexistent\/tesseract_a5\.png/); assert.doesNotMatch(x.arte[0] + x.log, /undefined/);
+        assert.deepEqual(b.arte, ['Artwork load failed: undefined', 'Art error']); for (const k of ['arte', 'historialArte', 'log']) delete x[k], delete b[k]; }
       if (name === 'ki24-stock-antes-de-3d') { assert.match(String(b.excepciones), /buildChildrenOfMap is not defined/); b.excepciones = []; } }
     assert.deepEqual(x, b, names[t] + ' · ' + name); }
 });
