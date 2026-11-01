@@ -1,0 +1,22 @@
+fecha: 2026-11-01T06:25:57Z
+b36f3d8998555391627cc995a73e1f63714624015122b5e9a1400fe7d8275428  /Users/gerardocalambasposada/Library/Application Support/Adobe/CEP/extensions/tesseract-v3-experimental/main.js
+total 544
+drwx------@ 14 gerardocalambasposada  staff     448 Oct 28 14:01 .
+drwxr-xr-x   4 gerardocalambasposada  staff     128 Oct 28 14:01 ..
+-rw-r--r--@  1 gerardocalambasposada  staff     192 Oct 28 14:01 .debug
+-rw-r--r--@  1 gerardocalambasposada  staff    3530 Oct 28 14:01 BUILD_INFO.json
+drwxr-xr-x@  3 gerardocalambasposada  staff      96 Oct 28 14:01 CSXS
+-rw-r--r--@  1 gerardocalambasposada  staff    1117 Oct 28 14:01 SHA256SUMS
+drwxr-xr-x@  6 gerardocalambasposada  staff     192 Oct 28 14:01 icons
+-rw-r--r--@  1 gerardocalambasposada  staff    7851 Oct 28 14:01 index.html
+drwxr-xr-x@  4 gerardocalambasposada  staff     128 Oct 28 14:01 libs
+-rw-r--r--@  1 gerardocalambasposada  staff    1500 Oct 28 14:01 linkedin_logo.svg
+-rw-r--r--@  1 gerardocalambasposada  staff  229866 Oct 28 14:01 main.js
+-rw-r--r--@  1 gerardocalambasposada  staff    8604 Oct 28 14:01 style.css
+-rw-r--r--@  1 gerardocalambasposada  staff    2110 Oct 28 14:01 tesseract_icon.svg
+-rw-r--r--@  1 gerardocalambasposada  staff    2405 Oct 28 14:01 tesseract_logo.svg
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtensionList><Extension Id="com.tato.tesseract.v3.experimental.panel"><HostList><Host Name="ILST" Port="8089"/></HostList></Extension></ExtensionList>
+ExtensionBundleVersion="3.0.0"
+SHA256SUMS instalado OK
+snapshot escrito en tests/results/v301-real/snapshot-antes.txt

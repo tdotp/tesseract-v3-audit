@@ -1,0 +1,3 @@
+Only in /Users/gerardocalambasposada/Documents/Antigravity/Tesseract/Tesseract v3/reference/legacy-baseline: main.js.bak
+== 4) no hay rutas instaladas del bundle V3 en el CEP del usuario (no autorizado)
+OK (modo experimental: tesseract-v3-experimental idéntica a dist-experimental/, salvo .debug)

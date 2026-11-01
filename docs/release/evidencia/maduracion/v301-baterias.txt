@@ -1,0 +1,170 @@
+HEAD 42446bbb046b18a574d1f010c5e81e421d576bc3 · 2026-11-01T06:26:32Z
+######## tests/run-all.sh (línea de producto)
+== 1/5 aislamiento
+== 1) baseline congelado vs manifiesto
+OK
+== 2) extensión instalada vs baseline
+OK (archivos del baseline idénticos)
+== 3) panel/ vs baseline (diferencias esperadas)
+Files /Users/gerardocalambasposada/Documents/Antigravity/Tesseract/Tesseract v3/reference/legacy-baseline/main.js and /Users/gerardocalambasposada/Documents/Antigravity/Tesseract/Tesseract v3/panel/main.js differ
+Only in /Users/gerardocalambasposada/Documents/Antigravity/Tesseract/Tesseract v3/reference/legacy-baseline: main.js.bak
+== 4) no hay rutas instaladas del bundle V3 en el CEP del usuario (no autorizado)
+OK (no instalado)
+== 2/5 build del bundle (IIFE, chrome99) y verificación
+Build OK → dist  (13 archivos, main.js 139382 B, esbuild 0.28.2, target chrome99)
+No se instaló nada.
+OK: dist/ íntegro y reproducible
+DRY-RUN CORRECTO: todas las comprobaciones pasan. No se escribió nada. La instalación real sigue sin autorización.
+== 3/5 Node (geometría, defectos, extracción, arte, GLB, .jsx, aislamiento, build, Chromium 99, instalador dry-run)
+ℹ tests 664
+ℹ pass 663
+ℹ fail 0
+ℹ skipped 1
+== 4/5 navegador (Chrome headless: baseline · panel · bundle; y con APIs reducidas a Chromium 99)
+ℹ tests 52
+ℹ pass 52
+ℹ fail 0
+ℹ skipped 0
+ℹ tests 13
+ℹ pass 13
+ℹ fail 0
+ℹ skipped 0
+ℹ tests 31
+ℹ pass 31
+ℹ fail 0
+ℹ skipped 0
+ℹ tests 32
+ℹ pass 32
+ℹ fail 0
+ℹ skipped 0
+ℹ tests 4
+ℹ pass 4
+ℹ fail 0
+ℹ skipped 0
+ℹ tests 6
+ℹ pass 6
+ℹ fail 0
+ℹ skipped 0
+ℹ tests 3
+ℹ pass 3
+ℹ fail 0
+ℹ skipped 0
+ℹ tests 7
+ℹ pass 7
+ℹ fail 0
+ℹ skipped 0
+== 5/5 línea de producto 3.0.1-dev (D-0: robustez H-02/H-03/H-05/KI-24/H-07; GLB KI-02/H-06 en Node y en el bundle de producto)
+ℹ tests 78
+ℹ pass 78
+ℹ fail 0
+ℹ skipped 0
+TODO EN VERDE
+EXIT_RUN_ALL=0
+######## tests/run-experimental.sh
+✖ F2A-3 · 4. alarma estática: operaciones que mutan en sitio en los consumidores de producción (2.977334ms)
+✖ RELEASE.json: versión, commit, identidad CEP propia, manifiesto (ILST, CSXS 12), motores y compatibilidad declarados; BUILD_INFO sin commit (reproducible) (2.142417ms)
+✖ evidencia real · identidad del panel validado: ILST 30.8.2, CEP 12.1.1, Chromium 99; main.js = construcción limpia de este árbol (118.6645ms)
+ℹ tests 464
+ℹ pass 461
+ℹ fail 3
+ℹ skipped 0
+✖ failing tests:
+✖ lista fijada (si cambia, revisar que no muta datos del motor y actualizar la lista con su justificación) (2.910125ms)
+✖ RELEASE.json: versión, commit, identidad CEP propia, manifiesto (ILST, CSXS 12), motores y compatibilidad declarados; BUILD_INFO sin commit (reproducible) (2.142417ms)
+✖ evidencia real · identidad del panel validado: ILST 30.8.2, CEP 12.1.1, Chromium 99; main.js = construcción limpia de este árbol (118.6645ms)
+EXPERIMENTAL CON FALLOS
+EXIT_EXPERIMENTAL=1
+######## tests/run-historico.sh (F1 / dist-a9, commit congelado)
+== batería HISTÓRICA de F1 (dist-a9) sobre 43125543b4ed54f0eca1d4764e112c6e6baa6666, sin cambios, en un clon temporal
+== 1/4 aislamiento
+== 1) baseline congelado vs manifiesto
+OK
+== 2) extensión instalada vs baseline
+OK (archivos del baseline idénticos)
+== 3) panel/ vs baseline (diferencias esperadas)
+Files /var/folders/s3/b0dsvsbx0mnd0d_g3__gk85r0000gn/T/tess-historico.fyklpL/repo/reference/legacy-baseline/main.js and /var/folders/s3/b0dsvsbx0mnd0d_g3__gk85r0000gn/T/tess-historico.fyklpL/repo/panel/main.js differ
+Only in /var/folders/s3/b0dsvsbx0mnd0d_g3__gk85r0000gn/T/tess-historico.fyklpL/repo/reference/legacy-baseline: main.js.bak
+== 4) no hay rutas instaladas del bundle V3 en el CEP del usuario (no autorizado)
+OK (no instalado)
+== 2/4 build del bundle (IIFE, chrome99) y verificación
+Build OK → dist  (13 archivos, main.js 131546 B, esbuild 0.28.2, target chrome99)
+No se instaló nada.
+OK: dist/ íntegro y reproducible
+DRY-RUN CORRECTO: todas las comprobaciones pasan. No se escribió nada. La instalación real sigue sin autorización.
+== 3/4 Node (geometría, defectos, extracción, arte, GLB, .jsx, aislamiento, build, Chromium 99, instalador dry-run)
+✖ zonas protegidas: el build rechaza --out en panel/, reference/, la raíz del repo, /Library y ~/Library y no crea nada (248.700208ms)
+✖ --verify: acepta un dist íntegro y rechaza uno manipulado (0.3965ms)
+✖ el bundle usa solo APIs web que existen desde mucho antes de la 99 (inventario informativo) (1.05575ms)
+✖ tests/node/known-issues.test.mjs (81.77375ms)
+ℹ tests 623
+ℹ pass 618
+ℹ fail 4
+ℹ skipped 1
+✖ failing tests:
+✖ zonas protegidas: el build rechaza --out en panel/, reference/, la raíz del repo, /Library y ~/Library y no crea nada (248.700208ms)
+✖ --verify: acepta un dist íntegro y rechaza uno manipulado (0.3965ms)
+✖ el bundle usa solo APIs web que existen desde mucho antes de la 99 (inventario informativo) (1.05575ms)
+✖ tests/node/known-issues.test.mjs (81.77375ms)
+== 4/4 navegador (Chrome headless: baseline · panel · bundle; y con APIs reducidas a Chromium 99)
+ℹ tests 1
+ℹ pass 1
+ℹ fail 0
+ℹ skipped 0
+ℹ tests 1
+ℹ pass 1
+ℹ fail 0
+ℹ skipped 0
+ℹ tests 1
+ℹ pass 1
+ℹ fail 0
+ℹ skipped 0
+ℹ tests 1
+ℹ pass 1
+ℹ fail 0
+ℹ skipped 0
+ℹ tests 1
+ℹ pass 1
+ℹ fail 0
+ℹ skipped 0
+ℹ tests 1
+ℹ pass 1
+ℹ fail 0
+ℹ skipped 0
+✖ argumentos: solo instalar|leer, puerto válido, opciones conocidas (0.292208ms)
+✖ observación pasiva del flujo real del panel: Test Connection, extracción, arte, guardar (ruta) y cancelar; textos ExtendScript = baseline; KI-25 visible; restauración (0.034125ms)
+✖ veredicto: un texto ExtendScript alterado, desconocido o una escritura fallida se marcan como FALLA (0.451333ms)
+✖ /private/var/folders/s3/b0dsvsbx0mnd0d_g3__gk85r0000gn/T/tess-historico.fyklpL/repo/tests/browser/a5-observar.test.mjs (0.100208ms)
+ℹ tests 4
+ℹ pass 0
+ℹ fail 4
+ℹ skipped 0
+✖ failing tests:
+✖ argumentos: solo instalar|leer, puerto válido, opciones conocidas (0.292208ms)
+✖ observación pasiva del flujo real del panel: Test Connection, extracción, arte, guardar (ruta) y cancelar; textos ExtendScript = baseline; KI-25 visible; restauración (0.034125ms)
+✖ veredicto: un texto ExtendScript alterado, desconocido o una escritura fallida se marcan como FALLA (0.451333ms)
+✖ /private/var/folders/s3/b0dsvsbx0mnd0d_g3__gk85r0000gn/T/tess-historico.fyklpL/repo/tests/browser/a5-observar.test.mjs (0.100208ms)
+✖ selección de objetivo: exactamente 1, nunca el panel del plugin instalado, ni 0 ni varios (0.384125ms)
+✖ identity: el bundle de dist/ servido como tesseract-v3 se reconoce (huella de main.js = dist/SHA256SUMS); un main.js alterado se detecta (0.040209ms)
+✖ console: recoge errores y excepciones durante la ventana y los cuenta; sin errores da 0 (0.028875ms)
+✖ leak: inyecta leak_cycles.js en el panel y devuelve el resultado (con el bundle: sin crecimiento acumulativo) (0.029083ms)
+✖ measure: inyecta measure_ui.js y devuelve métricas del panel (estado, FPS) (0.037625ms)
+✖ targets: lista los objetivos (solo lectura) y se niega si el puerto no responde (0.02575ms)
+✖ A4 · la referencia GLB (baseline, panel y bundle en Chrome headless) se reproduce y coincide con lo exportado por el CEP REAL (docs/fase1/a4-real) (0.025708ms)
+✖ /private/var/folders/s3/b0dsvsbx0mnd0d_g3__gk85r0000gn/T/tess-historico.fyklpL/repo/tests/browser/a4-cdp.test.mjs (0.105084ms)
+ℹ tests 8
+ℹ pass 0
+ℹ fail 8
+ℹ skipped 0
+✖ failing tests:
+✖ selección de objetivo: exactamente 1, nunca el panel del plugin instalado, ni 0 ni varios (0.384125ms)
+✖ identity: el bundle de dist/ servido como tesseract-v3 se reconoce (huella de main.js = dist/SHA256SUMS); un main.js alterado se detecta (0.040209ms)
+✖ console: recoge errores y excepciones durante la ventana y los cuenta; sin errores da 0 (0.028875ms)
+✖ leak: inyecta leak_cycles.js en el panel y devuelve el resultado (con el bundle: sin crecimiento acumulativo) (0.029083ms)
+✖ measure: inyecta measure_ui.js y devuelve métricas del panel (estado, FPS) (0.037625ms)
+✖ targets: lista los objetivos (solo lectura) y se niega si el puerto no responde (0.02575ms)
+✖ A4 · la referencia GLB (baseline, panel y bundle en Chrome headless) se reproduce y coincide con lo exportado por el CEP REAL (docs/fase1/a4-real) (0.025708ms)
+✖ /private/var/folders/s3/b0dsvsbx0mnd0d_g3__gk85r0000gn/T/tess-historico.fyklpL/repo/tests/browser/a4-cdp.test.mjs (0.105084ms)
+HAY FALLOS
+HISTÓRICO CON FALLOS
+EXIT_HISTORICO=1
+fin 2026-11-01T06:39:42Z

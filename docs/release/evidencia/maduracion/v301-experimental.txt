@@ -1,0 +1,6 @@
+ℹ tests 465
+ℹ pass 465
+ℹ fail 0
+ℹ skipped 0
+EXPERIMENTAL EN VERDE
+EXIT_EXPERIMENTAL=0

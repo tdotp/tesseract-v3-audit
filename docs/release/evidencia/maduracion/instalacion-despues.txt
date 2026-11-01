@@ -1,0 +1,4 @@
+fecha: 2026-11-01T07:10:02Z
+b36f3d8998555391627cc995a73e1f63714624015122b5e9a1400fe7d8275428  /Users/gerardocalambasposada/Library/Application Support/Adobe/CEP/extensions/tesseract-v3-experimental/main.js
+SHA256SUMS instalado OK
+idéntico al estado previo (respaldo byte a byte)
